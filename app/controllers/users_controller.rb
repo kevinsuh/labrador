@@ -9,4 +9,21 @@ class UsersController < ApplicationController
   	#debugger
   end
 
+  def create
+  	@user = User.new(user_params)
+  	if @user.save
+  		flash[:success] = "You have signed up for cardagain!"
+  		redirect_to @user
+  	else
+  		render 'new'
+  	end
+  end
+
+  private
+
+  	# to ensure which values we are receiving from our form
+  	def user_params
+  		params.require(:user).permit(:name, :email, :password, :password_confirmation)
+  	end
+
 end
