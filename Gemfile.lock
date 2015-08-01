@@ -38,7 +38,7 @@ GEM
       tzinfo (~> 1.1)
     ansi (1.5.0)
     arel (6.0.2)
-    autoprefixer-rails (5.1.7)
+    autoprefixer-rails (5.2.1.1)
       execjs
       json
     bcrypt (3.1.10)
@@ -222,7 +222,7 @@ PLATFORMS
 
 DEPENDENCIES
   bcrypt
-  bootstrap-sass
+  bootstrap-sass (= 3.3.4)
   byebug
   coffee-rails (~> 4.1.0)
   guard-minitest
