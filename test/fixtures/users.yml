@@ -1,0 +1,4 @@
+kevin:
+ name: Kevin Suh
+ email: kevin_suh34@yahoo.com
+ password_digest: <%= User.digest('password') %>
