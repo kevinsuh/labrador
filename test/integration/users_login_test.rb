@@ -21,9 +21,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
 
   	# valid login
   	get login_path
-  	post login_path, session: { email: @user.email,
-  															password: 'password'
-  														}
+  	log_in_as(@user, password:'password', remember_me:'1')
   	assert_redirected_to @user
   	follow_redirect!
   	assert_template 'users/show'
@@ -47,6 +45,16 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
   	assert_select "a[href=?]", logout_path, count: 0
   	assert_select "a[href=?]", user_path(@user), count: 0
 
+  end
+
+  test "login with remembering" do
+  	log_in_as(@user, remember_me: 1, password: 'password')
+  	assert_not_nil cookies['remember_token']
+  end
+
+  test "login without remembering" do
+  	log_in_as(@user, remember_me: 0, password: 'password')
+  	assert_nil cookies['remember_token']
   end
 
 
