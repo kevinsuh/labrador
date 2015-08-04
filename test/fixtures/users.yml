@@ -2,8 +2,17 @@ kevin:
  name: Kevin Suh
  email: kevin_suh34@yahoo.com
  password_digest: <%= User.digest('password') %>
+ is_admin: true
 
 chip:
  name: Chip Koziara
  email: chip@cardagain.com
  password_digest: <%= User.digest('password') %>
+
+# create 30 users to test users index
+<% 30.times do |n| %>
+user_<%= "#{n+1}" %>:
+ name: <%= "User #{n+1}" %>
+ email: <%= "email#{n+1}@mail.com" %>
+ password_digest: <%= User.digest('password') %>
+<% end %>
