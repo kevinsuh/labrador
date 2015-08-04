@@ -5,19 +5,7 @@
 		<h1>Update Account</h1>
 		<%= form_for @user, html: { class: "edit_form" } do |f| %>
 			<%= render 'shared/error_messages' %>
-
-			<%= f.label :name %>
-			<%= f.text_field :name, class: 'form-control' %>
-
-			<%= f.label :email %>
-			<%= f.text_field :email, class: 'form-control' %>
-
-			<%= f.label :password %>
-			<%= f.password_field :password, class: 'form-control' %>
-
-			<%= f.label :password_confirmation, "Confirm Password" %>
-			<%= f.password_field :password_confirmation, class: 'form-control' %>
-
+			<%= render 'fields', f: f %>
 			<%= f.submit "Update Account", class: "btn btn-primary" %>
 
 		<% end %>

@@ -28,7 +28,7 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test "should redirect when user gets edit page of wrong user id" do
-  	log_in_as(@user)
+  	log_in_as(@user) # to bypass require_login before filter
   	get :edit, id: @second_user
   	assert_redirected_to root_url
   end
