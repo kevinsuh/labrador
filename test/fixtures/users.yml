@@ -2,3 +2,8 @@ kevin:
  name: Kevin Suh
  email: kevin_suh34@yahoo.com
  password_digest: <%= User.digest('password') %>
+
+chip:
+ name: Chip Koziara
+ email: chip@cardagain.com
+ password_digest: <%= User.digest('password') %>
