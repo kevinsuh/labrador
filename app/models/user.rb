@@ -48,7 +48,7 @@ class User < ActiveRecord::Base
 	end
 
 	def reset_in_time?
-		!(self.password_reset_sent_at < 2.hours.ago)
+		self.password_reset_sent_at > 2.hours.ago
 	end
 
 	# activate the user!
