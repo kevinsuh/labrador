@@ -14,11 +14,16 @@ chip:
  activated_at: Time.zone.now
 
 # create 30 users to test users index
-<% 30.times do |n| %>
+<% 80.times do |n| %>
 user_<%= "#{n+1}" %>:
  name: <%= "User #{n+1}" %>
  email: <%= "email#{n+1}@mail.com" %>
  password_digest: <%= User.digest('password') %>
+ <% if n % 2 == 0 %>
  is_activated: true
+ <% else %>
+ is_activated: false
+ <% end %>
+ 
  activated_at: Time.zone.now
 <% end %>

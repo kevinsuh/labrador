@@ -7,7 +7,7 @@ class UsersIndexTest < ActionDispatch::IntegrationTest
   	@nonadmin_user = users(:chip)
   end
 
-  test "index including pagination" do
+  test "index including pagination with activated users" do
   	
   	get users_path
   	assert_redirected_to login_path
@@ -15,7 +15,7 @@ class UsersIndexTest < ActionDispatch::IntegrationTest
   	log_in_as(@user)
   	get users_path
   	assert_select 'div.pagination'
-  	User.paginate(page: 1, per_page: 20).each do |user|
+  	User.paginate(page: 1, per_page: 20).where(is_activated: true).each do |user|
   		assert_select "a", user.name
   	end
 

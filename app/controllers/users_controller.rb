@@ -10,10 +10,11 @@ class UsersController < ApplicationController
 
   def show
   	@user = User.find(params[:id])
+    redirect_to root_url and return unless @user.is_activated?
   end
 
   def index
-    @users = User.paginate(page: params[:page], per_page: 20)
+    @users = User.paginate(page: params[:page], per_page: 20).where(is_activated: true)
   end
 
   def create
