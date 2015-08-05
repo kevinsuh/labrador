@@ -4,6 +4,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
   
   def setup
   	@user = users(:kevin)
+    ActionMailer::Base.deliveries.clear # removes all emails from queue
   end
   
   test "invalid login" do 
@@ -55,6 +56,51 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
   test "login without remembering" do
   	log_in_as(@user, remember_me: 0, password: 'password')
   	assert_nil cookies['remember_token']
+  end
+
+  test "valid password reset path" do
+    
+    get new_password_reset_path
+    assert_template 'password_resets/new'
+
+    post password_resets_path, password_reset: { email: @user.email }
+    user = assigns(:user)
+    password_reset_token = user.password_reset_token
+    email = user.email
+    assert_equal 1, ActionMailer::Base.deliveries.size
+
+    # valid email, wrong password_reset token
+    get edit_password_reset_url("wrong token", email: email)
+    assert_redirected_to root_url
+
+    # invalid email, right password_reset_token
+    get edit_password_reset_url(password_reset_token, email: "wrongemail@ALKMLK.com")
+    assert_redirected_to root_url
+
+    # valid email + valid password_reset_token
+    get edit_password_reset_url(password_reset_token, email: email)
+    assert_template "password_resets/edit"
+
+    patch password_reset_path(password_reset_token), { email: email,
+                        user: {
+                          password: "newpassword",
+                          password_confirmation: "newpassword"
+                        }
+                      }
+
+    assert is_logged_in?, "is not logged in"
+    assert_redirected_to user
+
+  end
+
+  test "invalid email for password reset path" do
+    get new_password_reset_path
+    assert_template 'password_resets/new'
+
+    post password_resets_path, password_reset: { email: "wrongemail@wrongzemLAI.com" }
+    assert_template 'password_resets/new'
+    assert_not is_logged_in?
+
   end
 
 
