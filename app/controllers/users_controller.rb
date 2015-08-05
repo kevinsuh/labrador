@@ -3,7 +3,6 @@ class UsersController < ApplicationController
   before_action :require_login, only: [:index, :destroy, :edit, :update]
   before_action :correct_user, only: [:edit, :update]
   before_action :admin_user, only: [:destroy]
-  before_action :is_activated, except: [:new]
 
   def new
   	@user = User.new
@@ -21,7 +20,7 @@ class UsersController < ApplicationController
   	@user = User.new(user_params)
   	if @user.save
       # handle account activation & send email
-      UserMailer.account_activation(@user).deliver_now
+      @user.send_activation_email
   		flash[:info] = "An email has been sent to verify your account."
       redirect_to root_url
   	else

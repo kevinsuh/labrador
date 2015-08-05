@@ -32,6 +32,16 @@ class User < ActiveRecord::Base
 		update_attribute(:remember_digest, User.digest(self.remember_token))
 	end
 
+	def send_activation_email
+		UserMailer.account_activation(self).deliver_now
+	end
+
+	# activate the user!
+	def activate
+		update_attribute(:is_activated, true)
+		update_attribute(:activated_at, Time.zone.now)
+	end
+
 	def create_activation_digest
 		self.activation_token = User.new_token
 		self.activation_digest = User.digest(self.activation_token)
@@ -46,7 +56,8 @@ class User < ActiveRecord::Base
 	end
 
 	# to mimic has_secure_password.authenticate for our custom tokens
-	def authenticated?(token, digest)
+	def authenticated?(attribute, token)
+		digest = self.send("#{attribute}_digest") # ex) self.activation_digest
 		BCrypt::Password.new(digest).is_password?(token)
 	end
 
