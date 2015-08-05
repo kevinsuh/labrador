@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
   root 'static_pages#home'
 
   get 'sessions/new'
@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get 'contact_us' => 'static_pages#contact_us'
 
   resources :users
+  resources :account_activations, only: [:edit]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -1,0 +1,6 @@
+Hi <%= @user.name %>,
+
+Welcome to Cardagain!
+
+Please activate me by clicking this link: 
+<%= edit_account_activation_url(@user.activation_token, email: @user.email) %>

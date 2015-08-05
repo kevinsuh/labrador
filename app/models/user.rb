@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
 
-	before_save { self.email.downcase! }
+	before_save :downcase_email
+	before_create :create_activation_digest
 
 	validates :name,  presence: true, length: { maximum: 50 }
 	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
@@ -9,7 +10,7 @@ class User < ActiveRecord::Base
 										format: { with: VALID_EMAIL_REGEX },
 										uniqueness: { case_sensitive: false }
 	validates :password, length: { minimum: 6 }, allow_blank: true
-	attr_accessor :remember_token
+	attr_accessor :remember_token, :activation_token
 
 	has_secure_password # adds virtual attributes :password & :password_confirmation
 
@@ -29,6 +30,15 @@ class User < ActiveRecord::Base
 	def remember
 		self.remember_token = User.new_token
 		update_attribute(:remember_digest, User.digest(self.remember_token))
+	end
+
+	def create_activation_digest
+		self.activation_token = User.new_token
+		self.activation_digest = User.digest(self.activation_token)
+	end
+
+	def downcase_email
+		self.email = self.email.downcase
 	end
 
 	def forget

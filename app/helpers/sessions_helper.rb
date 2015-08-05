@@ -34,6 +34,11 @@ module SessionsHelper
 		!current_user.nil?
 	end
 
+	# add activation_token/digest, and send email with the information
+	def handle_activation(user)
+		
+	end
+
 	# remember a user via cookies
 	# session is used to LOGIN a user for a single use
 	# cookies is to REMEMBER a user throughout multiple uses
