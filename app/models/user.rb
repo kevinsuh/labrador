@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
 										format: { with: VALID_EMAIL_REGEX },
 										uniqueness: { case_sensitive: false }
 	validates :password, length: { minimum: 6 }, allow_blank: true
-	attr_accessor :remember_token, :activation_token
+	attr_accessor :remember_token, :activation_token, :password_reset_token
 
 	has_secure_password # adds virtual attributes :password & :password_confirmation
 
@@ -34,6 +34,17 @@ class User < ActiveRecord::Base
 
 	def send_activation_email
 		UserMailer.account_activation(self).deliver_now
+	end
+
+	# reset password
+	def reset_password
+		self.password_reset_token = User.new_token
+		update_attribute(:password_reset_digest, User.digest(self.password_reset_token))
+		update_attribute(:password_reset_sent_at, Time.zone.now)
+	end
+
+	def send_password_reset_email
+		UserMailer.password_reset(self).deliver_now
 	end
 
 	# activate the user!
