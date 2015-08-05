@@ -64,9 +64,14 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     assert_template 'password_resets/new'
 
     post password_resets_path, password_reset: { email: @user.email }
+
     user = assigns(:user)
     password_reset_token = user.password_reset_token
     email = user.email
+
+    assert_redirected_to root_url
+    follow_redirect!
+    assert_select 'div.alert'
     assert_equal 1, ActionMailer::Base.deliveries.size
 
     # valid email, wrong password_reset token
@@ -80,7 +85,19 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     # valid email + valid password_reset_token
     get edit_password_reset_url(password_reset_token, email: email)
     assert_template "password_resets/edit"
+    assert_select "input#email[type=hidden][name=email][value=?]", email
 
+    # invalid password reset
+    patch password_reset_path(password_reset_token), { email: email,
+      user: {
+        password: 'wrongPass',
+        password_confirmation: 'notconfirmed'
+      }
+    }
+    assert_select "div#error_explanation"
+    assert_template 'password_resets/edit'
+
+    # valid password reset
     patch password_reset_path(password_reset_token), { email: email,
                         user: {
                           password: "newpassword",

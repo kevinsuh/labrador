@@ -26,14 +26,21 @@ class PasswordResetsController < ApplicationController
 
   def update
   	# get user and update
-  	if @user.update_attributes(password_params)
-  		log_in @user
-  		remember @user
-  		flash[:success] = "Password reset!"
-  		redirect_to @user
-  	else
-  		render 'edit'
-  	end
+  	if !@user.reset_in_time?
+      flash[:danger] = "Password resent has expired."
+      redirect_to new_password_reset_path
+    elsif @user.update_attributes(password_params)
+      if (params[:user][:password].blank? && params[:user][:password_confirmation].blank?)
+        flash.now[:danger] = "Password/confirmation can't be blank."
+        render 'edit'
+      else # successful page
+        log_in @user
+        remember @user
+        redirect_to @user
+      end
+    else
+      render 'edit'
+    end
   end
 
   private
@@ -46,7 +53,7 @@ class PasswordResetsController < ApplicationController
   		if potential_user && potential_user.authenticated?(:password_reset, password_reset_token)
   			@user = potential_user
   		else
-  			flash[:danger] = "Could not find user by email. For support contact support@cardagain.com"
+  			flash[:danger] = "Could not reset password. Please try again."
   			redirect_to root_url
   		end
   	end

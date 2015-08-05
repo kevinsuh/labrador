@@ -47,6 +47,10 @@ class User < ActiveRecord::Base
 		UserMailer.password_reset(self).deliver_now
 	end
 
+	def reset_in_time?
+		!(self.password_reset_sent_at < 2.hours.ago)
+	end
+
 	# activate the user!
 	def activate
 		update_attribute(:is_activated, true)
