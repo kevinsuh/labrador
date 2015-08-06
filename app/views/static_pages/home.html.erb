@@ -1,7 +1,5 @@
-<div class="center jumbotron">
-	<h1>Cardagain</h1>
-	<h2>
-		Home page for cardagain
-	</h2>
-	<%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
-</div>
+<% if logged_in? %>
+	<%= render 'shared/logged_in_home' %>
+<% else %>
+	<%= render 'shared/logged_out_home' %>
+<% end %>

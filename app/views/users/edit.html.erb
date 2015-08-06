@@ -4,7 +4,7 @@
 	<div class="col-md-6 col-md-offset-3">
 		<h1>Update Account</h1>
 		<%= form_for @user, html: { class: "edit_form" } do |f| %>
-			<%= render 'shared/error_messages' %>
+			<%= render 'shared/error_messages', form_object: f.object %>
 			<%= render 'fields', f: f %>
 			<%= f.submit "Update Account", class: "btn btn-primary" %>
 

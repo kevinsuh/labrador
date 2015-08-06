@@ -1,11 +1,11 @@
 <!-- partial to display error messages on a page -->
-<% if @user.errors.any? %>
+<% if form_object.errors.any? %>
 	<div id="error_explanation">
 		<div class="alert alert-danger">
-			The form contains <%= pluralize(@user.errors.count, "error") %>
+			The form contains <%= pluralize(form_object.errors.count, "error") %>
 		</div>
 		<ul>
-			<% @user.errors.full_messages.each do |error| %>
+			<% form_object.errors.full_messages.each do |error| %>
 				<li><%= error %> </li>
 			<% end %>
 		</ul>

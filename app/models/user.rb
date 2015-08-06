@@ -1,8 +1,8 @@
 class User < ActiveRecord::Base
 
+	has_many :microposts
 	before_save :downcase_email
 	before_create :create_activation_digest
-
 	validates :name,  presence: true, length: { maximum: 50 }
 	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
 	validates :email, presence: true, 
@@ -34,6 +34,11 @@ class User < ActiveRecord::Base
 
 	def send_activation_email
 		UserMailer.account_activation(self).deliver_now
+	end
+
+	# microposts that the user follows
+	def feed
+		Micropost.where("user_id = ?", self.id)
 	end
 
 	# reset password

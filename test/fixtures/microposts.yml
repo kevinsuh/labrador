@@ -1,0 +1,57 @@
+micropost_1:
+ content: lorem ipsum
+ created_at: <%= 2.hours.ago %>
+ user: kevin
+
+micropost_2:
+ content: lorem ipsum
+ created_at: <%= 8.hours.ago %>
+ user: kevin
+
+micropost_3:
+ content: lorem ipsum
+ created_at: <%= 3.days.ago %> 
+ user: kevin
+
+most_recent_micropost:
+ content: most recent tweet
+ created_at: <%= Time.zone.now %>
+ user: kevin
+
+micropost_4:
+ content: lorem ipsum
+ created_at: <%= 1.hour.ago %>
+ user: kevin
+
+kevin_micropost:
+ content: another kevin one
+ created_at: <%= 1.hour.ago %>
+ user: kevin
+
+chip_micropost:
+ content: new users micropost!!
+ created_at: <%= 2.years.ago %>
+ user: chip
+
+micropost_6:
+ content: chips second micropost!!
+ created_at: <%= 1.year.ago %>
+ user: chip
+
+micropost_7:
+ content: third micropost by chip!!
+ created_at: <%= 2.days.ago %>
+ user: chip
+
+micropost_8:
+ content: chip wants another micropost!!
+ created_at: <%= 2.hours.ago %>
+ user: chip
+
+# create 80 microposts to trigger pagination
+<% 80.times do |n| %>
+micropost_<%= "#{n+1}" %>:
+ content: <%= Faker::Lorem.sentence(5) %>
+ created_at: <%= 1.hour.ago %>
+ user: kevin
+<% end %>
