@@ -19,15 +19,24 @@ module SessionsHelper
 		elsif (user_id = cookies.signed[:user_id])
 			user = User.find_by(id: user_id)
 			remember_token = cookies[:remember_token]
-			if user && user.authenticated?(remember_token, user.remember_digest)
+			if user && user.authenticated?(:remember, user.remember_token)
 				log_in user
 				@current_user = user
 			end
 		end
 	end
 
+	def current_user?(user) #finds if user is the current logged_in user
+		user == current_user
+	end
+
 	def logged_in?
 		!current_user.nil?
+	end
+
+	# add activation_token/digest, and send email with the information
+	def handle_activation(user)
+		
 	end
 
 	# remember a user via cookies
@@ -44,5 +53,15 @@ module SessionsHelper
 		cookies.delete(:remember_token)
 		cookies.delete(:user_id)
 	end
+
+	def redirect_back_or(default)
+		redirect_to (session[:forward_url] || default)
+		session.delete(:forward_url)
+	end
+
+	def store_location
+		session[:forward_url] = request.url if request.get?
+	end
+
 
 end

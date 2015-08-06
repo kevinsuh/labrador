@@ -3,7 +3,7 @@ require 'test_helper'
 class UsersSignupTest < ActionDispatch::IntegrationTest
 
 	def setup
-		@user = users(:kevin)
+		ActionMailer::Base.deliveries.clear # removes all emails from queue
 	end
   
 	test "invalid signup" do 
@@ -21,21 +21,33 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
 	test "valid signup" do
 		get signup_path
 		assert_difference "User.count", 1 do
-			post_via_redirect users_path, user: { name: "Kevin Suh",
+			post users_path, user: { name: "Kevin Suh",
 															 email: "testkevin@gmail.com",
 															 password: "kevinsuh",
 															 password_confirmation: "kevinsuh"
 															}
 		end
 
-  	# should redirect to profile page
-		assert_template 'users/show'
-		assert_select "div.alert-success", { :count => 1 }
+		assert_equal 1, ActionMailer::Base.deliveries.size
+		user = assigns(:user) # this is because users#create defines an @user variable that we can then access
+		assert_not user.is_activated?
 
-		# proxy to test for logged in user
+		# try logging in before activated
+		log_in_as(user)
+		assert_not is_logged_in?
+
+		# valid token, wrong email
+		get edit_account_activation_url(user.activation_token, email: "wrongemail@wrongmail.com")
+		assert_not is_logged_in?
+
+		# valid activation token
+		get edit_account_activation_url(user.activation_token, email: user.email)
+		assert_redirected_to user
+		follow_redirect!
+		user.reload
+		assert user.is_activated?
 		assert is_logged_in?
-		assert_select "a[href=?]", logout_path
-  	assert_select "a[href=?]", login_path, count: 0
+		assert_template 'users/show'
 
 	end
 
