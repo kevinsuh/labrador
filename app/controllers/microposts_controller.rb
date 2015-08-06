@@ -22,7 +22,7 @@ class MicropostsController < ApplicationController
 
 	private
 		def micropost_params
-			params.require(:micropost).permit(:content)
+			params.require(:micropost).permit(:content, :picture)
 		end
 
 		# security measure to ensure that the micropost is belonged to the user who is currently logged in
