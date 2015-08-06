@@ -26,6 +26,7 @@ class MicropostsInterfaceTest < ActionDispatch::IntegrationTest
   	get root_path
   	assert_match "view my profile", response.body
   	assert_select "div.pagination"
+  	assert_select "input[type=file]"
   	 
   	# post invalid micropost (too long or blank)
   	assert_no_difference "Micropost.count" do 
@@ -40,9 +41,12 @@ class MicropostsInterfaceTest < ActionDispatch::IntegrationTest
   	assert_template 'static_pages/home'
 
   	# post valid micropost and see the update
+  	picture = fixture_file_upload('test/fixtures/github_robot.jpg', 'image/jpg')
   	assert_difference "Micropost.count", 1 do
-  		post microposts_path, micropost: { content: "valid content" }
+  		post microposts_path, micropost: { content: "valid content", picture: picture }
   	end
+  	micropost = assigns(:micropost)
+  	assert micropost.picture?
   	assert_redirected_to root_url
   	follow_redirect!
   	assert_match "valid content", response.body
