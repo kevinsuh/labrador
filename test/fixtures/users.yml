@@ -13,7 +13,7 @@ chip:
  is_activated: true
  activated_at: Time.zone.now
 
-# create 30 users to test users index
+# create 80 users to test users index
 <% 80.times do |n| %>
 user_<%= "#{n+1}" %>:
  name: <%= "User #{n+1}" %>
@@ -27,3 +27,10 @@ user_<%= "#{n+1}" %>:
  
  activated_at: Time.zone.now
 <% end %>
+
+emily:
+ name: Emily Tseng
+ email: emily@cardagain.com
+ password_digest: <%= User.digest('password') %>
+ is_activated: true
+ activated_at: Time.zone.now
