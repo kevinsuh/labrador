@@ -3,8 +3,9 @@ require 'test_helper'
 class FollowingTest < ActionDispatch::IntegrationTest
   
 	def setup
-		@kevin = users(:kevin)
-		@chip = users(:chip)
+    @kevin = users(:kevin)
+    @chip  = users(:chip)
+    @ben   = users(:ben)
 
 		# follow 25 people
 		25.times do |n|
@@ -59,9 +60,32 @@ class FollowingTest < ActionDispatch::IntegrationTest
   	get user_path(@chip)
   	assert_select 'input', value: "Unfollow"
   	
+    @kevin.unfollow(@chip)
+    assert_select 'input', value: "Follow"
+
   	# 5a. posting to follow should lead to follow
   	# 5b. posting to unfollow should lead to unfollow
-  	
+  	assert_difference "@kevin.following.count", 1 do
+      post relationships_path, followed_id: @chip.id
+    end
+    @kevin.unfollow(@chip)
+    # ajax follow
+    assert_difference "@kevin.following.count", 1 do
+      xhr :post, relationships_path, followed_id: @chip.id
+    end
+
+    kevin_relationship = @kevin.active_relationships.find_by(followed_id: @chip.id)
+
+    assert_difference "@kevin.following.count", -1 do
+      delete relationship_path(kevin_relationship)
+    end
+    @kevin.follow(@chip)
+    kevin_relationship = @kevin.active_relationships.find_by(followed_id: @chip.id)
+    # ajax unfollow
+    assert_difference "@kevin.following.count", -1 do
+      xhr :delete, relationship_path(kevin_relationship)
+    end
+
   	# 6. should see following page of user
   	get following_user_path(@kevin)
   	@kevin.following.each do |following|
@@ -73,6 +97,5 @@ class FollowingTest < ActionDispatch::IntegrationTest
   	@kevin.followers.each do |follower|
   		assert_select 'a', { text: follower.name, url: user_path(follower) }
   	end
-
   end
 end

@@ -34,3 +34,10 @@ emily:
  password_digest: <%= User.digest('password') %>
  is_activated: true
  activated_at: Time.zone.now
+
+ben:
+ name: Ben Xue
+ email: ben@cardagain.com
+ password_digest: <%= User.digest('password') %>
+ is_activated: true
+ activated_at: Time.zone.now
