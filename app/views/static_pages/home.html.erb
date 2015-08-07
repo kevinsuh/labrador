@@ -1,0 +1,5 @@
+<% if logged_in? %>
+	<%= render 'static_pages/logged_in_home' %>
+<% else %>
+	<%= render 'static_pages/logged_out_home' %>
+<% end %>
