@@ -49,9 +49,26 @@ micropost_8:
  user: chip
 
 # create 80 microposts to trigger pagination
+# kevin tweets
 <% 80.times do |n| %>
 micropost_<%= "#{n+1}" %>:
  content: <%= Faker::Lorem.sentence(5) %>
  created_at: <%= 1.hour.ago %>
  user: kevin
+<% end %>
+
+#emily tweets
+<% 30.times do |n| %>
+micropost_<%= "#{n+81}" %>:
+ content: <%= Faker::Lorem.sentence(5) %>
+ created_at: <%= 1.hour.ago %>
+ user: emily
+<% end %>
+
+# chip tweets
+<% 30.times do |n| %>
+micropost_<%= "#{n+111}" %>:
+ content: <%= Faker::Lorem.sentence(5) %>
+ created_at: <%= 1.hour.ago %>
+ user: chip
 <% end %>

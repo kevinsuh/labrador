@@ -46,7 +46,7 @@ class User < ActiveRecord::Base
 
 	# microposts that the user follows
 	def feed
-		Micropost.where("user_id = ?", self.id)
+		Micropost.feed_for_user(self)
 	end
 
 	# reset password

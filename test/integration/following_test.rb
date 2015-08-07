@@ -6,6 +6,7 @@ class FollowingTest < ActionDispatch::IntegrationTest
     @kevin = users(:kevin)
     @chip  = users(:chip)
     @ben   = users(:ben)
+    @emily = users(:emily)
 
 		# follow 25 people
 		25.times do |n|
@@ -18,8 +19,43 @@ class FollowingTest < ActionDispatch::IntegrationTest
 			User.offset(n+45).first.follow(@kevin)
 			#@kevin.passive_relationships.create(follower_id: User.offset(n+45).first.id)
 		end
-
 	end
+
+  test "feed should have tweets of users im following" do
+    
+    # 1. no feed without login
+    get root_url
+    assert_select "h3", false, text: "Feed"
+
+    log_in_as(@kevin)
+
+    # 2. login as user, feed should appear
+    get root_url
+    assert_select "h3", text: "Feed"
+
+    if (!@kevin.following?(@chip))
+      @kevin.follow(@chip)
+    end
+    if (!@kevin.following?(@emily))
+      @kevin.follow(@emily)
+    end
+
+    # 3. should see first page of tweets of my tweets, along with tweets of users i'm following
+    @emily.microposts.each do |micropost|
+      assert @kevin.feed.include?(micropost)
+    end
+
+    @chip.microposts.each do |micropost|
+      assert @kevin.feed.include?(micropost)
+    end
+
+    # 4. if unfollowed, you should not see his tweets
+    @kevin.unfollow(@chip)
+    @chip.microposts.each do |micropost|
+      assert_not @kevin.feed.include?(micropost)
+    end
+
+  end
 
   test "full process of following / unfollowing a user" do
   	# 1. can see follow/unfollow links on profile without logging in
