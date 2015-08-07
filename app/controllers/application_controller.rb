@@ -4,4 +4,13 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   include SessionsHelper
 
+
+  protected
+  	def require_login
+      unless logged_in?
+        store_location # friendly forwarding
+        flash[:danger] = "You must log in"
+        redirect_to login_path
+      end
+    end
 end
