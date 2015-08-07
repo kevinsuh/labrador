@@ -1,6 +1,14 @@
 class User < ActiveRecord::Base
 
 	has_many :microposts
+	has_many :active_relationships, class_name: "Relationship", 
+																	foreign_key: "follower_id", 
+																	dependent: :destroy
+	has_many :passive_relationships, class_name: "Relationship",
+																	 foreign_key: "followed_id",
+																	 dependent: :destroy
+	has_many :following, through: :active_relationships, source: "followed"
+	has_many :followers, through: :passive_relationships, source: "follower"
 	before_save :downcase_email
 	before_create :create_activation_digest
 	validates :name,  presence: true, length: { maximum: 50 }
@@ -71,6 +79,24 @@ class User < ActiveRecord::Base
 
 	def forget
 		update_attribute(:remember_digest, nil)
+	end
+
+	# FOLLOW/UNFOLLOW HELPERS
+	def following?(user)
+		following.include?(user)
+	end
+
+	def followed_by?(user)
+		followers.include?(user)
+	end
+
+	def follow(user)
+		active_relationships.create(followed_id: user.id)
+	end
+
+	def unfollow(user)
+		relationship = active_relationships.find_by(followed_id: user.id)
+		relationship.destroy
 	end
 
 	# to mimic has_secure_password.authenticate for our custom tokens

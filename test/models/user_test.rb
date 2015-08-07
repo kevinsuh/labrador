@@ -4,6 +4,9 @@ class UserTest < ActiveSupport::TestCase
 
 	def setup		
 		@user = User.new(name: "Kevin Suh", email: "ksuh@dinnerlab.com", password: "kevinsuh", password_confirmation: "kevinsuh")
+
+		@kevin = users(:kevin)
+		@chip = users(:chip)
 	end
 
 	test "should be valid" do
@@ -78,6 +81,16 @@ class UserTest < ActiveSupport::TestCase
 
 		@user.password = @user.password_confirmation = "validpassword"
 		assert @user.valid?
+	end
+
+	test "should be able to follow then unfollow a user" do
+		assert_not @kevin.following?(@chip)
+		@kevin.follow(@chip)
+		assert @kevin.following?(@chip)
+		assert @chip.followed_by?(@kevin)
+		@kevin.unfollow(@chip)
+		assert_not @kevin.following?(@chip)
+		assert_not @chip.followed_by?(@kevin)
 	end
 
 end

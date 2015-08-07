@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_action :require_login, only: [:index, :destroy, :edit, :update]
+  before_action :require_login, only: [:index, :destroy, :edit, :update, :following, :followers]
   before_action :correct_user, only: [:edit, :update]
   before_action :admin_user, only: [:destroy]
 
@@ -31,11 +31,25 @@ class UsersController < ApplicationController
   end
 
   def edit
+  end
+
+  # show who user is following
+  def following
     @user = User.find_by(id: params[:id])
+    @users = @user.following.paginate(page: params[:page])
+    @title = "Following"
+    render 'show_follow'
+  end
+
+  # show who is following user
+  def followers
+    @user = User.find_by(id: params[:id])
+    @users = @user.followers.paginate(page: params[:page])
+    @title = "Followers"
+    render 'show_follow'
   end
 
   def update
-    @user = User.find_by(id: params[:id])
     if @user.update_attributes(user_params)
       flash[:success] = "Account updated."
       redirect_to @user

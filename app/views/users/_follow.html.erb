@@ -1,0 +1,5 @@
+<!-- this allows you to follow -->
+<%= form_for(current_user.active_relationships.build(followed_id: @user.id)) do |f| %>
+	<%= hidden_field_tag :followed_id, @user.id %>
+	<%= f.submit "Follow", class: "btn btn-primary" %>
+<% end %>
