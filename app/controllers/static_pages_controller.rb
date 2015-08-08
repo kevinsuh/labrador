@@ -21,5 +21,8 @@ class StaticPagesController < ApplicationController
 
   def why
   end
+
+  def test_angular
+  end
   
 end
