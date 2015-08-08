@@ -17,7 +17,9 @@ class StaticPagesController < ApplicationController
   end
 
   def team
+  end
 
+  def why
   end
   
 end
