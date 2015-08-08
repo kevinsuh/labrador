@@ -32,9 +32,9 @@
 <header class="navbar">
 	<div>
 	  <nav>
-	  	<small>
+	  	<span>
 		    <%= link_to "Cardagain", root_url %>
-		  </small>
+		  </span>
 			<% if logged_in? %>
 				<ul class="nav navbar-nav pull-right">
 					<li><%= link_to "Log out", logout_path, method: "delete" %></li>
