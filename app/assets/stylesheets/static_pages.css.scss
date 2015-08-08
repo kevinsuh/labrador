@@ -2,6 +2,7 @@
 @import "bootstrap";
 
 $gray-medium-light: #eaeaea;
+$success-blue: #2A4397;
 
 /**
  *      LOGGED OUT HOME PAGE
@@ -20,17 +21,41 @@ $gray-medium-light: #eaeaea;
   	text-align: left;
   }
   form {
-  	input.waitlist-input {
-  		line-height: 2em;
-  		display: inline;
+  	input {
+  		&.waitlist-input {
+  			line-height: 2.5em;
+  			display: inline;
+  		}
+  		&.active {
+  			background-color: $success-blue;
+  			color: white;
+  			font-weight: bold;
+  			width: 40%;
+  		}
   	}
   }
 }
 
 #waitlist_email {
 	width: 60%;
+	background-image: url(email_placeholder_icon.png);
+	background-position: 7px center;
+	background-repeat: no-repeat;
+	text-indent: 40px;
+
+	-webkit-transition: all 0.25s;
+  -moz-transition: all 2s;
+  transition: all 0.25s;
+	&:focus {
+		background-position: -40px center;
+		text-indent: 4px;
+		width: 55%;
+	}
 }
 
 #submit_waitlist {
+	-webkit-transition: all 0.25s;
+	-moz-transition: all 2s;
+	transition: all 0.25s;
 	width: 35%;
 }
