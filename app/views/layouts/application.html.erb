@@ -8,10 +8,8 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-	<% if false %>
-	<%= render 'layouts/header' %>
-	<% end %>
 	<div class="container container-full">
+		<%= render 'layouts/header' %>
 		<% flash.each do |type, message| %>
 			<%= content_tag :div, message, class: ["alert", "alert-#{type}"]%>
 		<% end %>

@@ -1,4 +1,5 @@
 
+<% if false %>
 <header class="navbar navbar-fixed-top navbar-inverse">
 	<div class="container">
 		<%= link_to "Cardagain", root_url, id: "logo" %>
@@ -23,6 +24,27 @@
 				<li><%= link_to "Log in", login_path %></li>
 				<% end %>	
 			</ul>
+		</nav>
+	</div>
+</header>
+<% end %>
+
+<header class="navbar">
+	<div>
+	  <nav>
+	  	<small>
+		    <%= link_to "Cardagain", root_url %>
+		  </small>
+			<% if logged_in? %>
+				<ul class="nav navbar-nav pull-right">
+					<li><%= link_to "Log out", logout_path, method: "delete" %></li>
+				</ul>
+			<% else %>
+				<ul class="nav navbar-nav pull-right">
+					<li><%= link_to "How does it work?", about_path %></li>
+					<li><%= link_to "Team", team_path %></li>
+				</ul>
+			<% end %>
 		</nav>
 	</div>
 </header>
