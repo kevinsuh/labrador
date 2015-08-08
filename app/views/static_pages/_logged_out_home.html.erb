@@ -1,7 +1,23 @@
-<div class="center jumbotron">
-	<h1>Cardagain</h1>
-	<h2>
-		Home page for cardagain
-	</h2>
+<div class="center" id="splash_page">
+	<div class="row row-logo">
+		<%= image_tag('cardagain_logo', alt: 'Cardagain', class: "splash_logo") %>
+	</div>
+	<div class="row">
+		<div class="col-xs-4">
+			<p>
+				Cardagain allows you to queue greeting card purchases for the important dates in your life. Several weeks before each event, we deliver you the card of your choice, pre-addressed and pre-stamped, so that you can write your personal message in time for delivery.
+			</p>
+		</div>
+		<div class="col-xs-4">
+			<p>
+				We want to remember our friends' birthdays. Or our parents' anniversary. Or mother's and father's day. But we often forget until it's too late to do anything but give them a text or facebook post the day of. We want to help you remember in time.
+			</p>
+		</div>
+		<div class="col-xs-4">
+			<p>
+				With our application, you can see all your dates in advance and act now before you forget. We don't want to write your message for you, or sent a printed message. We know that you want to handwrite and deliver it yourself. We don't want to take anything away from your thoughtfulness.
+			</p>
+		</div>
+	</div>
 	<%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
 </div>
