@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get 'about'           => 'static_pages#about'
   get 'contact_us'      => 'static_pages#contact_us'
   get 'team'            => 'static_pages#team'
+  get 'why'             => 'static_pages#why'
   
   get 'forgot_password' => 'password_resets#new'
   get 'reset_password'  => 'password_resets#edit'

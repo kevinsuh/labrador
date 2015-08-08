@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).on('ready page:load', function() {
 
 	$('#waitlist_email').focus(function() {
 		$('#submit_waitlist').addClass('active')
