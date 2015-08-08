@@ -2,6 +2,8 @@
 	<div class="row row-logo">
 		<%= image_tag('cardagain_logo', alt: 'Cardagain', class: "splash_logo") %>
 	</div>
+
+	<% if false %>
 	<div class="row">
 		<div class="col-xs-4">
 			<p>
@@ -19,6 +21,7 @@
 			</p>
 		</div>
 	</div>
+	<% end %>
 
 	<div class="row row-waitlist">
 		<% if @waitlist %>
@@ -34,13 +37,14 @@
 			<div>
 				<%= form_for(:waitlist, url: waitlist_path) do |f| %>
 
-					<%= f.text_field :email, { placeholder: "What's your email address?", class: "waitlist-input" } %>
+					<%= f.text_field :email, { placeholder: "What's your email address?", class: "waitlist-input", value: @waitlist_email } %>
 					<%= f.submit "Get queued", { id: "submit_waitlist", class: "waitlist-input" } %>
-
 				<% end %>
 			</div>
 		</div>
 	</div>
-	<br><br><br><br><br><br><br><br><br><br><br><br>
+	<br><br><br><br><br><br>
+	<% if false %>
 	<%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
+	<% end %>
 </div>

@@ -58,6 +58,7 @@ class UsersController < ApplicationController
       flash[:success] = "Yay! You have been added to the waitlist."
     else
       flash[:warning] = "Are you sure you put a valid email address?"
+      session[:waitlist_email] = @waitlist.email
     end
     redirect_to root_url
   end
