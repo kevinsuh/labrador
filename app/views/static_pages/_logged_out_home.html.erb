@@ -19,5 +19,28 @@
 			</p>
 		</div>
 	</div>
+
+	<div class="row row-waitlist">
+		<% if @waitlist %>
+			<%= @waitlist.inspect %>
+		<% end %>
+		<div class="col-xs-10 col-xs-offset-1">
+			<div>
+				<h3>We're making it easier to send personal, hand-written cards.</h3>
+			</div>
+			<div>
+				<h4>Get notified when @cardagain goes live:</h4>
+			</div>
+			<div>
+				<%= form_for(:waitlist, url: waitlist_path) do |f| %>
+
+					<%= f.text_field :email, { placeholder: "  What's your email address?", class: "waitlist-input" } %>
+					<%= f.submit "Get queued", { id: "submit_waitlist", class: "waitlist-input" } %>
+
+				<% end %>
+			</div>
+		</div>
+	</div>
+	<br><br><br><br><br><br><br><br><br><br><br><br>
 	<%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
 </div>

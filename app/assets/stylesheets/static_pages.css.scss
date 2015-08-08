@@ -16,5 +16,21 @@ $gray-medium-light: #eaeaea;
   .row-logo {
     margin-top: 5em;
   }
+  .row-waitlist {
+  	text-align: left;
+  }
+  form {
+  	input.waitlist-input {
+  		line-height: 2em;
+  		display: inline;
+  	}
+  }
 }
 
+#waitlist_email {
+	width: 60%;
+}
+
+#submit_waitlist {
+	width: 35%;
+}

@@ -51,12 +51,27 @@ class UsersController < ApplicationController
     redirect_to users_url
   end
 
+  # save to waitlist DB
+  def add_to_waitlist
+    @waitlist = Waitlist.new(waitlist_params)
+    if @waitlist.save
+      flash[:success] = "Yay! You have been added to the waitlist."
+    else
+      flash[:warning] = "Are you sure you put a valid email address?"
+    end
+    redirect_to root_url
+  end
+
   private
 
   	# to ensure which values we are receiving from our form
   	def user_params
   		params.require(:user).permit(:name, :email, :password, :password_confirmation)
   	end
+
+    def waitlist_params
+      params.require(:waitlist).permit(:email)
+    end
 
     def admin_user
       @user = current_user
