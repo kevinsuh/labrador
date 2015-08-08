@@ -38,7 +38,7 @@
 				<%= form_for(:waitlist, url: waitlist_path) do |f| %>
 
 					<%= f.text_field :email, { placeholder: "What's your email address?", class: "waitlist-input", value: @waitlist_email } %>
-					<%= f.submit "Get queued", { id: "submit_waitlist", class: "waitlist-input" } %>
+					<%= f.submit "Get queued", { id: "submit_waitlist", class: "waitlist-submit" } %>
 				<% end %>
 			</div>
 		</div>
