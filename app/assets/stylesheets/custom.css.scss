@@ -4,6 +4,8 @@
 /**
  * 			VARIABLES
  */
+$grayed_out: #555;
+$hover-blue: #5899D8;
 
 @mixin box_sizing {
   -moz-box-sizing: border-box;
@@ -66,7 +68,6 @@ p {
 /**
  *      HEADER
  */
-
 #logo {
   float: left;
   margin-right: 10px;
@@ -82,19 +83,53 @@ p {
   }
 }
 
+header {
+  &.navbar {
+    margin-top: 20px;
+    margin-bottom: 0px;
+  }
+  span {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  a {
+    color: $grayed_out;
+    &:hover {
+      text-decoration: none;
+      color: $grayed_out;
+    }
+  }
+
+  /* navbar section of header */
+  .nav {
+    li {
+      margin-left: 15px;
+      a {
+        padding: 0;
+        &:hover {
+          background-color: transparent;
+          color: $hover-blue;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}
+
 
 /**
  *      FOOTER
  */
-
 footer {
   margin-top: 45px;
   padding-top: 5px;
   color: $gray-light;
   a {
-    color: #555;
+    color: $grayed_out;
     &:hover {
-      color: #222;
+      background-color: transparent;
+      color: $hover-blue;
+      text-decoration: none;
     }
   }
   small {
