@@ -23,6 +23,7 @@ class StaticPagesController < ApplicationController
   end
 
   def test_angular
+    #render layout: false
   end
   
 end
