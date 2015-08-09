@@ -1,7 +1,21 @@
-<div ng-controller="TestController as testCtrl">
-	{{testCtrl.test}}
-	<form>
-		<span>{{tester}}</span>
-		<input type="text" ng-model="tester"></input>
-	</form>
+<div>
+	<div ng-controller="TestController as testCtrl">
+		{{testCtrl.test}}
+		<form>
+			<span>{{tester}}</span>
+			<input type="text" ng-model="tester"></input>
+			<button ng-click="testCtrl.testFunction(testCtrl.test)">click me</button>
+		</form>
+
+		<div style="margin-top: 40px;" ng-repeat="card in testCtrl.cards">
+			<h2>{{card.theme}}</h2>
+			<h6 style="text-align:center;">{{card.title}}</h6>
+		</div>
+	</div>
+
+	<div ng-controller="HelloController as helloCtrl">
+		<span >{{helloCtrl.fart}}</span>
+	</div>
+	
+	<!-- <test-cards></test-cards> -->
 </div>
