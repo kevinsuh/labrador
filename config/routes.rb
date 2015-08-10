@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   get 'team'            => 'static_pages#team'
   get 'why'             => 'static_pages#why'
   
+  get 'test_angular'    => 'static_pages#test_angular'
+  
   get 'forgot_password' => 'password_resets#new'
   get 'reset_password'  => 'password_resets#edit'
 
