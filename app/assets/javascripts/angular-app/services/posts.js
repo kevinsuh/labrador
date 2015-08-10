@@ -1,7 +1,7 @@
 (function(){
 
-	var app = angular.module('post-service', []);
-	app.factory('posts', function() {
+	
+	angular.module('flapper-news').factory('posts', function() {
 		// this array will persist throughout application
 		// pre-populated with some fake info -- easy to take out later
 		var o = {
