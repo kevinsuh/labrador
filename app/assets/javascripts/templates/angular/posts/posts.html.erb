@@ -16,3 +16,9 @@
 		{{comment.body}}
 	</span>
 </div>
+<hr>
+<!-- add new comment -->
+<div style="margin-top:15px;">
+	<input type="text" placeholder="new comment" ng-model="newComment">
+	<button style="margin-top:10px;" ng-click="newComment && addComment()">post</button>
+</div>

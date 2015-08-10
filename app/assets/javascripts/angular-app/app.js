@@ -26,27 +26,38 @@
   // we are passing in posts factory, which was added to this module as a dependency
   app.controller("PostsController", ['$scope', '$stateParams', 'posts', function($scope, $stateParams, posts) {
 
-    $scope.posts = posts.posts;
+    $scope.newComment = "";
 
-    // let's push one post with fake comment data attached
+    // this is the post from the params
     $scope.post = posts.posts[$stateParams.id];
-    
+    $scope.comments = $scope.post.comments;
+
+    // add comment functionality
+    $scope.addComment = function() {
+
+      newComment = {
+        author: "anom",
+        body: $scope.newComment,
+        upvotes: 0
+      }
+
+      if ($scope.post.comments) {
+        $scope.post.comments.push(newComment);
+      } else {
+        $scope.post.comments = [newComment];
+      }
+      
+      $scope.newComment = "";
+    };
+
   }]);
-  
+
   app.controller('MainController', ['$scope', 'posts', function($scope, posts) {
 
     $scope.username = "kevin!";
     $scope.newPostTitle = "";
     $scope.newPostLink = "";
     $scope.posts = posts.posts;
-   
-    $scope.sayHello = function() {
-      $scope.greeting = "Whaddup " + $scope.username; 
-    };
-    
-    $scope.hideHello = function() {
-      $scope.greeting = "";
-    };
     
     $scope.addPost = function() {
       newPost = {
