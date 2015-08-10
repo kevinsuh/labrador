@@ -1,29 +1,31 @@
 (function() {
-  angular.module('flapper-news').controller("PostsController", ['$scope', '$stateParams', 'posts', function($scope, $stateParams, posts) {
+  angular.module('flapper-news').controller("PostsController", ['$scope', 'posts', 'post', function($scope, posts, post) {
 
   $scope.newComment = "";
 
-  // this is the post from the params
-  $scope.post = posts.posts[$stateParams.id];
+  // get post from state resolve
+  $scope.post = post;
   $scope.comments = $scope.post.comments;
 
   // add comment functionality
   $scope.addComment = function() {
 
-    newComment = {
-      author: "anom",
+    posts.addComment(post, {
       body: $scope.newComment,
-      upvotes: 0
-    }
-
-    if ($scope.post.comments) {
-      $scope.post.comments.push(newComment);
-    } else {
-      $scope.post.comments = [newComment];
-    }
+      author: "anom"
+    }).success(function(comment){
+      $scope.post.comments.push(comment);
+    });
     
     $scope.newComment = "";
   };
+
+  // upvote comment
+  $scope.upvote = function(comment) {
+    posts.upvoteComment(post, comment).success(function(data){
+      comment.upvotes++;
+    }); 
+  }
 
 }]);
 })();
