@@ -20,3 +20,18 @@
 #  								activated_at: Time.zone.now )
 
 # end
+
+# 3.times do |n|
+# 	title = Faker::Lorem.sentence
+# 	if n % 6 == 0
+# 		link = "http://www.realgm.com"
+# 	end
+
+# 	post = Post.create!( title: title,
+# 											 link: link,
+# 											 upvotes: 0)
+# 	4.times do
+# 		post.comments.create!(body: Faker::Lorem.sentence,
+# 			upvotes: 0)
+# 	end
+# end

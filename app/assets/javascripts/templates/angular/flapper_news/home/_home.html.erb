@@ -1,0 +1,33 @@
+<div class="col-s-12 col-md-10 col-md-offset-1">
+
+  <table class="table">
+    <tr ng-repeat="post in posts | orderBy: '-upvotes'" style="margin-bottom: 10px;">
+      <td>
+        <span style="font-size: 16px;">{{$index+1}}.</span>    
+      </td>
+      <td>
+        <button ng-click="upvote(post)" class="glyphicon glyphicon-thumbs-up"></button>
+        <span>{{post.upvotes}} upvotes</span>
+      </td>
+      <td>
+        <span style="font-size:16px; "><a ng-show="post.link" href="{{post.link}}" target=_blank>{{post.title}}</a></span>
+        <span ng-hide="post.link" style="font-size:16px;">{{post.title}}</span>
+      </td>
+      <td>
+        <span><a href="#/posts/{{post.id}}">comments</a></span>
+      </td>
+    </tr>  
+  </table>
+  
+  <div style="margin-top: 30px;">
+    <h3>Add New Post</h3>
+    
+    <div class="form-group">
+      <textarea ng-model="newPostTitle" placeholder="title"/>    
+    </div>
+    <div class="form-group">
+      <input type="text" ng-model="newPostLink" placeholder="link">
+    </div>
+    <button ng-click="newPostTitle && addPost()">Add Post</button>
+  </div>
+</div>
