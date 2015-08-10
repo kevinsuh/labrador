@@ -8,7 +8,7 @@
   	$stateProvider
 			.state('home', {
         url: '/home',
-				templateUrl: "angular/home/_home.html",
+				templateUrl: "angular/flapper_news/home/_home.html",
 				controller: 'MainController'
 			});
 
@@ -16,7 +16,7 @@
     $stateProvider
       .state('posts', {
         url: '/posts/{id}',
-        templateUrl: "angular/posts/_posts.html",
+        templateUrl: "angular/flapper_news/posts/_posts.html",
         controller: "PostsController"
       })
 		// default fall back route
