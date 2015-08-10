@@ -7,17 +7,16 @@
   	$stateProvider
 			.state('home', {
         url: '/home',
-        // template: "<h1>hello austin</h1>",
 				templateUrl: "angular/home/home.html",
 				controller: 'MainController'
 			});
 
 			// default fall back route
-			$urlRouterProvider.otherwise('/');
+			$urlRouterProvider.otherwise('home');
   });
   
   app.controller('MainController', ['$scope', 'posts', function($scope, posts) {
-  	$scope.things = ['Angular', 'Rails', 'UI Router', 'Together!!']
+
     $scope.username = "kevin!";
     $scope.newPostTitle = "";
     $scope.newPostLink = "";
