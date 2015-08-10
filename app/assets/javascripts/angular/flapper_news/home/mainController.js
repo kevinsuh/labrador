@@ -17,6 +17,7 @@
 	    // reset the post title
 	    $scope.newPostTitle = "";
 	    $scope.newPostLink = "";
+	    
 	  };
 	  
 	  $scope.upvote = function(post) {
