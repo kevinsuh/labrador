@@ -13,8 +13,9 @@
 		};
 	});
 
-	app.controller("HelloController", function() {
+	app.controller("HelloController", ['$scope', '$log', function($scope, $log) {
 		this.fart = "farted";
-	});
+		$scope.$log = $log;
+	}]);
 
 })();

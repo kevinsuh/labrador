@@ -8,6 +8,8 @@ gem 'carrierwave'
 gem 'mini_magick'
 gem 'fog'
 gem 'angularjs-rails'
+gem 'angular-rails-templates'
+gem 'bower-rails'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 gem 'bootstrap-sass', '~> 3.3.4'
@@ -18,6 +20,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'rails-html-sanitizer'
+gem 'sprockets', '2.12.4'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use ActiveModel has_secure_password
