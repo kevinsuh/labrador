@@ -1,0 +1,18 @@
+<div class="page-header">
+	<h3>
+		<!-- only make it a link if it has link attached -->
+		<a ng-show="post.link" href="{{post.link}}">
+			{{post.title}}
+		</a>
+		<span ng-hide="post.link">
+			{{post.title}}
+		</span>
+	</h3>
+</div>
+
+<div ng-repeat="comment in post.comments | orderBy:'-upvotes'">
+	<button class="glyphicon glyphicon-thumbs-up" ng-click="upvote(comment)"></button>
+	{{comment.upvotes}} - by {{comment.author}} <span style="font-size: 20px; margin-left: 10px;">
+		{{comment.body}}
+	</span>
+</div>

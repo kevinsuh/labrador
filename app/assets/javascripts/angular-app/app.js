@@ -4,6 +4,7 @@
 
   app.config(function($stateProvider, $urlRouterProvider) {
 
+    // home page that shows lists of posts and allows you to post new ones
   	$stateProvider
 			.state('home', {
         url: '/home',
@@ -11,9 +12,26 @@
 				controller: 'MainController'
 			});
 
-			// default fall back route
-			$urlRouterProvider.otherwise('home');
+    // access a speciifc post so that we can see comments and other data surrounding it
+    $stateProvider
+      .state('posts', {
+        url: '/posts/{id}',
+        templateUrl: "angular/posts/posts.html",
+        controller: "PostsController"
+      })
+		// default fall back route
+		$urlRouterProvider.otherwise('home');
   });
+
+  // we are passing in posts factory, which was added to this module as a dependency
+  app.controller("PostsController", ['$scope', '$stateParams', 'posts', function($scope, $stateParams, posts) {
+
+    $scope.posts = posts.posts;
+
+    // let's push one post with fake comment data attached
+    $scope.post = posts.posts[$stateParams.id];
+    
+  }]);
   
   app.controller('MainController', ['$scope', 'posts', function($scope, posts) {
 
@@ -42,29 +60,10 @@
       $scope.newPostLink = "";
     };
     
-    $scope.upvotePost = function(post) {
+    $scope.upvote = function(post) {
       post.upvotes++;
     }
       
-    $scope.posts = [
-      { title: 'post 1',
-        upvotes: 8
-      },
-      { title: 'post 2',
-        upvotes: 5,
-        link: "http://www.realgm.com"
-      },
-      { title: 'post 3',
-        upvotes: 7
-      },
-      { title: 'post 4',
-        upvotes: 2
-      },
-      { title: 'post 5',
-        upvotes: 4
-      }
-      ]
-    
   }]);
 })();
 
