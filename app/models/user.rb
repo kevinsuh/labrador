@@ -14,6 +14,10 @@ class User < ActiveRecord::Base
 
 	has_secure_password # adds virtual attributes :password & :password_confirmation
 
+	# flapper_news demo
+	has_many :posts
+	has_many :comments
+
 	# User class methods
 	class << self
 		def digest(string)

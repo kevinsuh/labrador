@@ -13,4 +13,10 @@ class ApplicationController < ActionController::Base
         redirect_to login_path
       end
     end
+
+    def require_login_json
+      unless logged_in?
+         render json: {success: false, message: "You must be logged in!"}, status: 401
+      end
+    end
 end
