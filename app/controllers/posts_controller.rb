@@ -1,8 +1,10 @@
 class PostsController < ApplicationController
 
+	before_action :require_login_json, only: [:create, :upvote]
+
 	def index
-		# respond WITH JSON
-		respond_with Post.all
+		@posts = Post.all
+		respond_with @posts
 	end
 
 	def create

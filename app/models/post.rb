@@ -5,4 +5,5 @@ class Post < ActiveRecord::Base
 	def as_json(options = {})
 		super(options.merge(include: :comments))
 	end
+
 end

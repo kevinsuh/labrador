@@ -16,8 +16,8 @@
 
     // post must be an object with the right post properties
     o.createPost = function(post) {
-      // this is "submitting the form" with post data to /posts.json
-      return $http.post('/posts.json', post).success(function(data) {
+      return $http.post('/posts.json', post)
+      .success(function(data) {
         o.posts.push(data);
       });
     };

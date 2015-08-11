@@ -1,5 +1,7 @@
 class CommentsController < ApplicationController
 
+	before_action :require_login_json, only: [:create, :upvote]
+
 	def create
 		post = Post.find(params[:post_id])
 		comment = post.comments.create(comment_params)

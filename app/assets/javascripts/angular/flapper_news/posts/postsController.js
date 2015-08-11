@@ -13,8 +13,13 @@
     posts.addComment(post, {
       body: $scope.newComment,
       author: "anom"
-    }).success(function(comment){
+    })
+    .success(function(comment) {
       $scope.post.comments.push(comment);
+    })
+    .error(function(data) {
+      $scope.success = data.success;
+      $scope.message = data.message;
     });
     
     $scope.newComment = "";
@@ -22,8 +27,13 @@
 
   // upvote comment
   $scope.upvote = function(comment) {
-    posts.upvoteComment(post, comment).success(function(data){
+    posts.upvoteComment(post, comment)
+    .success(function(data){
       comment.upvotes++;
+    })
+    .error(function(data) {
+      $scope.success = data.success;
+      $scope.message = data.message;
     }); 
   }
 

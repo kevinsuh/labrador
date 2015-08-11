@@ -20,10 +20,23 @@ class UsersController < ApplicationController
   def create
   	@user = User.new(user_params)
   	if @user.save
+
+      # won't be doing activation for now
+      @user.activate
+      log_in @user
+      remember @user
+      flash[:success] = "You have been successfully signed up."
+
+      # for now, let's put them right to the angular app :)
+      redirect_to test_angular_path
+
+      if false
       # handle account activation & send email
       @user.send_activation_email
   		flash[:info] = "An email has been sent to verify your account."
-      redirect_to root_url
+      end
+
+      #redirect_to root_url
   	else
   		render 'new'
   	end
