@@ -1,5 +1,7 @@
 class StaticPagesController < ApplicationController
 
+  before_action :require_login, only: [:test_angular]
+
   def home
   	if session[:waitlist_email]
   		@waitlist_email = session[:waitlist_email]
