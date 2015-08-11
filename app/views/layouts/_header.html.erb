@@ -38,6 +38,7 @@
 		  </span>
 			<% if logged_in? %>
 				<ul class="nav navbar-nav pull-right">
+					<li>Hello, <%= current_user.name %></li>
 					<li><%= link_to "angular app", test_angular_path %></li>
 					<li><%= link_to "Log out", logout_path, method: "delete" %></li>
 				</ul>

@@ -9,6 +9,8 @@
 	  $scope.newPostLink = "";
 	  $scope.posts = posts.posts;
 
+	  console.log($scope.posts);
+
 	  // the title is validated to be non-blank before this function gets called. link can be blank
 	  $scope.addPost = function() {
 

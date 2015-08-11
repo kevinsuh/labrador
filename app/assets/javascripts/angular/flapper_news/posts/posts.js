@@ -17,12 +17,14 @@
     o.createPost = function(post) {
       return $http.post('/posts.json', post)
       .success(function(data) {
+        console.log(data);
         o.posts.push(data);
       });
     };
 
     o.upvotePost = function(post) {
       return $http.put('/posts/'+post.id+'/upvote.json').success(function(data){
+        post.already_upvoted = true
         post.upvotes++;
       });
     };

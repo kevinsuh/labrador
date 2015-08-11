@@ -5,7 +5,6 @@
 
   // get post from state resolve
   $scope.post = post;
-  console.log(post);
   $scope.comments = $scope.post.comments;
 
   // add comment functionality

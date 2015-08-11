@@ -8,7 +8,7 @@
         <span style="font-size: 16px;">{{$index+1}}.</span>    
       </td>
       <td style="width: 1%; padding-top: 1em; padding-right:0;">
-        <button ng-click="upvote(post)" class="glyphicon glyphicon-thumbs-up"></button>
+        <button ng-disabled="post.already_upvoted" ng-click="upvote(post)" class="glyphicon glyphicon-thumbs-up" ng-class="{active: !post.already_upvoted}"></button>
       </td>
       <td>
         <div>

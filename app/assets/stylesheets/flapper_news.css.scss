@@ -8,3 +8,9 @@
      border-top: none !important; 
  	}
  }
+
+button {
+	&.active {
+		background-color: lightgrey
+	}
+}
