@@ -17,7 +17,6 @@
     o.createPost = function(post) {
       return $http.post('/posts.json', post)
       .success(function(data) {
-        console.log(data);
         o.posts.push(data);
       });
     };

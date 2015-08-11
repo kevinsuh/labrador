@@ -16,7 +16,7 @@
           <span ng-hide="post.link" style="font-size:22px;">{{post.title}}</span>
         </div>
         <div>
-          <span style="font-size:12px;">{{post.upvotes}} points by {{post.name}} | {{post.created_at | timeAgoInWords }} | <a href="#/posts/{{post.id}}">{{post.comments.length}} comments</a></span>
+          <span style="font-size:12px;">{{post.upvotes}} points by {{post.user.name}} | {{post.created_at | timeAgoInWords }} | <a href="#/posts/{{post.id}}">{{post.comments.length}} comments</a></span>
         </div>
       </td>
     </tr>  
