@@ -3,17 +3,24 @@ class CommentsController < ApplicationController
 	before_action :require_login_json, only: [:create, :upvote]
 
 	def create
+
 		post = Post.find(params[:post_id])
-		comment = post.comments.create(comment_params)
+		comment = current_user.comments.create(
+								comment_params.merge(
+									post_id: params[:post_id]
+								)
+							)
 		respond_with post, comment
+
 	end
 
 	def upvote
+
 		post = Post.find(params[:post_id])
 		comment = post.comments.find(params[:id])
-		upvote = comment.upvotes + 1
-		comment.update_attribute(:upvotes, upvote)
+		comment.increment!(:upvotes)
 		respond_with post, comment
+
 	end
 
 	private

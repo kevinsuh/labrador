@@ -3,12 +3,12 @@ class PostsController < ApplicationController
 	before_action :require_login_json, only: [:create, :upvote]
 
 	def index
-		@posts = Post.all
+		@posts = Post.joins(:user).where("users.id = posts.user_id").select("posts.*, users.name")
 		respond_with @posts
 	end
 
 	def create
-		respond_with Post.create(post_params)
+		respond_with current_user.posts.create(post_params)
 	end
 
 	def show

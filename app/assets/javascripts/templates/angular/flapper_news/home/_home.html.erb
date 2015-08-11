@@ -12,8 +12,13 @@
         <span>{{post.upvotes}} upvotes</span>
       </td>
       <td>
-        <span style="font-size:16px; "><a ng-show="post.link" href="{{post.link}}" target=_blank>{{post.title}}</a></span>
-        <span ng-hide="post.link" style="font-size:16px;">{{post.title}}</span>
+        <div>
+          <span style="font-size:16px; "><a ng-show="post.link" href="{{post.link}}" target=_blank>{{post.title}}</a></span>
+          <span ng-hide="post.link" style="font-size:16px;">{{post.title}}</span>
+        </div>
+        <div>
+          <span style="font-size:12px;">by {{post.name}} | {{post.created_at | timeAgoInWords }} | {{post.comments.length}} comments</span>
+        </div>
       </td>
       <td>
         <span><a href="#/posts/{{post.id}}">comments</a></span>
