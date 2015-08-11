@@ -15,7 +15,13 @@
       body: $scope.newComment
     })
     .success(function(comment) {
-      $scope.post.comments.push(comment);
+
+      var commentCollection = {
+        comment: comment,
+        already_upvoted: false
+      }
+
+      $scope.post.comments.push(commentCollection);
     })
     .error(function(data) {
       $scope.success = data.success;

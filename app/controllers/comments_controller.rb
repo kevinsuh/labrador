@@ -11,7 +11,14 @@ class CommentsController < ApplicationController
 									post_id: params[:post_id]
 								)
 							)
-		respond_with post, comment, current_user_id: current_user.id
+		
+		# not working...
+		# comment_collection = Hash.new
+		# comment_collection[:comment] = comment
+		# current_comment_id = comment.id
+		# comment_collection[:already_upvoted] = comment.json_is_comment_upvoted current_comment_id, current_user.id
+
+		respond_with post, comment
 
 	end
 
