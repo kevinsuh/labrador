@@ -1,35 +1,51 @@
 class PostsController < ApplicationController
 
 	before_action :require_login_json, only: [:create, :upvote]
+	before_action :is_already_upvoted, only: [:upvote]
 
 	def index
-		@posts = Post.joins(:user).where("users.id = posts.user_id").select("posts.*, users.name")
-		respond_with @posts
+		
+		posts = Post.all
+		respond_with posts, current_user_id: current_user.id
+
 	end
 
 	def create
-		respond_with current_user.posts.create(post_params)
+		post = current_user.posts.create(post_params)
+		respond_with post, current_user_id: current_user.id
 	end
 
 	def show
 		post_id = params[:id]
 		post = Post.find(post_id)
-		respond_with post
+		respond_with post, current_user_id: current_user.id
 	end
 
 	def upvote
 
-		post = Post.find(params[:id])
-		post.increment!(:upvotes)
-		respond_with post
+		@post.increment!(:upvotes)
+		respond_with @post
 
 	end
 
 	private
 
   	def post_params
-  		params.require(:post).permit(:title, :link)
+  		params.require(:post).permit(:title, :link, :is_upvoted)
   	end
+
+  	def is_already_upvoted
+
+  		@post = Post.find(params[:id])
+			user_id = current_user.id
+
+			# you can only upvote once!
+      if @post.post_upvotes.find_by(user_id: user_id)
+        render json: {success: false, message: "You already upvoted this."}, status: 401
+      else
+      	@post.post_upvotes.create(user_id: user_id)
+      end
+    end
 
 	respond_to :json
 end

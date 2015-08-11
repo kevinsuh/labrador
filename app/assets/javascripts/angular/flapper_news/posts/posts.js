@@ -23,6 +23,7 @@
 
     o.upvotePost = function(post) {
       return $http.put('/posts/'+post.id+'/upvote.json').success(function(data){
+        post.already_upvoted = true
         post.upvotes++;
       });
     };

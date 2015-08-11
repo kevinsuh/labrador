@@ -17,6 +17,8 @@ class User < ActiveRecord::Base
 	# flapper_news demo
 	has_many :posts
 	has_many :comments
+	has_many :post_upvotes
+	has_many :comment_upvotes
 
 	# User class methods
 	class << self

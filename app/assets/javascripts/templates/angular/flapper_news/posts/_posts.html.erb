@@ -12,21 +12,24 @@
 				{{post.title}}
 			</span>
 		</h3>
+		<div>
+      <span style="font-size:12px;">{{post.upvotes}} points by {{post.user.name}} | {{post.created_at | timeAgoInWords }} | <a href="#/posts/{{post.id}}">{{post.comments.length}} comments</a></span>
+    </div>
 	</div>
 
-	<div style="margin-bottom: 18px;" ng-repeat="comment in post.comments | orderBy:'created_at'">
+	<div style="margin-bottom: 18px;" ng-repeat="commentCollection in post.comments | orderBy:'created_at'">
 
 		<div>
 			<div style="display: inline;">
-				{{comment.upvotes}} <button class="glyphicon glyphicon-thumbs-up" ng-click="upvote(comment)"></button>
+				{{commentCollection.comment.upvotes}} <button ng-disabled="commentCollection.already_upvoted" ng-click="upvote(commentCollection)" class="glyphicon glyphicon-thumbs-up" ng-class="{active: !commentCollection.already_upvoted}"></button>
 			</div>
 			<div style="display: inline;">
-				{{comment.name}} {{comment.created_at | timeAgoInWords }}
+				{{commentCollection.comment.user.name}} {{commentCollection.comment.created_at | timeAgoInWords }}
 			</div>
 		</div>
 
 		<div>
-			<span style="font-size:20px;">{{comment.body}}</span>
+			<span style="font-size:20px;">{{commentCollection.comment.body}}</span>
 		</div>
 
 	</div>
