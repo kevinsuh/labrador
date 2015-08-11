@@ -12,7 +12,9 @@ class PostsController < ApplicationController
 	end
 
 	def show
-		respond_with Post.find(params[:id])
+		post_id = params[:id]
+		post = Post.find(post_id)
+		respond_with post
 	end
 
 	def upvote

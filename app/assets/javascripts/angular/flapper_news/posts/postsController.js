@@ -5,14 +5,14 @@
 
   // get post from state resolve
   $scope.post = post;
+  console.log(post);
   $scope.comments = $scope.post.comments;
 
   // add comment functionality
   $scope.addComment = function() {
 
     posts.addComment(post, {
-      body: $scope.newComment,
-      author: "anom"
+      body: $scope.newComment
     })
     .success(function(comment) {
       $scope.post.comments.push(comment);

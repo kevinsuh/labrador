@@ -1,7 +1,7 @@
 <div class="col-s-12 col-md-10 col-md-offset-1">
 
 	<h3 style="color:red; font-style:italic;" ng-hide="{{success}}">{{message}}</h3>
-	
+
 	<div class="page-header">
 		<h3>
 			<!-- only make it a link if it has link attached -->
@@ -14,16 +14,28 @@
 		</h3>
 	</div>
 
-	<div ng-repeat="comment in post.comments | orderBy:'-upvotes'">
-		<button class="glyphicon glyphicon-thumbs-up" ng-click="upvote(comment)"></button>
-		{{comment.upvotes}} - by anom <span style="font-size: 20px; margin-left: 10px;">
-			{{comment.body}}
-		</span>
+	<div style="margin-bottom: 18px;" ng-repeat="comment in post.comments | orderBy:'created_at'">
+
+		<div>
+			<div style="display: inline;">
+				{{comment.upvotes}} <button class="glyphicon glyphicon-thumbs-up" ng-click="upvote(comment)"></button>
+			</div>
+			<div style="display: inline;">
+				{{comment.name}} {{comment.created_at | timeAgoInWords }}
+			</div>
+		</div>
+
+		<div>
+			<span style="font-size:20px;">{{comment.body}}</span>
+		</div>
+
 	</div>
+
 	<hr>
 	<!-- add new comment -->
 	<div style="margin-top:15px;">
 		<input type="text" placeholder="new comment" ng-model="newComment">
 		<button style="margin-top:10px;" ng-click="newComment && addComment()">post</button>
-	</div>
+	</tr>
+
 </div>
