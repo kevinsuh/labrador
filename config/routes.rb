@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-  root 'static_pages#home'
-
   get 'sessions/new'
 
   get 'signup'          => 'users#new'
@@ -39,6 +37,9 @@ Rails.application.routes.draw do
       put 'upvote' => 'posts#upvote'
     end
   end
+
+  get '/\*path' => redirect('/?goto=%{path}')
+  root 'static_pages#home'
   
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -1,6 +1,6 @@
 (function() {
 	
-	var app = angular.module('sign-up').controller('BasicSignUpController', ['$scope', function($scope) {
+	var app = angular.module('sign-up').controller('SignUpController', ['$scope', function($scope) {
 
 		$scope.signedUp = false;
 		$scope.email = "";
@@ -40,7 +40,7 @@
          
         // custom validator for ngModel
         ngModel.$validators.compareTo = function(modelValue) {
-        	
+
           return modelValue == scope.otherModelValue;
         };
 

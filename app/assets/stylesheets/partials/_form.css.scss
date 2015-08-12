@@ -4,6 +4,11 @@
 .form-container {
 }
 
+// active section of sign up
+.active {
+	color: purple;
+}
+
 // immediate div outside of form
 .form {
 	@include form_font;
@@ -31,8 +36,11 @@
 			.submit-btn {
 				width: 55%;
 				line-height: 1.5em;
-				color: white;
 				font-size: 25px;
+				color: white;
+				&.btn {
+					background-color: gray;
+				}
 			}
 		}
 

@@ -2,16 +2,35 @@
 
   var app = angular.module('sign-up', ['ngAnimate', 'ngMessages', 'ui.router', 'templates']);
 
-  app.config(function($stateProvider, $urlRouterProvider) {
+  app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
 
     // home page that shows lists of posts and allows you to post new ones
   	$stateProvider
-			.state('home', {
-        url: '/',
-				templateUrl: "angular/sign_up/_basic_sign_up.html",
-				controller: 'BasicSignUpController'
+			.state('form', {
+        url: '/form',
+				templateUrl: "angular/sign_up/sign_up_form.html",
+				controller: 'SignUpController'
         }
-        );
+        )
+
+      .state('form.profile', {
+        url: '/profile',
+        templateUrl: "angular/sign_up/_basic_sign_up.html"
+      })
+
+      .state('form.address', {
+        url: '/address',
+        templateUrl: "angular/sign_up/_address_sign_up.html"
+      })
+
+      .state('form.interests', {
+        url: '/interests',
+        templateUrl: "angular/sign_up/_interests_sign_up.html"
+      });
+
+    $urlRouterProvider.otherwise('/form/profile');
+
+
 
         
     // access a speciifc post so that we can see comments and other data surrounding it
@@ -30,7 +49,7 @@
 
 
 		// default fall back route
-		$urlRouterProvider.otherwise('/');
+		
 
 
   });

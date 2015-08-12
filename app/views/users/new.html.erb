@@ -1,6 +1,10 @@
 <% provide(:title, "Signup") %>
 
-<%= image_tag('cardagain_logo_md.png', alt: 'Cardagain', class: "splash_logo") %>
-<h1>Let's start</h1>
+<!-- this is inside a container right now -->
+<div class="row" ng-controller="SignUpController as signUpCtrl">
 
-<ui-view></ui-view>
+  <div class="col-xs-8 col-xs-offset-2 form-container">
+  	
+  	<div ui-view></div>
+	</div>
+</div>
