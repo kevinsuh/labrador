@@ -5,12 +5,14 @@
 }
 
 // immediate div outside of form
-.form-group {
+.form {
 	@include form_font;
 
-	// div around each form input
+	// div around each form input that contains label as well
 	.form_field {
 		margin: 20px 0;
+
+		// div that surrounds form <submit>
 		&.submit {
 			margin-top: 1.5em;
 			text-align: center;
@@ -33,5 +35,20 @@
 				font-size: 25px;
 			}
 		}
+
+		// handle errors in a form-field div
+
+		&.has-error {			
+			input {
+				border-color: $error-border-color;
+			}
+		}
+	}
+
+	// this will be the transition
+	.invalid-message {
+  	color: red;
+  	font-size: 14px;
+  	margin-top: 6px;
 	}
 }

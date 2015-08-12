@@ -10,6 +10,9 @@ $form-line-height: 1.4;
 // Form Label fonts
 $form-label-font-size: 16px;
 
+// error stuff
+$error-border-color: #a94442;
+
 @mixin form_font {
 	font-family: $form-font-family;
   font-weight: $regular-weight;
