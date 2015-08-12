@@ -44,3 +44,44 @@ p {
 	font-size: 1.1em;
 	line-height: 1.7em;
 }
+
+/**
+ * 			SIGNUP FORM
+ */
+
+// the div that contains each form partial
+#form-views {
+	
+	width: auto;
+
+	&.ng-enter, &.ng-leave {
+		position: absolute;
+		left: 30px;
+		right: 30px;
+		transition: 0.5s all ease;
+		-moz-transition: 0.5s all ease;
+		-webkit-transition: 0.5s all ease;
+	}
+
+	&.ng-enter {
+		-webkit-animation:slideInRight 0.5s both ease;
+    -moz-animation:slideInRight 0.5s both ease;
+    animation:slideInRight 0.5s both ease; 
+	}
+
+	&.ng-leave {
+		-webkit-animation:slideOutLeft 0.5s both ease;
+    -moz-animation:slideOutLeft 0.5s both ease;
+    animation:slideOutLeft 0.5s both ease;  
+	}
+}
+
+// the signup <form> tag
+#signup-form {
+	position: relative;
+	min-height: 500px;
+	padding: 30px;
+	padding-top: 0px;
+	overflow: hidden;
+}
+
