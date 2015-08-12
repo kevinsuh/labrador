@@ -1,6 +1,6 @@
 (function() {
 
-  var app = angular.module('sign-up', ['ngAnimate', 'ui.router', 'templates']);
+  var app = angular.module('sign-up', ['ngAnimate', 'ngMessages', 'ui.router', 'templates']);
 
   app.config(function($stateProvider, $urlRouterProvider) {
 

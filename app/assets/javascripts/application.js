@@ -2,6 +2,7 @@
 //= require jquery_ujs
 //= require angular
 //= require angular-animate
+//= require angular-messages
 //= require angular-ui-router
 //= require angular-rails-templates
 //= require bootstrap

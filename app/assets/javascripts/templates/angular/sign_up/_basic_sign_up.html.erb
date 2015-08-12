@@ -1,9 +1,10 @@
 <div class="row" ng-controller="BasicSignUpController as basicSignUpCtrl">
   <div class="col-xs-8 col-xs-offset-2 form-container">
-    
+    <div ng-show="signedUp">
+      the email you submitted is {{email}}
+    </div>
     <div class="form-group">
-      <form novalidate>
-
+      <form name="basicInfoForm" ng-submit="basicSignUpCtrl.signup()" novalidate>
         <div class="form_field password">
           <label for="signup_email" class="form_label">
             <span>
@@ -11,8 +12,15 @@
             </span>
           </label>
           <div class="form_input">
-            <input id="signup_email" type="email" placeholder="ex. kevin@cardagain.com" required />
+            <input id="signup_email" ng-model="email" type="email" placeholder="ex. kevin@cardagain.com" required />
           </div>
+
+          <div class="valid-email" ng-messages="basicInfoForm.email.$error" ng-if="showMessages('email')">
+            <div class="message-animation" ng-message="email">
+              <strong>Please format your email correctly!</strong>
+            </div>
+          </div>
+          
         </div>
 
         <div class="form_field password">

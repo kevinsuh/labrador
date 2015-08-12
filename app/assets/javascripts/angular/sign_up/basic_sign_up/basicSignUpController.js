@@ -4,9 +4,14 @@
 
 		var ctrl = this;
 
-		this.world = "hello world!";
-		
-		
+		$scope.signedUp = false;
+		$scope.email = "";
+
+		this.signup = function() {
+			$scope.signedUp = true;
+			$scope.world = "hello world!!!";
+		}
+
 	}]);
 
 })();
