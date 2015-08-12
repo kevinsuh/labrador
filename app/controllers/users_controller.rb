@@ -6,6 +6,7 @@ class UsersController < ApplicationController
 
   def new
   	@user = User.new
+    render layout: "signup_application"
   end
 
   def show

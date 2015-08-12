@@ -1,0 +1,37 @@
+@import 'base';
+
+// div surrounding form group div
+.form-container {
+}
+
+// immediate div outside of form
+.form-group {
+	@include form_font;
+
+	// div around each form input
+	.form_field {
+		margin: 20px 0;
+		&.submit {
+			margin-top: 1.5em;
+			text-align: center;
+		}
+
+		// the labels in the form
+		.form_label {
+			@include standard_form_label;
+		}
+
+		// the div that surrounds form <input>
+		.form_input {
+			@include standard_form_input;
+
+			// custom button for form submits
+			.submit-btn {
+				width: 55%;
+				line-height: 1.5em;
+				color: white;
+				font-size: 25px;
+			}
+		}
+	}
+}

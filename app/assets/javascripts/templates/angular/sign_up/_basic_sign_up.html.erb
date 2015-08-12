@@ -1,0 +1,51 @@
+<div class="row" ng-controller="BasicSignUpController as basicSignUpCtrl">
+  <div class="col-xs-8 col-xs-offset-2 form-container">
+    
+    <div class="form-group">
+      <form novalidate>
+
+        <div class="form_field password">
+          <label for="signup_email" class="form_label">
+            <span>
+              Enter your email address
+            </span>
+          </label>
+          <div class="form_input">
+            <input id="signup_email" type="email" placeholder="ex. kevin@cardagain.com" required />
+          </div>
+        </div>
+
+        <div class="form_field password">
+          <label for="signup_password" class="form_label">
+            <span>
+              Password
+            </span>
+          </label>
+
+          <div class="form_input">
+            <input type="password" placeholder="*******" required/>
+          </div>
+        </div>
+        
+        <div class="form_field password">
+          <label for="signup_password" class="form_label">
+            <span>
+              Confirm Password
+            </span>
+          </label>
+
+          <div class="form_input">
+            <input type="password" placeholder="*******" required/>
+          </div>
+        </div>
+
+        <div class="form_field submit">
+          <div class="form_input">
+            <button class="btn submit-btn" type="submit">Next <i class="glyphicon glyphicon-arrow-right" style="top:2px;"></i></button>
+          </div>
+        </div>
+      </form>
+    </div>
+    
+
+</div>
