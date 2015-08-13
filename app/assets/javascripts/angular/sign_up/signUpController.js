@@ -8,7 +8,14 @@
 		newUser = {
 			email: '',
 			password: '',
-			confirmationPassword: ''
+			confirmationPassword: '',
+			firstName: '',
+			lastName: '',
+			street: '',
+			suite: '',
+			city: '',
+			state: '',
+			zipcode: ''
 		}
 
 		$scope.signup = function() {

@@ -4,6 +4,8 @@ class UsersController < ApplicationController
   before_action :correct_user, only: [:edit, :update]
   before_action :admin_user, only: [:destroy]
 
+  include StaticPagesHelper
+
   def new
   	@user = User.new
     render layout: "signup_application"

@@ -10,24 +10,8 @@
 	</head>
 	<body ng-app="sign-up">
 		<div class="container container-full" style="width: 100%; height: 100%; position: absolute;">
-			<div class="col-xs-7" style="height: 100%;">
-				<% flash.each do |type, message| %>
-					<%= content_tag :div, message, class: ["alert", "alert-#{type}"]%>
-				<% end %>
-				<%= yield %>
-			</div>
-			<div class="col-xs-5" style="background-color: #21b2fe; height: 100%;">
-				<div class="col-xs-6">
-					<p>
-						Cardagain allows you to queue greeting card purchases for the important dates in your life. Several weeks before each event, we deliver you the card of your choice, pre-addressed and pre-stamped, so that you can write your personal message in time for delivery.
-					</p>
-				</div>
-				<div class="col-xs-6">
-					<p>
-						We want to remember our friends' birthdays. Or our parents' anniversary. Or mother's and father's day. But we often forget until it's too late to do anything but give them a text or facebook post the day of. We want to help you remember in time.
-					</p>
-				</div>
-			</div>
+			<%= yield %>
+			
 			<%= debug(params) if Rails.env.development? %>
 		</div>
 	</body>

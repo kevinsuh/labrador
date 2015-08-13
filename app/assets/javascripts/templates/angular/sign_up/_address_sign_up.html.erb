@@ -1,73 +1,149 @@
-<div class="form_field email" ng-class="{'has-error': hasError('email')}">
-  <label for="signup_email" class="form_label">
+<!-- first name -->
+<div class="form_field name">
+	<div class="first_name" ng-class="{'has-error': hasError('first_name')}">
+	  <label for="first_name" class="form_label">
+	    <span>
+	      First Name / Company Name
+	    </span>
+	  </label>
+	  <div class="form_input">
+	    <input id="first_name" name="first_name" ng-model="newUser.firstName" type="text" required />
+	  </div>
+
+	  <div class="invalid-message" ng-messages="basicInfoForm.first_name.$error" ng-show="showMessages('first_name')">
+	    <div class="message-animation" ng-message="required">
+	      <strong>This is required!</strong>
+	    </div>
+	  </div>
+	</div>
+
+	<div class="last_name" ng-class="{'has-error': hasError('last_name')}">
+
+		<label for="last_name" class="form_label">
+	    <span>
+	      Last Name
+	    </span>
+	  </label>
+	  <div class="form_input">
+	    <input id="last_name" name="last_name" ng-model="newUser.lastName" type="text" required />
+	  </div>
+
+	  <div class="invalid-message" ng-messages="basicInfoForm.last_name.$error" ng-show="showMessages('last_name')">
+	    <div class="message-animation" ng-message="required">
+	      <strong>This is required!</strong>
+	    </div>
+	  </div>
+
+	</div>
+
+</div>
+
+
+<div class="shipping">
+	<h2>
+		Your Shipping Address
+	</h2>
+</div>
+
+<div class="form_field street" ng-class="{'has-error': hasError('street')}">
+  <label for="street" class="form_label">
     <span>
-      Enter your email address
+      Street
     </span>
   </label>
+
   <div class="form_input">
-    <input id="signup_email" name="email" ng-model="newUser.email" type="email" placeholder="ex. kevin@cardagain.com" required />
+    <input id="street" type="text" name="street" ng-model="newUser.street" placeholder="1029 Oretha Castle Haley Blvd." required/>
   </div>
 
-  <div class="invalid-message" ng-messages="basicInfoForm.email.$error" ng-show="showMessages('email')">
-    <div class="message-animation" ng-message="email">
-      <strong>Please format your email correctly!</strong>
-    </div>
+  <div class="invalid-message" ng-messages="basicInfoForm.street.$error" ng-hide="!showMessages('street')">
     <div class="message-animation" ng-message="required">
-      <strong>This is required!</strong>
+      <strong> 
+        This is required!
+      </strong>
     </div>
   </div>
 </div>
 
-
-<div class="form_field password" ng-class="{'has-error': hasError('password')}">
-  <label for="password" class="form_label">
+<div class="form_field suite">
+  <label for="suite" class="form_label">
     <span>
-      Password
+      Suite / Floor Number
     </span>
   </label>
 
   <div class="form_input">
-    <input id="password" type="password" name="password" ng-model="newUser.password" placeholder="*******" required/>
+    <input id="suite" type="text" name="suite" ng-model="newUser.suite" required/>
+  </div>
+</div>
+
+<div class="form_field city" ng-class="{'has-error': hasError('city')}">
+  <label for="city" class="form_label">
+    <span>
+      City
+    </span>
+  </label>
+
+  <div class="form_input">
+    <input id="city" type="text" name="city" ng-model="newUser.city" placeholder="ex. New York" required/>
   </div>
 
-  <div class="invalid-message" ng-messages="basicInfoForm.password.$error" ng-hide="!showMessages('password')">
+  <div class="invalid-message" ng-messages="basicInfoForm.city.$error" ng-hide="!showMessages('city')">
     <div class="message-animation" ng-message="required">
       <strong> 
-        Your password is required.
+        This is required!
       </strong>
     </div>
   </div>
 </div>
 
-<div class="form_field password" ng-class="{'has-error': hasError('confirmation_password')}">
-  <label for="confirmation_password" class="form_label">
+<div class="form_field state" ng-class="{'has-error': hasError('state')}">
+  <label for="state" class="form_label">
     <span>
-      Confirm Password
+      State
     </span>
   </label>
 
   <div class="form_input">
-    <input type="password" id="confirmation_password" name="confirmation_password" ng-model="newUser.confirmationPassword" placeholder="*******" required compare-to="newUser.password"/>
+  	<select id="state" name="state" ng-model="newUser.state" required>
+  		<option value="">State</option>
+  		<% us_states.each { |state, abrv| %>
+  			<option value="<%= state %>"><%= abrv %></option>
+			<% } %>
+  	</select>
   </div>
 
-  <div class="invalid-message" ng-messages="basicInfoForm.confirmation_password.$error" ng-show="showMessages('confirmation_password')">
+  <div class="invalid-message" ng-messages="basicInfoForm.state.$error" ng-hide="!showMessages('state')">
     <div class="message-animation" ng-message="required">
       <strong> 
-        Password confirmation is required.
-      </strong>
-    </div>
-
-    <div class="message-animation" ng-message="compareTo">
-      <strong>
-        Your passwords don't match!
+        This is required!
       </strong>
     </div>
   </div>
+</div>
 
+<div class="form_field zipcode" ng-class="{'has-error': hasError('zipcode')}">
+  <label for="zipcode" class="form_label">
+    <span>
+      Zip Code
+    </span>
+  </label>
+
+  <div class="form_input">
+    <input id="zipcode" type="text" name="zipcode" ng-model="newUser.zipcode" required/>
+  </div>
+
+  <div class="invalid-message" ng-messages="basicInfoForm.zipcode.$error" ng-hide="!showMessages('zipcode')">
+    <div class="message-animation" ng-message="required">
+      <strong> 
+        This is required!
+      </strong>
+    </div>
+  </div>
 </div>
 
 <div class="form_field submit">
   <div class="form_input">
-    <a ui-sref="form.address" class="btn submit-btn">Next <i class="glyphicon glyphicon-arrow-right"></i></a>
+    <button ui-sref="form.interests" class="btn submit-btn">Next <i class="glyphicon glyphicon-arrow-right"></i></button>
   </div>
 </div>
