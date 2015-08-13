@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
 	before_save :downcase_email
 	before_create :create_activation_digest
 
-	validates :name,  presence: true, length: { maximum: 50 }
+	validates :name, length: { maximum: 50 }
 	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
 	validates :email, presence: true, 
 										length: { maximum: 255 }, 
@@ -19,6 +19,9 @@ class User < ActiveRecord::Base
 	has_many :comments
 	has_many :post_upvotes
 	has_many :comment_upvotes
+
+	# cardagain-specific
+	has_many :addresses
 
 	# User class methods
 	class << self

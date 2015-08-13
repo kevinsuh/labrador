@@ -11,7 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150811034017) do
+ActiveRecord::Schema.define(version: 20150813131033) do
+
+  create_table "addresses", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "street"
+    t.string   "suite"
+    t.string   "city"
+    t.string   "state"
+    t.integer  "zipcode"
+    t.boolean  "is_primary", default: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  add_index "addresses", ["user_id"], name: "index_addresses_on_user_id"
 
   create_table "comment_upvotes", force: :cascade do |t|
     t.integer  "user_id"

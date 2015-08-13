@@ -124,7 +124,9 @@ p {
 	padding: 30px;
 	padding-top: 0px;
 	overflow: hidden;
-
+	width: 80%;
+	margin-left: 10%;
+	
 	.form_field {
 		&.name {
 			width: 100%;
@@ -142,6 +144,9 @@ p {
 		&.zipcode {
 			float: right;
 			width: 37%;
+		}
+		&.street {
+			margin-bottom: -9px;
 		}
 	}
 

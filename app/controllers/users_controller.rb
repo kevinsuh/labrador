@@ -79,6 +79,24 @@ class UsersController < ApplicationController
     redirect_to root_url
   end
 
+
+  # cardagain sign up
+  
+  # email & password generation
+  def create_basic
+
+  end
+
+  # address for user
+  def create_address
+
+  end
+
+  # curated content
+  def create_interests
+
+  end
+
   private
 
   	# to ensure which values we are receiving from our form
