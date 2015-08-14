@@ -13,7 +13,15 @@ class UsersController < ApplicationController
 
   def show
   	@user = User.find(params[:id])
-    redirect_to root_url and return unless @user.is_activated?
+
+    if @user.is_activated? || true # right now we arent handling account_activation
+      respond_to do |format|
+        format.html
+        format.json {render json: @user }
+      end
+    else 
+      redirect_to root_url
+    end
   end
 
   def index
@@ -84,6 +92,15 @@ class UsersController < ApplicationController
   
   # validate email + pass from backend
   def validate_basic
+    email = params[:email]
+    password = params[:password]
+    password_confirmation = params[:password_confirmation]
+
+    # only validations currently are unique email and password validations
+    user = User.new(email: email, password: password, password_confirmation: password_confirmation)
+    respond_to do |format|
+      format.json {render json: user }
+    end
 
   end
 

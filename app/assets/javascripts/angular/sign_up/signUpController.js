@@ -1,27 +1,9 @@
 (function() {
 	
-	var app = angular.module('sign-up').controller('SignUpController', ['$scope', function($scope) {
+	var app = angular.module('sign-up').controller("SignUpController", ['$scope', 'signUp', function($scope, signUp) {
 
-		$scope.signedUp = false;
-		$scope.email = "";
-
-		newUser = {
-			email: '',
-			password: '',
-			confirmationPassword: '',
-			firstName: '',
-			lastName: '',
-			street: '',
-			suite: '',
-			city: '',
-			state: '',
-			zipcode: ''
-		}
-
-		$scope.signup = function() {
-			$scope.signedUp = true;
-			$scope.world = "hello world!!!";
-		}
+		$scope.user    = signUp.user;
+		$scope.address = signUp.address;
 
 		// bool to test if form field has been touched
 		$scope.showMessages = function(field) {
@@ -43,6 +25,30 @@
 			};
 		}
 
+		// array of form fields must all be valid to be true
+		$scope.fieldsAreValid = function(fields) {
+			var valid = true;
+			
+			for (var i = 0; i < fields.length; i++) {
+				if ($scope.basicInfoForm[fields[i]].$invalid) {
+					valid = false;
+				}
+					
+			}
+			return valid; 
+		}
+
+		// validate that user can be created via
+		// email + password + password_confirmation
+		$scope.validateBasicFields = function() {
+
+			user = $scope.user;
+
+			// pass in the user object
+			signUp.validateBasic(user);
+
+		}
+
 	}]);
 
 	// used to compare two fields
@@ -57,7 +63,6 @@
          
         // custom validator for ngModel
         ngModel.$validators.compareTo = function(modelValue) {
-
           return modelValue == scope.otherModelValue;
         };
 

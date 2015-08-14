@@ -9,9 +9,8 @@
 			.state('form', {
         url: '/form',
 				templateUrl: "angular/sign_up/sign_up_form.html",
-				controller: 'SignUpController'
-        }
-        )
+				controller: 'SignUpController',
+      })
 
       .state('form.profile', {
         url: '/profile',

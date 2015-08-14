@@ -5,11 +5,12 @@ class User < ActiveRecord::Base
 
 	validates :name, length: { maximum: 50 }
 	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
+	VALID_PASSWORD_REGEX = /(?=.*\d)[a-zA-Z0-9]{6,}/ # contains at least 6 characters including 1 number
 	validates :email, presence: true, 
 										length: { maximum: 255 }, 
 										format: { with: VALID_EMAIL_REGEX },
 										uniqueness: { case_sensitive: false }
-	validates :password, length: { minimum: 6 }, allow_blank: true
+	validates :password, length: { minimum: 6 }, allow_blank: true, format: { with: VALID_PASSWORD_REGEX }
 	attr_accessor :remember_token, :activation_token, :password_reset_token
 
 	has_secure_password # adds virtual attributes :password & :password_confirmation

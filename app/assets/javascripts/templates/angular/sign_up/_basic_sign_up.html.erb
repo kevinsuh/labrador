@@ -5,7 +5,7 @@
     </span>
   </label>
   <div class="form_input">
-    <input id="signup_email" name="email" ng-model="newUser.email" type="email" placeholder="ex. kevin@cardagain.com" required />
+    <input id="signup_email" name="email" ng-model="user.email" type="email" placeholder="ex. kevin@cardagain.com" required />
   </div>
 
   <div class="invalid-message-holder">
@@ -30,7 +30,7 @@
   </label>
 
   <div class="form_input">
-    <input id="password" type="password" name="password" ng-model="newUser.password" placeholder="*******" validate-password required/>
+    <input id="password" type="password" name="password" ng-model="user.password" placeholder="*******" validate-password required/>
   </div>
   <div class="password-requirements">
     <ul class="float-left">
@@ -41,21 +41,18 @@
   </div>
 </div>
 
-
-
-<div class="form_field password" ng-class="{'has-error': hasError('confirmation_password')}">
-  <label for="confirmation_password" class="form_label">
-    <span class="helper" ng-class="{'completed': basicInfoForm.confirmation_password.$valid }">
+<div class="form_field password" ng-class="{'has-error': hasError('password_confirmation')}">
+  <label for="password_confirmation" class="form_label">
+    <span class="helper" ng-class="{'completed': basicInfoForm.password_confirmation.$valid }">
       Confirm Password
     </span>
   </label>
-
   <div class="form_input">
-    <input type="password" id="confirmation_password" name="confirmation_password" ng-model="newUser.confirmationPassword" placeholder="*******" required compare-to="newUser.password"/>
+    <input type="password" id="password_confirmation" name="password_confirmation" ng-model="user.password_confirmation" placeholder="*******" required compare-to="user.password"/>
   </div>
 
   <div class="invalid-message-holder">
-     <div class="invalid-message" ng-messages="basicInfoForm.confirmation_password.$error" ng-show="showMessages('confirmation_password')">
+     <div class="invalid-message" ng-messages="basicInfoForm.password_confirmation.$error" ng-show="showMessages('password_confirmation')">
       <div class="message-animation" ng-message="required">
         <strong> 
           Password confirmation is required.
@@ -75,6 +72,7 @@
 
 <div class="form_field submit">
   <div class="form_input">
-    <a ui-sref="form.address" class="btn submit-btn next-btn">Next <i class="glyphicon glyphicon-arrow-right"></i></a>
+    <a ng-disabled="!fieldsAreValid(['email', 'password', 'password_confirmation'])" ng-click="fieldsAreValid(['email', 'password', 'password_confirmation']) && validateBasicFields()" class="btn submit-btn next-btn">Next <i class="glyphicon glyphicon-arrow-right"></i></a>
+    <!-- ui-sref="form.address" -->
   </div>
 </div>
