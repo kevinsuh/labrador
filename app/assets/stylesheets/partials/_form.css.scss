@@ -48,10 +48,19 @@
 	// handle errors in a form-field div
 	.has-error {
 		input, select {
-			border-color: $error-border-color;
+			border-color: $error-color;
 		}
 	}
+	li.has-error {
+		color: $error-color;
+	}
+
 	// this will be the transition
+	.invalid-message-holder {
+		height: 15px;
+		width: 100%;
+		clear: both;
+	}
 	.invalid-message {
   	color: red;
   	font-size: 12px;

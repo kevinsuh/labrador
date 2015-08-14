@@ -1,6 +1,6 @@
 <div class="form_field email" ng-class="{'has-error': hasError('email')}">
   <label for="signup_email" class="form_label">
-    <span>
+    <span class="helper" ng-class="{'completed': basicInfoForm.email.$valid}">
       Enter your email address
     </span>
   </label>
@@ -8,40 +8,44 @@
     <input id="signup_email" name="email" ng-model="newUser.email" type="email" placeholder="ex. kevin@cardagain.com" required />
   </div>
 
-  <div class="invalid-message" ng-messages="basicInfoForm.email.$error" ng-show="showMessages('email')">
-    <div class="message-animation" ng-message="email">
-      <strong>Please format your email correctly!</strong>
-    </div>
-    <div class="message-animation" ng-message="required">
-      <strong>This is required!</strong>
+  <div class="invalid-message-holder">
+    <div class="invalid-message" ng-messages="basicInfoForm.email.$error" ng-show="showMessages('email')">
+      <div class="message-animation" ng-message="email">
+        <strong>Please format your email correctly!</strong>
+      </div>
+      <div class="message-animation" ng-message="required">
+        <strong>This is required!</strong>
+      </div>
     </div>
   </div>
+
 </div>
 
 
 <div class="form_field password" ng-class="{'has-error': hasError('password')}">
   <label for="password" class="form_label">
-    <span>
+    <span class="helper" ng-class="{'completed': basicInfoForm.password.$valid }">
       Password
     </span>
   </label>
 
   <div class="form_input">
-    <input id="password" type="password" name="password" ng-model="newUser.password" placeholder="*******" required/>
+    <input id="password" type="password" name="password" ng-model="newUser.password" placeholder="*******" validate-password required/>
   </div>
-
-  <div class="invalid-message" ng-messages="basicInfoForm.password.$error" ng-hide="!showMessages('password')">
-    <div class="message-animation" ng-message="required">
-      <strong> 
-        Your password is required.
-      </strong>
-    </div>
+  <div class="password-requirements">
+    <ul class="float-left">
+      <li class="helper" ng-class="{'completed':!basicInfoForm.password.$error.sixCharacters, 'has-error': passwordError(basicInfoForm.password.$error)}">At least 6 characters</li>
+      <li>|</li>
+      <li class="helper" ng-class="{'completed':!basicInfoForm.password.$error.number, 'has-error': passwordError(basicInfoForm.password.$error)}">One number</li>
+    </ul>
   </div>
 </div>
 
+
+
 <div class="form_field password" ng-class="{'has-error': hasError('confirmation_password')}">
   <label for="confirmation_password" class="form_label">
-    <span>
+    <span class="helper" ng-class="{'completed': basicInfoForm.confirmation_password.$valid }">
       Confirm Password
     </span>
   </label>
@@ -50,24 +54,27 @@
     <input type="password" id="confirmation_password" name="confirmation_password" ng-model="newUser.confirmationPassword" placeholder="*******" required compare-to="newUser.password"/>
   </div>
 
-  <div class="invalid-message" ng-messages="basicInfoForm.confirmation_password.$error" ng-show="showMessages('confirmation_password')">
-    <div class="message-animation" ng-message="required">
-      <strong> 
-        Password confirmation is required.
-      </strong>
-    </div>
+  <div class="invalid-message-holder">
+     <div class="invalid-message" ng-messages="basicInfoForm.confirmation_password.$error" ng-show="showMessages('confirmation_password')">
+      <div class="message-animation" ng-message="required">
+        <strong> 
+          Password confirmation is required.
+        </strong>
+      </div>
 
-    <div class="message-animation" ng-message="compareTo">
-      <strong>
-        Your passwords don't match!
-      </strong>
+      <div class="message-animation" ng-message="compareTo">
+        <strong>
+          Your passwords don't match!
+        </strong>
+      </div>
     </div>
   </div>
+ 
 
 </div>
 
 <div class="form_field submit">
   <div class="form_input">
-    <a ui-sref="form.address" class="btn submit-btn">Next <i class="glyphicon glyphicon-arrow-right"></i></a>
+    <a ui-sref="form.address" class="btn submit-btn next-btn">Next <i class="glyphicon glyphicon-arrow-right"></i></a>
   </div>
 </div>

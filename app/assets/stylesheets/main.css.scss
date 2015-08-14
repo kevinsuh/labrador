@@ -148,6 +148,14 @@ p {
 		&.street {
 			margin-bottom: -9px;
 		}
+
+		.form_input {
+			input {
+				&.ng-valid {
+					border-color: green;
+				}
+			}
+		}
 	}
 
 	div.shipping {
@@ -161,6 +169,30 @@ p {
 		border-radius: 0px;
 		background: transparent;
 		font-size: 16px;
+	}
+
+	// surrounding text that have been completed
+	.completed {
+		&.helper {
+			color: green;
+		}
+	}
+
+	// handle password-requirement validation
+	.password-requirements {
+		.float-left {
+			padding-left: 0;
+			li {
+				display: inline;
+				font-size: 12px;
+				&.has-error {}
+			}
+		}
+	}
+
+	// next button
+	.next-btn {
+		margin-top: 25px;
 	}
 }
 

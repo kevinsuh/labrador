@@ -82,8 +82,8 @@ class UsersController < ApplicationController
 
   # cardagain sign up
   
-  # email & password generation
-  def create_basic
+  # validate email + pass from backend
+  def validate_basic
 
   end
 

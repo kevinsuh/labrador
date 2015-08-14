@@ -33,6 +33,16 @@
 			return $scope.basicInfoForm[field].$touched && $scope.basicInfoForm[field].$invalid;
 		};
 
+		// handle specific password requirements
+		$scope.passwordError = function(error) {
+			if (error.sixCharacters) {
+				return $scope.basicInfoForm['password'].$touched;	
+			}
+			else if (error.number) {
+				return $scope.basicInfoForm['password'].$touched;
+			};
+		}
+
 	}]);
 
 	// used to compare two fields
@@ -60,4 +70,26 @@
     };
 	});
 
+	// used to validate password from front-end
+	// currently only just minimum 6 characters that includes one number
+	app.directive('validatePassword', function() {
+		return {
+			require: "ngModel",
+			link: function(scope, element, attributes, ngModel) {
+
+				// minimum length
+				ngModel.$validators.sixCharacters = function (value) {
+					return (typeof value != 'undefined') && value.length >= 6;
+				}
+
+				// includes one number
+				ngModel.$validators.number = function (value) {
+					var pattern = /\d+/;
+					return (typeof value != 'undefined') && pattern.test(value);
+				}
+			}
+		}
+	});
+
 })();
+

@@ -14,7 +14,8 @@
 	    <div class="message-animation" ng-message="required">
 	      <strong>This is required!</strong>
 	    </div>
-	  </div>
+		</div>
+
 	</div>
 
 	<div class="last_name" ng-class="{'has-error': hasError('last_name')}">
@@ -56,13 +57,16 @@
     <input id="street" type="text" name="street" ng-model="newUser.street" placeholder="1029 Oretha Castle Haley Blvd." required/>
   </div>
 
-  <div class="invalid-message" ng-messages="basicInfoForm.street.$error" ng-hide="!showMessages('street')">
-    <div class="message-animation" ng-message="required">
-      <strong> 
-        This is required!
-      </strong>
-    </div>
-  </div>
+  <div class="invalid-message-holder">
+	  <div class="invalid-message" ng-messages="basicInfoForm.street.$error" ng-hide="!showMessages('street')">
+	    <div class="message-animation" ng-message="required">
+	      <strong> 
+	        This is required!
+	      </strong>
+	    </div>
+	  </div>
+	</div>
+
 </div>
 
 <div class="form_field suite">
@@ -88,13 +92,16 @@
     <input id="city" type="text" name="city" ng-model="newUser.city" placeholder="ex. New York" required/>
   </div>
 
-  <div class="invalid-message" ng-messages="basicInfoForm.city.$error" ng-hide="!showMessages('city')">
-    <div class="message-animation" ng-message="required">
-      <strong> 
-        This is required!
-      </strong>
-    </div>
-  </div>
+  <div class="invalid-message-holder">
+	  <div class="invalid-message" ng-messages="basicInfoForm.city.$error" ng-hide="!showMessages('city')">
+	    <div class="message-animation" ng-message="required">
+	      <strong> 
+	        This is required!
+	      </strong>
+	    </div>
+	  </div>
+	</div>
+
 </div>
 
 <div class="form_field state" ng-class="{'has-error': hasError('state')}">
@@ -113,13 +120,16 @@
   	</select>
   </div>
 
-  <div class="invalid-message" ng-messages="basicInfoForm.state.$error" ng-hide="!showMessages('state')">
-    <div class="message-animation" ng-message="required">
-      <strong> 
-        This is required!
-      </strong>
-    </div>
-  </div>
+  <div class="invalid-message-holder">
+	  <div class="invalid-message" ng-messages="basicInfoForm.state.$error" ng-hide="!showMessages('state')">
+	    <div class="message-animation" ng-message="required">
+	      <strong> 
+	        This is required!
+	      </strong>
+	    </div>
+	  </div>
+	</div>
+
 </div>
 
 <div class="form_field zipcode" ng-class="{'has-error': hasError('zipcode')}">
@@ -133,17 +143,20 @@
     <input id="zipcode" type="text" name="zipcode" ng-model="newUser.zipcode" required/>
   </div>
 
-  <div class="invalid-message" ng-messages="basicInfoForm.zipcode.$error" ng-hide="!showMessages('zipcode')">
-    <div class="message-animation" ng-message="required">
-      <strong> 
-        This is required!
-      </strong>
-    </div>
-  </div>
+  <div class="invalid-message-holder">
+	  <div class="invalid-message" ng-messages="basicInfoForm.zipcode.$error" ng-hide="!showMessages('zipcode')">
+	    <div class="message-animation" ng-message="required">
+	      <strong> 
+	        This is required!
+	      </strong>
+	    </div>
+	  </div>
+	</div>
+
 </div>
 
 <div class="form_field submit">
   <div class="form_input">
-    <button ui-sref="form.interests" class="btn submit-btn">Next <i class="glyphicon glyphicon-arrow-right"></i></button>
+    <button ui-sref="form.interests" class="btn submit-btn next-btn">Next <i class="glyphicon glyphicon-arrow-right"></i></button>
   </div>
 </div>
