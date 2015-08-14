@@ -3,13 +3,14 @@ class User < ActiveRecord::Base
 	before_save :downcase_email
 	before_create :create_activation_digest
 
-	validates :name,  presence: true, length: { maximum: 50 }
+	validates :name, length: { maximum: 50 }
 	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
+	VALID_PASSWORD_REGEX = /(?=.*\d)[a-zA-Z0-9]{6,}/ # contains at least 6 characters including 1 number
 	validates :email, presence: true, 
 										length: { maximum: 255 }, 
 										format: { with: VALID_EMAIL_REGEX },
 										uniqueness: { case_sensitive: false }
-	validates :password, length: { minimum: 6 }, allow_blank: true
+	validates :password, length: { minimum: 6 }, allow_blank: true, format: { with: VALID_PASSWORD_REGEX }
 	attr_accessor :remember_token, :activation_token, :password_reset_token
 
 	has_secure_password # adds virtual attributes :password & :password_confirmation
@@ -19,6 +20,9 @@ class User < ActiveRecord::Base
 	has_many :comments
 	has_many :post_upvotes
 	has_many :comment_upvotes
+
+	# cardagain-specific
+	has_many :addresses
 
 	# User class methods
 	class << self

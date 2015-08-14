@@ -1,0 +1,201 @@
+@import "partials/base";
+
+html {
+	overflow-y: scroll;
+}
+
+body {
+	@include base_font;
+	font-size:40px;
+}
+
+section {
+  overflow: auto;
+}
+
+textarea {
+  resize: vertical;
+}
+
+/**
+ * 			TYPOGRAPHY
+ */
+
+h1, h2, h3, h4, h5, h6 {
+	line-height: 1;
+}
+
+h1 {
+ 	font-size: 3em;
+ 	letter-spacing: -2px;
+ 	margin-bottom: 30px;
+ 	text-align: center;
+}
+
+h2 {
+	font-size: 1.2em;
+	letter-spacing: -1px;
+	margin-bottom: 30px;
+ 	text-align: center;
+ 	font-weight: normal;
+}
+
+p {
+	font-size: 1.1em;
+	line-height: 1.7em;
+}
+
+/**
+ * 			SIGNUP FORM
+ */
+
+// the div that contains each form partial
+#form-views {
+	
+	width: auto;
+
+	&.ng-enter, &.ng-leave {
+		position: absolute;
+		left: 30px;
+		right: 30px;
+		transition: 0.5s all ease;
+		-moz-transition: 0.5s all ease;
+		-webkit-transition: 0.5s all ease;
+	}
+
+	&.ng-enter {
+		-webkit-animation:slideInRight 0.5s both ease;
+    -moz-animation:slideInRight 0.5s both ease;
+    animation:slideInRight 0.5s both ease; 
+	}
+
+	&.ng-leave {
+		-webkit-animation:slideOutLeft 0.5s both ease;
+    -moz-animation:slideOutLeft 0.5s both ease;
+    animation:slideOutLeft 0.5s both ease;  
+	}
+}
+
+/**
+ * 		USER SIGN UP FORM
+ */
+
+// the two MAJOR divs (split into 2 for now form | helper)
+.signup_body {
+	display: table-row;
+	width: 100%;
+	.signup_form {
+		width: 100%;
+		// this contains the form body!
+		.form {
+			width: 100%;
+			.form_field.name {
+				.first_name {
+					width: 51.7%;
+					float: left;
+					padding-right: 2.5%;
+					white-space: nowrap;
+					overflow-x: hidden;
+				}
+				.last_name {
+					width: 48%;
+					float: right;
+				}
+			}
+		}
+	}
+
+	// have the ng-hide still preserve space
+	.ng-hide {
+		visibility: hidden;
+		display: block!important;
+	}
+	.signup_helper {
+		display: table-cell;
+		background-color: $baby-blue;
+		float:none;
+	}
+}
+
+// used for more specific tags
+#signup-form {
+	position: relative;
+	min-height: 600px;
+	padding: 30px;
+	padding-top: 0px;
+	overflow: hidden;
+	width: 80%;
+	margin-left: 10%;
+	
+	.form_field {
+		&.name {
+			width: 100%;
+			float: left;
+		}
+		&.city {
+			width: 40%;
+			float: left;
+			margin-right: 3%;
+		}
+		&.state {
+			width: 17%;
+			float: left;
+		}
+		&.zipcode {
+			float: right;
+			width: 37%;
+		}
+		&.street {
+			margin-bottom: -9px;
+		}
+
+		.form_input {
+			input {
+				&.ng-valid {
+					border-color: green;
+				}
+			}
+		}
+	}
+
+	div.shipping {
+		float: left;
+		width: 100%;
+		margin-top: 20px;
+	}
+
+	select {
+		height: 55px;
+		border-radius: 0px;
+		background: transparent;
+		font-size: 16px;
+	}
+
+	// surrounding text that have been completed
+	.completed {
+		&.helper {
+			color: green;
+		}
+	}
+
+	// handle password-requirement validation
+	.password-requirements {
+		.float-left {
+			padding-left: 0;
+			li {
+				display: inline;
+				font-size: 12px;
+				&.has-error {}
+			}
+		}
+	}
+
+	// next button
+	.next-btn {
+		margin-top: 25px;
+	}
+}
+
+
+
+

@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-  root 'static_pages#home'
-
   get 'sessions/new'
 
   get 'signup'          => 'users#new'
@@ -21,7 +19,16 @@ Rails.application.routes.draw do
   get 'forgot_password' => 'password_resets#new'
   get 'reset_password'  => 'password_resets#edit'
 
-  resources :users
+  resources :users do
+    collection do
+      post :validate_basic
+    end
+
+    member do
+      
+    end
+  end
+
   resources :account_activations, only: [:edit]
   resources :password_resets, only: [:new, :create, :edit, :update]
 
@@ -39,6 +46,8 @@ Rails.application.routes.draw do
       put 'upvote' => 'posts#upvote'
     end
   end
+
+  root 'static_pages#home'
   
 
   # The priority is based upon order of creation: first created -> highest priority.

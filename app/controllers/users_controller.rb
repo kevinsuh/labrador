@@ -4,13 +4,24 @@ class UsersController < ApplicationController
   before_action :correct_user, only: [:edit, :update]
   before_action :admin_user, only: [:destroy]
 
+  include StaticPagesHelper
+
   def new
   	@user = User.new
+    render layout: "signup_application"
   end
 
   def show
   	@user = User.find(params[:id])
-    redirect_to root_url and return unless @user.is_activated?
+
+    if @user.is_activated? || true # right now we arent handling account_activation
+      respond_to do |format|
+        format.html
+        format.json {render json: @user }
+      end
+    else 
+      redirect_to root_url
+    end
   end
 
   def index
@@ -74,6 +85,33 @@ class UsersController < ApplicationController
       session[:waitlist_email] = @waitlist.email
     end
     redirect_to root_url
+  end
+
+
+  # cardagain sign up
+  
+  # validate email + pass from backend
+  def validate_basic
+    email = params[:email]
+    password = params[:password]
+    password_confirmation = params[:password_confirmation]
+
+    # only validations currently are unique email and password validations
+    user = User.new(email: email, password: password, password_confirmation: password_confirmation)
+    respond_to do |format|
+      format.json {render json: user }
+    end
+
+  end
+
+  # address for user
+  def create_address
+
+  end
+
+  # curated content
+  def create_interests
+
   end
 
   private

@@ -1,14 +1,22 @@
 <% provide(:title, "Signup") %>
 
-<div class="row">
-	<div class="col-md-6 col-md-offset-3">
-		<h1>Sign up </h1>
-		<%= form_for @user, html: { class: "signup_form" } do |f| %>
-			<%= render 'shared/error_messages', object: f.object %>
-			<%= render 'fields', f: f %>
+<!-- this is inside a container right now -->
+<div class="row signup_body" ng-controller="SignUpController as signUpCtrl">
+	
+  <div class="col-xs-7 form-container signup_form">
 
-			<%= f.submit "Create my account", class: "btn btn-primary" %>
-
-		<% end %>
+  	<div ui-view></div>
+	</div>
+	<div class="col-xs-5 signup_helper">
+		<div class="col-xs-6">
+			<p>
+				Cardagain allows you to queue greeting card purchases for the important dates in your life. Several weeks before each event, we deliver you the card of your choice, pre-addressed and pre-stamped, so that you can write your personal message in time for delivery.
+			</p>
+		</div>
+		<div class="col-xs-6">
+			<p>
+				We want to remember our friends' birthdays. Or our parents' anniversary. Or mother's and father's day. But we often forget until it's too late to do anything but give them a text or facebook post the day of. We want to help you remember in time.
+			</p>
+		</div>
 	</div>
 </div>

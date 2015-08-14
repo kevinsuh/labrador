@@ -1,0 +1,24 @@
+<div id="form-container">
+	<%= image_tag('cardagain_logo_md.png', alt: 'Cardagain', class: "splash_logo") %>
+	<div class="page-header">
+		<h1 ng-if="currentState == 'form.profile'">Let's start</h1>
+		<h1 ng-if="currentState == 'form.address'">Let us ship things to you</h1>
+		<h1 ng-if="currentState == 'form.interests'">So we can curate cards for you :)</h1>
+		
+		<!-- these links help us move through relative paths -->
+		<div id="status-buttons" class="text-center">
+			<a ui-sref-active="active" ui-sref=".profile"><span>1</span> Profile</a>
+			<a ui-sref-active="active" ui-sref=".address"><span>2</span> Address</a>
+			<a ui-sref-active="active" ui-sref=".interests"><span>3</span> Interests</a>
+		</div>
+	</div>
+
+	<div class="form">
+    <form id="signup-form" name="basicInfoForm" ng-submit="signup()" novalidate>
+
+    	<!-- nested state views here -->
+			<div id="form-views" ui-view></div>
+			
+		</form>
+	</div>		
+</div>

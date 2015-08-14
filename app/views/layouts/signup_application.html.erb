@@ -1,20 +1,17 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<base href="/"/>
 	  <title><%= full_title(yield(:title)) %></title>
 	  <%= render 'layouts/shim' %>
 	  <%= stylesheet_link_tag    'application', media: 'all' %>
 	  <%= javascript_include_tag 'application' %>
 	  <%= csrf_meta_tags %>
 	</head>
-	<body>
-		<div class="container container-full">
-			<%= render 'layouts/header' %>
-			<% flash.each do |type, message| %>
-				<%= content_tag :div, message, class: ["alert", "alert-#{type}"]%>
-			<% end %>
+	<body ng-app="sign-up">
+		<div class="container container-full" style="width: 100%; height: 100%; position: absolute;">
 			<%= yield %>
-			<%= render 'layouts/footer' %>
+			
 			<%= debug(params) if Rails.env.development? %>
 		</div>
 	</body>

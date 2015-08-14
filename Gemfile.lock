@@ -21,6 +21,8 @@ GEM
       erubis (~> 2.7.0)
       rails-dom-testing (~> 1.0, >= 1.0.5)
       rails-html-sanitizer (~> 1.0, >= 1.0.1)
+    active_model_serializers (0.9.3)
+      activemodel (>= 3.2)
     activejob (4.2.0)
       activesupport (= 4.2.0)
       globalid (>= 0.3.0)
@@ -41,7 +43,7 @@ GEM
       railties (>= 3.1)
       sprockets (~> 2)
       tilt
-    angular_rails_csrf (1.0.3)
+    angular_rails_csrf (1.0.4)
       rails (>= 3, < 5)
     angularjs-rails (1.4.3)
     ansi (1.5.0)
@@ -85,11 +87,12 @@ GEM
     ffi (1.9.10)
     fission (0.5.0)
       CFPropertyList (~> 2.2)
-    fog (1.32.0)
+    fog (1.33.0)
       fog-atmos
       fog-aws (>= 0.6.0)
       fog-brightbox (~> 0.4)
       fog-core (~> 1.32)
+      fog-dynect
       fog-ecloud (= 0.1.1)
       fog-google (>= 0.0.2)
       fog-json
@@ -120,13 +123,17 @@ GEM
       fog-core (~> 1.22)
       fog-json
       inflecto (~> 0.0.2)
-    fog-core (1.32.0)
+    fog-core (1.32.1)
       builder
       excon (~> 0.45)
       formatador (~> 0.2)
       mime-types
       net-scp (~> 1.1)
       net-ssh (>= 2.1.3)
+    fog-dynect (0.0.1)
+      fog-core
+      fog-json
+      fog-xml
     fog-ecloud (0.1.1)
       fog-core
       fog-xml
@@ -203,9 +210,6 @@ GEM
     i18n (0.7.0)
     inflecto (0.0.2)
     ipaddress (0.8.0)
-    jbuilder (2.3.1)
-      activesupport (>= 3.0.0, < 5)
-      multi_json (~> 1.2)
     jquery-rails (4.0.4)
       rails-dom-testing (~> 1.0)
       railties (>= 4.2.0)
@@ -327,8 +331,6 @@ GEM
     thor (0.19.1)
     thread_safe (0.3.5)
     tilt (1.4.1)
-    turbolinks (2.5.3)
-      coffee-rails
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     uglifier (2.7.1)
@@ -349,6 +351,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_model_serializers (~> 0.9.3)
   angular-rails-templates
   angular_rails_csrf
   angularjs-rails
@@ -363,7 +366,6 @@ DEPENDENCIES
   fog
   guard-minitest
   guard-rspec
-  jbuilder (~> 2.0)
   jquery-rails
   mini_backtrace
   mini_magick
@@ -377,7 +379,6 @@ DEPENDENCIES
   sdoc (~> 0.4.0)
   sprockets (= 2.12.4)
   sqlite3
-  turbolinks
   uglifier (>= 1.3.0)
   unicorn
   web-console (~> 2.0)

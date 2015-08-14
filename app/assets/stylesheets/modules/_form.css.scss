@@ -1,0 +1,33 @@
+// font-weight
+$regular-light-weight: 400;
+$regular-weight: 400;
+
+// Base Font
+$form-font-family: "Lucida Grande", sans-serif;
+$form-font-size: 20px;
+$form-line-height: 1.4;
+
+// Form Label fonts
+$form-label-font-size: 12px;
+
+// error stuff
+$error-color: #a94442;
+$baby-blue: #21b2fe;
+
+@mixin form_font {
+	font-family: $form-font-family;
+  font-weight: $regular-weight;
+	font-size: $form-font-size;
+	line-height: $form-line-height;
+}
+
+@mixin standard_form_label {
+	font-weight: $regular-light-weight;
+	font-size: $form-label-font-size;
+}
+
+@mixin standard_form_input {
+	input {
+		line-height: 2.5em;
+	}
+}
