@@ -2,7 +2,7 @@
 <div class="form_field name">
 	<div class="first_name" ng-class="{'has-error': hasError('first_name')}">
 	  <label for="first_name" class="form_label">
-	    <span>
+	    <span class="helper" ng-class="{'completed': isValid('first_name')}">
 	      First Name / Company Name
 	    </span>
 	  </label>
@@ -21,7 +21,7 @@
 	<div class="last_name" ng-class="{'has-error': hasError('last_name')}">
 
 		<label for="last_name" class="form_label">
-	    <span>
+	    <span class="helper" ng-class="{'completed': isValid('last_name')}">
 	      Last Name
 	    </span>
 	  </label>
@@ -48,13 +48,13 @@
 
 <div class="form_field street" ng-class="{'has-error': hasError('street')}">
   <label for="street" class="form_label">
-    <span>
+    <span class="helper" ng-class="{'completed': isValid('street')}">
       Street
     </span>
   </label>
 
   <div class="form_input">
-    <input id="street" type="text" name="street" ng-model="newUser.street" placeholder="1029 Oretha Castle Haley Blvd." required/>
+    <input id="street" type="text" name="street" ng-model="newUser.street" placeholder="123 Main St." required/>
   </div>
 
   <div class="invalid-message-holder">
@@ -71,25 +71,25 @@
 
 <div class="form_field suite">
   <label for="suite" class="form_label">
-    <span>
+    <span class="helper" ng-class="{'completed': isValid('suite')}">
       Suite / Floor Number
     </span>
   </label>
 
   <div class="form_input">
-    <input id="suite" type="text" name="suite" ng-model="newUser.suite" required/>
+    <input id="suite" type="text" name="suite" ng-model="newUser.suite" placeholder="Suite 206" required/>
   </div>
 </div>
 
 <div class="form_field city" ng-class="{'has-error': hasError('city')}">
   <label for="city" class="form_label">
-    <span>
+    <span class="helper" ng-class="{'completed': isValid('city')}">
       City
     </span>
   </label>
 
   <div class="form_input">
-    <input id="city" type="text" name="city" ng-model="newUser.city" placeholder="ex. New York" required/>
+    <input id="city" type="text" name="city" ng-model="newUser.city" placeholder="New York" required/>
   </div>
 
   <div class="invalid-message-holder">
@@ -106,7 +106,7 @@
 
 <div class="form_field state" ng-class="{'has-error': hasError('state')}">
   <label for="state" class="form_label">
-    <span>
+    <span class="helper" ng-class="{'completed': isValid('state')}">
       State
     </span>
   </label>
@@ -134,13 +134,13 @@
 
 <div class="form_field zipcode" ng-class="{'has-error': hasError('zipcode')}">
   <label for="zipcode" class="form_label">
-    <span>
+    <span class="helper" ng-class="{'completed': isValid('zipcode')}">
       Zip Code
     </span>
   </label>
 
   <div class="form_input">
-    <input id="zipcode" type="text" name="zipcode" ng-model="newUser.zipcode" required/>
+    <input id="zipcode" type="text" name="zipcode" ng-model="newUser.zipcode" placeholder="98023" required/>
   </div>
 
   <div class="invalid-message-holder">

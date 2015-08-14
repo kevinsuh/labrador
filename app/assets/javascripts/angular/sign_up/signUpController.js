@@ -15,6 +15,11 @@
 			return $scope.basicInfoForm[field].$touched && $scope.basicInfoForm[field].$invalid;
 		};
 
+		// test if form field is valid AFTER user has finished typing
+		$scope.isValid = function(field) {
+			return $scope.basicInfoForm[field].$touched && $scope.basicInfoForm[field].$valid;
+		}
+
 		// handle specific password requirements
 		$scope.passwordError = function(error) {
 			if (error.sixCharacters) {
