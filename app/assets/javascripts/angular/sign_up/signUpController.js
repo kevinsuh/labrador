@@ -1,9 +1,16 @@
 (function() {
 	
-	var app = angular.module('sign-up').controller("SignUpController", ['$scope', 'signUp', function($scope, signUp) {
+	var app = angular.module('sign-up').controller("SignUpController", ['$rootScope', '$scope', '$state', 'signUp', function($rootScope, $scope, $state, signUp) {
 
 		$scope.user    = signUp.user;
 		$scope.address = signUp.address;
+
+		$scope.$on('$stateChangeSuccess',
+		  function(event, toState) {
+		  	console.log(toState);
+		    $scope.currentState = toState.name;
+		  }
+		)
 
 		// bool to test if form field has been touched
 		$scope.showMessages = function(field) {

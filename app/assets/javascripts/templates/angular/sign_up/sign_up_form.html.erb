@@ -1,8 +1,10 @@
 <div id="form-container">
 	<%= image_tag('cardagain_logo_md.png', alt: 'Cardagain', class: "splash_logo") %>
 	<div class="page-header">
-		<h1>Let's start</h1>
-
+		<h1 ng-if="currentState == 'form.profile'">Let's start</h1>
+		<h1 ng-if="currentState == 'form.address'">Let us ship things to you</h1>
+		<h1 ng-if="currentState == 'form.interests'">So we can curate cards for you :)</h1>
+		
 		<!-- these links help us move through relative paths -->
 		<div id="status-buttons" class="text-center">
 			<a ui-sref-active="active" ui-sref=".profile"><span>1</span> Profile</a>
