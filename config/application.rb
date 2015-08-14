@@ -13,6 +13,9 @@ module Cardagain
 
     config.action_controller.default_url_options = { :trailing_slash => true }
 
+    # not sure what this does, but for heroku upload
+    config.assets.initialize_on_precompile = false
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
