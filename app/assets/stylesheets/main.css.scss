@@ -46,7 +46,23 @@ p {
 }
 
 /**
- * 			SIGNUP FORM
+ * 		LOGGED IN HOME PAGE
+ */
+
+.user_info {
+	h2 {
+		font-size: 16px;
+		margin: 0 auto;
+	}
+	.section {
+		float: left;
+	}
+}
+
+
+
+/**
+ * 			SIGNUP PAGE
  */
 
 // the div that contains each form partial
@@ -77,7 +93,7 @@ p {
 }
 
 /**
- * 		USER SIGN UP FORM
+ * 		SIGN UP FORM
  */
 
 // the two MAJOR divs (split into 2 for now form | helper)
