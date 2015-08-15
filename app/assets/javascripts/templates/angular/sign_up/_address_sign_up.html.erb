@@ -1,5 +1,5 @@
 <!-- first name -->
-<div class="form_field name">
+<div class="form_field name validation_field">
 	<div class="first_name" ng-class="{'has-error': hasError('first_name')}">
 	  <label for="first_name" class="form_label">
 	    <span class="helper" ng-class="{'completed': isValid('first_name')}">
@@ -7,7 +7,7 @@
 	    </span>
 	  </label>
 	  <div class="form_input">
-	    <input id="first_name" name="first_name" ng-model="newUser.firstName" type="text" required />
+	    <input id="first_name" name="first_name" ng-model="address.first_name" type="text" required />
 	  </div>
 
 	  <div class="invalid-message" ng-messages="basicInfoForm.first_name.$error" ng-show="showMessages('first_name')">
@@ -26,7 +26,7 @@
 	    </span>
 	  </label>
 	  <div class="form_input">
-	    <input id="last_name" name="last_name" ng-model="newUser.lastName" type="text" required />
+	    <input id="last_name" name="last_name" ng-model="address.last_name" type="text" required />
 	  </div>
 
 	  <div class="invalid-message" ng-messages="basicInfoForm.last_name.$error" ng-show="showMessages('last_name')">
@@ -46,7 +46,7 @@
 	</h2>
 </div>
 
-<div class="form_field street" ng-class="{'has-error': hasError('street')}">
+<div class="form_field street validation_field" ng-class="{'has-error': hasError('street')}">
   <label for="street" class="form_label">
     <span class="helper" ng-class="{'completed': isValid('street')}">
       Street
@@ -54,7 +54,7 @@
   </label>
 
   <div class="form_input">
-    <input id="street" type="text" name="street" ng-model="newUser.street" placeholder="123 Main St." required/>
+    <input id="street" type="text" name="street" ng-model="address.street" placeholder="123 Main St." required/>
   </div>
 
   <div class="invalid-message-holder">
@@ -77,11 +77,11 @@
   </label>
 
   <div class="form_input">
-    <input id="suite" type="text" name="suite" ng-model="newUser.suite" placeholder="Suite 206" required/>
+    <input id="suite" type="text" name="suite" ng-model="address.suite" placeholder="Suite 206"/>
   </div>
 </div>
 
-<div class="form_field city" ng-class="{'has-error': hasError('city')}">
+<div class="form_field city validation_field" ng-class="{'has-error': hasError('city')}">
   <label for="city" class="form_label">
     <span class="helper" ng-class="{'completed': isValid('city')}">
       City
@@ -89,7 +89,7 @@
   </label>
 
   <div class="form_input">
-    <input id="city" type="text" name="city" ng-model="newUser.city" placeholder="New York" required/>
+    <input id="city" type="text" name="city" ng-model="address.city" placeholder="New York" required/>
   </div>
 
   <div class="invalid-message-holder">
@@ -104,7 +104,7 @@
 
 </div>
 
-<div class="form_field state" ng-class="{'has-error': hasError('state')}">
+<div class="form_field state validation_field" ng-class="{'has-error': hasError('state')}">
   <label for="state" class="form_label">
     <span class="helper" ng-class="{'completed': isValid('state')}">
       State
@@ -112,7 +112,7 @@
   </label>
 
   <div class="form_input">
-  	<select id="state" name="state" ng-model="newUser.state" required>
+  	<select id="state" name="state" ng-model="address.state" required>
   		<option value="">State</option>
   		<% us_states.each { |state, abrv| %>
   			<option value="<%= state %>"><%= abrv %></option>
@@ -132,7 +132,7 @@
 
 </div>
 
-<div class="form_field zipcode" ng-class="{'has-error': hasError('zipcode')}">
+<div class="form_field zipcode validation_field" ng-class="{'has-error': hasError('zipcode')}">
   <label for="zipcode" class="form_label">
     <span class="helper" ng-class="{'completed': isValid('zipcode')}">
       Zip Code
@@ -140,7 +140,7 @@
   </label>
 
   <div class="form_input">
-    <input id="zipcode" type="text" name="zipcode" ng-model="newUser.zipcode" placeholder="98023" required/>
+    <input id="zipcode" type="text" name="zipcode" ng-model="address.zipcode" placeholder="98023" required/>
   </div>
 
   <div class="invalid-message-holder">
@@ -157,6 +157,6 @@
 
 <div class="form_field submit">
   <div class="form_input">
-    <button ui-sref="form.interests" style="margin-top: 25px;" class="btn submit-btn next-btn">Next <i class="glyphicon glyphicon-arrow-right"></i></button>
+    <a style="margin-top: 25px;" ng-click="fieldsAreValid(['first_name', 'last_name', 'street', 'suite', 'city', 'state', 'zipcode']) && validateAddressFields()" class="btn submit-btn next-btn" ng-class="{'disabled': !fieldsAreValid(['first_name', 'last_name', 'street', 'suite', 'city', 'state', 'zipcode'])}">Next <i class="glyphicon glyphicon-arrow-right"></i></a>
   </div>
 </div>

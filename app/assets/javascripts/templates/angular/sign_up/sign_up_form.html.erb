@@ -3,17 +3,14 @@
 	<div class="page-header">
 		<h1 ng-if="currentState == 'form.profile'">Let's start</h1>
 		<h1 ng-if="currentState == 'form.address'">Let us ship things to you</h1>
-		<h1 ng-if="currentState == 'form.interests'">So we can curate cards for you :)</h1>
+		<h1 ng-if="currentState == 'form.interests'">We also curate cards :)</h1>
 		
 		<!-- these links help us move through relative paths -->
 		<div id="status-buttons" class="text-center">
-			<a ui-sref-active="active" ui-sref=".profile"><span>1</span> Profile</a>
-			<a ui-sref-active="active" ui-sref=".address"><span>2</span> Address</a>
-			<a ui-sref-active="active" ui-sref=".interests"><span>3</span> Interests</a>
 			<p class="progress_bullets">
-				<span ng-class="{'active': currentState == 'form.profile'}" class="bullet">•</span>
-				<span ng-class="{'active': currentState == 'form.address'}" class="bullet">•</span>
-				<span ng-class="{'active': currentState == 'form.interests'}" class="bullet">•</span>
+				<span class="bullet"><a ui-sref-active="active" ui-sref=".profile">•</a></span>
+				<span class="bullet"><a ui-sref-active="active" ui-sref=".address">•</a></span>
+				<span class="bullet"><a ui-sref-active="active" ui-sref=".interests">•</a></span>
 			</p>
 		</div>
 	</div>

@@ -22,6 +22,8 @@ Rails.application.routes.draw do
   resources :users do
     collection do
       post :validate_basic
+      post :validate_address
+      post :create_signup
     end
 
     member do

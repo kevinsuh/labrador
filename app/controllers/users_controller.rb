@@ -8,6 +8,7 @@ class UsersController < ApplicationController
 
   def new
   	@user = User.new
+    @session = "hello world?"
     render layout: "signup_application"
   end
 
@@ -97,20 +98,75 @@ class UsersController < ApplicationController
     password_confirmation = params[:password_confirmation]
 
     # only validations currently are unique email and password validations
-    user = User.new(email: email, password: password, password_confirmation: password_confirmation)
+    user = User.new(
+      email:                  email,
+      password:               password, 
+      password_confirmation:  password_confirmation
+      )
+
     respond_to do |format|
       format.json {render json: user }
     end
-
   end
 
-  # address for user
-  def create_address
+  # validate address from backend
+  def validate_address
 
+    address = Address.new(
+      first_name: params[:first_name],
+      last_name:  params[:last_name],
+      street:     params[:street],
+      suite:      params[:suite],
+      city:       params[:city],
+      state:      params[:state],
+      zipcode:    params[:zipcode]
+      )
+
+    respond_to do |format|
+      format.json {render json: address}
+    end
   end
 
-  # curated content
-  def create_interests
+  # new signup process
+  # hopefully this will overwrite users#create in the future
+  def create_signup
+    # this will:
+    # 1) create user
+    # 2) attach address to user and create address
+    # 3) attach interests to user and create interests
+    # 4) log_in & remember user
+    # 5) redirect to home page of app
+    user_params = params[:user]
+
+    user = User.new(
+      email:                  user_params[:email],
+      password:               user_params[:password],
+      password_confirmation:  user_params[:password_confirmation]
+      )
+
+    if user.save 
+
+      user.activate
+      log_in user
+      remember user
+
+      address_params = params[:address]
+
+      address = user.addresses.build(
+        first_name: address_params[:first_name],
+        last_name:  address_params[:last_name],
+        street:     address_params[:street],
+        suite:      address_params[:suite],
+        city:       address_params[:city],
+        state:      address_params[:state],
+        zipcode:    address_params[:zipcode]
+       )
+      address.save
+    end
+
+    respond_to do |format|
+      format.json {render json: user }
+    end
 
   end
 
