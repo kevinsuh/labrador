@@ -78,8 +78,8 @@
           return modelValue == scope.otherModelValue;
         };
 
-        // this looks at password_confirmation field, where ng-model="newUser.password_confirmation"
-        // it then takes that model, then calls validate, which we made a custom validator to compare it with a value we pass in (compareTo(newUser.password))
+        // $watch is listener callback to scope, that calls the function whenever that expression changes (i.e. watchExpression => 'otherModelValue' => user.password (in DOM))
+        // this is done in this directive's isolated scope, which through 2-way data binding, got the user.password passed in via compare-to attribute to the tag that this directive is attached to. it then gets called as scope's otherModelValue property
         scope.$watch("otherModelValue", function() {
             ngModel.$validate();
         });

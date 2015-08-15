@@ -72,7 +72,7 @@
 
 <div class="form_field submit">
   <div class="form_input">
-    <a ng-disabled="!fieldsAreValid(['email', 'password', 'password_confirmation'])" ng-click="fieldsAreValid(['email', 'password', 'password_confirmation']) && validateBasicFields()" class="btn submit-btn next-btn">Next <i class="glyphicon glyphicon-arrow-right"></i></a>
+    <a ng-click="fieldsAreValid(['email', 'password', 'password_confirmation']) && validateBasicFields()" class="btn submit-btn next-btn" ng-class="{'disabled': !fieldsAreValid(['email', 'password', 'password_confirmation'])}">Next <i class="glyphicon glyphicon-arrow-right"></i></a>
     <!-- ui-sref="form.address" -->
   </div>
 </div>

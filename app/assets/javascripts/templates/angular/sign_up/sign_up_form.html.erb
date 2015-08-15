@@ -10,6 +10,11 @@
 			<a ui-sref-active="active" ui-sref=".profile"><span>1</span> Profile</a>
 			<a ui-sref-active="active" ui-sref=".address"><span>2</span> Address</a>
 			<a ui-sref-active="active" ui-sref=".interests"><span>3</span> Interests</a>
+			<p class="progress_bullets">
+				<span ng-class="{'active': currentState == 'form.profile'}" class="bullet">•</span>
+				<span ng-class="{'active': currentState == 'form.address'}" class="bullet">•</span>
+				<span ng-class="{'active': currentState == 'form.interests'}" class="bullet">•</span>
+			</p>
 		</div>
 	</div>
 
@@ -18,7 +23,6 @@
 
     	<!-- nested state views here -->
 			<div id="form-views" ui-view></div>
-			
 		</form>
-	</div>		
+	</div>
 </div>
