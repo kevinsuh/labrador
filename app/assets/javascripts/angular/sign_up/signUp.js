@@ -13,8 +13,8 @@
         password_confirmation: ""
       },
       address: {
-        shippingFirstName: "",
-        shippingLastName: "",
+        first_name: "",
+        last_name: "",
         street: "",
         suite: "",
         city: "",
@@ -32,17 +32,27 @@
       return $http.post('/users/validate_basic.json', user);
     };
 
-    o.createBasic = function(user) {
-      return $http.post('/basic.json', user);
+    o.validateAddress = function(address) {
+      return $http.post('/users/validate_address.json', address);
     };
 
-    o.createAddress = function(user) {
-      return $http.post('/address.json', user);
-    };
+    /** SUBMIT THE FORM!!! */
+    o.submit = function() {
+      return $http;
+    }
 
-    o.createInterests = function(user) {
-      return $http.post('/interests.json', user);
-    };
+    // not using these in current design
+    // o.createBasic = function(user) {
+    //   return $http.post('/basic.json', user);
+    // };
+
+    // o.createAddress = function(user) {
+    //   return $http.post('/address.json', user);
+    // };
+
+    // o.createInterests = function(user) {
+    //   return $http.post('/interests.json', user);
+    // };
 
     o.getInfo = function() {
       return $http.get('/user/'+user.id+'/')

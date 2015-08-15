@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   resources :users do
     collection do
       post :validate_basic
+      post :validate_address
     end
 
     member do

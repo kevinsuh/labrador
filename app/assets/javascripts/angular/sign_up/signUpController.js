@@ -50,11 +50,13 @@
 			return valid; 
 		}
 
-		// validate that user can be created via
-		// email + password + password_confirmation
+		/**
+		 * validate that the user can be created
+		 * email + password + password_confirmation
+		 */
 		$scope.validateBasicFields = function() {
 
-			user = $scope.user;
+			user = signUp.user;
 
 			// pass in the user object
 			signUp.validateBasic(user)
@@ -66,7 +68,6 @@
 
         if (isValid) {
         	// continue to next page
-          console.log("yay the data is valid so far!")
           $state.go('form.address');
         } else {
         	// tell the error and prevent continuing on
@@ -79,13 +80,62 @@
 
 			})
 			.error(function(data) {
-				console.log("error");
+				console.log("error in validateBasicFields");
+				console.log(data);
+			});
+		}
+
+		/**
+		 * validate that the user's address can be created!
+		 * first_name, last_name, street, suite, city, state, zipcode
+		 */
+		$scope.validateAddressFields = function() {
+
+			address = signUp.address;
+
+			signUp.validateAddress(address)
+			.success(function(data) {
+
+				var address = data.address;
+        var isValid = address.is_valid;
+
+
+        if (isValid) {
+        	// continue to next page
+          $state.go('form.interests');
+        } else {
+        	// tell the error and prevent continuing on
+        	// for now we will only do the first one, should be more dynamic in the future though
+        	$scope.basicError = true;
+        	var errorField = user.error_field;
+        	var errorReason = user.error_reason;
+        	$scope.basicInfoForm[errorField].$setValidity(errorReason, false);
+        }
+			})
+			.error(function(data) {
+				console.log("error in validateAddressFields");
 				console.log(data);
 			});
 
+		}
 
+		/**
+		 * submit the form!
+		 * first, we do a validation one last time to check the fields are valid, and if they are not, we will inform the user which ones are not valid
+		 * it will highlight the bullet that contains inaccurate section, and also the field that is inaccurate with appropriate error message
+		 */
+		$scope.submitSignupForm = function() {
+
+			signUp.submitForm()
+			.success(function(data) {
+
+			})
+			.error(function(data) {
+
+			});
 
 		}
+		
 
 	}]);
 

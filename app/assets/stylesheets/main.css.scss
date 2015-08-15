@@ -149,12 +149,22 @@ p {
 			margin-bottom: -9px;
 		}
 
-		.form_input {
-			input {
-				&.ng-valid {
-					border-color: green;
+		&.validation_field {
+			// surrounding text that have been completed
+			.completed {
+				&.helper {
+					color: green;
 				}
 			}
+
+			.form_input {
+				input, select {
+					&.ng-valid {
+						border-color: green;
+					}
+				}
+			}
+
 		}
 	}
 
@@ -169,13 +179,6 @@ p {
 		border-radius: 0px;
 		background: transparent;
 		font-size: 16px;
-	}
-
-	// surrounding text that have been completed
-	.completed {
-		&.helper {
-			color: green;
-		}
 	}
 
 	// handle password-requirement validation

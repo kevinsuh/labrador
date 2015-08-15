@@ -1,6 +1,4 @@
-
-
-<div class="form_field email" ng-class="{'has-error': hasError('email')}">
+<div class="form_field email validation_field" ng-class="{'has-error': hasError('email')}">
   <label for="signup_email" class="form_label">
     <span class="helper" ng-class="{'completed': basicInfoForm.email.$valid}">
       Enter your email address
@@ -27,7 +25,7 @@
 </div>
 
 
-<div class="form_field password" ng-class="{'has-error': hasError('password')}">
+<div class="form_field password validation_field" ng-class="{'has-error': hasError('password')}">
   <label for="password" class="form_label">
     <span class="helper" ng-class="{'completed': basicInfoForm.password.$valid }">
       Password
@@ -46,7 +44,7 @@
   </div>
 </div>
 
-<div class="form_field password" ng-class="{'has-error': hasError('password_confirmation')}">
+<div class="form_field password validation_field" ng-class="{'has-error': hasError('password_confirmation')}">
   <label for="password_confirmation" class="form_label">
     <span class="helper" ng-class="{'completed': basicInfoForm.password_confirmation.$valid }">
       Confirm Password

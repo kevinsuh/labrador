@@ -102,7 +102,23 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.json {render json: user }
     end
+  end
 
+  # validate address from backend
+  def validate_address
+
+    address = Address.new(
+      first_name: params[:first_name],
+      last_name: params[:last_name],
+      street: params[:street],
+      suite: params[:suite],
+      city: params[:city],
+      state: params[:state],
+      zipcode: params[:zipcode]
+      )
+    respond_to do |format|
+      format.json {render json: address}
+    end
   end
 
   # address for user
