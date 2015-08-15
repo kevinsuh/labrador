@@ -190,12 +190,27 @@ p {
 		}
 	}
 
-	// next button
+	// // next button
 	.next-btn {
-		margin-top: 25px;
+		background-color: green;
+		&.disabled {
+			background-color: gray;
+		}
 	}
 }
 
-
-
-
+// progress bullets!!
+.progress_bullets {
+	max-width: 280px;
+	text-align: center;
+	margin: 1rem auto;
+	height: 15px;
+	.bullet {
+		font-size: 4rem;
+		color: lightgrey;
+		cursor: default;
+		&.active {
+			color: black;
+		}
+	}
+}
