@@ -201,16 +201,22 @@ p {
 
 // progress bullets!!
 .progress_bullets {
+	cursor: default;
 	max-width: 280px;
 	text-align: center;
 	margin: 1rem auto;
 	height: 15px;
 	.bullet {
 		font-size: 4rem;
-		color: lightgrey;
-		cursor: default;
-		&.active {
-			color: black;
+		a {
+			text-decoration: none !important;
+			&:hover {
+				text-decoration: none !important;
+			}
+			color: lightgrey;
+			&.active {
+				color: black;
+			}
 		}
 	}
 }

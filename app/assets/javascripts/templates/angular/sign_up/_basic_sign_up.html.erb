@@ -1,3 +1,5 @@
+
+
 <div class="form_field email" ng-class="{'has-error': hasError('email')}">
   <label for="signup_email" class="form_label">
     <span class="helper" ng-class="{'completed': basicInfoForm.email.$valid}">
@@ -5,7 +7,7 @@
     </span>
   </label>
   <div class="form_input">
-    <input id="signup_email" name="email" ng-model="user.email" type="email" placeholder="ex. kevin@cardagain.com" required />
+    <input id="signup_email" name="email" ng-model="user.email" type="email" placeholder="ex. kevin@cardagain.com" validate-email required />
   </div>
 
   <div class="invalid-message-holder">
@@ -15,6 +17,9 @@
       </div>
       <div class="message-animation" ng-message="required">
         <strong>This is required!</strong>
+      </div>
+      <div class="invalid-message" ng-message="email-taken">
+        <strong>This email address is taken.</strong>
       </div>
     </div>
   </div>

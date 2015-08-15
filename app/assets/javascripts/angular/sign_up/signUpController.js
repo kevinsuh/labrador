@@ -4,6 +4,7 @@
 
 		$scope.user    = signUp.user;
 		$scope.address = signUp.address;
+		$scope.basicError = false;
 
 		$scope.$on('$stateChangeSuccess',
 		  function(event, toState) {
@@ -56,7 +57,33 @@
 			user = $scope.user;
 
 			// pass in the user object
-			signUp.validateBasic(user);
+			signUp.validateBasic(user)
+			.success(function(data) {
+
+				var user = data.user;
+        var isValid = user.is_valid;
+
+
+        if (isValid) {
+        	// continue to next page
+          console.log("yay the data is valid so far!")
+          $state.go('form.address');
+        } else {
+        	// tell the error and prevent continuing on
+        	// for now we will only do the first one, should be more dynamic in the future though
+        	$scope.basicError = true;
+        	var errorField = user.error_field;
+        	var errorReason = user.error_reason;
+        	$scope.basicInfoForm[errorField].$setValidity(errorReason, false);
+        }
+
+			})
+			.error(function(data) {
+				console.log("error");
+				console.log(data);
+			});
+
+
 
 		}
 
@@ -103,6 +130,28 @@
 					var pattern = /\d+/;
 					return (typeof value != 'undefined') && pattern.test(value);
 				}
+			}
+		}
+	});
+
+	// currently just for taken emails, but can expand from there
+	app.directive('validateEmail', function() {
+		return {
+			require: "ngModel",
+			link: function(scope, element, attributes, ngModel) {
+				// email taken, which can only be tested via DB
+				ngModel.$validators.emailTaken = function (value) {
+					return true;
+				}
+
+				// email uniqueness validation goes away for new attempts
+				element.bind('keydown', function() {
+					for (var prop in ngModel.$error) {
+						if (prop == "email-taken") {
+							ngModel.$setValidity(prop, true);
+						}
+					}
+				})
 			}
 		}
 	});

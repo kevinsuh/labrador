@@ -29,20 +29,7 @@
     // so just have a confirm_basic, confirm_address, etc...
 
     o.validateBasic = function(user) {
-      return $http.post('/users/validate_basic.json', user).success(function(data) {
-
-        var user = data.user;
-        var isValid = user.is_valid;
-
-        if (isValid) {
-          console.log("yay the data is valid so far!")
-        } else {
-          for (var i = 0; i < user.errors.length; i++) {
-            console.log("invalid");
-            console.log(user.errors[i]);
-          }
-        }
-      });
+      return $http.post('/users/validate_basic.json', user);
     };
 
     o.createBasic = function(user) {
