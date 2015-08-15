@@ -23,6 +23,7 @@ Rails.application.routes.draw do
     collection do
       post :validate_basic
       post :validate_address
+      post :create_signup
     end
 
     member do

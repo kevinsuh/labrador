@@ -11,7 +11,7 @@ class UserSerializer < ActiveModel::Serializer
       # lets handle only the first error for now
       data[:error_field] = object.errors.messages.first[0]
       error_string = object.errors.messages.first[1][0]
-      
+
       case error_string
         when "has already been taken"
           error_reason = "email-taken"

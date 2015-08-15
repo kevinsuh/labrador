@@ -38,7 +38,7 @@
 
     /** SUBMIT THE FORM!!! */
     o.submit = function() {
-      return $http;
+      return $http.post('/users/create_signup.json', o);
     }
 
     // not using these in current design

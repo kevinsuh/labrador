@@ -1,5 +1,6 @@
 class AddressSerializer < ActiveModel::Serializer
   attributes :id, :first_name, :last_name, :street, :suite, :city, :city, :state, :zipcode
+  has_one :user
 
   # attribute method is hash of JSON attributes
   def attributes

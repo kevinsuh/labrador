@@ -1,10 +1,10 @@
 (function() {
 	
-	var app = angular.module('sign-up').controller("SignUpController", ['$rootScope', '$scope', '$state', 'signUp', function($rootScope, $scope, $state, signUp) {
+	var app = angular.module('sign-up').controller("SignUpController", ['$rootScope', '$scope', '$state', '$window', 'signUp', function($rootScope, $scope, $state, $window, signUp) {
 
-		$scope.user    = signUp.user;
-		$scope.address = signUp.address;
-		$scope.basicError = false;
+		$scope.user             = signUp.user;
+		$scope.address          = signUp.address;
+		$scope.window           = $window;
 
 		$scope.$on('$stateChangeSuccess',
 		  function(event, toState) {
@@ -12,17 +12,16 @@
 		  }
 		)
 
-		// bool to test if form field has been touched
 		$scope.showMessages = function(field) {
 			return $scope.basicInfoForm[field].$touched || $scope.basicInfoForm.$submitted;
 		};
 
-		// bool to test if form field has error
+		// bool to whether form field has error
 		$scope.hasError = function(field) {
 			return $scope.basicInfoForm[field].$touched && $scope.basicInfoForm[field].$invalid;
 		};
 
-		// test if form field is valid AFTER user has finished typing
+		// whether form field is valid AFTER user has finished typing
 		$scope.isValid = function(field) {
 			return $scope.basicInfoForm[field].$touched && $scope.basicInfoForm[field].$valid;
 		}
@@ -124,14 +123,28 @@
 		 * first, we do a validation one last time to check the fields are valid, and if they are not, we will inform the user which ones are not valid
 		 * it will highlight the bullet that contains inaccurate section, and also the field that is inaccurate with appropriate error message
 		 */
+		// redirect using angular, or using rails? think about this one.
+    // probably angular, because we will need to validate the form submit and then submit the user
 		$scope.submitSignupForm = function() {
 
-			signUp.submitForm()
+			signUp.submit()
 			.success(function(data) {
+
+				var user = data.user;
+        var isValid = user.is_valid;
+
+        if (isValid) {
+        	// user is logged in and now at home page
+          $scope.window.location.href= "/";
+        } else {
+        	// must handle not valid eventually
+        	alert("Something went wrong. Is your form completely filled out?");
+        }
 
 			})
 			.error(function(data) {
-
+				console.log("error in submitSignupForm");
+				console.log(data);
 			});
 
 		}
