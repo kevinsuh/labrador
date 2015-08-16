@@ -1,5 +1,5 @@
 <div class="row">
-	<aside class="col-md-3">
+	<aside class="col-md-2 col-xs-4">
 		<section class="user_info">
 			<div class="section">
 				<%= gravatar_for(current_user, size: 50) %>
@@ -11,10 +11,97 @@
 
 		<section class="card_queue">
 			<div class="section">
-				<h1>My Queue</h1>
+				<h1>Purchased Queue:</h1>
+				<table>
+					<tr style="width: 100%;">
+						<td style="width: 60%; text-align: left;">
+							Chip's Birthday
+						</td>
+						<td style="width: 40%; text-align: right;">
+							Oct. 15
+						</td>
+					</tr>
+					<tr style="width: 100%;">
+						<td style="width: 60%;">
+							Emily's Birthday
+						</td>
+						<td style="width: 40%; text-align: right;">
+							Feb. 20
+						</td>
+					</tr>
+					<tr style="width: 100%;">
+						<td style="width: 60%;">
+							Kevin's Birthday
+						</td>
+						<td style="width: 40%; text-align: right;">
+							Feb. 12
+						</td>
+					</tr>
+					<tr style="width: 100%;">
+						<td style="width: 60%;">
+							Mother's Day
+						</td>
+						<td style="width: 40%; text-align: right;">
+							May 8
+						</td>
+					</tr>
+				</table>
 			</div>
 		</section>
 	</aside>
 
+	<div class="col-md-8 col-xs-8">
+
+		<div class="card_orders">
+
+			<div class="card_order compressed">
+				<table cellpadding="0" cellspacing="0" style="margin: auto; height: 100%; width: 90%;">
+					<tr style="width: 100%; text-align:center;">
+						<td style="width: 33%;">
+							Austin Crouse's Birthday
+						</td>
+						<td style="width: 33%; text-align: center;">
+							Mar. 24
+						</td>
+						<td style="width: 33%; text-align:right;">
+							<a href="#">Expand View</a>
+						</td>
+					</tr>
+				</table>
+			</div>
+
+			<div class="card_order compressed">
+				<div class="row">
+					<div class="col-md-4 section">
+						<div class="text-center">
+							Christmas for Danny Garfield
+						</div>
+					</div>
+					<div class="col-md-4 section">
+						<div class="text-center">
+							Dec. 25
+						</div>
+					</div>
+					<div class="col-md-4 section">
+						<div class="text-center">
+							<a href="#">Expand View</a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="card_order expanded">
+				
+			</div>
+
+		</div>
+	</div>
+
+	<div class="col-md-2">
+		<div class="checkout">
+			<p>You have 6 cards queued</p>
+			<a href="#">Check Out Now</a>
+		</div>
+	</div>
 
 </div>

@@ -46,22 +46,6 @@ p {
 }
 
 /**
- * 		LOGGED IN HOME PAGE
- */
-
-.user_info {
-	h2 {
-		font-size: 16px;
-		margin: 0 auto;
-	}
-	.section {
-		float: left;
-	}
-}
-
-
-
-/**
  * 			SIGNUP PAGE
  */
 
@@ -239,3 +223,46 @@ p {
 		}
 	}
 }
+
+/**
+ * 		LOGGED IN HOME PAGE
+ */
+
+// left-hand section that contains user info
+.user_info {
+	h2 {
+		font-size: 16px;
+		margin: 0 auto;
+	}
+	.section {
+		float: left;
+	}
+}
+
+// div that will hold the card-queueing service
+.card_orders {
+	min-height: 600px;
+	padding-top: 1px;
+	.card_order {
+		.row, .section {
+			height: 100%;
+		}
+		&.compressed {
+			height: 40px;
+		}
+		&.expanded {
+			height: 200px;	
+		}
+		.text-center {
+			// horizontal align
+			text-align: center;
+			// vertical algin -- false solution for now
+			margin-top: 4%;
+		}
+
+		background-color: lightgray;
+		margin: 15px auto;
+		width: 90%;
+	}
+}
+
