@@ -49,6 +49,7 @@ p {
  * 		LOGGED IN HOME PAGE
  */
 
+// left-hand section that contains user info
 .user_info {
 	h2 {
 		font-size: 16px;
@@ -56,6 +57,18 @@ p {
 	}
 	.section {
 		float: left;
+	}
+}
+
+// div that will hold the card-queueing service
+.card_orders {
+	min-height: 600px;
+	padding-top: 1px;
+	.card_order {
+		height: 200px;
+		background-color: lightgray;
+		margin: 15px auto;
+		width: 90%;
 	}
 }
 
