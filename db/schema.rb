@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150816171144) do
+ActiveRecord::Schema.define(version: 20150816183529) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "first_name"
@@ -29,6 +29,19 @@ ActiveRecord::Schema.define(version: 20150816171144) do
   end
 
   add_index "addresses", ["person_type", "person_id"], name: "index_addresses_on_person_type_and_person_id"
+
+  create_table "card_images", force: :cascade do |t|
+    t.integer  "card_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "card_images", ["card_id"], name: "index_card_images_on_card_id"
+
+  create_table "cards", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "comment_upvotes", force: :cascade do |t|
     t.integer  "user_id"
@@ -51,6 +64,20 @@ ActiveRecord::Schema.define(version: 20150816171144) do
 
   add_index "comments", ["post_id"], name: "index_comments_on_post_id"
   add_index "comments", ["user_id"], name: "index_comments_on_user_id"
+
+  create_table "orders", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "recipient_id"
+    t.integer  "card_id"
+    t.datetime "send_date"
+    t.datetime "expected_arrival_date"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
+
+  add_index "orders", ["card_id"], name: "index_orders_on_card_id"
+  add_index "orders", ["recipient_id"], name: "index_orders_on_recipient_id"
+  add_index "orders", ["user_id"], name: "index_orders_on_user_id"
 
   create_table "post_upvotes", force: :cascade do |t|
     t.integer  "user_id"
