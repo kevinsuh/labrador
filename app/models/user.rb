@@ -22,7 +22,8 @@ class User < ActiveRecord::Base
 	has_many :comment_upvotes
 
 	# cardagain-specific
-	has_many :addresses
+	has_many :addresses, as: :person
+	has_many :recipients
 
 	# User class methods
 	class << self
