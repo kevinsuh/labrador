@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 
+  recipient_id: 
+  card_id: 
+  send_date: 2015-08-16 13:28:37
+  expected_arrival_date: 2015-08-16 13:28:37
+
+two:
+  user_id: 
+  recipient_id: 
+  card_id: 
+  send_date: 2015-08-16 13:28:37
+  expected_arrival_date: 2015-08-16 13:28:37
