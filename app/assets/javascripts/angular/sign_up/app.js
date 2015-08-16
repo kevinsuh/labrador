@@ -8,26 +8,25 @@
   	$stateProvider
 			.state('form', {
         url: '/form',
+        abstract: true,
 				templateUrl: "angular/sign_up/sign_up_form.html",
 				controller: 'SignUpController',
       })
 
       .state('form.profile', {
-        url: '/profile',
+        url: '',
         templateUrl: "angular/sign_up/_basic_sign_up.html"
       })
 
       .state('form.address', {
-        url: '/address',
         templateUrl: "angular/sign_up/_address_sign_up.html"
       })
 
       .state('form.interests', {
-        url: '/interests',
         templateUrl: "angular/sign_up/_interests_sign_up.html"
       });
 
-    $urlRouterProvider.otherwise('/form/profile');
+    $urlRouterProvider.otherwise('/form');
 
 
 
