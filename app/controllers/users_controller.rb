@@ -111,7 +111,7 @@ class UsersController < ApplicationController
 
   # validate address from backend
   def validate_address
-
+    puts params.inspect
     address = Address.new(
       first_name: params[:first_name],
       last_name:  params[:last_name],

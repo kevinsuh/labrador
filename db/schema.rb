@@ -11,10 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150813131033) do
+ActiveRecord::Schema.define(version: 20150816193023) do
 
   create_table "addresses", force: :cascade do |t|
-    t.integer  "user_id"
     t.string   "first_name"
     t.string   "last_name"
     t.string   "street"
@@ -22,12 +21,28 @@ ActiveRecord::Schema.define(version: 20150813131033) do
     t.string   "city"
     t.string   "state"
     t.integer  "zipcode"
-    t.boolean  "is_primary", default: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.boolean  "is_primary",  default: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.integer  "person_id"
+    t.string   "person_type"
   end
 
-  add_index "addresses", ["user_id"], name: "index_addresses_on_user_id"
+  add_index "addresses", ["person_type", "person_id"], name: "index_addresses_on_person_type_and_person_id"
+
+  create_table "card_images", force: :cascade do |t|
+    t.integer  "card_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "picture"
+  end
+
+  add_index "card_images", ["card_id"], name: "index_card_images_on_card_id"
+
+  create_table "cards", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "comment_upvotes", force: :cascade do |t|
     t.integer  "user_id"
@@ -51,6 +66,20 @@ ActiveRecord::Schema.define(version: 20150813131033) do
   add_index "comments", ["post_id"], name: "index_comments_on_post_id"
   add_index "comments", ["user_id"], name: "index_comments_on_user_id"
 
+  create_table "orders", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "recipient_id"
+    t.integer  "card_id"
+    t.datetime "send_date"
+    t.datetime "expected_arrival_date"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
+
+  add_index "orders", ["card_id"], name: "index_orders_on_card_id"
+  add_index "orders", ["recipient_id"], name: "index_orders_on_recipient_id"
+  add_index "orders", ["user_id"], name: "index_orders_on_user_id"
+
   create_table "post_upvotes", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "post_id"
@@ -71,6 +100,16 @@ ActiveRecord::Schema.define(version: 20150813131033) do
   end
 
   add_index "posts", ["user_id"], name: "index_posts_on_user_id"
+
+  create_table "recipients", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "recipients", ["user_id"], name: "index_recipients_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "name"

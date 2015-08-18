@@ -46,7 +46,7 @@ p {
 }
 
 /**
- * 			SIGNUP FORM
+ * 			SIGNUP PAGE
  */
 
 // the div that contains each form partial
@@ -77,7 +77,7 @@ p {
 }
 
 /**
- * 		USER SIGN UP FORM
+ * 		SIGN UP FORM
  */
 
 // the two MAJOR divs (split into 2 for now form | helper)
@@ -223,3 +223,80 @@ p {
 		}
 	}
 }
+
+/**
+ * 		LOGGED IN HOME PAGE
+ */
+
+// left-hand section that contains user info
+.user_info {
+	h2 {
+		font-size: 16px;
+		margin: 0 auto;
+	}
+	.section {
+		float: left;
+	}
+}
+
+// div that will hold the card-queueing service
+.card_orders {
+	min-height: 600px;
+	padding-top: 1px;
+	.card_order {
+		.row, .section {
+			height: 100%;
+		}
+		&.compressed {
+			height: 40px;
+		}
+		&.expanded {
+			height: 200px;	
+		}
+		.text-center {
+			// horizontal align
+			text-align: center;
+			// vertical algin -- false solution for now
+			margin-top: 4%;
+		}
+
+		background-color: lightgray;
+		margin: 15px auto;
+		width: 90%;
+	}
+}
+
+// the multistep form that registers your card order!
+#queue-card-form {
+	height: 100%;
+	width: 80%;
+	margin: auto;
+	.step_one {
+		height: 25%;
+		padding-top: 0.5em;
+		font-size: 30px;
+		&.gender {
+			padding-top: 0;
+		}
+		.form_field {
+			height: 33%;
+		}
+	}
+	.step_two {
+		height: 20%;
+		padding-top: 0.5em;
+		font-size: 24px;
+	}
+	p.gender {
+		font-size: 16px;
+		display: inline;
+		.chosen {
+			color: green;
+		}
+	}
+	.next_step {
+		padding-top: 8px;
+		height: 25%;
+	}
+}
+

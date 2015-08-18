@@ -14,7 +14,6 @@
       })
 
       .state('form.profile', {
-        url: '',
         templateUrl: "angular/sign_up/_basic_sign_up.html"
       })
 

@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
 			if user.is_activated?
 				log_in user
 				params[:session][:remember_me] == '1' ? remember(user) : forget(user)
-				redirect_back_or user
+				redirect_back_or root_url
 			else
 				flash[:warning] = "Please activate your account before logging in."
 				redirect_to root_url
