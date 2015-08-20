@@ -1,0 +1,61 @@
+<div class="logged_in_home">
+	<div class="row">
+		<aside class="col-md-3 col-xs-3">
+			<section class="user_info">
+				<div class="section">
+					<%= gravatar_for(current_user, size: 50) %>
+				</div>
+				<div class="section">
+					<h2><%= current_user.email %></h2>
+				</div>
+			</section>
+
+			<section class="card_queue">
+				<div class="section">
+					<h1>Purchased Queue:</h1>
+					<table>
+						<tr style="width: 100%;">
+							<td style="width: 60%; text-align: left;">
+								Chip's Birthday
+							</td>
+							<td style="width: 40%; text-align: right;">
+								Oct. 15
+							</td>
+						</tr>
+						<tr style="width: 100%;">
+							<td style="width: 60%;">
+								Emily's Birthday
+							</td>
+							<td style="width: 40%; text-align: right;">
+								Feb. 20
+							</td>
+						</tr>
+						<tr style="width: 100%;">
+							<td style="width: 60%;">
+								Kevin's Birthday
+							</td>
+							<td style="width: 40%; text-align: right;">
+								Feb. 12
+							</td>
+						</tr>
+						<tr style="width: 100%;">
+							<td style="width: 60%;">
+								Mother's Day
+							</td>
+							<td style="width: 40%; text-align: right;">
+								May 8
+							</td>
+						</tr>
+					</table>
+				</div>
+			</section>
+		</aside>
+
+		<div class="col-md-9 col-xs-9 card_queue" ng-app="card-queue" ng-controller="CardQueueController as cardQueueCtrl">
+
+			<div ui-view></div>
+
+		</div>
+
+	</div>
+</div>
