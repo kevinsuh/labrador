@@ -8,22 +8,22 @@
   	$stateProvider
 			.state('home', {
         url: '/',
-        abstract: true,
-				templateUrl: "angular/sign_up/sign_up_form.html",
+				templateUrl: "angular/card_queue/home.html",
 				controller: 'CardQueueController',
       })
 
-      .state('form.profile', {
-        url: '',
-        templateUrl: "angular/sign_up/_basic_sign_up.html"
-      })
+      .state('queue', {
+        views: {
+          'form': {
 
-      .state('form.address', {
-        templateUrl: "angular/sign_up/_address_sign_up.html"
-      })
+          },
+          'history': {
 
-      .state('form.interests', {
-        templateUrl: "angular/sign_up/_interests_sign_up.html"
+          },
+          'checkout': {
+
+          }
+        }
       });
 
     $urlRouterProvider.otherwise('/');
