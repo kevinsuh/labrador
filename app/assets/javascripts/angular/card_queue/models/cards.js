@@ -15,12 +15,20 @@
       queuedCards:[],
       newCards: [],
       newCard: {
-
+        occasionType: "christmas",
+        recipientRelationship: "friend",
+        recipientFirstName: "Chip",
+        recipientLastName: "Koziara",
+        recipientGender: "male",
+        occasionDate: "10/10/15", // what day does recipient need to get this?
+        cardPersonas: ["witty", "funny", "caring"],
+        cardImage: "images/imageurl.png",
+        preAddress: "Y",
+        recipientAddress: "2704 SW 311th St. Federal Way, WA 98023",
+        notes: "some extra notes for this example"
       },
-      test: "hello world..."
+      test: "hello world!!~"
     };
-
-
 
     return o;    
 

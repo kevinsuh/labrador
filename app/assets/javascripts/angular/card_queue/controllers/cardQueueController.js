@@ -5,7 +5,14 @@
 	 */
 	var app = angular.module('card-queue').controller("CardQueueController", function($rootScope, $scope, $state, cards) {
 			
-			
+			$scope.test = cards.test;
+			$scope.newCard = cards.newCard;
+			$scope.item="hello";
+
+			$scope.takeFunction = function(key) {
+				console.log(key);
+			}
+			console.log($scope.item);
 			
 	});
 

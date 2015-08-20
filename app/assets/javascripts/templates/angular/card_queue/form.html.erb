@@ -34,14 +34,15 @@
 	</div>
 </div>
 
+<!-- this is the new card to send -->
 <div class="card_order expanded">
 	<div class="row">
 		<form id="queue-card-form" name="queueCardForm" novalidate>
 			<div class="row step_one">
-				I want to send a Christmas card
+				I want to send a {{newCard.occasionType}} card
 			</div>
 			<div class="row step_one">
-				for my friend, Chip Koziara
+				for my friend, {{newCard.recipientFirstName}} {{newCard.recipientLastName}}
 			</div>
 			<div class="row step_one gender">
 				 <p class="gender">(<span class="chosen">male</span> / <span>female</span>)</p>
@@ -57,7 +58,7 @@
 	<div class="row">
 		<form id="queue-card-form" name="queueCardForm" novalidate>
 			<div class="row step_two">
-				This needs to get to Chip by Oct. 15, 2015.
+				This needs to get to {{newCard.recipientFirstName}} by {{newCard.occasionDate}}.
 			</div>
 			<div class="row step_two">
 				I'd like for the card to be funny, witty, and charming.
@@ -84,6 +85,8 @@
 			<div class="row center next_step" style="margin-top: 65px;">
 				<button class="btn">Back</button>
 				<button class="btn btn-primary">Next</button>
+				<a ng-click="takeFunction()">{{ item }}</a
+				{{hello}}
 			</div>
 		</form>
 	</div>
@@ -96,7 +99,9 @@
 				Pre-address? (y / n)
 			</div>
 			<div class="row step_two">
-				Address: <input type="text"></input>
+				Address: 
+				{{newCard.recipientAddress}}
+				<input type="text" ng-model="newCard.recipientAddress"></input>
 			</div>
 			<div class="row center next_step" style="margin-top: 65px;">
 				<button class="btn">Back</button>
