@@ -8,20 +8,22 @@
   	$stateProvider
 			.state('home', {
         url: '/',
-				templateUrl: "angular/card_queue/home.html",
-				controller: 'CardQueueController',
+        abstract: true,
+				templateUrl: "angular/card_queue/home.html"
       })
 
-      .state('queue', {
+      .state('home.app', {
+        controller: 'CardQueueController',
+        url: '',
         views: {
           'form': {
-
+            templateUrl: "angular/card_queue/form.html"
           },
           'history': {
-
+            templateUrl: "angular/card_queue/history.html"
           },
           'checkout': {
-
+            templateUrl: "angular/card_queue/checkout.html"
           }
         }
       });
