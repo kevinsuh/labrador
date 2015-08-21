@@ -297,3 +297,77 @@ p {
 	}
 }
 
+// natural language form inputs
+.nl-field {
+	position: relative;
+	display: inline-block;
+	font: 1em;
+	line-height: 1.8;
+	.nl-field-toggle {
+		position: relative;
+		display: inline-block;
+		text-decoration: none;
+		border-bottom: 1px dashed #fff;
+		cursor: pointer;
+	}
+	&.nl-field-open {
+		z-index: 10000;
+	}
+	// the list of choices
+	ul {
+		font-size: 1em;
+		padding: 0;
+		margin: 0;
+		text-align: left;
+		list-style: none;
+		position: absolute;
+		visibility: hidden;
+		background: #574c3f;
+		left: 0;
+		top: 505;
+		opacity: 0;
+		-webkit-transform: translateY(-40%) scale(0.9);
+	  -moz-transform: translateY(-40%) scale(0.9);
+	  transform: translateY(-40%) scale(0.9);
+	  -webkit-transition: visibility 0s 0.3s, opacity 0.3s, -webkit-transform 0.3s;
+	  -moz-transition: visibility 0s 0.3s, opacity 0.3s, -moz-transform 0.3s;
+	  transition: visibility 0s 0.3s, opacity 0.3s, transform 0.3s;
+  	li {
+  		cursor: pointer;
+	    padding: 0 0.5em;
+	    font-size: 0.8em;
+	    white-space: nowrap;
+	    &.checked {
+	      color: rgba(255,255,255,0.5);
+	    }
+	    &:hover {
+	      background: rgba(0,0,0,0.5);
+	    }
+  	}
+	}
+}
+
+.nl-overlay {
+  position: fixed;
+  visibility: hidden;
+  opacity: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  //background: rgba(0,0,0,0.5);
+}
+
+.nl-field.nl-field-open ul,
+.nl-field.nl-field-open ~ .nl-overlay {
+  visibility: visible;
+  opacity: 1;
+  -webkit-transition: visibility 0s 0s, opacity 0.3s, -webkit-transform 0.3s;
+  -moz-transition: visibility 0s 0s, opacity 0.3s, -moz-transform 0.3s;
+  transition: visibility 0s 0s, opacity 0.3s, transform 0.3s;
+}
+
+// overlay ONLY gets the front of HTML page when .nl-field-open comes before it as a sibling... aka only when nl-field-open is triggered by angular
+.nl-field.nl-field-open ~ .nl-overlay {
+	z-index: 9999;
+}

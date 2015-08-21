@@ -1,6 +1,6 @@
 (function() {
 
-  var app = angular.module('card-queue', ['ngAnimate', 'ngMessages', 'ui.router', 'templates']);
+  var app = angular.module('card-queue', ['ngAnimate', 'ngMessages', 'ui.router', 'templates', 'vr.directives.nlForm']);
 
   app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
 

@@ -7,12 +7,8 @@
 			
 			$scope.test = cards.test;
 			$scope.newCard = cards.newCard;
-			$scope.item="hello";
+	
 
-			$scope.takeFunction = function(key) {
-				console.log(key);
-			}
-			console.log($scope.item);
 			
 	});
 
