@@ -98,6 +98,9 @@
 		float: left;
 		width: 100%;
 		margin-top: 20px;
+		h2 {
+			@include adjust-leading-to(0.5);
+		}
 	}
 
 	select {
@@ -147,5 +150,25 @@
 				color: black;
 			}
 		}
+	}
+}
+
+// this contains div that contains each form partial
+#form-views {
+	
+	width: auto;
+
+	&.ng-enter, &.ng-leave {
+		position: absolute;
+		left: 30px;
+		right: 30px;
+	}
+
+	&.ng-enter {
+		@include animation(slideInRight 0.5s both ease);
+	}
+
+	&.ng-leave {
+		@include animation(slideOutLeft 0.5s both ease);
 	}
 }

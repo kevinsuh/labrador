@@ -41,13 +41,14 @@
 
 			<div class="row step_one">
 				I want to send a
-				<nl-select value="newCardReal.occasionType" options="occasions"><nl-select><br />
+				<nl-select value="newCardReal.occasionType" options="occasions"></nl-select><br />
 				
 			</div>
 			Card.
-
 			<div style="margin-top:30px;" class="row step_one">
-				for my friend, {{newCard.recipientFirstName}} {{newCard.recipientLastName}}
+				for my friend, <nl-text value="newCardReal.recipientFirstName" placeholder="First Name" required></nl-text>
+
+				
 			</div>
 			<div class="row step_one gender">
 				 <p class="gender">(<span class="chosen">male</span> / <span>female</span>)</p>

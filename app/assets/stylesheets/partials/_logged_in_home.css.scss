@@ -29,7 +29,8 @@
 			height: 100%;
 		}
 		&.compressed {
-			
+			background-color: lightgray;
+			margin: 10px 0;
 		}
 		&.expanded {
 			
@@ -62,6 +63,34 @@
 	}
 	&.nl-field-open {
 		z-index: 10000;
+	}
+	// text inputs
+	&.nl-ti-text {
+		ul {
+			min-width: 8em;
+			li {
+				&.nl-ti-input {
+					input {
+						width: 100%;
+	       	 	padding: 0.2em 2em 0.2em 0.5em;
+		        border-bottom: none;
+			    	line-height: 1.5em;
+			    	height: 1.5em;
+					}
+				}
+				&.nl-ti-example {
+					font-size: 40%;
+	        font-style: italic;
+	        font-weight: 400;
+	        padding: 0.4em 1em;
+	        color: rgba(0,0,0,0.2);
+	        border-top: 1px dashed rgba(255,255,255,0.7);
+	        em {
+	        	color: black;
+	        }
+				}
+			}
+		}
 	}
 
 	// the list of choices in nl-select

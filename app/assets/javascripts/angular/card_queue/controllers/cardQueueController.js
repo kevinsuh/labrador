@@ -7,6 +7,7 @@
 			
 			$scope.test = cards.test;
 			$scope.newCard = cards.newCard;
+			$scope.newCardReal = cards.newCardReal;
 			
 			// new angular nl method
 			$scope.occasions = [
@@ -15,12 +16,6 @@
 				"Thank You",
 				"Anniversary"
 			];
-
-
-
-
-
-
 
 
 			// // this will be in the "cards" factory
