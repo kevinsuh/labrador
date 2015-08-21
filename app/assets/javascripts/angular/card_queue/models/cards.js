@@ -21,7 +21,7 @@
         recipientLastName: "Koziara",
         recipientGender: "male",
         occasionDate: "10/10/15", // what day does recipient need to get this?
-        cardPersonas: ["witty", "funny", "caring"],
+        cardFlavors: ["witty", "funny", "caring"],
         cardImage: "images/imageurl.png",
         preAddress: "Y",
         recipientAddress: "2704 SW 311th St. Federal Way, WA 98023",
@@ -34,7 +34,7 @@
         recipientLastName: "",
         recipientGender: "",
         occasionDate: "", // what day does recipient need to get this?
-        cardPersonas: ["", "", ""],
+        cardFlavors: "",
         cardImage: "",
         preAddress: "",
         recipientAddress: "",

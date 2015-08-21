@@ -41,18 +41,9 @@
 
 			<div class="row step_one">
 				I want to send a
-				<nl-select value="newCardReal.occasionType" options="occasions"></nl-select><br />
-				
+				<nl-select value="newCardReal.occasionType" options="occasions"></nl-select> Card for my <nl-select value="newCardReal.recipientRelationship" options="relationships"></nl-select>, <nl-text value="newCardReal.recipientFirstName" placeholder="First" required></nl-text> <nl-text value="newCardReal.recipientLastName" placeholder="Last" required></nl-text>
 			</div>
-			Card.
-			<div style="margin-top:30px;" class="row step_one">
-				for my friend, <nl-text value="newCardReal.recipientFirstName" placeholder="First Name" required></nl-text>
 
-				
-			</div>
-			<div class="row step_one gender">
-				 <p class="gender">(<span class="chosen">male</span> / <span>female</span>)</p>
-			</div>
 			<div class="row center next_step">
 				<button class="btn btn-primary">Start Process</button>
 			</div>
@@ -64,12 +55,18 @@
 	<div class="row">
 		<form id="queue-card-form" name="queueCardForm" novalidate>
 			<div class="row step_two">
-				This needs to get to {{newCard.recipientFirstName}} by {{newCard.occasionDate}}.
+				This needs to get to {{newCardReal.recipientFirstName}} by <nl-select value="date.month" options="months"></nl-select> <input ng-model="date.day" type="number" min=1 max=31></input>, 20<input ng-model="date.year" type="number" min=15 max=17></input>
+
+				<div ng-show="date.day && date.year">
+					({{date.month}}/{{date.day}}/{{date.year}})
+				</div>
+				
 			</div>
 			<div class="row step_two">
-				I'd like for the card to be funny, witty, and charming.
+				I'd like for the card to be <nl-select value="newCardReal.cardFlavors" multiple="and" none="anything" empty="anything" options="cardFlavors"></nl-select>. (choose up to 3!)
 			</div>
 			<div class="row step_two">
+				{{newCardReal.cardFlavors}}
 			</div>
 			<div class="row center next_step" style="margin-top: 15px;">
 				<button class="btn">Back</button>
