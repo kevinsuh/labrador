@@ -1,0 +1,115 @@
+@import "compass";
+@import "modules/all";
+
+/**
+ * 		LOGGED IN HOME PAGE
+ */
+
+/**
+ * 		LEFT-HAND SECTION (USER INFO)
+ */
+.user_info {
+	h2 {
+		font-size: 16px;
+		margin: 0 auto;
+	}
+	.section {
+		float: left;
+	}
+}
+
+/**
+ * 		MAIN DIV (card queueing service)
+ */
+.card_orders {
+	min-height: 600px;
+	padding-top: 1px;
+	.card_order {
+		.row, .section {
+			height: 100%;
+		}
+		&.compressed {
+			
+		}
+		&.expanded {
+			
+		}
+		.text-center {
+			
+		}
+		
+	}
+}
+
+// the multistep form that registers your card order!
+#queue-card-form {
+	height: 100%;
+	width: 80%;
+	margin: auto;
+}
+
+/**
+ * 		NATURAL LANGUAGE FORMATTING
+ */
+.nl-field {
+	position: relative;
+	display: inline-block;
+	.nl-field-toggle {
+		position: relative;
+		display: inline-block;
+		text-decoration: none;
+		cursor: pointer;
+	}
+	&.nl-field-open {
+		z-index: 10000;
+	}
+
+	// the list of choices in nl-select
+	ul {
+		padding: 0;
+		margin: 0;
+		text-align: left;
+		list-style: none;
+		position: absolute;
+		visibility: hidden;
+		background: #574c3f;
+		left: 0;
+		top: 505;
+		opacity: 0;
+	  @include transform(translateY(-40%) scale(0.9));
+	  @include transition(visibility 0s 0.3s, opacity 0.3s, transform 0.3s);
+
+  	li {
+  		cursor: pointer;
+	    white-space: nowrap;
+	    &.checked {
+	      color: rgba(255,255,255,0.5);
+	    }
+	    &:hover {
+	      background: rgba(0,0,0,0.5);
+	    }
+	    &.nl-dd-checked {
+	    	color: #478982;
+	    }
+  	}
+	}
+}
+
+// when a nl field gets selected
+.nl-overlay {
+  position: fixed;
+  visibility: hidden;
+  opacity: 0;
+  @include whole_screen;
+}
+
+.nl-field.nl-field-open ul,
+.nl-field.nl-field-open ~ .nl-overlay {
+  visibility: visible;
+  opacity: 1;
+  @include transition(visibility 0s 0s, opacity 0.3s, transform 0.3s);
+}
+
+.nl-field.nl-field-open ~ .nl-overlay {
+	z-index: 9999;
+}

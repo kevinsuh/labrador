@@ -6,7 +6,6 @@ html {
 
 body {
 	@include base_font;
-	font-size:40px;
 }
 
 section {
@@ -15,6 +14,10 @@ section {
 
 textarea {
   resize: vertical;
+}
+
+span, p {
+	@include adjust-font-size-to(1.2em);
 }
 
 /**
@@ -26,14 +29,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
- 	font-size: 3em;
+	@include adjust-font-size-to(3em);
  	letter-spacing: -2px;
  	margin-bottom: 30px;
  	text-align: center;
 }
 
 h2 {
-	font-size: 1.2em;
+	@include adjust-font-size-to(1.2em);
 	letter-spacing: -1px;
 	margin-bottom: 30px;
  	text-align: center;
@@ -41,8 +44,98 @@ h2 {
 }
 
 p {
-	font-size: 1.1em;
-	line-height: 1.7em;
+	@include adjust-font-size-to(1.1em);
+}
+
+/**
+ * 			VARIABLES
+ */
+$grayed_out: #555;
+$hover-blue: #5899D8;
+
+@mixin box_sizing {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box
+}
+
+/**
+ *      HEADER
+ */
+#logo {
+  float: left;
+  margin-right: 10px;
+  @include adjust-font-size-to(1.7em);
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  padding-top: 9px;
+  font-weight: bold;
+  &:hover {
+    color: #fff;
+    text-decoration: none;
+  }
+}
+
+header {
+  &.navbar {
+    margin-top: 20px;
+    margin-bottom: 0px;
+  }
+  span {
+    @include adjust-font-size-to(18px);
+    font-weight: bold;
+  }
+  a {
+    color: $grayed_out;
+    &:hover {
+      text-decoration: none;
+      color: $grayed_out;
+    }
+  }
+
+  /* navbar section of header */
+  .nav {
+    li {
+      margin-left: 15px;
+      a {
+        padding: 0;
+        &:hover {
+          background-color: transparent;
+          color: $hover-blue;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}
+
+/**
+ *      FOOTER
+ */
+footer {
+  margin-top: 45px;
+  padding-top: 5px;
+  color: $gray-light;
+  a {
+    color: $grayed_out;
+    &:hover {
+      background-color: transparent;
+      color: $hover-blue;
+      text-decoration: none;
+    }
+  }
+  small {
+    float: left;
+  }
+  ul {
+    float: right;
+    list-style: none;
+    li {
+      float: left;
+      margin-left: 15px;
+    }
+  }
 }
 
 /**
@@ -73,301 +166,34 @@ p {
 	}
 }
 
-/**
- * 		SIGN UP FORM
- */
 
-// the two MAJOR divs (split into 2 for now form | helper)
-.signup_body {
-	display: table-row;
-	width: 100%;
-	.signup_form {
-		width: 100%;
-		// this contains the form body!
-		.form {
-			width: 100%;
-			.form_field.name {
-				.first_name {
-					width: 51.7%;
-					float: left;
-					padding-right: 2.5%;
-					white-space: nowrap;
-					overflow-x: hidden;
-				}
-				.last_name {
-					width: 48%;
-					float: right;
-				}
-			}
-		}
-	}
 
-	// have the ng-hide still preserve space
-	.ng-hide {
-		visibility: hidden;
-		display: block!important;
-	}
-	.signup_helper {
-		display: table-cell;
-		background-color: $baby-blue;
-		float:none;
-	}
-}
-
-// used for more specific tags
-#signup-form {
-	position: relative;
-	min-height: 600px;
-	padding: 30px;
-	padding-top: 0px;
-	overflow: hidden;
-	width: 80%;
-	margin-left: 10%;
-	
-	.form_field {
-		&.name {
-			width: 100%;
-			float: left;
-		}
-		&.city {
-			width: 40%;
-			float: left;
-			margin-right: 3%;
-		}
-		&.state {
-			width: 17%;
-			float: left;
-		}
-		&.zipcode {
-			float: right;
-			width: 37%;
-		}
-		&.street {
-			margin-bottom: -9px;
-		}
-
-		&.validation_field {
-			// surrounding text that have been completed
-			.completed {
-				&.helper {
-					color: green;
-				}
-			}
-
-			.form_input {
-				input, select {
-					&.ng-valid {
-						border-color: green;
-					}
-				}
-			}
-
-		}
-	}
-
-	div.shipping {
-		float: left;
-		width: 100%;
-		margin-top: 20px;
-	}
-
-	select {
-		height: 55px;
-		border-radius: 0px;
-		background: transparent;
-		font-size: 16px;
-	}
-
-	// handle password-requirement validation
-	.password-requirements {
-		.float-left {
-			padding-left: 0;
-			li {
-				display: inline;
-				font-size: 12px;
-				&.has-error {}
-			}
-		}
-	}
-
-	// // next button
-	.next-btn {
-		background-color: green;
-		&.disabled {
-			background-color: gray;
-		}
-	}
-}
-
-// progress bullets!!
-.progress_bullets {
-	cursor: default;
-	max-width: 280px;
-	text-align: center;
-	margin: 1rem auto;
-	height: 15px;
-	.bullet {
-		font-size: 4rem;
-		a {
-			text-decoration: none !important;
-			&:hover {
-				text-decoration: none !important;
-			}
-			color: lightgrey;
-			&.active {
-				color: black;
-			}
-		}
-	}
-}
 
 /**
- * 		LOGGED IN HOME PAGE
+ *      MISC.
  */
-
-// left-hand section that contains user info
-.user_info {
-	h2 {
-		font-size: 16px;
-		margin: 0 auto;
-	}
-	.section {
-		float: left;
-	}
-}
-
-// div that will hold the card-queueing service
-.card_orders {
-	min-height: 600px;
-	padding-top: 1px;
-	.card_order {
-		.row, .section {
-			height: 100%;
-		}
-		&.compressed {
-			height: 40px;
-		}
-		&.expanded {
-			height: 200px;	
-		}
-		.text-center {
-			// horizontal align
-			text-align: center;
-			// vertical algin -- false solution for now
-			margin-top: 4%;
-		}
-
-		background-color: lightgray;
-		margin: 15px auto;
-		width: 90%;
-	}
-}
-
-// the multistep form that registers your card order!
-#queue-card-form {
-	height: 100%;
-	width: 80%;
-	margin: auto;
-	.step_one {
-		height: 25%;
-		padding-top: 0.5em;
-		font-size: 30px;
-		&.gender {
-			padding-top: 0;
-		}
-		.form_field {
-			height: 33%;
-		}
-	}
-	.step_two {
-		height: 20%;
-		padding-top: 0.5em;
-		font-size: 24px;
-	}
-	p.gender {
-		font-size: 16px;
-		display: inline;
-		.chosen {
-			color: green;
-		}
-	}
-	.next_step {
-		padding-top: 8px;
-		height: 25%;
-	}
-}
-
-// natural language form inputs
-.nl-field {
-	position: relative;
-	display: inline-block;
-	font: 1em;
-	line-height: 1.8;
-	.nl-field-toggle {
-		position: relative;
-		display: inline-block;
-		text-decoration: none;
-		border-bottom: 1px dashed #fff;
-		cursor: pointer;
-	}
-	&.nl-field-open {
-		z-index: 10000;
-	}
-	// the list of choices
-	ul {
-		font-size: 1em;
-		padding: 0;
-		margin: 0;
-		text-align: left;
-		list-style: none;
-		position: absolute;
-		visibility: hidden;
-		background: #574c3f;
-		left: 0;
-		top: 505;
-		opacity: 0;
-		-webkit-transform: translateY(-40%) scale(0.9);
-	  -moz-transform: translateY(-40%) scale(0.9);
-	  transform: translateY(-40%) scale(0.9);
-	  -webkit-transition: visibility 0s 0.3s, opacity 0.3s, -webkit-transform 0.3s;
-	  -moz-transition: visibility 0s 0.3s, opacity 0.3s, -moz-transform 0.3s;
-	  transition: visibility 0s 0.3s, opacity 0.3s, transform 0.3s;
-  	li {
-  		cursor: pointer;
-	    padding: 0 0.5em;
-	    font-size: 0.8em;
-	    white-space: nowrap;
-	    &.checked {
-	      color: rgba(255,255,255,0.5);
-	    }
-	    &:hover {
-	      background: rgba(0,0,0,0.5);
-	    }
-  	}
-	}
-}
-
-.nl-overlay {
-  position: fixed;
-  visibility: hidden;
-  opacity: 0;
-  top: 0;
-  left: 0;
+.debug_dump {
+  clear: both;
+  float: left;
   width: 100%;
-  height: 100%;
-  //background: rgba(0,0,0,0.5);
+  margin-top: 45px;
+  //@include box-sizing(border-box);
 }
 
-.nl-field.nl-field-open ul,
-.nl-field.nl-field-open ~ .nl-overlay {
-  visibility: visible;
-  opacity: 1;
-  -webkit-transition: visibility 0s 0s, opacity 0.3s, -webkit-transform 0.3s;
-  -moz-transition: visibility 0s 0s, opacity 0.3s, -moz-transform 0.3s;
-  transition: visibility 0s 0s, opacity 0.3s, transform 0.3s;
+/**
+ *    ERRORS
+ */
+#error_explanation {
+  color: red;
+  ul {
+    color: red;
+    margin: 0 0 30px 0;
+  }
 }
 
-// overlay ONLY gets the front of HTML page when .nl-field-open comes before it as a sibling... aka only when nl-field-open is triggered by angular
-.nl-field.nl-field-open ~ .nl-overlay {
-	z-index: 9999;
+.field_with_errors {
+  @extend .has-error;
+  .form-control {
+    color: $state-danger-text;
+  }
 }

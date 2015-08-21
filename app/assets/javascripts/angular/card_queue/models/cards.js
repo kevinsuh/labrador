@@ -14,6 +14,19 @@
     var o = {
       queuedCards:[],
       newCards: [],
+      newCardReal: {
+        occasionType: "",
+        recipientRelationship: "",
+        recipientFirstName: "",
+        recipientLastName: "",
+        recipientGender: "",
+        occasionDate: "", // what day does recipient need to get this?
+        cardPersonas: ["", "", ""],
+        cardImage: "",
+        preAddress: "",
+        recipientAddress: "",
+        notes: ""
+      },
       newCard: {
         occasionType: "christmas",
         recipientRelationship: "friend",

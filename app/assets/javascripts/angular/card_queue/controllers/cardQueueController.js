@@ -7,7 +7,39 @@
 			
 			$scope.test = cards.test;
 			$scope.newCard = cards.newCard;
-	
+			
+			// new angular nl method
+			$scope.occasions = [
+				"Christmas",
+				"Birthday",
+				"Thank You",
+				"Anniversary"
+			];
+
+
+
+
+
+
+
+
+			// // this will be in the "cards" factory
+			// $scope.listItems = {
+			// 	chr: "Christmas",
+			// 	bd: "Birthday",
+			// 	ty: "Thank You",
+			// 	jb: "Just because"
+			// };
+			// $scope.currentItem = $scope.listItems.bd;
+
+			// // this is to control the NL form
+			// $scope.occasionFieldOpen = false;
+			// $scope.occasionFieldOpenToggle = function(key) {
+			// 	if (key) {
+			// 		$scope.currentItem = $scope.listItems[key];
+			// 	}
+			// 	$scope.occasionFieldOpen = !$scope.occasionFieldOpen;
+			// }
 
 			
 	});
