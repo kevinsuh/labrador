@@ -1,0 +1,33 @@
+<div class="text-center">
+	<p class="card_progress_bullets">
+		<span ng-class="{'active': currentState == 'home.app.step1'}" class="bullet">•</span>
+		<span ng-class="{'active': currentState == 'home.app.step2'}" class="bullet">•</span>
+		<span ng-class="{'active': currentState == 'home.app.step3'}" class="bullet">•</span>
+		<span ng-class="{'active': currentState == 'home.app.step4'}"class="bullet">•</span>
+		<span ng-class="{'active': currentState == 'home.app.step5'}" class="bullet">•</span>
+	</p>
+</div>
+
+<div ng-if="currentState == 'home.app.step1'" class="next_step">
+	<a ui-sref="home.app.step2" class="btn btn-primary">Start Process</a>
+</div>
+<div ng-if="currentState == 'home.app.step2'" class="next_step">
+	<a ui-sref="home.app.step1" class="btn">Back</a>
+	<a ui-sref="home.app.step3" class="btn btn-primary">Next</a>
+</div>
+
+<div ng-if="currentState == 'home.app.step3'" class="next_step">
+	<a ui-sref="home.app.step2" class="btn">Back</a>
+	<a ui-sref="home.app.step4" class="btn btn-primary">Next</a>
+</div>
+
+<div ng-if="currentState == 'home.app.step4'" class="next_step">
+	<a ui-sref="home.app.step3" class="btn">Back</a>
+	<a ui-sref="home.app.step5" class="btn btn-primary">Next</a>
+</div>
+
+<div ng-if="currentState == 'home.app.step5'" class="next_step">
+	<a ui-sref="home.app.step4" class="btn">Back</a>
+	<a ui-sref="#" class="btn btn-primary">Submit</a>
+</div>
+

@@ -1,0 +1,229 @@
+@import "compass";
+@import "modules/all";
+
+/**
+ * 		LOGGED IN HOME PAGE
+ */
+.logged_in_home {
+	min-height: 780px;
+}
+/**
+ * 		LEFT-HAND SECTION (USER INFO)
+ */
+.user_info {
+	h2 {
+		font-size: 16px;
+		margin: 0 auto;
+	}
+	.section {
+		float: left;
+	}
+}
+
+/**
+ * 		MAIN DIV (card queueing service)
+ */
+.card_orders {
+	min-height: 600px;
+	padding-top: 1px;
+	.card_order {
+		.row, .section {
+			height: 100%;
+		}
+		&.compressed {
+			background-color: lightgray;
+			margin: 10px 0;
+		}
+		&.expanded {
+			// single step in the queue card form process
+			form {
+				// div with the NL questions
+				.questions {
+					@include adjust-font-size-to(1.5em);
+				}
+				// div with back/next buttons
+				.next_step {
+					height: 20%;
+				}
+			}
+
+		}
+		.text-center {
+			
+		}
+		
+	}
+}
+
+/**
+ * 		NATURAL LANGUAGE FORMATTING
+ */
+.nl-field {
+	position: relative;
+	display: inline-block;
+	.nl-field-toggle {
+		position: relative;
+		display: inline-block;
+		text-decoration: none;
+		cursor: pointer;
+	}
+	&.nl-field-open {
+		z-index: 10000;
+	}
+	// text inputs
+	&.nl-ti-text {
+		ul {
+			min-width: 8em;
+			li {
+				&.nl-ti-input {
+					input {
+						width: 100%;
+	       	 	padding: 0.2em 2em 0.2em 0.5em;
+		        border-bottom: none;
+			    	line-height: 1.5em;
+			    	height: 1.5em;
+					}
+				}
+				&.nl-ti-example {
+					font-size: 40%;
+	        font-style: italic;
+	        font-weight: 400;
+	        padding: 0.4em 1em;
+	        color: rgba(0,0,0,0.2);
+	        border-top: 1px dashed rgba(255,255,255,0.7);
+	        em {
+	        	color: black;
+	        }
+				}
+			}
+		}
+	}
+
+	// the list of choices in nl-select
+	ul {
+		padding: 0;
+		margin: 0;
+		text-align: left;
+		list-style: none;
+		position: absolute;
+		visibility: hidden;
+		background: #574c3f;
+		left: 0;
+		top: 505;
+		opacity: 0;
+	  @include transform(translateY(-40%) scale(0.9));
+	  @include transition(visibility 0s 0.3s, opacity 0.3s, transform 0.3s);
+
+  	li {
+  		cursor: pointer;
+	    white-space: nowrap;
+	    &.checked {
+	      color: rgba(255,255,255,0.5);
+	    }
+	    &:hover {
+	      background: rgba(0,0,0,0.5);
+	    }
+	    &.nl-dd-checked {
+	    	color: #478982;
+	    }
+  	}
+	}
+}
+
+// when a nl field gets selected
+.nl-overlay {
+  position: fixed;
+  visibility: hidden;
+  opacity: 0;
+  @include whole_screen;
+}
+
+.nl-field.nl-field-open ul,
+.nl-field.nl-field-open ~ .nl-overlay {
+  visibility: visible;
+  opacity: 1;
+  @include transition(visibility 0s 0s, opacity 0.3s, transform 0.3s);
+}
+
+.nl-field.nl-field-open ~ .nl-overlay {
+	z-index: 9999;
+}
+
+// the multistep form that registers your card order!
+#queue-card-form {
+	height: 100%;
+	width: 100%;
+	margin: auto;
+	overflow: hidden;
+	position: relative;
+
+	// div containing NL form questions
+	div.questions {
+		background-color: #fff;
+		height: 400px;
+		line-height: 400px;
+		width: 100%;
+		text-align: center;
+		background-color: salmon;
+		.nl-field {
+			a {
+				color: darkred;
+				border-bottom: 1px dashed;
+			}
+		}
+	}
+
+	// div containing next step, prev step
+	div.next_step {
+		margin-top: 0;
+		@include clearfix;
+		text-align: center;
+	}
+
+	// card images
+	img.pick_card {
+		height: 100px;
+	}
+
+}
+
+// the actual NL questions
+#card_form_questions {
+
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	margin-top: 25%;
+	color: white;
+
+	input {
+		color: black;
+	}
+
+	&.ng-enter {
+		@include animation(slideInRight 0.5s both ease);
+	}
+
+	&.ng-leave {
+		@include animation(slideOutLeft 0.5s both ease);
+	}
+
+}
+
+// progress bullets!!
+.card_progress_bullets {
+	cursor: default;
+	max-width: 280px;
+	text-align: center;
+	margin: 0 auto;
+	margin-top: 10px;
+	.bullet {
+		font-size: 2.5rem;
+		line-height: 0.5;
+		color: lightgrey;
+		&.active {
+				color: black;
+		}
+	}
+}

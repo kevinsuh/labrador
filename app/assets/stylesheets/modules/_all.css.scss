@@ -1,3 +1,7 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "compass";
+
 // Font weights
 $light: 100;
 $regular: 400;
@@ -23,31 +27,38 @@ $header-font-weight: $bold;
 	font-size: $base-font-size;
 }
 
+@mixin whole_screen {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+$base-font-size: 18px;
+$base-line-height:30px;
+@include establish-baseline;
+
 /**
  * 			ANIMATIONS
  */
-@keyframes slideOutLeft {
+@include keyframes(slideOutLeft) {
     to      { transform: translateX(-200%); }
-}
-@-moz-keyframes slideOutLeft {  
-    to      { -moz-transform: translateX(-200%); }
-}
-@-webkit-keyframes slideOutLeft {
-    to      { -webkit-transform: translateX(-200%); }
 }
 
 /* slide in from the right */
-@keyframes slideInRight {
+@include keyframes(slideInRight) {
     from    { transform: translateX(200%); }
     to      { transform: translateX(0); }
 }
-@-moz-keyframes slideInRight {
-    from    { -moz-transform:translateX(200%); }
-    to      { -moz-transform: translateX(0); }
+
+@include keyframes(fadeIn) {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
 }
-@-webkit-keyframes slideInRight {
-    from    { -webkit-transform:translateX(200%); }
-    to      { -webkit-transform: translateX(0); }
+
+@include keyframes(fadeOut) {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
 }
 
 

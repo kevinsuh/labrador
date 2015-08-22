@@ -1,0 +1,113 @@
+<div class="card_order compressed">
+	<table cellpadding="0" cellspacing="0" style="margin: auto; height: 100%; width: 90%;">
+		<tr style="width: 100%; text-align:center;">
+			<td style="width: 33%;">
+				Austin Crouse's Birthday {{test}}
+			</td>
+			<td style="width: 33%; text-align: center;">
+				Mar. 24
+			</td>
+			<td style="width: 33%; text-align:right;">
+				<a href="#">Expand View</a>
+			</td>
+		</tr>
+	</table>
+</div>
+
+<div class="card_order compressed">
+	<div class="row">
+		<div class="col-xs-4 section">
+			<div class="text-center">
+				Christmas for Danny Garfield
+			</div>
+		</div>
+		<div class="col-xs-4 section">
+			<div class="text-center">
+				Dec. 25
+			</div>
+		</div>
+		<div class="col-xs-4 section">
+			<div class="text-center">
+				<a href="#">Expand View</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- this is the new card to send -->
+<div class="card_order expanded">
+	<form id="queue-card-form" name="queueCardForm" novalidate>
+
+		<!-- each stage of new card form -->
+		<div class="questions">
+			<span class="question_text">
+				<ui-view id="card_form_questions"></ui-view>
+			</span>
+		</div>
+
+		<div class="next_step" current-state="currentState" next-step></div>
+		
+	</form>
+</div>
+
+
+
+<br><br><br><br><br><br><br><br><br><br>
+
+
+<% if false %>
+<div class="card_order expanded">
+	<div class="row">
+		<form id="queue-card-form" name="queueCardForm" novalidate>
+			<div class="row step_two">
+				Card choices (images to select)
+			</div>
+			<div class="row step_two">
+				Another one: <input type="text"></input>
+			</div>
+			<div class="row center next_step" style="margin-top: 65px;">
+				<button class="btn">Back</button>
+				<button class="btn btn-primary">Next</button>
+				<a ng-click="takeFunction()">{{ item }}</a
+				{{hello}}
+			</div>
+		</form>
+	</div>
+</div>
+
+<div class="card_order expanded">
+	<div class="row">
+		<form id="queue-card-form" name="queueCardForm" novalidate>
+			<div class="row step_two">
+				Pre-address? (y / n)
+			</div>
+			<div class="row step_two">
+				Address: 
+				{{newCard.recipientAddress}}
+				<input type="text" ng-model="newCard.recipientAddress"></input>
+			</div>
+			<div class="row center next_step" style="margin-top: 65px;">
+				<button class="btn">Back</button>
+				<button class="btn btn-primary">Next</button>
+			</div>
+		</form>
+	</div>
+</div>
+
+<div class="card_order expanded">
+	<div class="row">
+		<form id="queue-card-form" name="queueCardForm" novalidate>
+			<div class="row step_two">
+				Any more notes? <input type="text"></input>
+			</div>
+			<div class="row step_two"></div>
+			<div class="row center next_step" style="margin-top: 65px;">
+				<button class="btn">Back</button>
+				<button class="btn btn-primary">Submit</button>
+			</div>
+		</form>
+	</div>
+</div>
+
+
+<% end %>

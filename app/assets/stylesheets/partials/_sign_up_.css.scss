@@ -1,0 +1,174 @@
+@import "modules/all";
+
+/**
+ * 		SIGN UP FORM
+ */
+
+// the two MAJOR divs (split into 2 for now form | helper)
+.signup_body {
+	display: table-row;
+	width: 100%;
+	.signup_form {
+		width: 100%;
+		// this contains the form body!
+		.form {
+			width: 100%;
+			.form_field.name {
+				.first_name {
+					width: 51.7%;
+					float: left;
+					padding-right: 2.5%;
+					white-space: nowrap;
+					overflow-x: hidden;
+				}
+				.last_name {
+					width: 48%;
+					float: right;
+				}
+			}
+		}
+	}
+
+	// have the ng-hide still preserve space
+	.ng-hide {
+		visibility: hidden;
+		display: block!important;
+	}
+	.signup_helper {
+		display: table-cell;
+		background-color: $baby-blue;
+		float:none;
+	}
+}
+
+// used for more specific tags
+#signup-form {
+	position: relative;
+	min-height: 600px;
+	padding: 30px;
+	padding-top: 0px;
+	overflow: hidden;
+	width: 80%;
+	margin-left: 10%;
+	
+	.form_field {
+		&.name {
+			width: 100%;
+			float: left;
+		}
+		&.city {
+			width: 40%;
+			float: left;
+			margin-right: 3%;
+		}
+		&.state {
+			width: 17%;
+			float: left;
+		}
+		&.zipcode {
+			float: right;
+			width: 37%;
+		}
+		&.street {
+			margin-bottom: -9px;
+		}
+
+		&.validation_field {
+			// surrounding text that have been completed
+			.completed {
+				&.helper {
+					color: green;
+				}
+			}
+
+			.form_input {
+				input, select {
+					width: 100%;
+					&.ng-valid {
+						border-style: solid;
+						border-color: green;
+					}
+				}
+			}
+
+		}
+	}
+
+	div.shipping {
+		float: left;
+		width: 100%;
+		margin-top: 20px;
+		h2 {
+			@include adjust-leading-to(0.5);
+		}
+	}
+
+	select {
+		height: 55px;
+		border-radius: 0px;
+		background: transparent;
+		font-size: 16px;
+	}
+
+	// handle password-requirement validation
+	.password-requirements {
+		.float-left {
+			padding-left: 0;
+			li {
+				display: inline;
+				font-size: 12px;
+				&.has-error {}
+			}
+		}
+	}
+
+	// // next button
+	.next-btn {
+		background-color: green;
+		&.disabled {
+			background-color: gray;
+		}
+	}
+}
+
+// progress bullets!!
+.progress_bullets {
+	cursor: default;
+	max-width: 280px;
+	text-align: center;
+	margin: 0 auto;
+	.bullet {
+		font-size: 4rem;
+		line-height: 0.5;
+		a {
+			text-decoration: none !important;
+			&:hover {
+				text-decoration: none !important;
+			}
+			color: lightgrey;
+			&.active {
+				color: black;
+			}
+		}
+	}
+}
+
+// this contains div that contains each form partial
+#form-views {
+	
+	width: auto;
+
+	&.ng-enter, &.ng-leave {
+		position: absolute;
+		left: 30px;
+		right: 30px;
+	}
+
+	&.ng-enter {
+		@include animation(slideInRight 0.5s both ease);
+	}
+
+	&.ng-leave {
+		@include animation(slideOutLeft 0.5s both ease);
+	}
+}
