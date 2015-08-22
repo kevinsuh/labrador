@@ -36,99 +36,13 @@
 
 <!-- this is the new card to send -->
 <div class="card_order expanded">
-	<div class="row">
-		<form id="queue-card-form" name="queueCardForm" novalidate>
+	<form id="queue-card-form" name="queueCardForm" novalidate>
 
-			<div class="row step_one">
-				I want to send a
-				<nl-select value="newCardReal.occasionType" options="occasions"></nl-select> Card for my <nl-select value="newCardReal.recipientRelationship" options="relationships"></nl-select>, <nl-text value="newCardReal.recipientFirstName" placeholder="First" required></nl-text> <nl-text value="newCardReal.recipientLastName" placeholder="Last" required></nl-text>
-			</div>
+		<!-- each stage of new card form -->
+		<div id="card-queue-form-steps" ui-view></div>
 
-			<div class="row center next_step">
-				<button class="btn btn-primary">Start Process</button>
-			</div>
-		</form>
-	</div>
+	</form>
 </div>
-
-<div class="card_order expanded">
-	<div class="row">
-		<form id="queue-card-form" name="queueCardForm" novalidate>
-			<div class="row step_two">
-				This needs to get to {{newCardReal.recipientFirstName}} by <nl-select value="date.month" options="months"></nl-select> <input ng-model="date.day" type="number" min=1 max=31></input>, 20<input ng-model="date.year" type="number" min=15 max=17></input>
-
-				<div ng-show="date.day && date.year">
-					({{date.month}}/{{date.day}}/{{date.year}})
-				</div>
-				
-			</div>
-			<div class="row step_two">
-				I'd like for the card to be <nl-select value="newCardReal.cardFlavors" multiple="and" none="anything" empty="anything" options="cardFlavors"></nl-select>. (choose up to 3!)
-			</div>
-			<div class="row step_two">
-				{{newCardReal.cardFlavors}}
-			</div>
-			<div class="row center next_step" style="margin-top: 15px;">
-				<button class="btn">Back</button>
-				<button class="btn btn-primary">Next</button>
-			</div>
-		</form>
-	</div>
-</div>
-
-<div class="card_order expanded">
-	<div class="row">
-		<form id="queue-card-form" name="queueCardForm" novalidate>
-			<div class="row step_two">
-				Card choices (images to select)
-			</div>
-			<div class="row step_two">
-				Another one: <input type="text"></input>
-			</div>
-			<div class="row center next_step" style="margin-top: 65px;">
-				<button class="btn">Back</button>
-				<button class="btn btn-primary">Next</button>
-				<a ng-click="takeFunction()">{{ item }}</a
-				{{hello}}
-			</div>
-		</form>
-	</div>
-</div>
-
-<div class="card_order expanded">
-	<div class="row">
-		<form id="queue-card-form" name="queueCardForm" novalidate>
-			<div class="row step_two">
-				Pre-address? (y / n)
-			</div>
-			<div class="row step_two">
-				Address: 
-				{{newCard.recipientAddress}}
-				<input type="text" ng-model="newCard.recipientAddress"></input>
-			</div>
-			<div class="row center next_step" style="margin-top: 65px;">
-				<button class="btn">Back</button>
-				<button class="btn btn-primary">Next</button>
-			</div>
-		</form>
-	</div>
-</div>
-
-<div class="card_order expanded">
-	<div class="row">
-		<form id="queue-card-form" name="queueCardForm" novalidate>
-			<div class="row step_two">
-				Any more notes? <input type="text"></input>
-			</div>
-			<div class="row step_two"></div>
-			<div class="row center next_step" style="margin-top: 65px;">
-				<button class="btn">Back</button>
-				<button class="btn btn-primary">Submit</button>
-			</div>
-		</form>
-	</div>
-</div>
-
 
 
 
@@ -136,91 +50,6 @@
 
 
 
-<div class="card_order compressed">
-	<table cellpadding="0" cellspacing="0" style="margin: auto; height: 100%; width: 90%;">
-		<tr style="width: 100%; text-align:center;">
-			<td style="width: 33%;">
-				Austin Crouse's Birthday {{test}}
-			</td>
-			<td style="width: 33%; text-align: center;">
-				Mar. 24
-			</td>
-			<td style="width: 33%; text-align:right;">
-				<a href="#">Expand View</a>
-			</td>
-		</tr>
-	</table>
-</div>
-
-<div class="card_order compressed">
-	<div class="row">
-		<div class="col-xs-4 section">
-			<div class="text-center">
-				Christmas for Danny Garfield
-			</div>
-		</div>
-		<div class="col-xs-4 section">
-			<div class="text-center">
-				Dec. 25
-			</div>
-		</div>
-		<div class="col-xs-4 section">
-			<div class="text-center">
-				<a href="#">Expand View</a>
-			</div>
-		</div>
-	</div>
-</div>
-
-<!-- this is the new card to send -->
-<div class="card_order expanded">
-	<div class="row">
-		<form id="queue-card-form" name="queueCardForm" novalidate>
-
-			<div class="row step_one">
-				I want to send a
-				<div class="nl-field" ng-class="{'nl-field-open': occasionFieldOpen}">
-					<a class="nl-field-toggle" ng-click="occasionFieldOpenToggle()">{{ currentItem }}</a>
-					<ul>
-						<li ng-repeat="(key, value) in listItems" ng-click="occasionFieldOpenToggle(key)" ng-class="{ checked: currentItem == value}">{{ value }}</li>
-					</ul>
-				</div>
-				<div class="nl-overlay"></div>
-				Card.
-			</div>
-
-			<div style="margin-top:30px;" class="row step_one">
-				for my friend, {{newCard.recipientFirstName}} {{newCard.recipientLastName}}
-			</div>
-			<div class="row step_one gender">
-				 <p class="gender">(<span class="chosen">male</span> / <span>female</span>)</p>
-			</div>
-			<div class="row center next_step">
-				<button class="btn btn-primary">Start Process</button>
-			</div>
-		</form>
-	</div>
-</div>
-
-<div class="card_order expanded">
-	<div class="row">
-		<form id="queue-card-form" name="queueCardForm" novalidate>
-			<div class="row step_two">
-				This needs to get to {{newCard.recipientFirstName}} by {{newCard.occasionDate}}.
-			</div>
-			<div class="row step_two">
-				I'd like for the card to be funny, witty, and charming.
-			</div>
-			<div class="row step_two">
-			</div>
-			<div class="row center next_step" style="margin-top: 15px;">
-				<button class="btn">Back</button>
-				<button class="btn btn-primary">Next</button>
-			</div>
-		</form>
-	</div>
-</div>
-
 <div class="card_order expanded">
 	<div class="row">
 		<form id="queue-card-form" name="queueCardForm" novalidate>
@@ -273,3 +102,5 @@
 		</form>
 	</div>
 </div>
+
+

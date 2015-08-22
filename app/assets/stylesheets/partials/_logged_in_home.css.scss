@@ -33,20 +33,24 @@
 			margin: 10px 0;
 		}
 		&.expanded {
-			
+			// single step in the queue card form process
+			form {
+				// div with the NL questions
+				.questions {
+					@include adjust-font-size-to(1.5em);
+				}
+				// div with back/next buttons
+				.next_step {
+					height: 20%;
+				}
+			}
+
 		}
 		.text-center {
 			
 		}
 		
 	}
-}
-
-// the multistep form that registers your card order!
-#queue-card-form {
-	height: 100%;
-	width: 80%;
-	margin: auto;
 }
 
 /**
@@ -141,4 +145,39 @@
 
 .nl-field.nl-field-open ~ .nl-overlay {
 	z-index: 9999;
+}
+
+// the multistep form that registers your card order!
+#queue-card-form {
+	height: 100%;
+	width: 100%;
+	margin: auto;
+}
+
+// actual, multistep card queue form inside the <form #queue-card-form> div
+#card-queue-form-steps {
+
+	.step {
+		background-color: #fff;
+		position: absolute;
+	}
+
+	&.ng-enter {
+		@include transition(0.5s linear all);
+		opacity: 0;
+		&.ng-enter-active {
+			opacity: 1;
+		}
+	}
+
+	&.ng-leave {
+		@include animation(transition_out 0.5s both ease);
+	}
+
+}
+
+// animations for home page
+@include keyframes(transition_out) {
+	0% { opacity: 1; }
+	100% { opacity: 0; }
 }
