@@ -175,7 +175,7 @@
 
 	// div containing next step, prev step
 	div.next_step {
-		margin-top: 15px;
+		margin-top: 0;
 		@include clearfix;
 		text-align: center;
 	}
