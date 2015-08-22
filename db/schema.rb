@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150816193023) do
+ActiveRecord::Schema.define(version: 20150822213304) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "first_name"
@@ -70,10 +70,10 @@ ActiveRecord::Schema.define(version: 20150816193023) do
     t.integer  "user_id"
     t.integer  "recipient_id"
     t.integer  "card_id"
-    t.datetime "send_date"
-    t.datetime "expected_arrival_date"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
+    t.datetime "recipient_arrival_date"
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+    t.boolean  "pre_address",            default: false
   end
 
   add_index "orders", ["card_id"], name: "index_orders_on_card_id"
