@@ -47,6 +47,11 @@
       .state('home.app.step4', {
         replace: true,
         templateUrl: "angular/card_queue/form_step_four.html"
+      })
+
+      .state('home.app.step5', {
+        replace: true,
+        templateUrl: "angular/card_queue/form_step_five.html"
       });
 
     $urlRouterProvider.otherwise('/');

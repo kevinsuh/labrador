@@ -165,12 +165,6 @@
 		width: 100%;
 		text-align: center;
 		background-color: salmon;
-		.question_text {
-			color: white;
-			display: inline-block;
-			vertical-align: middle;
-			line-height: normal;
-		}
 		.nl-field {
 			a {
 				color: darkred;
@@ -191,35 +185,45 @@
 		height: 100px;
 	}
 
-	// when div enters and leaves
-	// &.ng-enter, &.ng-leave {
-	// 	// position: absolute;
-	// 	left: 30px;
-	// 	right: 30px;
-	// }
+}
 
-	// &.ng-enter {
-	// 	@include animation(slideInRight 0.5s both ease);
-	// }
+// the actual NL questions
+#card_form_questions {
 
-	// &.ng-leave {
-	// 	@include animation(slideOutLeft 0.5s both ease);
-	// }
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	margin-top: 25%;
+	color: white;
 
-
-	&.ng-enter, &.ng-leave {
-		position: absolute;
+	input {
+		color: black;
 	}
 
-	// &.ng-enter {
-	// 	@include animation(fadeIn 0.5s both ease);
-	// }
+	&.ng-enter {
+		@include animation(slideInRight 0.5s both ease);
+	}
 
 	&.ng-leave {
-		@include animation(fadeOut 0.5s both ease);
+		@include animation(slideOutLeft 0.5s both ease);
 	}
 
 }
 
-// animations for home page
-
+// progress bullets!!
+.card_progress_bullets {
+	cursor: default;
+	max-width: 280px;
+	text-align: center;
+	margin: 0 auto;
+	margin-top: 10px;
+	.bullet {
+		font-size: 2.5rem;
+		line-height: 0.5;
+		color: lightgrey;
+		&.active {
+				color: black;
+		}
+	}
+}
