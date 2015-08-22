@@ -39,8 +39,14 @@
 	<form id="queue-card-form" name="queueCardForm" novalidate>
 
 		<!-- each stage of new card form -->
-		<div id="card-queue-form-steps" ui-view></div>
+		<div class="questions">
+			<span class="question_text">
+			<ui-view></ui-view>
+			</span>
+		</div>
 
+		<div class="next_step" current-state="currentState" next-step></div>
+		
 	</form>
 </div>
 
@@ -49,7 +55,7 @@
 <br><br><br><br><br><br><br><br><br><br>
 
 
-
+<% if false %>
 <div class="card_order expanded">
 	<div class="row">
 		<form id="queue-card-form" name="queueCardForm" novalidate>
@@ -104,3 +110,4 @@
 </div>
 
 
+<% end %>

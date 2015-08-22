@@ -4,7 +4,9 @@
 /**
  * 		LOGGED IN HOME PAGE
  */
-
+.logged_in_home {
+	min-height: 780px;
+}
 /**
  * 		LEFT-HAND SECTION (USER INFO)
  */
@@ -152,32 +154,72 @@
 	height: 100%;
 	width: 100%;
 	margin: auto;
-}
+	overflow: hidden;
+	position: relative;
 
-// actual, multistep card queue form inside the <form #queue-card-form> div
-#card-queue-form-steps {
-
-	.step {
+	// div containing NL form questions
+	div.questions {
 		background-color: #fff;
-		position: absolute;
-	}
-
-	&.ng-enter {
-		@include transition(0.5s linear all);
-		opacity: 0;
-		&.ng-enter-active {
-			opacity: 1;
+		height: 400px;
+		line-height: 400px;
+		width: 100%;
+		text-align: center;
+		background-color: salmon;
+		.question_text {
+			color: white;
+			display: inline-block;
+			vertical-align: middle;
+			line-height: normal;
+		}
+		.nl-field {
+			a {
+				color: darkred;
+				border-bottom: 1px dashed;
+			}
 		}
 	}
 
+	// div containing next step, prev step
+	div.next_step {
+		margin-top: 15px;
+		@include clearfix;
+		text-align: center;
+	}
+
+	// card images
+	img.pick_card {
+		height: 100px;
+	}
+
+	// when div enters and leaves
+	// &.ng-enter, &.ng-leave {
+	// 	// position: absolute;
+	// 	left: 30px;
+	// 	right: 30px;
+	// }
+
+	// &.ng-enter {
+	// 	@include animation(slideInRight 0.5s both ease);
+	// }
+
+	// &.ng-leave {
+	// 	@include animation(slideOutLeft 0.5s both ease);
+	// }
+
+
+	&.ng-enter, &.ng-leave {
+		position: absolute;
+	}
+
+	// &.ng-enter {
+	// 	@include animation(fadeIn 0.5s both ease);
+	// }
+
 	&.ng-leave {
-		@include animation(transition_out 0.5s both ease);
+		@include animation(fadeOut 0.5s both ease);
 	}
 
 }
 
 // animations for home page
-@include keyframes(transition_out) {
-	0% { opacity: 1; }
-	100% { opacity: 0; }
-}
+

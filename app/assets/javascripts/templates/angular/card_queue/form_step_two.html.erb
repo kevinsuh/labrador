@@ -1,13 +1,5 @@
-<div class="step step_two">
-	<div class="questions">
-		This needs to get to {{newCardReal.recipientFirstName}} by <nl-select value="date.month" options="months"></nl-select> <input ng-model="date.day" type="number" min=1 max=31></input>, 20<input ng-model="date.year" type="number" min=15 max=17></input>
+This needs to get to {{newCardReal.recipientFirstName}} by <nl-select value="date.month" options="months"></nl-select> <input ng-model="date.day" type="number" min=1 max=31></input>, 20<input ng-model="date.year" type="number" min=15 max=17></input>
 
-		<div ng-show="date.day && date.year">
-			({{date.month}}/{{date.day}}/{{date.year}})
-		</div>
-	</div>
-	<div class="next_step">
-		<a ui-sref="home.app.step1" class="btn">Back</a>
-		<a ui-sref="home.app.step3" class="btn btn-primary">Next</a>
-	</div>
+<div ng-show="date.day && date.year">
+	({{date.month}}/{{date.day}}/{{date.year}})
 </div>

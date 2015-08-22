@@ -9,6 +9,18 @@
 			$scope.newCard = cards.newCard;
 			$scope.newCardReal = cards.newCardReal;
 
+			$scope.testImages = {
+				one: '<%= asset_path("test_birthday1.jpg") %>',
+				two: '<%= asset_path("test_birthday2.jpg") %>',
+				three: '<%= asset_path("test_birthday3.jpg") %>'
+			};
+
+			$scope.$on('$stateChangeSuccess',
+			  function(event, toState) {
+			    $scope.currentState = toState.name;
+			  }
+			)
+
 			// new angular nl method
 			$scope.occasions = {
 				"Christmas": 1,
