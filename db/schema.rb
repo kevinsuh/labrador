@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150816193023) do
+ActiveRecord::Schema.define(version: 20150823012029) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "first_name"
@@ -29,6 +29,10 @@ ActiveRecord::Schema.define(version: 20150816193023) do
   end
 
   add_index "addresses", ["person_type", "person_id"], name: "index_addresses_on_person_type_and_person_id"
+
+  create_table "card_flavor_types", force: :cascade do |t|
+    t.string "card_flavor_name"
+  end
 
   create_table "card_images", force: :cascade do |t|
     t.integer  "card_id"
@@ -66,14 +70,30 @@ ActiveRecord::Schema.define(version: 20150816193023) do
   add_index "comments", ["post_id"], name: "index_comments_on_post_id"
   add_index "comments", ["user_id"], name: "index_comments_on_user_id"
 
+  create_table "occasion_types", force: :cascade do |t|
+    t.string "occasion_name"
+  end
+
+  create_table "order_statuses", force: :cascade do |t|
+    t.integer  "order_id"
+    t.boolean  "purchased",  default: false
+    t.boolean  "delivered",  default: false
+    t.boolean  "canceled",   default: false
+    t.boolean  "refunded",   default: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  add_index "order_statuses", ["order_id"], name: "index_order_statuses_on_order_id"
+
   create_table "orders", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "recipient_id"
     t.integer  "card_id"
-    t.datetime "send_date"
-    t.datetime "expected_arrival_date"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
+    t.datetime "recipient_arrival_date"
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+    t.boolean  "pre_address",            default: false
   end
 
   add_index "orders", ["card_id"], name: "index_orders_on_card_id"
@@ -105,11 +125,16 @@ ActiveRecord::Schema.define(version: 20150816193023) do
     t.integer  "user_id"
     t.string   "first_name"
     t.string   "last_name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.integer  "relationship"
   end
 
   add_index "recipients", ["user_id"], name: "index_recipients_on_user_id"
+
+  create_table "relationship_types", force: :cascade do |t|
+    t.string "relationship_name"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "name"

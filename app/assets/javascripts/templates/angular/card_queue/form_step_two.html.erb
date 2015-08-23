@@ -1,5 +1,5 @@
-This needs to get to {{newCardReal.recipientFirstName}} by <nl-select value="date.month" options="months"></nl-select> <input ng-model="date.day" type="number" min=1 max=31></input>, 20<input ng-model="date.year" type="number" min=15 max=17></input>
+This needs to get to {{newCard.recipientFirstName}} by <nl-select value="date.month" options="months"></nl-select> <input ng-model="date.day" type="number" min=1 max=31></input>, 20<input ng-model="date.year" type="number" min=15 max=17></input>
 
 <div ng-show="date.day && date.year">
-	({{date.month}}/{{date.day}}/{{date.year}})
+	({{date.month+1}}/{{date.day}}/{{date.year}})
 </div>

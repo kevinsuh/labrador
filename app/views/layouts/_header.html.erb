@@ -38,13 +38,11 @@
 		  </span>
 			<% if logged_in? %>
 				<ul class="nav navbar-nav pull-right">
-					<li>Hello, <%= current_user.name %></li>
-					<li><%= link_to "angular app", test_angular_path %></li>
+					<li>Hello, <%= current_user.email %></li>
 					<li><%= link_to "Log out", logout_path, method: "delete" %></li>
 				</ul>
 			<% else %>
 				<ul class="nav navbar-nav pull-right">
-					<li><%= link_to "angular app", test_angular_path %></li>
 					<li><%= link_to "How does it work?", about_path %></li>
 					<li><%= link_to "The Inspiration", why_path %></li>
 					<li><%= link_to "The Team", team_path %></li>

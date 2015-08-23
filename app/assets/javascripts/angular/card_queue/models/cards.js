@@ -12,36 +12,55 @@
      * after submit, newCard will empty out so that a new process can start again
      */
     var o = {
+      deliveredCards: [],
+      purchasedCards: [],
       queuedCards:[],
-      newCards: [],
       newCard: {
-        occasionType: "christmas",
-        recipientRelationship: "friend",
-        recipientFirstName: "Kevinvnn",
-        recipientLastName: "Koziara",
-        recipientGender: "male",
-        occasionDate: "10/10/15", // what day does recipient need to get this?
-        cardFlavors: ["witty", "funny", "caring"],
-        cardImage: "images/imageurl.png",
-        preAddress: "Y",
-        recipientAddress: "2704 SW 311th St. Federal Way, WA 98023",
-        notes: "some extra notes for this example"
-      },
-      newCardReal: {
         occasionType: "",
         recipientRelationship: "",
         recipientFirstName: "",
         recipientLastName: "",
         recipientGender: "",
-        occasionDate: "", // what day does recipient need to get this?
+        recipientArrivalDate: "", // what day does recipient need to get this?
         cardFlavors: "",
         cardImage: "",
+        cardID: 1, // which card did user select?
         preAddress: "",
         recipientAddress: "",
         notes: ""
       },
+      occasions: {},
+      relationships: {},
       test: "hello world!!~"
     };
+
+    /** submit a new card */
+    o.queueCard = function() {
+      return $http.post('/queue_card.json', o.newCard);
+    }
+
+    o.getOccasions = function() {
+      return $http.get('/occasions/get_occasion_types.json').success(function(data) {
+        var occasions = data.occasions;
+        var occasion;
+        for (var index in occasions) {
+          occasion = occasions[index];
+          o.occasions[occasion.occasion_name] = occasion.id;
+        }
+      });
+    }
+
+    o.getRelationships = function() {
+      return $http.get('/relationships/get_relationship_types.json').
+      success(function(data) {
+        var relationships = data.relationships;
+        var relationship;
+        for (var index in relationships) {
+          relationship = relationships[index];
+          o.relationships[relationship.relationship_name] = relationship.id
+        }
+      });
+    }
 
     return o;    
 

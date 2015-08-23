@@ -25,6 +25,14 @@
           'checkout': {
             templateUrl: "angular/card_queue/checkout.html"
           }
+        },
+        resolve: {
+          occasionPromise: ['cards', function(cards) {
+            return cards.getOccasions();
+          }],
+          relationshipPromise: ['cards', function(cards) {
+            return cards.getRelationships();
+          }]
         }
       })
 
@@ -62,9 +70,7 @@
   // this directive holds the links for iterating through the form
   app.directive("nextStep", function() {
     return {
-      scope: {
-        currentState: "=currentState"
-      },
+      scope: false,
       templateUrl: "angular/card_queue/_form_step_links.html"
     };
   });
