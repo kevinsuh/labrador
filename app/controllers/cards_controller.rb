@@ -19,7 +19,7 @@ class CardsController < ApplicationController
 			order = current_user.orders.create(
 				recipient_id: recipient.id,
 				card_id: card.id,
-				recipient_arrival_date: card_params[:occasionDate]
+				recipient_arrival_date: card_params[:recipientArrivalDate]
 				)
 
 			order_status = OrderStatus.create(order_id: order.id) # by default all the statuses will be false

@@ -22,7 +22,7 @@
         recipientFirstName: "Kevinvnn",
         recipientLastName: "Koziara",
         recipientGender: "male",
-        occasionDate: "10/10/15", // what day does recipient need to get this?
+        recipientArrivalDate: "10/10/15", // what day does recipient need to get this?
         cardFlavors: ["witty", "funny", "caring"],
         cardImage: "images/imageurl.png",
         preAddress: "Y",
@@ -35,7 +35,7 @@
         recipientFirstName: "",
         recipientLastName: "",
         recipientGender: "",
-        occasionDate: "", // what day does recipient need to get this?
+        recipientArrivalDate: "", // what day does recipient need to get this?
         cardFlavors: "",
         cardImage: "",
         cardID: 1, // which card did user select?
