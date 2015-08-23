@@ -62,9 +62,7 @@
   // this directive holds the links for iterating through the form
   app.directive("nextStep", function() {
     return {
-      scope: {
-        currentState: "=currentState"
-      },
+      scope: false,
       templateUrl: "angular/card_queue/_form_step_links.html"
     };
   });

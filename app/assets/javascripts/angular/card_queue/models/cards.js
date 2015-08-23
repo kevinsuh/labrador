@@ -12,6 +12,8 @@
      * after submit, newCard will empty out so that a new process can start again
      */
     var o = {
+      deliveredCards: [],
+      purchasedCards: [],
       queuedCards:[],
       newCards: [],
       newCard: {
@@ -36,12 +38,18 @@
         occasionDate: "", // what day does recipient need to get this?
         cardFlavors: "",
         cardImage: "",
+        cardID: 1, // which card did user select?
         preAddress: "",
         recipientAddress: "",
         notes: ""
       },
       test: "hello world!!~"
     };
+
+    /** submit a new card */
+    o.queueCard = function() {
+      return $http.post('/queue_card.json', o.newCardReal);
+    }
 
     return o;    
 

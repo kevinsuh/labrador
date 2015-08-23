@@ -15,11 +15,23 @@
 				three: '<%= asset_path("test_birthday3.jpg") %>'
 			};
 
-			$scope.$on('$stateChangeSuccess',
-			  function(event, toState) {
-			    $scope.currentState = toState.name;
-			  }
-			)
+			/**
+			 * submit the final card queue form that contains the information on newCard
+			 * this will submit the form and upon success, add it to the queuedCards array of cards. on failure, it will let the user know what the issue is
+			 */
+	    $scope.submitCardQueueForm = function() {
+	    	cards.queueCard()
+	    	.success(function(data) {
+
+	    		console.log("success!!");
+	    		console.log(data);
+
+				})
+				.error(function(data) {
+					console.log("error in submitCardQueueForm");
+					console.log(data);
+				});
+	    };
 
 			// new angular nl method
 			$scope.occasions = {
@@ -89,25 +101,11 @@
         }
 	    );
 
-
-			// // this will be in the "cards" factory
-			// $scope.listItems = {
-			// 	chr: "Christmas",
-			// 	bd: "Birthday",
-			// 	ty: "Thank You",
-			// 	jb: "Just because"
-			// };
-			// $scope.currentItem = $scope.listItems.bd;
-
-			// // this is to control the NL form
-			// $scope.occasionFieldOpen = false;
-			// $scope.occasionFieldOpenToggle = function(key) {
-			// 	if (key) {
-			// 		$scope.currentItem = $scope.listItems[key];
-			// 	}
-			// 	$scope.occasionFieldOpen = !$scope.occasionFieldOpen;
-			// }
-
+	    $scope.$on('$stateChangeSuccess',
+			  function(event, toState) {
+			    $scope.currentState = toState.name;
+			  }
+			)
 			
 	});
 

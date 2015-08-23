@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'cards/queue_card'
+
   get 'sessions/new'
 
   get 'signup'          => 'users#new'
@@ -19,6 +21,7 @@ Rails.application.routes.draw do
   get 'forgot_password' => 'password_resets#new'
   get 'reset_password'  => 'password_resets#edit'
 
+  # users
   resources :users do
     collection do
       post :validate_basic
@@ -31,8 +34,22 @@ Rails.application.routes.draw do
     end
   end
 
+  # cards
+  post 'queue_card'   => 'cards#queue_card'
+
+
   resources :account_activations, only: [:edit]
   resources :password_resets, only: [:new, :create, :edit, :update]
+
+  root 'static_pages#home'
+
+
+
+
+
+
+
+########## END OF ACTUAL ROUTES #########
 
 
   # sandbox for flapper_news
@@ -49,7 +66,7 @@ Rails.application.routes.draw do
     end
   end
 
-  root 'static_pages#home'
+  
   
 
   # The priority is based upon order of creation: first created -> highest priority.
