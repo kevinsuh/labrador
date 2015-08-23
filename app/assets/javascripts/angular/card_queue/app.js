@@ -29,6 +29,9 @@
         resolve: {
           occasionPromise: ['cards', function(cards) {
             return cards.getOccasions();
+          }],
+          relationshipPromise: ['cards', function(cards) {
+            return cards.getRelationships();
           }]
         }
       })

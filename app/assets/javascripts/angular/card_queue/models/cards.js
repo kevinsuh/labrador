@@ -30,6 +30,7 @@
         notes: ""
       },
       occasions: {},
+      relationships: {},
       test: "hello world!!~"
     };
 
@@ -39,12 +40,24 @@
     }
 
     o.getOccasions = function() {
-      return $http.get('/get_occasion_types.json').success(function(data) {
+      return $http.get('/occasions/get_occasion_types.json').success(function(data) {
         var occasions = data.occasions;
         var occasion;
         for (var index in occasions) {
           occasion = occasions[index];
           o.occasions[occasion.occasion_name] = occasion.id;
+        }
+      });
+    }
+
+    o.getRelationships = function() {
+      return $http.get('/relationships/get_relationship_types.json').
+      success(function(data) {
+        var relationships = data.relationships;
+        var relationship;
+        for (var index in relationships) {
+          relationship = relationships[index];
+          o.relationships[relationship.relationship_name] = relationship.id
         }
       });
     }
