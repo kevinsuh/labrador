@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'occasions/get_occasion_types'
+
   get 'cards/queue_card'
 
   get 'sessions/new'
@@ -35,7 +37,8 @@ Rails.application.routes.draw do
   end
 
   # cards
-  post 'queue_card'   => 'cards#queue_card'
+  post 'queue_card'    => 'cards#queue_card'
+  get 'get_occasion_types' => 'occasions#get_occasion_types'
 
 
   resources :account_activations, only: [:edit]

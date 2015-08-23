@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150823002223) do
+ActiveRecord::Schema.define(version: 20150823012029) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "first_name"
@@ -29,6 +29,10 @@ ActiveRecord::Schema.define(version: 20150823002223) do
   end
 
   add_index "addresses", ["person_type", "person_id"], name: "index_addresses_on_person_type_and_person_id"
+
+  create_table "card_flavor_types", force: :cascade do |t|
+    t.string "card_flavor_name"
+  end
 
   create_table "card_images", force: :cascade do |t|
     t.integer  "card_id"
@@ -65,6 +69,10 @@ ActiveRecord::Schema.define(version: 20150823002223) do
 
   add_index "comments", ["post_id"], name: "index_comments_on_post_id"
   add_index "comments", ["user_id"], name: "index_comments_on_user_id"
+
+  create_table "occasion_types", force: :cascade do |t|
+    t.string "occasion_name"
+  end
 
   create_table "order_statuses", force: :cascade do |t|
     t.integer  "order_id"
@@ -123,6 +131,10 @@ ActiveRecord::Schema.define(version: 20150823002223) do
   end
 
   add_index "recipients", ["user_id"], name: "index_recipients_on_user_id"
+
+  create_table "relationship_types", force: :cascade do |t|
+    t.string "relationship_name"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "name"

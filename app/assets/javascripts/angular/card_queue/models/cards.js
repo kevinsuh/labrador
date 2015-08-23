@@ -15,21 +15,7 @@
       deliveredCards: [],
       purchasedCards: [],
       queuedCards:[],
-      newCards: [],
       newCard: {
-        occasionType: "christmas",
-        recipientRelationship: "friend",
-        recipientFirstName: "Kevinvnn",
-        recipientLastName: "Koziara",
-        recipientGender: "male",
-        recipientArrivalDate: "10/10/15", // what day does recipient need to get this?
-        cardFlavors: ["witty", "funny", "caring"],
-        cardImage: "images/imageurl.png",
-        preAddress: "Y",
-        recipientAddress: "2704 SW 311th St. Federal Way, WA 98023",
-        notes: "some extra notes for this example"
-      },
-      newCardReal: {
         occasionType: "",
         recipientRelationship: "",
         recipientFirstName: "",
@@ -43,12 +29,24 @@
         recipientAddress: "",
         notes: ""
       },
+      occasions: {},
       test: "hello world!!~"
     };
 
     /** submit a new card */
     o.queueCard = function() {
-      return $http.post('/queue_card.json', o.newCardReal);
+      return $http.post('/queue_card.json', o.newCard);
+    }
+
+    o.getOccasions = function() {
+      return $http.get('/get_occasion_types.json').success(function(data) {
+        var occasions = data.occasions;
+        var occasion;
+        for (var index in occasions) {
+          occasion = occasions[index];
+          o.occasions[occasion.occasion_name] = occasion.id;
+        }
+      });
     }
 
     return o;    

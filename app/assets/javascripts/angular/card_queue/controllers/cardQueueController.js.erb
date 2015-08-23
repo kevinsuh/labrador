@@ -7,7 +7,6 @@
 			
 			$scope.test = cards.test;
 			$scope.newCard = cards.newCard;
-			$scope.newCardReal = cards.newCardReal;
 
 			$scope.testImages = {
 				one: '<%= asset_path("test_birthday1.jpg") %>',
@@ -26,8 +25,8 @@
 				var year  = "20" + $scope.date.year;
 				var date  = new Date(year, month, day);
 
-				$scope.newCardReal.recipientArrivalDate = date;
-				var queuedCard = $scope.newCardReal;
+				$scope.newCard.recipientArrivalDate = date;
+				var queuedCard = $scope.newCard;
 
 	    	cards.queueCard()
 	    	.success(function(data) {
@@ -50,19 +49,7 @@
 	    };
 
 			// new angular nl method
-			$scope.occasions = {
-				"Christmas": 1,
-				"Hannukkah": 2,
-				"New Year's": 3,
-				"Mother's Day": 4,
-				"Father's Day": 5,
-				"Anniversary": 6,
-				"Birthday": 7,
-				"Injury/Sick": 8,
-				"Graduation": 9,
-				"New Job": 10,
-				"Thank You": 11
-			};
+			$scope.occasions = cards.occasions;
 
 			$scope.relationships = {
 				Mother: 1,
@@ -110,9 +97,9 @@
 			}
 
 			// don't allow more than 3 card flavors!
-			$scope.$watch('newCardReal.cardFlavors.length', function(newValue, oldValue){
+			$scope.$watch('newCard.cardFlavors.length', function(newValue, oldValue){
           if (newValue > 3) {
-          	$scope.newCardReal.cardFlavors.shift();
+          	$scope.newCard.cardFlavors.shift();
           }
         }
 	    );

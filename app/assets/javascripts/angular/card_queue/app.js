@@ -25,6 +25,11 @@
           'checkout': {
             templateUrl: "angular/card_queue/checkout.html"
           }
+        },
+        resolve: {
+          occasionPromise: ['cards', function(cards) {
+            return cards.getOccasions();
+          }]
         }
       })
 
