@@ -42,13 +42,13 @@ $base-line-height:30px;
  * 			ANIMATIONS
  */
 @include keyframes(slideOutLeft) {
-    to      { transform: translateX(-200%); }
+    to      { @include transform(translateX(-200%)); }
 }
 
 /* slide in from the right */
 @include keyframes(slideInRight) {
-    from    { transform: translateX(200%); }
-    to      { transform: translateX(0); }
+    from    { @include transform(translateX(200%)); }
+    to      { @include transform(translateX(0)); }
 }
 
 @include keyframes(fadeIn) {
