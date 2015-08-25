@@ -8,7 +8,6 @@ class UsersController < ApplicationController
 
   def new
   	@user = User.new
-    @session = "hello world?"
     render layout: "signup_application"
   end
 
