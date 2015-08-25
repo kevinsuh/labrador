@@ -10,6 +10,7 @@ module Cardagain
   class Application < Rails::Application
 
     config.autoload_paths += %W(#{config.root}/lib)
+    config.autoload_paths += Dir[Rails.root.join('app', 'models', '{**}')]
 
     config.action_controller.default_url_options = { :trailing_slash => true }
 

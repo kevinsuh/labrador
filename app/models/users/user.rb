@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
 
+	include UserSignup
+
 	before_save :downcase_email
 	before_create :create_activation_digest
 

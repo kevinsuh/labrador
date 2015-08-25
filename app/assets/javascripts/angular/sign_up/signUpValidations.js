@@ -55,7 +55,8 @@
 		return {
 			require: "ngModel",
 			link: function(scope, element, attributes, ngModel) {
-				// email taken, which can only be tested via DB
+				
+				// basically what this does is, make the validation true the second user types new email, and the error will instead be handled from the DB for this instance on user clicking submit
 				ngModel.$validators.emailTaken = function (value) {
 					return true;
 				}

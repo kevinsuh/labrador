@@ -93,6 +93,7 @@ class UsersController < ApplicationController
   
   # validate email + pass from backend
   def validate_basic
+
     email = params[:email]
     password = params[:password]
     password_confirmation = params[:password_confirmation]
@@ -111,6 +112,7 @@ class UsersController < ApplicationController
 
   # validate address from backend
   def validate_address
+    
     puts params.inspect
     address = Address.new(
       first_name: params[:first_name],
@@ -128,14 +130,8 @@ class UsersController < ApplicationController
   end
 
   # new signup process
-  # hopefully this will overwrite users#create in the future
   def create_signup
-    # this will:
-    # 1) create user
-    # 2) attach address to user and create address
-    # 3) attach interests to user and create interests
-    # 4) log_in & remember user
-    # 5) redirect to home page of app
+    
     user_params = params[:user]
 
     user = User.new(
