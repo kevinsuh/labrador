@@ -27,26 +27,6 @@
       });
 
     $urlRouterProvider.otherwise('/form');
-
-
-
-        
-    // access a speciifc post so that we can see comments and other data surrounding it
-    // $stateProvider
-    //   .state('posts', {
-    //     url: '/posts/{id}',
-    //     templateUrl: "angular/flapper_news/posts/_posts.html",
-    //     controller: "PostsController",
-    //     resolve: {
-    //       post: ['$stateParams', 'posts', function($stateParams, posts) {
-    //         var postID = $stateParams.id;
-    //         return posts.findPostByID(postID);
-    //       }]
-    //     }
-    //   })
-
-
-		// default fall back route
 		
 
 

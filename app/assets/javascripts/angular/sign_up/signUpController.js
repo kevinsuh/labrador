@@ -39,7 +39,7 @@
 		// array of form fields must all be valid to be true
 		$scope.fieldsAreValid = function(fields) {
 			var valid = true;
-			
+
 			for (var i = 0; i < fields.length; i++) {
 				if ($scope.basicInfoForm[fields[i]].$invalid) {
 					valid = false;

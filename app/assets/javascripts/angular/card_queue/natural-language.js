@@ -7,15 +7,15 @@
 angular.module('vr.directives.nlForm', ['vr.directives.nlForm.select', 'vr.directives.nlForm.text']);
 
 angular.module('vr.directives.nlForm.select',[])
-    .directive('nlSelect', function(){
-        return {
-            restrict: 'EA',
+  .directive('nlSelect', function(){
+    return {
+      restrict: 'EA',
 			replace: true,
 			scope: {
 				value: '=',
 				options: '='
 			},
-            controller: 'nlSelectCtrl',
+      controller: 'nlSelectCtrl',
 			template:
 				"<div ng-form='nlSelect' class='nl-field nl-dd' ng-class=\"{'nl-field-open': opened}\">" +
 					"<a class='nl-field-toggle' ng-click='open($event)' ng-bind='getSelected()'></a>" +
@@ -23,7 +23,7 @@ angular.module('vr.directives.nlForm.select',[])
 						"<li ng-repeat='label in getLabels()' ng-class=\"{'nl-dd-checked': isSelected(label)}\" ng-click='select(label)' ng-bind='label'></li>" +
 					"</ul>" +
 				"</div>",
-			link: function(scope, element, attributes){
+			link: function(scope, element, attributes) {
 
 				// is this required
 				scope.required = !angular.isUndefined(attributes.required);
@@ -55,10 +55,9 @@ angular.module('vr.directives.nlForm.select',[])
 				}
 				// close the select when the overlay is clicked
 				overlay.bind('click',function() { scope.$apply(scope.close); });
-
 			}
-        };
-    })
+    }; // end of directive return
+	})
 	.controller('nlSelectCtrl',['$scope', function($scope){
 
 		// option list type constants
@@ -359,9 +358,9 @@ angular.module('vr.directives.nlForm.select',[])
 	}]);
 
 angular.module('vr.directives.nlForm.text',[])
-    .directive('nlText', function(){
-        return {
-            restrict: 'EA',
+  .directive('nlText', function(){
+    return {
+	    restrict: 'EA',
 			replace: true,
 			scope: {
 				placeholder: '@',
@@ -369,24 +368,23 @@ angular.module('vr.directives.nlForm.text',[])
 				name: '@',
 				value: '='
 			},
-            template:
-                '<div ng-form class="nl-field nl-ti-text" ng-class="{\'nl-field-open\': opened}">' +
-                    '<a class="nl-field-toggle" ng-click="open($event)" ng-bind="viewValue()"></a>' +
-                    '<ul>' +
-                        '<li class="nl-ti-input">' +
-                            '<input type="text" placeholder="{{ placeholder }}" name="{{ name }}" ng-model="value" ng-click="$event.stopPropagation()" ng-required="required"/>' +
-                            '<button class="nl-field-go" ng-click="close()">Go</button>' +
-                        '</li>' +
-                        '<li class="nl-ti-example" ng-show="showSubline()" ng-bind-html-unsafe="subline"></li>' +
-                    '</ul>' +
-                '</div>',
-            controller: 'nlTextCtrl',
-            link: function(scope, element, attributes){
-
+      template:
+        '<div ng-form class="nl-field nl-ti-text" ng-class="{\'nl-field-open\': opened}">' +
+          '<a class="nl-field-toggle" ng-click="open($event)" ng-bind="viewValue()"></a>' +
+          '<ul>' +
+            '<li class="nl-ti-input">' +
+              '<input type="text" placeholder="{{ placeholder }}" name="{{ name }}" ng-model="value" ng-click="$event.stopPropagation()" ng-required="required"/>' +
+              '<button class="nl-field-go" ng-click="close()">Go</button>' +
+            '</li>' +
+            '<li class="nl-ti-example" ng-show="showSubline()" ng-bind-html-unsafe="subline"></li>' +
+          '</ul>' +
+        '</div>',
+      controller: 'nlTextCtrl',
+      link: function(scope, element, attributes){
 				// is this input required?
 				scope.required = !angular.isUndefined(attributes.required);
 
-                var overlay = false;
+	              var overlay = false;
 				//look for an overlay element
 				angular.forEach(element.parent().children(), function(child){
 					child = angular.element(child);
@@ -401,9 +399,9 @@ angular.module('vr.directives.nlForm.text',[])
 				}
 				// close the input when the overlay is clicked
 				overlay.bind('click',function() { scope.$apply(scope.close) });
-            }
-        };
-    })
+      }
+    };
+  })
 	.controller('nlTextCtrl',['$scope', function($scope){
 
 		// is the input open
@@ -433,4 +431,4 @@ angular.module('vr.directives.nlForm.text',[])
 			return angular.isString($scope.subline) && $scope.subline != '';
 		};
 
-	}]);
+}]);

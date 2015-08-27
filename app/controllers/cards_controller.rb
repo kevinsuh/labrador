@@ -22,7 +22,7 @@ class CardsController < ApplicationController
 				recipient_arrival_date: card_params[:recipientArrivalDate]
 				)
 
-			order_status = OrderStatus.create(order_id: order.id) # by default all the statuses will be false
+			order_status = OrderStatus.create(order_id: order.id) # by default all the order statuses will be false
 
 			respond_to do |format|
 				format.json { render json: order }

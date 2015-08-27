@@ -34,6 +34,10 @@
 					var order   = data.order;
 					var isValid = order.is_valid;
 	    		
+	    		console.log("order return: ");
+	    		console.log(order);
+
+	    		console.log("card that you just queued: ");
 					console.log(queuedCard);
 
 		    	if (isValid) {
@@ -83,6 +87,15 @@
 				year: ""
 			}
 
+			// hack to provide front-end validation for each step of the form
+			$scope.stepsValid = {
+				one: false,
+				two: false,
+				three: false,
+				four: false,
+				five: false
+			}
+
 			// don't allow more than 3 card flavors!
 			$scope.$watch('newCard.cardFlavors.length', function(newValue, oldValue){
           if (newValue > 3) {
@@ -96,7 +109,35 @@
 			    $scope.currentState = toState.name;
 			  }
 			)
-			
+				
+			/**
+			 * semi-hack to ensure that current card's state is valid before continuing
+			 */
+			$scope.cardQueueStateIsValid = function() {
+
+				var valid = false;
+				switch($scope.currentState) {
+					case "home.app.step1":
+						if ($scope.newCard.recipientFirstName != "")
+							valid = true;
+						else
+							valid = false;
+						break;
+					case "home.app.step2":
+						valid = false;
+						break;
+					case "home.app.step3":
+						valid = false;
+						break;
+					case "home.app.step4":
+						valid = false;
+						break;
+					case "home.app.step5":
+						valid = false;
+				}
+				
+				return valid;
+			}
 	});
 
 })();
