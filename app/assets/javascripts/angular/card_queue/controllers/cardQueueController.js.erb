@@ -3,10 +3,12 @@
 	/**
 	 * this controller is specific to queuing up the cards through an awesome multi-step form, then saving the data and queueing up another card
 	 */
-	var app = angular.module('card-queue').controller("CardQueueController", function($rootScope, $scope, $state, cards) {
+	var app = angular.module('card-queue').controller("CardQueueController", function($rootScope, $scope, $state, cards, usSpinnerService) {
 			
 			$scope.test = cards.test;
 			$scope.newCard = cards.newCard;
+
+			usSpinnerService.spin('spinner-1');
 
 			$scope.testImages = {
 				one: '<%= asset_path("test_birthday1.jpg") %>',
@@ -87,14 +89,6 @@
 				year: ""
 			}
 
-			// hack to provide front-end validation for each step of the form
-			$scope.stepsValid = {
-				one: false,
-				two: false,
-				three: false,
-				four: false,
-				five: false
-			}
 
 			// don't allow more than 3 card flavors!
 			$scope.$watch('newCard.cardFlavors.length', function(newValue, oldValue){
@@ -111,25 +105,36 @@
 			)
 				
 			/**
-			 * semi-hack to ensure that current card's state is valid before continuing
+			 * make sure that all of the data is filled out for each new card queue
 			 */
+			$scope.stepsValid = {
+				one: false,
+				two: false,
+				three: false,
+				four: false,
+				five: false
+			}
+
 			$scope.cardQueueStateIsValid = function() {
 
 				var valid = false;
 				switch($scope.currentState) {
 					case "home.app.step1":
-						if ($scope.newCard.recipientFirstName != "")
+						if ($scope.newCard.recipientFirstName != "" && $scope.newCard.recipientLastName != "")
 							valid = true;
 						else
 							valid = false;
 						break;
 					case "home.app.step2":
-						valid = false;
+						if ($scope.date.day != "" && $scope.date.year != "")
+							valid = true;
+						else
+							valid = false;
 						break;
 					case "home.app.step3":
-						valid = false;
+						valid = true; // it can be "anything"
 						break;
-					case "home.app.step4":
+					case "home.app.step4": // finding your card...
 						valid = false;
 						break;
 					case "home.app.step5":

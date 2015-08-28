@@ -9,7 +9,15 @@
   "vendor": {
     "name": "bower-rails generated vendor assets",
     "dependencies": {
-      // "three.js"    : "https://raw.github.com/mrdoob/three.js/master/build/three.js"
+      "angular": "~1.x",
+      "spin.js": "~2.x"
+    },
+    "devDependencies": {
+      "angular-mocks": "~1.x"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git://github.com/urish/angular-spinner.git"
     }
   },
   "lib": {
@@ -20,3 +28,4 @@
     }
   }
 }
+
