@@ -194,7 +194,7 @@
 	left: 0;
 	right: 0;
 	top: 0;
-	margin-top: 30%;
+	margin-top: 25%;
 	color: white;
 
 	input {
@@ -209,6 +209,22 @@
 		@include animation(slideOutLeft 0.5s both ease);
 	}
 
+	// handle the div that "finds the card"
+	.find_card_step {
+		.card-spinner {
+			@include center_absolute;
+			top: 100px;
+		}
+		.find_card {
+			@include center_absolute;
+			&.ng-hide-add { // when hiding the pic
+				@include animation(fadeOut 0.4s both ease-out);
+			}
+			&.ng-hide-remove { // when showing the pic
+				@include animation(fadeIn 1s 0.6s both ease-in);
+			}
+		}
+	}
 }
 
 // progress bullets!!

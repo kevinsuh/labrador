@@ -14,7 +14,7 @@
 
 			.provider('usSpinnerConfig', function () {
 				var _config = {};
-
+				
 				return {
 					setDefaults: function (config) {
 						_config = config || _config;

@@ -7,8 +7,10 @@
 			
 			$scope.test = cards.test;
 			$scope.newCard = cards.newCard;
-
-			usSpinnerService.spin('spinner-1');
+			$scope.cardsLoaded = false; // loading up cards for final purchase
+			$scope.triggerLoad = function() {
+				$scope.cardsLoaded = !$scope.cardsLoaded;
+			}
 
 			$scope.testImages = {
 				one: '<%= asset_path("test_birthday1.jpg") %>',
@@ -124,21 +126,30 @@
 							valid = true;
 						else
 							valid = false;
+
+						valid = true;
 						break;
 					case "home.app.step2":
 						if ($scope.date.day != "" && $scope.date.year != "")
 							valid = true;
 						else
 							valid = false;
+
+						valid = true;
 						break;
 					case "home.app.step3":
 						valid = true; // it can be "anything"
 						break;
 					case "home.app.step4": // finding your card...
+						usSpinnerService.spin('card-find-spinner');
 						valid = false;
+
+						valid = true;
 						break;
 					case "home.app.step5":
 						valid = false;
+
+						valid = true;
 				}
 				
 				return valid;

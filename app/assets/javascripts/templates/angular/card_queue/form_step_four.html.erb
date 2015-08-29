@@ -1,5 +1,16 @@
-Pick your card:
-<img class="pick_card" ng-src="{{testImages.one}}"/>
-<img class="pick_card" ng-src="{{testImages.two}}"/>
-<img class="pick_card" ng-src="{{testImages.three}}"/>
-<span us-spinner="{radius:30, width:8, length: 16}"></span>
+<div class="find_card_step">
+	<button style="position: absolute; top: -40px;" ng-click="triggerLoad()">click me</button>
+	<div class="find_card" ng-hide="cardsLoaded">
+		Finding your perfect card...
+		<span class="card-spinner" us-spinner spinner-key="card-find-spinner"></span>
+	</div>
+
+	<div class="find_card" ng-show="cardsLoaded">
+		<img class="pick_card" ng-src="{{testImages.one}}"/>
+		<input type="radio">
+		<img class="pick_card" ng-src="{{testImages.two}}"/>
+		<input type="radio">
+		<img class="pick_card" ng-src="{{testImages.three}}"/>
+		<input type="radio">
+	</div>
+<div>

@@ -2,7 +2,10 @@
 
   var app = angular.module('card-queue', ['ngAnimate', 'ngMessages', 'ui.router', 'templates', 'vr.directives.nlForm', 'angularSpinner']);
 
-  app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
+  app.config(function($stateProvider, $urlRouterProvider, $locationProvider, usSpinnerConfigProvider) {
+
+    // default spinner configurations
+    usSpinnerConfigProvider.setDefaults({radius:36, width:8, length: 33, lines: 15, speed: 1.4, scale: 0.4});
 
     // home page that shows lists of posts and allows you to post new ones
   	$stateProvider

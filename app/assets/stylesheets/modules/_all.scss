@@ -39,6 +39,17 @@ $base-line-height:30px;
 @include establish-baseline;
 
 /**
+ *          HELPER FUNCTIONS
+ */
+@mixin center_absolute {
+    position: absolute;
+    right: 0;
+    left: 0;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+/**
  * 			ANIMATIONS
  */
 @include keyframes(slideOutLeft) {
