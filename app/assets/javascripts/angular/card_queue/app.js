@@ -35,6 +35,9 @@
           }],
           relationshipPromise: ['cards', function(cards) {
             return cards.getRelationships();
+          }],
+          cardFlavorPromise: ['cards', function(cards) {
+            return cards.getCardFlavors();
           }]
         }
       })

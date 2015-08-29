@@ -22,7 +22,6 @@
         recipientLastName: "",
         recipientGender: "",
         recipientArrivalDate: "", // what day does recipient need to get this?
-        cardFlavors: "",
         cardImage: "",
         cardID: 1, // which card did user select?
         preAddress: "",
@@ -31,7 +30,7 @@
       },
       occasions: {},
       relationships: {},
-      test: "hello world!!~"
+      cardFlavors: {}
     };
 
     /** submit a new card */
@@ -57,7 +56,18 @@
         var relationship;
         for (var index in relationships) {
           relationship = relationships[index];
-          o.relationships[relationship.relationship_name] = relationship.id
+          o.relationships[relationship.relationship_name] = relationship.id;
+        }
+      });
+    }
+
+    o.getCardFlavors = function() {
+      return $http.get('/cards/get_card_flavor_types.json').success(function(data) {
+        var cardFlavors = data.cards;
+        var cardFlavor;
+        for (var index in cardFlavors) {
+          cardFlavor = cardFlavors[index];
+          o.cardFlavors[cardFlavor.card_flavor_name] = cardFlavor.id;
         }
       });
     }

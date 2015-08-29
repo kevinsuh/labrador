@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
 
   get 'relationships/get_relationship_types'
-
   get 'occasions/get_occasion_types'
+  get 'cards/get_card_flavor_types'
 
   get 'cards/queue_card'
 
@@ -40,8 +40,9 @@ Rails.application.routes.draw do
 
   # cards
   post 'queue_card'    => 'cards#queue_card'
-  get 'get_occasion_types' => 'occasions#get_occasion_types'
-  get 'get_relationship_types' => 'relationships#get_relation_types'
+  # get 'get_occasion_types' => 'occasions#get_occasion_types'
+  # get 'get_relationship_types' => 'relationships#get_relation_types'
+  # get 'get_card_flavor_types' => 'cards#get_card_flavor_types'
 
   resources :account_activations, only: [:edit]
   resources :password_resets, only: [:new, :create, :edit, :update]
@@ -54,7 +55,7 @@ Rails.application.routes.draw do
 
 
 
-########## END OF ACTUAL ROUTES #########
+########## SANDBOX ROUTES #########
 
 
   # sandbox for flapper_news

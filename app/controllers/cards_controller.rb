@@ -1,5 +1,12 @@
 class CardsController < ApplicationController
-  
+	
+	def get_card_flavor_types
+  	card_flavor_types = CardFlavorType.all
+  	respond_to do |format|
+  		format.json { render json: card_flavor_types }
+  	end
+  end
+
 	# validate, then queue card and return the successful card in JSON notation
   def queue_card
   	# 1) validate card
@@ -37,6 +44,8 @@ class CardsController < ApplicationController
 		end
 
   end
+
+
 
 
 end
