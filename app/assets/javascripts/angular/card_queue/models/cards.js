@@ -12,18 +12,17 @@
      * after submit, newCard will empty out so that a new process can start again
      */
     var o = {
-      deliveredCards: [],
-      purchasedCards: [],
-      queuedCards:[],
-      newCard: {
+      purchasedCards: [], // purchased but not yet delivered
+      queuedCards:[], // queued but not purchased
+      newCard: { // current card being filled out
         occasionType: "",
         recipientRelationship: "",
         recipientFirstName: "",
         recipientLastName: "",
         recipientGender: "",
         recipientArrivalDate: "", // what day does recipient need to get this?
-        cardImage: "",
-        cardID: 1, // which card did user select?
+        potentialCards: {}, // possible cards to choose from, with images attached
+        selectedCardID: 1, // which card did user select?
         preAddress: "",
         recipientAddress: "",
         notes: ""
