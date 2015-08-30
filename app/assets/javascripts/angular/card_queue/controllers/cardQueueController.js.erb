@@ -12,8 +12,10 @@
 				$scope.cardsLoaded = !$scope.cardsLoaded;
 			}
 
+			// success on uploading image from database!
+			<% image = CardImage.first %>
 			$scope.testImages = {
-				one: '<%= asset_path("test_birthday1.jpg") %>',
+				one: '<%= asset_path image.picture.url if image.picture? %>',
 				two: '<%= asset_path("test_birthday2.jpg") %>',
 				three: '<%= asset_path("test_birthday3.jpg") %>'
 			};
