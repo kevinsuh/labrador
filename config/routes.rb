@@ -2,9 +2,11 @@ Rails.application.routes.draw do
 
   get 'relationships/get_relationships'
   get 'occasions/get_occasions'
-  get 'cards/get_flavors'
 
-  get 'cards/queue_card'
+  # cards
+  get 'cards/get_flavors'
+  post 'cards/get_curated_cards'
+  post 'cards/queue_card'
 
   get 'sessions/new'
 
@@ -38,8 +40,7 @@ Rails.application.routes.draw do
     end
   end
 
-  # cards
-  post 'queue_card'    => 'cards#queue_card'
+  
   # get 'get_occasion_types' => 'occasions#get_occasion_types'
   # get 'get_relationship_types' => 'relationships#get_relation_types'
   # get 'get_card_flavor_types' => 'cards#get_card_flavor_types'

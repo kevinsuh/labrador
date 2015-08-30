@@ -104,9 +104,10 @@
 			    	$scope.cardsLoaded = false;
 			    	$timeout(function() {
 			    		cards.getCuratedCards().then(function(data) {
+			    			console.log(data);
 			    			$scope.cardsLoaded = true;
 			    		})
-			    	}, 2000);
+			    	}, 1000);
 			    }
 			  }
 			)
