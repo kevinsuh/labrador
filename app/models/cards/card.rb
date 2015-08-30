@@ -2,14 +2,16 @@ class Card < ActiveRecord::Base
 	has_many :orders
 	has_many :card_images
 
-	# has many occasion_types through card_occasions
+	# has many occasions through card_occasions
 	has_many :card_occasions 
-	has_many :occasion_types, through: :card_occasions, source: :occasion
+	has_many :occasions, through: :card_occasions
 
-	# has many relationship_types through card_relationships
-	
-	#has many flavor_types through card_flavors
+	# has many relationships through card_relationships
+	has_many :card_relationships
+	has_many :relationships, through: :card_relationships
+
+	#has many flavors through card_flavors
 	has_many :card_flavors
 	has_many :flavors, through: :card_flavors
-	
+
 end
