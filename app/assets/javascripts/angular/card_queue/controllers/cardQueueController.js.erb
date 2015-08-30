@@ -4,9 +4,27 @@
 	 * this controller is specific to queuing up the cards through an awesome multi-step form, then saving the data and queueing up another card
 	 */
 	var app = angular.module('card-queue').controller("CardQueueController", function($rootScope, $scope, $state, $timeout, cards, usSpinnerService) {
-			
-			$scope.newCard = cards.newCard;
-			$scope.cardsLoaded = false; // loading up curated cards
+				
+			// load in the information from cards factory
+			$scope.newCard        = cards.newCard;
+			$scope.queuedCards    = cards.queuedCards;
+			$scope.purchasedCards = cards.purchasedCards
+			$scope.cardsLoaded    = false; // loading up curated cards
+			$scope.occasions      = cards.occasions;
+			$scope.relationships  = cards.relationships;
+			$scope.cardFlavors    = cards.cardFlavors
+
+			$scope.months = { January: 0, February: 1, March: 2, April: 3, May: 4, June: 5, July: 6, August: 7, September: 8, October: 9, November: 10, December: 11 };
+
+			// collect month, then make it into a datetime obj
+			$scope.date = { month: "", day: "", year: "" };
+
+			// don't allow more than 3 card flavors!
+			$scope.$watch('newCard.cardFlavors.length', function(newValue, oldValue){
+          if (newValue > 3) {
+          	$scope.newCard.cardFlavors.shift();
+          }
+       });
 
 			/**
 			 * submit the final card queue form that contains the information on newCard
@@ -41,42 +59,7 @@
 				});
 	    };
 
-			// new angular nl method
-			$scope.occasions     = cards.occasions;
-			$scope.relationships = cards.relationships;
-			$scope.cardFlavors   = cards.cardFlavors
-
-			$scope.months = {
-				January: 0,
-				February: 1,
-				March: 2,
-				April: 3,
-				May: 4,
-				June: 5,
-				July: 6,
-				August: 7,
-				September: 8,
-				October: 9,
-				November: 10,
-				December: 11
-			};
-
-			// collect month, then make it into a datetime obj
-			$scope.date = {
-				month: "",
-				day: "",
-				year: ""
-			}
-
-
-			// don't allow more than 3 card flavors!
-			$scope.$watch('newCard.cardFlavors.length', function(newValue, oldValue){
-          if (newValue > 3) {
-          	$scope.newCard.cardFlavors.shift();
-          }
-        }
-	    );
-
+			// control what happens on each state of UI-Router
 	    $scope.$on('$stateChangeSuccess',
 			  function(event, toState) {
 			    $scope.currentState = toState.name;
