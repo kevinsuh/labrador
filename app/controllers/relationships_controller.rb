@@ -1,10 +1,10 @@
 class RelationshipsController < ApplicationController
   
-  def get_relationship_types
+  def get_relationships
   	# return all the relationships
-  	relationship_types = RelationshipType.all
+  	relationships = Relationship.all
   	respond_to do |format|
-  		format.json { render json: relationship_types }
+  		format.json { render json: relationships }
   	end
   end
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150830025156) do
+ActiveRecord::Schema.define(version: 20150830030240) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "first_name"
@@ -154,8 +154,8 @@ ActiveRecord::Schema.define(version: 20150830025156) do
 
   add_index "recipients", ["user_id"], name: "index_recipients_on_user_id"
 
-  create_table "relationship_types", force: :cascade do |t|
-    t.string "relationship_name"
+  create_table "relationships", force: :cascade do |t|
+    t.string "name"
   end
 
   create_table "users", force: :cascade do |t|

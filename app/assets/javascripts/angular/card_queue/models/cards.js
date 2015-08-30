@@ -49,13 +49,13 @@
     }
 
     o.getRelationships = function() {
-      return $http.get('/relationships/get_relationship_types.json').
+      return $http.get('/relationships/get_relationships.json').
       success(function(data) {
         var relationships = data.relationships;
         var relationship;
         for (var index in relationships) {
           relationship = relationships[index];
-          o.relationships[relationship.relationship_name] = relationship.id;
+          o.relationships[relationship.name] = relationship.id;
         }
       });
     }
@@ -64,7 +64,6 @@
       return $http.get('/cards/get_flavors.json').success(function(data) {
         var cardFlavors = data.cards;
         var cardFlavor;
-        console.log(data);
         for (var index in cardFlavors) {
           cardFlavor = cardFlavors[index];
           o.cardFlavors[cardFlavor.name] = cardFlavor.id;
