@@ -32,9 +32,18 @@
       cardFlavors: {}
     };
 
-    /** submit a new card */
+    /**
+     * submit the card for queueing
+     */
     o.queueCard = function() {
       return $http.post('/queue_card.json', o.newCard);
+    }
+
+    /**
+     * using search info, find the appropriate cards for user to select from
+     */
+    o.getCuratedCards = function() {
+      return $http.get('/occasions/get_occasions.json');
     }
 
     o.getOccasions = function() {

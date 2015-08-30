@@ -3,7 +3,7 @@
 	/**
 	 * this controller is specific to queuing up the cards through an awesome multi-step form, then saving the data and queueing up another card
 	 */
-	var app = angular.module('card-queue').controller("CardQueueController", function($rootScope, $scope, $state, cards, usSpinnerService) {
+	var app = angular.module('card-queue').controller("CardQueueController", function($rootScope, $scope, $state, $timeout, cards, usSpinnerService) {
 			
 			$scope.test = cards.test;
 			$scope.newCard = cards.newCard;
@@ -97,6 +97,17 @@
 	    $scope.$on('$stateChangeSuccess',
 			  function(event, toState) {
 			    $scope.currentState = toState.name;
+
+			    // start the ajax call on step 4
+			    if ($scope.currentState == "home.app.step4") {
+			    	// simulate retrieval of cards
+			    	$scope.cardsLoaded = false;
+			    	$timeout(function() {
+			    		cards.getCuratedCards().then(function(data) {
+			    			$scope.cardsLoaded = true;
+			    		})
+			    	}, 2000);
+			    }
 			  }
 			)
 				
