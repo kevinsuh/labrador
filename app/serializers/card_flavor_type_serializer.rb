@@ -1,3 +1,3 @@
-class CardFlavorTypeSerializer < ActiveModel::Serializer
-  attributes :id, :card_flavor_name
+class FlavorSerializer < ActiveModel::Serializer
+  attributes :id, :name
 end
