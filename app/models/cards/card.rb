@@ -9,5 +9,7 @@ class Card < ActiveRecord::Base
 	# has many relationship_types through card_relationships
 	
 	#has many flavor_types through card_flavors
+	has_many :card_flavors
+	has_many :flavors, through: :card_flavors
 	
 end
