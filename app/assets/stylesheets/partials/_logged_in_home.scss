@@ -217,6 +217,22 @@
 		}
 		.find_card {
 			@include center_absolute;
+			.pick_card { // each card choice
+				display: inline;
+				margin: 0 5px;
+
+				label > input { // hide radio button
+					visibility: hidden;
+					position: absolute;
+				}
+				label > input + img { // image style
+					cursor: pointer;
+					border: 2px solid transparent;
+				}
+				label > input:checked + img { // (RADIO CHECKED) image style
+					border: 4px solid green;
+				}
+			}
 			&.ng-hide-add { // when hiding the pic
 				@include animation(fadeOut 0.4s both ease-out);
 			}

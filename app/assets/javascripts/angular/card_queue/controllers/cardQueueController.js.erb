@@ -5,20 +5,8 @@
 	 */
 	var app = angular.module('card-queue').controller("CardQueueController", function($rootScope, $scope, $state, $timeout, cards, usSpinnerService) {
 			
-			$scope.test = cards.test;
 			$scope.newCard = cards.newCard;
-			$scope.cardsLoaded = false; // loading up cards for final purchase
-			$scope.triggerLoad = function() {
-				$scope.cardsLoaded = !$scope.cardsLoaded;
-			}
-
-			// success on uploading image from database!
-			<% image = CardImage.first %>
-			$scope.testImages = {
-				one: '<%= asset_path image.picture.url if image.picture? %>',
-				two: '<%= asset_path("test_birthday2.jpg") %>',
-				three: '<%= asset_path("test_birthday3.jpg") %>'
-			};
+			$scope.cardsLoaded = false; // loading up curated cards
 
 			/**
 			 * submit the final card queue form that contains the information on newCard
@@ -97,17 +85,16 @@
 	    $scope.$on('$stateChangeSuccess',
 			  function(event, toState) {
 			    $scope.currentState = toState.name;
-
+			    console.log($scope.newCard);
 			    // start the ajax call on step 4
 			    if ($scope.currentState == "home.app.step4") {
 			    	// simulate retrieval of cards
 			    	$scope.cardsLoaded = false;
 			    	$timeout(function() {
 			    		cards.getCuratedCards().then(function(data) {
-			    			console.log(data);
 			    			$scope.cardsLoaded = true;
 			    		})
-			    	}, 1000);
+			    	}, 1250);
 			    }
 			  }
 			)

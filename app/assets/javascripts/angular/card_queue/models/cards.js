@@ -42,7 +42,10 @@
      * using search info, find the appropriate cards for user to select from
      */
     o.getCuratedCards = function() {
-      return $http.post('/cards/get_curated_cards.json', o.newCard);
+      return $http.post('/cards/get_curated_cards.json', o.newCard).success(function(data) {
+        var cards = data.cards; // array of card objects
+        o.newCard.curatedCards = cards;
+      });
     }
 
     o.getOccasions = function() {

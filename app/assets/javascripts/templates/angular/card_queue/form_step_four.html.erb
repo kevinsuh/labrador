@@ -5,11 +5,14 @@
 	</div>
 
 	<div class="find_card" ng-show="cardsLoaded">
-		<img class="pick_card" ng-src="{{testImages.one}}"/>
-		<input type="radio">
-		<img class="pick_card" ng-src="{{testImages.two}}"/>
-		<input type="radio">
-		<img class="pick_card" ng-src="{{testImages.three}}"/>
-		<input type="radio">
-	</div>
+		<div style="margin-bottom: 15px;">Pick a card!</div>
+		<div class="pick_card" ng-repeat="card in newCard.curatedCards">
+			
+			<label>
+				<input type="radio" name="chosenCard" value="{{card.id}}" ng-model="newCard.selectedCardID">
+				<img class="pick_card" ng-src="{{card.card_images[0]}}" />	
+			</label>
+			
+			</img>
+		</div>
 <div>
