@@ -9,7 +9,7 @@
 		<div class="pick_card" ng-repeat="card in newCard.curatedCards">
 			
 			<label>
-				<input type="radio" name="chosenCard" value="{{card.id}}" ng-model="newCard.selectedCardID">
+				<input type="radio" name="chosenCard" value="{{card}}" ng-model="newCard.selectedCard">
 				<img class="pick_card" ng-src="{{card.card_images[0]}}" />	
 			</label>
 			

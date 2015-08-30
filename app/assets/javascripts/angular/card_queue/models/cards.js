@@ -21,7 +21,7 @@
         recipientLastName: "",
         recipientArrivalDate: "", // when does recipient need to get this?
         curatedCards: {}, // cards to choose from
-        selectedCardID: 1, // which card did user select?
+        selectedCard: {}, // which card did user select?
         preAddress: "",
         recipientAddress: "",
         notes: ""

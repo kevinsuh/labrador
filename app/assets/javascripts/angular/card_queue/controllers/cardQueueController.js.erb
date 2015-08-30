@@ -14,12 +14,7 @@
 			 */
 	    $scope.submitCardQueueForm = function() {
 	    	// first step is to create a date based on the values
-				var day   = $scope.date.day;
-				var month = $scope.date.month;
-				var year  = "20" + $scope.date.year;
-				var date  = new Date(year, month, day);
-
-				$scope.newCard.recipientArrivalDate = date;
+				
 				var queuedCard = $scope.newCard;
 
 	    	cards.queueCard()
@@ -89,12 +84,30 @@
 			    // start the ajax call on step 4
 			    if ($scope.currentState == "home.app.step4") {
 			    	// simulate retrieval of cards
-			    	$scope.cardsLoaded = false;
 			    	$timeout(function() {
 			    		cards.getCuratedCards().then(function(data) {
 			    			$scope.cardsLoaded = true;
 			    		})
 			    	}, 1250);
+			    }
+			    // hack to restart "loading" illusion when going before page 4 of the app
+			    if ($scope.currentState == "home.app.step3") {
+			    	$scope.cardsLoaded = false;
+			    }
+
+			    // final page! lots of configuration can be done here
+			    if ($scope.currentState == "home.app.step5") {
+			    	
+			    	// date time of receive date
+			    	var day   = $scope.date.day;
+						var month = $scope.date.month;
+						var year  = "20" + $scope.date.year;
+						var date  = new Date(year, month, day);
+
+						$scope.newCard.recipientArrivalDate = date;
+
+						// selected card into JSON
+						$scope.newCard.selectedCard = JSON.parse($scope.newCard.selectedCard);
 			    }
 			  }
 			)

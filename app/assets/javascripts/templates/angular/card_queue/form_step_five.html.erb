@@ -1,1 +1,13 @@
-{{newCard}}
+<div>
+	<div>
+		For: {{newCard.recipientFirstName}} {{newCard.recipientLastName}} ({{newCard.recipientRelationship}})
+	</div>
+	<div>
+		{{newCard.recipientFirstName}} needs to receive by {{newCard.recipientArrivalDate}}
+	</div>
+	<div>
+		You chose: 
+		<img class="pick_card" ng-src="{{newCard.selectedCard.card_images[0]}}" />
+	</div>
+	Ready?!
+</div>
