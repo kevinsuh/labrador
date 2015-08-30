@@ -82,6 +82,29 @@
       });
     }
 
+    /**
+     * get previously ordered cards for user
+     * @param  orderType string to determine what kind of cards you want (i.e. 'purchased' vs 'queued')
+     */
+    o.getOrderedCards = function(orderType) {
+
+      // create the object to prepare for proper order returns
+      // for now, just what order type you want
+      var orderDirections = {};
+      orderDirections["orderType"] = orderType;
+      
+      return $http.post('/orders/orders_for_user.json', orderDirections).success(function(data) {
+        data["orderType"] = orderType;
+        console.log(data);
+        if (orderType == "queued") {
+          o.queuedCards = data.orders;
+        } else if (orderType == "purchased") {
+          o.purchasedCards = data.orders;
+        }
+      });
+
+    }
+
     return o;    
 
   }]);

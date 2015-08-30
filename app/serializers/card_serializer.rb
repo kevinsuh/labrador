@@ -23,6 +23,7 @@ class CardSerializer < ActiveModel::Serializer
   		}.compact
 
   	data[:card_images] = card_image_urls
+
   	data
   end
 

@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   post 'cards/get_curated_cards'
   post 'cards/queue_card'
 
+  # orders
+  post 'orders/orders_for_user'
+
   get 'sessions/new'
 
   get 'signup'          => 'users#new'

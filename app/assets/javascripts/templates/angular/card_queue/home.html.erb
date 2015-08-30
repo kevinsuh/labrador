@@ -1,15 +1,80 @@
-<div class="card_orders">
-	<div class="row" ng-controller="CardQueueController">
-		<div class="col-xs-10">
+<div ng-controller="CardQueueController">
+	<aside class="col-md-3 col-xs-3">
+		<section class="user_info">
+			<div class="section">
+				<%= "gravatar_for(current_user, size: 50)" %>
+			</div>
+			<div class="section">
+				<h2><%= "current_user.email" %></h2>
+			</div>
+		</section>
 
-			<div ui-view="form"></div>
+		<section class="card_queue">
+			<div class="section">
+				<h2>Purchased Queue:</h2>
+				<table>
+					<tr ng-repeat="order in purchasedCards" style="width: 100%;">
+						<td style="width: 60%; text-align: left;">
+							{{order.recipient.first_name}} {{order.recipient.last_name}}
+						</td>
+						<td style="width: 60%; text-align: left;">
+							{{order.recipient_arrival_date}}
+						</td>
+					</tr>
 
-		</div>
+					<tr style="width: 100%;">
+						<td style="width: 60%; text-align: left;">
+							Chip's Birthday
+						</td>
+						<td style="width: 40%; text-align: right;">
+							Oct. 15
+						</td>
+					</tr>
+					<tr style="width: 100%;">
+						<td style="width: 60%;">
+							Emily's Birthday
+						</td>
+						<td style="width: 40%; text-align: right;">
+							Feb. 20
+						</td>
+					</tr>
+					<tr style="width: 100%;">
+						<td style="width: 60%;">
+							Kevin's Birthday
+						</td>
+						<td style="width: 40%; text-align: right;">
+							Feb. 12
+						</td>
+					</tr>
+					<tr style="width: 100%;">
+						<td style="width: 60%;">
+							Mother's Day
+						</td>
+						<td style="width: 40%; text-align: right;">
+							May 8
+						</td>
+					</tr>
+				</table>
+			</div>
+		</section>
+	</aside>
 
-		<div class="col-xs-2">
+	<div class="col-md-9 col-xs-9 card_queue">
+		<div class="card_orders">
+			<div class="row">
+				<div class="col-xs-10">
 
-			<div ui-view="checkout"></div>
+					<div ui-view="form"></div>
 
+				</div>
+
+				<div class="col-xs-2">
+
+					<div ui-view="checkout"></div>
+
+				</div>
+
+			</div>
 		</div>
 
 	</div>

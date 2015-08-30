@@ -63,7 +63,7 @@
 	    $scope.$on('$stateChangeSuccess',
 			  function(event, toState) {
 			    $scope.currentState = toState.name;
-			    console.log($scope.newCard);
+			    console.log(cards);
 			    // start the ajax call on step 4
 			    if ($scope.currentState == "home.app.step4") {
 			    	// simulate retrieval of cards
@@ -71,7 +71,7 @@
 			    		cards.getCuratedCards().then(function(data) {
 			    			$scope.cardsLoaded = true;
 			    		})
-			    	}, 1250);
+			    	}, 1500);
 			    }
 			    // hack to restart "loading" illusion when going before page 4 of the app
 			    if ($scope.currentState == "home.app.step3") {
@@ -88,6 +88,8 @@
 						var date  = new Date(year, month, day);
 
 						$scope.newCard.recipientArrivalDate = date;
+
+						console.log($scope.newCard);
 
 						// selected card into JSON
 						$scope.newCard.selectedCard = JSON.parse($scope.newCard.selectedCard);

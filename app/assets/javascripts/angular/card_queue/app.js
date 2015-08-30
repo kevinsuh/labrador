@@ -38,6 +38,12 @@
           }],
           cardFlavorPromise: ['cards', function(cards) {
             return cards.getCardFlavors();
+          }],
+          queuedCardsPromise: ['cards', function(cards) {
+            return cards.getOrderedCards('queued');
+          }],
+          purchasedCardsPromise: ['cards', function(cards) {
+            return cards.getOrderedCards('purchased');
           }]
         }
       })
