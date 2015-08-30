@@ -2,10 +2,10 @@
 	<aside class="col-md-3 col-xs-3">
 		<section class="user_info">
 			<div class="section">
-				<%= "gravatar_for(current_user, size: 50)" %>
+				<img class="user_gravatar" ng-src="{{user.gravatar_url}}" />
 			</div>
 			<div class="section">
-				<h2><%= "current_user.email" %></h2>
+				<h2>{{user.email}}</h2>
 			</div>
 		</section>
 

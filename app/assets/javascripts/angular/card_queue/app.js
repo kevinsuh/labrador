@@ -30,6 +30,9 @@
           }
         },
         resolve: {
+          userInfoPromise: ['user', function(user) { // return user basic info
+            return user.getCurrentUserInfo();
+          }],
           occasionPromise: ['cards', function(cards) {
             return cards.getOccasions();
           }],

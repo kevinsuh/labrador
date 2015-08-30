@@ -162,7 +162,13 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.json {render json: user }
     end
-
+  end
+  
+  # return current user info in JSON
+  def current_user_info
+    respond_to do |format|
+      format.json {render json: current_user}
+    end
   end
 
   private

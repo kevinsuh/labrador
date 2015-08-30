@@ -36,6 +36,7 @@ Rails.application.routes.draw do
       post :validate_basic
       post :validate_address
       post :create_signup
+      get :current_user_info
     end
 
     member do

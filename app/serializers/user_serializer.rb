@@ -1,16 +1,18 @@
 class UserSerializer < ActiveModel::Serializer
   attributes :id, :name, :email
+  include UsersHelper
 
   # attribute method is hash of JSON attributes
   def attributes
   	data = super # get the current JSON object
     
     # check if user is valid, and if so return appropriate info
-    data[:is_valid] = object.valid?
-    unless object.valid?
+    user = object # user is more intuitive
+    data[:is_valid] = user.valid?
+    unless user.valid?
       # lets handle only the first error for now
-      data[:error_field] = object.errors.messages.first[0]
-      error_string = object.errors.messages.first[1][0]
+      data[:error_field] = user.errors.messages.first[0]
+      error_string = user.errors.messages.first[1][0]
 
       case error_string
         when "has already been taken"
@@ -22,8 +24,11 @@ class UserSerializer < ActiveModel::Serializer
       data[:error_reason] = error_reason
 
       # these are all the errors
-      data[:errors] = object.errors.messages
+      data[:errors] = user.errors.messages
     end
+    
+    data[:gravatar_url] = gravatar_for user
+
   	data
   end
 
