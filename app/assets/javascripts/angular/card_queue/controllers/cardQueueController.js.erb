@@ -61,6 +61,7 @@
 			// new angular nl method
 			$scope.occasions     = cards.occasions;
 			$scope.relationships = cards.relationships;
+			$scope.cardFlavors   = cards.cardFlavors
 
 			$scope.months = {
 				January: 0,
@@ -76,15 +77,6 @@
 				November: 10,
 				December: 11
 			};
-
-			$scope.cardFlavors = {
-				"funny": 1,
-				"witty": 2,
-				"charming": 3,
-				"cute": 4,
-				"genuine": 5,
-				"crazy": 6
-			}
 
 			// collect month, then make it into a datetime obj
 			$scope.date = {

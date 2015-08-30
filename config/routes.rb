@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
 
   get 'relationships/get_relationship_types'
-  get 'occasions/get_occasion_types'
-  get 'cards/get_card_flavor_types'
+  get 'occasions/get_occasions'
+  get 'cards/get_flavors'
 
   get 'cards/queue_card'
 

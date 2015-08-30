@@ -1,10 +1,10 @@
 class OccasionsController < ApplicationController
   
-  def get_occasion_types
+  def get_occasions
   	# return all the occasions
-  	occasion_types = OccasionType.all
+  	occasions = Occasion.all
   	respond_to do |format|
-  		format.json { render json: occasion_types }
+  		format.json { render json: occasions }
   	end
   end
 

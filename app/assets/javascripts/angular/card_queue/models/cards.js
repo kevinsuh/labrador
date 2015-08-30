@@ -15,7 +15,7 @@
       purchasedCards: [], // purchased but not yet delivered
       queuedCards:[], // queued but not purchased
       newCard: { // current card being filled out
-        occasionType: "",
+        occasion: "",
         recipientRelationship: "",
         recipientFirstName: "",
         recipientLastName: "",
@@ -38,12 +38,12 @@
     }
 
     o.getOccasions = function() {
-      return $http.get('/occasions/get_occasion_types.json').success(function(data) {
+      return $http.get('/occasions/get_occasions.json').success(function(data) {
         var occasions = data.occasions;
         var occasion;
         for (var index in occasions) {
           occasion = occasions[index];
-          o.occasions[occasion.occasion_name] = occasion.id;
+          o.occasions[occasion.name] = occasion.id;
         }
       });
     }
@@ -61,12 +61,13 @@
     }
 
     o.getCardFlavors = function() {
-      return $http.get('/cards/get_card_flavor_types.json').success(function(data) {
+      return $http.get('/cards/get_flavors.json').success(function(data) {
         var cardFlavors = data.cards;
         var cardFlavor;
+        console.log(data);
         for (var index in cardFlavors) {
           cardFlavor = cardFlavors[index];
-          o.cardFlavors[cardFlavor.card_flavor_name] = cardFlavor.id;
+          o.cardFlavors[cardFlavor.name] = cardFlavor.id;
         }
       });
     }

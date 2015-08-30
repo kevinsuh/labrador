@@ -1,6 +1,6 @@
 class CardsController < ApplicationController
 	
-	def get_card_flavor_types
+	def get_flavors
   	flavor_types = Flavor.all
   	respond_to do |format|
   		format.json { render json: flavor_types }
