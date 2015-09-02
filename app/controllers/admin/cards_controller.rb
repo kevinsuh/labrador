@@ -22,10 +22,24 @@ module Admin
 			@relationships = Relationship.all
 			@occasions     = Occasion.all
 			@flavors       = Flavor.all
-			
+
 			puts @cards_data.inspect
 		end
 
 	end
+
+	def create
+
+	end
+
+	def update
+
+	end
+
+	private
+
+		def card_params
+			params.require(:card).permit(:picture)
+		end
 
 end

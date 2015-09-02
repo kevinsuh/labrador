@@ -4,21 +4,75 @@
 	relationships = card_data[:relationships]
 	occasions     = card_data[:occasions]
 	flavors       = card_data[:flavors]
+
+	# only one card_image for now
 	card_images		= card_data[:card_images]
+	card_image = card_images.first
 	%>
-	<h1><%=card.id%></h1>
-	<% relationships.each do |relationship| %>
-		<span><%= relationship.name %>, </span>
-	<% end %>
-	<br>
-	<% occasions.each do |occasion| %>
-		<span><%= occasion.name %></span>
-	<% end %>
-	<br>
-	<% flavors.each do |flavor| %>
-		<span><%= flavor.name %></span>
-	<% end %>
-	<% card_images.each do |card_image| %>
-		<span><%= image_tag card_image.picture.url if card_image.picture? %></span>
-	<% end %>
+	<div class="row card_admin_row">
+		<h1 class="card_id">Card ID: <%=card.id%></h1>
+		<%= form_for([:admin, card], html: {multipart: true}) do |f| %>
+		<aside class="col-xs-4">
+			<% if false %>
+			<% card_images.each do |card_image| %>
+				<span><%= image_tag card_image.picture.url if card_image.picture? %></span>
+			<% end %>
+			<% end %>
+
+			<span><%= image_tag card_image.picture.url if card_image.picture? %></span>	
+			<span class="picture">
+				<%= f.file_field :picture %>
+			</span>
+
+		</aside>
+		<div class ="col-xs-8 card_options">
+			<div class="relationship_checkbox">
+				<h5>Recipients:</h5>
+				<% @relationships.each do |relationship| %>
+					<% checked = relationships.ids.include? relationship.id %>
+					<%= f.label "relationships_#{relationship.id}", relationship.name %>	
+					<%= f.check_box :relationships, {multiple: true, checked: checked}, relationship.id, nil %> |
+				<% end %>
+			</div>
+			<div class="occasion_checkbox">
+				<h5>Occasions:</h5>
+				<% @occasions.each do |occasion| %>
+					<% checked = occasions.ids.include? occasion.id %>
+					<%= f.label "occasions_#{occasion.id}", occasion.name %>
+					<%= f.check_box :occasions, {multiple: true, checked: checked}, occasion.id, nil %> |
+				<% end %>
+			</div>
+			<div class="flavor_checkbox">
+				<h5>Flavors:</h5>
+				<% @flavors.each do |flavor| %>
+					<% checked = flavors.ids.include? flavor.id %>
+					<%= f.label "flavors_#{flavor.id}", flavor.name %>
+					<%= f.check_box :flavors, {multiple: true, checked: checked}, flavor.id, nil %> |
+				<% end %>
+			</div>
+			<div class="submit">
+				<%= f.submit "Update Card", class: "btn btn-primary" %>
+			</div>
+			<% end %>
+		</div>
+		<% if false %>
+		relationships: <%= relationships.ids %>
+		occasions: <%= occasions.ids %>
+		flavors: <%= flavors.ids %>
+
+		<% relationships.each do |relationship| %>
+			<span><%= relationship.name %> | <%= relationship.id %>, </span>
+		<% end %>
+		<br>
+		<% occasions.each do |occasion| %>
+			<span><%= occasion.name %> | <%= occasion.id %>,</span>
+		<% end %>
+		<br>
+		<% flavors.each do |flavor| %>
+			<span><%= flavor.name %> | <%= flavor.id %>,</span>
+		<% end %>
+		<% end %>
+		
+	</div>
+	<hr>
 <% end %>

@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   namespace :admin do
     # build on these as you continue
     resources :users, only: [:index]
-    resources :cards, only: [:index]
+    resources :cards, only: [:index, :new, :create, :update]
   end
 
 
