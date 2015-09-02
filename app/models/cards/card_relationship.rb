@@ -6,4 +6,5 @@ class CardRelationship < ActiveRecord::Base
 	
 	validates :card_id, presence: true
 	validates :relationship_id, presence: true
+
 end

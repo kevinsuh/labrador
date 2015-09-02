@@ -21,7 +21,7 @@
 
 			<span><%= image_tag card_image.picture.url if card_image.picture? %></span>	
 			<span class="picture">
-				<%= f.file_field :picture %>
+				<%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>
 			</span>
 
 		</aside>

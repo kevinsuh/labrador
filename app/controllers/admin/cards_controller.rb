@@ -26,20 +26,52 @@ module Admin
 			puts @cards_data.inspect
 		end
 
-	end
+		def create
 
-	def create
-
-	end
-
-	def update
-
-	end
-
-	private
-
-		def card_params
-			params.require(:card).permit(:picture)
 		end
 
+		def update
+			puts params
+
+			if @card = Card.find_by(id: params[:id])
+				card_params   = params[:card]
+
+				relationships = card_params[:relationships]
+				occasions     = card_params[:occasions]
+				flavors       = card_params[:flavors]
+				picture				= card_params[:picture]
+
+				# purge and refresh
+				@card.relationships.delete_all
+				relationships.each do |relationship_id|
+					@card.card_relationships.create(relationship_id: relationship_id)
+				end
+
+				@card.occasions.delete_all
+				occasions.each do |occasion_id|
+					@card.card_occasions.create(occasion_id: occasion_id)
+				end
+
+				@card.flavors.delete_all
+				flavors.each do |flavor_id|
+					@card.card_flavors.create(flavor_id: flavor_id)
+				end
+
+				# this is not what you want to do in the near future regarding pictures
+				
+
+				flash[:success] = "Card updated."
+			else
+				flash[:danger] = "Failed to update card."
+			end
+			redirect_to admin_cards_url
+		end
+
+		private
+
+			def card_params
+				params.require(:card).permit(:picture)
+			end
+
+	end
 end
