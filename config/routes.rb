@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
 
+  # admin
+  get 'admin' => 'admin#home'
+  namespace :admin do
+    resources :users
+  end
+
+
   get 'relationships/get_relationships'
   get 'occasions/get_occasions'
 

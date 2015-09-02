@@ -38,6 +38,9 @@
 		  </span>
 			<% if logged_in? %>
 				<ul class="nav navbar-nav pull-right">
+					<% if current_user.is_admin? %>
+					 	<li><span><%= link_to "Admin", admin_path %></span></li>
+					<% end %>
 					<li>Hello, <%= current_user.email %></li>
 					<li><%= link_to "Log out", logout_path, method: "delete" %></li>
 				</ul>
