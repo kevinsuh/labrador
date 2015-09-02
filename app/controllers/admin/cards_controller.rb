@@ -18,6 +18,11 @@ module Admin
 
 				@cards_data[card.id] = @card_data
 			end
+
+			@relationships = Relationship.all
+			@occasions     = Occasion.all
+			@flavors       = Flavor.all
+			
 			puts @cards_data.inspect
 		end
 
