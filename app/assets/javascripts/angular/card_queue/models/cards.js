@@ -26,6 +26,18 @@
         recipientAddress: "",
         notes: ""
       },
+      newCardTemplate: { // get the blank version of the card
+        occasion: "",
+        recipientRelationship: "",
+        recipientFirstName: "",
+        recipientLastName: "",
+        recipientArrivalDate: "", // when does recipient need to get this?
+        curatedCards: {}, // cards to choose from
+        selectedCard: {}, // which card did user select?
+        preAddress: "",
+        recipientAddress: "",
+        notes: ""
+      },
       occasions: {},
       relationships: {},
       cardFlavors: {}
@@ -36,25 +48,8 @@
      */
     o.queueCard = function() {
       return $http.post('orders/queue_card_order.json', o.newCard)
-      .success(function(data) {
-
-        var queuedCardOrder = data.order;
-        var isValid         = queuedCardOrder.is_valid;
-
-        if (isValid) {
-          o.queuedCards.push(queuedCardOrder);
-        } else {
-          alert("Something went wrong. Is your form completely filled out?");
-        }
-        
-      })
-      .error(function(data) {
-          console.log("error in submitCardQueueForm");
-          console.log(data);
-        });
     }
         
-
     /**
      * using search info, find the appropriate cards for user to select from
      */

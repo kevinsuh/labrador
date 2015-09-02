@@ -39,7 +39,25 @@
 				
 				var queuedCard = $scope.newCard;
 
-	    	cards.queueCard();
+	    	cards.queueCard()
+	      .success(function(data) {
+
+	        var queuedCardOrder = data.order;
+	        var isValid         = queuedCardOrder.is_valid;
+
+	        if (isValid) {
+	          $scope.queuedCards.push(queuedCardOrder);
+	          $scope.newCard = cards.newCardTemplate;
+	          $state.go('home.app.step1');
+	        } else {
+	          alert("Something went wrong. Is your form completely filled out?");
+	        }
+	        
+	      })
+	      .error(function(data) {
+          console.log("error in submitCardQueueForm");
+          console.log(data);
+        });;
 	    };
 
 			// control what happens on each state of UI-Router
