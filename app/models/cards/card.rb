@@ -43,7 +43,22 @@ class Card < ActiveRecord::Base
 				AND card_flavors.flavor_id IN (:flavor_ids)", relationship_ids: [all_relationships_id, relationship_id], occasion_ids: [all_occasions_id, occasion_id], flavor_ids: flavor_ids).distinct
 
 			curated_cards
-			
 		end
+
+		# get the cards associated with specific filters
+		# this is initially for admin use
+		def all_filtered(filters = {})
+
+			cards = Card.joins("
+				LEFT JOIN card_relationships
+					ON card_relationships.card_id = cards.id
+				LEFT JOIN card_occasions
+					ON card_occasions.card_id = cards.id
+				LEFT JOIN card_flavors
+					ON card_flavors.card_id = cards.id")
+			cards
+
+		end
+
 	end
 end

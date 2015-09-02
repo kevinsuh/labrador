@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   # admin
   get 'admin' => 'admin#home'
   namespace :admin do
-    resources :users
+    # build on these as you continue
+    resources :users, only: [:index]
+    resources :cards, only: [:index]
   end
 
 

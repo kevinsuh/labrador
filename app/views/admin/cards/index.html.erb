@@ -1,0 +1,24 @@
+<% @cards_data.each do |key, card_data| %>
+	<% 
+	card          = card_data[:card]
+	relationships = card_data[:relationships]
+	occasions     = card_data[:occasions]
+	flavors       = card_data[:flavors]
+	card_images		= card_data[:card_images]
+	%>
+	<h1><%=card.id%></h1>
+	<% relationships.each do |relationship| %>
+		<span><%= relationship.name %>, </span>
+	<% end %>
+	<br>
+	<% occasions.each do |occasion| %>
+		<span><%= occasion.name %></span>
+	<% end %>
+	<br>
+	<% flavors.each do |flavor| %>
+		<span><%= flavor.name %></span>
+	<% end %>
+	<% card_images.each do |card_image| %>
+		<span><%= image_tag card_image.picture.url if card_image.picture? %></span>
+	<% end %>
+<% end %>
