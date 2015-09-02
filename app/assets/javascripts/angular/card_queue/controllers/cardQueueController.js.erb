@@ -20,6 +20,7 @@
 			$scope.months = { January: 0, February: 1, March: 2, April: 3, May: 4, June: 5, July: 6, August: 7, September: 8, October: 9, November: 10, December: 11 };
 
 			// collect month, then make it into a datetime obj
+			// this will probably just become a date-picker plug-in instead
 			$scope.date = { month: "", day: "", year: "" };
 
 			// don't allow more than 3 card flavors!
@@ -38,28 +39,7 @@
 				
 				var queuedCard = $scope.newCard;
 
-	    	cards.queueCard()
-	    	.success(function(data) {
-
-					var order   = data.order;
-					var isValid = order.is_valid;
-	    		
-	    		console.log("order return: ");
-	    		console.log(order);
-
-	    		console.log("card that you just queued: ");
-					console.log(queuedCard);
-
-		    	if (isValid) {
-
-		    	} else {
-		    		alert("Something went wrong. Is your form completely filled out?");
-		    	}
-				})
-				.error(function(data) {
-					console.log("error in submitCardQueueForm");
-					console.log(data);
-				});
+	    	cards.queueCard();
 	    };
 
 			// control what happens on each state of UI-Router

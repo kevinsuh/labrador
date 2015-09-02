@@ -6,15 +6,18 @@ class OrderSerializer < ActiveModel::Serializer
   	data = super # get the current JSON object
     
     # check if user is valid, and if so return appropriate info
-    data[:is_valid] = object.valid?
-    unless object.valid?
+    order = object
+    data[:is_valid] = order.valid?
+    unless order.valid?
       # lets handle only the first error for now
-      data[:error_field] = object.errors.messages.first[0]
-      data[:error_string] = object.errors.messages.first[1][0]
+      data[:error_field] = order.errors.messages.first[0]
+      data[:error_string] = order.errors.messages.first[1][0]
 
       # these are all the errors
-      data[:errors] = object.errors.messages
+      data[:errors] = order.errors.messages
     end
+
+    data[:order_occasion] = order.occasion
 
     # attach card information if the order is a card
     card_id = data[:card_id]

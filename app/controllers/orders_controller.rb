@@ -13,7 +13,7 @@ class OrdersController < ApplicationController
 		user_id ||= current_user.id
 		order_type = order_params[:orderType]
 
-		queued_orders = get_orders_for user_id, order_type
+		queued_orders = Order.get_orders_for user_id, order_type
 
 		if order_params[:orderType] == "purchased"
 			purchased = 't'
@@ -24,5 +24,48 @@ class OrdersController < ApplicationController
   	end
 
 	end
+
+	# validate, then queue card and return the successful card in JSON notation
+  def queue_card_order
+  	# 1) validate card
+  	# 2) create new recipient (eventually you should also be able to CHOOSE past recipient)
+  	# 3) save order & order progress onto DB
+  	# 4) return queued card in json on success
+  	
+		params
+		
+		recipient = current_user.recipients.create(
+			first_name: params[:recipientFirstName],
+			last_name: params[:recipientLastName],
+			relationship: params[:recipientRelationship]
+			)
+
+		selected_card = params[:selectedCard]
+
+		if card = Card.find_by(id: selected_card[:id])
+			order = current_user.orders.create(
+				recipient_id: recipient.id,
+				card_id: card.id,
+				recipient_arrival_date: params[:recipientArrivalDate]
+				)
+
+			# by default all the order statuses will be false
+			order_status = OrderStatus.create(order_id: order.id) 
+			order_occasion = order.create_order_occasion(occasion_id: params[:occasion])
+
+
+			respond_to do |format|
+				format.json { render json: order }
+			end
+
+		else
+
+			respond_to do |format|
+				format.json { render json: { success: false } }
+			end
+
+		end
+
+  end
 
 end

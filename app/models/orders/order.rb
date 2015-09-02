@@ -4,6 +4,10 @@ class Order < ActiveRecord::Base
   belongs_to :card
   has_one :order_status
 
+  # has one through order_occasions
+	has_one :order_occasion
+	has_one :occasion, through: :order_occasion
+  
 	class << self
 
 		# retrieve the orders for user_id and order_type

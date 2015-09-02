@@ -6,10 +6,10 @@ Rails.application.routes.draw do
   # cards
   get 'cards/get_flavors'
   post 'cards/get_curated_cards'
-  post 'cards/queue_card'
 
   # orders
   post 'orders/orders_for_user'
+  post 'orders/queue_card_order'
 
   get 'sessions/new'
 
