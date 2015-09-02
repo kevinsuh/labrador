@@ -22,3 +22,12 @@
 		max-width: 300px;
 	}
 }
+
+.filter_row {
+	background-color: darkgrey;
+	padding: 15px 0;
+	.filter_title {
+		text-align: left;
+		padding-left: 20px;
+	}
+}

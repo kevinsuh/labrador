@@ -1,3 +1,35 @@
+<!-- search functionality -->
+<div class="row filter_row">
+	<h2 class="filter_title">Filter Search:</h2>
+	<div class="col-xs-4">
+		<%= form_for :filters, url: filter_search_admin_cards_path, method: :post do |f| %>
+			Occasions:
+			<% @occasions.each do |occasion| %>
+				<% checked = @filter_occasions.include? occasion.id %>
+				<%= f.label "occasions_#{occasion.id}", occasion.name %>
+				<%= f.check_box :occasions, {multiple: true, checked: checked}, occasion.id, nil %> |
+			<% end %>
+			<br><br>
+			Recipients:
+			<% @relationships.each do |relationship| %>
+				<% checked = @filter_relationships.include? relationship.id %>
+				<%= f.label "relationships_#{relationship.id}", relationship.name %>
+				<%= f.check_box :relationships, {multiple: true, checked: checked}, relationship.id, nil %> |
+			<% end %>
+			<br><br>
+			<% @flavors.each do |flavor| %>
+				<% checked = @filter_flavors.include? flavor.id %>
+				<%= f.label "flavors_#{flavor.id}", flavor.name %>
+				<%= f.check_box :flavors, {multiple: true, checked: checked}, flavor.id, nil %> |
+			<% end %>
+			<div class="submit">
+				<%= f.submit "Search", class: "btn btn-primary" %>
+			</div>
+		<% end %>
+	</div>
+</div>
+
+<!-- card display -->
 <% @cards_data.each do |key, card_data| %>
 	<% 
 	card          = card_data[:card]

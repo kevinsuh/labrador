@@ -47,7 +47,10 @@ class Card < ActiveRecord::Base
 
 		# get the cards associated with specific filters
 		# this is initially for admin use
-		def all_filtered(filters = {})
+		def all_with_filters(filters = {})
+
+			puts "we're in filters!"
+			puts filters
 
 			cards = Card.joins("
 				LEFT JOIN card_relationships
@@ -56,7 +59,37 @@ class Card < ActiveRecord::Base
 					ON card_occasions.card_id = cards.id
 				LEFT JOIN card_flavors
 					ON card_flavors.card_id = cards.id")
-			cards
+
+			where_statement = String.new
+
+			filterCount = 1
+			filters.each do |index, filter|
+				puts "index: #{index} and filter: #{filter}"
+				if filter.nil? || filter.empty?
+					next
+				end
+				case index
+				when :occasions
+					where_string = filterCount == 1 ? "card_occasions.occasion_id IN (:occasion_ids)" : " AND card_occasions.occasion_id IN (:occasion_ids)"
+					where_statement << ActiveRecord::Base.send(:sanitize_sql_array, [where_string, occasion_ids: filter])
+					filterCount+=1
+				when :relationships
+					where_string = filterCount == 1 ? "card_relationships.relationship_id IN (:relationship_ids)" : " AND card_relationships.relationship_id IN (:relationship_ids)"
+					where_statement << ActiveRecord::Base.send(:sanitize_sql_array, [where_string, relationship_ids: filter])
+					filterCount+=1
+				when :flavors
+					where_string = filterCount == 1 ? "card_flavors.flavor_id IN (:flavor_ids)" : " AND card_flavors.flavor_id IN (:flavor_ids)"					
+					where_statement << ActiveRecord::Base.send(:sanitize_sql_array, [where_string, flavor_ids: filter])
+					filterCount+=1
+				else
+					puts "this is the case: #{index}"
+				end
+			end
+
+			filtered_cards = cards.where(where_statement)
+			filtered_cards.distinct
+
+			filtered_cards
 
 		end
 
