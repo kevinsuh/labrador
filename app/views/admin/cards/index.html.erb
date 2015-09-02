@@ -7,7 +7,7 @@
 
 	# only one card_image for now
 	card_images		= card_data[:card_images]
-	card_image = card_images.first
+	card_image 		= card_images.first
 	%>
 	<div class="row card_admin_row">
 		<h1 class="card_id">Card ID: <%=card.id%></h1>
@@ -15,13 +15,18 @@
 		<aside class="col-xs-4">
 			<% if false %>
 			<% card_images.each do |card_image| %>
-				<span><%= image_tag card_image.picture.url if card_image.picture? %></span>
+				<span> <%= if card_image.picture?
+					image_tag(card_image.picture.url, class: "card_image") 
+				end %></span>
 			<% end %>
 			<% end %>
 
-			<span><%= image_tag card_image.picture.url if card_image.picture? %></span>	
+			<span><%= 
+			if card_image && card_image.picture?
+				image_tag(card_image.picture.url, class: "card_image")
+			end %></span>
 			<span class="picture">
-				<%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>
+				<%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png', class: "card_image_upload" %>
 			</span>
 
 		</aside>
@@ -76,3 +81,13 @@
 	</div>
 	<hr>
 <% end %>
+
+<!-- jquery test to make sure picture size is reasonable -->
+<script type="text/javascript">
+  $('.card_image').bind('change', function() {
+    size_in_megabytes = this.files[0].size/1024/1024;
+    if (size_in_megabytes > 5) {
+      alert('Maximum file size is 5MB. Please choose a smaller file.');
+    }
+});
+</script>

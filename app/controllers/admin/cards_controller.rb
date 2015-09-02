@@ -58,7 +58,8 @@ module Admin
 				end
 
 				# this is not what you want to do in the near future regarding pictures
-				
+				@card.card_images.destroy_all
+				@card.card_images.create(picture: picture)
 
 				flash[:success] = "Card updated."
 			else
