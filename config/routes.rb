@@ -5,9 +5,10 @@ Rails.application.routes.draw do
   namespace :admin do
     # build on these as you continue
     resources :users, only: [:index]
-    resources :cards, only: [:index, :new, :create, :update] do
+    resources :cards, only: [:new, :create, :update] do
       collection do
-        post :filter_search
+        post 'index'
+        get 'index'
       end
     end
   end

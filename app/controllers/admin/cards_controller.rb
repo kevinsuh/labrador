@@ -3,35 +3,6 @@ module Admin
 	class CardsController < ApplicationController
 
 		def index
-			@cards_data = Hash.new
-
-			# go through each card 
-			@cards = Card.all_with_filters
-			@cards.each do |card|
-
-				@card_data = Hash.new
-				@card_data[:card] = card
-				@card_data[:relationships] = card.relationships
-				@card_data[:occasions] = card.occasions
-				@card_data[:flavors] = card.flavors
-				@card_data[:card_images] = card.card_images
-
-				@cards_data[card.id] = @card_data
-			end
-
-			@relationships = Relationship.all
-			@occasions     = Occasion.all
-			@flavors       = Flavor.all
-
-			@filter_occasions     = []
-			@filter_relationships = []
-			@filter_flavors       = []
-
-			puts @cards_data.inspect
-		end
-
-		# render same format as 'index' but with filtered data
-		def filter_search
 
 			filter_params    = params[:filters]
 			if filter_params
@@ -65,12 +36,13 @@ module Admin
 			@relationships = Relationship.all
 			@occasions     = Occasion.all
 			@flavors       = Flavor.all
+			@vendors			 = Vendor.all
 
 			@filter_occasions     = occasion_ids ? occasion_ids.map(&:to_i) : []
 			@filter_relationships = relationship_ids ? relationship_ids.map(&:to_i) : []
 			@filter_flavors       = flavor_ids ? flavor_ids.map(&:to_i) : []
 
-			render 'index'
+			puts @cards_data.inspect
 		end
 
 		def create
@@ -78,7 +50,8 @@ module Admin
 		end
 
 		def update
-			puts params
+			puts "HELLO\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+			puts params.inspect
 
 			if @card = Card.find_by(id: params[:id])
 				card_params   = params[:card]
@@ -88,7 +61,7 @@ module Admin
 				flavors       = card_params[:flavors]
 				picture				= card_params[:picture]
 
-				# purge and refresh
+				# purge each field and refresh with updated data
 				@card.relationships.delete_all
 				relationships.each do |relationship_id|
 					@card.card_relationships.create(relationship_id: relationship_id)
@@ -105,14 +78,35 @@ module Admin
 				end
 
 				# this is not what you want to do in the near future regarding pictures
-				@card.card_images.destroy_all
-				@card.card_images.create(picture: picture)
+				# only when you have something in that picture input
+				unless picture.nil?
+					@card.card_images.destroy_all
+					@card.card_images.create(picture: picture)
+				end
+
+				vendor_id     = card_params[:vendor]
+				new_vendor = card_params[:new_vendor]
+				vendor_url = card_params[:vendor_url]
+
+				# new_vendor > vendor from select option
+				unless new_vendor.nil?
+					vendor = Vendor.create(name: new_vendor)
+					vendor_id = vendor.id
+				end
+
+				if @card.card_vendor.nil?
+					@card.create_card_vendor(vendor_id: vendor_id)
+				else
+					@card.card_vendor.update_attribute(:vendor_id, vendor_id)
+				end
+
+				@card.card_vendor.update_attribute(:url, vendor_url)
 
 				flash[:success] = "Card updated."
 			else
 				flash[:danger] = "Failed to update card."
 			end
-			redirect_to admin_cards_url
+			redirect_to admin_cards_path
 		end
 
 		private

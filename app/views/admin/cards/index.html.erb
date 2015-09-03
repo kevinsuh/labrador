@@ -2,30 +2,7 @@
 <div class="row filter_row">
 	<h2 class="filter_title">Filter Search:</h2>
 	<div class="col-xs-4">
-		<%= form_for :filters, url: filter_search_admin_cards_path, method: :post do |f| %>
-			Occasions:
-			<% @occasions.each do |occasion| %>
-				<% checked = @filter_occasions.include? occasion.id %>
-				<%= f.label "occasions_#{occasion.id}", occasion.name %>
-				<%= f.check_box :occasions, {multiple: true, checked: checked}, occasion.id, nil %> |
-			<% end %>
-			<br><br>
-			Recipients:
-			<% @relationships.each do |relationship| %>
-				<% checked = @filter_relationships.include? relationship.id %>
-				<%= f.label "relationships_#{relationship.id}", relationship.name %>
-				<%= f.check_box :relationships, {multiple: true, checked: checked}, relationship.id, nil %> |
-			<% end %>
-			<br><br>
-			<% @flavors.each do |flavor| %>
-				<% checked = @filter_flavors.include? flavor.id %>
-				<%= f.label "flavors_#{flavor.id}", flavor.name %>
-				<%= f.check_box :flavors, {multiple: true, checked: checked}, flavor.id, nil %> |
-			<% end %>
-			<div class="submit">
-				<%= f.submit "Search", class: "btn btn-primary" %>
-			</div>
-		<% end %>
+		<%= render 'search_filter' %>
 	</div>
 </div>
 
@@ -67,31 +44,51 @@
 				<h5>Recipients:</h5>
 				<% @relationships.each do |relationship| %>
 					<% checked = relationships.ids.include? relationship.id %>
-					<%= f.label "relationships_#{relationship.id}", relationship.name %>	
-					<%= f.check_box :relationships, {multiple: true, checked: checked}, relationship.id, nil %> |
+					<%= f.label "#{key}_relationships_#{relationship.id}", relationship.name %>	
+					<%= f.check_box :relationships, {multiple: true, checked: checked, id: "card_#{key}_relationships_#{relationship.id}"}, relationship.id, nil  %> |
 				<% end %>
 			</div>
+			<hr class="category_separator">
 			<div class="occasion_checkbox">
 				<h5>Occasions:</h5>
 				<% @occasions.each do |occasion| %>
 					<% checked = occasions.ids.include? occasion.id %>
-					<%= f.label "occasions_#{occasion.id}", occasion.name %>
-					<%= f.check_box :occasions, {multiple: true, checked: checked}, occasion.id, nil %> |
+					<%= f.label "#{key}_occasions_#{occasion.id}", occasion.name %>
+					<%= f.check_box :occasions, {multiple: true, checked: checked, id: "card_#{key}_occasions_#{occasion.id}"}, occasion.id, nil %> |
 				<% end %>
 			</div>
+			<hr class="category_separator">
 			<div class="flavor_checkbox">
 				<h5>Flavors:</h5>
 				<% @flavors.each do |flavor| %>
 					<% checked = flavors.ids.include? flavor.id %>
-					<%= f.label "flavors_#{flavor.id}", flavor.name %>
-					<%= f.check_box :flavors, {multiple: true, checked: checked}, flavor.id, nil %> |
+					<%= f.label "#{key}_flavors_#{flavor.id}", flavor.name %>
+					<%= f.check_box :flavors, {multiple: true, checked: checked, id: "card_#{key}_flavors_#{flavor.id}"}, flavor.id, nil %> |
 				<% end %>
 			</div>
+			<hr class="category_separator">
+			<div class="vendor_select">
+				<h5>Vendor:</h5>
+				<%= f.select :vendor, Vendor.all.collect { |v| [v.name, v.id] } %>
+				<div style="display: inline-block; font-weight: bold; font-size: 16px; margin-left: 4em;">
+					OR
+				</div>
+				<div style="display: inline-block; margin-left: 4em;">
+					<%= f.label :new_vendor, "New Vendor:" %>
+					<%= text_field(:card, :new_vendor, class: "new_vendor_field") %>
+				</div>
+				<div style="margin-top: 15px;">
+					<%= f.label :vendor_url, "Vendor URL:" %>
+					<%= text_field(:card, :vendor_url, class: "new_vendor_field") %>
+				</div>
+			</div>
+			<hr class="category_separator">
 			<div class="submit">
 				<%= f.submit "Update Card", class: "btn btn-primary" %>
 			</div>
 			<% end %>
 		</div>
+
 		<% if false %>
 		relationships: <%= relationships.ids %>
 		occasions: <%= occasions.ids %>

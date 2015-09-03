@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150902024328) do
+ActiveRecord::Schema.define(version: 20150903021455) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "first_name"
@@ -71,6 +71,17 @@ ActiveRecord::Schema.define(version: 20150902024328) do
   add_index "card_relationships", ["card_id", "relationship_id"], name: "index_card_relationships_on_card_id_and_relationship_id", unique: true
   add_index "card_relationships", ["card_id"], name: "index_card_relationships_on_card_id"
   add_index "card_relationships", ["relationship_id"], name: "index_card_relationships_on_relationship_id"
+
+  create_table "card_vendors", force: :cascade do |t|
+    t.integer  "card_id"
+    t.integer  "vendor_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "url"
+  end
+
+  add_index "card_vendors", ["card_id"], name: "index_card_vendors_on_card_id"
+  add_index "card_vendors", ["vendor_id"], name: "index_card_vendors_on_vendor_id"
 
   create_table "cards", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -195,6 +206,12 @@ ActiveRecord::Schema.define(version: 20150902024328) do
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
+
+  create_table "vendors", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "waitlists", force: :cascade do |t|
     t.string   "email"
