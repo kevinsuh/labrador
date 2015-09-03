@@ -62,7 +62,9 @@ class Card < ActiveRecord::Base
 				LEFT JOIN card_occasions
 					ON card_occasions.card_id = cards.id
 				LEFT JOIN card_flavors
-					ON card_flavors.card_id = cards.id")
+					ON card_flavors.card_id = cards.id
+				LEFT JOIN card_vendors
+					ON card_vendors.card_id = cards.id")
 
 			where_statement = String.new
 
@@ -84,6 +86,10 @@ class Card < ActiveRecord::Base
 				when :flavors
 					where_string = filterCount == 1 ? "card_flavors.flavor_id IN (:flavor_ids)" : " AND card_flavors.flavor_id IN (:flavor_ids)"					
 					where_statement << ActiveRecord::Base.send(:sanitize_sql_array, [where_string, flavor_ids: filter])
+					filterCount+=1
+				when :vendors
+					where_string = filterCount == 1 ? "card_vendors.vendor_id = :vendor_id" : " AND card_vendors.vendor_id = :vendor_id"					
+					where_statement << ActiveRecord::Base.send(:sanitize_sql_array, [where_string, vendor_id: filter])
 					filterCount+=1
 				else
 					puts "this is the case: #{index}"

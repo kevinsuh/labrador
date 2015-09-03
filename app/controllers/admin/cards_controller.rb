@@ -9,12 +9,14 @@ module Admin
 				occasion_ids     = filter_params[:occasions]
 				relationship_ids = filter_params[:relationships]
 				flavor_ids       = filter_params[:flavors]
+				vendor_id				 = filter_params[:vendor]
 			end
 			
 			filters                 = Hash.new
 			filters[:occasions]     = occasion_ids
 			filters[:relationships] = relationship_ids
 			filters[:flavors]       = flavor_ids
+			filters[:vendor]				= vendor_id
 			
 			@cards_data = Hash.new
 
@@ -24,11 +26,13 @@ module Admin
 			@cards.each do |card|
 
 				@card_data = Hash.new
-				@card_data[:card] = card
+				@card_data[:card]          = card
 				@card_data[:relationships] = card.relationships
-				@card_data[:occasions] = card.occasions
-				@card_data[:flavors] = card.flavors
-				@card_data[:card_images] = card.card_images
+				@card_data[:occasions]     = card.occasions
+				@card_data[:flavors]       = card.flavors
+				@card_data[:card_images]   = card.card_images
+				@card_data[:vendor]        = card.vendor
+				@card_data[:card_vendor]   = card.card_vendor # contains vendor URL
 
 				@cards_data[card.id] = @card_data
 			end
@@ -85,22 +89,27 @@ module Admin
 				end
 
 				vendor_id     = card_params[:vendor]
-				new_vendor = card_params[:new_vendor]
-				vendor_url = card_params[:vendor_url]
+				new_vendor 		= card_params[:new_vendor]
+				vendor_url 		= card_params[:vendor_url]
 
-				# new_vendor > vendor from select option
-				unless new_vendor.nil?
-					vendor = Vendor.create(name: new_vendor)
-					vendor_id = vendor.id
+				if vendor_id || new_vendor
+
+					# new_vendor > vendor from select option
+					unless new_vendor.empty?
+						vendor = Vendor.create(name: new_vendor)
+						vendor_id = vendor.id
+					end
+
+					# create or update depending on existence of card_vendor (since there can only be 1 vendor in this scenario)
+					if @card.card_vendor.nil?
+						@card.create_card_vendor(vendor_id: vendor_id)
+					else
+						@card.card_vendor.update_attribute(:vendor_id, vendor_id)
+					end
+
+					@card.card_vendor.update_attribute(:url, vendor_url)
+
 				end
-
-				if @card.card_vendor.nil?
-					@card.create_card_vendor(vendor_id: vendor_id)
-				else
-					@card.card_vendor.update_attribute(:vendor_id, vendor_id)
-				end
-
-				@card.card_vendor.update_attribute(:url, vendor_url)
 
 				flash[:success] = "Card updated."
 			else
