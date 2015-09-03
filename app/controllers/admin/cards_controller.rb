@@ -9,18 +9,17 @@ module Admin
 				occasion_ids     = filter_params[:occasions]
 				relationship_ids = filter_params[:relationships]
 				flavor_ids       = filter_params[:flavors]
-				vendor_id				 = filter_params[:vendor]
+				vendor_ids       = filter_params[:vendors]
 			end
 			
 			filters                 = Hash.new
 			filters[:occasions]     = occasion_ids
 			filters[:relationships] = relationship_ids
 			filters[:flavors]       = flavor_ids
-			filters[:vendor]				= vendor_id
+			filters[:vendors]				= vendor_ids
 			
+			# go through each card to attach all relevant info
 			@cards_data = Hash.new
-
-			# go through each card 
 			@cards = Card.all_with_filters filters
 
 			@cards.each do |card|
@@ -45,6 +44,7 @@ module Admin
 			@filter_occasions     = occasion_ids ? occasion_ids.map(&:to_i) : []
 			@filter_relationships = relationship_ids ? relationship_ids.map(&:to_i) : []
 			@filter_flavors       = flavor_ids ? flavor_ids.map(&:to_i) : []
+			@filter_vendors       = vendor_ids ? vendor_ids.map(&:to_i) : []
 
 			puts @cards_data.inspect
 		end

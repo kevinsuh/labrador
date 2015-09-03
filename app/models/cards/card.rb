@@ -88,8 +88,8 @@ class Card < ActiveRecord::Base
 					where_statement << ActiveRecord::Base.send(:sanitize_sql_array, [where_string, flavor_ids: filter])
 					filterCount+=1
 				when :vendors
-					where_string = filterCount == 1 ? "card_vendors.vendor_id = :vendor_id" : " AND card_vendors.vendor_id = :vendor_id"					
-					where_statement << ActiveRecord::Base.send(:sanitize_sql_array, [where_string, vendor_id: filter])
+					where_string = filterCount == 1 ? "card_vendors.vendor_id IN (:vendor_ids)" : " AND card_vendors.vendor_id IN (:vendor_ids)"					
+					where_statement << ActiveRecord::Base.send(:sanitize_sql_array, [where_string, vendor_ids: filter])
 					filterCount+=1
 				else
 					puts "this is the case: #{index}"

@@ -34,9 +34,14 @@
 
 .filter_row {
 	background-color: darkgrey;
-	padding: 15px 0;
+	padding: 15px 20px;
 	.filter_title {
 		text-align: left;
 		padding-left: 20px;
 	}
+	h4 {
+		font-weight: bold;
+		text-decoration: underline;
+	}
+
 }

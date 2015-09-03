@@ -1,24 +1,45 @@
-<%= form_for :filters, url: admin_cards_path, method: :post do |f| %>
-	Occasions:
-	<% @occasions.each do |occasion| %>
-		<% checked = @filter_occasions.include? occasion.id %>
-		<%= f.label "occasions_#{occasion.id}", occasion.name %>
-		<%= f.check_box :occasions, {multiple: true, checked: checked}, occasion.id, nil %> |
-	<% end %>
-	<br><br>
-	Recipients:
-	<% @relationships.each do |relationship| %>
-		<% checked = @filter_relationships.include? relationship.id %>
-		<%= f.label "relationships_#{relationship.id}", relationship.name %>
-		<%= f.check_box :relationships, {multiple: true, checked: checked}, relationship.id, nil %> |
-	<% end %>
-	<br><br>
-	<% @flavors.each do |flavor| %>
-		<% checked = @filter_flavors.include? flavor.id %>
-		<%= f.label "flavors_#{flavor.id}", flavor.name %>
-		<%= f.check_box :flavors, {multiple: true, checked: checked}, flavor.id, nil %> |
-	<% end %>
-	<div class="submit">
-		<%= f.submit "Search", class: "btn btn-primary" %>
+<div class="row filter_row">
+	<div class="row">
+		<h2 class="filter_title">Filter Search:</h2>
+		<div class="col-xs-6">
+			<%= form_for :filters, url: admin_cards_path, method: :post do |f| %>
+				<h4>Occasions:</h4>
+				<% @occasions.each do |occasion| %>
+					<% checked = @filter_occasions.include? occasion.id %>
+					<%= f.label "occasions_#{occasion.id}", occasion.name %>
+					<%= f.check_box :occasions, {multiple: true, checked: checked}, occasion.id, nil %> |
+				<% end %>
+				<hr>
+				<h4>Flavors:</h4>
+				<% @flavors.each do |flavor| %>
+					<% checked = @filter_flavors.include? flavor.id %>
+					<%= f.label "flavors_#{flavor.id}", flavor.name %>
+					<%= f.check_box :flavors, {multiple: true, checked: checked}, flavor.id, nil %> |
+				<% end %>
+		</div>
+		<div class="col-xs-6">
+				<h4>Recipients:</h4>
+				<% @relationships.each do |relationship| %>
+					<% checked = @filter_relationships.include? relationship.id %>
+					<%= f.label "relationships_#{relationship.id}", relationship.name %>
+					<%= f.check_box :relationships, {multiple: true, checked: checked}, relationship.id, nil %> |
+				<% end %>
+				<hr>
+				<h4>Vendors:</h4>
+				<% @vendors.each do |vendor| %>
+					<% checked = @filter_vendors.include? vendor.id %>
+					<%= f.label "vendors_#{vendor.id}", vendor.name %>
+					<%= f.check_box :vendors, {multiple: true, checked: checked}, vendor.id, nil %> |
+				<% end %>
+		</div>
 	</div>
-<% end %>
+	<div class="row">
+		<div class="col-xs-12">
+			<hr>
+			<div class="submit">
+				<%= f.submit "Search", class: "btn btn-primary", style: "width: 10em;" %>
+			</div>
+			<% end %>
+		</div>
+	</div>
+</div>
