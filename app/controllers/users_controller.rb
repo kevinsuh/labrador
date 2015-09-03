@@ -182,14 +182,6 @@ class UsersController < ApplicationController
       params.require(:waitlist).permit(:email)
     end
 
-    def admin_user
-      @user = current_user
-      if !@user.is_admin?
-        flash[:danger] = "You do not have the access to do that."
-        redirect_to root_url
-      end
-    end
-
     # tests to see that this user is the logged_in user
     # returns user if successful, false if not
     def correct_user

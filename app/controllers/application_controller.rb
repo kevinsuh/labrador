@@ -14,6 +14,14 @@ class ApplicationController < ActionController::Base
       end
     end
 
+    def admin_user
+      @user = current_user
+      if !@user.is_admin?
+        flash[:danger] = "You do not have the access to do that."
+        redirect_to root_url
+      end
+    end
+
     def require_login_json
       unless logged_in?
          render json: {success: false, message: "You must be logged in!"}, status: 401

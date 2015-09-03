@@ -89,6 +89,7 @@
 			<hr class="category_separator">
 			<div class="submit">
 				<%= f.submit "Update Card", class: "btn btn-primary" %>
+				<%= link_to "Delete Card", admin_card_path(card), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
 			</div>
 			<% end %>
 		</div>

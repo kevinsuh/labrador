@@ -1,21 +1,21 @@
 class Card < ActiveRecord::Base
 	has_many :orders
-	has_many :card_images
+	has_many :card_images, dependent: :destroy
 
 	# has many occasions through card_occasions
-	has_many :card_occasions 
+	has_many :card_occasions, dependent: :destroy 
 	has_many :occasions, through: :card_occasions
 
 	# has many relationships through card_relationships
-	has_many :card_relationships
+	has_many :card_relationships, dependent: :destroy
 	has_many :relationships, through: :card_relationships
 
 	#has many flavors through card_flavors
-	has_many :card_flavors
+	has_many :card_flavors, dependent: :destroy
 	has_many :flavors, through: :card_flavors
 
 	# has one vendor through card_vendors
-	has_one :card_vendor
+	has_one :card_vendor, dependent: :destroy
 	has_one :vendor, through: :card_vendor
 
 	class << self
@@ -52,9 +52,6 @@ class Card < ActiveRecord::Base
 		# get the cards associated with specific filters
 		# this is initially for admin use
 		def all_with_filters(filters = {})
-
-			puts "we're in filters!"
-			puts filters
 
 			cards = Card.joins("
 				LEFT JOIN card_relationships

@@ -1,6 +1,9 @@
 module Admin
 
 	class CardsController < ApplicationController
+		
+		before_action :require_login
+  	before_action :admin_user
 
 		def index
 
@@ -46,7 +49,6 @@ module Admin
 			@filter_flavors       = flavor_ids ? flavor_ids.map(&:to_i) : []
 			@filter_vendors       = vendor_ids ? vendor_ids.map(&:to_i) : []
 
-			puts @cards_data.inspect
 		end
 
 		def new
@@ -104,6 +106,8 @@ module Admin
 			end
 
 			flash[:success] = "Card successfully created"
+
+			redirect_to new_admin_card_path
 
 		end
 
@@ -169,6 +173,12 @@ module Admin
 			else
 				flash[:danger] = "Failed to update card."
 			end
+			redirect_to admin_cards_path
+		end
+
+		def destroy
+			Card.find(params[:id]).destroy
+			flash[:success] = "Card deleted"
 			redirect_to admin_cards_path
 		end
 

@@ -53,9 +53,9 @@ a {
 	&.link_button {
 		background-color: darkslategrey;
 		color: white;
-	}
-	&:hover {
-		background-color: darkslateblue !important;
-		color: white !important;
+		&:hover {
+			background-color: darkslateblue !important;
+			color: white !important;
+		}
 	}
 }
