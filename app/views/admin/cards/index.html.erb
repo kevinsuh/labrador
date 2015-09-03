@@ -9,14 +9,16 @@
 <!-- card display -->
 <% @cards_data.each do |key, card_data| %>
 	<% 
+
 	card          = card_data[:card]
 	relationships = card_data[:relationships]
 	occasions     = card_data[:occasions]
 	flavors       = card_data[:flavors]
-	vendor 		 		= card_data[:vendor]
-	card_vendor 	= card_data[:card_vendor]
-
-	vendor_id = vendor ? vendor.id : 0
+	vendor        = card_data[:vendor]
+	card_vendor   = card_data[:card_vendor]
+	
+	vendor_id     = vendor ? vendor.id : 0
+	vendor_url    = card_vendor ? card_vendor.url : ""
 
 	# only one card_image for now
 	card_images		= card_data[:card_images]
@@ -75,16 +77,16 @@
 				<h5>Vendor:</h5>
 				
 				<%= f.select(:vendor, Vendor.all.collect { |v| [v.name, v.id] }, selected: vendor_id, include_blank: true ) %>
-				<div style="display: inline-block; font-weight: bold; font-size: 16px; margin-left: 4em;">
-					OR
+				<div style="display: inline-block; font-weight: bold; font-size: 16px; margin-left: 1em;">
+					<label for="add_vendor_<%=key%>">add new</label> <input id="add_vendor_<%=key%>" type="checkbox" class="add_new_vendor" />
 				</div>
-				<div style="display: inline-block; margin-left: 4em;">
+				<div class="add_vendor_div" style="display: inline-block; margin-left: 1em; display: none;">
 					<%= f.label :new_vendor, "New Vendor:" %>
 					<%= text_field(:card, :new_vendor, class: "new_vendor_field") %>
 				</div>
 				<div style="margin-top: 15px;">
 					<%= f.label :vendor_url, "Vendor URL:" %>
-					<%= text_field(:card, :vendor_url, class: "new_vendor_field") %>
+					<%= text_field(:card, :vendor_url, class: "new_vendor_field", value: vendor_url) %>
 				</div>
 			</div>
 			<hr class="category_separator">
@@ -123,5 +125,20 @@
     if (size_in_megabytes > 5) {
       alert('Maximum file size is 5MB. Please choose a smaller file.');
     }
-});
+	});
+
+	// handle selecting old vendor vs making new
+	$('.add_new_vendor').click(function(e) {
+		var vendor_div = $(this).parent().parent();
+		if(this.checked) {
+			vendor_div.find('.add_vendor_div').fadeIn().css("display", "inline-block");
+		} else {
+			vendor_div.find('.add_vendor_div').fadeOut();
+		}
+	})
+	$('.new_vendor_field').keypress(function(e) {
+		var vendor_div = $(this).parent().parent();
+		vendor_div.find('select').val(0);
+	})
+
 </script>
