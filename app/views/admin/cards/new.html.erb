@@ -1,0 +1,86 @@
+<div class="row card_admin_row">
+	<%= link_to "Back to index", admin_cards_path, class: "btn" %>
+	<h1 class="card_id">Create New Card:</h1>
+	<%= form_for([:admin, @card], url: "/admin/cards", method: :post, html: {multipart: true}) do |f| %>
+	<aside class="col-xs-4">
+		<span class="picture">
+			Card image:
+			<%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png', class: "card_image_upload" %>
+		</span>
+
+	</aside>
+	<div class ="col-xs-8 card_options">
+		<div class="relationship_checkbox">
+			<h5>Recipients:</h5>
+			<% @relationships.each do |relationship| %>
+				<%= f.label "relationships_#{relationship.id}", relationship.name %>	
+				<%= f.check_box :relationships, {multiple: true, id: "card_relationships_#{relationship.id}"}, relationship.id, nil  %> |
+			<% end %>
+		</div>
+		<hr class="category_separator">
+		<div class="occasion_checkbox">
+			<h5>Occasions:</h5>
+			<% @occasions.each do |occasion| %>
+				<%= f.label "occasions_#{occasion.id}", occasion.name %>
+				<%= f.check_box :occasions, {multiple: true, id: "card_occasions_#{occasion.id}"}, occasion.id, nil %> |
+			<% end %>
+		</div>
+		<hr class="category_separator">
+		<div class="flavor_checkbox">
+			<h5>Flavors:</h5>
+			<% @flavors.each do |flavor| %>
+				<%= f.label "flavors_#{flavor.id}", flavor.name %>
+				<%= f.check_box :flavors, {multiple: true, id: "card_flavors_#{flavor.id}"}, flavor.id, nil %> |
+			<% end %>
+		</div>
+		<hr class="category_separator">
+		<div class="vendor_select">
+			<h5>Vendor:</h5>
+			<label>Name:</label>
+			<%= f.select(:vendor, Vendor.all.collect { |v| [v.name, v.id] }, include_blank: true ) %>
+			<div style="display: inline-block; font-weight: bold; font-size: 16px; margin-left: 1em;">
+				<label for="add_vendor">add new</label> <input id="add_vendor" type="checkbox" class="add_new_vendor" />
+			</div>
+			<div class="add_vendor_div" style="display: inline-block; margin-left: 1em; display: none;">
+				<%= f.label :new_vendor, "New Vendor:" %>
+				<%= text_field(:vendor, :new_vendor, class: "new_vendor_label") %>
+			</div>
+			<div style="margin-top: 15px;">
+				<%= f.label :vendor_url, "URL:" %>
+				<%= text_field(:vendor, :vendor_url, class: "new_vendor_field") %>
+			</div>
+		</div>
+		<hr class="category_separator">
+		<div class="submit">
+			<%= f.submit "Create New Card", class: "btn btn-primary" %>
+		</div>
+		<% end %>
+	</div>
+
+</div>
+
+<!-- jquery test to make sure picture size is reasonable -->
+<script type="text/javascript">
+  $('.card_image').bind('change', function() {
+    size_in_megabytes = this.files[0].size/1024/1024;
+    if (size_in_megabytes > 5) {
+      alert('Maximum file size is 5MB. Please choose a smaller file.');
+    }
+	});
+
+	// handle selecting old vendor vs making new
+	$('.add_new_vendor').click(function(e) {
+		var vendor_div = $(this).parent().parent();
+		if(this.checked) {
+			vendor_div.find('.add_vendor_div').fadeIn().css("display", "inline-block");
+		} else {
+			vendor_div.find('.add_vendor_div').fadeOut();
+			vendor_div.find('.new_vendor_label').val("");
+		}
+	})
+	$('.new_vendor_label').keypress(function(e) {
+		var vendor_div = $(this).parent().parent();
+		vendor_div.find('select').val(0);
+	})
+
+</script>

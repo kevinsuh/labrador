@@ -50,10 +50,60 @@ module Admin
 		end
 
 		def new
-
+			@card          = Card.new
+			@relationships = Relationship.all
+			@occasions     = Occasion.all
+			@flavors       = Flavor.all
+			@vendors       = Vendor.all
 		end
-		
+
 		def create
+			card_params   = params[:card]
+			vendor_params = params[:vendor]
+
+			# all of these can be nil if not filled out!
+			picture       = card_params[:picture]
+			
+			relationships = card_params[:relationships] || []
+			occasions     = card_params[:occasions] || []
+			flavors       = card_params[:flavors] || []
+			
+			vendor_id     = card_params[:vendor]
+			vendor_url    = vendor_params[:vendor_url]
+			new_vendor    = vendor_params[:new_vendor]
+
+			@card = Card.create
+
+			unless picture.nil?
+				@card.card_images.create(picture: picture)
+			end
+
+			relationships.each do |relationship_id|
+				@card.card_relationships.create(relationship_id: relationship_id)
+			end
+
+			occasions.each do |occasion_id|
+				@card.card_occasions.create(occasion_id: occasion_id)
+			end
+
+			flavors.each do |flavor_id|
+				@card.card_flavors.create(flavor_id: flavor_id)
+			end
+
+
+			if vendor_id || new_vendor
+
+				# new_vendor > vendor from select option
+				unless new_vendor.empty?
+					vendor = Vendor.create(name: new_vendor)
+					vendor_id = vendor.id
+				end
+
+				@card.create_card_vendor(vendor_id: vendor_id, url: vendor_url)
+
+			end
+
+			flash[:success] = "Card successfully created"
 
 		end
 

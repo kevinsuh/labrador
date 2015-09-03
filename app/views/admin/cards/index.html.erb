@@ -25,7 +25,7 @@
 		<h1 class="card_id">Card ID: <%=card.id%></h1>
 		<%= form_for([:admin, card], html: {multipart: true}) do |f| %>
 		<aside class="col-xs-4">
-			<% if false %>
+			<% if false # for future version %>
 			<% card_images.each do |card_image| %>
 				<span> <%= if card_image.picture?
 					image_tag(card_image.picture.url, class: "card_image") 
@@ -72,17 +72,17 @@
 			<hr class="category_separator">
 			<div class="vendor_select">
 				<h5>Vendor:</h5>
-				
+				<label>Name:</label>
 				<%= f.select(:vendor, Vendor.all.collect { |v| [v.name, v.id] }, selected: vendor_id, include_blank: true ) %>
 				<div style="display: inline-block; font-weight: bold; font-size: 16px; margin-left: 1em;">
 					<label for="add_vendor_<%=key%>">add new</label> <input id="add_vendor_<%=key%>" type="checkbox" class="add_new_vendor" />
 				</div>
 				<div class="add_vendor_div" style="display: inline-block; margin-left: 1em; display: none;">
 					<%= f.label :new_vendor, "New Vendor:" %>
-					<%= text_field(:card, :new_vendor, class: "new_vendor_field") %>
+					<%= text_field(:card, :new_vendor, class: "new_vendor_label") %>
 				</div>
 				<div style="margin-top: 15px;">
-					<%= f.label :vendor_url, "Vendor URL:" %>
+					<%= f.label :vendor_url, "URL:" %>
 					<%= text_field(:card, :vendor_url, class: "new_vendor_field", value: vendor_url) %>
 				</div>
 			</div>
@@ -113,9 +113,10 @@
 			vendor_div.find('.add_vendor_div').fadeIn().css("display", "inline-block");
 		} else {
 			vendor_div.find('.add_vendor_div').fadeOut();
+			vendor_div.find('.new_vendor_label').val("");
 		}
 	})
-	$('.new_vendor_field').keypress(function(e) {
+	$('.new_vendor_label').keypress(function(e) {
 		var vendor_div = $(this).parent().parent();
 		vendor_div.find('select').val(0);
 	})
