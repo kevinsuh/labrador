@@ -49,6 +49,10 @@ module Admin
 			puts @cards_data.inspect
 		end
 
+		def new
+
+		end
+		
 		def create
 
 		end

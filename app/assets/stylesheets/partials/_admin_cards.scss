@@ -45,3 +45,16 @@
 	}
 
 }
+.links_row {
+	margin-bottom: 10px;
+}
+
+a {
+	&.link_button {
+		background-color: darkslategrey;
+		color: white;
+	}
+	&:hover {
+		color: green !important;
+	}
+}
