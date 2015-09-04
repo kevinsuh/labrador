@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150903021455) do
+ActiveRecord::Schema.define(version: 20150904210910) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "first_name"
@@ -190,8 +190,16 @@ ActiveRecord::Schema.define(version: 20150903021455) do
     t.string "name"
   end
 
+  create_table "user_stripe_cards", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "customer_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "user_stripe_cards", ["user_id"], name: "index_user_stripe_cards_on_user_id"
+
   create_table "users", force: :cascade do |t|
-    t.string   "name"
     t.string   "email"
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
@@ -203,6 +211,8 @@ ActiveRecord::Schema.define(version: 20150903021455) do
     t.datetime "activated_at"
     t.string   "password_reset_digest"
     t.datetime "password_reset_sent_at"
+    t.string   "first_name"
+    t.string   "last_name"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

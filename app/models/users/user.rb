@@ -3,7 +3,8 @@ class User < ActiveRecord::Base
 	before_save :downcase_email
 	before_create :create_activation_digest
 
-	validates :name, length: { maximum: 50 }
+	validates :first_name, length: { maximum: 50 }
+	validates :last_name, length: { maximum: 50 }
 	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
 	VALID_PASSWORD_REGEX = /(?=.*\d)[a-zA-Z0-9]{6,}/ # contains at least 6 characters including 1 number
 	validates :email, presence: true, 
@@ -25,6 +26,7 @@ class User < ActiveRecord::Base
 	has_many :addresses, as: :person
 	has_many :recipients
 	has_many :orders
+	has_many :stripe_cards, class_name: "UserStripeCard"
 
 	# User class methods
 	class << self
@@ -78,6 +80,10 @@ class User < ActiveRecord::Base
 
 	def forget
 		update_attribute(:remember_digest, nil)
+	end
+
+	def save_stripe_customer_id(customer_id)
+		stripe_cards.create(customer_id: customer_id)
 	end
 
 	# to mimic has_secure_password.authenticate for our custom tokens

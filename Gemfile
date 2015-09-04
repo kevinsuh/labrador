@@ -25,7 +25,7 @@ gem 'sprockets', '2.12.4'
 gem 'responders', '~>2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
-gem 'stripe'
+gem 'stripe', git: 'https://github.com/stripe/stripe-ruby'
 gem 'carrierwave', github:'carrierwaveuploader/carrierwave'
 gem 'mini_magick'
 gem 'fog'

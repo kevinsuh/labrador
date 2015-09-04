@@ -175,7 +175,7 @@ class UsersController < ApplicationController
 
   	# to ensure which values we are receiving from our form
   	def user_params
-  		params.require(:user).permit(:name, :email, :password, :password_confirmation)
+  		params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
   	end
 
     def waitlist_params

@@ -1,6 +1,6 @@
 <div class="row">
 	<div class="col-md-6 col-md-offset-3">
-		<h1>Save Card</h1>
+		<h1>Check Out</h1>
 
 		<%= form_tag charges_path, id: 'stripeForm' do -%>
 			<script src="https://checkout.stripe.com/checkout.js"></script>
@@ -9,17 +9,21 @@
 				<%= label_tag 'amount', "$#{@amount}.00", class: 'amount-figure' %>
 			</article>
 			<br>
-			<button id="stripe-button">&nbsp;</button>
+			<button id="stripe-button">Pay Now</button>
 			<%= hidden_field_tag 'stripeToken' %>
 			<%= hidden_field_tag 'stripeEmail' %>
 			<%= hidden_field_tag 'stripeAmount' %>
 			<script>
 				var handler = StripeCheckout.configure({
 					key: "<%= Rails.application.secrets.stripe_publishable_key %>",
+					image: "<%= asset_path('cardagain_logo.png') %>",
+					email: "<%= current_user.email %>",
+					shippingAddress: true,
+					zipCode: true,
 					token: function (token, args) {
-						$("#stripeToken").value = token.id;
-						$("#stripeEmail").value = token.email;
-						$("#stripeAmount").value = <%= @amount %>;
+						$("#stripeToken").val(token.id);
+						$("#stripeEmail").val(token.email);
+						$("#stripeAmount").val('<%= @amount * 100 %>');
 						$("#stripeForm").submit();
 					}
 				});
