@@ -58,6 +58,9 @@ Rails.application.routes.draw do
     end
   end
 
+  # checkout / credit card
+  resources :charges, only: [:new, :create]
+
   
   # get 'get_occasion_types' => 'occasions#get_occasion_types'
   # get 'get_relationship_types' => 'relationships#get_relation_types'
