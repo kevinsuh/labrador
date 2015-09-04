@@ -41,7 +41,7 @@ datepicker, .datepicker, [datepicker],
   z-index: 999;
   min-width: 220px;
   margin: 0 auto;
-  width: 101%;
+  width: 100%;
   -webkit-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1) inset;
   -moz-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1) inset;
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1) inset;

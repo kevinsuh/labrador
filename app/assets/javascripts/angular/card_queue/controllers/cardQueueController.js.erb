@@ -14,15 +14,12 @@
 			$scope.relationships  = cards.relationships;
 			$scope.cardFlavors    = cards.cardFlavors
 
+			// set the minimum recipient date
+      $scope.minimumRecipientDate = recipientDate();
+
 			// load in user
 			$scope.user = user;
-
-			$scope.months = { January: 0, February: 1, March: 2, April: 3, May: 4, June: 5, July: 6, August: 7, September: 8, October: 9, November: 10, December: 11 };
-
-			// collect month, then make it into a datetime obj
-			// this will probably just become a date-picker plug-in instead
-			$scope.date = { month: "", day: "", year: "" };
-
+			
 			// don't allow more than 3 card flavors!
 			$scope.$watch('newCard.cardFlavors.length', function(newValue, oldValue){
           if (newValue > 3) {
@@ -83,13 +80,6 @@
 			    if ($scope.currentState == "home.app.step5") {
 			    	
 			    	// date time of receive date
-			    	var day   = $scope.date.day;
-						var month = $scope.date.month;
-						var year  = "20" + $scope.date.year;
-						var date  = new Date(year, month, day);
-
-						$scope.newCard.recipientArrivalDate = date;
-
 						console.log($scope.newCard);
 
 						// selected card into JSON
@@ -122,10 +112,6 @@
 						valid = true;
 						break;
 					case "home.app.step2":
-						if ($scope.date.day != "" && $scope.date.year != "")
-							valid = true;
-						else
-							valid = false;
 
 						valid = true;
 						break;
@@ -150,3 +136,15 @@
 
 })();
 
+/**
+ * return the recipient's date
+ */
+function recipientDate() {
+	var recipientDate = new Date();
+  recipientDate.setDate(recipientDate.getDate()+14);
+  var day = recipientDate.getDate();
+  var month = recipientDate.getMonth() + 1;
+  var year = recipientDate.getFullYear();
+  recipientDate = month+"/"+day+"/"+year;
+  return recipientDate;
+}
