@@ -1,0 +1,45 @@
+<div class="row">
+	<div class="col-md-6 col-md-offset-3">
+		<h1>Save Card</h1>
+
+		<%= form_tag charges_path, id: 'stripeForm' do -%>
+			<script src="https://checkout.stripe.com/checkout.js"></script>
+			<article>
+				<%= label_tag 'amount', 'To Pay', class: 'amount' %>
+				<%= label_tag 'amount', "$#{@amount}.00", class: 'amount-figure' %>
+			</article>
+			<br>
+			<button id="stripe-button">&nbsp;</button>
+			<%= hidden_field_tag 'stripeToken' %>
+			<%= hidden_field_tag 'stripeEmail' %>
+			<%= hidden_field_tag 'stripeAmount' %>
+			<script>
+				var handler = StripeCheckout.configure({
+					key: "<%= Rails.application.secrets.stripe_publishable_key %>",
+					token: function (token, args) {
+						$("#stripeToken").value = token.id;
+						$("#stripeEmail").value = token.email;
+						$("#stripeAmount").value = <%= @amount %>;
+						$("#stripeForm").submit();
+					}
+				});
+				$('#stripe-button').on('click', function(e) {
+					// open checkout with further options
+					handler.open({
+						name: "Kevin YAH",
+						description: "Purchase yo cards!",
+						amount: <%= @amount * 100 %> // stripe is in cents
+					});
+					e.preventDefault();
+
+					$(window).on('popstate', function() {
+						handler.close();
+					});
+
+				})
+			</script>
+		<% end %>
+	</div>
+</div>
+
+
