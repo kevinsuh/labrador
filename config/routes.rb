@@ -44,6 +44,10 @@ Rails.application.routes.draw do
   get 'forgot_password' => 'password_resets#new'
   get 'reset_password'  => 'password_resets#edit'
 
+  # cart / checkout
+  get 'cart' => 'checkout#view_cart'
+  get 'cart/address' => 'checkout#confirm_address'
+
   # users
   resources :users do
     collection do

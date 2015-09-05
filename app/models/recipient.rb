@@ -4,7 +4,6 @@ class Recipient < ActiveRecord::Base
   has_many :addresses, as: :person
   has_many :orders
   validates :user_id, presence: true
-
-  default_scope -> { select("recipients.*").select("relationships.name").joins("LEFT JOIN relationships ON recipients.relationship = relationships.id")}
+  belongs_to :relationship
   
 end
