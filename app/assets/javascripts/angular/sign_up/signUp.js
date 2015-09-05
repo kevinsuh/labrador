@@ -7,7 +7,8 @@
     // have it be OPTIONAL to save an address   
     var o = {
       user: {
-        name: "", // currently not handled in form
+        first_name: "",
+        last_name: "",
         email: "",
         password: "",
         password_confirmation: ""

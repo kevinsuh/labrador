@@ -58,16 +58,18 @@
 			user = signUp.user;
 
 			// pass in the user object
-			signUp.validateBasic(user)
+			signUp.validateBasic(user) // currently this CREATES USER
 			.success(function(data) {
+				console.log(data);
 
 				var user = data.user;
         var isValid = user.is_valid;
 
-
         if (isValid) {
         	// continue to next page
-          $state.go('form.address');
+        	// currently, just go straight to root url
+        	$scope.window.location.href= "/";
+          //$state.go('form.address');
         } else {
         	// tell the error and prevent continuing on
         	// for now we will only do the first one, should be more dynamic in the future though
@@ -83,6 +85,8 @@
 				console.log(data);
 			});
 		}
+
+		// currently we aren't taking address or interests, but this may become used later on.
 
 		/**
 		 * validate that the user's address can be created!

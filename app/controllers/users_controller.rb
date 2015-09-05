@@ -93,19 +93,38 @@ class UsersController < ApplicationController
   # validate email + pass from backend
   def validate_basic
 
-    email = params[:email]
-    password = params[:password]
+    first_name            = params[:user_first_name]
+    last_name             = params[:user_last_name]
+    email                 = params[:email]
+    password              = params[:password]
     password_confirmation = params[:password_confirmation]
 
     # only validations currently are unique email and password validations
     user = User.new(
+      first_name:             first_name,
+      last_name:              last_name,
       email:                  email,
       password:               password, 
       password_confirmation:  password_confirmation
       )
-
+    create_with_basic_info user
+    
     respond_to do |format|
       format.json {render json: user }
+    end
+    
+  end
+
+  # temp means to create user with just basic fields
+  def create_with_basic_info(user)
+
+    if user.save
+      user.activate
+      log_in user
+      remember user
+      true
+    else
+      false
     end
   end
 
@@ -134,6 +153,8 @@ class UsersController < ApplicationController
     user_params = params[:user]
 
     user = User.new(
+      first_name:             user_params[:user_last_name],
+      last_name:              user_params[:user_last_name],
       email:                  user_params[:email],
       password:               user_params[:password],
       password_confirmation:  user_params[:password_confirmation]

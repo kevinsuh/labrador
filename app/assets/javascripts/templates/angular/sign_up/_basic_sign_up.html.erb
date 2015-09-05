@@ -1,3 +1,44 @@
+<!-- first name -->
+<div class="form_field name validation_field">
+  <div class="first_name" ng-class="{'has-error': hasError('user_first_name')}">
+    <label for="user_first_name" class="form_label">
+      <span class="helper" ng-class="{'completed': isValid('user_first_name')}">
+        First Name
+      </span>
+    </label>
+    <div class="form_input">
+      <input id="user_first_name" name="user_first_name" ng-model="user.first_name" type="text" required />
+    </div>
+
+    <div class="invalid-message" ng-messages="basicInfoForm.user_first_name.$error" ng-show="showMessages('user_first_name')">
+      <div class="message-animation" ng-message="required">
+        <strong>This is required!</strong>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="last_name" ng-class="{'has-error': hasError('user_last_name')}">
+
+    <label for="user_last_name" class="form_label">
+      <span class="helper" ng-class="{'completed': isValid('user_last_name')}">
+        Last Name
+      </span>
+    </label>
+    <div class="form_input">
+      <input id="user_last_name" name="user_last_name" ng-model="user.last_name" type="text" required />
+    </div>
+
+    <div class="invalid-message" ng-messages="basicInfoForm.user_last_name.$error" ng-show="showMessages('user_last_name')">
+      <div class="message-animation" ng-message="required">
+        <strong>This is required!</strong>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
 <div class="form_field email validation_field" ng-class="{'has-error': hasError('email')}">
   <label for="signup_email" class="form_label">
     <span class="helper" ng-class="{'completed': basicInfoForm.email.$valid}">
@@ -75,7 +116,8 @@
 
 <div class="form_field submit">
   <div class="form_input">
-    <a ng-click="fieldsAreValid(['email', 'password', 'password_confirmation']) && validateBasicFields()" class="btn submit-btn next-btn" ng-class="{'disabled': !fieldsAreValid(['email', 'password', 'password_confirmation'])}">Next <i class="glyphicon glyphicon-arrow-right"></i></a>
+    <a ng-click="fieldsAreValid(['user_first_name', 'user_last_name', 'email', 'password', 'password_confirmation']) && validateBasicFields()" class="btn submit-btn next-btn" ng-class="{'disabled': !fieldsAreValid(['user_first_name', 'user_last_name', 'email', 'password', 'password_confirmation'])}">Sign Up</a>
     <!-- ui-sref="form.address" -->
+    <!-- <i class="glyphicon glyphicon-arrow-right"></i> -->
   </div>
 </div>
