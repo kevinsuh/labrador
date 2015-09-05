@@ -10,7 +10,7 @@ class CheckoutController < ApplicationController
 	end
 
 	def confirm_address
-
+		@addresses = current_user.addresses
 	end
 
 end

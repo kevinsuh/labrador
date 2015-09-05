@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :addresses, only: [:new, :create]
+
   # admin
   get 'admin' => 'admin#home'
   namespace :admin do
