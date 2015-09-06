@@ -1,12 +1,21 @@
 Rails.application.routes.draw do
 
-  resources :addresses, only: [:new, :create] do
-    collection do
-      post 'create_with_order'
-      post 'set_for_order'
-    end
-  end
+  # checkout subdirectory
+  # get 'cart' => 'checkout/orders#view_cart'
+  # get 'cart/address' => 'checkout/address#index'
+  get 'cart/billing' => 'checkout#confirm_billing'
 
+  namespace :checkout do
+    get '/' => 'orders#view_cart'
+    resources :addresses, only: [:index, :new, :create, :update] do
+      collection do
+        post 'set_for_order'
+        post 'delete'
+      end
+    end
+    # checkout / credit card
+    resources :charges, only: [:new, :create]
+  end
 
   # admin
   get 'admin' => 'admin#home'
@@ -52,10 +61,7 @@ Rails.application.routes.draw do
   get 'forgot_password' => 'password_resets#new'
   get 'reset_password'  => 'password_resets#edit'
 
-  # cart / checkout
-  get 'cart' => 'checkout#view_cart'
-  get 'cart/address' => 'checkout#confirm_address'
-  get 'cart/billing' => 'checkout#confirm_billing'
+ 
 
   # users
   resources :users do
@@ -70,9 +76,6 @@ Rails.application.routes.draw do
       
     end
   end
-
-  # checkout / credit card
-  resources :charges, only: [:new, :create]
 
   
   # get 'get_occasion_types' => 'occasions#get_occasion_types'

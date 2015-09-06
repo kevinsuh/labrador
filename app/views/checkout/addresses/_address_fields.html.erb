@@ -1,0 +1,56 @@
+<div class="form_field name">
+	<div class="first_name">
+		<%= f.label :first_name, class: "form_label" %>
+		<div class="form_input">
+			<%= f.text_field :first_name, placeholder: "Kevin" %>
+		</div>
+	</div>
+	<div class="last_name">
+		<%= f.label :last_name, class: "form_label" %>
+		<div class="form_input">
+			<%= f.text_field :last_name, placeholder: "Suh" %>
+		</div>
+	</div>
+</div>
+
+<div class="form_field street">
+	<%= f.label :street, class: "form_label" %>
+	<div class="form_input">
+		<%= f.text_field :street, placeholder: "123 Main St." %>
+	</div>
+</div>
+
+<div class="form_field suite">
+	<%= f.label :suite, class: "form_label" %>
+	<div class="form_input">
+		<%= f.text_field :suite, placeholder: "Suite 206" %>
+	</div>
+</div>
+
+<div class="form_field city">
+	<%= f.label :city, class: "form_label" %>
+	<div class="form_input">
+		<%= f.text_field :city, placeholder: "New York" %>
+	</div>
+</div>
+
+<div class="form_field state">
+	<%= f.label :state, class: "form_label" %>
+	<div class="form_input">
+		<%= f.select :state, options_for_select(us_states.each { |state, abrv| [abrv, state] }), include_blank: false %>
+	</div>
+</div>
+
+<div class="form_field zipcode">
+	<%= f.label :zipcode, class: "form_label" %>
+	<div class="form_input">
+		<%= f.text_field :zipcode, placeholder: "98023" %>
+	</div>
+</div>
+
+<div class="form_field default">
+	<%= f.label :is_primary, "Default" %>
+	<div class="default_input">
+		<%= f.check_box :is_primary %>
+	</div>
+</div>

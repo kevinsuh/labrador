@@ -10,7 +10,7 @@ class Address < ActiveRecord::Base
   validates :state, presence: true
   validates :zipcode, presence: true
 
-  
+  default_scope { where(is_visible: true) }
 
   def set_primary
   	all_addresses = person.addresses.update_all(is_primary: false)

@@ -3,7 +3,13 @@ $(document).on('ready page:load', function() {
 	// show new address form
 	$('#new_address').click(function(e) {
 		e.preventDefault();
-		$('.address_form_div').fadeToggle();
+		var address_divs = $('.address_form_div');
+		address_divs.each(function() {
+			if ($(this).data('address-id') == "new") {
+				$(this).fadeToggle();		
+			}
+		});
+		
 	});
 
 	// update default address whenever new one gets checked
@@ -17,6 +23,18 @@ $(document).on('ready page:load', function() {
 			}
 		})
 	})
+
+	// show specific address form on edit button
+	$('button.edit_address').click(function(e) {
+		e.preventDefault();
+		var address_id = $(this).data('address-id');
+		var address_divs = $('.address_form_div');
+		address_divs.each(function() {
+			if ($(this).data('address-id') == address_id) {
+				$(this).fadeToggle();		
+			}
+		});
+	});
 
 });
 

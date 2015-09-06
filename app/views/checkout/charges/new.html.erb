@@ -10,7 +10,7 @@
 		<div id="flash-messages"></div>
 		<h1>Check Out</h1>
 
-		<%= form_for :payment, html: { class: "stripe-form", id: 'newCardPayment' }, url: charges_path, method: :post do |f| %>
+		<%= form_for :payment, html: { class: "stripe-form", id: 'newCardPayment' }, url: checkout_charges_path, method: :post do |f| %>
 			<article>
 				<%= label_tag 'amount', 'To Pay', class: 'amount' %>
 				<%= label_tag 'amount', "$#{@amount}.00", class: 'amount-figure' %>

@@ -10,6 +10,35 @@
   margin-left: 0;
 
   li.address {
+
+    // div to show address
+    .address_info {
+      width: 60%;
+      float: left;
+      padding-left: 30px;
+      padding-right: 10px;
+      box-sizing: border-box;
+      .default_notice {
+        margin-top: 5px;
+        span {
+          color: lightgray;
+          font-size: 1.2em;
+        }
+      }
+    }
+    .address_actions {
+      width: 25%;
+      float: right;
+      padding-left: 12px;
+      box-sizing: border-box;
+      display: none;
+    }
+
+    &.default {
+      .address_actions {
+        display: block;
+      }
+    }
     
     &:hover {
       
@@ -34,28 +63,12 @@
     margin-top: 3em;
   }
 
-  // div to show address
-  .address_info {
-    width: 60%;
-    float: left;
-    padding-left: 30px;
-    padding-right: 10px;
-    box-sizing: border-box;
-  }
-  .address_actions {
-    width: 25%;
-    float: right;
-    padding-left: 12px;
-    box-sizing: border-box;
-  }
-
   // div to edit address
   .address_form_div {
     width: 100%;
     display: none;
     .address_form {
       position: relative;
-      min-height: 600px;
       overflow: hidden;
       margin: 0 auto;
 
