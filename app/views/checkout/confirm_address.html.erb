@@ -1,0 +1,111 @@
+<div class="row">
+	<div class="col-xs-8 col-xs-offset-2">
+		<ul class="address_list">
+			<li class="address">
+				<label class="address_item">
+					<input type="radio" class="select_address" name="address_id">
+					<div class="address_info">
+						<div>
+							<span class="name">Kevin Suh</span>
+						</div>
+						<div>
+							<span class="street">2704 SW 311th St</span>
+							<span class="suite">Suite 206</span>
+						</div>
+						<div>
+							<span class="city">Federal Way</span>
+							<span class="state">WA</span>
+							<span class="zip">98023</span>
+						</div>
+						<div>
+							<span class="country">United States</span>
+						</div>
+					</div>
+
+					<div class="address_actions">
+						<button type="button" class="btn select btn-primary btn-full select-shipping">Ship Here</button>
+						<button type="button" class="btn edit btn-secondary btn-left">Edit</button>
+						<button type="button" class="btn delete btn-secondary btn-right">Delete</button>
+					</div>
+				</label>
+			</li>
+			<li>
+				<div class="new_address" style="background-color: lightgrey;">
+					<a href="#" id="new_address">+ Add New Address</a>
+				</div>
+
+				<div class="address_form_div">
+					<% address = current_user.addresses.new %>
+					<%= form_for address, html: { class: "address_form" } do |f| %>
+						<%= render 'shared/error_messages', object: f.object %>
+						<div class="form_field name">
+							<div class="first_name">
+								<%= f.label :first_name, class: "form_label" %>
+								<div class="form_input">
+									<%= f.text_field :first_name, placeholder: "Kevin" %>
+								</div>
+							</div>
+							<div class="last_name">
+								<%= f.label :last_name, class: "form_label" %>
+								<div class="form_input">
+									<%= f.text_field :last_name, placeholder: "Suh" %>
+								</div>
+							</div>
+						</div>
+
+						<div class="form_field street">
+							<%= f.label :street, class: "form_label" %>
+							<div class="form_input">
+								<%= f.text_field :street, placeholder: "123 Main St." %>
+							</div>
+						</div>
+						
+						<div class="form_field suite">
+							<%= f.label :suite, class: "form_label" %>
+							<div class="form_input">
+								<%= f.text_field :suite, placeholder: "Suite 206" %>
+							</div>
+						</div>
+
+						<div class="form_field city">
+							<%= f.label :city, class: "form_label" %>
+							<div class="form_input">
+								<%= f.text_field :city, placeholder: "New York" %>
+							</div>
+						</div>
+
+						<div class="form_field state">
+							<%= f.label :state, class: "form_label" %>
+							<div class="form_input">
+								<%= f.select :state, options_for_select(us_states.each { |state, abrv| [abrv, state] }), include_blank: false %>
+							</div>
+						</div>
+
+						<div class="form_field zipcode">
+							<%= f.label :zipcode, class: "form_label" %>
+							<div class="form_input">
+								<%= f.text_field :zipcode, placeholder: "98023" %>
+							</div>
+						</div>
+
+						<div class="form_field default">
+							<%= f.label :is_primary, "Default" %>
+							<div class="default_input">
+								<%= f.check_box :is_primary %>
+							</div>
+						</div>
+
+						<div class="form_field submit">
+							<div class="form_input">
+								<%= f.submit "Save address and continue", class: "btn btn-primary" %>
+							</div>
+						</div>
+
+					<% end %>
+
+				</div>
+			</li>
+		</ul>
+	</div>	
+</div>
+

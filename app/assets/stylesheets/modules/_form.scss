@@ -14,6 +14,10 @@ $form-label-font-size: 12px;
 $error-color: #a94442;
 $baby-blue: #21b2fe;
 
+// buttons
+$button-grey: #7D7773;
+$button-blue: #4fa9c6;
+
 @mixin form_font {
 	font-family: $form-font-family;
   font-weight: $regular-weight;
@@ -29,5 +33,36 @@ $baby-blue: #21b2fe;
 @mixin standard_form_input {
 	input {
 		line-height: 2.5em;
+	}
+}
+
+// button stuff
+.btn-full {
+	width: 100%;
+}
+.btn-left {
+	width: 45%;
+	float: left;
+}
+.btn-right {
+	width: 45%;
+	float: right;
+}
+.btn-primary {
+	background: $button-blue;
+	border: none;
+	margin: 10px 0;
+	&:hover {
+		background: scale-lightness($button-blue, -20%);
+	}
+}
+.btn-secondary {
+	color: $button-grey;
+	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+	margin: 10px 0;
+	&:hover {
+		color: white;
+		border:none;
+		background: scale-lightness($button-grey, -5%);
 	}
 }
