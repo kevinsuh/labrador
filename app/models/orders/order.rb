@@ -7,6 +7,8 @@ class Order < ActiveRecord::Base
   # has one through order_occasions
 	has_one :order_occasion
 	has_one :occasion, through: :order_occasion
+
+	belongs_to :shipping_address, class_name: "Address", foreign_key: 'shipping_address_id'
   
 	class << self
 
@@ -36,6 +38,11 @@ class Order < ActiveRecord::Base
 			queued_orders
 
 		end
+	end
+
+	# persistent session via cookies
+	def set_shipping_address(address)
+		update_attribute(:shipping_address_id, address.id)
 	end
 
 end

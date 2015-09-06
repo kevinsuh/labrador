@@ -1,105 +1,121 @@
+@import "base";
+
+/**
+ *      ADDRESS FORM ON CHECKOUT
+ */
 .address_list { // ul of addresses
-	
-	overflow: hidden;
-	list-style-type: none;
-	margin-left: 0;
+  
+  overflow: hidden;
+  list-style-type: none;
+  margin-left: 0;
 
-	.address_item {
-		padding: 25px;
-		width: 100%;
-		span {
-			font-weight: normal;
-			font-size: 1.5em;
-		}
-	}
-	
-	.select_address {
-		position: absolute;
-		margin: 0;
-		display: block;
-	}
+  li.address {
+    
+    &:hover {
+      
+      background: scale-lightness($button-blue, 50%);
+    }
+    .address_item {
+      cursor: pointer;
+      padding: 25px;
+      width: 100%;
+      span {
+        font-weight: normal;
+        font-size: 1.5em;
+      }
+    }
+  }
+  
+  .select_address {
+    height: 2em;
+    width: 2em;
+    display: inline-block;
+    float: left;
+    margin-top: 3em;
+  }
 
-	// div to show address
-	.address_info {
-		width: 60%;
-		float: left;
-		padding-left: 30px;
-		padding-right: 10px;
-		box-sizing: border-box;
-	}
-	.address_actions {
-		width: 25%;
-		float: right;
-		padding-left: 12px;
-		box-sizing: border-box;
-	}
+  // div to show address
+  .address_info {
+    width: 60%;
+    float: left;
+    padding-left: 30px;
+    padding-right: 10px;
+    box-sizing: border-box;
+  }
+  .address_actions {
+    width: 25%;
+    float: right;
+    padding-left: 12px;
+    box-sizing: border-box;
+  }
 
-	// div to edit address
-	.address_form_div {
-		width: 100%;
-		display: none;
-		.address_form {
-			position: relative;
-			min-height: 600px;
-			overflow: hidden;
-			margin: 0 auto;
+  // div to edit address
+  .address_form_div {
+    width: 100%;
+    display: none;
+    .address_form {
+      position: relative;
+      min-height: 600px;
+      overflow: hidden;
+      margin: 0 auto;
 
-			.form_field {
+      .form_field {
 
-				&.name {
-					.first_name {
-						width: 51.7%;
-						float: left;
-						padding-right: 2.5%;
-						overflow-x: hidden;
-						white-space: nowrap;
-					}
-					.last_name {
-						width: 48%;
-						float: right;
-					}
-				}
+        &.name {
+          .first_name {
+            width: 51.7%;
+            float: left;
+            padding-right: 2.5%;
+            overflow-x: hidden;
+            white-space: nowrap;
+          }
+          .last_name {
+            width: 48%;
+            float: right;
+          }
+        }
 
-				&.city {
-					width: 40%;
-					float: left;
-					margin-right: 3%;
-				}
-				&.state {
-					width: 17%;
-					float: left;
-				}
-				&.zipcode {
-					float: right;
-					width: 37%;
-				}
-				&.default {
-					.default_input {
-						display: inline-block;
-					}
-				}
+        &.city {
+          width: 40%;
+          float: left;
+          margin-right: 3%;
+        }
+        &.state {
+          width: 17%;
+          float: left;
+        }
+        &.zipcode {
+          float: right;
+          width: 37%;
+        }
+        &.default {
+          .default_input {
+            display: inline-block;
+          }
+        }
 
-				.form_input {
-					input, select {
-						width: 100%;
-						line-height: 2.5em;
-						font-size: 16px;
-						height: 50px;
-					}
-					select {
-						
-						border-radius: 0px;
-						background: transparent;
+        .form_input {
+          input, select {
+            width: 100%;
+            line-height: 2.5em;
+            font-size: 16px;
+            height: 50px;
+          }
+          select {
+            
+            border-radius: 0px;
+            background: transparent;
 
-					}
-				}
+          }
+        }
 
-				.form_label {
-					font-weight: 400;
-					font-size: 12px;
-					width: 100%;
-				}
-			}
-		}
-	}	
+        .form_label {
+          font-weight: 400;
+          font-size: 12px;
+          width: 100%;
+        }
+      }
+    }
+  } 
 }
+

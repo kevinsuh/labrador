@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150905190844) do
+ActiveRecord::Schema.define(version: 20150906073046) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "first_name"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 20150905190844) do
     t.datetime "updated_at",                  null: false
     t.integer  "person_id"
     t.string   "person_type"
+    t.boolean  "is_visible",  default: true
   end
 
   add_index "addresses", ["person_type", "person_id"], name: "index_addresses_on_person_type_and_person_id"
@@ -148,6 +149,7 @@ ActiveRecord::Schema.define(version: 20150905190844) do
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
     t.boolean  "pre_address",            default: false
+    t.integer  "shipping_address_id"
   end
 
   add_index "orders", ["card_id"], name: "index_orders_on_card_id"

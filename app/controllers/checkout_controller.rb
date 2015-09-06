@@ -13,4 +13,8 @@ class CheckoutController < ApplicationController
 		@addresses = current_user.addresses
 	end
 
+	def confirm_billing
+		
+	end
+
 end

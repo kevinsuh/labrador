@@ -1,5 +1,7 @@
 class Address < ActiveRecord::Base
+
   belongs_to :person, polymorphic: true
+  has_many :orders, foreign_key: "shipping_address_id"
 
   validates :first_name, presence: true
   validates :last_name, presence: true
@@ -8,7 +10,11 @@ class Address < ActiveRecord::Base
   validates :state, presence: true
   validates :zipcode, presence: true
 
-  # potentially have other email address validators?
-  # internet says that you need to ultimately trust the consumer though
+  
+
+  def set_primary
+  	all_addresses = person.addresses.update_all(is_primary: false)
+  	update_columns(is_primary: true)
+  end
 
 end

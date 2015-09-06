@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
 
-  resources :addresses, only: [:new, :create]
+  resources :addresses, only: [:new, :create] do
+    collection do
+      post 'create_with_order'
+      post 'set_for_order'
+    end
+  end
+
 
   # admin
   get 'admin' => 'admin#home'
@@ -49,6 +55,7 @@ Rails.application.routes.draw do
   # cart / checkout
   get 'cart' => 'checkout#view_cart'
   get 'cart/address' => 'checkout#confirm_address'
+  get 'cart/billing' => 'checkout#confirm_billing'
 
   # users
   resources :users do

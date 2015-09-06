@@ -1,34 +1,36 @@
 <div class="row">
 	<div class="col-xs-8 col-xs-offset-2">
 		<ul class="address_list">
-			<li class="address">
-				<label class="address_item">
-					<input type="radio" class="select_address" name="address_id">
-					<div class="address_info">
-						<div>
-							<span class="name">Kevin Suh</span>
+			<% @addresses.each do |address| %>
+				<li class="address<%= ' default' if address.is_primary? %>">
+					<label class="address_item">
+						<%= radio_button_tag :address_id, "address-#{address.id}", address.is_primary ? true : false , class: "select_address" %>
+						<div class="address_info">
+							<div>
+								<span class="name"><%= "#{address.first_name} #{address.last_name}" %></span>
+							</div>
+							<div>
+								<span class="street"><%= address.street %></span>
+								<span class="suite"><%= address.suite %></span>
+							</div>
+							<div>
+								<span class="city"><%= address.city %></span>
+								<span class="state"><%= address.state %></span>
+								<span class="zip"><%= address.zipcode %></span>
+							</div>
+							<div>
+								<span class="country">United States</span>
+							</div>
 						</div>
-						<div>
-							<span class="street">2704 SW 311th St</span>
-							<span class="suite">Suite 206</span>
-						</div>
-						<div>
-							<span class="city">Federal Way</span>
-							<span class="state">WA</span>
-							<span class="zip">98023</span>
-						</div>
-						<div>
-							<span class="country">United States</span>
-						</div>
-					</div>
 
-					<div class="address_actions">
-						<button type="button" class="btn select btn-primary btn-full select-shipping">Ship Here</button>
-						<button type="button" class="btn edit btn-secondary btn-left">Edit</button>
-						<button type="button" class="btn delete btn-secondary btn-right">Delete</button>
-					</div>
-				</label>
-			</li>
+						<div class="address_actions">
+							<%= button_to 'Ship Here', { controller: "addresses", action: "set_for_order", address_id: address.id }, method: :post, class: "btn select btn-primary btn-full select-shipping"  %>
+							<button type="button" class="btn edit btn-secondary btn-left">Edit</button>
+							<%= button_to "Delete", { controller: "addresses", action: "delete_for_order", address_id: address.id }, method: :post, class: "btn delete btn-secondary btn-right" %>
+						</div>
+					</label>
+				</li>
+			<% end %>
 			<li>
 				<div class="new_address" style="background-color: lightgrey;">
 					<a href="#" id="new_address">+ Add New Address</a>
@@ -36,7 +38,7 @@
 
 				<div class="address_form_div">
 					<% address = current_user.addresses.new %>
-					<%= form_for address, html: { class: "address_form" } do |f| %>
+					<%= form_for address, url: create_with_order_addresses_path, html: {class: "address_form" } do |f| %>
 						<%= render 'shared/error_messages', object: f.object %>
 						<div class="form_field name">
 							<div class="first_name">
