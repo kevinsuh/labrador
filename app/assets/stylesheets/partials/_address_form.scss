@@ -40,14 +40,13 @@
       }
     }
     
-    &:hover {
-      
-      background: scale-lightness($button-blue, 50%);
-    }
     .address_item {
       cursor: pointer;
       padding: 25px;
       width: 100%;
+      &:hover {
+        background: scale-lightness($button-blue, 50%);
+      }
       span {
         font-weight: normal;
         font-size: 1.5em;

@@ -70,6 +70,17 @@ module Checkout
 
     def update
 
+      @address = Address.find_by(id: params[:id])
+      if @address.update_attributes(address_params)
+        if @address.is_primary?
+          @address.set_primary
+        end
+        flash[:success] = "Address updated."
+      else
+        flash[:danger] = "Unable to save address."
+      end
+      redirect_to checkout_addresses_path
+
     end
 
     private
