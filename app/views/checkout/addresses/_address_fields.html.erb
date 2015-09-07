@@ -49,8 +49,8 @@
 </div>
 
 <div class="form_field default">
-	<%= f.label :is_primary, "Default" %>
+	<%= f.label "is_primary_#{f.options[:html][:id]}", "Default" %>
 	<div class="default_input">
-		<%= f.check_box :is_primary %>
+		<%= f.check_box :is_primary, { id: "address_is_primary_#{f.options[:html][:id]}" } %>
 	</div>
 </div>
