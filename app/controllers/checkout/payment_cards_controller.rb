@@ -3,7 +3,7 @@ module Checkout
 	class PaymentCardsController < ApplicationController
 
 		include PaymentCardsHelper
-		
+
 		# credit card form
 		def new
 			@amount = 5
@@ -13,6 +13,7 @@ module Checkout
 		def index
 
 			@cards = Array.new
+			@default_billing_address = Address.find_by(id: session[:checkout_address]) || current_user.addresses.where(is_primary: true).limit(1)
 
 			# user needs customer_id in order to retrieve card info
 			if stripe_account = current_user.stripe_account

@@ -57,10 +57,6 @@
 	</div>	
 </div>
 
-
-<%= session.inspect %>
-
-
 <!-- payment form -->
 <div class="row">
 	<div class="col-md-6 col-md-offset-3">
@@ -82,8 +78,11 @@
 
 			<%= select_tag :exp_year, options_for_select((Date.today.year..(Date.today.year+10)).to_a), include_blank: false, "data-stripe" => "exp_year", class: "span1" %>
 
-			<h4>Billing Address</h4>
-
+			<%= f.label "billing_address_same_#{'card.id'}", "My billing address is the same as my shipping address:" %>
+			<%= f.check_box :same_as_shipping, { id: "payment_card_billing_address_same_#{'card.id'}" } %>
+			<div class="shipping-address">
+				<%= "#{@default_billing_address.street} #{@default_billing_address.suite} #{@default_billing_address.city}, #{@default_billing_address.state} #{@default_billing_address.zipcode}" %>
+			</div>
 
 
 			<%= f.submit "Save Card", class: "btn", style: "color: white; backvround: rgb(242,118,73);" %>
