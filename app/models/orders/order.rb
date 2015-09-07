@@ -2,7 +2,8 @@ class Order < ActiveRecord::Base
   belongs_to :user
   belongs_to :recipient
   belongs_to :card
-  has_one :order_status
+  has_one :status, class_name: "OrderStatus"
+  has_one :group, class_name: "OrderPurchaseGroup"
 
   # has one through order_occasions
 	has_one :order_occasion

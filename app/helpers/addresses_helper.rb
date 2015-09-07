@@ -6,5 +6,6 @@ module AddressesHelper
 		queued_orders.each do |order|
 			order.set_shipping_address address
 		end
+		session[:selected_address] = address.id
 	end
 end

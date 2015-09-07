@@ -58,7 +58,7 @@
 </div>
 
 
-
+<%= session.inspect %>
 
 
 <!-- payment form -->
@@ -83,7 +83,7 @@
 			<%= select_tag :exp_year, options_for_select((Date.today.year..(Date.today.year+10)).to_a), include_blank: false, "data-stripe" => "exp_year", class: "span1" %>
 
 			<h4>Billing Address</h4>
-			
+
 
 
 			<%= f.submit "Save Card", class: "btn", style: "color: white; backvround: rgb(242,118,73);" %>
