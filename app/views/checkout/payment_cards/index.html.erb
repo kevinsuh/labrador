@@ -1,0 +1,98 @@
+<!-- stripe config -->
+<%= javascript_include_tag "https://js.stripe.com/v2/" %>
+<%= javascript_tag do %>
+	Stripe.setPublishableKey("<%= Rails.application.secrets.stripe_publishable_key %>");
+<% end %>
+
+<div class="row">
+	<div class="col-xs-8 col-xs-offset-2">
+		<ul class="card_list">
+			<li class="card_title">
+				<h3>Choose a Card</h3>
+			</li>
+			<% @cards.each do |card| %>
+				<% is_primary = (card.id == @default_card_id) %>
+				<li class="card<%= ' default' if is_primary %>">
+					<label class="card_item">
+						<%= radio_button_tag :card_id, "#{card.id}", is_primary ? true : false , class: "select_card" %>
+						<div class="card_info">
+							<%= image_tag("icons/#{card.brand.underscore}.png", alt: "#{card.brand}", width: '75', class: "brand_icon") %>
+							<div class="card_description">
+								<div>
+									<span class="brand"><%= card.brand %></span>
+									<span class="digits"><%= "...#{card.last4}" %></span>
+								</div>
+								<div>
+									<span class="exp"><%= "Exp: #{card.exp_month}/#{card.exp_year}." %></span>
+								</div>
+								<div>
+									<span class="name"><%= card.name %></span>
+								</div>
+								<% if is_primary %>
+								<div class="default_notice">
+									<span>Default credit card</span>
+								</div>
+							</div>
+							<% end %>
+						</div>
+
+						<div class="card_actions">
+							<%= button_to 'Use this Card', { controller: "payment_cards", action: "set_for_order", card_id: "TEST_CARD_ID" }, method: :post, class: "btn select btn-primary btn-full select-shipping"  %>
+							<button type="button" class="btn edit edit_card btn-secondary btn-left" data-card-id="<%= card.id %>">Edit</button>
+							<%= button_to "Delete", { controller: "payment_cards", action: :destroy, id: card.id }, method: :delete, class: "btn delete btn-secondary btn-right", data: {confirm: "Are you sure you want to delete this card?"} %>
+						</div>
+					</label>
+
+					<!-- card form goes here -->
+
+				</li>
+			<% end %>
+			<li>
+
+				<!-- new card form goes here -->
+				
+
+			</li>
+		</ul>
+	</div>	
+</div>
+
+
+
+
+
+<!-- payment form -->
+<div class="row">
+	<div class="col-md-6 col-md-offset-3">
+		<div id="flash-messages"></div>
+
+		<%= form_for :payment_card, html: { class: "stripe-form", id: 'newCard' }, url: checkout_payment_cards_path, method: :post do |f| %>
+			
+			<%= label_tag :name, "Name", required: true %>
+			<%= text_field_tag :name, nil, class: "input-block-level", "data-stripe" => "name" %>
+
+			<%= label_tag :card_number, "Card Number", required: true %>
+			<%= text_field_tag :card_number, nil, class: "input-block-level", "data-stripe" => "number" %>
+
+			<%= label_tag :card_verification, "Card Verification", required: true %>
+			<%= text_field_tag :card_verification, nil, class: "input-block-level", "data-stripe" => "cvv" %>
+
+			<%= label_tag "Card Expires", nil, required: true %>
+			<%= select_tag :exp_month, options_for_select(Date::MONTHNAMES.compact.each_with_index.map { |name, i| ["#{i+1} - #{name}", i+1] }), include_blank: false, "data-stripe" => "exp_month", class: "card-month" %>
+
+			<%= select_tag :exp_year, options_for_select((Date.today.year..(Date.today.year+10)).to_a), include_blank: false, "data-stripe" => "exp_year", class: "span1" %>
+
+			<h4>Billing Address</h4>
+			
+
+
+			<%= f.submit "Save Card", class: "btn", style: "color: white; backvround: rgb(242,118,73);" %>
+
+		<% end %>
+	</div>
+</div>
+
+
+
+
+<%= @cards.inspect %>

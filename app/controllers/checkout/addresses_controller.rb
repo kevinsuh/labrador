@@ -23,7 +23,7 @@ module Checkout
     		# take user's queued orders and set shipping_address_id
     		set_queued_orders_shipping @address
 
-        redirect_to new_checkout_charge_path
+        redirect_to checkout_payment_cards_path
     	else
     		flash[:danger] = "Unable to save address."
         redirect_to checkout_addresses_path
@@ -40,7 +40,7 @@ module Checkout
         # take user's queued orders and set shipping_address_id
         set_queued_orders_shipping @address
         
-        redirect_to new_checkout_charge_path
+        redirect_to checkout_payment_cards_path
       else
         flash[:danger] = "Unable to set address."
         redirect_to checkout_addresses_path

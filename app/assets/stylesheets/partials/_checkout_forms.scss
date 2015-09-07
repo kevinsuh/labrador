@@ -3,16 +3,16 @@
 /**
  *      ADDRESS FORM ON CHECKOUT
  */
-.address_list { // ul of addresses
+.address_list, .card_list { // ul of addresses
   
   overflow: hidden;
   list-style-type: none;
   margin-left: 0;
 
-  li.address {
+  li.address, li.card {
 
     // div to show address
-    .address_info {
+    .address_info, .card_info {
       width: 60%;
       float: left;
       padding-left: 30px;
@@ -26,7 +26,7 @@
         }
       }
     }
-    .address_actions {
+    .address_actions, .card_actions {
       width: 25%;
       float: right;
       padding-left: 12px;
@@ -35,12 +35,12 @@
     }
 
     &.default {
-      .address_actions {
+      .address_actions, .card_actions {
         display: block;
       }
     }
     
-    .address_item {
+    .address_item, .card_item {
       cursor: pointer;
       padding: 25px;
       width: 100%;
@@ -51,10 +51,17 @@
         font-weight: normal;
         font-size: 1.5em;
       }
+      .brand_icon {
+        position:absolute;
+        top: 67px;
+      }
+      .card_description {
+        margin-left: 85px;
+      }
     }
   }
   
-  .select_address {
+  .select_address, .select_card {
     height: 2em;
     width: 2em;
     display: inline-block;
@@ -63,43 +70,16 @@
   }
 
   // div to edit address
-  .address_form_div {
+  .address_form_div, .card_form_div {
     width: 100%;
     display: none;
-    .address_form {
+    .address_form, .card_form {
       position: relative;
       overflow: hidden;
       margin: 0 auto;
 
       .form_field {
 
-        &.name {
-          .first_name {
-            width: 51.7%;
-            float: left;
-            padding-right: 2.5%;
-            overflow-x: hidden;
-            white-space: nowrap;
-          }
-          .last_name {
-            width: 48%;
-            float: right;
-          }
-        }
-
-        &.city {
-          width: 40%;
-          float: left;
-          margin-right: 3%;
-        }
-        &.state {
-          width: 17%;
-          float: left;
-        }
-        &.zipcode {
-          float: right;
-          width: 37%;
-        }
         &.default {
           .default_input {
             display: inline-block;
@@ -135,6 +115,38 @@
           font-size: 12px;
           width: 100%;
         }
+
+        // ADDRESS FIELDS
+        &.name {
+          .first_name {
+            width: 51.7%;
+            float: left;
+            padding-right: 2.5%;
+            overflow-x: hidden;
+            white-space: nowrap;
+          }
+          .last_name {
+            width: 48%;
+            float: right;
+          }
+        }
+
+        &.city {
+          width: 40%;
+          float: left;
+          margin-right: 3%;
+        }
+        &.state {
+          width: 17%;
+          float: left;
+        }
+        &.zipcode {
+          float: right;
+          width: 37%;
+        }
+
+        // CARD FIELDS
+
       }
     }
   } 

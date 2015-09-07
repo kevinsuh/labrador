@@ -14,7 +14,12 @@ Rails.application.routes.draw do
       end
     end
     # checkout / credit card
-    resources :charges, path: "cards", only: [:index, :create]
+    resources :charges, only: [:index, :create]
+    resources :payment_cards, path: "cards", only: [:index, :create, :new, :destroy] do
+      collection do
+        post 'set_for_order'
+      end
+    end
   end
 
   # admin
@@ -86,9 +91,6 @@ Rails.application.routes.draw do
   resources :password_resets, only: [:new, :create, :edit, :update]
 
   root 'static_pages#home'
-
-
-
 
 
 

@@ -3,7 +3,7 @@ $(document).on('ready page:load', function() {
 	// submit payment options
 	var show_error, stripeResponseHandler;
 	// use subimt event of the form to interact with stripe
-	$("#newCardPayment").submit(function(e) {
+	$("#newCard").submit(function(e) {
 		e.preventDefault();
 		var $form;
 		$form = $(this);
@@ -14,7 +14,7 @@ $(document).on('ready page:load', function() {
 
 	var stripeResponseHandler = function (status, response) {
 		var $form, token;
-		$form = $("#newCardPayment");
+		$form = $("#newCard");
 
 		if (response.error) {
 			show_error(response.error.message);
@@ -26,8 +26,8 @@ $(document).on('ready page:load', function() {
 			$form.append($("<input type=\"hidden\" name=\"registration[card_token]\" />").val(token))
 			$("[data-stripe=number]").remove();
       $("[data-stripe=cvv]").remove();
-      $("[data-stripe=exp-year]").remove();
-      $("[data-stripe=exp-month]").remove();
+      $("[data-stripe=exp_year]").remove();
+      $("[data-stripe=exp_month]").remove();
       $form.get(0).submit();
 		}
 		return false;

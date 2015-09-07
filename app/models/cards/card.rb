@@ -44,7 +44,7 @@ class Card < ActiveRecord::Base
 					ON card_flavors.card_id = cards.id").where("
 				card_relationships.relationship_id IN (:relationship_ids)
 				AND card_occasions.occasion_id IN (:occasion_ids)
-				AND card_flavors.flavor_id IN (:flavor_ids)", relationship_ids: [all_relationships_id, relationship_id], occasion_ids: [all_occasions_id, occasion_id], flavor_ids: flavor_ids).distinct
+				AND card_flavors.flavor_id IN (:flavor_ids)", relationship_ids: [all_relationships_id, relationship_id], occasion_ids: [all_occasions_id, occasion_id], flavor_ids: flavor_ids).distinct.limit(4)
 
 			curated_cards
 		end

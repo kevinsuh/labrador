@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
 	has_many :addresses, as: :person
 	has_many :recipients
 	has_many :orders
-	has_many :stripe_cards, class_name: "UserStripeCard"
+	has_one :stripe_account, class_name: "UserStripeAccount"
 
 	# User class methods
 	class << self
@@ -82,8 +82,8 @@ class User < ActiveRecord::Base
 		update_attribute(:remember_digest, nil)
 	end
 
-	def save_stripe_customer_id(customer_id)
-		stripe_cards.create(customer_id: customer_id)
+	def save_stripe_account(customer_id)
+		create_stripe_account(customer_id: customer_id)
 	end
 
 	# to mimic has_secure_password.authenticate for our custom tokens
