@@ -8,7 +8,7 @@
 <div class="row">
 	<div class="col-md-6 col-md-offset-3">
 		<div id="flash-messages"></div>
-		<h1>Check Out</h1>
+		<h1>Choose a Card</h1>
 
 		<%= form_for :payment, html: { class: "stripe-form", id: 'newCardPayment' }, url: checkout_charges_path, method: :post do |f| %>
 			<article>

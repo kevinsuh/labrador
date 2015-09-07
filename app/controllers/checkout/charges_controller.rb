@@ -7,6 +7,20 @@ module Checkout
 			@amount = 5
 		end
 
+		# view cards and choose one
+		def index
+			@stripe_cards = current_user.stripe_cards
+			@cards_data = Hash.new
+			@stripe_cards.each do |stripe_card|
+
+				card_data = Hash.new
+				customer_id = stripe_card.customer_id
+				
+
+				@cards_data[customer_id] = card_data
+			end
+		end
+
 		# charge credit card
 		def create
 

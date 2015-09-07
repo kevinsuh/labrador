@@ -33,7 +33,7 @@ $(document).on('ready page:load', function() {
 		address_forms.each(function() {
 			if ($(this).data('address-id') == address_id) {
 				address_form = $(this);
-				address_info.fadeToggle(500, function() {
+				address_info.fadeToggle(200, function() {
 					address_form.fadeToggle();	
 				});
 			};
@@ -45,7 +45,7 @@ $(document).on('ready page:load', function() {
 		var address_parent = $(this).parent().parent().parent().parent().parent();
 		var address_info = address_parent.find('.address_item');
 		var address_form = address_parent.find('.address_form_div');
-		address_form.fadeToggle(500, function() {
+		address_form.fadeToggle(200, function() {
 			address_info.fadeToggle();
 		})
 

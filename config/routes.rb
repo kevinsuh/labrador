@@ -14,7 +14,7 @@ Rails.application.routes.draw do
       end
     end
     # checkout / credit card
-    resources :charges, only: [:new, :create]
+    resources :charges, path: "cards", only: [:index, :create]
   end
 
   # admin
