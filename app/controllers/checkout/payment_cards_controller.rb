@@ -2,6 +2,8 @@ module Checkout
 	# handle charges via stripe here
 	class PaymentCardsController < ApplicationController
 
+		include PaymentCardsHelper
+		
 		# credit card form
 		def new
 			@amount = 5
@@ -14,10 +16,12 @@ module Checkout
 
 			# user needs customer_id in order to retrieve card info
 			if stripe_account = current_user.stripe_account
-				customer_id = stripe_account.customer_id
-				customer = Stripe::Customer.retrieve(customer_id)
+
+				customer_id      = stripe_account.customer_id
+				customer         = Stripe::Customer.retrieve(customer_id)
 				@default_card_id = customer[:default_source]
-				@cards = customer[:sources][:data]
+				@cards           = customer[:sources][:data]
+
 			end
 
 			# get cards from customer id
@@ -27,6 +31,15 @@ module Checkout
 
 		# use this credit card for the order
 		def set_for_order
+
+			customer_id = params[:customer_id]
+			card_id     = params[:card_id]
+			customer    = Stripe::Customer.retrieve(customer_id)
+			card        = customer.sources.retrieve(card_id)
+
+			set_order_payment card
+
+			redirect_to checkout_payment_cards_path
 
 		end
 
@@ -42,7 +55,7 @@ module Checkout
 
 			card_token         = params[:registration][:card_token]
 			authenticity_token = params[:authenticity_token]
-			email = current_user.email
+			email              = current_user.email
 
 			if stripe_account = current_user.stripe_account
 				customer_id = stripe_account.customer_id

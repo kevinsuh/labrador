@@ -37,7 +37,7 @@
 						</div>
 
 						<div class="card_actions">
-							<%= button_to 'Use this Card', { controller: "payment_cards", action: "set_for_order", card_id: "TEST_CARD_ID" }, method: :post, class: "btn select btn-primary btn-full select-shipping"  %>
+							<%= button_to 'Use this Card', { controller: "payment_cards", action: "set_for_order", card_id: card.id, customer_id: card.customer }, method: :post, class: "btn select btn-primary btn-full select-shipping"  %>
 							<button type="button" class="btn edit edit_card btn-secondary btn-left" data-card-id="<%= card.id %>">Edit</button>
 							<%= button_to "Delete", { controller: "payment_cards", action: :destroy, id: card.id }, method: :delete, class: "btn delete btn-secondary btn-right", data: {confirm: "Are you sure you want to delete this card?"} %>
 						</div>
