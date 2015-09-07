@@ -3,8 +3,8 @@ $(document).on('ready page:load', function() {
 	// show new address form
 	$('#new_address').click(function(e) {
 		e.preventDefault();
-		var address_divs = $('.address_form_div');
-		address_divs.each(function() {
+		var address_forms = $('.address_form_div');
+		address_forms.each(function() {
 			if ($(this).data('address-id') == "new") {
 				$(this).fadeToggle();		
 			}
@@ -27,13 +27,28 @@ $(document).on('ready page:load', function() {
 	// show specific address form on edit button
 	$('button.edit_address').click(function(e) {
 		e.preventDefault();
+		var address_info = $(this).parent().parent();
 		var address_id = $(this).data('address-id');
-		var address_divs = $('.address_form_div');
-		address_divs.each(function() {
+		var address_forms = $('.address_form_div');
+		address_forms.each(function() {
 			if ($(this).data('address-id') == address_id) {
-				$(this).fadeToggle();		
-			}
+				address_form = $(this);
+				address_info.fadeToggle(500, function() {
+					address_form.fadeToggle();	
+				});
+			};
 		});
+	});
+
+	// cancel to show back the prev form 
+	$('button.cancel_update').click(function(e) {
+		var address_parent = $(this).parent().parent().parent().parent().parent();
+		var address_info = address_parent.find('.address_item');
+		var address_form = address_parent.find('.address_form_div');
+		address_form.fadeToggle(500, function() {
+			address_info.fadeToggle();
+		})
+
 	});
 
 });

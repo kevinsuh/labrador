@@ -39,8 +39,11 @@
 							<%= render 'shared/error_messages', object: f.object %>
 							<%= render 'address_fields', f: f %>		
 							<div class="form_field submit">
-								<div class="form_input">
+								<div class="form_input update">
 									<%= f.submit "Update", class: "btn btn-primary" %>
+								</div>
+								<div class="form_input cancel">
+									<button type="button" class="btn cancel cancel_update">Cancel</button>
 								</div>
 							</div>
 						<% end %>
