@@ -5,7 +5,7 @@
 				<h3>Choose a shipping address</h3>
 			</li>
 			<% @addresses.each do |address| %>
-				<li class="address<%= ' default' if address.is_primary? %>">
+				<li class="address<%= ' default selected' if address.is_primary? %>">
 					<label class="address_item">
 						<%= radio_button_tag :address_id, "address-#{address.id}", address.is_primary ? true : false , class: "select_address" %>
 						<div class="address_info">
@@ -59,10 +59,11 @@
 			<li>
 
 				<div class="new_address" style="background-color: lightgrey;">
-					<a href="#" id="new_address">+ Add New Address</a>
+					<a style="cursor: pointer;" id="new_address">+ Add New Address</a>
 				</div>
 
-				<div class="address_form_div" data-address-id="new">
+				<div class="address_form_div" id="new_address_form" data-address-id="new">
+					<h3>New Address</h3>
 					<% address = current_user.addresses.new %>
 					<%= form_for address, url: checkout_addresses_path, html: {class: "address_form" } do |f| %>
 						<%= render 'shared/error_messages', object: f.object %>

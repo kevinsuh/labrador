@@ -15,7 +15,7 @@
 
 			<% @cards.each do |card| %>
 				<% is_primary = (card.id == @default_card_id) %>
-				<li class="existing_cards card<%= ' default' if is_primary %>">
+				<li class="existing_cards card<%= ' default selected' if is_primary %>">
 					<label class="card_item">
 						<%= radio_button_tag :card_id, "#{card.id}", is_primary ? true : false , class: "select_card" %>
 						<div class="card_info">
@@ -87,10 +87,11 @@
 
 			<!-- new card form -->
 			<li class="new_card">
-				<div class="new_card" id="add_new_card" style="background-color: lightgrey;">
-					<a href="#">+ Add New Card</a>
+				<div class="new_card" style="background-color: lightgrey;">
+					<a style="cursor: pointer;" id="add_new_card">+ Add New Card</a>
 				</div>
 				<div class="card_form_div new_card_form" id="new_card_form">
+					<h3>New Card</h3>
 					<div id="flash-messages"></div>
 
 					<%= form_for :payment_card, html: { class: "card_form", id: 'newCard' }, url: checkout_payment_cards_path, method: :post do |f| %>
@@ -126,7 +127,7 @@
 							</div>
 						</div>
 
-						<div class="form_field billing_address_choice">
+						<div class="form_field billing_address_choice" style="margin-bottom: 0;">
 							<%= f.label "billing_address_same_#{'card.id'}", "My billing address is the same as my shipping address:" %>
 							<div class="billing_choice_input">
 								<%= f.check_box :same_as_shipping, { id: "payment_card_billing_address_same_#{'card.id'}", checked: true, class: "same_billing_address #{'card.id'}" } %>
@@ -134,11 +135,12 @@
 							
 						</div>
 
-						<div class="form_field billing_address">
+						<div class="form_field billing_address" style="margin-top:0;">
 							<div class="default_address">
 								<%= "#{@default_billing_address.street} #{@default_billing_address.suite} #{@default_billing_address.city}, #{@default_billing_address.state} #{@default_billing_address.zipcode}" %>
 							</div>
 							<div class="new_address">
+								<h3>Billing Address</h3>
 								<%= render 'shared/address_fields', f: f, address: @default_billing_address %>
 							</div>
 						</div>

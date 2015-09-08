@@ -34,7 +34,8 @@
       display: none;
     }
 
-    &.default {
+    // when radio button is selected for this address
+    &.selected {
       .address_actions, .card_actions {
         display: block;
       }
@@ -83,7 +84,7 @@
       margin: 0 auto;
 
       .form_field {
-
+        margin: 12px 0;
         &.default {
           .default_input {
             display: inline-block;
@@ -124,9 +125,8 @@
         &.name {
           .first_name {
             width: 51.7%;
-            float: left;
+            display: inline-block;
             padding-right: 2.5%;
-            overflow-x: hidden;
             white-space: nowrap;
           }
           .last_name {

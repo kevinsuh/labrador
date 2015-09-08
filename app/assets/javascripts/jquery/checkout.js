@@ -6,51 +6,50 @@ $(document).on('ready page:load', function() {
 	
 	// show new address form
 	$('#new_address').click(function(e) {
+		
 		e.preventDefault();
-		var address_forms = $('.address_form_div');
-		address_forms.each(function() {
-			if ($(this).data('address-id') == "new") {
-				$(this).fadeToggle();		
-			}
-		});
+		var new_address_form = $('#new_address_form');
+		new_address_form.fadeToggle(200);
+
 	});
 
 	// update default address whenever new one gets checked
 	$('input[type=radio].select_address').change(function() {
 		$('input[type=radio].select_address').each(function() {
+
 			var addressDiv = $(this).parent().parent();
 			if ($(this).is(':checked')) {
-				addressDiv.addClass('default');
+				addressDiv.addClass('selected');
 			} else {
-				addressDiv.removeClass('default');
+				addressDiv.removeClass('selected');
 			}
+
 		})
 	})
 
 	// show specific address form on edit button
 	$('button.edit_address').click(function(e) {
-		e.preventDefault();
-		var address_info = $(this).parent().parent();
-		var address_id = $(this).data('address-id');
-		var address_forms = $('.address_form_div');
-		address_forms.each(function() {
-			if ($(this).data('address-id') == address_id) {
-				address_form = $(this);
-				address_info.fadeToggle(200, function() {
-					address_form.fadeToggle(200);	
-				});
-			};
+		
+		var address      = $(this).parent().parent().parent();
+		var address_item = address.find('.address_item');
+		var address_form = address.find(".address_form_div");
+
+		address_item.fadeToggle(200, function() {
+			address_form.fadeToggle();
 		});
+
 	});
 
 	// cancel to show back the prev form 
 	$('button.cancel_address_update').click(function(e) {
-		var address_parent = $(this).parent().parent().parent().parent().parent();
-		var address_info = address_parent.find('.address_item');
-		var address_form = address_parent.find('.address_form_div');
+
+		var address      = $(this).parent().parent().parent().parent().parent();
+		var address_item = address.find('.address_item');
+		var address_form = address.find('.address_form_div');
+
 		address_form.fadeToggle(200, function() {
-			address_info.fadeToggle(200);
-		})
+			address_item.fadeToggle(200);
+		});
 
 	});
 
@@ -89,9 +88,11 @@ $(document).on('ready page:load', function() {
 	})
 
 	$("#new_card_form input.same_billing_address").click(function() {
+
 		var newCardFormDiv = $(this).parent().parent().parent();
 		var default_address = newCardFormDiv.find('.default_address');
 		var new_address = newCardFormDiv.find('.new_address');
+
 		if ($(this).prop('checked')) {
 			new_address.fadeOut(200, function() {
 				default_address.fadeIn(200);
