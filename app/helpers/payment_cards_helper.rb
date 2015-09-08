@@ -5,4 +5,8 @@ module PaymentCardsHelper
 		session[:checkout_card] = card.id
 	end
 
+	def set_payment_billing_address(address)
+		session[:checkout_card_billing_address] = address.id
+	end
+
 end

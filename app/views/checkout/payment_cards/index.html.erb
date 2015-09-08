@@ -79,11 +79,33 @@
 			<%= select_tag :exp_year, options_for_select((Date.today.year..(Date.today.year+10)).to_a), include_blank: false, "data-stripe" => "exp_year", class: "span1" %>
 
 			<%= f.label "billing_address_same_#{'card.id'}", "My billing address is the same as my shipping address:" %>
-			<%= f.check_box :same_as_shipping, { id: "payment_card_billing_address_same_#{'card.id'}" } %>
-			<div class="shipping-address">
+			<%= f.check_box :same_as_shipping, { id: "payment_card_billing_address_same_#{'card.id'}", checked: true, class: "same_billing_address #{'card.id'}" } %>
+			<div class="default_address">
 				<%= "#{@default_billing_address.street} #{@default_billing_address.suite} #{@default_billing_address.city}, #{@default_billing_address.state} #{@default_billing_address.zipcode}" %>
 			</div>
+			<div class="new_address" style="display: none;">
+				<%= f.label :first_name, class: "form_label" %>
+				<%= f.text_field :first_name, placeholder: "First name", value: @default_billing_address.first_name %>
 
+				<%= f.label :last_name, class: "form_label" %>
+				<%= f.text_field :last_name, placeholder: "Last name", value: @default_billing_address.last_name %>
+
+				<%= f.label :street, class: "form_label" %>
+				<%= f.text_field :street, placeholder: "123 Main St.", value: @default_billing_address.street %>
+
+				<%= f.label :suite, class: "form_label" %>
+				<%= f.text_field :suite, placeholder: "Suite 206", value: @default_billing_address.suite %>
+
+				<%= f.label :city, class: "form_label" %>
+				<%= f.text_field :city, placeholder: "New York", value: @default_billing_address.city %>
+
+				<%= f.label :state, class: "form_label" %>
+				<%= f.select :state, options_for_select(us_states.each { |state, abrv| [abrv, state] }, @default_billing_address.state), include_blank: false %>
+
+				<%= f.label :zipcode, class: "form_label" %>
+				<%= f.text_field :zipcode, placeholder: "98023", value: @default_billing_address.zipcode %>
+			</div>
+			
 
 			<%= f.submit "Save Card", class: "btn", style: "color: white; backvround: rgb(242,118,73);" %>
 

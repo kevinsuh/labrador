@@ -14,6 +14,7 @@ module Checkout
 
 			@cards = Array.new
 			@default_billing_address = Address.find_by(id: session[:checkout_address]) || current_user.addresses.where(is_primary: true).limit(1)
+			set_payment_billing_address @default_billing_address
 
 			# user needs customer_id in order to retrieve card info
 			if stripe_account = current_user.stripe_account

@@ -33,6 +33,20 @@ $(document).on('ready page:load', function() {
 		return false;
 	}
 
+	$("#newCard input.same_billing_address").click(function() {
+		var default_address = $(this).parent().find('.default_address');
+		var new_address = $(this).parent().find('.new_address');
+		if ($(this).prop('checked')) {
+			new_address.fadeOut(200, function() {
+				default_address.fadeIn(200);
+			})
+		} else {
+			default_address.fadeOut(200, function() {
+				new_address.fadeIn(200);
+			});
+		}
+	})
+
 	var show_error = function(message) {
 		$("#flash-messages").html('<div class="alert alert-warning"><a class="close" data-dismiss="alert">×</a><div id="flash_alert">' + message + '</div></div>');
     $('.alert').delay(5000).fadeOut(3000);
