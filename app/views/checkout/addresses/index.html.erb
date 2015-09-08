@@ -37,7 +37,13 @@
 					<div class="address_form_div" data-address-id="<%= address.id %>">
 						<%= form_for [:checkout, address], html: {class: "address_form" } do |f| %>
 							<%= render 'shared/error_messages', object: f.object %>
-							<%= render 'address_fields', f: f %>		
+							<%= render 'shared/address_fields', f: f, address: address %>		
+							<div class="form_field default">
+								<%= f.label "is_primary_#{f.options[:html][:id]}", "Default" %>
+								<div class="default_input">
+									<%= f.check_box :is_primary, { id: "address_is_primary_#{f.options[:html][:id]}" } %>
+								</div>
+							</div>
 							<div class="form_field submit">
 								<div class="form_input update">
 									<%= f.submit "Update", class: "btn btn-primary" %>
@@ -60,7 +66,13 @@
 					<% address = current_user.addresses.new %>
 					<%= form_for address, url: checkout_addresses_path, html: {class: "address_form" } do |f| %>
 						<%= render 'shared/error_messages', object: f.object %>
-						<%= render 'address_fields', f: f %>		
+						<%= render 'shared/address_fields', f: f, address: address %>
+						<div class="form_field default">
+							<%= f.label "is_primary_#{f.options[:html][:id]}", "Default" %>
+							<div class="default_input">
+								<%= f.check_box :is_primary, { id: "address_is_primary_#{f.options[:html][:id]}" } %>
+							</div>
+						</div>
 						<div class="form_field submit">
 							<div class="form_input">
 								<%= f.submit "Save address and continue", class: "btn btn-primary" %>

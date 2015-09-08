@@ -1,5 +1,9 @@
 $(document).on('ready page:load', function() {
 
+	/**
+	 * 			ADDRESSES
+	 */
+	
 	// show new address form
 	$('#new_address').click(function(e) {
 		e.preventDefault();
@@ -9,7 +13,6 @@ $(document).on('ready page:load', function() {
 				$(this).fadeToggle();		
 			}
 		});
-		
 	});
 
 	// update default address whenever new one gets checked
@@ -50,6 +53,31 @@ $(document).on('ready page:load', function() {
 		})
 
 	});
+
+	/**
+	 * 			CARDS
+	 */
+	
+	// add new card or not
+	$('#add_new_card').click(function(e) {
+		e.preventDefault();
+		$('#new_card_form').fadeToggle();
+	});
+
+	$("#new_card_form input.same_billing_address").click(function() {
+		var newCardFormDiv = $(this).parent().parent().parent();
+		var default_address = newCardFormDiv.find('.default_address');
+		var new_address = newCardFormDiv.find('.new_address');
+		if ($(this).prop('checked')) {
+			new_address.fadeOut(200, function() {
+				default_address.fadeIn(200);
+			})
+		} else {
+			default_address.fadeOut(200, function() {
+				new_address.fadeIn(200);
+			});
+		}
+	})
 
 });
 

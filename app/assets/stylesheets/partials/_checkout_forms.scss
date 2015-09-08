@@ -167,6 +167,20 @@
           }
         }
 
+        // div to set card's billing address
+        &.billing_address {
+          .default_address {
+            display: block;
+          }
+          .new_address {
+            display: none;
+          }
+        }
+
+        .billing_choice_input, .default_choice_input {
+          display: inline-block;
+        }
+
       }
     }
   } 

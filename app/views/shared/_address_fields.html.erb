@@ -2,13 +2,13 @@
 	<div class="first_name">
 		<%= f.label :first_name, class: "form_label" %>
 		<div class="form_input">
-			<%= f.text_field :first_name, placeholder: "Kevin" %>
+			<%= f.text_field :first_name, placeholder: "Kevin", value: address.first_name %>
 		</div>
 	</div>
 	<div class="last_name">
 		<%= f.label :last_name, class: "form_label" %>
 		<div class="form_input">
-			<%= f.text_field :last_name, placeholder: "Suh" %>
+			<%= f.text_field :last_name, placeholder: "Suh", value: address.last_name %>
 		</div>
 	</div>
 </div>
@@ -16,41 +16,35 @@
 <div class="form_field street">
 	<%= f.label :street, class: "form_label" %>
 	<div class="form_input">
-		<%= f.text_field :street, placeholder: "123 Main St." %>
+		<%= f.text_field :street, placeholder: "123 Main St.", value: address.street %>
 	</div>
 </div>
 
 <div class="form_field suite">
 	<%= f.label :suite, class: "form_label" %>
 	<div class="form_input">
-		<%= f.text_field :suite, placeholder: "Suite 206" %>
+		<%= f.text_field :suite, placeholder: "Suite 206", value: address.suite %>
 	</div>
 </div>
 
 <div class="form_field city">
 	<%= f.label :city, class: "form_label" %>
 	<div class="form_input">
-		<%= f.text_field :city, placeholder: "New York" %>
+		<%= f.text_field :city, placeholder: "New York", value: address.city %>
 	</div>
 </div>
 
 <div class="form_field state">
 	<%= f.label :state, class: "form_label" %>
 	<div class="form_input">
-		<%= f.select :state, options_for_select(us_states.each { |state, abrv| [abrv, state] }), include_blank: false %>
+		<%= f.select :state, options_for_select(us_states.each { |state, abrv| [abrv, state] }, address.state), include_blank: false %>
 	</div>
 </div>
 
 <div class="form_field zipcode">
 	<%= f.label :zipcode, class: "form_label" %>
 	<div class="form_input">
-		<%= f.text_field :zipcode, placeholder: "98023" %>
+		<%= f.text_field :zipcode, placeholder: "98023", value: address.zipcode %>
 	</div>
 </div>
 
-<div class="form_field default">
-	<%= f.label "is_primary_#{f.options[:html][:id]}", "Default" %>
-	<div class="default_input">
-		<%= f.check_box :is_primary, { id: "address_is_primary_#{f.options[:html][:id]}" } %>
-	</div>
-</div>
