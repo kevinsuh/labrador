@@ -6,111 +6,135 @@
 
 <div class="row">
 	<div class="col-xs-8 col-xs-offset-2">
+
 		<ul class="card_list">
+
 			<li class="card_title">
 				<h3>Choose a Card</h3>
 			</li>
+
 			<% @cards.each do |card| %>
 				<% is_primary = (card.id == @default_card_id) %>
-				<li class="card<%= ' default' if is_primary %>">
+				<li class="existing_cards card<%= ' default' if is_primary %>">
 					<label class="card_item">
 						<%= radio_button_tag :card_id, "#{card.id}", is_primary ? true : false , class: "select_card" %>
 						<div class="card_info">
 							<%= image_tag("icons/#{card.brand.underscore}.png", alt: "#{card.brand}", width: '75', class: "brand_icon") %>
 							<div class="card_description">
-								<div>
+								<div class="basic_info">
 									<span class="brand"><%= card.brand %></span>
 									<span class="digits"><%= "...#{card.last4}" %></span>
 								</div>
-								<div>
+								<div class="expiration_info">
 									<span class="exp"><%= "Exp: #{card.exp_month}/#{card.exp_year}." %></span>
 								</div>
-								<div>
+								<div class="name_info">
 									<span class="name"><%= card.name %></span>
 								</div>
 								<% if is_primary %>
-								<div class="default_notice">
-									<span>Default credit card</span>
-								</div>
+									<div class="default_notice">
+										<span>Default credit card</span>
+									</div>
+								<% end %>
 							</div>
-							<% end %>
 						</div>
-
 						<div class="card_actions">
 							<%= button_to 'Use this Card', { controller: "payment_cards", action: "set_for_order", card_id: card.id, customer_id: card.customer }, method: :post, class: "btn select btn-primary btn-full select-shipping"  %>
 							<button type="button" class="btn edit edit_card btn-secondary btn-left" data-card-id="<%= card.id %>">Edit</button>
 							<%= button_to "Delete", { controller: "payment_cards", action: :destroy, id: card.id }, method: :delete, class: "btn delete btn-secondary btn-right", data: {confirm: "Are you sure you want to delete this card?"} %>
 						</div>
 					</label>
-
-					<!-- card form goes here -->
-
 				</li>
 			<% end %>
-			<li>
 
-				<!-- new card form goes here -->
-				
+			<!-- new card form -->
+			<li class="new_card">
+				<div class="new_card" style="background-color: lightgrey;">
+					<a href="#" id="new_card">+ Add New Card</a>
+				</div>
+				<div class="card_form_div new_card_form" style="display:block;">
+					<div id="flash-messages"></div>
 
+					<%= form_for :payment_card, html: { class: "card_form", id: 'newCard' }, url: checkout_payment_cards_path, method: :post do |f| %>
+						
+						<div class="form_field name">
+							<%= label_tag :name, "Name", required: true, class: "form_label"  %>
+							<div class="form_input">
+								<%= text_field_tag :name, nil, class: "input-block-level", "data-stripe" => "name" %>
+							</div>	
+						</div>
+						
+						<div class="form_field number">
+							<%= label_tag :card_number, "Card Number", required: true, class: "form_label" %>
+							<div class="form_input">
+								<%= text_field_tag :card_number, nil, class: "input-block-level", "data-stripe" => "number" %>
+							</div>
+						</div>
+
+						<div class="form_field details">
+							<div class="expiration">
+								<%= label_tag "Expiration Date", nil, required: true, class: "form_label" %>
+								<div class="form_input">
+									<%= select_tag :exp_month, options_for_select(Date::MONTHNAMES.compact.each_with_index.map { |name, i| ["#{i+1} - #{name}", i+1] }), include_blank: false, "data-stripe" => "exp_month", class: "card_month" %>
+									<%= select_tag :exp_year, options_for_select((Date.today.year..(Date.today.year+10)).to_a), include_blank: false, "data-stripe" => "exp_year", class: "card_year" %>
+								</div>
+							</div>
+							
+							<div class="verification">
+								<%= label_tag :card_verification, "Card Verification", required: true, class: "form_label" %>
+								<div class="form_input">
+									<%= text_field_tag :card_verification, nil, class: "input-block-level", "data-stripe" => "cvv" %>
+								</div>
+							</div>
+						</div>
+
+						<div class="form_field billing_address">
+
+							<%= f.label "billing_address_same_#{'card.id'}", "My billing address is the same as my shipping address:" %>
+							<%= f.check_box :same_as_shipping, { id: "payment_card_billing_address_same_#{'card.id'}", checked: true, class: "same_billing_address #{'card.id'}" } %>
+						</div>
+
+						<div class="billing_address_choice">
+							<div class="default_address">
+								<%= "#{@default_billing_address.street} #{@default_billing_address.suite} #{@default_billing_address.city}, #{@default_billing_address.state} #{@default_billing_address.zipcode}" %>
+							</div>
+							<div class="new_address" style="display: block;">
+								<%= f.label :first_name, class: "form_label" %>
+								<%= f.text_field :first_name, placeholder: "First name", value: @default_billing_address.first_name %>
+
+								<%= f.label :last_name, class: "form_label" %>
+								<%= f.text_field :last_name, placeholder: "Last name", value: @default_billing_address.last_name %>
+
+								<%= f.label :street, class: "form_label" %>
+								<%= f.text_field :street, placeholder: "123 Main St.", value: @default_billing_address.street %>
+
+								<%= f.label :suite, class: "form_label" %>
+								<%= f.text_field :suite, placeholder: "Suite 206", value: @default_billing_address.suite %>
+
+								<%= f.label :city, class: "form_label" %>
+								<%= f.text_field :city, placeholder: "New York", value: @default_billing_address.city %>
+
+								<%= f.label :state, class: "form_label" %>
+								<%= f.select :state, options_for_select(us_states.each { |state, abrv| [abrv, state] }, @default_billing_address.state), include_blank: false %>
+
+								<%= f.label :zipcode, class: "form_label" %>
+								<%= f.text_field :zipcode, placeholder: "98023", value: @default_billing_address.zipcode %>
+							</div>
+						</div>
+
+						<div class="form_field submit">
+							<div class="form_input">
+								<%= f.submit "Save Card", class: "btn btn-primary", style: "color: white; backvround: rgb(242,118,73);" %>
+							</div>
+						</div>
+						
+					<% end %>
+				</div>
 			</li>
+			
 		</ul>
+
 	</div>	
-</div>
-
-<!-- payment form -->
-<div class="row">
-	<div class="col-md-6 col-md-offset-3">
-		<div id="flash-messages"></div>
-
-		<%= form_for :payment_card, html: { class: "stripe-form", id: 'newCard' }, url: checkout_payment_cards_path, method: :post do |f| %>
-			
-			<%= label_tag :name, "Name", required: true %>
-			<%= text_field_tag :name, nil, class: "input-block-level", "data-stripe" => "name" %>
-
-			<%= label_tag :card_number, "Card Number", required: true %>
-			<%= text_field_tag :card_number, nil, class: "input-block-level", "data-stripe" => "number" %>
-
-			<%= label_tag :card_verification, "Card Verification", required: true %>
-			<%= text_field_tag :card_verification, nil, class: "input-block-level", "data-stripe" => "cvv" %>
-
-			<%= label_tag "Card Expires", nil, required: true %>
-			<%= select_tag :exp_month, options_for_select(Date::MONTHNAMES.compact.each_with_index.map { |name, i| ["#{i+1} - #{name}", i+1] }), include_blank: false, "data-stripe" => "exp_month", class: "card-month" %>
-
-			<%= select_tag :exp_year, options_for_select((Date.today.year..(Date.today.year+10)).to_a), include_blank: false, "data-stripe" => "exp_year", class: "span1" %>
-
-			<%= f.label "billing_address_same_#{'card.id'}", "My billing address is the same as my shipping address:" %>
-			<%= f.check_box :same_as_shipping, { id: "payment_card_billing_address_same_#{'card.id'}", checked: true, class: "same_billing_address #{'card.id'}" } %>
-			<div class="default_address">
-				<%= "#{@default_billing_address.street} #{@default_billing_address.suite} #{@default_billing_address.city}, #{@default_billing_address.state} #{@default_billing_address.zipcode}" %>
-			</div>
-			<div class="new_address" style="display: none;">
-				<%= f.label :first_name, class: "form_label" %>
-				<%= f.text_field :first_name, placeholder: "First name", value: @default_billing_address.first_name %>
-
-				<%= f.label :last_name, class: "form_label" %>
-				<%= f.text_field :last_name, placeholder: "Last name", value: @default_billing_address.last_name %>
-
-				<%= f.label :street, class: "form_label" %>
-				<%= f.text_field :street, placeholder: "123 Main St.", value: @default_billing_address.street %>
-
-				<%= f.label :suite, class: "form_label" %>
-				<%= f.text_field :suite, placeholder: "Suite 206", value: @default_billing_address.suite %>
-
-				<%= f.label :city, class: "form_label" %>
-				<%= f.text_field :city, placeholder: "New York", value: @default_billing_address.city %>
-
-				<%= f.label :state, class: "form_label" %>
-				<%= f.select :state, options_for_select(us_states.each { |state, abrv| [abrv, state] }, @default_billing_address.state), include_blank: false %>
-
-				<%= f.label :zipcode, class: "form_label" %>
-				<%= f.text_field :zipcode, placeholder: "98023", value: @default_billing_address.zipcode %>
-			</div>
-			
-
-			<%= f.submit "Save Card", class: "btn", style: "color: white; backvround: rgb(242,118,73);" %>
-
-		<% end %>
-	</div>
 </div>
 
 

@@ -146,6 +146,26 @@
         }
 
         // CARD FIELDS
+        &.details {
+          .expiration {
+            width: 35%;
+            display: inline-block;
+            select.card_month {
+              width: 55%;
+            }
+            select.card_year {
+              width: 40%;
+              margin-left: 1%;
+            }
+          }
+          .verification {
+            width: 20%;
+            display: inline-block;
+            .form_input {
+              width: 50%;
+            }
+          }
+        }
 
       }
     }
