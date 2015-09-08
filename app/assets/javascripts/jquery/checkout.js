@@ -37,19 +37,19 @@ $(document).on('ready page:load', function() {
 			if ($(this).data('address-id') == address_id) {
 				address_form = $(this);
 				address_info.fadeToggle(200, function() {
-					address_form.fadeToggle();	
+					address_form.fadeToggle(200);	
 				});
 			};
 		});
 	});
 
 	// cancel to show back the prev form 
-	$('button.cancel_update').click(function(e) {
+	$('button.cancel_address_update').click(function(e) {
 		var address_parent = $(this).parent().parent().parent().parent().parent();
 		var address_info = address_parent.find('.address_item');
 		var address_form = address_parent.find('.address_form_div');
 		address_form.fadeToggle(200, function() {
-			address_info.fadeToggle();
+			address_info.fadeToggle(200);
 		})
 
 	});
@@ -63,6 +63,30 @@ $(document).on('ready page:load', function() {
 		e.preventDefault();
 		$('#new_card_form').fadeToggle();
 	});
+
+	// show specific card form on edit button
+	$('button.edit_card').click(function(e) {
+		
+		var card      = $(this).parent().parent().parent();
+		var card_item = card.find('.card_item');
+		var card_form = card.find('.update_card_form');
+
+		card_item.fadeToggle(200, function() {
+			card_form.fadeToggle(200);
+		});
+	});
+
+	$('button.cancel_billing_card_update').click(function(e) {
+
+		var card      = $(this).parent().parent().parent().parent().parent();
+		var card_item = card.find('.card_item');
+		var card_form = card.find('.update_card_form');
+
+		card_form.fadeToggle(200, function() {
+			card_item.fadeToggle(200);
+		})		
+
+	})
 
 	$("#new_card_form input.same_billing_address").click(function() {
 		var newCardFormDiv = $(this).parent().parent().parent();

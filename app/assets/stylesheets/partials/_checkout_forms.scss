@@ -40,12 +40,15 @@
       }
     }
     
+    .address_item:hover, .card_item:hover {
+      background: scale-lightness($button-blue, 50%);
+    }
     .address_item, .card_item {
       cursor: pointer;
       padding: 25px;
       width: 100%;
-      &:hover {
-        background: scale-lightness($button-blue, 50%);
+      .card_item_display {
+        width: 100%;
       }
       span {
         font-weight: normal;
@@ -53,7 +56,8 @@
       }
       .brand_icon {
         position:absolute;
-        top: 67px;
+        top: 65px;
+        left: 130px;
       }
       .card_description {
         margin-left: 85px;
