@@ -53,13 +53,16 @@ module Checkout
 			# more stuff if charge was successful
 			if charge
 				# we need to update the order status from queued => purchased
-				flash[:success] = "Thank you for your purchase!."
+				orders.each do |order|
+					order.status.update_columns(purchased: true)
+				end
+				flash[:success] = "Thank you for your purchase!"
+				redirect_to root_url
 			else
 				flash[:danger] = "Your purchase was not successful."
+				redirect_to checkout_final_path
 			end
 			
-			redirect_to checkout_final_path
-
 			rescue Stripe::CardError => e
 				flash[:error] = e.message
 				redirect_to checkout_payment_cards_path
