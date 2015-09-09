@@ -6,21 +6,23 @@ Rails.application.routes.draw do
   get 'cart/billing' => 'checkout#confirm_billing'
 
   namespace :checkout do
-    get '/' => 'orders#view_cart'
+    # edit / select addresses
     resources :addresses, only: [:index, :new, :create, :update] do
       collection do
         post 'set_for_order'
         post 'delete'
       end
     end
-    # checkout / credit card
-    resources :charges, only: [:index, :create]
+    # edit / select cards
     resources :payment_cards, path: "cards", only: [:index, :create, :new, :destroy] do
       collection do
         post 'update_card'
         post 'set_for_order'
       end
     end
+    # edit / select order
+    get '/' => 'orders#view_cart'
+    get '/final' => 'orders#final_confirmation'
   end
 
   # admin

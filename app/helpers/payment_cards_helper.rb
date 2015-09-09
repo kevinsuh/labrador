@@ -1,11 +1,11 @@
 module PaymentCardsHelper
 
 	# set card to be used for checkout
-	def set_order_payment(card)
+	def order_payment=(card)
 		session[:checkout_card] = card.id
 	end
 
-	def set_payment_billing_address(address)
+	def payment_billing_address=(address)
 		session[:checkout_card_billing_address] = address.id
 	end
 
@@ -23,6 +23,21 @@ module PaymentCardsHelper
 			current_user.save_stripe_account customer_id
 		end
 
+	end
+
+	def checkout_payment_card
+
+		if stripe_account = current_user.stripe_account
+
+			customer_id = stripe_account.customer_id
+			customer    = Stripe::Customer.retrieve(customer_id)
+			card_id     = session[:checkout_card] || customer.default_source
+
+			customer.sources.retrieve(card_id)
+		else
+			flash[:warning] = "Please add or select a card."
+			redirect_to checkout_payment_cards_path
+		end
 	end
 
 end

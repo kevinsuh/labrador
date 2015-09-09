@@ -21,7 +21,7 @@ module Checkout
     		end
 
     		# take user's queued orders and set shipping_address_id
-    		set_queued_orders_shipping @address
+    		self.queued_orders_shipping_address = @address
 
         redirect_to checkout_payment_cards_path
     	else
@@ -38,7 +38,7 @@ module Checkout
 
   		if @address = Address.find_by(id: address_id)
         # take user's queued orders and set shipping_address_id
-        set_queued_orders_shipping @address
+        self.queued_orders_shipping_address = @address
         
         redirect_to checkout_payment_cards_path
       else

@@ -15,7 +15,7 @@ module Checkout
 			@cards = Array.new
 			@default_billing_address = default_billing_address
 			
-			set_payment_billing_address @default_billing_address
+			self.payment_billing_address = @default_billing_address
 
 			# user needs customer_id in order to retrieve card info
 			if stripe_account = current_user.stripe_account
@@ -40,9 +40,9 @@ module Checkout
 			customer    = Stripe::Customer.retrieve(customer_id)
 			card        = customer.sources.retrieve(card_id)
 
-			set_order_payment card
+			self.order_payment = card
 
-			redirect_to checkout_payment_cards_path
+			redirect_to checkout_final_path
 
 		end
 
