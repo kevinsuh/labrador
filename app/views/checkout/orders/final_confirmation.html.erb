@@ -10,4 +10,69 @@
 
 <%= @orders.inspect %>
 
-<%= session[:checkout_address] %>
+<div class="row">
+	<div class="col-xs-4 col-xs-offset-1">
+		<h3>Review and submit your order</h3>
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-4">
+		<h5>Shipping address <a href="#">Change</a></h5>
+		<%= @checkout_address.inspect %>
+	</div>
+	<div class="col-xs-4">
+		<h5>Payment method <a href="#">Change</a></h5>
+		<%= @checkout_card.inspect %>
+	</div>
+	<div class="col-xs-4">
+		<h5>Total Charge</h5>
+		Base Price: <%= number_to_currency(@base_price, precision: 2) %> <br>
+		Shipping: <%= number_to_currency(@shipping_charge, precision: 2) %> <br>
+		Tax: <%= number_to_currency(@tax, precision: 2) %> <br>
+		Total: <%= number_to_currency(@total_charge, precision: 2) %>
+	</div>
+</div>
+<br><br><br><br><br>
+
+<header class="row cart-header">
+	<div class="col-xs-2 col-xs-offset-1">
+		<h4><%= @orders.count %> Cards Queued</h4>
+	</div>
+</header>
+
+<div class="row">
+	<div class="col-xs-10 col-xs-offset-1">
+		<div class="order-wrapper">
+			<% @orders.each do |order| 
+				recipient = order.recipient
+				occasion = order.occasion
+				%>
+				<div class="order-details">
+					<div class="item-image">
+						<%= image_tag(order.card.card_images.first.picture.url, class: "card_image") %>
+					</div>
+					<div class="item-details">
+						<ul>
+							<li>
+								Recipient: <%= "#{recipient.first_name} #{recipient.last_name}" %>
+							</li>
+							<li>
+								Relationship: <%= recipient.relationship.name %>
+							</li>
+							<li>
+								Occasion: <%= "For #{recipient.first_name}'s #{occasion.name} on #{order.recipient_arrival_date.strftime('%B %d, %Y')}" %>
+							</li>
+						</ul>
+					</div>
+				</div>
+			<% end %>
+			
+
+			<div class="order-summary">
+				You will receive these approx. 3 weeks before each queued date.
+
+				<%= link_to "Checkout Now", checkout_addresses_path %>
+			</div>
+		</div>
+	</div>
+</div>

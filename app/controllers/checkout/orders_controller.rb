@@ -19,6 +19,11 @@ module Checkout
 			@orders           = current_cart
 			@checkout_card    = checkout_payment_card
 			@checkout_address = checkout_address
+			
+			@base_price       = base_price_for @orders
+			@shipping_charge  = shipping_charge_for @orders
+			@tax              = tax_for @base_price
+			@total_charge = @base_price + @shipping_charge + @tax
 
 		end
 
