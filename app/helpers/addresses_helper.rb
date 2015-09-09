@@ -10,7 +10,7 @@ module AddressesHelper
 	end
 
 	def checkout_address
-		checkout_address = Address.find_by(id: session[:checkout_address]) || get_primary_address
+		checkout_address = Address.find_by(id: session[:checkout_address]) || primary_address
 	end
 
 	def primary_address
