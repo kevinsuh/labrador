@@ -55,13 +55,16 @@
         font-weight: normal;
         font-size: 1.5em;
       }
-      .brand_icon {
-        position:absolute;
-        top: 65px;
-        left: 130px;
+      .brand_image {
+        float: left;
+        .brand_icon {
+          position: relative;
+          top: -10px;
+          left: 20px;
+        }  
       }
       .card_description {
-        margin-left: 85px;
+        margin-left: 10px;
       }
     }
   }

@@ -13,4 +13,16 @@ module PaymentCardsHelper
 		Address.find_by(id: session[:checkout_address]) || current_user.addresses.where(is_primary: true).limit(1).first
 	end
 
+	def create_stripe_account(email)
+
+		unless current_user.stripe_account
+			stripe_account = Stripe::Customer.create(
+				email: email
+				)
+			customer_id = stripe_account.id
+			current_user.save_stripe_account customer_id
+		end
+
+	end
+
 end

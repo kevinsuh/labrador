@@ -8,14 +8,22 @@ $(document).on('ready page:load', function() {
 		var $form;
 		$form = $(this);
 		$form.find("input[type=submit]").prop("disabled", true);
-		Stripe.card.createToken($form, stripeResponseHandler);
+		Stripe.card.createToken({
+			number: $('.cc_number').val(),
+			cvc: $('.cc_cvc').val(),
+			exp_month: $('.cc_exp_month').val(),
+			exp_year: $('.cc_exp_year').val(),
+			name: $('.cc_name').val(),
+			address_line1: $('.cc_street1').val(),
+			address_city: $('.cc_city').val(),
+			address_state: $('.cc_state').val(),
+			address_zip: $('.cc_zipcode').val()}, stripeResponseHandler);
 		return false;
 	})
 
 	var stripeResponseHandler = function (status, response) {
 		var $form, token;
 		$form = $("#newCard");
-
 		if (response.error) {
 			show_error(response.error.message);
 			$form.find("input[type=submit]").prop("disabled", false);
@@ -24,10 +32,10 @@ $(document).on('ready page:load', function() {
 			// this means we received token in place of the card information, which we then replace all cc info with the token to satisfy PCI compliance
 			token = response.id;
 			$form.append($("<input type=\"hidden\" name=\"registration[card_token]\" />").val(token))
-			$("[data-stripe=number]").remove();
-      $("[data-stripe=cvv]").remove();
-      $("[data-stripe=exp_year]").remove();
-      $("[data-stripe=exp_month]").remove();
+			$(".cc_number").remove();
+      $(".cc_cvc").remove();
+      $(".cc_exp_month").remove();
+      $(".cc_exp_year").remove();
       $form.get(0).submit();
 		}
 		return false;

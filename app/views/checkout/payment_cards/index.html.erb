@@ -18,6 +18,9 @@
 				<li class="existing_cards card<%= ' default selected' if is_primary %>">
 					<label class="card_item">
 						<%= radio_button_tag :card_id, "#{card.id}", is_primary ? true : false , class: "select_card" %>
+						<div class="brand_image">
+							<%= image_tag("icons/#{card.brand.underscore}.png", alt: "#{card.brand}", width: '75', class: "brand_icon") %>
+						</div>
 						<%= render 'card_info', card: card, is_primary: is_primary %>
 						<div class="card_actions">
 							<%= button_to 'Use this Card', { controller: "payment_cards", action: "set_for_order", card_id: card.id, customer_id: card.customer }, method: :post, class: "btn select btn-primary btn-full select-shipping"  %>

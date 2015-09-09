@@ -60,47 +60,21 @@ module Checkout
 			authenticity_token = params[:authenticity_token]
 			email              = current_user.email
 
-			if stripe_account = current_user.stripe_account
-				customer_id = stripe_account.customer_id
+			# create a stripe_account if user does not have one yet
+			create_stripe_account email
+			customer_id    = current_user.stripe_account.customer_id
+			customer       = Stripe::Customer.retrieve(customer_id)
+
+			card_info    = params[:payment_card]
+			default_card = card_info[:default_card]
+
+			# create card with options
+			if customer.sources.create(source: card_token)
+				flash[:success] = "Your card has been saved."
 			else
-				# need to create new account
-				stripe_account = Stripe::Customer.create(
-					email: email,
-					card: card_token
-				)
-				puts "in new account!!"
-				customer_id = stripe_account.id
-				current_user.save_stripe_account customer_id
+				flash[:danger] = "Your card was unable to be saved."
 			end
-
-			puts customer_id
-
-
-
-
-
-			# # 1. charge card
-			# # 2. save card info
-			# # 3. save shipping address + billing address
-			# email = current_user.email
-
-			# customer = Stripe::Customer.create(
-			# 	email: "testaccount@cardagain.com",
-			# 	card: card_token
-			# )
-
-			# # customer_id is the persistent card identifier
-			# charge = Stripe::Charge.create(
-			# 	customer: customer.id,
-			# 	amount: @amount,
-			# 	description: "New stripe.js test wtih rails",
-			# 	currency: "usd"
-			# )
-
-			# # this is what saves credit card to the user
-			# current_user.save_stripe_customer_id(customer.id)
-
-			flash[:success] = "You're cards have been purchased. Thank you!"
+			
 			redirect_to checkout_payment_cards_path
 
 			rescue Stripe::CardError => e

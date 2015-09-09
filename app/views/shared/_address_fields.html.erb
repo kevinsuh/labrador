@@ -2,13 +2,13 @@
 	<div class="first_name">
 		<%= f.label :first_name, class: "form_label" %>
 		<div class="form_input">
-			<%= f.text_field :first_name, placeholder: "Kevin", value: address.first_name %>
+			<%= f.text_field :first_name, placeholder: "Kevin", value: address.first_name, class: "cc_first_name" %>
 		</div>
 	</div>
 	<div class="last_name">
 		<%= f.label :last_name, class: "form_label" %>
 		<div class="form_input">
-			<%= f.text_field :last_name, placeholder: "Suh", value: address.last_name %>
+			<%= f.text_field :last_name, placeholder: "Suh", value: address.last_name, class: "cc_last_name" %>
 		</div>
 	</div>
 </div>
@@ -16,35 +16,35 @@
 <div class="form_field street">
 	<%= f.label :street, class: "form_label" %>
 	<div class="form_input">
-		<%= f.text_field :street, placeholder: "123 Main St.", value: address.street %>
+		<%= f.text_field :street, placeholder: "123 Main St.", value: address.street, class: "cc_street1" %>
 	</div>
 </div>
 
 <div class="form_field suite">
 	<%= f.label :suite, class: "form_label" %>
 	<div class="form_input">
-		<%= f.text_field :suite, placeholder: "Suite 206", value: address.suite %>
+		<%= f.text_field :suite, placeholder: "Suite 206", value: address.suite, class: "cc_suite" %>
 	</div>
 </div>
 
 <div class="form_field city">
 	<%= f.label :city, class: "form_label" %>
 	<div class="form_input">
-		<%= f.text_field :city, placeholder: "New York", value: address.city %>
+		<%= f.text_field :city, placeholder: "New York", value: address.city, class: "cc_city" %>
 	</div>
 </div>
 
 <div class="form_field state">
 	<%= f.label :state, class: "form_label" %>
 	<div class="form_input">
-		<%= f.select :state, options_for_select(us_states.each { |state, abrv| [abrv, state] }, address.state), include_blank: false %>
+		<%= f.select :state, options_for_select(us_states.each { |state, abrv| [abrv, state] }, address.state), {}, {class: "cc_state", include_blank: false}  %>
 	</div>
 </div>
 
 <div class="form_field zipcode">
 	<%= f.label :zipcode, class: "form_label" %>
 	<div class="form_input">
-		<%= f.text_field :zipcode, placeholder: "98023", value: address.zipcode %>
+		<%= f.text_field :zipcode, placeholder: "98023", value: address.zipcode, class: "cc_zipcode" %>
 	</div>
 </div>
 
