@@ -106,7 +106,7 @@
 						<div class="form_field number">
 							<%= label_tag :card_number, "Card Number", required: true, class: "form_label" %>
 							<div class="form_input">
-								<%= text_field_tag :card_number, nil, class: "input-block-level", "data-stripe" => "number" %>
+								<%= text_field_tag :card_number, nil, class: "card-number-input input-block-level", "data-stripe" => "number", placeholder: "•••• •••• •••• ••••" %>
 							</div>
 						</div>
 
@@ -122,7 +122,7 @@
 							<div class="verification">
 								<%= label_tag :card_verification, "Card Verification", required: true, class: "form_label" %>
 								<div class="form_input">
-									<%= text_field_tag :card_verification, nil, class: "input-block-level", "data-stripe" => "cvv" %>
+									<%= text_field_tag :card_verification, nil, class: "input-block-level card-verification", "data-stripe" => "cvv", autocomplete: "off" %>
 								</div>
 							</div>
 						</div>

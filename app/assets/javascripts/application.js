@@ -9,5 +9,6 @@
 //= require spin.js/spin.min.js
 //= require angular-spinner/angular-spinner.min.js
 //= require angular-datepicker.js
+//= require jquery.payment.js
 //= require_tree .
 //= require_tree ./templates

@@ -21,7 +21,7 @@
       .default_notice {
         margin-top: 5px;
         span {
-          color: lightgray;
+          color: $light-grey;
           font-size: 1.2em;
         }
       }
@@ -97,6 +97,9 @@
             line-height: 2.5em;
             font-size: 16px;
             height: 50px;
+            border-radius: 5px;
+            border: 1px solid $light-grey;
+            padding: 6px 10px;
           }
           &.update {
             width: 58%;
@@ -168,6 +171,15 @@
             .form_input {
               width: 50%;
             }
+          }
+        }
+
+        &.number {
+          .card-number-input {
+            background-image: url(../icons/credit_card_icon.png);
+            background-position: 7px center;
+            background-repeat: no-repeat;
+            text-indent: 44px;
           }
         }
 

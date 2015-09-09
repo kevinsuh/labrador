@@ -40,4 +40,9 @@ $(document).on('ready page:load', function() {
     return false;
 	}
 
+	// make inputs properly format to cc
+	$('input.card-number-input').payment('formatCardNumber');
+	$('input.card-verification').payment('formatCardCVC');
+
+
 });
