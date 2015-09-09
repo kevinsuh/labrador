@@ -50,6 +50,43 @@ module Checkout
 
 		end
 
+		# update via stripe
+		def update_card
+			puts params.inspect
+
+			card_params = params[:card]
+			card_id     = card_params[:id]
+			card_name   = card_params[:name]
+			exp_month   = card_params[:exp_month]
+			exp_year    = card_params[:exp_year]
+			is_default  = card_params[:default_card] == "1" ? true : false
+
+			if stripe_account = current_user.stripe_account
+
+				customer_id = stripe_account.customer_id
+				customer    = Stripe::Customer.retrieve(customer_id)
+				card        = customer.sources.retrieve(card_id)
+
+				card.name      = card_name
+				card.exp_month = exp_month
+				card.exp_year  = exp_year
+				card.save
+
+				if is_default
+					customer.default_source = card_id
+					customer.save
+				end
+
+				flash[:success] = "Card updated."
+
+			else
+				flash[:danger] = "You do not have a card to update."
+			end
+
+			redirect_to checkout_payment_cards_path
+
+		end
+
 
 		# save credit card
 		def create

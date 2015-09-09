@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     resources :charges, only: [:index, :create]
     resources :payment_cards, path: "cards", only: [:index, :create, :new, :destroy] do
       collection do
+        post 'update_card'
         post 'set_for_order'
       end
     end

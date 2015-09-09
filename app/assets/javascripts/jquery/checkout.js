@@ -75,6 +75,7 @@ $(document).on('ready page:load', function() {
 		});
 	});
 
+	// cancel updating billing card (in conjunction with button.edit_card)
 	$('button.cancel_billing_card_update').click(function(e) {
 
 		var card      = $(this).parent().parent().parent().parent().parent();
@@ -87,6 +88,7 @@ $(document).on('ready page:load', function() {
 
 	})
 
+	// show update billing address form if different from shipping address
 	$("#new_card_form input.same_billing_address").click(function() {
 
 		var newCardFormDiv = $(this).parent().parent().parent();
@@ -103,6 +105,21 @@ $(document).on('ready page:load', function() {
 			});
 		}
 	})
+
+	// update default address whenever new one gets checked
+	$('input[type=radio].select_card').change(function() {
+		$('input[type=radio].select_card').each(function() {
+
+			var cardDiv = $(this).parent().parent();
+			if ($(this).is(':checked')) {
+				cardDiv.addClass('selected');
+			} else {
+				cardDiv.removeClass('selected');
+			}
+
+		})
+	})
+
 
 });
 

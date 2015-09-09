@@ -19,7 +19,7 @@
 					<label class="card_item">
 						<%= radio_button_tag :card_id, "#{card.id}", is_primary ? true : false , class: "select_card" %>
 						<div class="brand_image">
-							<%= image_tag("icons/#{card.brand.underscore}.png", alt: "#{card.brand}", width: '75', class: "brand_icon") %>
+							<%= image_tag("icons/#{card.brand.squish.downcase.tr(' ', '_')}.png", alt: "#{card.brand}", width: '75', class: "brand_icon") %>
 						</div>
 						<%= render 'card_info', card: card, is_primary: is_primary %>
 						<div class="card_actions">
@@ -29,15 +29,15 @@
 						</div>
 					</label>
 					<div class="card_form_div update_card_form">
-						<%= form_for :card, html: { class: "card_form" }, url: checkout_payment_cards_path, method: :post do |f| %>
+						<%= form_for :card, html: { class: "card_form" }, url: update_card_checkout_payment_cards_path, method: :post do |f| %>
 
 							<div>
-								<%= image_tag("icons/#{card.brand.underscore}.png", alt: "#{card.brand}", width: '75' ) %>
+								<%= image_tag("icons/#{card.brand.squish.downcase.tr(' ', '_')}.png", alt: "#{card.brand}", width: '75', class: "brand_icon") %>
 								<span style="font-weight: bold;"><%= "#{card.brand}" %></span>
 								<span><%= "ending in #{card.last4}" %></span>
 							</div>
 				
-							<%= render 'shared/update_payment_card_fields', f: f, card: card %>
+							<%= render 'shared/update_payment_card_fields', f: f, card: card, is_primary: is_primary %>
 
 							<div class="form_field submit">
 								<div class="form_input update">
