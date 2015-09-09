@@ -18,26 +18,7 @@
 				<li class="existing_cards card<%= ' default selected' if is_primary %>">
 					<label class="card_item">
 						<%= radio_button_tag :card_id, "#{card.id}", is_primary ? true : false , class: "select_card" %>
-						<div class="card_info">
-							<div class="card_description">
-								<%= image_tag("icons/#{card.brand.underscore}.png", alt: "#{card.brand}", width: '75', class: "brand_icon") %>
-								<div class="basic_info">
-									<span class="brand"><%= card.brand %></span>
-									<span class="digits"><%= "...#{card.last4}" %></span>
-								</div>
-								<div class="expiration_info">
-									<span class="exp"><%= "Exp: #{card.exp_month}/#{card.exp_year}." %></span>
-								</div>
-								<div class="name_info">
-									<span class="name"><%= card.name %></span>
-								</div>
-								<% if is_primary %>
-									<div class="default_notice">
-										<span>Default credit card</span>
-									</div>
-								<% end %>
-							</div>
-						</div>
+						<%= render 'card_info', card: card, is_primary: is_primary %>
 						<div class="card_actions">
 							<%= button_to 'Use this Card', { controller: "payment_cards", action: "set_for_order", card_id: card.id, customer_id: card.customer }, method: :post, class: "btn select btn-primary btn-full select-shipping"  %>
 							<button type="button" class="btn edit edit_card btn-secondary btn-left" data-card-id="<%= card.id %>">Edit</button>
@@ -53,23 +34,7 @@
 								<span><%= "ending in #{card.last4}" %></span>
 							</div>
 				
-							<div class="form_field name">
-								<%= label_tag :name, "Name on card", required: true, class: "form_label"  %>
-								<div class="form_input">
-									<%= text_field_tag :name, nil, class: "input-block-level", "data-stripe" => "name", value: card.name %>
-								</div>	
-								<div class="form_field details">
-									<div class="expiration">
-										<%= label_tag "Expiration Date", nil, required: true, class: "form_label" %>
-										<div class="form_input">
-											<%= select_tag :exp_month, options_for_select(Date::MONTHNAMES.compact.each_with_index.map { |name, i| ["#{i+1} - #{name}", i+1] }, card.exp_month), include_blank: false, "data-stripe" => "exp_month", class: "card_month" %>
-											<%= select_tag :exp_year, options_for_select((Date.today.year..(Date.today.year+10)).to_a, card.exp_year), include_blank: false, "data-stripe" => "exp_year", class: "card_year" %>
-										</div>
-									</div>
-								</div>
-							</div>
-							
-							
+							<%= render 'shared/update_payment_card_fields', f: f, card: card %>
 
 							<div class="form_field submit">
 								<div class="form_input update">
@@ -96,61 +61,7 @@
 
 					<%= form_for :payment_card, html: { class: "card_form", id: 'newCard' }, url: checkout_payment_cards_path, method: :post do |f| %>
 						
-						<div class="form_field name">
-							<%= label_tag :name, "Name on card", required: true, class: "form_label"  %>
-							<div class="form_input">
-								<%= text_field_tag :name, nil, class: "input-block-level", "data-stripe" => "name" %>
-							</div>	
-						</div>
-						
-						<div class="form_field number">
-							<%= label_tag :card_number, "Card Number", required: true, class: "form_label" %>
-							<div class="form_input">
-								<%= text_field_tag :card_number, nil, class: "card-number-input input-block-level", "data-stripe" => "number", placeholder: "•••• •••• •••• ••••" %>
-							</div>
-						</div>
-
-						<div class="form_field details">
-							<div class="expiration">
-								<%= label_tag "Expiration Date", nil, required: true, class: "form_label" %>
-								<div class="form_input">
-									<%= select_tag :exp_month, options_for_select(Date::MONTHNAMES.compact.each_with_index.map { |name, i| ["#{i+1} - #{name}", i+1] }), include_blank: false, "data-stripe" => "exp_month", class: "card_month" %>
-									<%= select_tag :exp_year, options_for_select((Date.today.year..(Date.today.year+10)).to_a), include_blank: false, "data-stripe" => "exp_year", class: "card_year" %>
-								</div>
-							</div>
-							
-							<div class="verification">
-								<%= label_tag :card_verification, "Card Verification", required: true, class: "form_label" %>
-								<div class="form_input">
-									<%= text_field_tag :card_verification, nil, class: "input-block-level card-verification", "data-stripe" => "cvv", autocomplete: "off" %>
-								</div>
-							</div>
-						</div>
-
-						<div class="form_field billing_address_choice" style="margin-bottom: 0;">
-							<%= f.label "billing_address_same_#{'card.id'}", "My billing address is the same as my shipping address:" %>
-							<div class="billing_choice_input">
-								<%= f.check_box :same_as_shipping, { id: "payment_card_billing_address_same_#{'card.id'}", checked: true, class: "same_billing_address #{'card.id'}" } %>
-							</div>
-							
-						</div>
-
-						<div class="form_field billing_address" style="margin-top:0;">
-							<div class="default_address">
-								<%= "#{@default_billing_address.street} #{@default_billing_address.suite} #{@default_billing_address.city}, #{@default_billing_address.state} #{@default_billing_address.zipcode}" %>
-							</div>
-							<div class="new_address">
-								<h3>Billing Address</h3>
-								<%= render 'shared/address_fields', f: f, address: @default_billing_address %>
-							</div>
-						</div>
-
-						<div class="form_field default_choice">
-							<%= f.label "default_card_#{'card.id'}", "Default card:" %>
-							<div class="default_choice_input">
-								<%= f.check_box :default_card, { id: "payment_card_default_card_#{'card.id'}", checked: true, class: "default_card #{'card.id'}"} %>
-							</div>
-						</div>
+						<%= render 'shared/new_payment_card_fields', f: f, address: @default_billing_address %>
 
 						<div class="form_field submit">
 							<div class="form_input">

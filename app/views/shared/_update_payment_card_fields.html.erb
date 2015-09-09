@@ -1,0 +1,15 @@
+<div class="form_field name">
+	<%= label_tag :name, "Name on card", required: true, class: "form_label"  %>
+	<div class="form_input">
+		<%= text_field_tag :name, nil, class: "input-block-level", "data-stripe" => "name", value: card.name %>
+	</div>	
+	<div class="form_field details">
+		<div class="expiration">
+			<%= label_tag "Expiration Date", nil, required: true, class: "form_label" %>
+			<div class="form_input">
+				<%= select_tag :exp_month, options_for_select(Date::MONTHNAMES.compact.each_with_index.map { |name, i| ["#{i+1} - #{name}", i+1] }, card.exp_month), include_blank: false, "data-stripe" => "exp_month", class: "card_month" %>
+				<%= select_tag :exp_year, options_for_select((Date.today.year..(Date.today.year+10)).to_a, card.exp_year), include_blank: false, "data-stripe" => "exp_year", class: "card_year" %>
+			</div>
+		</div>
+	</div>
+</div>

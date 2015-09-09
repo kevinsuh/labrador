@@ -1,0 +1,20 @@
+<div class="card_info">
+	<div class="card_description">
+		<%= image_tag("icons/#{card.brand.underscore}.png", alt: "#{card.brand}", width: '75', class: "brand_icon") %>
+		<div class="basic_info">
+			<span class="brand"><%= card.brand %></span>
+			<span class="digits"><%= "...#{card.last4}" %></span>
+		</div>
+		<div class="expiration_info">
+			<span class="exp"><%= "Exp: #{card.exp_month}/#{card.exp_year}." %></span>
+		</div>
+		<div class="name_info">
+			<span class="name"><%= card.name %></span>
+		</div>
+		<% if is_primary %>
+			<div class="default_notice">
+				<span>Default credit card</span>
+			</div>
+		<% end %>
+	</div>
+</div>
