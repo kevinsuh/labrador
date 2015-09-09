@@ -1,5 +1,6 @@
 module OrdersHelper
 
+	# this is how we define our "cart" currently
 	def current_cart
 		user_id = current_user.id
 		order_type = "queued"

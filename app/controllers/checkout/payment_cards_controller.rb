@@ -52,7 +52,6 @@ module Checkout
 
 		# update via stripe
 		def update_card
-			puts params.inspect
 
 			card_params = params[:card]
 			card_id     = card_params[:id]

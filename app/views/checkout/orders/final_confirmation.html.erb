@@ -30,6 +30,7 @@
 		Shipping: <%= number_to_currency(@shipping_charge, precision: 2) %> <br>
 		Tax: <%= number_to_currency(@tax, precision: 2) %> <br>
 		Total: <%= number_to_currency(@total_charge, precision: 2) %>
+		<%= button_to 'Submit Order', { controller: "orders", action: "submit_order", card_id: @checkout_card.id }, method: :post, class: "btn select btn-primary btn-full submit-order"  %>
 	</div>
 </div>
 <br><br><br><br><br>

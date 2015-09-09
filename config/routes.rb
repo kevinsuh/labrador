@@ -21,8 +21,9 @@ Rails.application.routes.draw do
       end
     end
     # edit / select order
-    get '/' => 'orders#view_cart'
-    get '/final' => 'orders#final_confirmation'
+    get '' => 'orders#view_cart'
+    get 'final' => 'orders#final_confirmation'
+    post 'submit_order' => 'orders#submit_order'
   end
 
   # admin
