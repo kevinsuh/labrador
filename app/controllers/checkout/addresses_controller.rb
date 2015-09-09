@@ -40,7 +40,7 @@ module Checkout
         # take user's queued orders and set shipping_address_id
         self.queued_orders_shipping_address = @address
         
-        redirect_to checkout_payment_cards_path
+        redirect_to checkout_final_path
       else
         flash[:danger] = "Unable to set address."
         redirect_to checkout_addresses_path

@@ -1,11 +1,11 @@
 module PaymentCardsHelper
 
 	# set card to be used for checkout
-	def order_payment=(card)
+	def checkout_card=(card)
 		session[:checkout_card] = card.id
 	end
 
-	def payment_billing_address=(address)
+	def checkout_card_billing_address=(address)
 		session[:checkout_card_billing_address] = address.id
 	end
 

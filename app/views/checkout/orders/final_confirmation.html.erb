@@ -17,11 +17,11 @@
 </div>
 <div class="row">
 	<div class="col-xs-4">
-		<h5>Shipping address <a href="#">Change</a></h5>
+		<h5>Shipping address <%= link_to "Change", checkout_addresses_path %></h5>
 		<%= @checkout_address.inspect %>
 	</div>
 	<div class="col-xs-4">
-		<h5>Payment method <a href="#">Change</a></h5>
+		<h5>Payment method <%= link_to "Change", checkout_payment_cards_path %></h5>
 		<%= @checkout_card.inspect %>
 	</div>
 	<div class="col-xs-4">
@@ -68,12 +68,6 @@
 				</div>
 			<% end %>
 			
-
-			<div class="order-summary">
-				You will receive these approx. 3 weeks before each queued date.
-
-				<%= link_to "Checkout Now", checkout_addresses_path %>
-			</div>
 		</div>
 	</div>
 </div>
