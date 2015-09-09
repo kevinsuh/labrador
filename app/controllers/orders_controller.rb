@@ -31,13 +31,11 @@ class OrdersController < ApplicationController
   	# 2) create new recipient (eventually you should also be able to CHOOSE past recipient)
   	# 3) save order & order progress onto DB
   	# 4) return queued card in json on success
-  	
-		params
-		
+  			
 		recipient = current_user.recipients.create(
 			first_name: params[:recipientFirstName],
 			last_name: params[:recipientLastName],
-			relationship: params[:recipientRelationship]
+			relationship_id: params[:recipientRelationship]
 			)
 
 		selected_card = params[:selectedCard]

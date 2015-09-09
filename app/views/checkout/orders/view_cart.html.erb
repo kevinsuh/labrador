@@ -34,8 +34,13 @@
 
 			<div class="order-summary">
 				You will receive these approx. 3 weeks before each queued date.
-
-				<%= link_to "Checkout Now", checkout_final_path %>
+				<% if current_user.addresses.empty? %>
+					<%= link_to "Checkout Now", checkout_addresses_path %>
+				<% elsif current_user.stripe_account.nil? %>
+					<%= link_to "Checkout Now", checkout_payment_cards_path %>
+				<% else %>
+					<%= link_to "Checkout Now", checkout_final_path %>
+				<% end %>
 			</div>
 		</div>
 	</div>

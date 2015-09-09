@@ -6,7 +6,7 @@ module PaymentCardsHelper
 	end
 
 	def checkout_card_billing_address=(address)
-		session[:checkout_card_billing_address] = address.id
+		session[:checkout_card_billing_address] = address.id if address
 	end
 
 	def default_billing_address
