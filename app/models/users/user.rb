@@ -50,7 +50,7 @@ class User < ActiveRecord::Base
 		UserMailer.account_activation(self).deliver_now
 	end
 
-	# reset password
+	# reset password : hello!
 	def reset_password
 		self.password_reset_token = User.new_token
 		update_columns(password_reset_digest: User.digest(self.password_reset_token), password_reset_sent_at: Time.zone.now)
