@@ -36207,22 +36207,21 @@ html {
 }
 /* line 15, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_checkout_forms.scss */
 .address_list li.address .address_info, .address_list li.address .card_info, .address_list li.card .address_info, .address_list li.card .card_info, .card_list li.address .address_info, .card_list li.address .card_info, .card_list li.card .address_info, .card_list li.card .card_info {
-  width: 60%;
   float: left;
   padding-left: 30px;
   padding-right: 10px;
   box-sizing: border-box;
 }
-/* line 21, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_checkout_forms.scss */
+/* line 20, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_checkout_forms.scss */
 .address_list li.address .address_info .default_notice, .address_list li.address .card_info .default_notice, .address_list li.card .address_info .default_notice, .address_list li.card .card_info .default_notice, .card_list li.address .address_info .default_notice, .card_list li.address .card_info .default_notice, .card_list li.card .address_info .default_notice, .card_list li.card .card_info .default_notice {
   margin-top: 5px;
 }
-/* line 23, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_checkout_forms.scss */
+/* line 22, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_checkout_forms.scss */
 .address_list li.address .address_info .default_notice span, .address_list li.address .card_info .default_notice span, .address_list li.card .address_info .default_notice span, .address_list li.card .card_info .default_notice span, .card_list li.address .address_info .default_notice span, .card_list li.address .card_info .default_notice span, .card_list li.card .address_info .default_notice span, .card_list li.card .card_info .default_notice span {
   color: #CFCBC8;
   font-size: 1.2em;
 }
-/* line 29, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_checkout_forms.scss */
+/* line 28, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_checkout_forms.scss */
 .address_list li.address .address_actions, .address_list li.address .card_actions, .address_list li.card .address_actions, .address_list li.card .card_actions, .card_list li.address .address_actions, .card_list li.address .card_actions, .card_list li.card .address_actions, .card_list li.card .card_actions {
   width: 25%;
   float: right;
@@ -36230,44 +36229,44 @@ html {
   box-sizing: border-box;
   display: none;
 }
-/* line 39, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_checkout_forms.scss */
+/* line 38, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_checkout_forms.scss */
 .address_list li.address.selected .address_actions, .address_list li.address.selected .card_actions, .address_list li.card.selected .address_actions, .address_list li.card.selected .card_actions, .card_list li.address.selected .address_actions, .card_list li.address.selected .card_actions, .card_list li.card.selected .address_actions, .card_list li.card.selected .card_actions {
   display: block;
 }
-/* line 44, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_checkout_forms.scss */
+/* line 43, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_checkout_forms.scss */
 .address_list li.address .address_item:hover, .address_list li.address .card_item:hover, .address_list li.card .address_item:hover, .address_list li.card .card_item:hover, .card_list li.address .address_item:hover, .card_list li.address .card_item:hover, .card_list li.card .address_item:hover, .card_list li.card .card_item:hover {
   background: #a7d4e3;
 }
-/* line 47, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_checkout_forms.scss */
+/* line 46, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_checkout_forms.scss */
 .address_list li.address .address_item, .address_list li.address .card_item, .address_list li.card .address_item, .address_list li.card .card_item, .card_list li.address .address_item, .card_list li.address .card_item, .card_list li.card .address_item, .card_list li.card .card_item {
   cursor: pointer;
   padding: 25px;
   width: 100%;
 }
-/* line 51, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_checkout_forms.scss */
+/* line 50, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_checkout_forms.scss */
 .address_list li.address .address_item .card_item_display, .address_list li.address .card_item .card_item_display, .address_list li.card .address_item .card_item_display, .address_list li.card .card_item .card_item_display, .card_list li.address .address_item .card_item_display, .card_list li.address .card_item .card_item_display, .card_list li.card .address_item .card_item_display, .card_list li.card .card_item .card_item_display {
   width: 100%;
 }
-/* line 54, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_checkout_forms.scss */
+/* line 53, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_checkout_forms.scss */
 .address_list li.address .address_item span, .address_list li.address .card_item span, .address_list li.card .address_item span, .address_list li.card .card_item span, .card_list li.address .address_item span, .card_list li.address .card_item span, .card_list li.card .address_item span, .card_list li.card .card_item span {
   font-weight: normal;
   font-size: 1.5em;
 }
-/* line 58, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_checkout_forms.scss */
+/* line 57, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_checkout_forms.scss */
 .address_list li.address .address_item .brand_image, .address_list li.address .card_item .brand_image, .address_list li.card .address_item .brand_image, .address_list li.card .card_item .brand_image, .card_list li.address .address_item .brand_image, .card_list li.address .card_item .brand_image, .card_list li.card .address_item .brand_image, .card_list li.card .card_item .brand_image {
   float: left;
 }
-/* line 60, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_checkout_forms.scss */
+/* line 59, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_checkout_forms.scss */
 .address_list li.address .address_item .brand_image .brand_icon, .address_list li.address .card_item .brand_image .brand_icon, .address_list li.card .address_item .brand_image .brand_icon, .address_list li.card .card_item .brand_image .brand_icon, .card_list li.address .address_item .brand_image .brand_icon, .card_list li.address .card_item .brand_image .brand_icon, .card_list li.card .address_item .brand_image .brand_icon, .card_list li.card .card_item .brand_image .brand_icon {
   position: relative;
   top: -10px;
   left: 20px;
 }
-/* line 66, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_checkout_forms.scss */
+/* line 65, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_checkout_forms.scss */
 .address_list li.address .address_item .card_description, .address_list li.address .card_item .card_description, .address_list li.card .address_item .card_description, .address_list li.card .card_item .card_description, .card_list li.address .address_item .card_description, .card_list li.address .card_item .card_description, .card_list li.card .address_item .card_description, .card_list li.card .card_item .card_description {
   margin-left: 10px;
 }
-/* line 72, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_checkout_forms.scss */
+/* line 71, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_checkout_forms.scss */
 .address_list .select_address, .address_list .select_card, .card_list .select_address, .card_list .select_card {
   height: 2em;
   width: 2em;
@@ -36275,26 +36274,26 @@ html {
   float: left;
   margin-top: 3em;
 }
-/* line 81, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_checkout_forms.scss */
+/* line 80, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_checkout_forms.scss */
 .address_list .address_form_div, .address_list .card_form_div, .card_list .address_form_div, .card_list .card_form_div {
   width: 100%;
   display: none;
 }
-/* line 84, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_checkout_forms.scss */
+/* line 83, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_checkout_forms.scss */
 .address_list .address_form_div .address_form, .address_list .address_form_div .card_form, .address_list .card_form_div .address_form, .address_list .card_form_div .card_form, .card_list .address_form_div .address_form, .card_list .address_form_div .card_form, .card_list .card_form_div .address_form, .card_list .card_form_div .card_form {
   position: relative;
   overflow: hidden;
   margin: 0 auto;
 }
-/* line 89, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_checkout_forms.scss */
+/* line 88, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_checkout_forms.scss */
 .address_list .address_form_div .address_form .form_field, .address_list .address_form_div .card_form .form_field, .address_list .card_form_div .address_form .form_field, .address_list .card_form_div .card_form .form_field, .card_list .address_form_div .address_form .form_field, .card_list .address_form_div .card_form .form_field, .card_list .card_form_div .address_form .form_field, .card_list .card_form_div .card_form .form_field {
   margin: 12px 0;
 }
-/* line 92, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_checkout_forms.scss */
+/* line 91, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_checkout_forms.scss */
 .address_list .address_form_div .address_form .form_field.default .default_input, .address_list .address_form_div .card_form .form_field.default .default_input, .address_list .card_form_div .address_form .form_field.default .default_input, .address_list .card_form_div .card_form .form_field.default .default_input, .card_list .address_form_div .address_form .form_field.default .default_input, .card_list .address_form_div .card_form .form_field.default .default_input, .card_list .card_form_div .address_form .form_field.default .default_input, .card_list .card_form_div .card_form .form_field.default .default_input {
   display: inline-block;
 }
-/* line 98, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_checkout_forms.scss */
+/* line 97, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_checkout_forms.scss */
 .address_list .address_form_div .address_form .form_field .form_input input, .address_list .address_form_div .address_form .form_field .form_input select, .address_list .address_form_div .address_form .form_field .form_input button, .address_list .address_form_div .card_form .form_field .form_input input, .address_list .address_form_div .card_form .form_field .form_input select, .address_list .address_form_div .card_form .form_field .form_input button, .address_list .card_form_div .address_form .form_field .form_input input, .address_list .card_form_div .address_form .form_field .form_input select, .address_list .card_form_div .address_form .form_field .form_input button, .address_list .card_form_div .card_form .form_field .form_input input, .address_list .card_form_div .card_form .form_field .form_input select, .address_list .card_form_div .card_form .form_field .form_input button, .card_list .address_form_div .address_form .form_field .form_input input, .card_list .address_form_div .address_form .form_field .form_input select, .card_list .address_form_div .address_form .form_field .form_input button, .card_list .address_form_div .card_form .form_field .form_input input, .card_list .address_form_div .card_form .form_field .form_input select, .card_list .address_form_div .card_form .form_field .form_input button, .card_list .card_form_div .address_form .form_field .form_input input, .card_list .card_form_div .address_form .form_field .form_input select, .card_list .card_form_div .address_form .form_field .form_input button, .card_list .card_form_div .card_form .form_field .form_input input, .card_list .card_form_div .card_form .form_field .form_input select, .card_list .card_form_div .card_form .form_field .form_input button {
   width: 100%;
   line-height: 2.5em;
@@ -36304,95 +36303,95 @@ html {
   border: 1px solid #CFCBC8;
   padding: 6px 10px;
 }
-/* line 107, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_checkout_forms.scss */
+/* line 106, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_checkout_forms.scss */
 .address_list .address_form_div .address_form .form_field .form_input.update, .address_list .address_form_div .card_form .form_field .form_input.update, .address_list .card_form_div .address_form .form_field .form_input.update, .address_list .card_form_div .card_form .form_field .form_input.update, .card_list .address_form_div .address_form .form_field .form_input.update, .card_list .address_form_div .card_form .form_field .form_input.update, .card_list .card_form_div .address_form .form_field .form_input.update, .card_list .card_form_div .card_form .form_field .form_input.update {
   width: 58%;
   display: inline-block;
 }
-/* line 111, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_checkout_forms.scss */
+/* line 110, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_checkout_forms.scss */
 .address_list .address_form_div .address_form .form_field .form_input.cancel, .address_list .address_form_div .card_form .form_field .form_input.cancel, .address_list .card_form_div .address_form .form_field .form_input.cancel, .address_list .card_form_div .card_form .form_field .form_input.cancel, .card_list .address_form_div .address_form .form_field .form_input.cancel, .card_list .address_form_div .card_form .form_field .form_input.cancel, .card_list .card_form_div .address_form .form_field .form_input.cancel, .card_list .card_form_div .card_form .form_field .form_input.cancel {
   width: 40%;
   margin-left: 1%;
   display: inline-block;
 }
-/* line 116, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_checkout_forms.scss */
+/* line 115, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_checkout_forms.scss */
 .address_list .address_form_div .address_form .form_field .form_input select, .address_list .address_form_div .card_form .form_field .form_input select, .address_list .card_form_div .address_form .form_field .form_input select, .address_list .card_form_div .card_form .form_field .form_input select, .card_list .address_form_div .address_form .form_field .form_input select, .card_list .address_form_div .card_form .form_field .form_input select, .card_list .card_form_div .address_form .form_field .form_input select, .card_list .card_form_div .card_form .form_field .form_input select {
   border-radius: 0px;
   background: transparent;
 }
-/* line 124, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_checkout_forms.scss */
+/* line 123, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_checkout_forms.scss */
 .address_list .address_form_div .address_form .form_field .form_label, .address_list .address_form_div .card_form .form_field .form_label, .address_list .card_form_div .address_form .form_field .form_label, .address_list .card_form_div .card_form .form_field .form_label, .card_list .address_form_div .address_form .form_field .form_label, .card_list .address_form_div .card_form .form_field .form_label, .card_list .card_form_div .address_form .form_field .form_label, .card_list .card_form_div .card_form .form_field .form_label {
   font-weight: 400;
   font-size: 12px;
   width: 100%;
 }
-/* line 132, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_checkout_forms.scss */
+/* line 131, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_checkout_forms.scss */
 .address_list .address_form_div .address_form .form_field.name .first_name, .address_list .address_form_div .card_form .form_field.name .first_name, .address_list .card_form_div .address_form .form_field.name .first_name, .address_list .card_form_div .card_form .form_field.name .first_name, .card_list .address_form_div .address_form .form_field.name .first_name, .card_list .address_form_div .card_form .form_field.name .first_name, .card_list .card_form_div .address_form .form_field.name .first_name, .card_list .card_form_div .card_form .form_field.name .first_name {
   width: 51.7%;
   display: inline-block;
   padding-right: 2.5%;
   white-space: nowrap;
 }
-/* line 138, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_checkout_forms.scss */
+/* line 137, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_checkout_forms.scss */
 .address_list .address_form_div .address_form .form_field.name .last_name, .address_list .address_form_div .card_form .form_field.name .last_name, .address_list .card_form_div .address_form .form_field.name .last_name, .address_list .card_form_div .card_form .form_field.name .last_name, .card_list .address_form_div .address_form .form_field.name .last_name, .card_list .address_form_div .card_form .form_field.name .last_name, .card_list .card_form_div .address_form .form_field.name .last_name, .card_list .card_form_div .card_form .form_field.name .last_name {
   width: 48%;
   float: right;
 }
-/* line 144, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_checkout_forms.scss */
+/* line 143, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_checkout_forms.scss */
 .address_list .address_form_div .address_form .form_field.city, .address_list .address_form_div .card_form .form_field.city, .address_list .card_form_div .address_form .form_field.city, .address_list .card_form_div .card_form .form_field.city, .card_list .address_form_div .address_form .form_field.city, .card_list .address_form_div .card_form .form_field.city, .card_list .card_form_div .address_form .form_field.city, .card_list .card_form_div .card_form .form_field.city {
   width: 40%;
   float: left;
   margin-right: 3%;
 }
-/* line 149, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_checkout_forms.scss */
+/* line 148, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_checkout_forms.scss */
 .address_list .address_form_div .address_form .form_field.state, .address_list .address_form_div .card_form .form_field.state, .address_list .card_form_div .address_form .form_field.state, .address_list .card_form_div .card_form .form_field.state, .card_list .address_form_div .address_form .form_field.state, .card_list .address_form_div .card_form .form_field.state, .card_list .card_form_div .address_form .form_field.state, .card_list .card_form_div .card_form .form_field.state {
   width: 17%;
   float: left;
 }
-/* line 153, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_checkout_forms.scss */
+/* line 152, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_checkout_forms.scss */
 .address_list .address_form_div .address_form .form_field.zipcode, .address_list .address_form_div .card_form .form_field.zipcode, .address_list .card_form_div .address_form .form_field.zipcode, .address_list .card_form_div .card_form .form_field.zipcode, .card_list .address_form_div .address_form .form_field.zipcode, .card_list .address_form_div .card_form .form_field.zipcode, .card_list .card_form_div .address_form .form_field.zipcode, .card_list .card_form_div .card_form .form_field.zipcode {
   float: right;
   width: 37%;
 }
-/* line 160, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_checkout_forms.scss */
+/* line 159, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_checkout_forms.scss */
 .address_list .address_form_div .address_form .form_field.details .expiration, .address_list .address_form_div .card_form .form_field.details .expiration, .address_list .card_form_div .address_form .form_field.details .expiration, .address_list .card_form_div .card_form .form_field.details .expiration, .card_list .address_form_div .address_form .form_field.details .expiration, .card_list .address_form_div .card_form .form_field.details .expiration, .card_list .card_form_div .address_form .form_field.details .expiration, .card_list .card_form_div .card_form .form_field.details .expiration {
   width: 35%;
   display: inline-block;
 }
-/* line 163, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_checkout_forms.scss */
+/* line 162, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_checkout_forms.scss */
 .address_list .address_form_div .address_form .form_field.details .expiration select.card_month, .address_list .address_form_div .card_form .form_field.details .expiration select.card_month, .address_list .card_form_div .address_form .form_field.details .expiration select.card_month, .address_list .card_form_div .card_form .form_field.details .expiration select.card_month, .card_list .address_form_div .address_form .form_field.details .expiration select.card_month, .card_list .address_form_div .card_form .form_field.details .expiration select.card_month, .card_list .card_form_div .address_form .form_field.details .expiration select.card_month, .card_list .card_form_div .card_form .form_field.details .expiration select.card_month {
   width: 55%;
 }
-/* line 166, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_checkout_forms.scss */
+/* line 165, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_checkout_forms.scss */
 .address_list .address_form_div .address_form .form_field.details .expiration select.card_year, .address_list .address_form_div .card_form .form_field.details .expiration select.card_year, .address_list .card_form_div .address_form .form_field.details .expiration select.card_year, .address_list .card_form_div .card_form .form_field.details .expiration select.card_year, .card_list .address_form_div .address_form .form_field.details .expiration select.card_year, .card_list .address_form_div .card_form .form_field.details .expiration select.card_year, .card_list .card_form_div .address_form .form_field.details .expiration select.card_year, .card_list .card_form_div .card_form .form_field.details .expiration select.card_year {
   width: 40%;
   margin-left: 1%;
 }
-/* line 171, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_checkout_forms.scss */
+/* line 170, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_checkout_forms.scss */
 .address_list .address_form_div .address_form .form_field.details .verification, .address_list .address_form_div .card_form .form_field.details .verification, .address_list .card_form_div .address_form .form_field.details .verification, .address_list .card_form_div .card_form .form_field.details .verification, .card_list .address_form_div .address_form .form_field.details .verification, .card_list .address_form_div .card_form .form_field.details .verification, .card_list .card_form_div .address_form .form_field.details .verification, .card_list .card_form_div .card_form .form_field.details .verification {
   width: 20%;
   display: inline-block;
 }
-/* line 174, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_checkout_forms.scss */
+/* line 173, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_checkout_forms.scss */
 .address_list .address_form_div .address_form .form_field.details .verification .form_input, .address_list .address_form_div .card_form .form_field.details .verification .form_input, .address_list .card_form_div .address_form .form_field.details .verification .form_input, .address_list .card_form_div .card_form .form_field.details .verification .form_input, .card_list .address_form_div .address_form .form_field.details .verification .form_input, .card_list .address_form_div .card_form .form_field.details .verification .form_input, .card_list .card_form_div .address_form .form_field.details .verification .form_input, .card_list .card_form_div .card_form .form_field.details .verification .form_input {
   width: 50%;
 }
-/* line 181, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_checkout_forms.scss */
+/* line 180, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_checkout_forms.scss */
 .address_list .address_form_div .address_form .form_field.number .card-number-input, .address_list .address_form_div .card_form .form_field.number .card-number-input, .address_list .card_form_div .address_form .form_field.number .card-number-input, .address_list .card_form_div .card_form .form_field.number .card-number-input, .card_list .address_form_div .address_form .form_field.number .card-number-input, .card_list .address_form_div .card_form .form_field.number .card-number-input, .card_list .card_form_div .address_form .form_field.number .card-number-input, .card_list .card_form_div .card_form .form_field.number .card-number-input {
   background-image: url(../icons/credit_card_icon.png);
   background-position: 7px center;
   background-repeat: no-repeat;
   text-indent: 44px;
 }
-/* line 191, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_checkout_forms.scss */
+/* line 190, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_checkout_forms.scss */
 .address_list .address_form_div .address_form .form_field.billing_address .default_address, .address_list .address_form_div .card_form .form_field.billing_address .default_address, .address_list .card_form_div .address_form .form_field.billing_address .default_address, .address_list .card_form_div .card_form .form_field.billing_address .default_address, .card_list .address_form_div .address_form .form_field.billing_address .default_address, .card_list .address_form_div .card_form .form_field.billing_address .default_address, .card_list .card_form_div .address_form .form_field.billing_address .default_address, .card_list .card_form_div .card_form .form_field.billing_address .default_address {
   display: block;
 }
-/* line 194, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_checkout_forms.scss */
+/* line 193, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_checkout_forms.scss */
 .address_list .address_form_div .address_form .form_field.billing_address .new_address, .address_list .address_form_div .card_form .form_field.billing_address .new_address, .address_list .card_form_div .address_form .form_field.billing_address .new_address, .address_list .card_form_div .card_form .form_field.billing_address .new_address, .card_list .address_form_div .address_form .form_field.billing_address .new_address, .card_list .address_form_div .card_form .form_field.billing_address .new_address, .card_list .card_form_div .address_form .form_field.billing_address .new_address, .card_list .card_form_div .card_form .form_field.billing_address .new_address {
   display: none;
 }
-/* line 199, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_checkout_forms.scss */
+/* line 198, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_checkout_forms.scss */
 .address_list .address_form_div .address_form .form_field .billing_choice_input, .address_list .address_form_div .address_form .form_field .default_choice_input, .address_list .address_form_div .card_form .form_field .billing_choice_input, .address_list .address_form_div .card_form .form_field .default_choice_input, .address_list .card_form_div .address_form .form_field .billing_choice_input, .address_list .card_form_div .address_form .form_field .default_choice_input, .address_list .card_form_div .card_form .form_field .billing_choice_input, .address_list .card_form_div .card_form .form_field .default_choice_input, .card_list .address_form_div .address_form .form_field .billing_choice_input, .card_list .address_form_div .address_form .form_field .default_choice_input, .card_list .address_form_div .card_form .form_field .billing_choice_input, .card_list .address_form_div .card_form .form_field .default_choice_input, .card_list .card_form_div .address_form .form_field .billing_choice_input, .card_list .card_form_div .address_form .form_field .default_choice_input, .card_list .card_form_div .card_form .form_field .billing_choice_input, .card_list .card_form_div .card_form .form_field .default_choice_input {
   display: inline-block;
 }

@@ -16,13 +16,15 @@ module Checkout
     	@address = current_user.addresses.new(address_params)
     	if @address.save
 
-    		if @address.is_primary?
+        # if just-saved address is first one, set it as default
+        address_count = current_user.addresses.count
+    		if @address.is_primary? || address_count == 1
     			@address.set_primary
     		end
 
     		# take user's queued orders and set shipping_address_id
     		self.queued_orders_shipping_address = @address
-        
+
         redirect_to checkout_payment_cards_path
     	else
     		flash[:danger] = "Unable to save address."
