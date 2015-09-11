@@ -10,5 +10,7 @@
 //= require angular-spinner/angular-spinner.min.js
 //= require angular-datepicker.js
 //= require jquery.payment.js
+//= require angular-fancybox-plus.js
+//= require jquery.fancybox-plus.js
 //= require_tree .
 //= require_tree ./templates
