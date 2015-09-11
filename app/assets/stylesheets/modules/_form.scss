@@ -37,6 +37,12 @@ $button-blue: #4fa9c6;
 	}
 }
 
+@mixin nl_input_font {
+	color: darkred;
+	font-size: 14px;
+	font-weight: $regular-weight;
+}
+
 // button stuff
 .btn-full {
 	width: 100%;

@@ -106,16 +106,22 @@
 		list-style: none;
 		position: absolute;
 		visibility: hidden;
-		background: #574c3f;
 		left: 0;
 		top: 505;
 		opacity: 0;
-	  @include transform(translateY(-40%) scale(0.9));
-	  @include transition(visibility 0s 0.3s, opacity 0.3s, transform 0.3s);
 
+		&.slideUpwards {
+			@include transform(translateY(-108%) scale(1.0));
+		}
+		&.slideDownwards {
+			//@include transform(translateY(100%) scale(1.0));
+			@include transform(translateY(0%) scale(1.0));
+		}
+	  
   	li {
   		cursor: pointer;
 	    white-space: nowrap;
+	    @include nl_input_font;
 	    &.checked {
 	      color: rgba(255,255,255,0.5);
 	    }
@@ -166,8 +172,7 @@
 		background-color: salmon;
 		.nl-field {
 			a {
-				color: darkred;
-				border-bottom: 1px dashed;
+				@include nl_input_font;
 			}
 		}
 	}
@@ -193,7 +198,7 @@
 	left: 0;
 	right: 0;
 	top: 0;
-	margin-top: 20%;
+	margin-top: 30%;
 	color: white;
 
 	input {

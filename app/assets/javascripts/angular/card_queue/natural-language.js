@@ -4,6 +4,44 @@
  * Time: 2:44 PM
  */
 
+// in order to organize the order our select options show up
+function moveProperty(object, property, placement) {
+	
+	var new_object = {};
+	var keys_array = getKeys(object);
+	var index = keys_array.indexOf(property);
+	if (index > -1) {
+		keys_array.splice(index, 1);
+	}
+	if (placement == "front") {
+		keys_array.unshift(property);
+	} else if (placement == "back") {
+		keys_array.push(property);
+	} else if (placement == "middle") {
+
+	} else {
+		return;
+	}
+
+	keys_array.forEach(function(value) {
+		new_object[value] = object[value]
+	});
+	
+	return new_object;
+}
+
+function getKeys(object) {
+	var array = new Array();
+	for (var key in object) {
+		array.push(key);
+	}
+	return array;
+}
+
+
+/**
+ * 			NL SELECT INPUT
+ */
 angular.module('vr.directives.nlForm', ['vr.directives.nlForm.select', 'vr.directives.nlForm.text']);
 
 angular.module('vr.directives.nlForm.select',[])
@@ -13,14 +51,15 @@ angular.module('vr.directives.nlForm.select',[])
 			replace: true,
 			scope: {
 				value: '=',
-				options: '='
+				options: '=',
+				fieldType: '@' // occasion, relationships, or flavors
 			},
       controller: 'nlSelectCtrl',
 			template:
 				"<div ng-form='nlSelect' class='nl-field nl-dd' ng-class=\"{'nl-field-open': opened}\">" +
 					"<a class='nl-field-toggle' ng-click='open($event)' ng-bind='getSelected()'></a>" +
-					"<ul>" +
-						"<li ng-repeat='label in getLabels()' ng-class=\"{'nl-dd-checked': isSelected(label)}\" ng-click='select(label)' ng-bind='label'></li>" +
+					"<ul ng-class=\"{'slideUpwards': (fieldType == 'occasion'), 'slideDownwards': (fieldType == 'relationship')}\">" +
+						"<li ng-repeat='label in getLabels()' ng-class=\"{'nl-dd-checked': isSelected(label)}\" ng-hide=\"isSelected(label) && fieldType != 'flavor'\" ng-click='select(label)' ng-bind='label'></li>" +
 					"</ul>" +
 				"</div>",
 			link: function(scope, element, attributes) {
@@ -55,6 +94,7 @@ angular.module('vr.directives.nlForm.select',[])
 				}
 				// close the select when the overlay is clicked
 				overlay.bind('click',function() { scope.$apply(scope.close); });
+
 			}
     }; // end of directive return
 	})
@@ -138,6 +178,7 @@ angular.module('vr.directives.nlForm.select',[])
 
 		// get the label from the given value
 		function getLabel(value) {
+
 			var label = value;
 			switch($scope.optionType) {
 				case ARRAY_OF_OBJECTS:
@@ -161,13 +202,13 @@ angular.module('vr.directives.nlForm.select',[])
 					});
 					break;
 			}
+
 			return label;
 		};
 
 		// get the value given the label
 		function getValue(label) {
 			var value = label;
-
 			switch($scope.optionType) {
 				case ARRAY_OF_LABELS:
 					// the value is the label so don't do anything
@@ -204,8 +245,29 @@ angular.module('vr.directives.nlForm.select',[])
 				});
 				$scope.value = values;
 			} else {
+				/**
+				 * THIS IS FOR DEFAULT LOADING SCREEN
+				 * i.e. when $scope.value is blank (which it is on first load)
+				 */
 				if(!isOption($scope.value)) {
-					$scope.value = getOption(0).value;
+					
+					var defaultIndex = 0;
+					// kevin inserts for specific occasion types
+					// update if it is configured that way
+					var options = $scope.options;
+					switch($scope.fieldType) {
+						case "occasion":
+							// occasions will slide upward -- thus requires last index
+							var index = Object.keys(options).length - 1;
+							break;
+						case "relationship":
+							// relationships will slide downward -- thus requires first index
+							var index = 0;
+							break;
+						case "flavor":
+							break;
+					}
+					$scope.value = getOption(index).value;
 				}
 			}
 		};
@@ -248,6 +310,21 @@ angular.module('vr.directives.nlForm.select',[])
 					}
 				}
 			} else {
+				switch($scope.fieldType) {
+					case "occasion":
+						// occasions will slide upward -- thus requires selected option to be at back
+						var newOptions = moveProperty($scope.options, option, "back");
+						break;
+					case "relationship":
+						// relationships will slide downward -- thus requires selected option to be at front
+						var newOptions = moveProperty($scope.options, option, "front");
+						break;
+					case "flavor":
+						break;
+				}
+				if (typeof newOptions !== 'undefined') {
+					$scope.options = newOptions;
+				}
 				$scope.value = value;
 			}
 		};
@@ -307,6 +384,7 @@ angular.module('vr.directives.nlForm.select',[])
 				return text;
 			} else {
 				// only one selection possible
+				
 				return getLabel($scope.value);
 			}
 		};
@@ -356,6 +434,11 @@ angular.module('vr.directives.nlForm.select',[])
 		},true);
 
 	}]);
+
+
+/**
+ * 			NL TEXT INPUT
+ */
 
 angular.module('vr.directives.nlForm.text',[])
   .directive('nlText', function(){
