@@ -62,6 +62,7 @@ class CardSurveyRankingsController < ApplicationController
 		filters[:relationships] = [@relationship_id]
 		filters[:flavors] = [@flavor_id]
 		@cards = Card.all_with_filters filters
+		@initial_rankings = @cards.map{ |card| card.id }.join(",")
 
 	end
 
