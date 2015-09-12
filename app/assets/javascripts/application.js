@@ -5,6 +5,7 @@
 //= require angular-rails-templates
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui
 //= require bootstrap
 //= require spin.js/spin.min.js
 //= require angular-spinner/angular-spinner.min.js

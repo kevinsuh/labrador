@@ -10,9 +10,15 @@ class CardSurveyRankingsController < ApplicationController
 		max_relationship_id = Relationship.maximum(:id)
 		max_flavor_id       = Flavor.maximum(:id)
 
+		@occasions = Occasion.all
+		@relationships = Relationship.all
+		@flavors = Flavor.all
+
 		final_occasion_id     = 1
 		final_relationship_id = 1
 		final_flavor_id       = 1
+
+		filter_params = params[:survey_filter]
 
 		unless current_user.card_survey_rankings.empty?
 			
@@ -45,9 +51,17 @@ class CardSurveyRankingsController < ApplicationController
 			end
 		end
 
-		@occasion_id     = final_occasion_id
-		@relationship_id = final_relationship_id
-		@flavor_id       = final_flavor_id
+		@occasion_id       = final_occasion_id
+		@relationship_id   = final_relationship_id
+		@flavor_id         = final_flavor_id
+		@already_completed = current_user.card_survey_rankings.where(occasion_id: @occasion_id, relationship_id: @relationship_id, flavor_id: @flavor_id).count > 0 ? true : false
+
+		# get the cards that are filtered based on this
+		filters = Hash.new
+		filters[:occasions] = [@occasion_id]
+		filters[:relationships] = [@relationship_id]
+		filters[:flavors] = [@flavor_id]
+		@cards = Card.all_with_filters filters
 
 	end
 

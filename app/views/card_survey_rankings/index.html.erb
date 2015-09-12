@@ -1,3 +1,177 @@
+<div class="row status_row">
+	<div class="col-xs-6 col-xs-offset-3">
+		<h2>Status: <span><%= @already_completed? 'Completed' : 'Not Completed' %></span></h2>
+	</div>
+</div>
+
+<div class="row filters_row">
+	<%= form_for :survey_filter, url: card_survey_rankings_path do |f| %>
+	<div class="col-xs-4">
+		<h4>Occasion:</h4>
+		<%= f.select :occasions, options_for_select(@occasions.collect {|occasion| [occasion.name, occasion.id]}, @occasion_id), {class: "filter_select", include_blank: false} %>
+	</div>
+	<div class="col-xs-4">
+		<h4>Relationship:</h4>
+		<%= f.select :relationships, options_for_select(@relationships.collect {|relationship| [relationship.name, relationship.id]}, @relationship_id), {class: "filter_select", include_blank: false} %>
+	</div>
+	<div class="col-xs-4">
+		<h4>Flavor:</h4>
+		<%= f.select :flavors, options_for_select(@flavors.collect { |flavor| [flavor.name, flavor.id] }, @flavor_id), {class: "filter_select", include_blank: false} %>
+	</div>
+	<% end %>
+</div>
+
+<% count = 1 %>
+<% @cards.each do |card| %>
+	
+	<% 
+	card_image = card.card_images.first
+	%>
+
+	<div class="row card_survey_row #{card.id}">
+		<div class="col-xs-3">
+			<h3><%= count %></h3>
+		</div>
+		<div class="col-xs-9">
+			<span><%= if card_image && card_image.picture?
+						image_tag(card_image.picture.url, class: "card_image")
+						end %>
+			</span>
+		</div>
+	</div>
+	<% count += 1 %>
+
+<% end %>
+
+ <style>
+  #sortable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
+  #sortable li { margin: 0 3px 3px 3px; padding: 0.4em; padding-left: 1.5em; font-size: 1.4em; height: 18px; }
+  #sortable li span { position: absolute; margin-left: -1.3em; }
+  </style>
+  <script>
+  $(function() {
+    $( "#sortable" ).sortable();
+    $( "#sortable" ).disableSelection();
+  });
+  </script>
+</head>
+<body>
+ 
+<ul id="sortable">
+  <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 1</li>
+  <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 2</li>
+  <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 3</li>
+  <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 4</li>
+  <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 5</li>
+  <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 6</li>
+  <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 7</li>
+</ul>
+ 
+
+<% if false %>
+
+<!-- card links -->
+<%= render 'admin_card_links' %>
+<!-- search functionality -->
+<%= render 'search_filter' %>
+
+<!-- card display -->
+<% @cards_data.each do |key, card_data| %>
+	<% 
+
+	card          = card_data[:card]
+	relationships = card_data[:relationships]
+	occasions     = card_data[:occasions]
+	flavors       = card_data[:flavors]
+	vendor        = card_data[:vendor]
+	card_vendor   = card_data[:card_vendor]
+	
+	vendor_id     = vendor ? vendor.id : 0
+	vendor_url    = card_vendor ? card_vendor.url : ""
+
+	# only one card_image for now
+	card_images		= card_data[:card_images]
+	card_image 		= card_images.first
+	%>
+	<div class="row card_admin_row">
+		<h1 class="card_id">Card ID: <%=card.id%></h1>
+		<%= form_for([:admin, card], html: {multipart: true}) do |f| %>
+		<aside class="col-xs-4">
+			<% if false # for future version %>
+			<% card_images.each do |card_image| %>
+				<span> <%= if card_image.picture?
+					image_tag(card_image.picture.url, class: "card_image") 
+				end %></span>
+			<% end %>
+			<% end %>
+
+			<span><%= 
+			if card_image && card_image.picture?
+				image_tag(card_image.picture.url, class: "card_image")
+			end %></span>
+			<span class="picture">
+				<%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png', class: "card_image_upload" %>
+			</span>
+
+		</aside>
+		<div class ="col-xs-8 card_options">
+			<div class="relationship_checkbox">
+				<h5>Recipients:</h5>
+				<% @relationships.each do |relationship| %>
+					<% checked = relationships.ids.include? relationship.id %>
+					<%= f.label "#{key}_relationships_#{relationship.id}", relationship.name %>	
+					<%= f.check_box :relationships, {multiple: true, checked: checked, id: "card_#{key}_relationships_#{relationship.id}"}, relationship.id, nil  %> |
+				<% end %>
+			</div>
+			<hr class="category_separator">
+			<div class="occasion_checkbox">
+				<h5>Occasions:</h5>
+				<% @occasions.each do |occasion| %>
+					<% checked = occasions.ids.include? occasion.id %>
+					<%= f.label "#{key}_occasions_#{occasion.id}", occasion.name %>
+					<%= f.check_box :occasions, {multiple: true, checked: checked, id: "card_#{key}_occasions_#{occasion.id}"}, occasion.id, nil %> |
+				<% end %>
+			</div>
+			<hr class="category_separator">
+			<div class="flavor_checkbox">
+				<h5>Flavors:</h5>
+				<% @flavors.each do |flavor| %>
+					<% checked = flavors.ids.include? flavor.id %>
+					<%= f.label "#{key}_flavors_#{flavor.id}", flavor.name %>
+					<%= f.check_box :flavors, {multiple: true, checked: checked, id: "card_#{key}_flavors_#{flavor.id}"}, flavor.id, nil %> |
+				<% end %>
+			</div>
+			<hr class="category_separator">
+			<div class="vendor_select">
+				<h5>Vendor:</h5>
+				<label>Name:</label>
+				<%= f.select(:vendor, Vendor.all.collect { |v| [v.name, v.id] }, selected: vendor_id, include_blank: true ) %>
+				<div style="display: inline-block; font-weight: bold; font-size: 16px; margin-left: 1em;">
+					<label for="add_vendor_<%=key%>">add new</label> <input id="add_vendor_<%=key%>" type="checkbox" class="add_new_vendor" />
+				</div>
+				<div class="add_vendor_div" style="display: inline-block; margin-left: 1em; display: none;">
+					<%= f.label :new_vendor, "New Vendor:" %>
+					<%= text_field(:card, :new_vendor, class: "new_vendor_label") %>
+				</div>
+				<div style="margin-top: 15px;">
+					<%= f.label :vendor_url, "URL:" %>
+					<%= text_field(:card, :vendor_url, class: "new_vendor_field", value: vendor_url) %>
+				</div>
+			</div>
+			<hr class="category_separator">
+			<div class="submit">
+				<%= f.submit "Update Card", class: "btn btn-primary" %>
+				<%= link_to "Delete Card", admin_card_path(card), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+			</div>
+			<% end %>
+		</div>
+
+	</div>
+	<hr>
+<% end %>
+
+<% end %>
+
 <div>
 	occasion_id: <%= @occasion_id %>
 </div>

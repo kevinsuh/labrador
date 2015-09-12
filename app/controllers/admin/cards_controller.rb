@@ -112,8 +112,6 @@ module Admin
 		end
 
 		def update
-			puts "HELLO\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
-			puts params.inspect
 
 			if @card = Card.find_by(id: params[:id])
 				card_params   = params[:card]
