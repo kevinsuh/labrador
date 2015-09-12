@@ -18,7 +18,7 @@ class CardSurveyRankingsController < ApplicationController
 		final_relationship_id = 1
 		final_flavor_id       = 1
 
-		filter_params = params[:survey_filter]
+		filter_params = params[:survey_filter] # UPDATE WHEN NOT COMPLETED
 
 		unless current_user.card_survey_rankings.empty?
 			
@@ -64,6 +64,49 @@ class CardSurveyRankingsController < ApplicationController
 		@cards = Card.all_with_filters filters
 		@initial_rankings = @cards.map{ |card| card.id }.join(",")
 
+	end
+
+	# submit survey
+	def submit_survey
+		
+		image_order_string = params[:image_order]
+		occasion_id        = params[:occasion_id]
+		relationship_id    = params[:relationship_id]
+		flavor_id          = params[:flavor_id]
+		
+		image_order_array  = image_order_string.split(',')
+
+		survey_ranking = current_user.card_survey_rankings.build(occasion_id: occasion_id, relationship_id: relationship_id, flavor_id: flavor_id)
+
+		image_order_array.each_with_index do |val, index|
+			case index
+			when 0
+				survey_ranking.first_card_id   = val
+			when 1
+				survey_ranking.second_card_id  = val
+			when 2
+				survey_ranking.third_card_id   = val
+			when 3
+				survey_ranking.fourth_card_id  = val
+			when 4
+				survey_ranking.fifth_card_id   = val
+			when 5
+				survey_ranking.sixth_card_id   = val
+			when 6
+				survey_ranking.seventh_card_id = val
+			when 7
+				survey_ranking.eigth_card_id   = val
+			end
+		end
+
+		survey_ranking.save
+
+		redirect_to card_survey_rankings_path
+	end
+
+	def update_filters
+
+		redirect_to card_survey_rankings_path
 	end
 
 end

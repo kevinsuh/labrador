@@ -86,7 +86,12 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :card_survey_rankings, path: "card_survey", only: [:index]
+  resources :card_survey_rankings, path: "card_survey", only: [:index] do
+    collection do
+      post 'submit_survey'
+      post 'update_filters'
+    end
+  end
 
   
   # get 'get_occasion_types' => 'occasions#get_occasion_types'

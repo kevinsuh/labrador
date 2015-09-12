@@ -1,11 +1,11 @@
 <div class="row status_row">
 	<div class="col-xs-6 col-xs-offset-3">
-		<h2>Status: <span><%= @already_completed? 'Completed' : 'Not Completed' %></span></h2>
+		<h2>Status: <span style="color: <%= @already_completed ? 'green' : 'red' %>"><%= @already_completed? 'Completed' : 'Not Completed' %></span></h2>
 	</div>
 </div>
 
 <div class="row filters_row">
-	<%= form_for :survey_filter, url: card_survey_rankings_path do |f| %>
+	<%= form_for :survey_filter, url: update_filters_card_survey_rankings_path do |f| %>
 	<div class="col-xs-4">
 		<h4>Occasion:</h4>
 		<%= f.select :occasions, options_for_select(@occasions.collect {|occasion| [occasion.name, occasion.id]}, @occasion_id), {class: "filter_select", include_blank: false} %>
@@ -23,8 +23,11 @@
 
 <div id="sortable">
 	<h1 style="color: green;">OMG THE BEST</h1>
-	<%= form_for :image_order, url: card_survey_rankings_path do |f| %>
+	<%= form_for :image_order, url: submit_survey_card_survey_rankings_path, html: {id: "survey_form" } do |f| %>
 		<%= f.hidden_field :image_order, value: @initial_rankings, id: "image_order", name: "image_order" %>
+		<%= f.hidden_field :occasion_id, value: @occasion_id, name: "occasion_id" %>
+		<%= f.hidden_field :relationship_id, value: @relationship_id, name: "relationship_id" %>
+		<%= f.hidden_field :flavor_id, value: @flavor_id, name: "flavor_id" %>
 	<% end %>
 
 	<% count = 1 %>
@@ -68,5 +71,9 @@ $(function() {
   	}
   });
   $( "#sortable" ).disableSelection();
+
+  $( "#submit_survey" ).click(function() {
+  	$('#survey_form').submit();
+  })
 });
 </script>
