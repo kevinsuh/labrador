@@ -86,6 +86,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :card_survey_rankings, path: "card_survey", only: [:index]
+
   
   # get 'get_occasion_types' => 'occasions#get_occasion_types'
   # get 'get_relationship_types' => 'relationships#get_relation_types'

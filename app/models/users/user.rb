@@ -27,6 +27,7 @@ class User < ActiveRecord::Base
 	has_many :recipients
 	has_many :orders
 	has_one :stripe_account, class_name: "UserStripeAccount"
+	has_many :card_survey_rankings
 
 	# User class methods
 	class << self
@@ -91,5 +92,25 @@ class User < ActiveRecord::Base
 		digest = self.send("#{attribute}_digest") # ex) self.activation_digest
 		BCrypt::Password.new(digest).is_password?(token)
 	end
+
+	# for card_survey_rankigns
+	# def card_survey_minimum_id_for(type, max_id)
+		
+	# 	unique_ids = card_survey_rankings.select(:id, "#{type}_id").distinct.map(&:"#{type}_id")
+	# 	find_missing_minimum(unique_ids, max_id)
+
+	# end
+
+	# # helper method for card_survey_minimum_id_for
+	# def find_missing_minimum(array, max)
+	# 	minimum_id = 0
+	# 	(1 .. max).each do |count|
+	# 		unless array.include? count || count != 12 # 12 is the magic "all" id
+	# 			minimum_id = count
+	# 			break
+	# 		end
+	# 	end
+	# 	minimum_id
+	# end
 
 end

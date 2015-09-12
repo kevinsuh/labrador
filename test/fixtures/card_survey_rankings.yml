@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 
+  occasion_id: 
+  relationship_id: 
+  flavor_id: 
+  first_card_id: 
+  second_card_id: 
+  third_card_id: 
+  fourth_card_id: 
+  fifth_card_id: 
+  sixth_card_id: 
+  seventh_card_id: 
+  eighth_card_id: 
+
+two:
+  user_id: 
+  occasion_id: 
+  relationship_id: 
+  flavor_id: 
+  first_card_id: 
+  second_card_id: 
+  third_card_id: 
+  fourth_card_id: 
+  fifth_card_id: 
+  sixth_card_id: 
+  seventh_card_id: 
+  eighth_card_id: 

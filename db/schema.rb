@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150907231240) do
+ActiveRecord::Schema.define(version: 20150912053722) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "first_name"
@@ -72,6 +72,28 @@ ActiveRecord::Schema.define(version: 20150907231240) do
   add_index "card_relationships", ["card_id", "relationship_id"], name: "index_card_relationships_on_card_id_and_relationship_id", unique: true
   add_index "card_relationships", ["card_id"], name: "index_card_relationships_on_card_id"
   add_index "card_relationships", ["relationship_id"], name: "index_card_relationships_on_relationship_id"
+
+  create_table "card_survey_rankings", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "occasion_id"
+    t.integer  "relationship_id"
+    t.integer  "flavor_id"
+    t.integer  "first_card_id"
+    t.integer  "second_card_id"
+    t.integer  "third_card_id"
+    t.integer  "fourth_card_id"
+    t.integer  "fifth_card_id"
+    t.integer  "sixth_card_id"
+    t.integer  "seventh_card_id"
+    t.integer  "eighth_card_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "card_survey_rankings", ["flavor_id"], name: "index_card_survey_rankings_on_flavor_id"
+  add_index "card_survey_rankings", ["occasion_id"], name: "index_card_survey_rankings_on_occasion_id"
+  add_index "card_survey_rankings", ["relationship_id"], name: "index_card_survey_rankings_on_relationship_id"
+  add_index "card_survey_rankings", ["user_id"], name: "index_card_survey_rankings_on_user_id"
 
   create_table "card_vendors", force: :cascade do |t|
     t.integer  "card_id"
