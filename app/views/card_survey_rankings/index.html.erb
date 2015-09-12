@@ -5,18 +5,18 @@
 </div>
 
 <div class="row filters_row">
-	<%= form_for :survey_filter, url: update_filters_card_survey_rankings_path do |f| %>
+	<%= form_for :survey_filter, url: card_survey_rankings_path, html: {id: "filter_form" } do |f| %>
 	<div class="col-xs-4">
 		<h4>Occasion:</h4>
-		<%= f.select :occasions, options_for_select(@occasions.collect {|occasion| [occasion.name, occasion.id]}, @occasion_id), {class: "filter_select", include_blank: false} %>
+		<%= f.select :occasions, options_for_select(@occasions.collect {|occasion| [occasion.name, occasion.id]}, @occasion_id), {}, {class: "filter_select", include_blank: false} %>
 	</div>
 	<div class="col-xs-4">
 		<h4>Relationship:</h4>
-		<%= f.select :relationships, options_for_select(@relationships.collect {|relationship| [relationship.name, relationship.id]}, @relationship_id), {class: "filter_select", include_blank: false} %>
+		<%= f.select :relationships, options_for_select(@relationships.collect {|relationship| [relationship.name, relationship.id]}, @relationship_id), {}, {class: "filter_select", include_blank: false} %>
 	</div>
 	<div class="col-xs-4">
 		<h4>Flavor:</h4>
-		<%= f.select :flavors, options_for_select(@flavors.collect { |flavor| [flavor.name, flavor.id] }, @flavor_id), {class: "filter_select", include_blank: false} %>
+		<%= f.select :flavors, options_for_select(@flavors.collect { |flavor| [flavor.name, flavor.id] }, @flavor_id), {}, {class: "filter_select", include_blank: false} %>
 	</div>
 	<% end %>
 </div>
@@ -49,7 +49,7 @@
 	<h1 style="color: red;">Get Rid of this, ASAP.</h1>
 	<div class="row">
 		<div class="col-xs-12" style="text-align: center; margin-top:30px;">
-			<button class="btn btn-primary" id="submit_survey" type="button" style="width: 200px;">Submit</button>
+			<button class="btn btn-primary" id="submit_survey" type="button" style="width: 200px;"><%= @already_completed ? 'Update' : 'Submit' %></button>
 		</div>
 	</div>
 </div>
@@ -74,6 +74,10 @@ $(function() {
 
   $( "#submit_survey" ).click(function() {
   	$('#survey_form').submit();
+  })
+
+  $( ".filter_select" ).change(function() {
+  	$("#filter_form").submit();
   })
 });
 </script>

@@ -86,10 +86,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :card_survey_rankings, path: "card_survey", only: [:index] do
+  resources :card_survey_rankings, path: "card_survey" do
     collection do
       post 'submit_survey'
-      post 'update_filters'
+      post 'index'
+      get 'index'
     end
   end
 
