@@ -1,62 +1,90 @@
-<div class="row status_row">
-	<div class="col-xs-6 col-xs-offset-3">
-		<h2>Status: <span style="color: <%= @already_completed ? 'green' : 'red' %>"><%= @already_completed? 'Completed' : 'Not Completed' %></span></h2>
+<div class="survey_header">
+	<div class="row status_row">
+		<div class="col-xs-6 col-xs-offset-3">
+			<h2>Status: <span style="font-size: 29px; color: <%= @already_completed ? 'green' : 'red' %>"><%= @already_completed? 'Completed' : 'Not Completed' %></span></h2>
+		</div>
+	</div>
+
+	<div class="row filters_row">
+		<%= form_for :survey_filter, url: card_survey_rankings_path, html: {id: "filter_form" } do |f| %>
+		<div class="col-xs-4">
+			<h4 class="filter_title">Occasion:</h4>
+			<%= f.select :occasions, options_for_select(@occasions.collect {|occasion| [occasion.name, occasion.id]}, @occasion_id), {}, {class: "filter_select", include_blank: false} %>
+		</div>
+		<div class="col-xs-4">
+			<h4 class="filter_title">Relationship:</h4>
+			<%= f.select :relationships, options_for_select(@relationships.collect {|relationship| [relationship.name, relationship.id]}, @relationship_id), {}, {class: "filter_select", include_blank: false} %>
+		</div>
+		<div class="col-xs-4">
+			<h4 class="filter_title">Flavor:</h4>
+			<%= f.select :flavors, options_for_select(@flavors.collect { |flavor| [flavor.name, flavor.id] }, @flavor_id), {}, {class: "filter_select", include_blank: false} %>
+		</div>
+		<% end %>
 	</div>
 </div>
 
-<div class="row filters_row">
-	<%= form_for :survey_filter, url: card_survey_rankings_path, html: {id: "filter_form" } do |f| %>
-	<div class="col-xs-4">
-		<h4>Occasion:</h4>
-		<%= f.select :occasions, options_for_select(@occasions.collect {|occasion| [occasion.name, occasion.id]}, @occasion_id), {}, {class: "filter_select", include_blank: false} %>
+<div class="ranking_div">
+	<h1 style="background-color: green; color:white;">OMG THE BEST</h1>
+	<div id="sortable">
+		<%= form_for :image_order, url: submit_survey_card_survey_rankings_path, html: {id: "survey_form" } do |f| %>
+			<%= f.hidden_field :image_order, value: @initial_rankings, id: "image_order", name: "image_order" %>
+			<%= f.hidden_field :occasion_id, value: @occasion_id, name: "occasion_id" %>
+			<%= f.hidden_field :relationship_id, value: @relationship_id, name: "relationship_id" %>
+			<%= f.hidden_field :flavor_id, value: @flavor_id, name: "flavor_id" %>
+		<% end %>
+
+		<% count = 1 %>
+		<% @cards.each do |card| %>
+			
+		<% 
+		card_image = card.card_images.first
+		%>
+		<div id="<%= card.id %>" class="row" style="margin-top: 15px; margin-bottom: 15px">
+			<div class="col-xs-12">
+				<span><%= if card_image && card_image.picture?
+							image_tag(card_image.picture.url, class: "card_image", style: "display: block; margin: auto;")
+							end %>
+				</span>
+			</div>
+		</div>
+		<% count += 1 %>
+		<% end %>
 	</div>
-	<div class="col-xs-4">
-		<h4>Relationship:</h4>
-		<%= f.select :relationships, options_for_select(@relationships.collect {|relationship| [relationship.name, relationship.id]}, @relationship_id), {}, {class: "filter_select", include_blank: false} %>
-	</div>
-	<div class="col-xs-4">
-		<h4>Flavor:</h4>
-		<%= f.select :flavors, options_for_select(@flavors.collect { |flavor| [flavor.name, flavor.id] }, @flavor_id), {}, {class: "filter_select", include_blank: false} %>
-	</div>
-	<% end %>
+
+	<h1 style="background-color: red; color:white;">Get Rid of this, ASAP.</h1>
 </div>
-
-<div id="sortable">
-	<h1 style="color: green;">OMG THE BEST</h1>
-	<%= form_for :image_order, url: submit_survey_card_survey_rankings_path, html: {id: "survey_form" } do |f| %>
-		<%= f.hidden_field :image_order, value: @initial_rankings, id: "image_order", name: "image_order" %>
-		<%= f.hidden_field :occasion_id, value: @occasion_id, name: "occasion_id" %>
-		<%= f.hidden_field :relationship_id, value: @relationship_id, name: "relationship_id" %>
-		<%= f.hidden_field :flavor_id, value: @flavor_id, name: "flavor_id" %>
-	<% end %>
-
-	<% count = 1 %>
-	<% @cards.each do |card| %>
-		
-	<% 
-	card_image = card.card_images.first
-	%>
-	<div id="<%= card.id %>" class="row" style="margin-top: 15px; margin-bottom: 15px">
-		<div class="col-xs-12">
-			<span><%= if card_image && card_image.picture?
-						image_tag(card_image.picture.url, class: "card_image", style: "display: block; margin: auto;")
-						end %>
-			</span>
-		</div>
-	</div>
-	<% count += 1 %>
-	<% end %>
-	<h1 style="color: red;">Get Rid of this, ASAP.</h1>
-	<div class="row">
-		<div class="col-xs-12" style="text-align: center; margin-top:30px;">
-			<button class="btn btn-primary" id="submit_survey" type="button" style="width: 200px;"><%= @already_completed ? 'Update' : 'Submit' %></button>
-		</div>
+<div class="row">
+	<div class="col-xs-12" style="text-align: center; margin-top:30px;">
+		<button class="btn btn-primary" id="submit_survey" type="button" style="width: 200px;"><%= @already_completed ? 'Update' : 'Submit' %></button>
 	</div>
 </div>
 
 <!-- temp javascript to handle this form -->
 <style>
 #sortable { list-style-type: none; margin: 0; padding: 0; }
+.ranking_divvvv { 
+  background: -webkit-linear-gradient(#79C428, #892721); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(#79C428, #892721); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(#79C428, #892721); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(#79C428, #892721); /* Standard syntax */
+}
+.ranking_div {
+	margin-top: 30px;
+}
+.filter_select {
+	height: 50px;
+	min-width: 150px;
+	font-size: 21px;
+	display:block;
+	margin:auto;
+}
+.filter_title {
+	text-align:center;
+}
+.survey_header {
+	background-color: lightgray;
+	padding-bottom: 30px;
+}
 #sortable li { margin: 0 3px 3px 3px; padding: 0.4em; padding-left: 1.5em; font-size: 1.4em; height: 18px; }
 #sortable li span { position: absolute; margin-left: -1.3em; }
 </style>
@@ -67,7 +95,6 @@ $(function() {
   	update: function(event, ui) {
   		var order = $("#sortable").sortable("toArray");
   		$('#image_order').val(order.join(","));
-  		alert($("#image_order").val());
   	}
   });
   $( "#sortable" ).disableSelection();
