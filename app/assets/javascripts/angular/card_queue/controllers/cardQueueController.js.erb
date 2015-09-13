@@ -20,20 +20,16 @@
 			// load in user
 			$scope.user = user;
 
-			$scope.closeThis = function(){
-				console.log("hello world!");
-			};
-
 			var queuedButtonDOMElement = document.querySelector("#view_queued");
 			var queuedCountDOMElement = document.querySelector("#queued_count");
+			var purchasedCountDOMElement = document.querySelector("#purchased_count");
+			var purchasedButtonDOMElement= document.querySelector("#view_purchased");
+
 			var queuedButton = angular.element(queuedButtonDOMElement);
 			var queuedCount = angular.element(queuedCountDOMElement);
-			var onButtonClick = function() {
-				alert("hello world!");
-			}
-			queuedButton.on('click', onButtonClick);
+			var purchasedCount = angular.element(purchasedCountDOMElement);
+			var purchasedButton = angular.element(purchasedButtonDOMElement);
 
-			
 			// don't allow more than 3 card flavors!
 			$scope.$watch('newCard.cardFlavors.length', function(newValue, oldValue){
           if (newValue > 3) {
@@ -72,14 +68,9 @@
 	    };
 
 			// control what happens on each state of UI-Router
-	    var count = 1;
 	    $scope.$on('$stateChangeSuccess',
 			  function(event, toState) {
 			    $scope.currentState = toState.name;
-			    console.log(cards);
-			    count += 2;
-			    console.log(count);
-			    queuedCount.text(count);
 			    // start the ajax call on step 4
 			    if ($scope.currentState == "home.app.step4") {
 			    	// simulate retrieval of cards
@@ -149,6 +140,22 @@
 				
 				return valid;
 			}
+
+			/**
+			 * jQuery plugins to deal with outside of the app
+			 * this currently involves the header values on the app
+			*/
+			queuedButton.on('click', function() {
+				alert("hello world!");
+			});;
+
+			purchasedButton.on('click', function() {
+				console.log($scope.newCard);
+				cards.getOccasions().success(function(data){
+					console.log("hi ajax call");
+					console.log(data);
+				});
+			})
 	});
 
 })();

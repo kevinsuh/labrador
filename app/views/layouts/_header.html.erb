@@ -40,7 +40,13 @@
 		  <div class="notification_container">
 		  	<a href="#" id="view_queued">
 			  	<%= image_tag('queued_icon.png', alt: 'Queued Orders', class: "icon") %>
-			  	<span id="queued_count" class="notification_bubble" click-outside="closeThis"><%= queued_orders.count %></span>
+			  	<span id="queued_count" class="notification_bubble"><%= queued_orders.count %></span>
+		  	</a>
+		  </div>
+		  <div class="notification_container">
+		  	<a href="#" id="view_purchased">
+			  	<%= image_tag('purchased_icon.png', alt: 'Purchased Orders', class: "icon") %>
+			  	<span id="purchased_count" class="notification_bubble"><%= queued_orders.count %></span>
 		  	</a>
 		  </div>
 			<% if logged_in? %>
@@ -49,10 +55,17 @@
 					 	<li><span><%= link_to "Admin", admin_path %></span></li>
 					<% end %>
 					<li><span><%= link_to "Card Survey", card_survey_rankings_path %></span></li>
-					<ul class="dropdown-menu">
-
-					</ul>
-					<li><%= link_to "Log out", logout_path, method: "delete" %></li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= image_tag(gravatar_for(current_user, size: 40), alt: current_user.first_name, class: "user_gravatar") %></a>
+						<ul class="dropdown-menu">
+							<li><%= link_to "Profile", "#" %></li>
+							<li><%= link_to "Settings", "#" %></li>
+							<li class="divider"></li>
+							<li>
+								<%= link_to "Log out", logout_path, method: "delete" %>
+							</li>
+						</ul>
+					</li>
 				</ul>
 			<% else %>
 				<ul class="nav navbar-nav pull-right">
