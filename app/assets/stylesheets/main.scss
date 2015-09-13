@@ -110,6 +110,30 @@ header {
   }
 }
 
+// notifications stuff
+.notification_container {
+  position: relative;
+  display: inline;
+  width: 30px;
+  height: 30px;
+}
+.notification_bubble {
+  position: relative;
+  top: -6px;
+  right: -18px;
+  padding: 1px 5px;
+  background-color: red;
+  color: white;
+  font-weight: bold;
+  font-size: 0.65em;
+
+  border-radius: 25px;
+  box-shadow: 1px 1px 1px gray;
+  span {
+    z-index: 100;
+  }
+}
+
 /**
  *      FOOTER
  */
@@ -167,4 +191,5 @@ footer {
     color: $state-danger-text;
   }
 }
+
 

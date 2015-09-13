@@ -30,19 +30,28 @@
 <% end %>
 
 <!-- our current header -->
+<% queued_orders = Order.get_orders_for current_user.id, "queued" %>
 <header class="navbar">
 	<div>
 	  <nav>
 	  	<span>
 		    <%= link_to "Cardagain", root_url %>
 		  </span>
+		  <div class="notification_container">
+		  	<a href="#" id="view_queued">
+			  	<%= image_tag('queued_icon.png', alt: 'Queued Orders', class: "icon") %>
+			  	<span id="queued_count" class="notification_bubble" click-outside="closeThis"><%= queued_orders.count %></span>
+		  	</a>
+		  </div>
 			<% if logged_in? %>
 				<ul class="nav navbar-nav pull-right">
 					<% if current_user.is_admin? %>
 					 	<li><span><%= link_to "Admin", admin_path %></span></li>
 					<% end %>
 					<li><span><%= link_to "Card Survey", card_survey_rankings_path %></span></li>
-					<li>Hello, <%= current_user.email %></li>
+					<ul class="dropdown-menu">
+
+					</ul>
 					<li><%= link_to "Log out", logout_path, method: "delete" %></li>
 				</ul>
 			<% else %>

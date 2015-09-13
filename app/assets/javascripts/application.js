@@ -13,5 +13,6 @@
 //= require jquery.payment.js
 //= require angular-fancybox-plus.js
 //= require jquery.fancybox-plus.js
+//= require clickoutside.directive.js
 //= require_tree .
 //= require_tree ./templates

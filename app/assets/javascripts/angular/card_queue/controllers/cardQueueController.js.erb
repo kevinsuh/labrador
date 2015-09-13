@@ -19,6 +19,20 @@
 
 			// load in user
 			$scope.user = user;
+
+			$scope.closeThis = function(){
+				console.log("hello world!");
+			};
+
+			var queuedButtonDOMElement = document.querySelector("#view_queued");
+			var queuedCountDOMElement = document.querySelector("#queued_count");
+			var queuedButton = angular.element(queuedButtonDOMElement);
+			var queuedCount = angular.element(queuedCountDOMElement);
+			var onButtonClick = function() {
+				alert("hello world!");
+			}
+			queuedButton.on('click', onButtonClick);
+
 			
 			// don't allow more than 3 card flavors!
 			$scope.$watch('newCard.cardFlavors.length', function(newValue, oldValue){
@@ -58,10 +72,14 @@
 	    };
 
 			// control what happens on each state of UI-Router
+	    var count = 1;
 	    $scope.$on('$stateChangeSuccess',
 			  function(event, toState) {
 			    $scope.currentState = toState.name;
 			    console.log(cards);
+			    count += 2;
+			    console.log(count);
+			    queuedCount.text(count);
 			    // start the ajax call on step 4
 			    if ($scope.currentState == "home.app.step4") {
 			    	// simulate retrieval of cards
@@ -112,7 +130,6 @@
 						valid = true;
 						break;
 					case "home.app.step2":
-
 						valid = true;
 						break;
 					case "home.app.step3":

@@ -7,6 +7,7 @@ class StaticPagesController < ApplicationController
   		@waitlist_email = session[:waitlist_email]
   		session[:waitlist_email] = nil
   	end
+
   end
 
   def help
