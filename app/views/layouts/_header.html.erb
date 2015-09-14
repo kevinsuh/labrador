@@ -29,9 +29,6 @@
 </header>
 <% end %>
 
-<!-- our current header -->
-<% queued_orders = Order.get_orders_for current_user.id, "queued" %>
-<% purchased_orders = Order.get_orders_for current_user.id, "purchased" %>
 <header class="navbar">
 	<div>
 	  <nav>
@@ -39,6 +36,9 @@
 		    <%= link_to "Cardagain", root_url %>
 		  </span>
 			<% if logged_in? %>
+			<!-- our current header -->
+				<% queued_orders = Order.get_orders_for current_user.id, "queued" %>
+				<% purchased_orders = Order.get_orders_for current_user.id, "purchased" %>
 				<ul class="nav navbar-nav pull-right">
 					<div class="notifications">
 					  <div class="notification_container">
