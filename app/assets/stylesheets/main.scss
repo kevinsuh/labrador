@@ -110,6 +110,13 @@ header {
   }
 }
 
+.notifications {
+  display: inline;
+  float: left;
+  padding-top: 0.5em;
+  padding-right: 0.5em;
+}
+
 // notifications stuff
 .notification_container {
   position: relative;
