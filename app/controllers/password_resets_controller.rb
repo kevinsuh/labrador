@@ -36,7 +36,7 @@ class PasswordResetsController < ApplicationController
       else # successful page
         log_in @user
         remember @user
-        redirect_to @user
+        redirect_to root_url
       end
     else
       render 'edit'
