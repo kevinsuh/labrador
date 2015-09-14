@@ -45,6 +45,7 @@
 	    	// first step is to create a date based on the values
 				
 				var queuedCard = $scope.newCard;
+				var queuedCards = $scope.queuedCards;
 
 	    	cards.queueCard()
 	      .success(function(data) {
@@ -55,6 +56,7 @@
 	        if (isValid) {
 	          $scope.queuedCards.push(queuedCardOrder);
 	          $scope.newCard = cards.newCardTemplate;
+	          queuedCount.text(queuedCards.length); // update new queued counter
 	          $state.go('home.app.step1');
 	        } else {
 	          alert("Something went wrong. Is your form completely filled out?");
