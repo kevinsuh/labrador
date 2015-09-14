@@ -1,18 +1,3 @@
-<div ng-repeat="order in queuedCards" class="card_order compressed">
-	<table cellpadding="0" cellspacing="0" style="margin: auto; height: 100%; width: 90%;">
-		<tr style="width: 100%; text-align:center;">
-			<td style="width: 33%;">
-				{{order.recipient.first_name}} {{order.recipient.last_name}} <span ng-if="order.order_occasion.name">({{order.order_occasion.name}})</span>
-			</td>
-			<td style="width: 33%; text-align: center;">
-				{{order.recipient_arrival_date | date:"MMM. d"}}
-			</td>
-			<td style="width: 33%; text-align:right;">
-				<a href="#">Expand View</a>
-			</td>
-		</tr>
-	</table>
-</div>
 <!-- this is the new card to send -->
 <div class="card_order expanded">
 	<form id="queue-card-form" name="queueCardForm" novalidate>

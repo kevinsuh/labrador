@@ -1,4 +1,18 @@
 <div class="checkout">
-	<p>You have {{queuedCards.length}} cards queued</p>
-	<a href="/checkout">Check Out Now</a>
+	<h3>Cart ({{queuedCards.length}}):</h3>
+	<div ng-repeat="order in queuedCards" class="card_order compressed">
+		<table cellpadding="0" cellspacing="0" style="margin: auto; height: 100%; width: 90%;">
+			<tr style="width: 100%; text-align:center;">
+				<td style="width: 50%;">
+					<span style="font-size: 0.8em;">{{order.recipient.first_name}} {{order.recipient.last_name}}</span> <span ng-if="order.order_occasion.name" style="font-size: 0.8em;">({{order.order_occasion.name}})</span>
+				</td>
+				<td style="width: 50%; text-align: right;">
+					<span style="font-size: 0.8em;">
+					{{order.recipient_arrival_date | date:"MMM. d"}}
+				</span>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<a class="btn btn-primary" href="/checkout">Check Out Now</a>
 </div>
