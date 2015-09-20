@@ -1,5 +1,28 @@
 (function() {
 
-  var recipient_app = angular.module('manage-recipients', []);
+  var app = angular.module('manage-recipients', ['ngAnimate', 'ngMessages', 'ui.router', 'templates', '720kb.datepicker', 'fancyboxplus']);
+
+  app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
+
+    // home page that shows lists of posts and allows you to post new ones
+  	$stateProvider
+      .state('my_people', {
+        url: '/my_people/',
+        abstract: true,
+        templateUrl: "angular/manage_recipients/home.html"
+      })
+      .state('my_people.app', {
+        controller: "ManageRecipientsController",
+        abstract: true,
+        views: {
+          'card_view': {
+            templateUrl: "angular/manage_recipients/card_view.html"
+          } 
+        }
+      })
+      .state('my_people.app.card_view', {
+        url: ''
+      })
+  });
 
 })();

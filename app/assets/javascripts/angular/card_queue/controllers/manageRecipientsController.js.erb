@@ -13,6 +13,26 @@
 			$scope.relationships  = recipients.relationships;
 			$scope.currentRecipients = recipients.currentRecipients
 			console.log(recipients);
+
+			/**
+			 * jQuery plugins to deal with outside of the app
+			*/
+			// side bar link
+			/*
+			var viewRecipientsButtonDOMElement = document.querySelector("#my_people");
+			var viewRecipientsButton = angular.element(viewRecipientsButtonDOMElement);
+			viewRecipientsButton.on('click', function() {
+				$state.go('my_people.app.card_view');
+			});
+
+			var homeLogoButtonDOMElement = document.querySelector("#home_logo");
+			var homeLogoButton = angular.element(homeLogoButtonDOMElement);
+			// go home on this click!
+			homeLogoButton.on('click', function() {
+				$state.go('home.app.step1');
+			})
+			*/
+			
 		});
 
 })();

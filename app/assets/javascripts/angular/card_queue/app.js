@@ -14,7 +14,6 @@
         abstract: true,
 				templateUrl: "angular/card_queue/home.html"
       })
-
       .state('home.app', {
         controller: 'CardQueueController',
         abstract: true,
@@ -53,7 +52,6 @@
           }]
         }
       })
-
       .state('home.app.step1', {
         url: '',
         replace: true,

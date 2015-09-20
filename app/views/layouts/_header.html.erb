@@ -4,11 +4,11 @@
 		<!-- our current header -->
 			<% queued_orders = Order.get_orders_for current_user.id, "queued" %>
 			<% purchased_orders = Order.get_orders_for current_user.id, "purchased" %>
-			<div class="box">
+			<a class="state_link box" href="#/">
 				<h3 class="title" style="text-align: center;">
 					C
 				</h3>
-			</div>
+			</a>
 			<div>
 				<h3 class="title">
 					Greeting Central

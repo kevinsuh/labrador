@@ -158,6 +158,29 @@ span, p {
   }
 }
 
+// logo and links
+#home_logo {
+  cursor: pointer;
+}
+.box {
+  &.state_link {
+    display: table-cell;
+    vertical-align: middle;
+    &.side_link {
+      color: black;
+    }
+    &:hover {
+      text-decoration: none;
+    }
+    &:active {
+      text-decoration: none;
+    }
+    &:focus {
+      text-decoration: none;
+    }
+  }
+}
+
 /**
  * 			TYPOGRAPHY
  */
