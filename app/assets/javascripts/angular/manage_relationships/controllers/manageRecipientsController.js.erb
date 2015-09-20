@@ -14,6 +14,14 @@
 			$scope.currentRecipients = recipients.currentRecipients
 			console.log(recipients);
 
+			// test whether you are currently at this state or not
+			$scope.$on('$stateChangeSuccess',
+			  function(event, toState) {
+			    $scope.currentState = toState.name;
+			    console.log($scope.currentState);
+			    makeStateActive($scope.currentState);
+		    });
+
 			/**
 			 * jQuery plugins to deal with outside of the app
 			*/
@@ -21,10 +29,8 @@
 			/*
 			var viewRecipientsButtonDOMElement = document.querySelector("#my_people");
 			var viewRecipientsButton = angular.element(viewRecipientsButtonDOMElement);
-			viewRecipientsButton.on('click', function() {
-				$state.go('my_people.app.card_view');
-			});
 
+			
 			var homeLogoButtonDOMElement = document.querySelector("#home_logo");
 			var homeLogoButton = angular.element(homeLogoButtonDOMElement);
 			// go home on this click!

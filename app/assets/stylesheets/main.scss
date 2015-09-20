@@ -178,6 +178,11 @@ span, p {
     &:focus {
       text-decoration: none;
     }
+
+    &.active {
+      background-color: $extra_dark_grey;
+      color: white;
+    }
   }
 }
 

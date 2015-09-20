@@ -67,6 +67,7 @@
 	    $scope.$on('$stateChangeSuccess',
 			  function(event, toState) {
 			    $scope.currentState = toState.name;
+			    makeStateActive($scope.currentState);
 			    // start the ajax call on step 4
 			    if ($scope.currentState == "home.app.step4") {
 			    	// simulate retrieval of cards
