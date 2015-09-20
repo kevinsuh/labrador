@@ -121,6 +121,9 @@ span, p {
               border-radius: 20px;
               width: $box_size * 3;
               height: $box_size / 2.5;
+              &:focus {
+                outline: 0;
+              }
             }
           }
         }
