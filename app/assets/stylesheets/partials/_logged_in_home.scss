@@ -4,8 +4,8 @@
  * 		LOGGED IN HOME PAGE
  */
 .logged_in_home {
-	margin-left: $box_size + 10;
-	margin-top: 10px;
+	margin-left: $box_size + 15;
+	margin-top: 20px;
 	margin-right: 20px;
 	min-height: 780px;
 }
@@ -26,7 +26,7 @@
  * 		MY PEOPLE
  */
 .my_people_section {
-	
+
 	box-shadow: 2px 3px 4px $normal_grey;
 
 	.my_people {
@@ -37,7 +37,7 @@
 		// header
 		.table_header {
 			background-color: $teal;
-			width: 100%;
+			width: 100.5%;
 			display: table;
 			.title {
 				display: table-cell;

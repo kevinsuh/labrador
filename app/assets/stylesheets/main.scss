@@ -33,7 +33,7 @@ span, p {
     margin: 0;
     width: 100%;
     padding: 0;
-    background-color: $light_grey;
+    background-color: $ben_light_grey;
   }
 
   /**
@@ -66,7 +66,7 @@ span, p {
         border-bottom: $box_border;
         &:hover {
           color: white;
-          background-color: $header_background;
+          background-color: $extra_dark_grey;
           cursor: pointer;
         }
       }
@@ -77,7 +77,7 @@ span, p {
    *     HEADER
    */
   header {
-    background-color: $header_background;
+    background-color: $extra_dark_grey;
     @include box_sizing;
 
     z-index: 1001;

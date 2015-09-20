@@ -71,18 +71,6 @@
       });
     }
 
-    o.getRelationships = function() {
-      return $http.get('/relationships/get_relationships.json').
-      success(function(data) {
-        var relationships = data.relationships;
-        var relationship;
-        for (var index in relationships) {
-          relationship = relationships[index];
-          o.relationships[relationship.name] = relationship.id;
-        }
-      });
-    }
-
     o.getCardFlavors = function() {
       return $http.get('/cards/get_flavors.json').success(function(data) {
         var cardFlavors = data.cards;

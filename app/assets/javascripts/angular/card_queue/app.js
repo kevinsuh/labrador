@@ -1,6 +1,6 @@
 (function() {
 
-  var app = angular.module('card-queue', ['ngAnimate', 'ngMessages', 'ui.router', 'templates', 'vr.directives.nlForm', 'angularSpinner', '720kb.datepicker', 'fancyboxplus', 'angular-click-outside']);
+  var app = angular.module('card-queue', ['manage-recipients', 'ngAnimate', 'ngMessages', 'ui.router', 'templates', 'vr.directives.nlForm', 'angularSpinner', '720kb.datepicker', 'fancyboxplus', 'angular-click-outside']);
 
   app.config(function($stateProvider, $urlRouterProvider, $locationProvider, usSpinnerConfigProvider) {
 
@@ -36,8 +36,8 @@
           occasionPromise: ['cards', function(cards) {
             return cards.getOccasions();
           }],
-          relationshipPromise: ['cards', function(cards) {
-            return cards.getRelationships();
+          relationshipPromise: ['recipients', function(recipients) {
+            return recipients.getRelationships();
           }],
           cardFlavorPromise: ['cards', function(cards) {
             return cards.getCardFlavors();
