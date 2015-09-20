@@ -29,6 +29,8 @@ span, p {
     margin: 0;
     width: 100%;
     padding: 0;
+    background-color: $light_grey;
+    position: fixed;
   }
 
   /**
@@ -37,9 +39,10 @@ span, p {
   .left_bar {
     position: absolute;
     z-index: 1000;
+    top: 0;
 
     width: $box_size;
-    background-color: $medium_grey_background;
+    background-color: $medium_grey;
     height: 100%;
 
     .icon_holder {
@@ -104,7 +107,8 @@ span, p {
       }
 
       ul {
-        margin-right: 20px; 
+        margin-right: 20px;
+        width: 100%;
         li {
           margin-left: 15px;
           a {
@@ -116,10 +120,11 @@ span, p {
             }
           }
           &.filter_people {
+            width: 50%;
             padding-top: 15px;
             .filter_people_input {
               border-radius: 20px;
-              width: $box_size * 3;
+              width: 100%;
               height: $box_size / 2.5;
               &:focus {
                 outline: 0;
