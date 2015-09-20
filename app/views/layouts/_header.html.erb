@@ -16,11 +16,11 @@
 			</div>
 			<div>
 				<ul class="nav navbar-nav pull-right">
-					<div class="filter_people">
+					<li class="filter_people">
 						<%= form_for(:filter_people, url: waitlist_path) do |f| %>
 							<%= f.text_field :name, { placeholder: "Search my people...", class: "filter_people_input" } %>
 						<% end %>
-					</div>
+					</li>
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= image_tag(gravatar_for(current_user, size: 60), alt: current_user.first_name, class: "user_gravatar") %></a>
 						<ul class="dropdown-menu dropdown-menu-right">
