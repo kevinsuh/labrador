@@ -23,6 +23,47 @@
 }
 
 /**
+ * 		MY PEOPLE
+ */
+.my_people {
+	.table_header {
+		background-color: $teal;
+		width: 100%;
+		display: table;
+		.title {
+			display: table-cell;
+			vertical-align: middle;
+			width: 80%;
+			padding-left: 7px;
+			padding-top: 2px;
+			div {
+				span {
+					font-size: 1.2em;
+					line-height: 1;
+					color: white;
+				}
+			}
+		}
+		.add {
+			display: table-cell;
+			vertical-align: middle;
+			text-align: center;
+			padding: 7px 7px 7px 0;
+			margin: 5px;
+			div {
+				border: 1pt solid white;
+				cursor: pointer;
+				span {
+					font-size: 1.5em;
+					line-height: 1;
+					color: white;
+				}				
+			}
+		}
+	}
+}
+
+/**
  * 		MAIN DIV (card queueing service)
  */
 .card_orders {

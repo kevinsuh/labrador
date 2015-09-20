@@ -74,7 +74,6 @@ span, p {
    *     HEADER
    */
   header {
-    height: $box_size;
     background-color: $header_background;
     @include box_sizing;
 
@@ -111,6 +110,12 @@ span, p {
         width: 100%;
         li {
           margin-left: 15px;
+          &.right_most {
+            margin-right: 2%;
+          }
+          .absolute {
+            position: absolute;
+          }
           a {
             padding: 0;
             &:hover {

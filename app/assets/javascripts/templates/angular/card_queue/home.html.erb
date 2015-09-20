@@ -1,9 +1,23 @@
 <div ng-controller="CardQueueController">
-	<aside class="col-md-3 col-xs-3">
+	<aside class="col-md-3 col-xs-4">
 		<section class="card_queue">
-			<div class="section" style="background-color: lightgray; padding: 5px;">
-				<h2>Purchased Queue ({{purchasedCards.length}}):</h2>
-				<table>
+			<div class="section" style="background-color: lightgray;">
+				<div class="my_people">
+					<div class="table_header">
+						<div class="title">
+							<div>
+								<span>
+									My People ({{purchasedCards.length}})
+								</span>
+							</div>
+						</div>
+						<div class="add">
+							<div>
+								<span>+</span>
+							</div>
+						</div>
+					</div>
+					<table>
 						<tr ng-repeat="order in purchasedCards" style="width: 100%;">
 							<td style="width: 45%; text-align: left; overflow-x: hidden;">
 								{{order.recipient.first_name}} {{order.recipient.last_name}}
@@ -15,9 +29,12 @@
 								<a href="#">details</a>
 							</td>
 						</tr>
-				</table>
+					</table>
+				</div>
 			</div>
 		</section>
+
+
 
 		<div class="checkout" style="background-color: lightgray; padding: 5px; margin-top:20px;">
 			<h3>Queued Cart ({{queuedCards.length}}):</h3>
@@ -41,7 +58,7 @@
 		</div>
 	</aside>
 
-	<div class="col-md-9 col-xs-9 card_queue">
+	<div class="col-md-9 col-xs-8 card_queue">
 		<div class="card_orders">
 			<div class="row">
 				<div class="col-xs-12">
