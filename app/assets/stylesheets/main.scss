@@ -20,6 +20,108 @@ span, p {
 	@include adjust-font-size-to(1.2em);
 }
 
+.container.main_page {
+
+  /**
+   *      MAIN APPLICATION
+   */
+  &.container-full {
+    margin: 0;
+    width: 100%;
+    padding: 0;
+  }
+
+  /**
+   *      LEFT BAR
+   */
+  .left_bar {
+    position: absolute;
+    z-index: 9999;
+    height: 100%;
+
+    width: $box_size;
+    background-color: $medium_grey_background;
+  }
+
+  /**
+   *     HEADER
+   */
+  header {
+    height: $box_size;
+    background-color: $header_background;
+    @include box_sizing;
+
+    &.navbar {
+      margin: -1px;
+    }
+    /* navbar section of header */
+    nav {
+      height: $box_size;
+      width: 100%;
+      display: table;
+
+      div {
+        height: 100%;
+        display: table-cell;
+        vertical-align: middle;
+      }
+
+      // each box within the header
+      .box {
+        width: $box_size;
+        height: 100%;
+        background-color: $logo_background;
+        vertical-align: middle;
+      }
+      .title {
+        margin: 0 15px;
+        color: white;
+      }
+
+      ul {
+        margin-right: 20px; 
+        li {
+          margin-left: 15px;
+          a {
+            padding: 0;
+            &:hover {
+              background-color: transparent;
+              color: $hover-blue;
+              text-decoration: none;
+            }
+          }
+          &.filter_people {
+            padding-top: 15px;
+            .filter_people_input {
+              border-radius: 20px;
+              width: $box_size * 3;
+              height: $box_size / 3;
+            }
+          }
+        }
+      }
+
+      .filter_people_input {
+
+      }
+    }
+
+    /*
+     span {
+      @include adjust-font-size-to(18px);
+      font-weight: bold;
+    }
+    a {
+      color: $grayed_out;
+      &:hover {
+        text-decoration: none;
+        color: $grayed_out;
+      }
+    }
+     */
+  }
+}
+
 /**
  * 			TYPOGRAPHY
  */
@@ -47,21 +149,7 @@ p {
 	@include adjust-font-size-to(1.1em);
 }
 
-/**
- * 			VARIABLES
- */
-$grayed_out: #555;
-$hover-blue: #5899D8;
 
-@mixin box_sizing {
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box
-}
-
-/**
- *      HEADER
- */
 #logo {
   float: left;
   margin-right: 10px;
@@ -74,39 +162,6 @@ $hover-blue: #5899D8;
   &:hover {
     color: #fff;
     text-decoration: none;
-  }
-}
-
-header {
-  &.navbar {
-    margin-top: 20px;
-    margin-bottom: 0px;
-  }
-  span {
-    @include adjust-font-size-to(18px);
-    font-weight: bold;
-  }
-  a {
-    color: $grayed_out;
-    &:hover {
-      text-decoration: none;
-      color: $grayed_out;
-    }
-  }
-
-  /* navbar section of header */
-  .nav {
-    li {
-      margin-left: 15px;
-      a {
-        padding: 0;
-        &:hover {
-          background-color: transparent;
-          color: $hover-blue;
-          text-decoration: none;
-        }
-      }
-    }
   }
 }
 

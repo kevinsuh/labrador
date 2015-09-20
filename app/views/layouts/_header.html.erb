@@ -1,3 +1,74 @@
+<header class="navbar">
+  <nav>
+		<% if logged_in? %>
+		<!-- our current header -->
+			<% queued_orders = Order.get_orders_for current_user.id, "queued" %>
+			<% purchased_orders = Order.get_orders_for current_user.id, "purchased" %>
+			<div class="box">
+				<h3 class="title" style="text-align: center;">
+					C
+				</h3>
+			</div>
+			<div>
+				<h3 class="title">
+					Greeting Central
+				</h3>
+			</div>
+			<div>
+				<ul class="nav navbar-nav pull-right">
+					<div class="filter_people">
+						<%= form_for(:filter_people, url: waitlist_path) do |f| %>
+							<%= f.text_field :name, { placeholder: "Search my people...", class: "filter_people_input" } %>
+						<% end %>
+					</div>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= image_tag(gravatar_for(current_user, size: 60), alt: current_user.first_name, class: "user_gravatar") %></a>
+						<ul class="dropdown-menu dropdown-menu-right">
+							<li><span style="cursor: default;"><%= current_user.email %></span></li>
+							<li class="divider"></li>
+							<li><%= link_to "Profile", "#" %></li>
+							<li><%= link_to "Settings", "#" %></li>
+							<li class="divider"></li>
+							<% if current_user.is_admin? %>
+							 	<li><span><%= link_to "Admin", admin_path %></span></li>
+							<% end %>
+							<li><span><%= link_to "Card Survey", card_survey_rankings_path %></span></li>
+							<li class="divider"></li>
+							<li>
+								<%= link_to "Log out", logout_path, method: "delete" %>
+							</li>
+						</ul>
+					</li>
+
+					<!-- ignore  -->
+					<% if false %>
+					<div class="notifications">
+					  <div class="notification_container">
+					  	<a href="#" id="view_queued">
+						  	<%= image_tag('queued_icon.png', alt: 'Queued Orders', class: "icon") %>
+						  	<span id="queued_count" class="notification_bubble"><%= queued_orders.count %></span>
+					  	</a>
+					  </div>
+					  <div class="notification_container">
+					  	<a href="#" id="view_purchased">
+						  	<%= image_tag('purchased_icon.png', alt: 'Purchased Orders', class: "icon") %>
+						  	<span id="purchased_count" class="notification_bubble"><%= purchased_orders.count %></span>
+					  	</a>
+					  </div>
+					</div>
+					<% end %>
+				</ul>
+			</div>
+		<% else %>
+			<ul class="nav navbar-nav pull-right">
+				<li><%= link_to "How does it work?", about_path %></li>
+				<li><%= link_to "The Inspiration", why_path %></li>
+				<li><%= link_to "The Team", team_path %></li>
+			</ul>
+		<% end %>
+	</nav>
+</header>
+
 
 <% if false %>
 <header class="navbar navbar-fixed-top navbar-inverse">
@@ -28,58 +99,3 @@
 	</div>
 </header>
 <% end %>
-
-<header class="navbar">
-	<div>
-	  <nav>
-	  	<span>
-		    <%= link_to "Cardagain", root_url %>
-		  </span>
-			<% if logged_in? %>
-			<!-- our current header -->
-				<% queued_orders = Order.get_orders_for current_user.id, "queued" %>
-				<% purchased_orders = Order.get_orders_for current_user.id, "purchased" %>
-				<ul class="nav navbar-nav pull-right">
-					<div class="notifications">
-					  <div class="notification_container">
-					  	<a href="#" id="view_queued">
-						  	<%= image_tag('queued_icon.png', alt: 'Queued Orders', class: "icon") %>
-						  	<span id="queued_count" class="notification_bubble"><%= queued_orders.count %></span>
-					  	</a>
-					  </div>
-					  <div class="notification_container">
-					  	<a href="#" id="view_purchased">
-						  	<%= image_tag('purchased_icon.png', alt: 'Purchased Orders', class: "icon") %>
-						  	<span id="purchased_count" class="notification_bubble"><%= purchased_orders.count %></span>
-					  	</a>
-					  </div>
-					</div>
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= image_tag(gravatar_for(current_user, size: 40), alt: current_user.first_name, class: "user_gravatar") %></a>
-						<ul class="dropdown-menu dropdown-menu-right">
-							<li><span style="cursor: default;"><%= current_user.email %></span></li>
-							<li class="divider"></li>
-							<li><%= link_to "Profile", "#" %></li>
-							<li><%= link_to "Settings", "#" %></li>
-							<li class="divider"></li>
-							<% if current_user.is_admin? %>
-							 	<li><span><%= link_to "Admin", admin_path %></span></li>
-							<% end %>
-							<li><span><%= link_to "Card Survey", card_survey_rankings_path %></span></li>
-							<li class="divider"></li>
-							<li>
-								<%= link_to "Log out", logout_path, method: "delete" %>
-							</li>
-						</ul>
-					</li>
-				</ul>
-			<% else %>
-				<ul class="nav navbar-nav pull-right">
-					<li><%= link_to "How does it work?", about_path %></li>
-					<li><%= link_to "The Inspiration", why_path %></li>
-					<li><%= link_to "The Team", team_path %></li>
-				</ul>
-			<% end %>
-		</nav>
-	</div>
-</header>

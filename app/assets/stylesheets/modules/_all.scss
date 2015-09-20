@@ -21,6 +21,21 @@ $fixed-line-height: $base-line-height;
 // Headings
 $header-font-weight: $bold;
 
+$grayed_out: #555;
+$hover-blue: #5899D8;
+
+@mixin box_sizing {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box
+}
+
+// size of each box in the header/side bar
+$box_size: 100px;
+$header_background: #4A4A4A;
+$logo_background: #BE6254;
+$medium_grey_background: #D7D7D7;
+
 @mixin base_font {
 	font-family: $base-font-family;
 	font-weight: $base-font-weight;
