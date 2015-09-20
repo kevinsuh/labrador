@@ -47,6 +47,9 @@
           }],
           purchasedCardsPromise: ['cards', function(cards) {
             return cards.getOrderedCards('purchased');
+          }],
+          currentRecipientsPromise: ['recipients', function(recipients) {
+            return recipients.getCurrentRecipients();
           }]
         }
       })

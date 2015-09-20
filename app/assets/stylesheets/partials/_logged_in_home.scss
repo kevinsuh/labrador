@@ -93,7 +93,7 @@
 				}
 
 				.info_cell {
-					width: 55%;
+					width: 50%;
 					padding: 8px 2px;
 					overflow-x: scroll;
 					.recipient_info {
@@ -116,7 +116,7 @@
 				}
 
 				.actions_cell {
-					width: 25%;
+					width: 30%;
 					padding-right: 6px;
 					vertical-align: bottom;
 					padding-bottom: 5px;
@@ -138,6 +138,7 @@
 					  margin: 0;
 					  margin-right: 4px;
 					  margin-left: 12px;
+					  float: left;
 					}
 
 					.notification_bubble {

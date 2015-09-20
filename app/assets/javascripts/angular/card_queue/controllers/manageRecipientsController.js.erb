@@ -1,0 +1,18 @@
+(function() {
+	
+	/**
+	 * this controller is specific to the managing relationship within the "Greeting Central" module
+	 */
+	var app = angular.module('card-queue').controller("ManageRecipientsController", function($rootScope, $scope, $state, $timeout, recipients, user, usSpinnerService) {
+				
+			// load in user and relationships factories
+			$scope.user = user;
+      $scope.testImage = "/assets/blank_user.png";
+
+			// new manage relationships feature!
+			$scope.relationships  = recipients.relationships;
+			$scope.currentRecipients = recipients.currentRecipients
+			console.log(recipients);
+		});
+
+})();
