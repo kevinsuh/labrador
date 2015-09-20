@@ -4,6 +4,10 @@ html {
 	overflow-y: scroll;
 }
 
+html, body, .container.container-full {
+  height: 100%;
+}
+
 body {
 	@include base_font;
 }
@@ -30,7 +34,6 @@ span, p {
     width: 100%;
     padding: 0;
     background-color: $light_grey;
-    position: fixed;
   }
 
   /**
@@ -198,6 +201,7 @@ p {
   }
 }
 
+/*
 .notifications {
   display: inline;
   float: left;
@@ -230,6 +234,7 @@ p {
     z-index: 100;
   }
 }
+*/
 
 /**
  *      FOOTER

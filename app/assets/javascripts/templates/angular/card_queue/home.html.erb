@@ -1,41 +1,57 @@
 <div ng-controller="CardQueueController">
-	<aside class="col-md-3 col-xs-4">
-		<section class="card_queue">
-			<div class="section" style="background-color: lightgray;">
-				<div class="my_people">
-					<div class="table_header">
-						<div class="title">
-							<div>
-								<span>
-									My People ({{purchasedCards.length}})
-								</span>
-							</div>
-						</div>
-						<div class="add">
-							<div>
-								<span>+</span>
-							</div>
+	<aside class="col-s-3 col-xs-4">
+		
+		<div class="my_people_section">
+			<div class="my_people">
+				<div class="table_header">
+					<div class="title">
+						<div>
+							<span>
+								My People ({{queuedCards.length}})
+							</span>
 						</div>
 					</div>
-					<table>
-						<tr ng-repeat="order in purchasedCards" style="width: 100%;">
-							<td style="width: 45%; text-align: left; overflow-x: hidden;">
-								{{order.recipient.first_name}} {{order.recipient.last_name}}
-							</td>
-							<td style="width: 35%; text-align: left; overflow-x: hidden;">
-								{{order.recipient_arrival_date | date:"MMM. d"}}
-							</td>
-							<td style="width: 20%; text-align: left; overflow-x: hidden;">
-								<a href="#">details</a>
-							</td>
-						</tr>
-					</table>
+					<div class="add">
+						<div>
+							<span>+</span>
+						</div>
+					</div>
 				</div>
+				<table class="recipients">
+					<tr ng-repeat="order in queuedCards" class="recipient_row">
+						<td class="image_cell">
+							<img class="recipient_image" ng-src="{{testImage}}" />
+						</td>
+						<td class="info_cell">
+							<span class="recipient_info name">SiddharthRamakrishnan</span>
+							<span class="recipient_info relationship">Brother</span>
+							<span class="recipient_info birthday">Birthday in 187 days</span>
+							<!-- {{order.recipient_arrival_date | date:"MMM. d"}} -->
+						</td>
+						<td class="actions_cell">
+							<div class="notifications">
+							  <div class="notification_container">
+							  	<a href="#" id="view_queued">
+								  	<%= image_tag('queued_icon.png', alt: 'Queued Orders', class: "icon") %>
+								  	<span id="queued_count" class="notification_bubble">{{queuedCards.length}}</span>
+							  	</a>
+							  </div>
+							  <div class="notification_container">
+							  	<a href="#" id="view_purchased">
+								  	<%= image_tag('purchased_icon.png', alt: 'Purchased Orders', class: "icon") %>
+								  	<span id="purchased_count" class="notification_bubble">{{purchasedCards.length}}</span>
+							  	</a>
+							  </div>
+							</div>
+						</td>
+					</tr>
+				</table>
 			</div>
-		</section>
+		</div>
+	
 
-
-
+		<!-- ignore this checkout for now -->
+		<% if false %>
 		<div class="checkout" style="background-color: lightgray; padding: 5px; margin-top:20px;">
 			<h3>Queued Cart ({{queuedCards.length}}):</h3>
 			<div ng-repeat="order in queuedCards" class="card_order compressed">
@@ -56,9 +72,11 @@
 				<a class="btn btn-primary" href="/checkout">Check Out</a>
 			</div>
 		</div>
+		<% end %>
+
 	</aside>
 
-	<div class="col-md-9 col-xs-8 card_queue">
+	<div class="col-s-9 col-xs-8 card_queue">
 		<div class="card_orders">
 			<div class="row">
 				<div class="col-xs-12">

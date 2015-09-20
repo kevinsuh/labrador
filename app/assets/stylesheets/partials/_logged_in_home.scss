@@ -25,39 +25,142 @@
 /**
  * 		MY PEOPLE
  */
-.my_people {
-	.table_header {
-		background-color: $teal;
-		width: 100%;
-		display: table;
-		.title {
-			display: table-cell;
-			vertical-align: middle;
-			width: 80%;
-			padding-left: 7px;
-			padding-top: 2px;
-			div {
-				span {
-					font-size: 1.2em;
-					line-height: 1;
-					color: white;
+.my_people_section {
+	
+	box-shadow: 2px 3px 4px $normal_grey;
+
+	.my_people {
+
+		background-color: white;
+		margin: -1px;
+
+		// header
+		.table_header {
+			background-color: $teal;
+			width: 100%;
+			display: table;
+			.title {
+				display: table-cell;
+				vertical-align: middle;
+				padding-left: 7px;
+				padding-top: 2px;
+				div {
+					span {
+						font-size: 1.2em;
+						line-height: 1;
+						color: white;
+					}
+				}
+			}
+			.add {
+				display: table-cell;
+				vertical-align: middle;
+				text-align: center;
+				padding: 7px 7px 7px 0;
+				margin: 5px;
+				width: 2.5em;
+				div {
+					border: 1pt solid white;
+					cursor: pointer;
+					span {
+						font-size: 1.5em;
+						line-height: 1;
+						color: white;
+					}				
 				}
 			}
 		}
-		.add {
-			display: table-cell;
-			vertical-align: middle;
-			text-align: center;
-			padding: 7px 7px 7px 0;
-			margin: 5px;
-			div {
-				border: 1pt solid white;
-				cursor: pointer;
-				span {
-					font-size: 1.5em;
-					line-height: 1;
-					color: white;
-				}				
+
+		// body
+		.recipients {
+
+			width: 100%;
+			table-layout: fixed;
+			overflow: hidden;
+
+			.recipient_row {
+				width: 100%;
+				border-bottom: $box_border;
+
+				.image_cell {
+					overflow: hidden;
+					width: 20%;
+					.recipient_image {
+						margin: 5px;
+						border-radius: 35px;
+						width: 35px;
+					}	
+				}
+
+				.info_cell {
+					width: 55%;
+					padding: 8px 2px;
+					overflow-x: scroll;
+					.recipient_info {
+						display: block;
+						// specific spans
+						&.name {
+							font-size: 1em;
+							line-height: 1;
+							font-weight: 500;
+						}
+						&.relationship {
+							font-size: 0.7em;
+							color: $medium_dark_grey;
+						}
+						&.birthday {
+							font-size: 0.6em;
+							color: $light_teal;
+						}
+					}	
+				}
+
+				.actions_cell {
+					width: 25%;
+					padding-right: 6px;
+					vertical-align: bottom;
+					padding-bottom: 5px;
+					text-align: right;
+
+					// notification icons inside the action cell
+					.notifications {
+					  display: inline;
+					  float: right;
+					  padding-top: 0.5em;
+					  padding-right: 1em;
+					  position: relative;
+					}
+
+					// notifications stuff
+					.notification_container {
+					  position: relative;
+					  display: inline;
+					  margin: 0;
+					  margin-right: 4px;
+					  margin-left: 12px;
+					}
+
+					.notification_bubble {
+					  position: relative;
+					  top: 4px;
+					  right: -11px;
+					  padding: 1px 5px;
+					  background-color: $soft_red;
+					  color: white;
+					  font-weight: bold;
+					  font-size: 0.5em;
+					  border-radius: 40px;
+					  box-shadow: 1px 1px 1px gray;
+					  z-index: 100;
+					}
+
+					.icon {
+						position: absolute;
+						width: 20px;
+						height: 20px;
+					}
+				}	
+
 			}
 		}
 	}
