@@ -21,8 +21,8 @@
           'form': {
             templateUrl: "angular/card_queue/form.html"
           },
-          'history': {
-            templateUrl: "angular/card_queue/history.html"
+          'my_people': {
+            templateUrl: "angular/card_queue/my_people.html"
           },
           'checkout': {
             templateUrl: "angular/card_queue/checkout.html"

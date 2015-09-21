@@ -3,7 +3,7 @@
 	/**
 	 * this controller is specific to the managing relationship within the "Greeting Central" module
 	 */
-	var app = angular.module('card-queue').controller("ManageRecipientsController", function($rootScope, $scope, $state, $timeout, recipients, user, usSpinnerService) {
+	var app = angular.module('card-queue').controller("ManageRecipientsController", function($rootScope, $scope, $state, $timeout, $modal, $log, recipients, user, usSpinnerService) {
 				
 			// load in user and relationships factories
 			$scope.user = user;
@@ -22,6 +22,28 @@
 			    console.log($scope.currentState);
 			    makeStateActive($scope.currentState);
 		    });
+
+			$scope.open_modal_form = function() {
+
+				$modal.open({
+					templateUrl: 'angular/manage_recipients/recipient_modal_form.html',
+					backdrop: true,
+					windowClass: 'modal',
+					controller: function ($scope, $modalInstance, $log, user) {
+						$scope.user = user
+						$scope.submit = function() {
+							$log.log('submitted user info!');
+							$log.log(user);
+							$modalInstance.dismiss('cancel');
+						};
+					},
+					resolve: {
+						user: function() {
+							return $scope.user;
+						}
+					}
+				});
+			};
 
 			/**
 			 * jQuery plugins to deal with outside of the app

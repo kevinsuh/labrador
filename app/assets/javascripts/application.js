@@ -7,6 +7,7 @@
 //= require jquery_ujs
 //= require jquery-ui
 //= require bootstrap
+//= require ui-bootstrap-tpls-0.13.4.min.js
 //= require spin.js/spin.min.js
 //= require angular-spinner/angular-spinner.min.js
 //= require angular-datepicker.js
