@@ -43,7 +43,6 @@ span, p {
     position: absolute;
     z-index: 1005;
     top: 0;
-    border-top: 1pt solid $logo_background;
 
     width: $box_size;
     background-color: $medium_grey;
@@ -96,7 +95,7 @@ span, p {
     z-index: 1001;
 
     &.navbar {
-      margin: -1px;
+      margin: -2px;
     }
     /* navbar section of header */
     nav {
