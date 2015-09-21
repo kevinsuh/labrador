@@ -39,11 +39,19 @@ $normal_grey: #888888;
 $medium_grey: #D7D7D7;
 $medium_dark_grey: #BBBABA;
 $extra_dark_grey: #4A4A4A;
+$grey_box_shadow: 2px 3px 4px $normal_grey;
 
 $box_border: 2px inset #C2C2C2;
 $teal: #8ABAA7;
 $light_teal: #A7C5B8;
 $soft_red: #BF6959;
+
+// relationship group colors
+$teal_green: #8ABAA7;
+$pacific_blue: #3D5DA2;
+$navy_blue: #638895;
+$golden_yellow: #E9B854;
+$faded_blue: #98A7C2;
 
 @mixin base_font {
 	font-family: $base-font-family;

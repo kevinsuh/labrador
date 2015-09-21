@@ -1,0 +1,22 @@
+@import "base";
+
+.my_people_view {
+
+	.recipient_card {
+		height: 150px;
+		background-color: white;
+		box-shadow: $grey_box_shadow;
+		text-align: center;
+		margin: 15px 0;
+
+		.relationship_group {
+			height: 40%;
+			background-color: $pacific_blue;
+			border-bottom: 2pt solid black;
+		}
+		.recipient_info {
+			height: 60%;
+			background-color: $medium_grey;
+		}
+	}
+}

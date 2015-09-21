@@ -21,7 +21,12 @@
         }
       })
       .state('my_people.app.card_view', {
-        url: ''
+        url: '',
+        resolve: {
+          currentRecipientsPromise: ['recipients', function(recipients) {
+            return recipients.getCurrentRecipients();
+          }]
+        }
       })
   });
 

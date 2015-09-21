@@ -23,11 +23,11 @@
 }
 
 /**
- * 		MY PEOPLE
+ * 		MY PEOPLE ON MAIN DASHBOARD
  */
 .my_people_section {
 
-	box-shadow: 2px 3px 4px $normal_grey;
+	box-shadow: $grey_box_shadow;
 
 	.my_people {
 
@@ -77,6 +77,9 @@
 			width: 100%;
 			table-layout: fixed;
 			overflow: hidden;
+			display: block;
+			overflow-y: scroll;
+			max-height: 300px;
 
 			.recipient_row {
 				width: 100%;
