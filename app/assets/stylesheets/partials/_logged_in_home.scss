@@ -33,6 +33,9 @@
 
 		background-color: white;
 		margin: -1px;
+		max-height: 350px;
+		overflow-y: scroll;
+		overflow-x: hidden;
 
 		// header
 		.table_header {
@@ -77,9 +80,6 @@
 			width: 100%;
 			table-layout: fixed;
 			overflow: hidden;
-			display: block;
-			overflow-y: scroll;
-			max-height: 300px;
 
 			.recipient_row {
 				width: 100%;
@@ -98,7 +98,7 @@
 				.info_cell {
 					width: 50%;
 					padding: 8px 2px;
-					overflow-x: scroll;
+					overflow-x: hidden;
 					.recipient_info {
 						display: block;
 						// specific spans

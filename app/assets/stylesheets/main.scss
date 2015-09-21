@@ -41,8 +41,9 @@ span, p {
    */
   .left_bar {
     position: absolute;
-    z-index: 1000;
+    z-index: 1005;
     top: 0;
+    border-top: 1pt solid $logo_background;
 
     width: $box_size;
     background-color: $medium_grey;
@@ -59,11 +60,23 @@ span, p {
         vertical-align: middle;
       }
 
+      // each box within the side bar
       .box {
         display: table-cell;
         text-align: center;
         width: 100%;
         border-bottom: $box_border;
+          
+        // specifically the left bar that overlaps all
+        &.logo {
+          width: $box_size;
+          background-color: $logo_background;
+          border-bottom: none;
+          .title {
+            margin: 0;
+            color: white;
+          }
+        }
         &:hover {
           color: white;
           background-color: $extra_dark_grey;
@@ -135,7 +148,7 @@ span, p {
               width: 100%;
               height: $box_size / 2.5;
 
-              // background-image: url(icons/basic_icons.svg);
+              background-image: url(icons/basic_icons.svg);
               background-size: 250px 250px;
               background-position: 7px center;
               background-repeat: no-repeat;
