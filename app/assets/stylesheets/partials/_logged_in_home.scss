@@ -170,17 +170,96 @@
 	}
 }
 
-// my people modal
+// "my people" add/update modal
 .recipient_modal_form {
+
+	.modal_title {
+		text-transform: uppercase;
+	}
+
+	.body {
+		padding: 15px 30px;
+	}
+
+	.form_field {
+		width: 100%;
+		margin: 10px 0;
+		float: left;
+	}
+
+	.form_input {
+		input, select {
+			width: 100%;
+			padding-left: 1em;
+			border-radius: 7px;
+			border: none;
+
+			height: 3em;
+		}
+	}
 
 	.family {
 		background-color: $golden_yellow;
 	}
 
+	// top half of modal
+	.recipient_info {
+
+		.photo {
+			display: inline-block;
+			float: left;
+			width: 20%;
+			margin-right: 3%;
+			img {
+				margin-top: 10%;
+				width: 100%;
+				border-radius: 52px;
+				border: 2pt solid white;
+			}
+		}
+
+		.basic_info {
+			display: inline-block;
+			width: 75%;
+			float: right;
+
+			.name {
+				.first_name {
+					float: left;
+					width: 48.5%;
+					margin-right: 3%;
+				}
+				.last_name {
+					float: left;
+					width: 48.5%;
+				}
+			}
+
+			.relationship {
+				.relationship_input {
+					float: left;
+					width: 80%;
+					margin-right: 3%;
+				}
+				.group_input {
+					float: left;
+					width: 17%;
+				}
+			}
+		}
+
+	}
+
+	// bottom half of modal
+	.modal_body {
+		.body {
+			
+		}
+	}
 }
 
 .center_modal {
-	top: 25% !important;
+	top: 15% !important;
 }
 
 /**
