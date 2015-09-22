@@ -173,35 +173,6 @@
 // "my people" add/update modal
 .recipient_modal_form {
 
-	.modal_title {
-		text-transform: uppercase;
-	}
-
-	.body {
-		padding: 15px 30px;
-	}
-
-	.form_field {
-		width: 100%;
-		margin: 10px 0;
-		float: left;
-	}
-
-	.form_input {
-		input, select {
-			width: 100%;
-			padding-left: 1em;
-			border-radius: 7px;
-			border: none;
-
-			height: 3em;
-		}
-	}
-
-	.family {
-		background-color: $golden_yellow;
-	}
-
 	// top half of modal
 	.recipient_info {
 
@@ -250,11 +221,124 @@
 
 	}
 
-	// bottom half of modal
+	// body of modal
 	.modal_body {
+		padding-top: 0;
 		.body {
-			
+				
+			.street {
+
+			}
+
+			.address_other {
+
+				.city {
+					float: left;
+					width: 30%;
+					margin-right: 3%;
+				}
+				.state {
+					float: left;
+					width: 12.5%;
+					margin-right: 3%;
+				}
+				.zip {
+					float: left;
+					width: 12.5%;
+					margin-right: 3%;
+				}
+				.country {
+					float: right;
+					width: 35%;
+				}
+			}
+
+			.events {
+				.occasion {
+					float: left;
+					width: 32.5%;
+					margin-right: 3%;
+				}
+				.month {
+					float: left;
+					width: 22.5%;
+					margin-right: 3%;
+				}
+				.day {
+					float: left;
+					width: 15%;
+					margin-right: 3%;
+				}
+				.year {
+					width: 20%;
+					float: right;
+				}
+			}
 		}
+	}
+
+	// footer of modal
+	.modal-footer {
+		border-top: none;
+		text-align: center;
+		.cancel-btn {
+
+		}
+		.save-btn {
+
+		}
+	}
+
+	// "globals" for this modal form
+	.modal_title {
+		text-transform: uppercase;
+		font-size: 1.7em;
+		color: $medium_dark_grey;
+		display: inline-block;
+		text-align: left;
+		width: 49%;
+	}
+	.last_updated {
+		text-transform: uppercase;
+		color: $medium_dark_grey;
+		display: inline-block;
+		width: 50%;
+		text-align: right;
+	}
+
+	hr {
+		margin: 0;
+		border-top: 4px solid $ben_light_grey;
+	}
+
+	.body {
+		padding: 0 30px 15px 30px;
+	}
+
+	.row {
+		position: relative;
+	}
+
+	.form_field {
+		width: 100%;
+		margin: 10px 0;
+		float: left;
+	}
+
+	.form_input {
+		input, select {
+			width: 100%;
+			padding-left: 1em;
+			border-radius: 7px;
+			border: 2pt solid $ben_light_grey;
+			height: 3em;
+			background-color: white;
+		}
+	}
+
+	.family {
+		background-color: $golden_yellow;
+		background-color: $dark_grey;
 	}
 }
 
