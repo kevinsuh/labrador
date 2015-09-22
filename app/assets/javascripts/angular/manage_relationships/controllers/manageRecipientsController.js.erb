@@ -29,8 +29,9 @@
 					templateUrl: 'angular/manage_recipients/recipient_modal_form.html',
 					backdrop: true,
 					windowClass: 'modal',
-					controller: function ($scope, $modalInstance, $log, user) {
-						$scope.user = user
+					controller: function ($scope, $modalInstance, $log, user, photo) {
+						$scope.user  = user;
+						$scope.photo = photo;
 						$scope.submit = function() {
 							$log.log('submitted user info!');
 							$log.log(user);
@@ -40,6 +41,9 @@
 					resolve: {
 						user: function() {
 							return $scope.user;
+						},
+						photo: function() {
+							return $scope.testImage;
 						}
 					},
 					animation: false,

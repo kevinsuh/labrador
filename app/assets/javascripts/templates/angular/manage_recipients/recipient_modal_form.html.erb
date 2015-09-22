@@ -1,11 +1,147 @@
-<div class="modal-header">
-	<h3>Test Modal for My People!</h3>
-</div>
-
 <form ng-submit="submit()">
+
+	<!-- name / relationship -->
+	<div class="modal-header family">
+		<div class="row recipient_info">
+			<div class="col-xs-3 photo">
+				<img class="recipient_image" ng-src="{{photo}}"/>
+			</div>
+			<div class="col-xs-9 basic_info">
+				<div class="name form_field">
+
+					<div class="first_name">
+						<div class="form_input">
+				      <input ng-model="" type="text" placeholder="First Name"/>
+				    </div>
+					</div>
+
+					<div class="last_name">
+						<div class="form_input">
+				      <input ng-model="user.last_name" type="text" placeholder="Last Name"/>
+				    </div>
+					</div>
+
+				</div>
+
+				<div class="relationship form_field">
+					<div class="relationship">
+
+						<div class="form_input">
+							<select ng-model="">
+					  		<option value="">Choose Relationship</option>
+					  		<% us_states.each { |state, abrv| %>
+					  			<option value="<%= state %>"><%= abrv %></option>
+								<% } %>
+					  	</select>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- address + events -->
 	<div class="modal-body">
-		<label>First name:</label>
-		<input type="text" />
+		<div class="row address_title">
+			<span class="modal_title">Address</span>
+			<span class="last_updated">Last Updated 2/14/15</span>
+			<hr>
+		</div>
+		<div class="row address">
+
+			<div class="street form_field">
+				<div class="street">
+					<div class="form_input">
+			      <input ng-model="" type="text" placeholder="Street"/>
+			    </div>
+				</div>
+			</div>
+
+			<div class="address_other form_field">
+				<div class="city">
+					<div class="form_input">
+			      <input ng-model="" type="text" placeholder="City"/>
+			    </div>
+				</div>
+
+				<div class="state">
+					<div class="form_input">
+						<select ng-model="">
+				  		<option value="">State</option>
+				  		<% us_states.each { |state, abrv| %>
+				  			<option value="<%= state %>"><%= abrv %></option>
+							<% } %>
+				  	</select>
+					</div>
+				</div>
+
+				<div class="zip">
+					<div class="form_input">
+			      <input ng-model="" type="text" placeholder="Zip"/>
+			    </div>
+				</div>
+
+				<div class="country">
+					<div class="form_input">
+						<select ng-model="">
+				  		<option value="">Country</option>
+				  		<% us_states.each { |state, abrv| %>
+				  			<option value="<%= state %>"><%= abrv %></option>
+							<% } %>
+				  	</select>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		<div class="row events_title">
+			<span class="modal_title">Events</span>
+			<hr>
+		</div>
+
+		<div class="row events">
+			<div class="events form_field">
+				<div class="occasion">
+					<div class="form_input">
+			      <input ng-model="" type="text" placeholder="Event"/>
+			    </div>
+				</div>
+
+				<div class="month">
+					<div class="form_input">
+						<select ng-model="">
+				  		<option value="">Month</option>
+				  		<% us_states.each { |state, abrv| %>
+				  			<option value="<%= state %>"><%= abrv %></option>
+							<% } %>
+				  	</select>
+					</div>
+				</div>
+
+				<div class="day">
+					<div class="form_input">
+			      <input ng-model="" type="text" placeholder="Day"/>
+			    </div>
+				</div>
+
+				<div class="year">
+					<div class="form_input">
+						<select ng-model="">
+				  		<option value="">Year</option>
+				  		<% us_states.each { |state, abrv| %>
+				  			<option value="<%= state %>"><%= abrv %></option>
+							<% } %>
+				  	</select>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row add_new_event">
+			<span style="color:red;">+ Add New Event</span>
+		</div>
+
 	</div>
 	<div class="modal-footer">
 		<button class="btn btn-warning" ng-click="cancel()">Cancel</button>
