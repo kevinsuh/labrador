@@ -27,12 +27,8 @@
 						<div class="relationship">
 
 							<div class="relationship_input form_input">
-								<select ng-model="recipient.relationship">
-						  		<option value="">Choose Relationship</option>
-						  		<% us_states.each { |state, abrv| %>
-						  			<option value="<%= state %>"><%= abrv %></option>
-									<% } %>
-						  	</select>
+								<select ng-model="recipient.relationship" ng-options="value as key for (key, value) in relationships"></select>
+								
 							</div>
 
 							<!-- this is the grouping color -->
@@ -65,7 +61,7 @@
 				<div class="street form_field">
 					<div class="street">
 						<div class="form_input">
-				      <input ng-model="user.first_name" type="text" placeholder="Street"/>
+				      <input ng-model="recipient.primary_address.street" type="text" placeholder="Street"/>
 				    </div>
 					</div>
 				</div>
@@ -73,13 +69,13 @@
 				<div class="address_other form_field">
 					<div class="city">
 						<div class="form_input">
-				      <input ng-model="user.first_name" type="text" placeholder="City"/>
+				      <input ng-model="recipient.primary_address.city" type="text" placeholder="City"/>
 				    </div>
 					</div>
 
 					<div class="state">
 						<div class="form_input">
-							<select ng-model="user.first_name">
+							<select ng-model="recipient.primary_address.state">
 					  		<option value="">State</option>
 					  		<% us_states.each { |state, abrv| %>
 					  			<option value="<%= state %>"><%= abrv %></option>
@@ -90,13 +86,13 @@
 
 					<div class="zip">
 						<div class="form_input">
-				      <input ng-model="user.first_name" type="text" placeholder="Zip"/>
+				      <input ng-model="recipient.primary_address.zipcode" type="text" placeholder="Zip"/>
 				    </div>
 					</div>
 
 					<div class="country">
 						<div class="form_input">
-							<select ng-model="user.first_name">
+							<select ng-model="recipient.primary_address.country">
 					  		<option value="">Country</option>
 					  		<% us_states.each { |state, abrv| %>
 					  			<option value="<%= state %>"><%= abrv %></option>
@@ -116,9 +112,9 @@
 			<div class="row events">
 				<div class="events form_field">
 					<div class="occasion">
-						<div class="form_input">
-				      <input ng-model="user.first_name" type="text" placeholder="Event"/>
-				    </div>
+						<div class="occasion_input form_input">
+							<select ng-model="recipient.relationship" ng-options="value as key for (key, value) in occasions"></select>
+						</div>
 					</div>
 
 					<div class="month">

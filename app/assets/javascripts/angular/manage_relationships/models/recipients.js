@@ -12,11 +12,16 @@
     var o = {
       currentRecipients: [], // already existing recipients
       newRecipient: {
-        firstName: "testkevin",
-        lastName: "",
-        birthday: "",
-        relationship: "",
-        gender: ""
+        firstName: "kevin",
+        lastName: "suh",
+        relationship: "2",
+        primary_address: {
+          street: "2704 sw 311th st",
+          city: "fw",
+          state: "wa",
+          zipcode: "98023",
+          country: "United States"
+        }
       }, // create a new recipient
       newRecipientTemplate: {
         firstName: "",

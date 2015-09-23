@@ -25,6 +25,12 @@
         resolve: {
           currentRecipientsPromise: ['recipients', function(recipients) {
             return recipients.getCurrentRecipients();
+          }],
+          occasionPromise: ['cards', function(cards) {
+            return cards.getOccasions();
+          }],
+          relationshipPromise: ['recipients', function(recipients) {
+            return recipients.getRelationships();
           }]
         }
       })

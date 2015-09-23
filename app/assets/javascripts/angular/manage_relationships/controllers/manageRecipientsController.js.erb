@@ -3,18 +3,18 @@
 	/**
 	 * this controller is specific to the managing relationship within the "Greeting Central" module
 	 */
-	var app = angular.module('card-queue').controller("ManageRecipientsController", function($rootScope, $scope, $state, $timeout, $modal, recipients, user, usSpinnerService) {
+	var app = angular.module('card-queue').controller("ManageRecipientsController", function($rootScope, $scope, $state, $timeout, $modal, recipients, cards, usSpinnerService) {
 				
 			// load in user and relationships factories
-			$scope.user = user;
       $scope.testImage = "/assets/blank_user.png";
 
 			// new manage relationships feature!
 			$scope.relationships     = recipients.relationships;
 			$scope.currentRecipients = recipients.currentRecipients;
 			$scope.newRecipient      = recipients.newRecipient;
+			$scope.relationships     = recipients.relationships;
+			$scope.occasions         = cards.occasions;
 
-			console.log($scope.currentRecipients);
 
 			// test whether you are currently at this state or not
 			$scope.$on('$stateChangeSuccess',
@@ -31,10 +31,15 @@
 					templateUrl: 'angular/manage_recipients/recipient_modal_form.html',
 					backdrop: true,
 					windowClass: 'modal',
-					controller: function ($scope, $modalInstance, photo) {
+					controller: function ($scope, $modalInstance, photo, relationships, occasions) {
 						
-						$scope.recipient = recipient;
-						$scope.photo     = photo
+						$scope.recipient     = recipient;
+						$scope.photo         = photo;
+						$scope.relationships = relationships;
+						$scope.occasions     = occasions
+
+						console.log(relationships);
+
 						newRecipient = (recipient.id ? false : true);
 
 						// modal form submit
@@ -52,6 +57,12 @@
 					resolve: {
 						photo: function() {
 							return $scope.testImage;
+						},
+						relationships: function() {
+							return $scope.relationships;
+						},
+						occasions: function() {
+							return $scope.occasions;
 						}
 					},
 					animation: false,
