@@ -12,7 +12,7 @@
     var o = {
       currentRecipients: [], // already existing recipients
       newRecipient: {
-        firstName: "",
+        firstName: "testkevin",
         lastName: "",
         birthday: "",
         relationship: "",
@@ -47,6 +47,12 @@
         var recipients = data.relationships;
         o.currentRecipients = recipients;
       })
+    }
+
+    // get address of the person
+    // do i need this?
+    o.getAddress = function(person) {
+
     }
 
     return o;    

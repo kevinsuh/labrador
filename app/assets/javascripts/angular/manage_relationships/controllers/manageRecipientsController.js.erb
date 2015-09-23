@@ -3,45 +3,53 @@
 	/**
 	 * this controller is specific to the managing relationship within the "Greeting Central" module
 	 */
-	var app = angular.module('card-queue').controller("ManageRecipientsController", function($rootScope, $scope, $state, $timeout, $modal, $log, recipients, user, usSpinnerService) {
+	var app = angular.module('card-queue').controller("ManageRecipientsController", function($rootScope, $scope, $state, $timeout, $modal, recipients, user, usSpinnerService) {
 				
 			// load in user and relationships factories
 			$scope.user = user;
       $scope.testImage = "/assets/blank_user.png";
 
 			// new manage relationships feature!
-			$scope.relationships  = recipients.relationships;
-			$scope.currentRecipients = recipients.currentRecipients
-			console.log(recipients);
+			$scope.relationships     = recipients.relationships;
+			$scope.currentRecipients = recipients.currentRecipients;
+			$scope.newRecipient      = recipients.newRecipient;
+
 			console.log($scope.currentRecipients);
 
 			// test whether you are currently at this state or not
 			$scope.$on('$stateChangeSuccess',
 			  function(event, toState) {
 			    $scope.currentState = toState.name;
-			    console.log($scope.currentState);
 			    makeStateActive($scope.currentState);
 		    });
 
-			$scope.open_modal_form = function() {
+			// opens up the modal form with the recipient model passed in
+			// empty recipient model for create, filled in recipient for new
+			$scope.open_modal_form = function(recipient) {
 
 				$modal.open({
 					templateUrl: 'angular/manage_recipients/recipient_modal_form.html',
 					backdrop: true,
 					windowClass: 'modal',
-					controller: function ($scope, $modalInstance, $log, user, photo) {
-						$scope.user  = user;
-						$scope.photo = photo;
+					controller: function ($scope, $modalInstance, photo) {
+						
+						$scope.recipient = recipient;
+						$scope.photo     = photo
+						newRecipient = (recipient.id ? false : true);
+
+						// modal form submit
 						$scope.submit = function() {
-							$log.log('submitted user info!');
-							$log.log(user);
+							if (newRecipient) { // create
+								console.log('creating new recipient!');
+							} else { // update
+								console.log('updating existing recipient!');
+							}
+							
 							$modalInstance.dismiss('cancel');
 						};
+
 					},
 					resolve: {
-						user: function() {
-							return $scope.user;
-						},
 						photo: function() {
 							return $scope.testImage;
 						}
