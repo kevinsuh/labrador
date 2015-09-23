@@ -1,6 +1,6 @@
 (function() {
 
-  var app = angular.module('card-queue', ['ngAnimate', 'ngMessages', 'ui.router', 'templates', 'vr.directives.nlForm', 'angularSpinner', '720kb.datepicker', 'fancyboxplus', 'angular-click-outside']);
+  var app = angular.module('card-queue', ['manage-recipients', 'ngAnimate', 'ngMessages', 'ui.router', 'templates', 'vr.directives.nlForm', 'angularSpinner', '720kb.datepicker', 'fancyboxplus', 'angular-click-outside']);
 
   app.config(function($stateProvider, $urlRouterProvider, $locationProvider, usSpinnerConfigProvider) {
 
@@ -14,7 +14,6 @@
         abstract: true,
 				templateUrl: "angular/card_queue/home.html"
       })
-
       .state('home.app', {
         controller: 'CardQueueController',
         abstract: true,
@@ -22,8 +21,8 @@
           'form': {
             templateUrl: "angular/card_queue/form.html"
           },
-          'history': {
-            templateUrl: "angular/card_queue/history.html"
+          'my_people': {
+            templateUrl: "angular/card_queue/my_people.html"
           },
           'checkout': {
             templateUrl: "angular/card_queue/checkout.html"
@@ -36,8 +35,8 @@
           occasionPromise: ['cards', function(cards) {
             return cards.getOccasions();
           }],
-          relationshipPromise: ['cards', function(cards) {
-            return cards.getRelationships();
+          relationshipPromise: ['recipients', function(recipients) {
+            return recipients.getRelationships();
           }],
           cardFlavorPromise: ['cards', function(cards) {
             return cards.getCardFlavors();
@@ -47,10 +46,12 @@
           }],
           purchasedCardsPromise: ['cards', function(cards) {
             return cards.getOrderedCards('purchased');
+          }],
+          currentRecipientsPromise: ['recipients', function(recipients) {
+            return recipients.getCurrentRecipients();
           }]
         }
       })
-
       .state('home.app.step1', {
         url: '',
         replace: true,

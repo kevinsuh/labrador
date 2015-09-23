@@ -4,6 +4,9 @@
  * 		LOGGED IN HOME PAGE
  */
 .logged_in_home {
+	margin-left: $box_size + 15;
+	margin-top: 20px;
+	margin-right: 20px;
 	min-height: 780px;
 }
 /**
@@ -17,6 +20,330 @@
 	.section {
 		float: left;
 	}
+}
+
+/**
+ * 		MY PEOPLE ON MAIN DASHBOARD
+ */
+.my_people_section {
+
+	box-shadow: $grey_box_shadow;
+
+	.my_people {
+
+		background-color: white;
+		margin: -1px;
+		max-height: 350px;
+		overflow-y: scroll;
+		overflow-x: hidden;
+
+		// header
+		.table_header {
+			background-color: $teal;
+			width: 100.5%;
+			display: table;
+			.title {
+				display: table-cell;
+				vertical-align: middle;
+				padding-left: 7px;
+				padding-top: 2px;
+				div {
+					span {
+						font-size: 1.2em;
+						line-height: 1;
+						color: white;
+					}
+				}
+			}
+			.add {
+				display: table-cell;
+				vertical-align: middle;
+				text-align: center;
+				padding: 7px 7px 7px 0;
+				margin: 5px;
+				width: 2.5em;
+				div {
+					border: 1pt solid white;
+					cursor: pointer;
+					span {
+						font-size: 1.5em;
+						line-height: 1;
+						color: white;
+					}				
+				}
+			}
+		}
+
+		// body
+		.recipients {
+
+			width: 100%;
+			table-layout: fixed;
+			overflow: hidden;
+
+			.recipient_row {
+				width: 100%;
+				border-bottom: $box_border;
+
+				.image_cell {
+					overflow: hidden;
+					width: 20%;
+					.recipient_image {
+						margin: 5px;
+						border-radius: 35px;
+						width: 35px;
+					}	
+				}
+
+				.info_cell {
+					width: 50%;
+					padding: 8px 2px;
+					overflow-x: hidden;
+					.recipient_info {
+						display: block;
+						// specific spans
+						&.name {
+							font-size: 1em;
+							line-height: 1;
+							font-weight: 500;
+						}
+						&.relationship {
+							font-size: 0.7em;
+							color: $medium_dark_grey;
+						}
+						&.birthday {
+							font-size: 0.6em;
+							color: $light_teal;
+						}
+					}	
+				}
+
+				.actions_cell {
+					width: 30%;
+					padding-right: 6px;
+					vertical-align: bottom;
+					padding-bottom: 5px;
+					text-align: right;
+
+					// notification icons inside the action cell
+					.notifications {
+					  display: inline;
+					  float: right;
+					  padding-top: 0.5em;
+					  padding-right: 0.5em;
+					  position: relative;
+					}
+
+					// notifications stuff
+					.notification_container {
+					  position: relative;
+					  display: inline;
+					  margin: 0;
+					  margin-right: 4px;
+					  margin-left: 12px;
+					  float: left;
+					}
+
+					.notification_bubble {
+					  position: relative;
+					  top: 4px;
+					  right: -11px;
+					  padding: 1px 5px;
+					  background-color: $soft_red;
+					  color: white;
+					  font-weight: bold;
+					  font-size: 0.5em;
+					  border-radius: 40px;
+					  box-shadow: 1px 1px 1px gray;
+					  z-index: 100;
+					}
+
+					.icon {
+						position: absolute;
+						width: 20px;
+						height: 20px;
+					}
+				}	
+
+			}
+		}
+	}
+}
+
+// "my people" add/update modal
+.recipient_modal_form {
+
+	// top half of modal
+	.recipient_info {
+
+		.photo {
+			display: inline-block;
+			float: left;
+			width: 20%;
+			margin-right: 3%;
+			img {
+				margin-top: 10%;
+				width: 100%;
+				border-radius: 52px;
+				border: 2pt solid white;
+			}
+		}
+
+		.basic_info {
+			display: inline-block;
+			width: 75%;
+			float: right;
+
+			.name {
+				.first_name {
+					float: left;
+					width: 48.5%;
+					margin-right: 3%;
+				}
+				.last_name {
+					float: left;
+					width: 48.5%;
+				}
+			}
+
+			.relationship {
+				.relationship_input {
+					float: left;
+					width: 80%;
+					margin-right: 3%;
+				}
+				.group_input {
+					float: left;
+					width: 17%;
+				}
+			}
+		}
+
+	}
+
+	// body of modal
+	.modal_body {
+		padding-top: 0;
+		.body {
+				
+			.street {
+
+			}
+
+			.address_other {
+
+				.city {
+					float: left;
+					width: 30%;
+					margin-right: 3%;
+				}
+				.state {
+					float: left;
+					width: 12.5%;
+					margin-right: 3%;
+				}
+				.zip {
+					float: left;
+					width: 12.5%;
+					margin-right: 3%;
+				}
+				.country {
+					float: right;
+					width: 35%;
+				}
+			}
+
+			.events {
+				.occasion {
+					float: left;
+					width: 32.5%;
+					margin-right: 3%;
+				}
+				.month {
+					float: left;
+					width: 22.5%;
+					margin-right: 3%;
+				}
+				.day {
+					float: left;
+					width: 15%;
+					margin-right: 3%;
+				}
+				.year {
+					width: 20%;
+					float: right;
+				}
+			}
+		}
+	}
+
+	// footer of modal
+	.modal-footer {
+		border-top: none;
+		text-align: center;
+		.cancel-btn {
+
+		}
+		.save-btn {
+
+		}
+	}
+
+	// "globals" for this modal form
+	.modal_title {
+		text-transform: uppercase;
+		font-size: 1.7em;
+		color: $medium_dark_grey;
+		display: inline-block;
+		text-align: left;
+		width: 49%;
+	}
+	.last_updated {
+		text-transform: uppercase;
+		color: $medium_dark_grey;
+		display: inline-block;
+		width: 50%;
+		text-align: right;
+	}
+
+	hr {
+		margin: 0;
+		border-top: 4px solid $ben_light_grey;
+	}
+
+	.body {
+		padding: 0 30px 15px 30px;
+	}
+
+	.row {
+		position: relative;
+	}
+
+	.form_field {
+		width: 100%;
+		margin: 10px 0;
+		float: left;
+	}
+
+	.form_input {
+		input, select {
+			width: 100%;
+			padding-left: 1em;
+			border-radius: 7px;
+			border: 2pt solid $ben_light_grey;
+			height: 3em;
+			background-color: white;
+		}
+	}
+
+	.family {
+		background-color: $golden_yellow;
+		background-color: $dark_grey;
+	}
+}
+
+.center_modal {
+	top: 15% !important;
 }
 
 /**

@@ -1,0 +1,74 @@
+(function() {
+	
+	/**
+	 * this controller is specific to the managing relationship within the "Greeting Central" module
+	 */
+	var app = angular.module('card-queue').controller("ManageRecipientsController", function($rootScope, $scope, $state, $timeout, $modal, $log, recipients, user, usSpinnerService) {
+				
+			// load in user and relationships factories
+			$scope.user = user;
+      $scope.testImage = "/assets/blank_user.png";
+
+			// new manage relationships feature!
+			$scope.relationships  = recipients.relationships;
+			$scope.currentRecipients = recipients.currentRecipients
+			console.log(recipients);
+			console.log($scope.currentRecipients);
+
+			// test whether you are currently at this state or not
+			$scope.$on('$stateChangeSuccess',
+			  function(event, toState) {
+			    $scope.currentState = toState.name;
+			    console.log($scope.currentState);
+			    makeStateActive($scope.currentState);
+		    });
+
+			$scope.open_modal_form = function() {
+
+				$modal.open({
+					templateUrl: 'angular/manage_recipients/recipient_modal_form.html',
+					backdrop: true,
+					windowClass: 'modal',
+					controller: function ($scope, $modalInstance, $log, user, photo) {
+						$scope.user  = user;
+						$scope.photo = photo;
+						$scope.submit = function() {
+							$log.log('submitted user info!');
+							$log.log(user);
+							$modalInstance.dismiss('cancel');
+						};
+					},
+					resolve: {
+						user: function() {
+							return $scope.user;
+						},
+						photo: function() {
+							return $scope.testImage;
+						}
+					},
+					animation: false,
+					size: "md",
+					windowClass: "recipient_modal_form center_modal"
+				});
+			};
+
+			/**
+			 * jQuery plugins to deal with outside of the app
+			*/
+			// side bar link
+			/*
+			var viewRecipientsButtonDOMElement = document.querySelector("#my_people");
+			var viewRecipientsButton = angular.element(viewRecipientsButtonDOMElement);
+
+			
+			var homeLogoButtonDOMElement = document.querySelector("#home_logo");
+			var homeLogoButton = angular.element(homeLogoButtonDOMElement);
+			// go home on this click!
+			homeLogoButton.on('click', function() {
+				$state.go('home.app.step1');
+			})
+			*/
+			
+		});
+
+})();
