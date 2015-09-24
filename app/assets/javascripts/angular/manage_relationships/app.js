@@ -1,6 +1,6 @@
 (function() {
 
-  var app = angular.module('manage-recipients', ['ngAnimate', 'ngMessages', 'ui.router', 'templates', '720kb.datepicker', 'fancyboxplus', 'ui.bootstrap']);
+  var app = angular.module('manage-recipients', ['ngAnimate', 'ngMessages', 'ui.router', 'templates', '720kb.datepicker', 'fancyboxplus', 'ui.bootstrap', 'countrySelect']);
 
   app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
 

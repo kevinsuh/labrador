@@ -12,28 +12,28 @@
     var o = {
       currentRecipients: [], // already existing recipients
       newRecipient: {
-        firstName: "",
-        lastName: "",
+        first_name: "",
+        last_name: "",
         relationship: "",
         primary_address: {
           street: "",
           city: "",
           state: "",
           zipcode: "",
-          country: ""
+          country: "United States"
         },
         occasions: [] // the various "events" attached to this recipient
       }, 
       newRecipientTemplate: {
-        firstName: "",
-        lastName: "",
+        first_name: "",
+        last_name: "",
         relationship: "",
         primary_address: {
           street: "",
           city: "",
           state: "",
           zipcode: "",
-          country: ""
+          country: "United States"
         },
         occasions: [] // the various "events" attached to this recipient
       },

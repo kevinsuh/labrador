@@ -13,6 +13,7 @@
 //= require angular-datepicker.js
 //= require jquery.payment.js
 //= require angular-fancybox-plus.js
+//= require angular.country-select.min.js
 //= require jquery.fancybox-plus.js
 //= require clickoutside.directive.js
 //= require_tree .

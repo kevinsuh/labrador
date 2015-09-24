@@ -41,17 +41,10 @@
 
 						$scope.newOccasion = function() {
 							occasionTemplate = {
-								occasion: {
-									id: "",
-									name: ""
-								},
 								recipient_occasion: {
-									id: "",
 									occasion_date: "",
 									occasion_id: 1,
-									recipient_id: $scope.recipient.id,
-									created_at: "",
-									updated_at: ""
+									recipient_id: $scope.recipient.id
 								}
 							};
 							$scope.recipient.occasions.push(occasionTemplate);
@@ -63,8 +56,10 @@
 						$scope.submit = function() {
 							if (newRecipient) { // create
 								console.log('creating new recipient!');
+
 							} else { // update
 								console.log('updating existing recipient!');
+
 							}
 							console.log(recipient);
 							
