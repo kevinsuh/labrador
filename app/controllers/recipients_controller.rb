@@ -10,8 +10,6 @@ class RecipientsController < ApplicationController
 
   # create new recipient for current user
   def create_for_current
-    puts "hello"
-    puts params.inspect
 
     # 1) create new recipient
     recipient = current_user.recipients.create(
@@ -62,7 +60,6 @@ class RecipientsController < ApplicationController
 
   # update recipient for current user
   def update_for_current
-    puts params.inspect
 
     # 1) find recipient
     recipient = Recipient.find(params[:id])
