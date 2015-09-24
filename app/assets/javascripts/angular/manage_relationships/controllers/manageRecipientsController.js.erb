@@ -64,14 +64,12 @@
 							currentRecipients = $scope.currentRecipients; // existing recipients
 
 							if (isNewRecipient) { // create
-								console.log('creating new recipient!');
 
 					    	recipients.createRecipient()
 					      .success(function(data) {
 					      	recipient = data.recipient
 									recipients.currentRecipients.push(recipient)
 									recipients.newRecipient = recipients.newRecipientTemplate;
-					      	console.log(data);
 
 					      })
 					      .error(function(data) {
@@ -79,9 +77,8 @@
 				          console.log(data);
 				        });
 							} else { // update
-								console.log('updating existing recipient!');
-
-								recipients.updateRecipient()
+								
+								recipients.updateRecipient(recipient)
 								.success(function(data) {
 									console.log(data);
 								})

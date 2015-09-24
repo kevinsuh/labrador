@@ -11,7 +11,6 @@
     // this is a factory that will contain, gather, create, and update your recipients in similar fashion to the card_queueing service
     var o = {
       currentRecipients: [], // already existing recipients
-      updateRecipient: {},
       newRecipient: {
         first_name: "",
         last_name: "",
@@ -72,8 +71,8 @@
       return $http.post('recipients/create_for_current.json', o.newRecipient)
     }
 
-    o.updateRecipient = function() {
-      return $http.post('recipients/update_for_current.json', o.updateRecipient)
+    o.updateRecipient = function(recipient) {
+      return $http.post('recipients/update_for_current.json', recipient)
     }
 
     return o;    

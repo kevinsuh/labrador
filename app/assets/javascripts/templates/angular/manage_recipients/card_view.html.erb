@@ -1,6 +1,6 @@
 <div class="row">
 	<div class="col-xs-3" ng-repeat="recipient in currentRecipients">
-		<div class="recipient_card">
+		<div class="recipient_card" style="cursor: pointer;" ng-click="open_modal_form(recipient)">
 			<div class="relationship_group">
 				<div class="icon_header">
 					<input type="checkbox"></input>
