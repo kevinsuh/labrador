@@ -11,10 +11,10 @@
     // this is a factory that will contain, gather, create, and update your recipients in similar fashion to the card_queueing service
     var o = {
       currentRecipients: [], // already existing recipients
-      newRecipient: {
+      currentRecipient: {
+        id: "",
         first_name: "",
         last_name: "",
-        relationship: "",
         primary_address: {
           street: "",
           city: "",
@@ -23,8 +23,8 @@
           country: "United States"
         },
         occasions: [] // the various "events" attached to this recipient
-      }, 
-      newRecipientTemplate: {
+      },
+      recipientTemplate: {
         first_name: "",
         last_name: "",
         relationship: "",
@@ -57,15 +57,16 @@
     o.getCurrentRecipients = function() {
       return $http.get('/recipients/get_current_recipients.json').success(function(data) {
         var recipients = data.recipients;
-        console.log(recipients);
         o.currentRecipients = recipients;
       })
     }
 
-    // get address of the person
-    // do i need this?
-    o.getAddress = function(person) {
+    o.createRecipient = function() {
+      return $http.post('recipients/create_for_current.json', o.currentRecipient)
+    }
 
+    o.updateRecipient = function() {
+      return $http.post('recipients/update_for_current.json', o.currentRecipient)
     }
 
     return o;    

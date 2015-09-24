@@ -9,9 +9,10 @@
       $scope.testImage = "/assets/blank_user.png";
 
 			// new manage relationships feature!
+			$scope.recipients        = recipients; // the "factory" recipients object
 			$scope.relationships     = recipients.relationships;
 			$scope.currentRecipients = recipients.currentRecipients;
-			$scope.newRecipient      = recipients.newRecipient;
+			$scope.currentRecipient  = recipients.currentRecipient;
 			$scope.relationships     = recipients.relationships;
 			$scope.occasions         = cards.occasions;
 
@@ -32,12 +33,16 @@
 					templateUrl: 'angular/manage_recipients/recipient_modal_form.html',
 					backdrop: true,
 					windowClass: 'modal',
-					controller: function ($scope, $modalInstance, photo, relationships, occasions) {
+					controller: function ($scope, $modalInstance, photo, relationships, occasions, recipients, currentRecipients) {
+
+						recipients.currentRecipient = recipient; // update the factory recipient model
 						
-						$scope.recipient     = recipient;
-						$scope.photo         = photo;
-						$scope.relationships = relationships;
-						$scope.occasions     = occasions
+						$scope.recipients        = recipients;
+						$scope.currentRecipients = currentRecipients;
+						$scope.recipient         = recipient;
+						$scope.photo             = photo;
+						$scope.relationships     = relationships;
+						$scope.occasions         = occasions
 
 						$scope.newOccasion = function() {
 							occasionTemplate = {
@@ -50,15 +55,52 @@
 							$scope.recipient.occasions.push(occasionTemplate);
 						}
 
-						newRecipient = (recipient.id ? false : true);
+						newRecipient = (recipient.id > 0 ? false : true);
 
 						// modal form submit
 						$scope.submit = function() {
+
+							recipients        = $scope.recipients; // factory recipients
+							recipient         = $scope.recipient; // current recipient
+							currentRecipients = $scope.currentRecipients; // existing recipients
+
 							if (newRecipient) { // create
 								console.log('creating new recipient!');
 
+					    	recipients.createRecipient()
+					      .success(function(data) {
+
+					      	console.log(data);
+
+
+					        // var queuedCardOrder = data.order;
+					        // var isValid         = queuedCardOrder.is_valid;
+
+					        // if (isValid) {
+					        //   $scope.queuedCards.push(queuedCardOrder);
+					        //   $scope.newCard = cards.newCardTemplate;
+					        //   queuedCount.text(queuedCards.length); // update new queued counter
+					        //   $state.go('home.app.step1');
+					        // } else {
+					        //   alert("Something went wrong. Is your form completely filled out?");
+					        // }
+					        
+					      })
+					      .error(function(data) {
+				          console.log("error in create recipient submit modal");
+				          console.log(data);
+				        });
 							} else { // update
 								console.log('updating existing recipient!');
+
+								recipients.updateRecipient()
+								.success(function(data) {
+									console.log(data);
+								})
+								.error(function(data) {
+									console.log("error in update recipient modal");
+									console.log(data);
+								})
 
 							}
 							console.log(recipient);
@@ -76,6 +118,12 @@
 						},
 						occasions: function() {
 							return $scope.occasions;
+						},
+						recipients: function() {
+							return $scope.recipients;
+						},
+						currentRecipients: function() {
+							return $scope.currentRecipients;
 						}
 					},
 					animation: false,

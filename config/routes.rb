@@ -41,7 +41,6 @@ Rails.application.routes.draw do
 
 
   get 'relationships/get_relationships'
-  get 'recipients/get_current_recipients'
   get 'occasions/get_occasions'
 
   # cards
@@ -51,6 +50,11 @@ Rails.application.routes.draw do
   # orders
   post 'orders/orders_for_user'
   post 'orders/queue_card_order'
+
+  # recipients (add/update my people)
+  get 'recipients/get_current_recipients'
+  post 'recipients/create_for_current'
+  post 'recipients/update_for_current'
 
   get 'sessions/new'
 

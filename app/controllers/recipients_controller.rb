@@ -8,4 +8,14 @@ class RecipientsController < ApplicationController
     end
   end
 
+  # create new recipient for current user
+  def create_for_current
+    puts params.inspect
+  end
+
+  # update recipient for current user
+  def update_for_current
+    puts params.inspect
+  end
+
 end
