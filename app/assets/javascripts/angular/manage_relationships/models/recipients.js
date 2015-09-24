@@ -55,8 +55,8 @@
 
     // get your list of current relationships
     o.getCurrentRecipients = function() {
-      return $http.get('/relationships/get_current_recipients.json').success(function(data) {
-        var recipients = data.relationships;
+      return $http.get('/recipients/get_current_recipients.json').success(function(data) {
+        var recipients = data.recipients;
         console.log(recipients);
         o.currentRecipients = recipients;
       })

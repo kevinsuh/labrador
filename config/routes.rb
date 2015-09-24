@@ -41,7 +41,7 @@ Rails.application.routes.draw do
 
 
   get 'relationships/get_relationships'
-  get 'relationships/get_current_recipients'
+  get 'recipients/get_current_recipients'
   get 'occasions/get_occasions'
 
   # cards
