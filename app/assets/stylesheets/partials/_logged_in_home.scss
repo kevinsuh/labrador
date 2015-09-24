@@ -256,7 +256,7 @@
 			.events {
 				.occasion {
 					float: left;
-					width: 32.5%;
+					width: 61%;
 					margin-right: 3%;
 				}
 				.month {
@@ -272,6 +272,13 @@
 				.year {
 					width: 20%;
 					float: right;
+				}
+				.date {
+					float: right;
+					width: 35%;
+					input {
+						text-align: center;
+					}
 				}
 			}
 		}

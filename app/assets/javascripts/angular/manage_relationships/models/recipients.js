@@ -12,18 +12,18 @@
     var o = {
       currentRecipients: [], // already existing recipients
       newRecipient: {
-        firstName: "kevin",
-        lastName: "suh",
-        relationship: "2",
+        firstName: "",
+        lastName: "",
+        relationship: "",
         primary_address: {
-          street: "2704 sw 311th st",
-          city: "fw",
-          state: "wa",
-          zipcode: "98023",
-          country: "United States"
+          street: "",
+          city: "",
+          state: "",
+          zipcode: "",
+          country: ""
         },
         occasions: [] // the various "events" attached to this recipient
-      }, // create a new recipient
+      }, 
       newRecipientTemplate: {
         firstName: "",
         lastName: "",
@@ -57,6 +57,7 @@
     o.getCurrentRecipients = function() {
       return $http.get('/relationships/get_current_recipients.json').success(function(data) {
         var recipients = data.relationships;
+        console.log(recipients);
         o.currentRecipients = recipients;
       })
     }

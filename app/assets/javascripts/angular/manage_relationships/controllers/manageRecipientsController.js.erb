@@ -39,9 +39,23 @@
 						$scope.relationships = relationships;
 						$scope.occasions     = occasions
 
-						console.log(relationships);
-						console.log(occasions);
-						console.log(occasions);
+						$scope.newOccasion = function() {
+							occasionTemplate = {
+								occasion: {
+									id: "",
+									name: ""
+								},
+								recipient_occasion: {
+									id: "",
+									occasion_date: "",
+									occasion_id: 1,
+									recipient_id: $scope.recipient.id,
+									created_at: "",
+									updated_at: ""
+								}
+							};
+							$scope.recipient.occasions.push(occasionTemplate);
+						}
 
 						newRecipient = (recipient.id ? false : true);
 
@@ -52,6 +66,7 @@
 							} else { // update
 								console.log('updating existing recipient!');
 							}
+							console.log(recipient);
 							
 							$modalInstance.dismiss('cancel');
 						};
@@ -92,5 +107,27 @@
 			*/
 			
 		});
+
+	// date formatter from JSON to date type
+	app.directive('jsonDate', function($filter) {
+      return  {
+          restrict: 'A',
+          require: 'ngModel',
+          link: function (scope, element, attrs, ngModel) {
+
+             //format text going to user (model to view)
+             ngModel.$formatters.push(function(value) {
+                var date = new Date(value);
+                return date;
+             });
+
+             //format text from the user (view to model)
+             ngModel.$parsers.push(function(value) {
+                var date = new Date(value);
+                return date;
+             });
+         }
+     }
+   });
 
 })();

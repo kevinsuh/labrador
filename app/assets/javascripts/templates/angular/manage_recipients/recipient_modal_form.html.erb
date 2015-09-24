@@ -50,11 +50,10 @@
 
 	<!-- address + events -->
 	<div class="modal-body modal_body">
-
 		<div class="body">
 			<div class="row address_title">
 				<h3 class="modal_title">Address</h3>
-				<h6 class="last_updated">Last Updated 2/14/15</h6>
+				<h6 class="last_updated">Last Updated: {{recipient.primary_address.updated_at | date:'MM/dd/yy'}}  2/14/15</h6>
 				<hr>
 			</div>
 			<div class="row address">
@@ -109,14 +108,21 @@
 				<hr>
 			</div>
 
-			<div class="row events" ng-repeat="occasion in recipient.occasions">
+			<div class="row events" ng-repeat="occasion_hash in recipient.occasions">
 				<div class="events form_field">
 					<div class="occasion">
 						<div class="occasion_input form_input">
-							<select ng-model="occasion.name" ng-options="value as key for (key, value) in occasions"></select>
+							<select ng-model="occasion_hash.recipient_occasion.occasion_id" ng-options="value as key for (key, value) in occasions"></select>
 						</div>
 					</div>
 
+					<div class="date">
+						<div class="form_input">
+							<input type="date" name="input" ng-model="occasion_hash.recipient_occasion.occasion_date" json-date placeholder="yyyy-MM-dd" />
+						</div>
+					</div>
+
+					<% if false %>
 					<div class="month">
 						<div class="form_input">
 							<select ng-model="user.first_name">
@@ -144,10 +150,11 @@
 					  	</select>
 						</div>
 					</div>
+					<% end %>
 				</div>
 			</div>
 			<div class="row add_new_event">
-				<span style="color:red;">+ Add New Event</span>
+				<span style="color:red; cursor: pointer;" ng-click="newOccasion()">+ Add New Event</span>
 			</div>
 		</div>
 		
