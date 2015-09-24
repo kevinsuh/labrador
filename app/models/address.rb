@@ -3,12 +3,11 @@ class Address < ActiveRecord::Base
   belongs_to :person, polymorphic: true
   has_many :orders, foreign_key: "shipping_address_id"
 
-  validates :first_name, presence: true
-  validates :last_name, presence: true
   validates :street, presence: true
   validates :city, presence: true
   validates :state, presence: true
   validates :zipcode, presence: true
+  validates :country, presence: true
 
   default_scope { where(is_visible: true) }
 

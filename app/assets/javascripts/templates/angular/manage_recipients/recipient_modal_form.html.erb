@@ -53,7 +53,7 @@
 		<div class="body">
 			<div class="row address_title">
 				<h3 class="modal_title">Address</h3>
-				<h6 class="last_updated">Last Updated: {{recipient.primary_address.updated_at | date:'MM/dd/yy'}}</h6>
+				<h6 ng-if="recipient.id" class="last_updated">Last Updated: {{recipient.primary_address.updated_at | date:'MM/dd/yy'}}</h6>
 				<hr>
 			</div>
 			<div class="row address">
