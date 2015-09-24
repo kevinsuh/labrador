@@ -21,14 +21,21 @@
           state: "wa",
           zipcode: "98023",
           country: "United States"
-        }
+        },
+        occasions: [] // the various "events" attached to this recipient
       }, // create a new recipient
       newRecipientTemplate: {
         firstName: "",
         lastName: "",
-        birthday: "",
         relationship: "",
-        gender: ""
+        primary_address: {
+          street: "",
+          city: "",
+          state: "",
+          zipcode: "",
+          country: ""
+        },
+        occasions: [] // the various "events" attached to this recipient
       },
       relationships: {} // list of relationship types
     }

@@ -13,6 +13,21 @@ class RecipientSerializer < ActiveModel::Serializer
     primary_address = recipient.addresses.first
     data[:primary_address] = primary_address
 
+    occasions = Array.new
+
+    recipient_occasions = recipient.recipient_occasions
+    recipient_occasions.each do |recipient_occasion|
+
+      occasion_data                      = Hash.new
+      occasion_data[:recipient_occasion] = recipient_occasion
+      occasion                           = recipient_occasion.occasion
+      occasion_data[:occasion]           = occasion
+      occasions << occasion_data
+
+    end
+
+    data[:occasions] = occasions
+
     data
 
   end

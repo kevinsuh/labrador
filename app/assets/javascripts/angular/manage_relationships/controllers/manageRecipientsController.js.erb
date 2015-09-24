@@ -15,6 +15,7 @@
 			$scope.relationships     = recipients.relationships;
 			$scope.occasions         = cards.occasions;
 
+			console.log($scope.currentRecipients);
 
 			// test whether you are currently at this state or not
 			$scope.$on('$stateChangeSuccess',
@@ -39,6 +40,8 @@
 						$scope.occasions     = occasions
 
 						console.log(relationships);
+						console.log(occasions);
+						console.log(occasions);
 
 						newRecipient = (recipient.id ? false : true);
 
