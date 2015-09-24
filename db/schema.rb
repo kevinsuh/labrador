@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150923053809) do
+ActiveRecord::Schema.define(version: 20150924033428) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "first_name"
@@ -207,6 +207,17 @@ ActiveRecord::Schema.define(version: 20150923053809) do
   end
 
   add_index "posts", ["user_id"], name: "index_posts_on_user_id"
+
+  create_table "recipient_occasions", force: :cascade do |t|
+    t.integer  "recipient_id"
+    t.integer  "occasion_id"
+    t.datetime "occasion_date"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "recipient_occasions", ["occasion_id"], name: "index_recipient_occasions_on_occasion_id"
+  add_index "recipient_occasions", ["recipient_id"], name: "index_recipient_occasions_on_recipient_id"
 
   create_table "recipients", force: :cascade do |t|
     t.integer  "user_id"

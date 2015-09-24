@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  recipient_id: 
+  occasion_id: 
+  occasion_date: 2015-09-23 22:34:28
+
+two:
+  recipient_id: 
+  occasion_id: 
+  occasion_date: 2015-09-23 22:34:28

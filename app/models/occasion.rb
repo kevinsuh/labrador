@@ -6,4 +6,7 @@ class Occasion < ActiveRecord::Base
 
 	has_many :order_occasions
 
+	has_many :recipient_occasions
+	has_many :recipients, through: :recipient_occasions
+
 end
