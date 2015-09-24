@@ -279,6 +279,23 @@
 					input {
 						text-align: center;
 					}
+					.date_input {
+						width: 80%;
+						float: left;
+					}
+					.date_button {
+						float: left;
+						width: 20%;
+						height: 3em;
+						line-height: 3em;
+						span.date_span {
+							display: inline;
+							button {
+								height: 95%;
+								border-radius: 10px;	
+							}	
+						}
+					}
 				}
 			}
 		}
@@ -347,6 +364,7 @@
 		background-color: $golden_yellow;
 		background-color: $dark_grey;
 	}
+
 }
 
 .center_modal {

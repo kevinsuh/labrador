@@ -111,10 +111,15 @@
 						</div>
 					</div>
 
-					<div class="date">
-						<div class="form_input">
-							<input type="date" name="input" ng-model="occasion_hash.recipient_occasion.occasion_date" json-date placeholder="yyyy-MM-dd" />
+					<div class="date" ng-controller="DatepickerDemoCtrl">
+						<div class="form_input date_input">
+							<input type="date" datepicker-popup json-date ng-model="occasion_hash.recipient_occasion.occasion_date" is-open="status.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" placeholder="mm/dd/yyyy"/>
 						</div>
+						<div class="form_input date_button">
+							<span class="input-group-btn date_span">
+                <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+            </div>
 					</div>
 
 					<% if false %>

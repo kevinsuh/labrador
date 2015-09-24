@@ -65,10 +65,11 @@ class RecipientsController < ApplicationController
     recipient = Recipient.find(params[:id])
 
     # 2) update first name, last name, relationship to you
+    relationship_id = params[:relationship] ? params[:relationship][:id] : nil
     recipient.update_columns(
       first_name: params[:first_name],
       last_name: params[:last_name],
-      relationship_id: params[:relationship][:id]
+      relationship_id: relationship_id
     )
 
     # 3) save recipient address if exists
