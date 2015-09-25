@@ -47,7 +47,7 @@
 							occasionTemplate = {
 								recipient_occasion: {
 									occasion_date: "",
-									occasion_id: 1,
+									occasion_id: 7,
 									recipient_id: $scope.recipient.id
 								}
 							};
@@ -55,6 +55,10 @@
 						}
 
 						isNewRecipient = (recipient.id > 0 ? false : true);
+
+						$scope.cancel = function() {
+							$modalInstance.dismiss('cancel');
+						}
 
 						// modal form submit
 						$scope.submit = function() {
@@ -86,7 +90,6 @@
 									console.log("error in update recipient modal");
 									console.log(data);
 								})
-
 							}
 							
 							$modalInstance.dismiss('cancel');
