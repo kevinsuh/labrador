@@ -41,7 +41,7 @@
 						$scope.recipient            = recipient;
 						$scope.photo                = photo;
 						$scope.relationships        = relationships;
-						$scope.occasions            = occasions
+						$scope.occasions            = occasions;
 
 						$scope.newOccasion = function() {
 							occasionTemplate = {
@@ -94,7 +94,6 @@
 							
 							$modalInstance.dismiss('cancel');
 						};
-
 					},
 					resolve: {
 						photo: function() {
@@ -159,6 +158,36 @@
          }
      }
    });
+
+	app.controller('recipientOccasionsCtrl', function($scope) {
+		
+		// pre-fill certain events
+		$scope.$watch('occasion_hash.recipient_occasion.occasion_id', function(newValue, oldValue){
+				suggested_date = "";
+        switch (newValue) {
+          case 1: // christmas
+            suggested_date = "12/25/15";
+            break;
+          case 2: // hannukah
+            suggested_date = "12/6/15";
+            break;
+          case 3: // new year's
+            suggested_date = "01/01/16";
+            break;
+          case 4: // mother's day
+            suggested_date = "05/08/16";
+            break;
+          case 5: // father's day
+            suggested_date = "06/19/16";
+            break;
+          case 13: // valentine's
+            suggested_date = "02/14/16";
+            break;
+        }
+        $scope.occasion_hash.recipient_occasion.occasion_date = suggested_date;
+     });
+		
+	})
 
 	app.controller('DatepickerDemoCtrl', function($scope) {
 		$scope.today = function() {
