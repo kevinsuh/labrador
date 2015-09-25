@@ -28,15 +28,20 @@
 				<td class="actions_cell">
 					<div class="notifications">
 					  <div class="notification_container">
-					  	<a href="#" id="view_queued">
+					  	<a href="#" class="view_queued">
 						  	<%= image_tag('queued_icon.png', alt: 'Queued Orders', class: "icon") %>
-						  	<span id="queued_count" class="notification_bubble">1</span>
+						  	<span class="notification_bubble queued_count">1</span>
 					  	</a>
 					  </div>
 					  <div class="notification_container">
-					  	<a href="#" id="view_purchased">
+					  	<a href="#" class="view_purchased">
 						  	<%= image_tag('purchased_icon.png', alt: 'Purchased Orders', class: "icon") %>
-						  	<span id="purchased_count" class="notification_bubble">2</span>
+						  	<span class="notification_bubble purchased_count">2</span>
+					  	</a>
+					  </div>
+					  <div class="notification_container">
+					  	<a href="#">
+						  	<span ng-click="deleteRecipient(recipient)" class="delete_recipient notification_bubble">X</span>
 					  	</a>
 					  </div>
 					</div>

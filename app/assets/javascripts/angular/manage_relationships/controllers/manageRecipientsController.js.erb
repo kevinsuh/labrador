@@ -26,6 +26,26 @@
 			    makeStateActive($scope.currentState);
 		    });
 
+			// delete recipient
+			$scope.deleteRecipient = function(recipient) {
+				recipient_id = recipient.id
+				if (confirm("Are you sure?")) {
+					recipients.deleteRecipient(recipient)
+		      .success(function(data) {
+						// remove from current view
+		      	$.each(recipients.currentRecipients, function(i) {
+		      		if (recipients.currentRecipients[i].id === recipient_id) {
+		      			recipients.currentRecipients.splice(i, 1);
+		      			return false;
+		      		}
+		      	})
+		      })
+		      .error(function(data) {
+	          console.log(data);
+	        });
+				}
+			};
+
 			// opens up the modal form with the recipient model passed in
 			// empty recipient model for create, filled in recipient for new
 			$scope.open_modal_form = function(recipient) {
@@ -186,7 +206,7 @@
         }
         $scope.occasion_hash.recipient_occasion.occasion_date = suggested_date;
      });
-		
+
 	})
 
 	app.controller('DatepickerDemoCtrl', function($scope) {

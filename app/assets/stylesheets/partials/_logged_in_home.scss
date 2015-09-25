@@ -156,6 +156,10 @@
 					  border-radius: 40px;
 					  box-shadow: 1px 1px 1px gray;
 					  z-index: 100;
+					  &.delete_recipient {
+					  	top: -2px;
+					  	font-size: 1em;
+					  }
 					}
 
 					.icon {

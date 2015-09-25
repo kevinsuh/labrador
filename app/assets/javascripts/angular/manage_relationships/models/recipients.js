@@ -75,6 +75,10 @@
       return $http.post('recipients/update_for_current.json', recipient)
     }
 
+    o.deleteRecipient = function(recipient) {
+      return $http.post('recipients/delete_for_current.json', recipient)
+    }
+
     return o;    
 
   }]);

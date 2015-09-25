@@ -137,4 +137,13 @@ class RecipientsController < ApplicationController
     end
   end
 
+  def delete_for_current
+    puts params.inspect
+    recipient = Recipient.find(params[:id])
+    recipient.destroy
+    respond_to do |format|
+      format.json { render json: recipient }
+    end
+  end
+
 end
