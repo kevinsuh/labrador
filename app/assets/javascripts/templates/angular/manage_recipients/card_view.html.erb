@@ -1,5 +1,10 @@
 <div class="row">
-	<div class="options">
+	<div class="filter_people pull-left">
+		<div class="form_input">
+			<input type="text" ng-model="filteredName" ng-change="recipientNameFilter(filteredName)" class="filter_people_input"><i class="glyphicon glyphicon-search search_icon"></i></input>
+		</div>
+	</div>
+	<div class="options pull-right">
 		<div class="form_input btn-group">
 			<button class="filter_select dropdown-toggle" data-toggle="dropdown" ng-click='open=!open'>{{recipientsFilter}}<i class="glyphicon glyphicon-menu-down"></i></button>
 			<ul class="dropdown-menu">

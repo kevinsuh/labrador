@@ -139,37 +139,6 @@ span, p {
               text-decoration: none;
             }
           }
-          &.filter_people {
-            width: 50%;
-            padding-top: 15px;
-            .filter_people_input {
-              border-radius: 20px;
-              width: 100%;
-              height: $box_size / 2.5;
-
-              background-image: url(icons/basic_icons.svg);
-              background-size: 250px 250px;
-              background-position: 7px center;
-              background-repeat: no-repeat;
-              text-indent: 40px;
-
-
-              -webkit-transition: all 0.25s;
-              -moz-transition: all 2s;
-              transition: all 0.25s;
-
-              &.active {
-                background-color: none;
-                background-position: -40px center;
-                text-indent: 4px;
-                width: 55%;
-              }
-
-              &:focus {
-                outline: 0;
-              }
-            }
-          }
         }
       }
     }

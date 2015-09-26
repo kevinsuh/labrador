@@ -84,7 +84,6 @@
 
 		height: 50px;
 		width: 300px;
-		float: right;
 
 		.form_input {
 			display: inline-block;
@@ -127,6 +126,46 @@
 			}		
 	  }
 	}
+
+	// search people functionality
+	.filter_people {
+    width: 35%;
+    margin-left: 15px;
+    .filter_people_input {
+      border-radius: 20px;
+      width: 100%;
+      height: $box_size / 2.5;
+      background-size: 250px 250px;
+      background-position: 7px center;
+      background-repeat: no-repeat;
+      text-indent: 32px;
+      border: 1.5pt solid $medium_dark_grey;
+
+
+      -webkit-transition: all 0.25s;
+      -moz-transition: all 2s;
+      transition: all 0.25s;
+
+      &.active {
+        background-color: none;
+        background-position: -40px center;
+        text-indent: 4px;
+        width: 55%;
+      }
+
+      &:focus {
+        outline: 0;
+      }
+    }
+
+    .search_icon {
+    	position: absolute;
+    	left: 27px;
+    	top: 7px;
+    	font-size: 1.1em;
+    	color: $medium_dark_grey;
+    }
+  }
 
 	
 	
