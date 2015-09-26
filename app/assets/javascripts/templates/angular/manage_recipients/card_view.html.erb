@@ -1,11 +1,21 @@
 <div class="row">
-	<div class="col-sm-6 col-xs-8 filters">
-		<select ng-model="recipientsFilter" ng-options="filter as filter for filter in filterOptions" ng-change="updateFilterView(recipientsFilter)"></select>
-	</div>
-	<div class="col-xs-2 pull-right">
-		world
+	<div class="options">
+		<div class="form_input btn-group">
+			<button class="filter_select dropdown-toggle" data-toggle="dropdown" ng-click='open=!open'>{{recipientsFilter}}<i class="glyphicon glyphicon-menu-down"></i></button>
+			<ul class="dropdown-menu">
+				<li ng-repeat="filter in filterOptions" ng-click="updateFilterView(filter); $parent.open = !$parent.open">
+					<a href="#">{{filter}}</a>
+				</li>
+			</ul>
+		</div>
+
+		<div class="form_input">
+			<a class="send_card">Send Card</a>
+		</div>
+
 	</div>
 </div>
+
 <div class="row">
 	<div class="col-xs-3 single_card_div" ng-repeat="recipient in visibleCurrentRecipients">
 		<div class="recipient_card">

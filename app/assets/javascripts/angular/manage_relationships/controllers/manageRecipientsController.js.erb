@@ -50,13 +50,14 @@
 				}
 			};
 
-			// filter functionality
+			// filter recipients functionality
 			$scope.recipientsFilter = "All";
 			$scope.filterOptions = ["All", "Family", "Friends"];
 
 			$scope.updateFilterView = function(filter) {
 				
 				allRecipients = $scope.currentRecipients;
+				$scope.recipientsFilter = filter;
 
 				/* RELATIONSHIP_IDS FOR REFERENCE
 				1: mother
