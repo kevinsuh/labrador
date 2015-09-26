@@ -28,7 +28,11 @@
             suggested_date = "02/14/16";
             break;
         }
-        $scope.occasion_hash.recipient_occasion.occasion_date = suggested_date;
+
+        // ONLY IF THIS OCCASION HAS NOT ALREADY BEEN SAVED
+        if (!$scope.occasion_hash.recipient_occasion.occasion_date || (newValue != oldValue)) {
+        	$scope.occasion_hash.recipient_occasion.occasion_date = suggested_date;	
+        }
      });
 
 	})
