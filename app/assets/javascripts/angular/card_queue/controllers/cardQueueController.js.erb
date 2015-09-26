@@ -145,6 +145,10 @@
 			var purchasedCountDOMElement = document.querySelector("#purchased_count");
 			var purchasedButtonDOMElement= document.querySelector("#view_purchased");
 
+			headerTitle = angular.element(document.querySelector("#currentTitle"));
+			headerTitle.text("Greeting Central");
+
+
 			var queuedButton = angular.element(queuedButtonDOMElement);
 			var queuedCount = angular.element(queuedCountDOMElement);
 			var purchasedCount = angular.element(purchasedCountDOMElement);

@@ -20,6 +20,9 @@
 
 			console.log($scope.currentRecipients);
 
+			headerTitle = angular.element(document.querySelector("#currentTitle"));
+			headerTitle.text("My People");
+
 			// test whether you are currently at this state or not
 			$scope.$on('$stateChangeSuccess',
 			  function(event, toState) {
