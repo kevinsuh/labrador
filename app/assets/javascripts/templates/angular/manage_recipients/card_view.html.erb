@@ -1,6 +1,14 @@
 <div class="row">
-	<div class="col-xs-3" ng-repeat="recipient in currentRecipients">
-		<div class="recipient_card" style="cursor: pointer;" ng-click="open_modal_form(recipient)">
+	<div class="col-sm-6 col-xs-8 filters">
+		<select ng-model="recipientsFilter" ng-options="filter as filter for filter in filterOptions" ng-change="updateFilterView(recipientsFilter)"></select>
+	</div>
+	<div class="col-xs-2 pull-right">
+		world
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-3 single_card_div" ng-repeat="recipient in visibleCurrentRecipients">
+		<div class="recipient_card">
 			<div class="relationship_group">
 				<div class="icon_header">
 					<input type="checkbox"></input>
@@ -35,6 +43,15 @@
 				<div class="event mothers_day">
 					Mother's Day in 211 days
 				</div>
+
+				<div class="overlay_view">
+				</div>
+				<div class="recipient_options overlay">
+					<div class="option_buttons">
+						<button class="btn edit-recipient" ng-click="open_modal_form(recipient)"><i class="glyphicon glyphicon-pencil"></i></button>
+					</div>
+				</div>
+
 			</div>
 		</div>
 	</div>

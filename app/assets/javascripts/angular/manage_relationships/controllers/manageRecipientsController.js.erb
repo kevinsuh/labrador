@@ -9,13 +9,14 @@
       $scope.testImage = "/assets/blank_user.png";
 
 			// new manage relationships feature!
-			$scope.recipients           = recipients; // the "factory" recipients object
-			$scope.relationships        = recipients.relationships;
-			$scope.currentRecipients    = recipients.currentRecipients;
-			$scope.newRecipient         = recipients.newRecipient;
-			$scope.newRecipientTemplate = recipients.newRecipientTemplate;
-			$scope.relationships        = recipients.relationships;
-			$scope.occasions            = cards.occasions;
+			$scope.recipients               = recipients; // the "factory" recipients object
+			$scope.relationships            = recipients.relationships;
+			$scope.currentRecipients        = recipients.currentRecipients;
+			$scope.visibleCurrentRecipients = angular.copy($scope.currentRecipients);
+			$scope.newRecipient             = recipients.newRecipient;
+			$scope.newRecipientTemplate     = recipients.newRecipientTemplate;
+			$scope.relationships            = recipients.relationships;
+			$scope.occasions                = cards.occasions;
 
 			console.log($scope.currentRecipients);
 
@@ -46,8 +47,57 @@
 				}
 			};
 
-			// opens up the modal form with the recipient model passed in
-			// empty recipient model for create, filled in recipient for new
+			// filter functionality
+			$scope.recipientsFilter = "All";
+			$scope.filterOptions = ["All", "Family", "Friends"];
+
+			$scope.updateFilterView = function(filter) {
+				
+				allRecipients = $scope.currentRecipients;
+
+				/* RELATIONSHIP_IDS FOR REFERENCE
+				1: mother
+				2: father
+				3: sister
+				4: brother
+				5: male sig. other
+				6: female sig. other
+				7: male friend
+				8: female friend
+				9: grandmother
+				10: grandfather
+				11: mentor
+				12: all
+				13: son
+				14: daughter
+				 */
+				
+				switch (filter) {
+					case "All":
+						$scope.visibleCurrentRecipients = allRecipients;
+						break;
+					case "Family":
+						$scope.visibleCurrentRecipients = allRecipients.filter(function(recipient) {
+							return recipient.relationship_id == 1 ||
+										 recipient.relationship_id == 2 ||
+										 recipient.relationship_id == 3 ||
+										 recipient.relationship_id == 4 ||
+										 recipient.relationship_id == 9 ||
+										 recipient.relationship_id == 10 ||
+										 recipient.relationship_id == 13 ||
+										 recipient.relationship_id == 14;
+						});
+						break;
+					case "Friends":
+						$scope.visibleCurrentRecipients = allRecipients.filter(function(recipient) {
+							return recipient.relationship_id == 7 ||
+										 recipient.relationship_id == 8;
+						})
+						break;
+				}
+			}
+
+			// relationship modal functionality
 			$scope.open_modal_form = function(recipient) {
 
 				$modal.open({
@@ -137,23 +187,6 @@
 					windowClass: "recipient_modal_form center_modal"
 				});
 			};
-
-			/**
-			 * jQuery plugins to deal with outside of the app
-			*/
-			// side bar link
-			/*
-			var viewRecipientsButtonDOMElement = document.querySelector("#my_people");
-			var viewRecipientsButton = angular.element(viewRecipientsButtonDOMElement);
-
-			
-			var homeLogoButtonDOMElement = document.querySelector("#home_logo");
-			var homeLogoButton = angular.element(homeLogoButtonDOMElement);
-			// go home on this click!
-			homeLogoButton.on('click', function() {
-				$state.go('home.app.step1');
-			})
-			*/
 			
 		});
 
@@ -178,105 +211,5 @@
          }
      }
    });
-
-	app.controller('recipientOccasionsCtrl', function($scope) {
-		
-		// pre-fill certain events
-		$scope.$watch('occasion_hash.recipient_occasion.occasion_id', function(newValue, oldValue){
-				suggested_date = "";
-        switch (newValue) {
-          case 1: // christmas
-            suggested_date = "12/25/15";
-            break;
-          case 2: // hannukah
-            suggested_date = "12/6/15";
-            break;
-          case 3: // new year's
-            suggested_date = "01/01/16";
-            break;
-          case 4: // mother's day
-            suggested_date = "05/08/16";
-            break;
-          case 5: // father's day
-            suggested_date = "06/19/16";
-            break;
-          case 13: // valentine's
-            suggested_date = "02/14/16";
-            break;
-        }
-        $scope.occasion_hash.recipient_occasion.occasion_date = suggested_date;
-     });
-
-	})
-
-	app.controller('DatepickerDemoCtrl', function($scope) {
-		$scope.today = function() {
-	    $scope.dt = new Date();
-	  };
-	  $scope.today();
-
-	  $scope.clear = function () {
-	    $scope.dt = null;
-	  };
-
-	  // Disable weekend selection
-	  $scope.disabled = function(date, mode) {
-	    return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
-	  };
-
-	  $scope.toggleMin = function() {
-	    $scope.minDate = $scope.minDate ? null : new Date();
-	  };
-	  $scope.toggleMin();
-	  $scope.maxDate = new Date(2020, 5, 22);
-
-	  $scope.open = function($event) {
-	    $scope.status.opened = true;
-	  };
-
-	  $scope.dateOptions = {
-	    formatYear: 'yy',
-	    startingDay: 1
-	  };
-
-	  $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
-	  $scope.format = $scope.formats[0];
-
-	  $scope.status = {
-	    opened: false
-	  };
-
-	  var tomorrow = new Date();
-	  tomorrow.setDate(tomorrow.getDate() + 1);
-	  var afterTomorrow = new Date();
-	  afterTomorrow.setDate(tomorrow.getDate() + 2);
-	  $scope.events =
-	    [
-	      {
-	        date: tomorrow,
-	        status: 'full'
-	      },
-	      {
-	        date: afterTomorrow,
-	        status: 'partially'
-	      }
-	    ];
-
-	  $scope.getDayClass = function(date, mode) {
-	    if (mode === 'day') {
-	      var dayToCheck = new Date(date).setHours(0,0,0,0);
-
-	      for (var i=0;i<$scope.events.length;i++){
-	        var currentDay = new Date($scope.events[i].date).setHours(0,0,0,0);
-
-	        if (dayToCheck === currentDay) {
-	          return $scope.events[i].status;
-	        }
-	      }
-	    }
-
-	    return '';
-	  };
-	});
 
 })();
