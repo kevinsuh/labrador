@@ -1,6 +1,6 @@
 (function() {
 
-  var app = angular.module('card-queue', ['manage-recipients', 'ngAnimate', 'ngMessages', 'ui.router', 'templates', 'vr.directives.nlForm', 'angularSpinner', 'fancyboxplus', 'angular-click-outside']);
+  var app = angular.module('card-queue', ['manage-recipients', 'ngAnimate', 'ngMessages', 'ui.router', 'templates', 'vr.directives.nlForm', 'angularSpinner', 'fancyboxplus', 'angular-click-outside', 'calendarDemoApp']);
 
   app.config(function($stateProvider, $urlRouterProvider, $locationProvider, usSpinnerConfigProvider) {
 
@@ -18,8 +18,8 @@
         controller: 'CardQueueController',
         abstract: true,
         views: {
-          'form': {
-            templateUrl: "angular/card_queue/form.html"
+          'calendar': {
+            templateUrl: "angular/card_queue/calendar.html"
           },
           'my_people': {
             templateUrl: "angular/card_queue/my_people.html"
