@@ -67,9 +67,11 @@ span, p {
         border-bottom: $box_border;
           
         // specifically the left bar that overlaps all
+        
+        // cardagain logo
         &.logo {
           width: $box_size;
-          background-color: $logo_background;
+          background-color: $extra_dark_grey;
           border-bottom: none;
           .title {
             margin: 0;
@@ -89,7 +91,6 @@ span, p {
    *     HEADER
    */
   header {
-    background-color: $extra_dark_grey;
     @include box_sizing;
 
     z-index: 1001;
@@ -107,17 +108,18 @@ span, p {
         height: 100%;
         display: table-cell;
         vertical-align: middle;
+        padding-left: 20px;
       }
 
       // each box within the header
       .box {
         width: $box_size;
         height: 100%;
-        background-color: $logo_background;
+        background-color: $extra_dark_grey;
       }
       .title {
         margin: 0 15px;
-        color: white;
+        color: $extra_dark_grey;
       }
 
       ul {

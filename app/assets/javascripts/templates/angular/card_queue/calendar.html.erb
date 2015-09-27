@@ -1,4 +1,24 @@
-<!-- this is the calendar -->
-<div class="calendar" ng-controller="CalendarCtrl">
-	<div ui-calendar ng-model="eventSources"></div>
+<div class="calendar_section">
+	<div class="calendar_view">
+		<div class="table_header">
+			<div class="title">
+				<div>
+					<span>
+						Calendar
+					</span>
+				</div>
+			</div>
+			<div class="add">
+				<div>
+					<span ng-click="">+</span>
+				</div>
+			</div>
+		</div>
+		<!-- this is the calendar -->
+		<div class="calendar_container" ng-controller="CalendarCtrl">
+			<div class="calendar">
+				<div ui-calendar ng-model="eventSources"></div>
+			</div>
+		</div>
+	</div>
 </div>

@@ -1,0 +1,204 @@
+@import "base";
+
+.my_people_section, .calendar_section {
+
+	box-shadow: $grey_box_shadow;
+
+	.my_people, .calendar_view {
+
+		background-color: white;
+		margin: -1px;
+		max-height: 580px;
+		overflow-y: scroll;
+		overflow-x: hidden;
+
+		// header
+		.table_header {
+			background-color: $medium_grey;
+			width: 100.5%;
+			display: table;
+			.title {
+				display: table-cell;
+				vertical-align: middle;
+				padding-left: 7px;
+				padding-top: 2px;
+				div {
+					span {
+						font-size: 1.2em;
+						line-height: 1;
+						color: $dark_purple;
+					}
+				}
+			}
+			.add {
+				display: table-cell;
+				vertical-align: middle;
+				text-align: center;
+				padding: 7px 7px 7px 0;
+				margin: 5px;
+				width: 2.5em;
+				div {
+					border: 1pt solid white;
+					cursor: pointer;
+					span {
+						font-size: 1.5em;
+						line-height: 1;
+						color: white;
+					}				
+				}
+			}
+		}
+
+		
+		/**
+		 * 		MY PEOPLE SECTION
+		 */
+		.recipients {
+
+			width: 100%;
+			table-layout: fixed;
+			overflow: hidden;
+
+			.recipient_row {
+				width: 100%;
+				border-bottom: $box_border;
+
+				.image_cell {
+					overflow: hidden;
+					width: 20%;
+					.recipient_image {
+						margin: 5px;
+						border-radius: 35px;
+						width: 35px;
+					}	
+				}
+
+				.info_cell {
+					width: 50%;
+					padding: 8px 2px;
+					overflow-x: hidden;
+					.recipient_info {
+						display: block;
+						// specific spans
+						&.name {
+							font-size: 1em;
+							line-height: 1;
+							font-weight: 500;
+						}
+						&.relationship {
+							font-size: 0.7em;
+							color: $medium_dark_grey;
+						}
+						&.birthday {
+							font-size: 0.6em;
+							color: $light_teal;
+						}
+					}	
+				}
+
+				.actions_cell {
+					width: 30%;
+					padding-right: 6px;
+					vertical-align: bottom;
+					padding-bottom: 5px;
+					text-align: right;
+
+					// notification icons inside the action cell
+					.notifications {
+					  display: inline;
+					  float: right;
+					  padding-top: 0.5em;
+					  padding-right: 0.5em;
+					  position: relative;
+					}
+
+					// notifications stuff
+					.notification_container {
+					  position: relative;
+					  display: inline;
+					  margin: 0;
+					  margin-right: 4px;
+					  margin-left: 12px;
+					  float: left;
+					}
+
+					.notification_bubble {
+					  position: relative;
+					  top: 4px;
+					  right: -11px;
+					  padding: 1px 5px;
+					  background-color: $soft_red;
+					  color: white;
+					  font-weight: bold;
+					  font-size: 0.5em;
+					  border-radius: 40px;
+					  box-shadow: 1px 1px 1px gray;
+					  z-index: 100;
+					  &.delete_recipient {
+					  	top: -2px;
+					  	font-size: 1em;
+					  }
+					}
+
+					.icon {
+						position: absolute;
+						width: 20px;
+						height: 20px;
+					}
+				}	
+
+			}
+		}
+
+		/**
+		 * 		CALENDAR SECTION
+		 */
+
+		.calendar_container {
+
+			padding: 10px;
+
+			// body for calendar
+			.calendar {
+				border: 1.5pt solid $dark_purple;
+
+				// header
+				.fc-toolbar {
+					padding: 5px;
+					margin: 0;
+
+					// hack for now
+					.fc-left {
+						float: right;
+					}
+					h2 {
+						text-transform: uppercase;
+						color: $dark_grey;
+					}
+				}
+
+				// body within the calendar view
+				.fc-body {
+
+					// week row
+					.fc-row.fc-week {
+						height: 84px;
+
+						.fc-content-skeleton {
+							height: 100%;
+
+							// what contains the week's data
+							table {
+								height: 100%;
+							}
+
+						}
+
+					}
+
+				}
+			}
+
+		}
+	}
+}
