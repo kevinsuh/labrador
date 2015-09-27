@@ -28,7 +28,8 @@
 				} else {
 					searchLength = name.length;
 					$scope.visibleCurrentRecipients = allRecipients.filter(function(recipient) {
-						return recipient.first_name.substring(0, searchLength).toLowerCase() == name;
+						full_name = recipient.first_name + " " + recipient.last_name;
+						return full_name.substring(0, searchLength).toLowerCase() == name;
 					});
 
 				}
@@ -155,6 +156,7 @@
 							recipients        = $scope.recipients; // factory recipients
 							recipient         = $scope.recipient; // passed in recipient
 							currentRecipients = $scope.currentRecipients; // existing recipients
+							recipientIndex = arrayObjectIndexOf(currentRecipients, recipient.id, "id");
 
 							if (isNewRecipient) { // create
 
@@ -173,7 +175,9 @@
 								
 								recipients.updateRecipient(recipient)
 								.success(function(data) {
-									console.log(data);
+									// replace that existing recipient
+									recipient = data.recipient;
+									$scope.currentRecipients[recipientIndex] = recipient;
 								})
 								.error(function(data) {
 									console.log("error in update recipient modal");
@@ -232,3 +236,13 @@
    });
 
 })();
+
+/**
+ * find the index of an array that contains the object
+ */
+function arrayObjectIndexOf(myArray, searchTerm, property) {
+    for(var i = 0, len = myArray.length; i < len; i++) {
+        if (myArray[i][property] === searchTerm) return i;
+    }
+    return -1;
+}
