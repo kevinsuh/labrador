@@ -8,7 +8,7 @@
 
 		background-color: white;
 		margin: -1px;
-		max-height: 580px;
+		max-height: 750px;
 		overflow-y: scroll;
 		overflow-x: hidden;
 
@@ -167,13 +167,15 @@
 					padding: 5px;
 					margin: 0;
 
-					// hack for now
-					.fc-left {
-						float: right;
-					}
 					h2 {
 						text-transform: uppercase;
 						color: $dark_grey;
+					}
+					.fc-button-group {
+						display: block;
+					}
+					.fc-button {
+						display: block;
 					}
 				}
 
@@ -190,6 +192,25 @@
 							// what contains the week's data
 							table {
 								height: 100%;
+
+								// each container
+								.fc-event-container {
+									vertical-align: bottom;
+									padding-right: 5px;
+									padding-bottom: 10px;
+									&:hover {
+										font-size: 50px;
+									}
+									a {
+										float: right;
+										font-size: 20px;
+										border: none;
+									}
+									// hack for now
+									.fc-content {
+										//display: none;
+									}
+								}
 							}
 
 						}

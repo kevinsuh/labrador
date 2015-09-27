@@ -4,7 +4,7 @@
 var calendarDemoApp = angular.module('calendarDemoApp', ['ui.calendar', 'ui.bootstrap']);
 
 calendarDemoApp.controller('CalendarCtrl',
-   function($scope, $compile, $timeout, uiCalendarConfig) {
+   function($scope, $compile, $timeout, uiCalendarConfig, recipients) {
     var date = new Date();
     var d = date.getDate();
     var m = date.getMonth();
@@ -23,9 +23,12 @@ calendarDemoApp.controller('CalendarCtrl',
       {title: 'Long Event',start: new Date(y, m, d - 5),end: new Date(y, m, d - 2)},
       {id: 999,title: 'Repeating Event',start: new Date(y, m, d - 3, 16, 0),allDay: false},
       {id: 999,title: 'Repeating Event',start: new Date(y, m, d + 4, 16, 0),allDay: false},
-      {title: 'Birthday Party',start: new Date(y, m, d + 1, 19, 0),end: new Date(y, m, d + 1, 22, 30),allDay: false},
-      {title: 'Click for Google',start: new Date(y, m, 28),end: new Date(y, m, 29),url: 'http://google.com/'}
+      {title: 'Birthday Party',start: new Date(y, m, d + 1, 19, 0),end: new Date(y, m, d + 1, 22, 30), className: "glyphicon glyphicon-menu-down",allDay: false},
+      {title: recipients.currentRecipients[0].occasions[0].recipient_occasion.occasion_date,start: new Date(y, m, 28),end: new Date(y, m, 29),url: 'http://google.com/'}
     ];
+
+    console.log(recipients.currentRecipients);
+
     /* event source that calls a function on every view switch */
     $scope.eventsF = function (start, end, timezone, callback) {
       var s = new Date(start).getTime() / 1000;
@@ -106,9 +109,9 @@ calendarDemoApp.controller('CalendarCtrl',
         height: 450,
         editable: true,
         header:{
-          left: 'title',
+          left: 'today prev,next',
           center: '',
-          right: 'today prev,next'
+          right: 'title'
         },
         eventClick: $scope.alertOnEventClick,
         eventDrop: $scope.alertOnDrop,
