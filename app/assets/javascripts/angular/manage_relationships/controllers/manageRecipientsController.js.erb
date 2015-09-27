@@ -17,23 +17,7 @@
 			$scope.newRecipientTemplate     = recipients.newRecipientTemplate;
 			$scope.relationships            = recipients.relationships;
 			$scope.occasions                = cards.occasions;
-			$scope.filteredName = "";
 			console.log($scope.currentRecipients);
-
-			$scope.recipientNameFilter = function(name) {
-				allRecipients = $scope.currentRecipients;
-				name = name.toLowerCase();
-				if (name == "") {
-					$scope.visibleCurrentRecipients = allRecipients;
-				} else {
-					searchLength = name.length;
-					$scope.visibleCurrentRecipients = allRecipients.filter(function(recipient) {
-						full_name = recipient.first_name + " " + recipient.last_name;
-						return full_name.substring(0, searchLength).toLowerCase() == name;
-					});
-
-				}
-			};
 
 			headerTitle = angular.element(document.querySelector("#currentTitle"));
 			headerTitle.text("My People");
@@ -68,52 +52,33 @@
 			// filter recipients functionality
 			$scope.recipientsFilter = "All";
 			$scope.filterOptions = ["All", "Family", "Friends"];
+			$scope.filteredName = "";
+
+			$scope.recipientNameFilter = function(name) {
+
+				allRecipients = $scope.currentRecipients;
+				relationshipFilter = $scope.recipientsFilter;
+				$scope.filteredName = name;
+
+				name = name.toLowerCase();
+
+				visibleRecipients = filterArray("name", name, allRecipients);
+				visibleRecipients = filterArray("relationship", relationshipFilter, visibleRecipients)
+
+				$scope.visibleCurrentRecipients = visibleRecipients;
+			};
 
 			$scope.updateFilterView = function(filter) {
 				
 				allRecipients = $scope.currentRecipients;
 				$scope.recipientsFilter = filter;
-
-				/* RELATIONSHIP_IDS FOR REFERENCE
-				1: mother
-				2: father
-				3: sister
-				4: brother
-				5: male sig. other
-				6: female sig. other
-				7: male friend
-				8: female friend
-				9: grandmother
-				10: grandfather
-				11: mentor
-				12: all
-				13: son
-				14: daughter
-				 */
+				name = $scope.filteredName;
 				
-				switch (filter) {
-					case "All":
-						$scope.visibleCurrentRecipients = allRecipients;
-						break;
-					case "Family":
-						$scope.visibleCurrentRecipients = allRecipients.filter(function(recipient) {
-							return recipient.relationship_id == 1 ||
-										 recipient.relationship_id == 2 ||
-										 recipient.relationship_id == 3 ||
-										 recipient.relationship_id == 4 ||
-										 recipient.relationship_id == 9 ||
-										 recipient.relationship_id == 10 ||
-										 recipient.relationship_id == 13 ||
-										 recipient.relationship_id == 14;
-						});
-						break;
-					case "Friends":
-						$scope.visibleCurrentRecipients = allRecipients.filter(function(recipient) {
-							return recipient.relationship_id == 7 ||
-										 recipient.relationship_id == 8;
-						})
-						break;
-				}
+				visibleRecipients = filterArray("relationship", filter, allRecipients);
+				visibleRecipients = filterArray("name", name, visibleRecipients);
+
+				$scope.visibleCurrentRecipients = visibleRecipients;
+				
 			}
 
 			// relationship modal functionality
@@ -246,3 +211,64 @@ function arrayObjectIndexOf(myArray, searchTerm, property) {
     }
     return -1;
 }
+
+// filter the array to another level based on the filterType and filterTerm
+function filterArray(filterType, filterTerm, startingArray) {
+	var finalArray = [];
+	if (filterType == "relationship") {
+		/* RELATIONSHIP_IDS FOR REFERENCE
+			1: mother
+			2: father
+			3: sister
+			4: brother
+			5: male sig. other
+			6: female sig. other
+			7: male friend
+			8: female friend
+			9: grandmother
+			10: grandfather
+			11: mentor
+			12: all
+			13: son
+			14: daughter
+			 */
+		switch (filterTerm) {
+			case "All":
+				finalArray = startingArray;
+				break;
+			case "Family":
+				finalArray = startingArray.filter(function(recipient) {
+						return recipient.relationship_id == 1 ||
+									 recipient.relationship_id == 2 ||
+									 recipient.relationship_id == 3 ||
+									 recipient.relationship_id == 4 ||
+									 recipient.relationship_id == 9 ||
+									 recipient.relationship_id == 10 ||
+									 recipient.relationship_id == 13 ||
+									 recipient.relationship_id == 14;
+					});
+				break;
+			case "Friends":
+				finalArray = startingArray.filter(function(recipient) {
+						return recipient.relationship_id == 7 ||
+									 recipient.relationship_id == 8;
+					})
+				break;
+			}
+		} else if (filterType == "name") {
+			if (filterTerm == "") {
+				finalArray = startingArray;
+			} else {
+				searchLength = filterTerm.length;
+				finalArray = startingArray.filter(function(recipient) {
+					full_name = recipient.first_name + " " + recipient.last_name;
+					
+					return full_name.substring(0, searchLength).toLowerCase() == filterTerm;
+				});
+
+			}
+		}
+		return finalArray;
+	}
+
+
