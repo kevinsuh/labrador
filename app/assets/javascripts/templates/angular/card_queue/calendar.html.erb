@@ -17,13 +17,6 @@
 		<!-- this is the calendar -->
 		<div class="calendar_container" ng-controller="CalendarCtrl">
 			<div class="calendar">
-				<div class="btn-toolbar">
-			    <div class="btn-group">
-		        <button class="btn btn-success" ng-click="changeView('agendaDay', myCalendar)">Day</button>
-		        <button class="btn btn-success" ng-click="changeView('agendaWeek', myCalendar)">Week</button>
-		        <button class="btn btn-success" ng-click="changeView('month', myCalendar)">Month</button>
-			    </div>
-				</div>
 				<div class="alert-success calAlert" ng-show="alertMessage != undefined && alertMessage != ''">
 					<h4>{{alertMessage}}</h4>
 				</div>

@@ -11,7 +11,6 @@
 //= require moment.min.js
 //= require angular-moment.min.js
 //= require calendar.js
-//= require calendarDemo.js
 //= require fullcalendar-2.4.0/fullcalendar.min.js
 //= require fullcalendar-2.4.0/gcal.js
 //= require spin.js/spin.min.js

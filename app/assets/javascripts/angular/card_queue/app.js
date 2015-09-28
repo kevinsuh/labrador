@@ -1,6 +1,6 @@
 (function() {
 
-  var app = angular.module('card-queue', ['manage-recipients', 'ngAnimate', 'ngMessages', 'ui.router', 'templates', 'vr.directives.nlForm', 'angularSpinner', 'fancyboxplus', 'angular-click-outside', 'calendarDemoApp']);
+  var app = angular.module('card-queue', ['manage-recipients', 'ngAnimate', 'ngMessages', 'ui.router', 'templates', 'vr.directives.nlForm', 'angularSpinner', 'fancyboxplus', 'angular-click-outside', 'calendarApp']);
 
   app.config(function($stateProvider, $urlRouterProvider, $locationProvider, usSpinnerConfigProvider) {
 
@@ -49,6 +49,9 @@
           }],
           currentRecipientsPromise: ['recipients', function(recipients) {
             return recipients.getCurrentRecipients();
+          }],
+          currentEventsPromise: ['events', function(events) {
+            return events.getCurrentOccasions();
           }]
         }
       })

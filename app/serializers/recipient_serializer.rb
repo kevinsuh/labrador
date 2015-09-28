@@ -6,8 +6,6 @@ class RecipientSerializer < ActiveModel::Serializer
   	data = super # get the current JSON object
   	recipient = object
 
-    puts "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
-    puts object.inspect
 
     relationship_id = data[:relationship_id]
     relationship = Relationship.find_by(id: relationship_id)

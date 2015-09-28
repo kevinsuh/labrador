@@ -57,6 +57,9 @@ Rails.application.routes.draw do
   post 'recipients/update_for_current'
   post 'recipients/delete_for_current'
 
+  # occasions (add/update 'calendar')
+  get 'recipient_occasions/get_occasions_for_current'
+
   get 'sessions/new'
 
   get 'signup'          => 'users#new'

@@ -220,6 +220,7 @@
 										float: right;
 										font-size: 20px;
 										border: none;
+										cursor: default;
 									}
 									// hack for now
 									.fc-content {
@@ -232,9 +233,18 @@
 
 					}
 					.recipient-popover {
-						position: absolute;
-						z-index: 100000;
-						top: -25px;
+						background-color: rgba(0,0,0,0.85);
+				    border-radius: 5px;
+				    bottom: 28px;
+				    box-shadow: 0 0 5px rgba(0,0,0,0.4);
+				    color: #fff;
+				    font-size: 12px;
+				    font-family: 'Helvetica',sans-serif;
+				    left: -95px;
+				    padding: 7px 10px;
+				    position: absolute;
+				    width: 150px;
+				    z-index: 999999;
 					}
 				}
 			}

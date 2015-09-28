@@ -10,29 +10,48 @@
 
     // this is a factory that will contain, gather, create, and update your events in similar fashion to the card_queueing service
     var o = {
-      currentEvents: [] // already existing events for all recipients
+      currentEvents: [], // already existing events for all recipients
+      currentEventsForCalendar: [] // format existing events for calendar
     }
 
     // get list of your current saved events/occasions
     o.getCurrentOccasions = function() {
-      return $http.get('/recipients/get_current_recipients.json').success(function(data) {
-        var recipients = data.recipients;
-        o.currentRecipients = recipients;
-      });
-    }
+      return $http.get('/recipient_occasions/get_occasions_for_current.json').success(function(data) {
+        console.log("hi");
+        console.log(data);
+        var recipient_occasions = data.recipient_occasions;
+        o.currentEvents = recipient_occasions;
 
-    // get relationship types
-    o.getRelationships = function() {
-      return $http.get('/relationships/get_relationships.json').
-      success(function(data) {
-        var relationships = data.relationships;
-        var relationship;
-        for (var index in relationships) {
-          relationship = relationships[index];
-          o.relationships[relationship.name] = relationship.id;
-        }
+        // format occasions for calendar
+        o.formatOccasionsForCalendar();
       });
-    }
+    };
+
+    // this formats your events for the calendar
+    o.formatOccasionsForCalendar = function() {
+
+      var date = new Date();
+      var d = date.getDate();
+      var m = date.getMonth();
+      var y = date.getFullYear();
+
+      var events = o.currentEvents;
+      var formattedEvents = [];
+
+      events.forEach(function(event) {
+        event_data = {};
+
+        event_data["id"]        = event.id;
+        event_data["start"]     = new Date(event.occasion_date);
+        event_data["className"] = "glyphicon glyphicon-menu-down"
+        event_data["allDay"]    = true;
+        event_data["extra"]     = event
+
+        formattedEvents.push(event_data);
+      });
+
+      o.currentEventsForCalendar = formattedEvents;
+    };
 
     return o;    
 
