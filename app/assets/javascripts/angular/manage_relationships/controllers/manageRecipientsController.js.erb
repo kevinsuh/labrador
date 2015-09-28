@@ -49,6 +49,17 @@
 				}
 			};
 
+			// test add event
+			$scope.addEvent = function(recipient) {
+				console.log("yay");
+				console.log(recipient);
+
+				testOccasion = recipient.occasions[0].recipient_occasion
+				testRecipientOccasion = recipient.occasions[0].recipient_occasion
+
+				
+			}
+
 			// filter recipients functionality
 			$scope.recipientsFilter = "All";
 			$scope.filterOptions = ["All", "Family", "Friends"];

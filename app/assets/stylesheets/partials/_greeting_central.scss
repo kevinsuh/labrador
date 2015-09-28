@@ -184,7 +184,7 @@
 
 					// week row
 					.fc-row.fc-week {
-						height: 84px;
+						height: 100px;
 
 						.fc-content-skeleton {
 							height: 100%;
@@ -198,8 +198,23 @@
 									vertical-align: bottom;
 									padding-right: 5px;
 									padding-bottom: 10px;
-									&:hover {
-										font-size: 50px;
+
+									.fc-event.birthday {
+
+										.fc-content {
+											text-align: right;
+											.fc-title {
+												height:40px;
+											}
+											.fc-title:before {
+												content:"\2b";
+											  font-family:"Glyphicons Halflings";
+											  line-height:1;
+											  margin:10px;
+											  display:inline-block;
+											}
+
+										}
 									}
 									a {
 										float: right;
@@ -208,7 +223,7 @@
 									}
 									// hack for now
 									.fc-content {
-										//display: none;
+										display: none;
 									}
 								}
 							}
@@ -216,7 +231,11 @@
 						}
 
 					}
-
+					.recipient-popover {
+						position: absolute;
+						z-index: 100000;
+						top: -25px;
+					}
 				}
 			}
 

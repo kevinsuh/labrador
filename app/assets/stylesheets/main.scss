@@ -34,13 +34,14 @@ span, p {
     width: 100%;
     padding: 0;
     background-color: $ben_light_grey;
+    min-height: 1000px;
   }
 
   /**
    *      LEFT BAR
    */
   .left_bar {
-    position: absolute;
+    position: fixed;
     z-index: 1005;
     top: 0;
 

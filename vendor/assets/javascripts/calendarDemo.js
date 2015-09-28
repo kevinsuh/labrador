@@ -11,6 +11,7 @@ calendarDemoApp.controller('CalendarCtrl',
     var y = date.getFullYear();
 
     $scope.changeTo = 'Hungarian';
+    $scope.currentRecipients = recipients.currentRecipients;
     /* event source that pulls from google.com */
     $scope.eventSource = {
             url: "http://www.google.com/calendar/feeds/usa__en%40holiday.calendar.google.com/public/basic",
@@ -19,14 +20,14 @@ calendarDemoApp.controller('CalendarCtrl',
     };
     /* event source that contains custom events on the scope */
     $scope.events = [
-      {title: 'All Day Event',start: new Date(y, m, 1)},
-      {title: 'Long Event',start: new Date(y, m, d - 5),end: new Date(y, m, d - 2)},
-      {id: 999,title: 'Repeating Event',start: new Date(y, m, d - 3, 16, 0),allDay: false},
-      {id: 999,title: 'Repeating Event',start: new Date(y, m, d + 4, 16, 0),allDay: false},
-      {title: 'Birthday Party',start: new Date(y, m, d + 1, 19, 0),end: new Date(y, m, d + 1, 22, 30), className: "glyphicon glyphicon-menu-down",allDay: false},
-      {title: recipients.currentRecipients[0].occasions[0].recipient_occasion.occasion_date,start: new Date(y, m, 28),end: new Date(y, m, 29),url: 'http://google.com/'}
+      {id: 444, start: new Date(y, m, d + 1, 19, 0), className: "glyphicon glyphicon-menu-down", allDay: true}
     ];
 
+// {title: 'All Day Event',start: new Date(y, m, 1)},
+//       {title: 'Long Event',start: new Date(y, m, d - 5),end: new Date(y, m, d - 2)},
+//       {id: 999,title: 'Repeating Event',start: new Date(y, m, d - 3, 16, 0),allDay: false},
+//       {id: 999,title: 'Repeating Event',start: new Date(y, m, d + 4, 16, 0),allDay: false},
+//{title: recipients.currentRecipients[0].occasions[0].recipient_occasion.occasion_date,start: new Date(y, m, 28),end: new Date(y, m, 29),url: 'http://google.com/'},
     console.log(recipients.currentRecipients);
 
     /* event source that calls a function on every view switch */
@@ -49,7 +50,7 @@ calendarDemoApp.controller('CalendarCtrl',
     };
     /* alert on eventClick */
     $scope.alertOnEventClick = function( date, jsEvent, view){
-        $scope.alertMessage = (date.title + ' was clicked ');
+        $scope.alertMessage = (date + ' was clicked ');
     };
     /* alert on Drop */
      $scope.alertOnDrop = function(event, delta, revertFunc, jsEvent, ui, view){
@@ -59,6 +60,7 @@ calendarDemoApp.controller('CalendarCtrl',
     $scope.alertOnResize = function(event, delta, revertFunc, jsEvent, ui, view ){
        $scope.alertMessage = ('Event Resized to make dayDelta ' + delta);
     };
+
     /* add and removes an event source of choice */
     $scope.addRemoveEventSource = function(sources,source) {
       var canAdd = 0;
@@ -98,16 +100,37 @@ calendarDemoApp.controller('CalendarCtrl',
       });
     };
      /* Render Tooltip */
-    $scope.eventRender = function( event, element, view ) {
-        element.attr({'tooltip': event.title,
-                      'tooltip-append-to-body': true});
+    // $scope.eventRender = function( event, element, view ) {
+    //     // element.attr({'tooltip': event.title,
+    //     //               'tooltip-append-to-body': true});
+    //     //$(element).attr('tooltip', "event.title");
+    // };
+
+    $scope.eventRender = function( event, element, view ) { 
+      $timeout(function(){
+        $(element).attr("ng-mouseover", "showPopover('"+event.id+"')");
+        $(element).attr("ng-mouseleave", "hidePopover('"+event.id+"')");
+        $(element).append("<div class='recipient-popover event-"+ event.id+ "' ng-show='popover"+event.id+"IsVisible'>{{currentRecipients[0].first_name}}</div>");
         $compile(element)($scope);
+      });
     };
+
+    $scope.showPopover = function(eventID) {
+      
+      //var popover = document.getElementsByClassName("event-"+eventID);
+      //var angularPopover = angular.element(popover);
+      $scope["popover"+eventID+"IsVisible"] = true;
+    }
+
+    $scope.hidePopover = function(eventID) {
+      $scope["popover"+eventID+"IsVisible"] = false;
+    }
+
     /* config object */
     $scope.uiConfig = {
       calendar:{
-        height: 450,
-        editable: true,
+        height: 900,
+        editable: false,
         header:{
           left: 'today prev,next',
           center: '',
