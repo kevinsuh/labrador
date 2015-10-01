@@ -14,7 +14,7 @@
         abstract: true,
 				templateUrl: "angular/card_queue/home.html"
       })
-      .state('root.greeting_central', {
+      .state('home.app', {
         controller: 'CardQueueController',
         abstract: true,
         views: {
@@ -55,28 +55,28 @@
           }]
         }
       })
-      .state('root.greeting_central.step1', {
+      .state('home.app.step1', {
         url: '',
         replace: true,
         templateUrl: "angular/card_queue/form_step_one.html"
       })
 
-      .state('root.greeting_central.step2', {
+      .state('home.app.step2', {
         replace: true,
         templateUrl: "angular/card_queue/form_step_two.html"
       })
 
-      .state('root.greeting_central.step3', {
+      .state('home.app.step3', {
         replace: true,
         templateUrl: "angular/card_queue/form_step_three.html"
       })
 
-      .state('root.greeting_central.step4', {
+      .state('home.app.step4', {
         replace: true,
         templateUrl: "angular/card_queue/form_step_four.html",
       })
 
-      .state('root.greeting_central.step5', {
+      .state('home.app.step5', {
         replace: true,
         templateUrl: "angular/card_queue/form_step_five.html"
       });

@@ -43,7 +43,8 @@
         },
         occasions: [] // the various "events" attached to this recipient
       },
-      relationships: {} // list of relationship types
+      relationships: {}, // list of relationship types
+      selectedRecipients: [] // who are we selecting to queue these cards for
     }
 
     // get relationship types
@@ -77,6 +78,13 @@
 
     o.deleteRecipient = function(recipient) {
       return $http.post('recipients/delete_for_current.json', recipient)
+    }
+
+    /**
+     * start queue card process for recipients
+     */
+    o.queueCardForRecipients = function() {
+      //$http.post('/queue_card', o.selectedRecipients);
     }
 
     return o;    

@@ -25,4 +25,14 @@ class CardsController < ApplicationController
 
   end
 
+  # initialize card queue wizard
+  def queue_wizard
+
+    card_params = params
+    render layout: "wizard_application"
+
+    puts params.inspect
+    
+  end
+
 end

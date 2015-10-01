@@ -15,7 +15,10 @@
 		</div>
 
 		<div class="form_input">
-			<a class="send_card">Send Card</a>
+			<form>
+				<input type="hidden" ng-model="selectedUsers"/>
+				<button class="send_card" ng-click="queueCardWizard()">Send Card</button>
+			</form>
 		</div>
 
 	</div>
