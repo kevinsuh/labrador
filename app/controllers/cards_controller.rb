@@ -1,6 +1,7 @@
 class CardsController < ApplicationController
 
 	include CardsHelper
+  before_action :require_login, only: [:queue_wizard]
 	
 	def get_flavors
   	flavor_types = Flavor.all
