@@ -1,0 +1,19 @@
+(function() {
+	
+	/**
+	 * this controller is what will handle the queue wizard process
+	 */
+	var app = angular.module('queue-wizard').controller("QueueWizardController", function($rootScope, $scope, $state, $timeout, recipients, cards, usSpinnerService) {
+				
+		// load in user and relationships factories
+    $scope.testImage = "/assets/blank_user.png";
+
+		// test whether you are currently at this state or not
+		$scope.$on('$stateChangeSuccess',
+		  function(event, toState) {
+		    $scope.currentState = toState.name;
+		    makeStateActive($scope.currentState);
+	    });
+	});
+
+})();

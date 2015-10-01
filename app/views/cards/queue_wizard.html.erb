@@ -1,21 +1,13 @@
 <% provide(:title, "Queue Card") %>
 
 <!-- this is inside a container right now -->
-<div class="row signup_body" ng-app="sign-up">
-  <div class="col-xs-7 form-container signup_form" ng-controller="SignUpController as signUpCtrl">
-
-  	<div ui-view></div>
+<div class="row wizard_body" ng-app="queue-wizard">
+  <div class="col-xs-3 form-container view_recipients" ng-controller="QueueWizardController as queueWizardCtrl">
+  	<div ui-view="recipients"></div>
 	</div>
-	<div class="col-xs-5 signup_helper">
-		<div class="col-xs-6">
-			<p>
-				Cardagain allows you to queue greeting card purchases for the important dates in your life. Several weeks before each event, we deliver you the card of your choice, pre-addressed and pre-stamped, so that you can write your personal message in time for delivery.
-			</p>
-		</div>
-		<div class="col-xs-6">
-			<p>
-				We want to remember our friends' birthdays. Or our parents' anniversary. Or mother's and father's day. But we often forget until it's too late to do anything but give them a text or facebook post the day of. We want to help you remember in time.
-			</p>
-		</div>
+
+	<div class="col-xs-9">
+		<div ui-view="wizard"></div>
 	</div>
 </div>
+
