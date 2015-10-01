@@ -44,7 +44,7 @@
         occasions: [] // the various "events" attached to this recipient
       },
       relationships: {}, // list of relationship types
-      selectedRecipients: [] // who are we selecting to queue these cards for
+      selectedRecipients: [4,5] // who are we selecting to queue these cards for
     }
 
     // get relationship types
@@ -84,7 +84,8 @@
      * start queue card process for recipients
      */
     o.queueCardForRecipients = function() {
-      //$http.post('/queue_card', o.selectedRecipients);
+      console.log(o.selectedRecipients);
+      return $http.post('/queue_card', o.selectedRecipients);
     }
 
     return o;    
