@@ -7,9 +7,13 @@
     // home page that shows lists of posts and allows you to post new ones
   	$stateProvider
       .state('queue_wizard', {
-        url: '/queue_card/',
+        url: '/wizard',
+        templateUrl: "angular/queue_wizard/home.html",
         abstract: true,
-        controller: "QueueWizardController",
+        controller: "QueueWizardController"
+      })
+      .state('queue_wizard.home', {
+        url: '',
         views: {
           'recipients': {
             templateUrl: "angular/queue_wizard/recipients.html"
