@@ -1,33 +1,33 @@
 <div class="text-center">
 	<p class="card_progress_bullets">
-		<span ng-class="{'active': currentState == 'home.app.step1'}" class="bullet">•</span>
-		<span ng-class="{'active': currentState == 'home.app.step2'}" class="bullet">•</span>
-		<span ng-class="{'active': currentState == 'home.app.step3'}" class="bullet">•</span>
-		<span ng-class="{'active': currentState == 'home.app.step4'}"class="bullet">•</span>
-		<span ng-class="{'active': currentState == 'home.app.step5'}" class="bullet">•</span>
+		<span ng-class="{'active': currentState == 'root.greeting_central.step1'}" class="bullet">•</span>
+		<span ng-class="{'active': currentState == 'root.greeting_central.step2'}" class="bullet">•</span>
+		<span ng-class="{'active': currentState == 'root.greeting_central.step3'}" class="bullet">•</span>
+		<span ng-class="{'active': currentState == 'root.greeting_central.step4'}"class="bullet">•</span>
+		<span ng-class="{'active': currentState == 'root.greeting_central.step5'}" class="bullet">•</span>
 	</p>
 </div>
 
-<div ng-if="currentState == 'home.app.step1'" class="next_step">
-	<a ui-sref="home.app.step2" ng-class="{'disabled': !cardQueueStateIsValid()}" class="btn btn-primary">Start Process</a>
+<div ng-if="currentState == 'root.greeting_central.step1'" class="next_step">
+	<a ui-sref="root.greeting_central.step2" ng-class="{'disabled': !cardQueueStateIsValid()}" class="btn btn-primary">Start Process</a>
 </div>
-<div ng-if="currentState == 'home.app.step2'" class="next_step">
-	<a ui-sref="home.app.step1" class="btn">Back</a>
-	<a ui-sref="home.app.step3" class="btn btn-primary" ng-class="{'disabled': !cardQueueStateIsValid()}">Next</a>
-</div>
-
-<div ng-if="currentState == 'home.app.step3'" class="next_step">
-	<a ui-sref="home.app.step2" class="btn">Back</a>
-	<a ui-sref="home.app.step4" class="btn btn-primary" ng-class="{'disabled': !cardQueueStateIsValid()}">Next</a>
+<div ng-if="currentState == 'root.greeting_central.step2'" class="next_step">
+	<a ui-sref="root.greeting_central.step1" class="btn">Back</a>
+	<a ui-sref="root.greeting_central.step3" class="btn btn-primary" ng-class="{'disabled': !cardQueueStateIsValid()}">Next</a>
 </div>
 
-<div ng-if="currentState == 'home.app.step4'" class="next_step">
-	<a ui-sref="home.app.step3" class="btn">Back</a>
-	<a ui-sref="home.app.step5" class="btn btn-primary" ng-class="{'disabled': !cardQueueStateIsValid()}">Next</a>
+<div ng-if="currentState == 'root.greeting_central.step3'" class="next_step">
+	<a ui-sref="root.greeting_central.step2" class="btn">Back</a>
+	<a ui-sref="root.greeting_central.step4" class="btn btn-primary" ng-class="{'disabled': !cardQueueStateIsValid()}">Next</a>
 </div>
 
-<div ng-if="currentState == 'home.app.step5'" class="next_step">
-	<a ui-sref="home.app.step4" class="btn">Back</a>
+<div ng-if="currentState == 'root.greeting_central.step4'" class="next_step">
+	<a ui-sref="root.greeting_central.step3" class="btn">Back</a>
+	<a ui-sref="root.greeting_central.step5" class="btn btn-primary" ng-class="{'disabled': !cardQueueStateIsValid()}">Next</a>
+</div>
+
+<div ng-if="currentState == 'root.greeting_central.step5'" class="next_step">
+	<a ui-sref="root.greeting_central.step4" class="btn">Back</a>
 	<button ng-click="submitCardQueueForm()" class="btn btn-primary" ng-class="{'disabled': !cardQueueStateIsValid()}">Submit</button>
 </div>
 
