@@ -1,13 +1,13 @@
 <div class="icon_holder">
 	<div>
-		<a class="state_link box logo" href="#/">
+		<a class="state_link box logo" ui-sref="main.app.greeting_central.home" ng-class="{'active': state.current.name=='main.app.greeting_central.home'}">
 			<h3 class="title" style="text-align: center;">
 				C
 			</h3>
 		</a>
 	</div>
 	<div>
-		<a href="#/my_people/" class="state_link box side_link" id="my_people">
+		<a ui-sref="main.app.my_people.home" class="state_link box side_link" ng-class="{'active': state.current.name=='main.app.my_people.home'}" id="my_people">
 			My People
 		</a>
 	</div>

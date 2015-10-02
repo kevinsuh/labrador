@@ -80,16 +80,15 @@
         }
       })
       .state('main.app.my_people', {
-        url: '/my_people/',
         views: {
-          'container@': {
+          'container@main': {
             templateUrl: "angular/manage_recipients/home.html"
           }
         }
       })
       .state('main.app.my_people.home', {
         controller: "ManageRecipientsController",
-        url: "",
+        url: '/my_people',
         views: {
           'card_view': {
             templateUrl: "angular/manage_recipients/card_view.html"
