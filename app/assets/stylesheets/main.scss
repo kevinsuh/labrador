@@ -165,29 +165,35 @@ span, p {
 #home_logo {
   cursor: pointer;
 }
-.box {
-  &.state_link {
-    display: table-cell;
-    vertical-align: middle;
-    &.side_link {
-      color: black;
-    }
-    &:hover {
-      text-decoration: none;
-    }
-    &:active {
-      text-decoration: none;
-    }
-    &:focus {
-      text-decoration: none;
-    }
+div {
 
-    &.active {
-      background-color: $extra_dark_grey;
-      color: white;
+  .box {
+    &.state_link {
+      display: table-cell;
+      vertical-align: middle;
+      &.side_link {
+        color: black;
+      }
+      &:hover {
+        text-decoration: none;
+      }
+      &:active {
+        text-decoration: none;
+      }
+      &:focus {
+        text-decoration: none;
+      }
     }
   }
+  &.active {
+    .box {
+      background-color: $extra_dark_grey;
+      color: white !important;
+    }
+  }
+
 }
+
 
 /**
  * 			TYPOGRAPHY

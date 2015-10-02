@@ -40,20 +40,6 @@
           'container@main': {
             templateUrl: "angular/card_queue/greeting_central.html"
           }
-        }
-      })
-      .state('main.app.greeting_central.home', {
-        url: "/",
-        views: {
-          'calendar': {
-            templateUrl: "angular/card_queue/calendar.html"
-          },
-          'my_people': {
-            templateUrl: "angular/card_queue/my_people.html"
-          },
-          'checkout': {
-            templateUrl: "angular/card_queue/checkout.html"
-          }
         },
         resolve: {
           occasionPromise: ['cards', function(cards) {
@@ -79,19 +65,24 @@
           }]
         }
       })
+      .state('main.app.greeting_central.home', {
+        url: "/",
+        views: {
+          'calendar': {
+            templateUrl: "angular/card_queue/calendar.html"
+          },
+          'my_people': {
+            templateUrl: "angular/card_queue/my_people.html"
+          },
+          'checkout': {
+            templateUrl: "angular/card_queue/checkout.html"
+          }
+        }
+      })
       .state('main.app.my_people', {
         views: {
           'container@main': {
             templateUrl: "angular/manage_recipients/home.html"
-          }
-        }
-      })
-      .state('main.app.my_people.home', {
-        controller: "ManageRecipientsController",
-        url: '/my_people',
-        views: {
-          'card_view': {
-            templateUrl: "angular/manage_recipients/card_view.html"
           }
         },
         resolve: {
@@ -103,6 +94,41 @@
           }],
           relationshipPromise: ['recipients', function(recipients) {
             return recipients.getRelationships();
+          }]
+        }
+      })
+      .state('main.app.my_people.home', {
+        controller: "ManageRecipientsController",
+        url: '/my_people',
+        views: {
+          'card_view': {
+            templateUrl: "angular/manage_recipients/card_view.html"
+          }
+        }
+      })
+      .state('queue', {
+        url: '/queue_card',
+        abstract: true,
+        templateUrl: "angular/queue_wizard/home.html",
+        resolve: {
+          userInfoPromise: ['user', function(user) { // return user basic info
+            return user.getCurrentUser();
+          }]
+        }
+      })
+      .state('queue.home', {
+        url: '',
+        views: {
+          'recipients': {
+            templateUrl: "angular/queue_wizard/recipients.html"
+          },
+          'wizard': {
+            templateUrl: "angular/queue_wizard/wizard.html"
+          }
+        },
+       resolve: {
+          occasionPromise: ['cards', function(cards) {
+            return cards.getOccasions();
           }]
         }
       });
