@@ -21,5 +21,6 @@
 //= require angular.country-select.min.js
 //= require jquery.fancybox-plus.js
 //= require clickoutside.directive.js
+//= require angularjs-file-upload
 //= require_tree .
 //= require_tree ./templates

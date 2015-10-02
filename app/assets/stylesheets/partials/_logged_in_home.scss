@@ -1,4 +1,5 @@
 @import "base";
+$modal_profile_picture_size: 110px;
 
 /**
  * 		LOGGED IN HOME PAGE
@@ -38,6 +39,40 @@
 				width: 100%;
 				border-radius: 52px;
 				border: 2pt solid white;
+			}
+		}
+		.profile_picture_container {
+
+			height:100%;
+			float: left;
+			width: 0;
+
+			// recipient picture
+			.profile_picture {
+				height: $modal_profile_picture_size; 
+				width: $modal_profile_picture_size; 
+				overflow:hidden;
+				-webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC); //overflow hidden for chrome
+
+				margin: 0 auto;
+				margin-top: 5px;
+				float: left;
+
+				border-radius: 50%;
+				position: relative;
+
+				img.image {
+					position: absolute;
+					right: -10px; // will this be consistent?
+					bottom: 0;
+					height: $modal_profile_picture_size;
+				}
+
+			}
+
+			.picture_upload {
+				float: left;
+				margin-top: 15px;
 			}
 		}
 

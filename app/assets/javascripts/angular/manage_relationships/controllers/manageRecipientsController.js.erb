@@ -3,7 +3,7 @@
 	/**
 	 * this controller is specific to the managing relationship within the "Greeting Central" module
 	 */
-	var app = angular.module('card-queue').controller("ManageRecipientsController", function($rootScope, $location, $window, $scope, $state, $timeout, $modal, recipients, cards, usSpinnerService) {
+	var app = angular.module('card-queue').controller("ManageRecipientsController", function($rootScope, $location, $window, $scope, $state, $timeout, $modal, recipients, cards, usSpinnerService, FileUploader) {
 				
 			// load in user and relationships factories
       $scope.testImage = "/assets/blank_user.png";
@@ -155,7 +155,7 @@
 					templateUrl: 'angular/manage_recipients/recipient_modal_form.html',
 					backdrop: true,
 					windowClass: 'modal',
-					controller: function ($scope, $modalInstance, photo, relationships, occasions, recipients, currentRecipients) {
+					controller: function ($scope, $modalInstance, photo, relationships, occasions, recipients, currentRecipients, fileUploader) {
 
 						$scope.recipients           = recipients; // the "factory" recipients object
 						$scope.currentRecipients    = currentRecipients;
@@ -163,6 +163,8 @@
 						$scope.photo                = photo;
 						$scope.relationships        = relationships;
 						$scope.occasions            = occasions;
+
+						$scope.uploader = fileUploader // to handle recipient image uploads
 
 
 						$scope.newOccasion = function() {
@@ -235,6 +237,9 @@
 						},
 						currentRecipients: function() {
 							return $scope.currentRecipients;
+						},
+						fileUploader: function() {
+							return new FileUploader({url: "/recipients/update_for_current"}); // to handle recipient image uploads
 						}
 					},
 					animation: false,

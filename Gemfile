@@ -19,6 +19,7 @@ gem 'jquery-ui-rails'
 gem 'angularjs-rails'
 gem 'angular-rails-templates'
 gem 'angular_rails_csrf'
+gem 'angularjs-file-upload-rails', '~> 1.1.6'
 
 gem 'active_model_serializers', '~> 0.9.3'
 gem 'rails-html-sanitizer'

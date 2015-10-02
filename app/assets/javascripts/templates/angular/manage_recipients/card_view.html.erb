@@ -26,14 +26,16 @@
 
 <div class="row">
 	<div class="col-xs-3 single_card_div" ng-repeat="recipient in visibleCurrentRecipients">
-		<div class="recipient_card" ng-class="{'selected': isInArray(recipient.id, selectedRecipientIDs)}">
+		<div class="recipient_card">
 			<div class="relationship_group">
 				<div ng-if="isInArray(recipient.id, selectedRecipientIDs)" class="icon_header selected">
 					<i class="glyphicon glyphicon-check"></i>
 				</div>
 			</div>
-			<div class="recipient_info">
-				<img class="recipient_image" ng-src="{{testImage}}" />
+			<div class="recipient_info" ng-class="{'selected': isInArray(recipient.id, selectedRecipientIDs)}">
+				<div class="profile_picture">
+					<img class="image" ng-src="{{recipient.profile_picture || testImage}}" />
+				</div>
 
 				<div class="notifications">
 				  <div class="notification_container">
