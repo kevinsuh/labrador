@@ -133,8 +133,10 @@
           recipient_ids: ['$stateParams', function($stateParams) {
             // turn string into array
             recipient_ids = $stateParams.recipients.split(",");
-            console.log(recipient_ids);
             return recipient_ids;
+          }],
+          selectedRecipientsPromise: ['recipients', function(recipients) {
+            return recipients.retrieveRecipients(recipient_ids);
           }]
         }
       });

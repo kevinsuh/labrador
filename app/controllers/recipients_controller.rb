@@ -138,12 +138,24 @@ class RecipientsController < ApplicationController
   end
 
   def delete_for_current
-    puts params.inspect
     recipient = Recipient.find(params[:id])
     recipient.destroy
     respond_to do |format|
       format.json { render json: recipient }
     end
+  end
+
+  # get recipients from array of recipient IDS
+  # ONLY if the recipients belong to current_user!
+  def get_recipients
+
+    recipient_ids = params[:recipient_ids]
+
+    recipients = current_user.recipients.where("recipients.id IN (:recipient_ids)", recipient_ids: recipient_ids)
+    respond_to do |format|
+      format.json { render json: recipients }
+    end
+
   end
 
 end

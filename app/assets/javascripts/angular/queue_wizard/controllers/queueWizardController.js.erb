@@ -11,17 +11,9 @@
     $scope.selectedRecipients = recipients.selectedRecipients;
     $scope.stateParams = $stateParams;
 
-    console.log("hello2?");
-    console.log(recipient_ids);
-    console.log("hello?");
     console.log(recipients.selectedRecipients);
-    console.log($stateParams);
-		// test whether you are currently at this state or not
-		$scope.$on('$stateChangeSuccess',
-		  function(event, toState) {
-		    $scope.currentState = toState.name;
-		    makeStateActive($scope.currentState);
-	    });
+    
+		
 	});
 
 })();

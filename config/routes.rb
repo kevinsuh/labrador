@@ -59,6 +59,7 @@ Rails.application.routes.draw do
   post 'recipients/create_for_current'
   post 'recipients/update_for_current'
   post 'recipients/delete_for_current'
+  post 'recipients/get_recipients'
 
   # occasions (add/update 'calendar')
   get 'recipient_occasions/get_occasions_for_current'

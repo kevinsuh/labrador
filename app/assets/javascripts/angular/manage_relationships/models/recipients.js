@@ -87,6 +87,11 @@
       console.log(o.selectedRecipients);
       return $http.post('/queue_card', o.selectedRecipients);
     }
+    o.retrieveRecipients = function(recipient_ids) {
+      return $http.post("recipients/get_recipients.json", {recipient_ids: recipient_ids}).success(function(data) {
+        o.selectedRecipients = data.recipients
+      });
+    }
 
     return o;    
 

@@ -1,4 +1,13 @@
 recipients page:
 
-{{selectedRecipients}}
-what
+<div ng-repeat="recipient in selectedRecipients" style="margin: 30px;">
+	<div>
+		first name: {{recipient.first_name}}
+	</div>
+	<div>
+		last name: {{recipient.last_name}}
+	</div>
+	<div>
+		relation to you: {{recipient.relationship.name}}
+	</div>
+</div>
