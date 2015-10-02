@@ -3,7 +3,7 @@
 	/**
 	 * this controller is specific to queuing up the cards through an awesome multi-step form, then saving the data and queueing up another card
 	 */
-	var app = angular.module('card-queue').controller("CardQueueController", function($rootScope, $scope, $state, $timeout, cards, recipients, user, usSpinnerService) {
+	var app = angular.module('card-queue').controller("CardQueueController", function($rootScope, $scope, $state, $timeout, cards, recipients, usSpinnerService) {
 				
 			// load in the information from cards factory
 			$scope.newCard        = cards.newCard;
@@ -17,9 +17,6 @@
       $scope.minimumRecipientDate = recipientDate();
 
       $scope.testImage = "/assets/blank_user.png";
-
-			// load in user
-			$scope.user = user;
 
 			// new manage relationships feature!
 			$scope.relationships  = recipients.relationships;

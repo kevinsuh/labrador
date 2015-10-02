@@ -70,6 +70,7 @@ Rails.application.routes.draw do
   get 'login'           => 'sessions#new'
   post 'login'          => 'sessions#create'
   delete 'logout'       => 'sessions#destroy'
+  get 'logout_angular'  => 'sessions#logout_angular'
   
   get 'help'            => 'static_pages#help'
   get 'about'           => 'static_pages#about'
@@ -90,7 +91,7 @@ Rails.application.routes.draw do
       post :validate_basic
       post :validate_address
       post :create_signup
-      get :current_user_info
+      get :get_current_user
     end
 
     member do

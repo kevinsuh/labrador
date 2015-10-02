@@ -1,6 +1,8 @@
 module Admin
 
 	class CardsController < ApplicationController
+
+		layout "admin_application"
 		
 		before_action :require_login
   	before_action :admin_user

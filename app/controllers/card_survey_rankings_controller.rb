@@ -1,5 +1,7 @@
 class CardSurveyRankingsController < ApplicationController
 
+	layout "admin_application"
+
 	# display the cards for that given occasion-relationship-flavor combination
 	include CardSurveyRankingsHelper
 

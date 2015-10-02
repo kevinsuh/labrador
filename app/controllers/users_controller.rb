@@ -87,6 +87,19 @@ class UsersController < ApplicationController
     redirect_to root_url
   end
 
+  def get_current_user
+
+    if logged_in?
+      user = current_user
+      respond_to do |format|
+        format.json {render json: user }
+      end
+    else
+      respond_to do |format|
+        format.json {render json: {status: { logged_in: false}} } 
+      end
+    end
+  end
 
   # cardagain sign up
   
@@ -182,13 +195,6 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       format.json {render json: user }
-    end
-  end
-  
-  # return current user info in JSON
-  def current_user_info
-    respond_to do |format|
-      format.json {render json: current_user}
     end
   end
 

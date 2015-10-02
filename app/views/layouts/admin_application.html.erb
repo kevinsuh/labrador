@@ -10,14 +10,9 @@
 	<body>
 		<div class="container main_page container-full">
 
-			<% if logged_in? %>
-				<!-- angular app only if logged in -->
-				<div ng-app="card-queue" ng-controller="MainController" ui-view></ui-view>
-			<% else %>
-				<%= render 'layouts/header' %>
-				<%= yield %>
-				<%= render 'layouts/footer' %>
-			<% end %>
+			<%= render 'layouts/header' %>
+			<%= yield %>
+			<%= render 'layouts/footer' %>
 
 			<%= debug(params) if Rails.env.development? %>
 		</div>

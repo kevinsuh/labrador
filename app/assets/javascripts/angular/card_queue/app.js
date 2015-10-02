@@ -12,9 +12,15 @@
 			.state('main', {
         url: '',
         abstract: true,
-				templateUrl: "angular/card_queue/home.html"
+				templateUrl: "angular/card_queue/home.html",
+        resolve: {
+          userInfoPromise: ['user', function(user) { // return user basic info
+            return user.getCurrentUser();
+          }]
+        }
       })
       .state('main.app', {
+        controller: "MainController",
         abstract: true,
         views: {
           'main_header': {
@@ -50,9 +56,6 @@
           }
         },
         resolve: {
-          userInfoPromise: ['user', function(user) { // return user basic info
-            return user.getCurrentUserInfo();
-          }],
           occasionPromise: ['cards', function(cards) {
             return cards.getOccasions();
           }],
@@ -77,7 +80,7 @@
         }
       })
       .state('main.app.my_people', {
-        url: '/my_people',
+        url: '/my_people/',
         views: {
           'container@': {
             templateUrl: "angular/manage_recipients/home.html"

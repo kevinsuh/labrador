@@ -1,6 +1,6 @@
 module UsersHelper
 
-	def gravatar_for(user, options = {size: 80})
+	def gravatar_for(user, options = {size: 60})
 
 		email = user.email.downcase
 		size = options[:size]

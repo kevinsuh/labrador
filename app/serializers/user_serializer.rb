@@ -1,5 +1,5 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :first_name, :last_name, :email
+  attributes :id, :first_name, :last_name, :email, :is_admin, :is_activated
   include UsersHelper
 
   # attribute method is hash of JSON attributes
@@ -28,6 +28,7 @@ class UserSerializer < ActiveModel::Serializer
     end
     
     data[:gravatar_url] = gravatar_for user
+    data[:status] = { logged_in: true }
 
   	data
   end

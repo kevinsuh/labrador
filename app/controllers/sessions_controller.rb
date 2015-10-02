@@ -32,4 +32,11 @@ class SessionsController < ApplicationController
   	redirect_to root_url
   end
 
+  def logout_angular
+  	log_out
+  	respond_to do |format|
+			format.json {render json: {success: true} } 
+		end
+  end
+
 end
