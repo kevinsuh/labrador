@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150924051938) do
+ActiveRecord::Schema.define(version: 20151002174325) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "first_name"
@@ -207,6 +207,16 @@ ActiveRecord::Schema.define(version: 20150924051938) do
   end
 
   add_index "posts", ["user_id"], name: "index_posts_on_user_id"
+
+  create_table "profile_pictures", force: :cascade do |t|
+    t.integer  "person_id"
+    t.string   "person_type"
+    t.string   "picture"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "profile_pictures", ["person_type", "person_id"], name: "index_profile_pictures_on_person_type_and_person_id"
 
   create_table "recipient_occasions", force: :cascade do |t|
     t.integer  "recipient_id"

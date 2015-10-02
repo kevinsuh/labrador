@@ -24,6 +24,7 @@ class User < ActiveRecord::Base
 
 	# cardagain-specific
 	has_many :addresses, as: :person
+	has_many :profile_pictures, as: :person
 	has_many :recipients
 	has_many :orders
 	has_one :stripe_account, class_name: "UserStripeAccount"
