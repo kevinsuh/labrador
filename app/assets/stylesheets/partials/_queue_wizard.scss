@@ -1,0 +1,63 @@
+@import "base";
+
+// this is the overarching container div
+.queue_card {
+
+	// the entire left-side column
+	.recipients_container {
+		background-color:white;
+		border-right: 1pt solid black;
+		position: fixed;
+		height: 100%;
+	}
+
+	// the entire right-side column
+	.wizard_container {
+		background-color:white;
+		position: fixed;
+		padding: 0;
+		height: 100%;
+		left: 33.4%; // col-xs-4 is width 33.33%
+		.header.navigation {
+			height: 70px;
+			background-color: $dark_purple;
+			div {
+				display: inline-block;
+				text-align: center;
+				color: white;
+				&.back {
+					width: 15%;
+					padding-left: 10px;
+				}
+				&.main_display {
+					width: 69%;
+					padding-top: 15px;
+					.title {
+						font-size: 1.4em;
+					}
+				}
+				&.forward {
+					width: 15%;
+					padding-right: 10px;
+				}
+			}
+			.navigation_button {
+				background-color: adjust-lightness($dark_purple, 5%);
+				width: 15%;
+				color: white;
+				top: 17px;
+				position: absolute;
+				&:hover {
+					background-color: adjust-lightness($dark_purple, -5%);
+				}
+				&.left_align {
+					left: 20px;
+				}
+				&.right_align {
+					right: 20px;
+				}
+			}
+		}
+	}
+
+}
