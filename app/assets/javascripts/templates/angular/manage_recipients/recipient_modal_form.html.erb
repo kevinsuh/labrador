@@ -6,20 +6,12 @@
 			<div class="row recipient_info">
 				<div class="profile_picture_container">
 					<div class="profile_picture">
-						<img class="image" ng-src="{{recipient.profile_picture || photo}}" />
+						<img ng-if="uploader.queue.length == 0" class="image" ng-src="{{recipient.profile_picture || photo}}" />
+						<div ng-repeat="item in uploader.queue">
+							<div ng-show="uploader.isHTML5" ng-thumb="{ file: item._file, height: 120, class:'image' }"></div>
+						</div>
 					</div>
-					<input class="picture_upload" type="file" nv-file-select uploader="uploader"/>
-					<div ng-repeat="item in uploader.queue">
-						<div ng-show="uploader.isHTML5" ng-thumb="{ file: item._file, height: 100 }"></div>
-						<span ng-bind="item.file.name"></span>
-					</div>
-					
-					<!-- <ul>
-	            <li ng-repeat="item in uploader.queue">
-	              Name: <span ng-bind="item.file.name"></span><br/>
-	              <button ng-click="item.upload()">upload</button>
-	          </li>
-	        </ul> -->
+					<input class="picture_upload" type="file" nv-file-select uploader="uploader" id="helloworld"/>
 				</div>
 				
 				<div class="basic_info">

@@ -41,7 +41,7 @@
           zipcode: "",
           country: "United States"
         },
-        occasions: [] // the various "events" attached to this recipient
+        occasions: [], // the various "events" attached to this recipient
       },
       relationships: {}, // list of relationship types
       selectedRecipients: [], // actual objects for who we're queueing for

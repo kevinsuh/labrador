@@ -155,7 +155,7 @@
 					templateUrl: 'angular/manage_recipients/recipient_modal_form.html',
 					backdrop: true,
 					windowClass: 'modal',
-					controller: function ($scope, $modalInstance, photo, relationships, occasions, recipients, currentRecipients, fileUploader) {
+					controller: function ($scope, $modalInstance, photo, relationships, occasions, recipients, currentRecipients) {
 
 						$scope.recipients           = recipients; // the "factory" recipients object
 						$scope.currentRecipients    = currentRecipients;
@@ -163,9 +163,25 @@
 						$scope.photo                = photo;
 						$scope.relationships        = relationships;
 						$scope.occasions            = occasions;
+						isNewRecipient = (recipient.id > 0 ? false : true);
+						if (isNewRecipient) {
+							$scope.uploader = new FileUploader({
+								url: "/recipients/new_for_current"
+							});
+						} else {
+							$scope.uploader = new FileUploader({
+								url: "/recipients/update_for_current"
+							});
+						}
 
-						$scope.uploader = fileUploader // to handle recipient image uploads
+						$scope.newProfilePicture = recipient.newProfilePicture;
 
+						// every time you load, check if session profile picture is saved
+						if ($scope.newProfilePicture) {
+							console.log($scope.newProfilePicture);
+							//$scope.uploader.addToQueue($scope.newProfilePicture);
+							//hopefully one day, not working for now
+						}
 
 						$scope.newOccasion = function() {
 							occasionTemplate = {
@@ -178,7 +194,7 @@
 							$scope.recipient.occasions.push(occasionTemplate);
 						}
 
-						isNewRecipient = (recipient.id > 0 ? false : true);
+						
 
 						$scope.cancel = function() {
 							$modalInstance.dismiss('cancel');
@@ -191,6 +207,12 @@
 							recipient         = $scope.recipient; // passed in recipient
 							currentRecipients = $scope.currentRecipients; // existing recipients
 							recipientIndex = arrayObjectIndexOf(currentRecipients, recipient.id, "id");
+
+							file = fileUploader.queue[0];
+							profile_picture = false;
+							if (file) {
+								profile_picture = file.file
+							}
 
 							if (isNewRecipient) { // create
 
@@ -221,6 +243,29 @@
 							
 							$modalInstance.dismiss('cancel');
 						};
+
+
+						// filters for the file uploader
+						$scope.uploader.filters.push({
+              name: 'overWriteLogoFilter',
+              fn: function(item /*{File|FileLikeObject}*/ , options) {
+                if(this.queue.length==1) {
+                	console.log(this.queue[0]);
+                   this.clearQueue();
+                }
+                return true;
+              }
+          	});
+
+						// save profile pic to session
+						$scope.uploader.filters.push({
+              name: 'newProfilePicture',
+              fn: function(item, options) {
+                $scope.recipient.newProfilePicture = item;
+                return true;
+              }
+          	});
+
 					},
 					resolve: {
 						photo: function() {
@@ -237,9 +282,6 @@
 						},
 						currentRecipients: function() {
 							return $scope.currentRecipients;
-						},
-						fileUploader: function() {
-							return new FileUploader({url: "/recipients/update_for_current"}); // to handle recipient image uploads
 						}
 					},
 					animation: false,
@@ -316,7 +358,9 @@
                 function onLoadImage() {
                     var width = params.width || this.width / this.height * params.height;
                     var height = params.height || this.height / this.width * params.width;
+                    var className = params.class || "";
                     canvas.attr({ width: width, height: height });
+                    canvas.attr('class', className);
                     canvas[0].getContext('2d').drawImage(this, 0, 0, width, height);
                 }
             }

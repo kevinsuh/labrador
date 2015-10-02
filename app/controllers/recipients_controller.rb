@@ -132,6 +132,20 @@ class RecipientsController < ApplicationController
       end
     end
 
+    # 5. save profile picture
+    # for now, delete existing profile pictures when saving new one
+    if new_profile_picture = params[:newProfilePicture]
+      profile_picture = recipient.profile_pictures.create(picture: new_profile_picture)
+      if profile_picture.valid?
+        puts profile_picture.inspect
+        puts new_profile_picture
+        recipient.profile_pictures.delete_all
+        profile_picture.save
+      else
+        puts "aww..."
+      end
+    end
+
     respond_to do |format|
       format.json { render json: recipient }
     end
