@@ -58,6 +58,34 @@ class RecipientsController < ApplicationController
 
   end
 
+  def upload_recipient_picture
+    profile_picture = ProfilePicture.create(picture: params[:file])
+    respond_to do |format|
+      format.json { render json: {profile_picture_id: profile_picture.id} }
+    end
+  end
+
+  # this is for the callback on uploading recipient_picture
+  def update_recipient_picture
+    recipient_id = params[:recipient_id]
+    picture_id = params[:picture_id]
+
+    recipient = Recipient.find(recipient_id)
+
+    # for now, delete existing profile pictures when saving new one
+    if profile_picture = ProfilePicture.find_by(id: picture_id)
+      recipient.profile_pictures.delete_all
+      profile_picture.update_columns(
+        person_id: recipient_id,
+        person_type: "Recipient"
+      )
+    end
+
+    respond_to do |format|
+      format.json { render json: recipient }
+    end
+  end
+
   # update recipient for current user
   def update_for_current
 
@@ -129,20 +157,6 @@ class RecipientsController < ApplicationController
           )
         end
 
-      end
-    end
-
-    # 5. save profile picture
-    # for now, delete existing profile pictures when saving new one
-    if new_profile_picture = params[:newProfilePicture]
-      profile_picture = recipient.profile_pictures.create(picture: new_profile_picture)
-      if profile_picture.valid?
-        puts profile_picture.inspect
-        puts new_profile_picture
-        recipient.profile_pictures.delete_all
-        profile_picture.save
-      else
-        puts "aww..."
       end
     end
 

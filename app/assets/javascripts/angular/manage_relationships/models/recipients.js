@@ -94,6 +94,10 @@
       });
     }
 
+    o.updatePictureForRecipient = function(recipient_id, picture_id) {
+      return $http.post('/recipients/update_recipient_picture.json', {recipient_id: recipient_id, picture_id: picture_id});
+    }
+
     return o;    
 
   }]);

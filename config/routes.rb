@@ -60,6 +60,8 @@ Rails.application.routes.draw do
   post 'recipients/update_for_current'
   post 'recipients/delete_for_current'
   post 'recipients/get_recipients'
+  post 'recipients/upload_recipient_picture'
+  post 'recipients/update_recipient_picture'
 
   # occasions (add/update 'calendar')
   get 'recipient_occasions/get_occasions_for_current'
