@@ -3,13 +3,19 @@
 	/**
 	 * this controller is what will handle the queue wizard process
 	 */
-	var app = angular.module('queue-wizard').controller("QueueWizardController", function($rootScope, $scope, $state, $timeout, recipients, cards, usSpinnerService) {
+	var app = angular.module('queue-wizard').controller("QueueWizardController", function($rootScope, $scope, $state, $stateParams, $timeout, recipients, cards, usSpinnerService) {
 				
 		// load in user and relationships factories
     $scope.testImage = "/assets/blank_user.png";
     $scope.recipients = recipients;
     $scope.selectedRecipients = recipients.selectedRecipients;
+    $scope.stateParams = $stateParams;
+
+    console.log("hello2?");
+    console.log(recipient_ids);
+    console.log("hello?");
     console.log(recipients.selectedRecipients);
+    console.log($stateParams);
 		// test whether you are currently at this state or not
 		$scope.$on('$stateChangeSuccess',
 		  function(event, toState) {

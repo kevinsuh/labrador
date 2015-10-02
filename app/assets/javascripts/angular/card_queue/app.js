@@ -117,7 +117,7 @@
         }
       })
       .state('queue.home', {
-        url: '',
+        url: '/:recipients',
         views: {
           'recipients': {
             templateUrl: "angular/queue_wizard/recipients.html"
@@ -129,6 +129,12 @@
        resolve: {
           occasionPromise: ['cards', function(cards) {
             return cards.getOccasions();
+          }],
+          recipient_ids: ['$stateParams', function($stateParams) {
+            // turn string into array
+            recipient_ids = $stateParams.recipients.split(",");
+            console.log(recipient_ids);
+            return recipient_ids;
           }]
         }
       });

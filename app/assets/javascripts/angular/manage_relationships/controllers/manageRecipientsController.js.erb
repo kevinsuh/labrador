@@ -115,16 +115,25 @@
 			 * 			RECIPIENT CARD BUTTON OPTIONS
 			 */
 			$scope.select = function(recipient) {
-				recipients.selectedRecipients.push(recipient);
+				recipients.selectedRecipients.push(recipient.id);
 			};
 
 			/**
 			 * this is single queue, so this will become the only one to send to queue wizard
 			 */
 			$scope.single_queue = function(recipient) {
-				recipients.selectedRecipients = [recipient];
-				$state.go('queue.home');
+				recipients.selectedRecipients = [recipient.id]
+				recipient_ids = [recipient.id];
+				$state.go("queue.home", {recipients: recipient_ids});
 			};
+
+			/**
+			 * this is 1+ queue, from the send card button. this will use all of the "selected recipients" to queue
+			 */
+			$scope.multiple_queue = function() {
+				recipient_ids = recipients.selectedRecipients.join();
+				$state.go("queue.home", {recipients: recipient_ids});
+			}
 
 			/**
 			 * 				RECIPIENT MODAL FORM
