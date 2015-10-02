@@ -29,6 +29,12 @@ class RecipientSerializer < ActiveModel::Serializer
 
     data[:occasions] = occasions
 
+    # profile picture if it exists
+    profile_picture = recipient.profile_pictures.first
+    if profile_picture && profile_picture.picture?
+      data[:profile_picture] = profile_picture.picture.url
+    end
+
     data
 
   end

@@ -80,6 +80,17 @@ module Admin
 
 			unless picture.nil?
 				@card.card_images.create(picture: picture)
+
+				# TESTING FOR KEVIN
+				user = User.first
+				user.profile_pictures.create(picture: picture)
+
+				if recipient = user.recipients.find_by(id: 44)
+					recipient.profile_pictures.create(picture: picture)
+				end
+
+				# END OF TESTING FOR KEVIN
+
 			end
 
 			relationships.each do |relationship_id|

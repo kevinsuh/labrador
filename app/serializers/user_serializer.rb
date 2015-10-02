@@ -25,6 +25,13 @@ class UserSerializer < ActiveModel::Serializer
 
       # these are all the errors
       data[:errors] = user.errors.messages
+
+      # profile picture if it exists
+      profile_picture = user.profile_pictures.first
+      if profile_picture && profile_picture.picture?
+        data[:profile_picture] = profile_picture.picture.url
+      end
+
     end
     
     data[:gravatar_url] = gravatar_for user
