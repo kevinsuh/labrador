@@ -8,7 +8,11 @@
   	$stateProvider
       .state('queue_wizard', {
         url: '/wizard',
-        templateUrl: "angular/queue_wizard/home.html",
+        views: {
+          "wizard_home": {
+            templateUrl: "angular/queue_wizard/home.html"
+          }
+        },
         abstract: true,
         controller: "QueueWizardController"
       })

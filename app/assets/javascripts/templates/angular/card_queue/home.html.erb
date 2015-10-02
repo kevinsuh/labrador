@@ -1,13 +1,9 @@
-<div>
-	<aside class="col-md-3 col-xs-3" ng-controller="ManageRecipientsController">
-		<div ui-view="my_people"></div>
-	</aside>
-
-	<div class="col-md-9 col-xs-9 card_queue" ng-controller="CardQueueController">
-		<div ui-view="calendar"></div>
-	</div>
-</div>
-
+<header>
+ <div ui-view="main_header"></div>
+</header>
+<aside ui-view="main_left_bar"></aside>
+<div ui-view="container"></div>
+<div ui-view="main_footer"></div>
 
 
 

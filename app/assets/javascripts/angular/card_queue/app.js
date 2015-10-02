@@ -8,15 +8,36 @@
     usSpinnerConfigProvider.setDefaults({radius:36, width:8, length: 33, lines: 15, speed: 1.4, scale: 0.4});
 
     // home page that shows lists of posts and allows you to post new ones
-  	$stateProvider
-			.state('home', {
-        url: '/',
+    $stateProvider
+			.state('main', {
+        url: '',
         abstract: true,
 				templateUrl: "angular/card_queue/home.html"
       })
-      .state('home.app', {
-        controller: 'CardQueueController',
+      .state('main.app', {
         abstract: true,
+        views: {
+          'main_header': {
+            templateUrl: "angular/card_queue/main_header.html"
+          },
+          'main_footer': {
+            templateUrl: "angular/card_queue/main_footer.html"
+          },
+          'main_left_bar': {
+            templateUrl: "angular/card_queue/main_left_bar.html"
+          }
+        }
+      })
+      .state('main.app.greeting_central', {
+        controller: 'CardQueueController',
+        views: {
+          'container@main': {
+            templateUrl: "angular/card_queue/greeting_central.html"
+          }
+        }
+      })
+      .state('main.app.greeting_central.home', {
+        url: "/",
         views: {
           'calendar': {
             templateUrl: "angular/card_queue/calendar.html"
@@ -55,30 +76,33 @@
           }]
         }
       })
-      .state('home.app.step1', {
-        url: '',
-        replace: true,
-        templateUrl: "angular/card_queue/form_step_one.html"
+      .state('main.app.my_people', {
+        url: '/my_people',
+        views: {
+          'container@': {
+            templateUrl: "angular/manage_recipients/home.html"
+          }
+        }
       })
-
-      .state('home.app.step2', {
-        replace: true,
-        templateUrl: "angular/card_queue/form_step_two.html"
-      })
-
-      .state('home.app.step3', {
-        replace: true,
-        templateUrl: "angular/card_queue/form_step_three.html"
-      })
-
-      .state('home.app.step4', {
-        replace: true,
-        templateUrl: "angular/card_queue/form_step_four.html",
-      })
-
-      .state('home.app.step5', {
-        replace: true,
-        templateUrl: "angular/card_queue/form_step_five.html"
+      .state('main.app.my_people.home', {
+        controller: "ManageRecipientsController",
+        url: "",
+        views: {
+          'card_view': {
+            templateUrl: "angular/manage_recipients/card_view.html"
+          }
+        },
+        resolve: {
+          currentRecipientsPromise: ['recipients', function(recipients) {
+            return recipients.getCurrentRecipients();
+          }],
+          occasionPromise: ['cards', function(cards) {
+            return cards.getOccasions();
+          }],
+          relationshipPromise: ['recipients', function(recipients) {
+            return recipients.getRelationships();
+          }]
+        }
       });
 
     $urlRouterProvider.otherwise('/');
