@@ -44,7 +44,8 @@
         occasions: [] // the various "events" attached to this recipient
       },
       relationships: {}, // list of relationship types
-      selectedRecipients: [] // who are we selecting to queue these cards for
+      selectedRecipients: [], // actual objects for who we're queueing for
+      selectedRecipientIDs:[] // IDs for the URL
     }
 
     // get relationship types

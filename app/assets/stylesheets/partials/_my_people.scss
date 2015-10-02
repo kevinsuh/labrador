@@ -21,6 +21,25 @@
 			box-shadow: $grey_box_shadow;
 			text-align: center;
 
+			&.selected {
+				border: 2pt solid $selection_green;
+				border-top: 5pt solid $selection_green;
+			}
+
+			.icon_header {
+				&.selected {
+					position: absolute;
+					padding: 1.5px;
+					top: 12px;
+					left: 8px;
+					border-radius: 50%;
+					height: 25px;
+					width: 25px;
+					background-color: adjust-lightness($selection_green, 5%);
+					color: white;
+				}
+			}
+
 			.relationship_group {
 				height: 40%;
 				background-color: $pacific_blue;

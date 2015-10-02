@@ -18,6 +18,7 @@
 			$scope.relationships            = recipients.relationships;
 			$scope.occasions                = cards.occasions;
 			$scope.selectedRecipients       = recipients.selectedRecipients;
+			$scope.selectedRecipientIDs     = recipients.selectedRecipientIDs;
 
 			headerTitle = angular.element(document.querySelector("#currentTitle"));
 			headerTitle.text("My People");
@@ -115,14 +116,24 @@
 			 * 			RECIPIENT CARD BUTTON OPTIONS
 			 */
 			$scope.select = function(recipient) {
-				recipients.selectedRecipients.push(recipient.id);
+				recipient_ids = recipients.selectedRecipientIDs;
+
+				if ($scope.isInArray(recipient.id, recipient_ids)) {
+					$scope.selectedRecipientIDs = arrayWithValueRemoved(recipient.id, $scope.selectedRecipientIDs);
+				} else {
+					$scope.selectedRecipientIDs.push(recipient.id);
+				}
 			};
+
+			$scope.isInArray = function(value, array) {
+				return array.indexOf(value) > -1;
+			}
 
 			/**
 			 * this is single queue, so this will become the only one to send to queue wizard
 			 */
 			$scope.single_queue = function(recipient) {
-				recipients.selectedRecipients = [recipient.id]
+				recipients.selectedRecipientIDs = [recipient.id]
 				recipient_ids = [recipient.id];
 				$state.go("queue.home", {recipients: recipient_ids});
 			};
@@ -131,7 +142,7 @@
 			 * this is 1+ queue, from the send card button. this will use all of the "selected recipients" to queue
 			 */
 			$scope.multiple_queue = function() {
-				recipient_ids = recipients.selectedRecipients.join();
+				recipient_ids = recipients.selectedRecipientIDs.join();
 				$state.go("queue.home", {recipients: recipient_ids});
 			}
 
@@ -273,58 +284,66 @@ function filterArray(filterType, filterTerm, startingArray) {
 	var finalArray = [];
 	if (filterType == "relationship") {
 		/* RELATIONSHIP_IDS FOR REFERENCE
-			1: mother
-			2: father
-			3: sister
-			4: brother
-			5: male sig. other
-			6: female sig. other
-			7: male friend
-			8: female friend
-			9: grandmother
-			10: grandfather
-			11: mentor
-			12: all
-			13: son
-			14: daughter
-			 */
-		switch (filterTerm) {
-			case "All":
-				finalArray = startingArray;
-				break;
-			case "Family":
-				finalArray = startingArray.filter(function(recipient) {
-						return recipient.relationship_id == 1 ||
-									 recipient.relationship_id == 2 ||
-									 recipient.relationship_id == 3 ||
-									 recipient.relationship_id == 4 ||
-									 recipient.relationship_id == 9 ||
-									 recipient.relationship_id == 10 ||
-									 recipient.relationship_id == 13 ||
-									 recipient.relationship_id == 14;
-					});
-				break;
-			case "Friends":
-				finalArray = startingArray.filter(function(recipient) {
-						return recipient.relationship_id == 7 ||
-									 recipient.relationship_id == 8;
-					})
-				break;
-			}
-		} else if (filterType == "name") {
-			if (filterTerm == "") {
-				finalArray = startingArray;
-			} else {
-				searchLength = filterTerm.length;
-				finalArray = startingArray.filter(function(recipient) {
-					full_name = recipient.first_name + " " + recipient.last_name;
-					
-					return full_name.substring(0, searchLength).toLowerCase() == filterTerm;
+		1: mother
+		2: father
+		3: sister
+		4: brother
+		5: male sig. other
+		6: female sig. other
+		7: male friend
+		8: female friend
+		9: grandmother
+		10: grandfather
+		11: mentor
+		12: all
+		13: son
+		14: daughter
+		 */
+	switch (filterTerm) {
+		case "All":
+			finalArray = startingArray;
+			break;
+		case "Family":
+			finalArray = startingArray.filter(function(recipient) {
+					return recipient.relationship_id == 1 ||
+								 recipient.relationship_id == 2 ||
+								 recipient.relationship_id == 3 ||
+								 recipient.relationship_id == 4 ||
+								 recipient.relationship_id == 9 ||
+								 recipient.relationship_id == 10 ||
+								 recipient.relationship_id == 13 ||
+								 recipient.relationship_id == 14;
 				});
-
-			}
+			break;
+		case "Friends":
+			finalArray = startingArray.filter(function(recipient) {
+					return recipient.relationship_id == 7 ||
+								 recipient.relationship_id == 8;
+				})
+			break;
 		}
-		return finalArray;
+	} else if (filterType == "name") {
+		if (filterTerm == "") {
+			finalArray = startingArray;
+		} else {
+			searchLength = filterTerm.length;
+			finalArray = startingArray.filter(function(recipient) {
+				full_name = recipient.first_name + " " + recipient.last_name;
+				
+				return full_name.substring(0, searchLength).toLowerCase() == filterTerm;
+			});
+
+		}
 	}
+	return finalArray;
+}
+
+function arrayWithValueRemoved(value, array) {
+	var index = array.indexOf(value);
+	if (index > -1) {
+		array.splice(index, 1);
+	}
+	return array;
+}
 
 
