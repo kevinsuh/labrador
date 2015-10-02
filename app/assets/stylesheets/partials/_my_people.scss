@@ -46,20 +46,49 @@
 					// the option buttons
 					.option_buttons {
 						top: 40%;
+						width: 50px;
+						margin: 0 5px;
 						button {
 							color: white;
 							border: 1.5pt solid white;
 							width: 40px;
 							height: 40px;
 							border-radius: 50%;
-							background-color: $medium_dark_grey;
-							&:hover {
-								background-color: $dark_grey;
+							&.edit-recipient {
+								background-color: $medium_dark_grey;
+								&:hover {
+									background-color: $dark_grey;
+								}
+								&:focus {
+									outline: 0;
+									background-color: $dark_grey;	
+								}	
 							}
-							&:focus {
-								outline: 0;
-								background-color: $dark_grey;	
+							&.select-recipient {
+								background-color: adjust-lightness($selection_green, 5%);
+								&:hover {
+									background-color: adjust-lightness($selection_green, -5%);
+								}
+								&:focus {
+									outline: 0;
+									background-color:adjust-lightness($selection_green, -10%);
+								}
 							}
+							&.send-recipient {
+								background-color: adjust-lightness($cta_red, 5%);
+								&:hover {
+									background-color: adjust-lightness($cta_red, -5%);
+								}
+								&:focus {
+									outline: 0;
+									background-color: adjust-lightness($cta_red, -10%);
+								}
+							}
+							
+						}
+						.text {
+							color: white;
+							margin-right: 5px;
 						}
 					}
 

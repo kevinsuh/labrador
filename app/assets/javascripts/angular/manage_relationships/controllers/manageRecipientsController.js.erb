@@ -49,6 +49,7 @@
 				}
 			};
 
+
 			// test add event
 			$scope.addEvent = function(recipient) {
 				console.log("yay");
@@ -109,6 +110,21 @@
 
 				 //recipients.queueCardForRecipients();
 			}
+
+			/**
+			 * 			RECIPIENT CARD BUTTON OPTIONS
+			 */
+			$scope.select = function(recipient) {
+				recipients.selectedRecipients.push(recipient);
+			};
+
+			/**
+			 * this is single queue, so this will become the only one to send to queue wizard
+			 */
+			$scope.single_queue = function(recipient) {
+				recipients.selectedRecipients = [recipient];
+				$state.go('queue.home');
+			};
 
 			/**
 			 * 				RECIPIENT MODAL FORM

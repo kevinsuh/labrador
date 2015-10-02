@@ -25,7 +25,7 @@
           zipcode: "",
           country: "United States"
         },
-        occasions: [] // the various "events" attached to this recipient
+        occasions: [], // the various "events" attached to this recipient
       },
       newRecipientTemplate: {
         first_name: "",
@@ -44,7 +44,7 @@
         occasions: [] // the various "events" attached to this recipient
       },
       relationships: {}, // list of relationship types
-      selectedRecipients: [4,5] // who are we selecting to queue these cards for
+      selectedRecipients: [] // who are we selecting to queue these cards for
     }
 
     // get relationship types

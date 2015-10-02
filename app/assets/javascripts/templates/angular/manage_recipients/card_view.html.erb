@@ -66,7 +66,19 @@
 				</div>
 				<div class="recipient_options overlay">
 					<div class="option_buttons">
+						<button class="btn select-recipient" ng-click="select(recipient)"><i class="glyphicon glyphicon-check"></i></button>
+						<br>
+						<span class="text">Select</span>
+					</div>
+					<div class="option_buttons">
+						<button class="btn send-recipient" ng-click="single_queue(recipient)"><i class="glyphicon glyphicon-envelope"></i></button>
+						<br>
+						<span class="text">Send</span>
+					</div>
+					<div class="option_buttons">
 						<button class="btn edit-recipient" ng-click="open_modal_form(recipient)"><i class="glyphicon glyphicon-pencil"></i></button>
+						<br>
+						<span class="text">Edit</span>
 					</div>
 				</div>
 

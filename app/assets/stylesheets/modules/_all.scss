@@ -60,6 +60,14 @@ $purple: #7672A1;
 $light_purple: #CFCBDB;
 $extra_light_purple: #EAE9ED;
 
+// my people colors
+$selection_green: #00B00C;
+$cta_red: #E0412C;
+$link_click_purple: #867CAD;
+$inactive_grey: #BCBBBD;
+$active_grey: #1B1B1B;
+$dark_teal: #598491;
+
 @mixin base_font {
 	font-family: $base-font-family;
 	font-weight: $base-font-weight;

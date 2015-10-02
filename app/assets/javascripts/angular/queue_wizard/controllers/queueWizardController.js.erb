@@ -7,6 +7,8 @@
 				
 		// load in user and relationships factories
     $scope.testImage = "/assets/blank_user.png";
+    $scope.recipients = recipients;
+    $scope.selectedRecipients = recipients.selectedRecipients;
     console.log(recipients.selectedRecipients);
 		// test whether you are currently at this state or not
 		$scope.$on('$stateChangeSuccess',
