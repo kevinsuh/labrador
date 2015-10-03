@@ -22,5 +22,6 @@
 //= require jquery.fancybox-plus.js
 //= require clickoutside.directive.js
 //= require angularjs-file-upload
+//= require ngImgCrop-master
 //= require_tree .
 //= require_tree ./templates
