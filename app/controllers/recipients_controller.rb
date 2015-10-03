@@ -68,7 +68,7 @@ class RecipientsController < ApplicationController
   # this is for the callback on uploading recipient_picture
   def update_recipient_picture
     recipient_id = params[:recipient_id]
-    picture_id = params[:picture_id]
+    picture_id   = params[:picture_id]
 
     recipient = Recipient.find(recipient_id)
 
