@@ -60,6 +60,7 @@ class RecipientsController < ApplicationController
 
   def upload_recipient_picture
     profile_picture = ProfilePicture.create(picture: params[:file])
+    puts profile_picture.inspect
     respond_to do |format|
       format.json { render json: {profile_picture_id: profile_picture.id} }
     end

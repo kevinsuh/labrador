@@ -1,19 +1,33 @@
+<style>
+	.cropArea { 
+	}
+</style>
+
 <form ng-submit="submit()">
 
 	<!-- name / relationship -->
 	<div class="modal-header family">
 		<div class="body">
 			<div class="row recipient_info">
-				<div class="profile_picture_container">
+
+				<!-- image cropper controller start -->
+				<div class="profile_picture_container" ng-controller="ImageCropperCtrl">
 					<div class="profile_picture">
-						<img ng-if="uploader.queue.length == 0" class="image" ng-src="{{recipient.profile_picture || photo}}" />
-						<div ng-repeat="item in uploader.queue">
+						<!-- <div ng-repeat="item in uploader.queue">
 							<div ng-show="uploader.isHTML5" ng-thumb="{ file: item._file, height: 120, class:'image' }"></div>
-						</div>
+						</div> -->
+						<img class="image" ng-src="{{myCroppedImage}}" />
 					</div>
-					<input class="picture_upload" type="file" nv-file-select uploader="uploader" id="helloworld"/>
+					<input class="picture_upload" type="file" uploader="uploader" id="fileInput"/>
+					<div class="potential_crop_area" ng-show="newImageDisplay" style="float:left; margin-top:25px; height: 185px;">
+						<div class="cropArea">
+					    <img-crop image="myImage" result-image="myCroppedImage" area-min-size="60"></img-crop>
+					  </div>
+					  <a class="btn btn-primary" ng-click="hideDisplay()">Save</a>
+					</div>
 				</div>
-				
+				<!-- image cropper controller end -->
+
 				<div class="basic_info">
 					<div class="name form_field">
 						<div class="first_name">
@@ -59,6 +73,7 @@
 	<div class="modal-body modal_body">
 		<div class="body">
 			<div class="row address_title">
+
 				<h3 class="modal_title">Address</h3>
 				<h6 ng-if="recipient.id" class="last_updated">Last Updated: {{recipient.primary_address.updated_at | date:'MM/dd/yy'}}</h6>
 				<hr>
