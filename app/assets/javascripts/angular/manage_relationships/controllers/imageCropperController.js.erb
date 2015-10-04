@@ -3,14 +3,39 @@
     angular.module('card-queue').controller("ImageCropperCtrl", function($scope)
     {
 
-        $scope.newImageDisplay = false;
+        //$scope.newImageDisplay = false;
+        console.log($scope.uploader);
 
-        $scope.hideDisplay = function() {
-            $scope.newImageDisplay = false;
+        // show preview with cropping image
+        $scope.uploader.onAfterAddingFile = function(item) {
+        	
+        	// make the new uploaded image crop-able
+        	$scope.myCroppedImage = "";
 
-            var file = base64ToBlob($scope.myCroppedImage.replace('data:image/png;base64,',''), 'image/jpeg');
+        	console.log("aww yea!");
+        	var reader = new FileReader();
+        	reader.onload = function(event) {
+        		$scope.$apply(function() {
+        			$scope.recipientImage = event.target.result;
+        		});
+        	};
+        	reader.readAsDataURL(item._file);
         }
 
+        // upload blob (cropped image) instead of file
+        $scope.uploader.onBeforeUploadItem = function(item) {
+        	console.log("noo?");
+        	console.log($scope.myCroppedImage);
+        	var blob = dataURItoBlob($scope.myCroppedImage);
+        	console.log(blob);
+        	item._file = blob;
+        };
+
+        $scope.hideDisplay = function() {
+            //$scope.newImageDisplay = false;
+        }
+
+        /*
         var handleFileSelect=function(evt) {
           var file=evt.currentTarget.files[0];
           var reader = new FileReader();
@@ -21,9 +46,30 @@
           };
           $scope.newImageDisplay = true;
           console.log("no?");
+          console.log($scope.uploader);
+          console.log($scope.myCroppedImage);
           reader.readAsDataURL(file);
         };
-        angular.element(document.querySelector('#fileInput')).on('change',handleFileSelect);
+        */
+       
+       /**
+		   * Converts data uri to Blob. Necessary for uploading.
+		   * @see
+		   *   http://stackoverflow.com/questions/4998908/convert-data-uri-to-file-then-append-to-formdata
+		   * @param  {String} dataURI
+		   * @return {Blob}
+		   */
+		  var dataURItoBlob = function(dataURI) {
+		    var binary = atob(dataURI.split(',')[1]);
+		    var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+		    var array = [];
+		    for(var i = 0; i < binary.length; i++) {
+		      array.push(binary.charCodeAt(i));
+		    }
+		    return new Blob([new Uint8Array(array)], {type: mimeString});
+		  };
+
+        //angular.element(document.querySelector('#fileInput')).on('change',handleFileSelect);
         
 
     });
