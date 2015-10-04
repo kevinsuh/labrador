@@ -1,8 +1,4 @@
-<style>
-	.cropArea { 
-	}
-</style>
-
+<!-- unique modal form each time you open -->
 <form ng-submit="submit()">
 
 	<!-- name / relationship -->
@@ -17,10 +13,10 @@
 						</div> -->
 						<img class="image" ng-src="{{myCroppedImage}}" />
 					</div>
-					<input class="picture_upload" type="file" uploader="uploader" id="fileInput" onchange="angular.element(this).scope().fileNameChanged($event)"/>
-					<div class="potential_crop_area" ng-show="newImageDisplay" style="float:left; margin-top:25px; height: 185px;">
+					<input class="picture_upload" nv-file-select type="file" uploader="uploader" id="fileInput"/>
+					<div class="potential_crop_area" ng-show="recipientImage" style="float:left; margin-top:25px; height: 185px;">
 						<div class="cropArea">
-					    <img-crop image="myImage" result-image="myCroppedImage" area-min-size="60"></img-crop>
+					    <img-crop image="recipientImage" result-image="myCroppedImage" area-min-size="60"></img-crop>
 					  </div>
 					  <a class="btn btn-primary" ng-click="hideDisplay()">Save</a>
 					</div>
