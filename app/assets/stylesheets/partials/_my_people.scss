@@ -62,7 +62,7 @@ $card_profile_picture_size: 90px;
 
 					.image {
 						position: absolute;
-						right: -10px; // will this be consistent?
+						right: 0;
 						bottom: 0;
 						height: $card_profile_picture_size;
 					}

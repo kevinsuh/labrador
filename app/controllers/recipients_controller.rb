@@ -60,12 +60,20 @@ class RecipientsController < ApplicationController
 
   def upload_recipient_picture
     profile_picture = ProfilePicture.create(picture: params[:file])
-    puts profile_picture.inspect
+    update_recipient_id = params[:update_recipient_id]
+    if update_recipient_id && Integer(update_recipient_id) > 0
+      recipient = Recipient.find(update_recipient_id)
+      recipient.profile_pictures.delete_all
+      recipient.profile_pictures.create(picture: params[:file])
+    end
+
     respond_to do |format|
-      format.json { render json: {profile_picture_id: profile_picture.id} }
+      format.json { render json: recipient }
     end
   end
 
+  # WE SHOULD DEPRECATE THIS!!!!
+  # AWW YEAH
   # this is for the callback on uploading recipient_picture
   def update_recipient_picture
     recipient_id = params[:recipient_id]

@@ -8,17 +8,13 @@
 				<!-- image cropper controller start -->
 				<div class="profile_picture_container" ng-controller="ImageCropperCtrl">
 					<div class="profile_picture">
-						<!-- <div ng-repeat="item in uploader.queue">
-							<div ng-show="uploader.isHTML5" ng-thumb="{ file: item._file, height: 120, class:'image' }"></div>
-						</div> -->
 						<img class="image" ng-src="{{myCroppedImage}}" />
 					</div>
 					<input class="picture_upload" nv-file-select type="file" uploader="uploader" id="fileInput"/>
-					<div class="potential_crop_area" ng-show="recipientImage" style="float:left; margin-top:25px; height: 185px;">
+					<div class="potential_crop_area" ng-show="recipientImage" style="float:left; margin-top:25px; height: 150px;">
 						<div class="cropArea">
 					    <img-crop image="recipientImage" result-image="myCroppedImage" area-min-size="60"></img-crop>
 					  </div>
-					  <a class="btn btn-primary" ng-click="hideDisplay()">Save</a>
 					</div>
 				</div>
 				<!-- image cropper controller end -->
@@ -46,16 +42,6 @@
 								<select ng-model="recipient.relationship.id" ng-options="value as key for (key, value) in relationships"></select>
 								
 							</div>
-
-							<!-- this is the grouping color -->
-							<!-- <div class="group_input form_input">
-								<select ng-model="recipient.first_name">
-						  		<option value="">O</option>
-						  		<% us_states.each { |state, abrv| %>
-						  			<option value="<%= state %>"><%= abrv %></option>
-									<% } %>
-						  	</select>
-							</div> -->
 
 						</div>
 					</div>
