@@ -255,6 +255,14 @@
 							recipients.updatePictureForRecipient($scope.recipient.id, profile_picture_id);
 		        };
 
+		        $scope.uploader.onBeforeUploadItem = function(item) {
+		        	console.log("about to upload tha item");
+		        	console.log(item);
+		        	console.log($scope.myCroppedImage);
+		        	var blob = base64ToBlob($scope.myCroppedImage);
+		        	item._file = blob;
+		        };
+
 						// filters for the file uploader
 						$scope.uploader.filters.push({
               name: 'overWriteLogoFilter',
@@ -266,6 +274,37 @@
                 return true;
               }
           	});
+
+          	$scope.newImageDisplay = false;
+
+		        $scope.hideDisplay = function() {
+		            $scope.newImageDisplay = false;
+
+		            var file = base64ToBlob($scope.myCroppedImage.replace('data:image/png;base64,',''), 'image/jpeg');
+		        }
+
+		        var handleFileSelect=function(evt) {
+		          var file=evt.currentTarget.files[0];
+		          var reader = new FileReader();
+		          reader.onload = function (evt) {
+		            $scope.$apply(function($scope){
+		              $scope.myImage=evt.target.result;
+		            });
+		          };
+		          $scope.newImageDisplay = true;
+		          console.log("no?");
+		          reader.readAsDataURL(file);
+		        };
+
+						file_input = angular.element(document.querySelector('#fileInput'));
+
+						$scope.fileNameChanged = function(evt) {
+							console.log("yea");
+							console.log(evt);
+							//handleFileSelect();
+						}
+
+		        // angular.element(document.querySelector('#fileInput')).on('change',handleFileSelect);
 
 						// save profile pic to session
 						$scope.uploader.filters.push({
@@ -456,7 +495,22 @@ function arrayWithValueRemoved(value, array) {
 	return array;
 }
 
-
+/**
+ * Converts data uri to Blob. Necessary for uploading.
+ * @see
+ *   http://stackoverflow.com/questions/4998908/convert-data-uri-to-file-then-append-to-formdata
+ * @param  {String} dataURI
+ * @return {Blob}
+ */
+var dataURItoBlob = function(dataURI) {
+  var binary = atob(dataURI.split(',')[1]);
+  var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+  var array = [];
+  for(var i = 0; i < binary.length; i++) {
+    array.push(binary.charCodeAt(i));
+  }
+  return new Blob([new Uint8Array(array)], {type: mimeString});
+};
 
 function base64ToBlob(base64Data, contentType) {
   contentType = contentType || '';

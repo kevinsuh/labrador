@@ -9,16 +9,15 @@
 	<div class="modal-header family">
 		<div class="body">
 			<div class="row recipient_info">
-
 				<!-- image cropper controller start -->
-				<div class="profile_picture_container" ng-controller="ImageCropperCtrl">
+				<div class="profile_picture_container">
 					<div class="profile_picture">
 						<!-- <div ng-repeat="item in uploader.queue">
 							<div ng-show="uploader.isHTML5" ng-thumb="{ file: item._file, height: 120, class:'image' }"></div>
 						</div> -->
 						<img class="image" ng-src="{{myCroppedImage}}" />
 					</div>
-					<input class="picture_upload" type="file" uploader="uploader" id="fileInput"/>
+					<input class="picture_upload" type="file" uploader="uploader" id="fileInput" onchange="angular.element(this).scope().fileNameChanged($event)"/>
 					<div class="potential_crop_area" ng-show="newImageDisplay" style="float:left; margin-top:25px; height: 185px;">
 						<div class="cropArea">
 					    <img-crop image="myImage" result-image="myCroppedImage" area-min-size="60"></img-crop>
