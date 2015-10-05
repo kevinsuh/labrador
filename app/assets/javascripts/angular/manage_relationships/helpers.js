@@ -106,6 +106,34 @@ function arrayWithValueRemoved(value, array) {
 	return array;
 }
 
+// this will always return the upcoming one of this, even if birthday of past is entered
+function parseDateForNextOccasion(str) {
+    
+  if (str) {
+  	str = str + "";
+  	var ymd = str.split('-');
+    var month = ymd[1]-1;
+    var day = ymd[2];
+
+    var today = new Date();
+    var thisYear = today.getFullYear();
+    var nextYear = today.getFullYear() + 1;
+
+    var thisYearsOccasion = new Date(thisYear, month, day);
+    var nextYearsOccasion = new Date(nextYear, month, day);
+
+    if (today < thisYearsOccasion) {
+    	return thisYearsOccasion;
+    } else {
+    	return nextYearsOccasion;
+    }
+  }
+}
+
+function daydiff(first, second) {
+    return Math.round((second-first)/(1000*60*60*24)) + 1;
+}
+
 
 
 // potential new schema is to change "is_visible" property

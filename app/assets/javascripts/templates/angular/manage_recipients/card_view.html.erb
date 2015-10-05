@@ -44,13 +44,7 @@
 					<!-- should go through recipient's "events" and provide appropriate divs -->
 					<div class="events">
 						<div class="event" ng-repeat="occasion in recipient.occasions">
-							{{occasion.occasion.name}} in X days - {{occasion.recipient_occasion.occasion_date}}
-						</div>
-						<div class="event birthday">
-						Birthday in 187 days - Mar. 13
-						</div>
-						<div class="event mothers_day">
-							Mother's Day in 211 days
+							{{occasion.occasion.name}} in {{daysFromToday(occasion.recipient_occasion.occasion_date)}} - {{occasion.recipient_occasion.occasion_date | date: "MMM. d"}}
 						</div>
 					</div>
 

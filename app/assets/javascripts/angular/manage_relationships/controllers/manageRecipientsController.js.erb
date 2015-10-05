@@ -49,6 +49,19 @@
 				}
 			};
 
+			// custom function to return days from today -- of next calendar year
+			// dateString = (ex. 2/12/1992)
+			$scope.daysFromToday = function(dateString) {
+				
+				today = new Date();
+				daysFromToday = daydiff(today, parseDateForNextOccasion(dateString));
+				if (daysFromToday > 1) {
+					return daysFromToday + " days";
+				} else {
+					return daysFromToday + " day";
+				}
+			}
+
 			/**
 			 * 			FILTER RECIPIENTS FUNCTIONALITY
 			 */
