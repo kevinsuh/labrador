@@ -24,66 +24,67 @@
 </div>
 
 <div class="row">
-
-	<div class="col-xs-3 single_card_div" ng-repeat="recipient in visibleCurrentRecipients">
-		<div class="recipient_card">
-			<div class="relationship_group">
-				<div ng-if="isInArray(recipient.id, selectedRecipientIDs)" class="icon_header selected">
-					<i class="glyphicon glyphicon-check"></i>
-				</div>
-			</div>
-			<div class="recipient_info" ng-class="{'selected': isInArray(recipient.id, selectedRecipientIDs)}">
-				<div class="profile_picture">
-					<img class="image" ng-src="{{recipient.profile_picture || testImage}}" />
-				</div>
-
-				<div class="notifications">
-				  <div class="notification_container">
-				  	<a href="#" id="view_queued">
-					  	<%= image_tag('queued_icon.png', alt: 'Queued Orders', class: "icon") %>
-					  	<span id="queued_count" class="notification_bubble">1</span>
-				  	</a>
-				  </div>
-
-				  <div class="notification_container">
-				  	<a href="#" id="view_purchased">
-					  	<%= image_tag('purchased_icon.png', alt: 'Purchased Orders', class: "icon") %>
-					  	<span id="purchased_count" class="notification_bubble">2</span>
-				  	</a>
-				  </div>
-
-				</div>
-				<div class="name">
-					{{recipient.first_name}} {{recipient.last_name}}
-				</div>
-				<!-- should go through recipient's "events" and provide appropriate divs -->
-				<div class="event birthday">
-					Birthday in 187 days - Mar. 13
-				</div>
-				<div class="event mothers_day">
-					Mother's Day in 211 days
-				</div>
-
-				<div class="overlay_view">
-				</div>
-				<div class="recipient_options overlay">
-					<div class="option_buttons">
-						<button class="btn select-recipient" ng-click="select(recipient)"><i class="glyphicon glyphicon-check"></i></button>
-						<br>
-						<span class="text">Select</span>
-					</div>
-					<div class="option_buttons">
-						<button class="btn send-recipient" ng-click="single_queue(recipient)"><i class="glyphicon glyphicon-envelope"></i></button>
-						<br>
-						<span class="text">Send</span>
-					</div>
-					<div class="option_buttons">
-						<button class="btn edit-recipient" ng-click="open_modal_form(recipient)"><i class="glyphicon glyphicon-pencil"></i></button>
-						<br>
-						<span class="text">Edit</span>
+	<div ng-repeat="recipient in currentRecipients">
+		<div class="col-xs-3 single_card_div" ng-if="recipient.is_visible == 1">
+			<div class="recipient_card">
+				<div class="relationship_group">
+					<div ng-if="isInArray(recipient.id, selectedRecipientIDs)" class="icon_header selected">
+						<i class="glyphicon glyphicon-check"></i>
 					</div>
 				</div>
+				<div class="recipient_info" ng-class="{'selected': isInArray(recipient.id, selectedRecipientIDs)}">
+					<div class="profile_picture">
+						<img class="image" ng-src="{{recipient.profile_picture || testImage}}" />
+					</div>
 
+					<div class="notifications">
+					  <div class="notification_container">
+					  	<a href="#" id="view_queued">
+						  	<%= image_tag('queued_icon.png', alt: 'Queued Orders', class: "icon") %>
+						  	<span id="queued_count" class="notification_bubble">1</span>
+					  	</a>
+					  </div>
+
+					  <div class="notification_container">
+					  	<a href="#" id="view_purchased">
+						  	<%= image_tag('purchased_icon.png', alt: 'Purchased Orders', class: "icon") %>
+						  	<span id="purchased_count" class="notification_bubble">2</span>
+					  	</a>
+					  </div>
+
+					</div>
+					<div class="name">
+						{{recipient.first_name}} {{recipient.last_name}}
+					</div>
+					<!-- should go through recipient's "events" and provide appropriate divs -->
+					<div class="event birthday">
+						Birthday in 187 days - Mar. 13
+					</div>
+					<div class="event mothers_day">
+						Mother's Day in 211 days
+					</div>
+
+					<div class="overlay_view">
+					</div>
+					<div class="recipient_options overlay">
+						<div class="option_buttons">
+							<button class="btn select-recipient" ng-click="select(recipient)"><i class="glyphicon glyphicon-check"></i></button>
+							<br>
+							<span class="text">Select</span>
+						</div>
+						<div class="option_buttons">
+							<button class="btn send-recipient" ng-click="single_queue(recipient)"><i class="glyphicon glyphicon-envelope"></i></button>
+							<br>
+							<span class="text">Send</span>
+						</div>
+						<div class="option_buttons">
+							<button class="btn edit-recipient" ng-click="open_modal_form(recipient)"><i class="glyphicon glyphicon-pencil"></i></button>
+							<br>
+							<span class="text">Edit</span>
+						</div>
+					</div>
+
+				</div>
 			</div>
 		</div>
 	</div>

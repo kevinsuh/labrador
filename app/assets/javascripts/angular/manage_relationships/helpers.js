@@ -67,14 +67,6 @@ function filterArray(filterType, filterTerm, startingArray) {
 	return finalArray;
 }
 
-function arrayWithValueRemoved(value, array) {
-	var index = array.indexOf(value);
-	if (index > -1) {
-		array.splice(index, 1);
-	}
-	return array;
-}
-
 /**
  * Converts data uri to Blob. Necessary for uploading.
  * @see
@@ -91,3 +83,83 @@ var dataURItoBlob = function(dataURI) {
   }
   return new Blob([new Uint8Array(array)], {type: mimeString});
 };
+
+// find index in array based on object property's value
+function findWithAttr(array, attr, value) {
+    for(var i = 0; i < array.length; i += 1) {
+        if(array[i][attr] === value) {
+            return i;
+        }
+    }
+}
+
+// is the value in array
+function isInArray(value, array) {
+  return array.indexOf(value) > -1;
+}
+
+function arrayWithValueRemoved(value, array) {
+	var index = array.indexOf(value);
+	if (index > -1) {
+		array.splice(index, 1);
+	}
+	return array;
+}
+
+
+
+// potential new schema is to change "is_visible" property
+// function filterArrayNewSchema(filterType, filterTerm, startingArray) {
+
+// 	for (index = 0; index < startingArray.length; ++index) {
+		
+// 		recipient = startingArray[index];
+// 		recipient.is_visible = 0;
+
+// 		if (filterType == "All") {
+
+// 		} else if (filterType == "Family") {
+
+// 		} else if (filterType == "Friends") {
+
+// 		}
+		
+// 		if (filterType == "relationship") {
+// 			switch (filterTerm) {
+// 				case "All":
+// 					recipient.is_visible = 1;
+// 					break;
+// 				case "Family":
+// 					if (recipient.relationship_id == 1 ||
+// 						 recipient.relationship_id == 2 ||
+// 						 recipient.relationship_id == 3 ||
+// 						 recipient.relationship_id == 4 ||
+// 						 recipient.relationship_id == 9 ||
+// 						 recipient.relationship_id == 10 ||
+// 						 recipient.relationship_id == 13 ||
+// 						 recipient.relationship_id == 14) {
+// 						recipient.is_visible = 1;
+// 					}
+// 				break;
+// 				case "Friends":
+// 					if (recipient.relationship_id == 7 ||
+// 						 recipient.relationship_id == 8) {
+// 						recipient.is_visible = 1;
+// 					}
+// 				break;
+// 			}
+// 		} else if (filterType == "name") {
+
+// 			if (filterTerm != "") {
+// 				searchLength = filterTerm.length;
+// 				full_name = recipient.first_name + " " + recipient.last_name;
+// 				search_substring = full_name.substring(0, searchLength).toLowerCase()
+// 				if (search_substring == filterTerm) {
+// 					recipient.is_visible = 0;
+// 				}
+// 			};
+// 		}
+// 	}
+// 	console.log(startingArray);
+// 	return startingArray;
+// }

@@ -85,13 +85,20 @@
      * start queue card process for recipients
      */
     o.queueCardForRecipients = function() {
-      console.log(o.selectedRecipients);
       return $http.post('/queue_card', o.selectedRecipients);
     }
     o.retrieveRecipients = function(recipient_ids) {
       return $http.post("recipients/get_recipients.json", {recipient_ids: recipient_ids}).success(function(data) {
         o.selectedRecipients = data.recipients
       });
+    }
+
+    // successful picture upload -- update the proper recipient in this factor
+    o.updatePictureOnSuccess = function(recipient) {
+      currentRecipients = o.currentRecipients;
+      index = findWithAttr(currentRecipients, 'id', recipient.id);
+      o.currentRecipients[index] = recipient;
+      console.log(o.currentRecipients);
     }
 
     o.updatePictureForRecipient = function(recipient_id, picture_id) {

@@ -12,7 +12,7 @@
 			$scope.recipients               = recipients; // the "factory" recipients object
 			$scope.relationships            = recipients.relationships;
 			$scope.currentRecipients        = recipients.currentRecipients;
-			$scope.visibleCurrentRecipients = angular.copy($scope.currentRecipients);
+			//$scope.visibleCurrentRecipients = angular.copy($scope.currentRecipients);
 			$scope.newRecipient             = recipients.newRecipient;
 			$scope.newRecipientTemplate     = recipients.newRecipientTemplate;
 			$scope.relationships            = recipients.relationships;
@@ -22,6 +22,11 @@
 
 			headerTitle = angular.element(document.querySelector("#currentTitle"));
 			headerTitle.text("My People");
+
+			for (index = 0; index < $scope.currentRecipients.length; ++index) {
+				recipient = $scope.currentRecipients[index];
+				recipient.is_visible = 1;
+			}
 
 			// test whether you are currently at this state or not
 			$scope.$on('$stateChangeSuccess',
@@ -67,28 +72,49 @@
 
 			$scope.recipientNameFilter = function(name) {
 
-				allRecipients = $scope.currentRecipients;
+				currentRecipients = $scope.currentRecipients;
 				relationshipFilter = $scope.recipientsFilter;
 				$scope.filteredName = name;
 
 				name = name.toLowerCase();
 
-				visibleRecipients = filterArray("name", name, allRecipients);
+				visibleRecipients = filterArray("name", name, currentRecipients);
 				visibleRecipients = filterArray("relationship", relationshipFilter, visibleRecipients)
+				visibleRecipientIDs = visibleRecipients.map(function(item) { return item["id"]; });
 
-				$scope.visibleCurrentRecipients = visibleRecipients;
+				// use visible recipients to get the IDs
+				for (index = 0; index < $scope.currentRecipients.length; ++index) {
+					recipient = $scope.currentRecipients[index];
+					recipient_id = recipient.id
+					if (isInArray(recipient_id, visibleRecipientIDs)) {
+						recipient.is_visible = 1;
+					} else {
+						recipient.is_visible = 0;
+					}
+				}
 			};
 
 			$scope.updateFilterView = function(filter) {
 				
-				allRecipients = $scope.currentRecipients;
+				currentRecipients = $scope.currentRecipients;
 				$scope.recipientsFilter = filter;
 				name = $scope.filteredName;
 				
-				visibleRecipients = filterArray("relationship", filter, allRecipients);
+				visibleRecipients = filterArray("relationship", filter, currentRecipients);
 				visibleRecipients = filterArray("name", name, visibleRecipients);
 
-				$scope.visibleCurrentRecipients = visibleRecipients;
+				visibleRecipientIDs = visibleRecipients.map(function(item) { return item["id"]; });
+
+				// use visible recipients to get the IDs
+				for (index = 0; index < $scope.currentRecipients.length; ++index) {
+					recipient = $scope.currentRecipients[index];
+					recipient_id = recipient.id
+					if (isInArray(recipient_id, visibleRecipientIDs)) {
+						recipient.is_visible = 1;
+					} else {
+						recipient.is_visible = 0;
+					}
+				}
 				
 			}
 
@@ -155,15 +181,16 @@
 					templateUrl: 'angular/manage_recipients/recipient_modal_form.html',
 					backdrop: true,
 					windowClass: 'modal',
-					controller: function ($scope, $modalInstance, photo, relationships, occasions, recipients, currentRecipients) {
+					controller: function ($scope, $modalInstance, relationships, occasions, recipients, currentRecipients) {
 
 						$scope.recipients           = recipients; // the "factory" recipients object
 						$scope.currentRecipients    = currentRecipients;
 						$scope.recipient            = recipient;
-						$scope.photo                = photo;
 						$scope.relationships        = relationships;
 						$scope.occasions            = occasions;
 						isNewRecipient = (recipient.id > 0 ? false : true);
+
+						console.log($scope.recipient);
 
 						$scope.uploader = new FileUploader({
 							url: "/recipients/upload_recipient_picture.json",
@@ -172,6 +199,26 @@
 							  'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
 							}
 						});
+
+						// callback on successful upload
+						$scope.uploader.onSuccessItem = function(fileItem, response, status, headers) {
+							console.log("new success item");
+							console.log(response);
+							// update profile picture
+							recipient = response.recipient;
+							$scope.recipient = recipient;
+							// $scope.recipients.updatePictureOnSuccess(response.recipient);
+				      index = findWithAttr($scope.currentRecipients, 'id', recipient.id);
+				      console.log(index);
+				      console.log(recipient);
+				      recipients.currentRecipients[index] = recipient;
+				      $scope.recipients.currentRecipients[index] = recipient;
+				      console.log($scope.currentRecipients);
+				      console.log(recipients.currentRecipients);
+
+							//profile_picture_id = response.profile_picture_id;
+							//$scope.recipients.updatePictureForRecipient($scope.recipient.id, profile_picture_id);
+			      };
 
 						$scope.newOccasion = function() {
 							occasionTemplate = {
@@ -236,9 +283,6 @@
 
 					},
 					resolve: {
-						photo: function() {
-							return $scope.testImage;
-						},
 						relationships: function() {
 							return $scope.relationships;
 						},
@@ -246,10 +290,10 @@
 							return $scope.occasions;
 						},
 						recipients: function() {
-							return $scope.recipients;
+							return recipients;
 						},
 						currentRecipients: function() {
-							return $scope.currentRecipients;
+							return recipients.currentRecipients;
 						}
 					},
 					animation: false,
@@ -281,58 +325,5 @@
          }
      }
    });
-
-
-	 /**
-    * The ng-thumb directive
-    * @author: nerv
-    * @version: 0.1.2, 2014-01-09
-    */
-    app.directive('ngThumb', ['$window', function($window) {
-        var helper = {
-            support: !!($window.FileReader && $window.CanvasRenderingContext2D),
-            isFile: function(item) {
-                return angular.isObject(item) && item instanceof $window.File;
-            },
-            isImage: function(file) {
-                var type =  '|' + file.type.slice(file.type.lastIndexOf('/') + 1) + '|';
-                return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
-            }
-        };
-
-        return {
-            restrict: 'A',
-            template: '<canvas/>',
-            link: function(scope, element, attributes) {
-                if (!helper.support) return;
-
-                var params = scope.$eval(attributes.ngThumb);
-
-                if (!helper.isFile(params.file)) return;
-                if (!helper.isImage(params.file)) return;
-
-                var canvas = element.find('canvas');
-                var reader = new FileReader();
-
-                reader.onload = onLoadFile;
-                reader.readAsDataURL(params.file);
-
-                function onLoadFile(event) {
-                    var img = new Image();
-                    img.onload = onLoadImage;
-                    img.src = event.target.result;
-                }
-
-                function onLoadImage() {
-                    var width = params.width || this.width / this.height * params.height;
-                    var height = params.height || this.height / this.width * params.width;
-                    var className = params.class || "";
-                    canvas.attr({ width: width, height: height });
-                    canvas.attr('class', className);
-                    canvas[0].getContext('2d').drawImage(this, 0, 0, width, height);
-                }
-            }
-        };
-    }]);
 
 })();
