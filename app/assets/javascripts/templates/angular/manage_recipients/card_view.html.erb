@@ -44,7 +44,7 @@
 					<!-- should go through recipient's "events" and provide appropriate divs -->
 					<div class="events">
 						<div class="event" ng-repeat="occasion in recipient.occasions">
-							{{occasion.occasion.name}} in {{daysFromToday(occasion.recipient_occasion.occasion_date)}} - {{occasion.recipient_occasion.occasion_date | date: "MMM. d"}}
+							<span ng-if="occasion.occasion.name">{{occasion.occasion.name}} in {{daysFromToday(occasion.recipient_occasion.occasion_date)}} - {{occasion.recipient_occasion.occasion_date | date: "MMM. d"}}</span>
 						</div>
 					</div>
 

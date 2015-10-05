@@ -17,7 +17,7 @@ $card_profile_picture_size: 90px;
 		}
 		
 		.recipient_card {
-			height: 180px;
+			height: 187px;
 			background-color: white;
 			box-shadow: $grey_box_shadow;
 			text-align: center;
@@ -53,12 +53,12 @@ $card_profile_picture_size: 90px;
 
 				// group of events
 				.events {
-					color: $dark_teal;
-					font-size: 0.9em;
-					font-style: italic;
+					
 					// each individual event
 					.event {
-
+						font-size: 0.75em;
+						color: $dark_teal;
+						font-style: italic;
 					}
 				}
 
