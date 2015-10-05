@@ -74,6 +74,7 @@ $card_profile_picture_size: 90px;
 					border-radius: 50%;
 					position: relative;
 					background-color: $light_grey;
+					border: 1pt solid $medium_dark_grey; 
 
 					.image {
 						position: absolute;
@@ -205,7 +206,7 @@ $card_profile_picture_size: 90px;
 		    -moz-appearance: none;
 		    text-indent: 10px;
 		    border: 1pt solid $medium_dark_grey;
-		    color: white;
+		    color: $medium_dark_grey;
 		    background-color: transparent;
 			}
 
@@ -249,7 +250,6 @@ $card_profile_picture_size: 90px;
       background-repeat: no-repeat;
       text-indent: 32px;
       border: 1.5pt solid $medium_dark_grey;
-
 
       -webkit-transition: all 0.25s;
       -moz-transition: all 2s;

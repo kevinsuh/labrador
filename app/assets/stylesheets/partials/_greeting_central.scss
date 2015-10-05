@@ -1,5 +1,8 @@
 @import "base";
 
+$greeting_central_profile_picture_size: 40px;
+
+
 .my_people_section, .calendar_section {
 
 	box-shadow: $grey_box_shadow;
@@ -66,11 +69,37 @@
 				.image_cell {
 					overflow: hidden;
 					width: 20%;
-					.recipient_image {
-						margin: 5px;
-						border-radius: 35px;
-						width: 35px;
-					}	
+					padding: 0 1%;
+
+					.profile_picture_container {
+
+						height:100%;
+						float: left;
+						width: 0;
+
+						// recipient picture
+						.profile_picture {
+							height: $greeting_central_profile_picture_size; 
+							width: $greeting_central_profile_picture_size; 
+							overflow:hidden;
+							-webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC); //overflow hidden for chrome
+							background-color: $light_grey;
+							border: 1pt solid $medium_dark_grey; 
+
+							margin: 0 auto;
+							margin-top: 5px;
+							float: left;
+
+							border-radius: 50%;
+							position: relative;
+
+							.image {
+								position: absolute;
+								bottom: 0;
+								height: $greeting_central_profile_picture_size;
+							}
+						}
+					}
 				}
 
 				.info_cell {

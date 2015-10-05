@@ -17,7 +17,12 @@
 		<table class="recipients">
 			<tr ng-repeat="recipient in currentRecipients" class="recipient_row">
 				<td class="image_cell">
-					<img class="recipient_image" ng-src="{{testImage}}" />
+					<div class="profile_picture_container">
+						<div class="profile_picture">
+							<img class="image" ng-src="{{recipient.profile_picture}}" />
+						</div>
+					</div>
+					<!-- <img class="recipient_image" ng-src="{{testImage}}" /> -->
 				</td>
 				<td class="info_cell">
 					<span class="recipient_info name">{{recipient.first_name}} {{recipient.last_name}}</span>
