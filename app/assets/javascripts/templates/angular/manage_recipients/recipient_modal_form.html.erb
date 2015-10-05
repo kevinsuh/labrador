@@ -109,6 +109,7 @@
 
 			<div class="row events" ng-repeat="occasion_hash in recipient.occasions" ng-controller="recipientOccasionsCtrl">
 				<div class="events form_field">
+					<span class="glyphicon glyphicon-minus remove-occasion" ng-click="removeOccasion(occasion_hash)"></span>
 					<div class="occasion">
 						<div class="occasion_input form_input">
 							<select ng-model="occasion_hash.recipient_occasion.occasion_id" ng-options="value as key for (key, value) in occasions"></select>
@@ -158,7 +159,7 @@
 				</div>
 			</div>
 			<div class="row add_new_event">
-				<span style="color:red; cursor: pointer;" ng-click="newOccasion()">+ Add New Event</span>
+				<span class="add-occasion" ng-click="newOccasion()"><i class="glyphicon glyphicon-plus add-occasion-glyph"></i>Add New Event</span>
 			</div>
 		</div>
 	</div>

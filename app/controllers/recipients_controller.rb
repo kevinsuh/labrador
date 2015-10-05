@@ -72,29 +72,6 @@ class RecipientsController < ApplicationController
     end
   end
 
-  # WE SHOULD DEPRECATE THIS!!!!
-  # AWW YEAH
-  # this is for the callback on uploading recipient_picture
-  def update_recipient_picture
-    recipient_id = params[:recipient_id]
-    picture_id   = params[:picture_id]
-
-    recipient = Recipient.find(recipient_id)
-
-    # for now, delete existing profile pictures when saving new one
-    if profile_picture = ProfilePicture.find_by(id: picture_id)
-      recipient.profile_pictures.delete_all
-      profile_picture.update_columns(
-        person_id: recipient_id,
-        person_type: "Recipient"
-      )
-    end
-
-    respond_to do |format|
-      format.json { render json: recipient }
-    end
-  end
-
   # update recipient for current user
   def update_for_current
 
@@ -145,26 +122,35 @@ class RecipientsController < ApplicationController
     end
 
     # 4) save recipient occasions
+    # our update will be to delete all occasions then create new ones
     occasions = params[:occasions]
     if occasions
+
+      recipient.occasions.delete_all
+
       occasions.each do |occasion|
         recipient_occasion = occasion[:recipient_occasion]
         occasion_id        = recipient_occasion[:occasion_id]
         occasion_date      = recipient_occasion[:occasion_date]
 
+        recipient.recipient_occasions.create(
+            occasion_id: occasion_id,
+            occasion_date: occasion_date
+          )
+
         # update existing vs create new
-        if id = recipient_occasion[:id]
-          update_recipient_occasion = RecipientOccasion.find(id)
-          update_recipient_occasion.update_columns(
-            occasion_id: occasion_id,
-            occasion_date: occasion_date
-          )
-        else
-          recipient.recipient_occasions.create(
-            occasion_id: occasion_id,
-            occasion_date: occasion_date
-          )
-        end
+        # if id = recipient_occasion[:id]
+        #   update_recipient_occasion = RecipientOccasion.find(id)
+        #   update_recipient_occasion.update_columns(
+        #     occasion_id: occasion_id,
+        #     occasion_date: occasion_date
+        #   )
+        # else
+        #   recipient.recipient_occasions.create(
+        #     occasion_id: occasion_id,
+        #     occasion_date: occasion_date
+        #   )
+        # end
 
       end
     end

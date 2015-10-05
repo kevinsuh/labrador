@@ -210,6 +210,26 @@
 							$scope.recipient.occasions.push(occasionTemplate);
 						}
 
+						// remove this occasion on modal form
+						$scope.removeOccasion = function(occasion_hash) {
+
+							// find index where the recipient_occasion id equals this occasion_hash's recipient_occasion id
+							occasion_hashes = $scope.recipient.occasions;
+							recipient_occasion_id = occasion_hash.recipient_occasion.id;
+							index = -1;
+
+							for(var i = 0; i < occasion_hashes.length; i += 1) {
+				        if(occasion_hashes[i].recipient_occasion.id === recipient_occasion_id) {
+				            index = i;
+				        }
+					    }
+
+					    // if recipient_occasion_id is found, remove it from recipients occasions
+					    new_occasion_hashes = arrayWithIndexRemoved(index, occasion_hashes);
+				    	$scope.recipient.occasions = new_occasion_hashes
+
+						}
+
 						$scope.cancel = function() {
 							$modalInstance.dismiss('cancel');
 						}

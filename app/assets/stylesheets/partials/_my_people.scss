@@ -15,7 +15,7 @@ $card_profile_picture_size: 90px;
 		&.col-xs-4 {
 
 		}
-		
+
 		.recipient_card {
 			height: 187px;
 			background-color: white;
@@ -157,6 +157,32 @@ $card_profile_picture_size: 90px;
 					display: block;
 				}
 
+			}
+		}
+
+		// custom for add recipient card
+		&.add_recipient {
+			.recipient_card {
+				display: table;
+				width: 100%;
+				cursor: pointer;
+				box-shadow: none;
+				.recipient_info {
+					.add_title {
+						font-size: 1.4em;
+						.glyphicon {
+							margin-right: 10px;
+						}
+					}
+					display: table-cell;
+					vertical-align: middle;
+					border: 1pt solid $inactive_grey;
+					color: $inactive_grey;
+					&:hover {
+						border: 1.5pt solid $link_click_purple;
+						color: $link_click_purple;	
+					}
+				}	
 			}
 		}
 	}

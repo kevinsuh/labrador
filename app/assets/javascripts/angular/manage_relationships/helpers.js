@@ -106,6 +106,13 @@ function arrayWithValueRemoved(value, array) {
 	return array;
 }
 
+function arrayWithIndexRemoved(index, array) {
+	if (index > -1) {
+		array.splice(index, 1);
+	}
+	return array;
+}
+
 // this will always return the upcoming one of this, even if birthday of past is entered
 function parseDateForNextOccasion(str) {
     

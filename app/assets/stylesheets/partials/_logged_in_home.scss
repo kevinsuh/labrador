@@ -142,9 +142,17 @@ $modal_profile_picture_size: 110px;
 			}
 
 			.events {
+				.remove-occasion {
+					float: left;
+					color: red;
+					cursor: pointer;
+					margin: 8px 1% 8px 0;
+					width: 5%;
+					text-align: left;
+				}
 				.occasion {
 					float: left;
-					width: 61%;
+					width: 53%;
 					margin-right: 3%;
 				}
 				.month {
@@ -183,6 +191,19 @@ $modal_profile_picture_size: 110px;
 								border-radius: 10px;	
 							}	
 						}
+					}
+				}
+			}
+
+			.add_new_event {
+				margin-top: 10px;
+
+				span.add-occasion {
+					color: red;
+					cursor: pointer;
+					.add-occasion-glyph {
+						width: 4%;
+						margin-left: 2px;
 					}
 				}
 			}

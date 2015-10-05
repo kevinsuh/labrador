@@ -72,4 +72,12 @@
 			</div>
 		</div>
 	</div>
+
+	<div class="col-xs-3 single_card_div add_recipient">
+		<div class="recipient_card" ng-click="open_modal_form(newRecipient)">
+			<div class="recipient_info" ng-class="{'selected': isInArray(recipient.id, selectedRecipientIDs)}">
+				<span class="add_title"><i class="glyphicon glyphicon-plus"></i>ADD PERSON</span>
+			</div>
+		</div>
+	</div>
 </div>
