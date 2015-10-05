@@ -16,9 +16,10 @@ $queue_wizard_profile_picture_size: 100px;
 
 		.inner_container {
 
-			display: inline-flex;
+			@include display-flex; // inline-flex display for all browsers
 			height:100%;
 			width: 100%;
+			overflow: scroll;
 			
 			.centered_view {
 				margin: auto 0px;
