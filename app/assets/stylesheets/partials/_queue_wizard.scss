@@ -1,5 +1,7 @@
 @import "base";
 
+$queue_wizard_profile_picture_size: 100px;
+
 // this is the overarching container div
 .queue_card {
 
@@ -9,6 +11,71 @@
 		border-right: 1pt solid black;
 		position: fixed;
 		height: 100%;
+		margin:0;
+		padding:0;
+
+		.inner_container {
+
+			display: inline-flex;
+			height:100%;
+			width: 100%;
+			
+			.centered_view {
+				margin: auto 0px;
+				width: 100%;
+
+				.recipient { // reach recipient in my recipients view
+
+					width: 100%;
+					margin: 35px 0;
+
+					.profile_picture_container {
+
+						height:100%;
+						width: 50%;
+						margin: 0 auto;
+
+						// recipient picture
+						.profile_picture {
+							height: $queue_wizard_profile_picture_size; 
+							width: $queue_wizard_profile_picture_size; 
+							overflow:hidden;
+							-webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC); //overflow hidden for chrome
+							background-color: $light_grey;
+							border: 1pt solid $medium_dark_grey; 
+
+							margin: 0 auto;
+							margin-top: 5px;
+
+							border-radius: 50%;
+							position: relative;
+
+							.image {
+								position: absolute;
+								bottom: 0;
+								height: $queue_wizard_profile_picture_size;
+							}
+						}
+					}
+
+					.name_container {
+						width: 50%;
+						margin: 0 auto;
+						text-align: center;
+
+						.name {
+							
+							font-size:1.5em;
+						}
+					}
+
+				}
+
+			}
+
+		}
+
+
 	}
 
 	// the entire right-side column

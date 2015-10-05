@@ -1,13 +1,28 @@
-recipients page:
-
-<div ng-repeat="recipient in selectedRecipients" style="margin: 30px;">
-	<div>
-		first name: {{recipient.first_name}}
-	</div>
-	<div>
-		last name: {{recipient.last_name}}
-	</div>
-	<div>
-		relation to you: {{recipient.relationship.name}}
+<div class="centered_view">
+	<div class="recipient" ng-repeat="recipient in selectedRecipients">
+		<div class="profile_picture_container">
+			<div class="profile_picture">
+				<img class="image" ng-src="{{recipient.profile_picture}}" />
+			</div>
+		</div>
+		<div class="name_container">
+			<span class="name">{{recipient.first_name}} {{recipient.last_name}}</span>
+		</div>
 	</div>
 </div>
+
+<!-- <div ng-repeat="recipient in selectedRecipients">
+
+	<table class="selected_recipients">
+		<tr ng-repeat="recipient in selectedRecipients" class="recipient_row">
+			<td class="recipient_cell">
+				<div class="profile_picture_container">
+					<div class="profile_picture">
+						<img class="image" ng-src="{{recipient.profile_picture}}" />
+					</div>
+				</div>
+			</td>
+		</tr>
+	</table>
+</div>
+ -->
