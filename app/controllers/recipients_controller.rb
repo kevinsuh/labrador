@@ -59,7 +59,7 @@ class RecipientsController < ApplicationController
   end
 
   def upload_recipient_picture
-    profile_picture = ProfilePicture.create(picture: params[:file])
+    
     update_recipient_id = params[:update_recipient_id]
     if update_recipient_id && Integer(update_recipient_id) > 0
       recipient = Recipient.find(update_recipient_id)
