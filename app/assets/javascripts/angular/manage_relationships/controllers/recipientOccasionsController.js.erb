@@ -5,6 +5,8 @@
 	 */
 	var app = angular.module('card-queue').controller("recipientOccasionsCtrl", function($rootScope, $scope) {
 		
+    suggested_date = "";
+
 		// pre-fill certain events
 		$scope.$watch('occasion_hash.recipient_occasion.occasion_id', function(newValue, oldValue){
 				
