@@ -23,11 +23,6 @@
 			headerTitle = angular.element(document.querySelector("#currentTitle"));
 			headerTitle.text("My People");
 
-			for (index = 0; index < $scope.currentRecipients.length; ++index) {
-				recipient = $scope.currentRecipients[index];
-				recipient.is_visible = 1;
-			}
-
 			// test whether you are currently at this state or not
 			$scope.$on('$stateChangeSuccess',
 			  function(event, toState) {
@@ -55,17 +50,9 @@
 				}
 			};
 
-
-			// test add event
-			$scope.addEvent = function(recipient) {
-				console.log("yay");
-				console.log(recipient);
-
-				testOccasion = recipient.occasions[0].recipient_occasion
-				testRecipientOccasion = recipient.occasions[0].recipient_occasion
-			}
-
-			// filter recipients functionality
+			/**
+			 * 			FILTER RECIPIENTS FUNCTIONALITY
+			 */
 			$scope.recipientsFilter = "All";
 			$scope.filterOptions = ["All", "Family", "Friends"];
 			$scope.filteredName = "";
@@ -119,41 +106,17 @@
 			}
 
 			/**
-			 * 				START QUEUE WIZARD
-			 */
-			$scope.queueCardWizard = function() {
-				
-				$scope.selectedRecipients = [4,6,7];
-				selectedRecipientsString = $scope.selectedRecipients.join();
-
-				$window.location.href= "/queue_card/?user_id="+selectedRecipientsString+"/";
-
-				// recipients.queueCardForRecipients().success(function(data) {
-				// 	console.log(data);
-				// 	//$location.path('/queue_card');
-				// })
-				//$window.location.href = "/queue_card?user_id="+selectedRecipientsString;
-
-
-				 //recipients.queueCardForRecipients();
-			}
-
-			/**
 			 * 			RECIPIENT CARD BUTTON OPTIONS
 			 */
 			$scope.select = function(recipient) {
 				recipient_ids = recipients.selectedRecipientIDs;
 
-				if ($scope.isInArray(recipient.id, recipient_ids)) {
+				if (isInArray(recipient.id, recipient_ids)) {
 					$scope.selectedRecipientIDs = arrayWithValueRemoved(recipient.id, $scope.selectedRecipientIDs);
 				} else {
 					$scope.selectedRecipientIDs.push(recipient.id);
 				}
 			};
-
-			$scope.isInArray = function(value, array) {
-				return array.indexOf(value) > -1;
-			}
 
 			/**
 			 * this is single queue, so this will become the only one to send to queue wizard
@@ -303,27 +266,5 @@
 			};
 			
 		});
-
-	// date formatter from JSON to date type
-	app.directive('jsonDate', function($filter) {
-      return  {
-          restrict: 'A',
-          require: 'ngModel',
-          link: function (scope, element, attrs, ngModel) {
-
-             //format text going to user (model to view)
-             ngModel.$formatters.push(function(value) {
-                var date = new Date(value);
-                return date;
-             });
-
-             //format text from the user (view to model)
-             ngModel.$parsers.push(function(value) {
-                var date = new Date(value);
-                return date;
-             });
-         }
-     }
-   });
 
 })();

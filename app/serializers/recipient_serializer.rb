@@ -6,6 +6,7 @@ class RecipientSerializer < ActiveModel::Serializer
   	data = super # get the current JSON object
   	recipient = object
 
+    data[:is_visible] = 1 # visible by default
 
     relationship_id = data[:relationship_id]
     relationship = Relationship.find_by(id: relationship_id)
