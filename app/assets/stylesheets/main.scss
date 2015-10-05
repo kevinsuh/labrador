@@ -33,7 +33,7 @@ span, p {
     margin: 0;
     width: 100%;
     padding: 0;
-    background-color: $ben_light_grey;
+    background-color: $white_grey;
     min-height: 1000px;
     min-width: 1000px;
   }
@@ -73,7 +73,7 @@ span, p {
         // cardagain logo
         &.logo {
           width: $box_size;
-          background-color: $extra_dark_grey;
+          background-color: black;
           border-bottom: none;
           .title {
             margin: 0;
@@ -82,7 +82,7 @@ span, p {
         }
         &:hover {
           color: white;
-          background-color: $extra_dark_grey;
+          background-color: $link_click_purple;
           cursor: pointer;
         }
       }
@@ -188,8 +188,10 @@ div {
   }
   &.active {
     .box {
-      background-color: $extra_dark_grey;
-      color: white !important;
+      &.side_link { // for main left bar
+        background-color: $white_grey;
+        color: $extra_dark_grey;
+      }
     }
   }
 

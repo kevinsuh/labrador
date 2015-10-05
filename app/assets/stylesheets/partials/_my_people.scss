@@ -17,11 +17,11 @@ $card_profile_picture_size: 90px;
 		}
 		
 		.recipient_card {
-			height: 150px;
+			height: 175px;
 			background-color: white;
 			box-shadow: $grey_box_shadow;
 			text-align: center;
-
+			overflow-y: hidden;
 
 			.icon_header {
 				&.selected {
@@ -47,6 +47,21 @@ $card_profile_picture_size: 90px;
 					border-top: 5pt solid $selection_green;
 				}
 
+				.name {
+					font-size: 1.3em;
+				}
+
+				// group of events
+				.events {
+					color: $dark_teal;
+					font-size: 0.9em;
+					font-style: italic;
+					// each individual event
+					.event {
+
+					}
+				}
+
 				// recipient picture
 				.profile_picture {
 					height: $card_profile_picture_size; 
@@ -58,7 +73,7 @@ $card_profile_picture_size: 90px;
 
 					border-radius: 50%;
 					position: relative;
-
+					background-color: $light_grey;
 
 					.image {
 						position: absolute;
@@ -66,7 +81,6 @@ $card_profile_picture_size: 90px;
 						bottom: 0;
 						height: $card_profile_picture_size;
 					}
-
 				}
 
 				.overlay_view, .recipient_options.overlay {
@@ -91,8 +105,8 @@ $card_profile_picture_size: 90px;
 						button {
 							color: white;
 							border: 1.5pt solid white;
-							width: 40px;
-							height: 40px;
+							width: 45px;
+							height: 45px;
 							border-radius: 50%;
 							&.edit-recipient {
 								background-color: $medium_dark_grey;

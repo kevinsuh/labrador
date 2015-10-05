@@ -33,35 +33,25 @@
 					</div>
 				</div>
 				<div class="recipient_info" ng-class="{'selected': isInArray(recipient.id, selectedRecipientIDs)}">
-					<div class="profile_picture">
-						<img class="image" ng-src="{{recipient.profile_picture || testImage}}" />
-					</div>
-
-					<div class="notifications">
-					  <div class="notification_container">
-					  	<a href="#" id="view_queued">
-						  	<%= image_tag('queued_icon.png', alt: 'Queued Orders', class: "icon") %>
-						  	<span id="queued_count" class="notification_bubble">1</span>
-					  	</a>
-					  </div>
-
-					  <div class="notification_container">
-					  	<a href="#" id="view_purchased">
-						  	<%= image_tag('purchased_icon.png', alt: 'Purchased Orders', class: "icon") %>
-						  	<span id="purchased_count" class="notification_bubble">2</span>
-					  	</a>
-					  </div>
-
+					<div class="profile_picture_container">
+						<div class="profile_picture">
+							<img class="image" ng-src="{{recipient.profile_picture}}" />
+						</div>
 					</div>
 					<div class="name">
 						{{recipient.first_name}} {{recipient.last_name}}
 					</div>
 					<!-- should go through recipient's "events" and provide appropriate divs -->
-					<div class="event birthday">
+					<div class="events">
+						<div class="event" ng-repeat="occasion in recipient.occasions">
+							{{occasion.occasion.name}} in X days - {{occasion.recipient_occasion.occasion_date}}
+						</div>
+						<div class="event birthday">
 						Birthday in 187 days - Mar. 13
-					</div>
-					<div class="event mothers_day">
-						Mother's Day in 211 days
+						</div>
+						<div class="event mothers_day">
+							Mother's Day in 211 days
+						</div>
 					</div>
 
 					<div class="overlay_view">

@@ -5,20 +5,19 @@
 	 */
 	var app = angular.module('card-queue').controller("ManageRecipientsController", function($rootScope, $location, $window, $scope, $state, $timeout, $modal, recipients, cards, usSpinnerService, FileUploader) {
 				
-			// load in user and relationships factories
-      $scope.testImage = "/assets/blank_user.png";
 
 			// new manage relationships feature!
 			$scope.recipients               = recipients; // the "factory" recipients object
 			$scope.relationships            = recipients.relationships;
 			$scope.currentRecipients        = recipients.currentRecipients;
-			//$scope.visibleCurrentRecipients = angular.copy($scope.currentRecipients);
 			$scope.newRecipient             = recipients.newRecipient;
 			$scope.newRecipientTemplate     = recipients.newRecipientTemplate;
 			$scope.relationships            = recipients.relationships;
 			$scope.occasions                = cards.occasions;
 			$scope.selectedRecipients       = recipients.selectedRecipients;
 			$scope.selectedRecipientIDs     = recipients.selectedRecipientIDs;
+
+			console.log($scope.currentRecipients[0]);
 
 			headerTitle = angular.element(document.querySelector("#currentTitle"));
 			headerTitle.text("My People");
@@ -117,6 +116,10 @@
 					$scope.selectedRecipientIDs.push(recipient.id);
 				}
 			};
+
+			$scope.isInArray = function(value, array) {
+			  return array.indexOf(value) > -1;
+			}
 
 			/**
 			 * this is single queue, so this will become the only one to send to queue wizard
