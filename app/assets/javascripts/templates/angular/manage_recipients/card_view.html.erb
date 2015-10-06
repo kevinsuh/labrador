@@ -24,7 +24,7 @@
 </div>
 
 <div class="row">	
-	<div class="col-xs-6 col-sm-4 col-md-3 single_card_div"  ng-repeat="recipient in currentRecipients" ng-if="recipient.is_visible == 1">
+	<div class="col-xs-6 col-md-3 single_card_div"  ng-repeat="recipient in currentRecipients" ng-if="recipient.is_visible == 1">
 		<div class="recipient_card">
 			<div class="relationship_group">
 				<div ng-if="isInArray(recipient.id, selectedRecipientIDs)" class="icon_header selected">
@@ -71,7 +71,7 @@
 		</div>
 	</div>
 
-	<div class="col-xs-6 col-sm-4 col-md-3 single_card_div add_recipient">
+	<div class="col-xs-6 col-md-3 single_card_div add_recipient">
 		<div class="recipient_card" ng-click="open_modal_form(newRecipient)">
 			<div class="recipient_info" ng-class="{'selected': isInArray(recipient.id, selectedRecipientIDs)}">
 				<span class="add_title"><i class="glyphicon glyphicon-plus"></i>ADD PERSON</span>
