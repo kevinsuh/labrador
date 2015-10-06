@@ -118,6 +118,21 @@
 			}
 
 			/**
+			 * 			INDIVIDUAL OVERLAY CONFIG
+			 */
+			$scope.displayOverlay = function() {
+				this.viewOverlay = true;
+			}
+
+			$scope.hideOverlay = function() {
+				this.viewOverlay = false;
+			}
+
+			$scope.toggleOverlay = function() {
+				this.viewOverlay = !this.viewOverlay;
+			}
+
+			/**
 			 * 			RECIPIENT CARD BUTTON OPTIONS
 			 */
 			$scope.select = function(recipient) {

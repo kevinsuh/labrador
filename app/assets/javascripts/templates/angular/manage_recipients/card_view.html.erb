@@ -24,32 +24,36 @@
 </div>
 
 <div class="row">	
-	<div class="col-xs-6 col-md-4 col-lg-3 single_card_div"  ng-repeat="recipient in currentRecipients" ng-if="recipient.is_visible == 1">
-		<div class="recipient_card">
-			<div class="relationship_group">
-				<div ng-if="isInArray(recipient.id, selectedRecipientIDs)" class="icon_header selected">
-					<i class="glyphicon glyphicon-check"></i>
-				</div>
-			</div>
+	<div class="col-xs-6 col-md-4 col-lg-3 single_card_div" ng-repeat="recipient in currentRecipients" ng-if="recipient.is_visible == 1">
+		<div class="recipient_card" ng-mouseover="displayOverlay()" ng-mouseleave="hideOverlay()" ng-click="toggleOverlay()">
 			<div class="recipient_info" ng-class="{'selected': isInArray(recipient.id, selectedRecipientIDs)}">
+
+				<div class="relationship_group">
+					<div ng-if="isInArray(recipient.id, selectedRecipientIDs)" class="icon_header selected">
+						<i class="glyphicon glyphicon-check"></i>
+					</div>
+				</div>
+
 				<div class="profile_picture_container">
 					<div class="profile_picture">
 						<img class="image" ng-src="{{recipient.profile_picture}}" />
 					</div>
 				</div>
+
 				<div class="name">
 					{{recipient.first_name}} {{recipient.last_name}}
 				</div>
-				<!-- should go through recipient's "events" and provide appropriate divs -->
+
 				<div class="events">
 					<div class="event" ng-repeat="occasion in recipient.occasions">
 						<span ng-if="occasion.occasion.name">{{occasion.occasion.name}} in {{daysFromToday(occasion.recipient_occasion.occasion_date)}} - {{occasion.recipient_occasion.occasion_date | date: "MMM. d"}}</span>
 					</div>
 				</div>
 
-				<div class="overlay_view">
+				<!-- hidden overlay to go over card -->
+				<div class="overlay_view" ng-class="{display:viewOverlay}">
 				</div>
-				<div class="recipient_options overlay">
+				<div class="recipient_options overlay" ng-class="{display:viewOverlay}">
 					<div class="option_buttons">
 						<button class="btn select-recipient" ng-click="select(recipient)"><i class="glyphicon glyphicon-check"></i></button>
 						<br>
@@ -80,3 +84,26 @@
 	</div>
 
 </div>
+
+<script type="text/javascript">
+<!--
+    function toggle_overlay_visibility(index) {
+
+    	id_one = "overlay_view_"+index;
+    	id_two = "overlay_view_options"+index;
+
+    	var e = document.getElementById(id_one);
+    	if(e.style.display == 'block')
+    		e.style.display = 'none';
+    	else
+    		e.style.display = 'block';
+
+    	var e_two = document.getElementById(id_two);
+    	if(e_two.style.display == 'block')
+    		e_two.style.display = 'none';
+    	else
+    		e_two.style.display = 'block';
+
+    }
+//-->
+</script>

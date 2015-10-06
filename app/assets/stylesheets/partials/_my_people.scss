@@ -150,10 +150,21 @@ $card_profile_picture_size: 90px;
 
 				}
 
-				&:hover .overlay_view {
-					display: block;
+				.overlay_view {
 					background-color: black;
 					opacity: 0.75;
+					&.display {
+						display: block;
+					}
+				}
+				.recipient_options.overlay {
+					&.display {
+						display: block;
+					}
+				}
+
+				&:hover .overlay_view {
+					display: block;
 				}
 				&:hover .recipient_options.overlay {
 					display: block;

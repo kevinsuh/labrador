@@ -75571,52 +75571,63 @@ html {
   margin-right: 5px;
 }
 /* line 153, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
-.my_people_view .single_card_div .recipient_card .recipient_info:hover .overlay_view {
-  display: block;
+.my_people_view .single_card_div .recipient_card .recipient_info .overlay_view {
   background-color: black;
   opacity: 0.75;
 }
-/* line 158, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
+/* line 156, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
+.my_people_view .single_card_div .recipient_card .recipient_info .overlay_view.display {
+  display: block;
+}
+/* line 161, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
+.my_people_view .single_card_div .recipient_card .recipient_info .recipient_options.overlay.display {
+  display: block;
+}
+/* line 166, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
+.my_people_view .single_card_div .recipient_card .recipient_info:hover .overlay_view {
+  display: block;
+}
+/* line 169, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
 .my_people_view .single_card_div .recipient_card .recipient_info:hover .recipient_options.overlay {
   display: block;
 }
-/* line 167, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
+/* line 178, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
 .my_people_view .single_card_div.add_recipient .recipient_card {
   display: table;
   width: 100%;
   cursor: pointer;
   box-shadow: none;
 }
-/* line 172, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
+/* line 183, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
 .my_people_view .single_card_div.add_recipient .recipient_card .recipient_info {
   display: table-cell;
   vertical-align: middle;
   border: 1pt solid #BCBBBD;
   color: #BCBBBD;
 }
-/* line 173, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
+/* line 184, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
 .my_people_view .single_card_div.add_recipient .recipient_card .recipient_info .add_title {
   font-size: 1.4em;
 }
-/* line 175, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
+/* line 186, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
 .my_people_view .single_card_div.add_recipient .recipient_card .recipient_info .add_title .glyphicon {
   margin-right: 10px;
 }
-/* line 183, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
+/* line 194, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
 .my_people_view .single_card_div.add_recipient .recipient_card .recipient_info:hover {
   border: 1.5pt solid #867CAD;
   color: #867CAD;
 }
-/* line 193, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
+/* line 204, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
 .my_people_view .options {
   height: 50px;
   width: 300px;
 }
-/* line 199, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
+/* line 210, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
 .my_people_view .options .form_input {
   display: inline-block;
 }
-/* line 203, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
+/* line 214, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
 .my_people_view .options .form_input .filter_select {
   height: 35px;
   width: 160px;
@@ -75627,7 +75638,7 @@ html {
   color: #BBBABA;
   background-color: transparent;
 }
-/* line 215, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
+/* line 226, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
 .my_people_view .options .form_input .send_card {
   display: block;
   width: 100px;
@@ -75652,7 +75663,7 @@ html {
   -webkit-transition: all 0.1s ease;
   transition: all 0.1s ease;
 }
-/* line 232, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
+/* line 243, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
 .my_people_view .options .form_input .send_card:active {
   -moz-box-shadow: 1px 1px 1px #CA6556, 0px 1px 2px rgba(0, 0, 0, 0.9);
   -webkit-box-shadow: 1px 1px 1px #CA6556, 0px 1px 2px rgba(0, 0, 0, 0.9);
@@ -75660,12 +75671,12 @@ html {
   position: relative;
   top: 2px;
 }
-/* line 242, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
+/* line 253, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
 .my_people_view .filter_people {
   width: 35%;
   margin-left: 15px;
 }
-/* line 245, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
+/* line 256, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
 .my_people_view .filter_people .filter_people_input {
   border-radius: 20px;
   width: 100%;
@@ -75679,18 +75690,18 @@ html {
   -moz-transition: all 2s;
   transition: all 0.25s;
 }
-/* line 259, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
+/* line 270, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
 .my_people_view .filter_people .filter_people_input.active {
   background-color: none;
   background-position: -40px center;
   text-indent: 4px;
   width: 55%;
 }
-/* line 266, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
+/* line 277, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
 .my_people_view .filter_people .filter_people_input:focus {
   outline: 0;
 }
-/* line 271, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
+/* line 282, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
 .my_people_view .filter_people .search_icon {
   position: absolute;
   left: 27px;
