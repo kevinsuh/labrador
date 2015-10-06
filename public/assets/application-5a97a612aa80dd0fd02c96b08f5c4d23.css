@@ -11455,7 +11455,6 @@ span, p {
   padding: 0;
   background-color: #F7F7F7;
   min-height: 1000px;
-  min-width: 1150px;
 }
 /* line 44, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/main.scss */
 .container.main_page .left_bar {
@@ -65963,41 +65962,45 @@ html {
   margin-right: 20px;
   min-height: 780px;
 }
+/* line 13, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
+.logged_in_home .greeting_central_view {
+  min-width: 1100px;
+}
 
 /**
  * 		LEFT-HAND SECTION (USER INFO)
  */
-/* line 17, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
+/* line 24, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
 .user_info h2 {
   font-size: 16px;
   margin: 0 auto;
 }
-/* line 21, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
+/* line 28, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
 .user_info .section {
   float: left;
 }
 
-/* line 32, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
+/* line 44, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
 .recipient_modal_form .recipient_info .photo {
   display: inline-block;
   float: left;
   width: 20%;
   margin-right: 3%;
 }
-/* line 37, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
+/* line 49, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
 .recipient_modal_form .recipient_info .photo img {
   margin-top: 10%;
   width: 100%;
   border-radius: 52px;
   border: 2pt solid white;
 }
-/* line 44, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
+/* line 56, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
 .recipient_modal_form .recipient_info .profile_picture_container {
   height: 100%;
   float: left;
   width: 0;
 }
-/* line 51, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
+/* line 63, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
 .recipient_modal_form .recipient_info .profile_picture_container .profile_picture {
   height: 110px;
   width: 110px;
@@ -66011,73 +66014,73 @@ html {
   border-radius: 50%;
   position: relative;
 }
-/* line 66, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
+/* line 78, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
 .recipient_modal_form .recipient_info .profile_picture_container .profile_picture .image {
   position: absolute;
   bottom: 0;
   height: 110px;
 }
-/* line 74, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
+/* line 86, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
 .recipient_modal_form .recipient_info .profile_picture_container .picture_upload {
   float: left;
   margin-top: 15px;
 }
-/* line 80, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
+/* line 92, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
 .recipient_modal_form .recipient_info .basic_info {
   display: inline-block;
   width: 75%;
   float: right;
 }
-/* line 86, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
+/* line 98, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
 .recipient_modal_form .recipient_info .basic_info .name .first_name {
   float: left;
   width: 48.5%;
   margin-right: 3%;
 }
-/* line 91, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
+/* line 103, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
 .recipient_modal_form .recipient_info .basic_info .name .last_name {
   float: left;
   width: 48.5%;
 }
-/* line 98, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
+/* line 110, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
 .recipient_modal_form .recipient_info .basic_info .relationship .relationship_input {
   float: left;
   width: 80%;
   margin-right: 3%;
 }
-/* line 103, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
+/* line 115, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
 .recipient_modal_form .recipient_info .basic_info .relationship .group_input {
   float: left;
   width: 17%;
 }
-/* line 113, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
+/* line 125, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
 .recipient_modal_form .modal_body {
   padding-top: 0;
 }
-/* line 123, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
+/* line 135, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
 .recipient_modal_form .modal_body .body .address_other .city {
   float: left;
   width: 30%;
   margin-right: 3%;
 }
-/* line 128, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
+/* line 140, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
 .recipient_modal_form .modal_body .body .address_other .state {
   float: left;
   width: 12.5%;
   margin-right: 3%;
 }
-/* line 133, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
+/* line 145, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
 .recipient_modal_form .modal_body .body .address_other .zip {
   float: left;
   width: 12.5%;
   margin-right: 3%;
 }
-/* line 138, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
+/* line 150, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
 .recipient_modal_form .modal_body .body .address_other .country {
   float: right;
   width: 35%;
 }
-/* line 145, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
+/* line 157, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
 .recipient_modal_form .modal_body .body .events .remove-occasion {
   float: left;
   color: red;
@@ -66086,79 +66089,79 @@ html {
   width: 5%;
   text-align: left;
 }
-/* line 153, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
+/* line 165, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
 .recipient_modal_form .modal_body .body .events .occasion {
   float: left;
   width: 53%;
   margin-right: 3%;
 }
-/* line 158, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
+/* line 170, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
 .recipient_modal_form .modal_body .body .events .month {
   float: left;
   width: 22.5%;
   margin-right: 3%;
 }
-/* line 163, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
+/* line 175, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
 .recipient_modal_form .modal_body .body .events .day {
   float: left;
   width: 15%;
   margin-right: 3%;
 }
-/* line 168, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
+/* line 180, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
 .recipient_modal_form .modal_body .body .events .year {
   width: 20%;
   float: right;
 }
-/* line 172, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
+/* line 184, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
 .recipient_modal_form .modal_body .body .events .date {
   float: right;
   width: 35%;
 }
-/* line 175, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
+/* line 187, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
 .recipient_modal_form .modal_body .body .events .date input {
   text-align: center;
 }
-/* line 178, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
+/* line 190, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
 .recipient_modal_form .modal_body .body .events .date .date_input {
   width: 80%;
   float: left;
 }
-/* line 182, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
+/* line 194, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
 .recipient_modal_form .modal_body .body .events .date .date_button {
   float: left;
   width: 20%;
   height: 3em;
   line-height: 3em;
 }
-/* line 187, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
+/* line 199, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
 .recipient_modal_form .modal_body .body .events .date .date_button span.date_span {
   display: inline;
 }
-/* line 189, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
+/* line 201, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
 .recipient_modal_form .modal_body .body .events .date .date_button span.date_span button {
   height: 95%;
   border-radius: 10px;
 }
-/* line 198, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
+/* line 210, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
 .recipient_modal_form .modal_body .body .add_new_event {
   margin-top: 10px;
 }
-/* line 201, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
+/* line 213, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
 .recipient_modal_form .modal_body .body .add_new_event span.add-occasion {
   color: red;
   cursor: pointer;
 }
-/* line 204, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
+/* line 216, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
 .recipient_modal_form .modal_body .body .add_new_event span.add-occasion .add-occasion-glyph {
   width: 4%;
   margin-left: 2px;
 }
-/* line 214, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
+/* line 226, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
 .recipient_modal_form .modal-footer {
   border-top: none;
   text-align: center;
 }
-/* line 226, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
+/* line 238, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
 .recipient_modal_form .modal_title {
   text-transform: uppercase;
   font-size: 1.7em;
@@ -66167,7 +66170,7 @@ html {
   text-align: left;
   width: 49%;
 }
-/* line 234, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
+/* line 246, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
 .recipient_modal_form .last_updated {
   text-transform: uppercase;
   color: #BBBABA;
@@ -66175,26 +66178,26 @@ html {
   width: 50%;
   text-align: right;
 }
-/* line 242, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
+/* line 254, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
 .recipient_modal_form hr {
   margin: 0;
   border-top: 4px solid #E8E8E8;
 }
-/* line 247, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
+/* line 259, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
 .recipient_modal_form .body {
   padding: 0 30px 15px 30px;
 }
-/* line 251, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
+/* line 263, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
 .recipient_modal_form .row {
   position: relative;
 }
-/* line 255, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
+/* line 267, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
 .recipient_modal_form .form_field {
   width: 100%;
   margin: 10px 0;
   float: left;
 }
-/* line 262, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
+/* line 274, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
 .recipient_modal_form .form_input input, .recipient_modal_form .form_input select {
   width: 100%;
   padding-left: 1em;
@@ -66203,13 +66206,13 @@ html {
   height: 3em;
   background-color: white;
 }
-/* line 272, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
+/* line 284, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
 .recipient_modal_form .family {
   background-color: #E9B854;
   background-color: #898989;
 }
 
-/* line 279, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
+/* line 291, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
 .center_modal {
   top: 15% !important;
 }
@@ -66217,26 +66220,26 @@ html {
 /**
  * 		MAIN DIV (card queueing service)
  */
-/* line 286, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
+/* line 298, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
 .card_orders {
   min-height: 600px;
   padding-top: 1px;
 }
-/* line 290, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
+/* line 302, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
 .card_orders .card_order .row, .card_orders .card_order .section {
   height: 100%;
 }
-/* line 293, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
+/* line 305, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
 .card_orders .card_order.compressed {
   background-color: lightgray;
   margin: 10px 0;
 }
-/* line 301, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
+/* line 313, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
 .card_orders .card_order.expanded form .questions {
   font-size: 1.5em;
   line-height: 2.22222222em;
 }
-/* line 305, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
+/* line 317, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
 .card_orders .card_order.expanded form .next_step {
   height: 20%;
 }
@@ -66244,27 +66247,27 @@ html {
 /**
  * 		NATURAL LANGUAGE FORMATTING
  */
-/* line 321, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
+/* line 333, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
 .nl-field {
   position: relative;
   display: inline-block;
 }
-/* line 324, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
+/* line 336, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
 .nl-field .nl-field-toggle {
   position: relative;
   display: inline-block;
   text-decoration: none;
   cursor: pointer;
 }
-/* line 330, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
+/* line 342, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
 .nl-field.nl-field-open {
   z-index: 10000;
 }
-/* line 335, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
+/* line 347, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
 .nl-field.nl-ti-text ul {
   min-width: 8em;
 }
-/* line 339, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
+/* line 351, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
 .nl-field.nl-ti-text ul li.nl-ti-input input {
   width: 100%;
   padding: 0.2em 2em 0.2em 0.5em;
@@ -66272,7 +66275,7 @@ html {
   line-height: 1.5em;
   height: 1.5em;
 }
-/* line 347, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
+/* line 359, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
 .nl-field.nl-ti-text ul li.nl-ti-example {
   font-size: 40%;
   font-style: italic;
@@ -66281,11 +66284,11 @@ html {
   color: rgba(0, 0, 0, 0.2);
   border-top: 1px dashed rgba(255, 255, 255, 0.7);
 }
-/* line 354, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
+/* line 366, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
 .nl-field.nl-ti-text ul li.nl-ti-example em {
   color: black;
 }
-/* line 363, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
+/* line 375, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
 .nl-field ul {
   padding: 0;
   margin: 0;
@@ -66297,21 +66300,21 @@ html {
   top: 505;
   opacity: 0;
 }
-/* line 374, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
+/* line 386, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
 .nl-field ul.slideUpwards {
   -moz-transform: translateY(-110%) scale(1);
   -ms-transform: translateY(-110%) scale(1);
   -webkit-transform: translateY(-110%) scale(1);
   transform: translateY(-110%) scale(1);
 }
-/* line 377, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
+/* line 389, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
 .nl-field ul.slideDownwards {
   -moz-transform: translateY(0%) scale(1);
   -ms-transform: translateY(0%) scale(1);
   -webkit-transform: translateY(0%) scale(1);
   transform: translateY(0%) scale(1);
 }
-/* line 382, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
+/* line 394, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
 .nl-field ul li {
   cursor: pointer;
   white-space: nowrap;
@@ -66320,20 +66323,20 @@ html {
   font-weight: 400;
   margin-top: 10px;
 }
-/* line 387, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
+/* line 399, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
 .nl-field ul li.checked {
   color: rgba(255, 255, 255, 0.5);
 }
-/* line 390, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
+/* line 402, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
 .nl-field ul li:hover {
   background: rgba(0, 0, 0, 0.5);
 }
-/* line 393, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
+/* line 405, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
 .nl-field ul li.nl-dd-checked {
   color: #478982;
 }
 
-/* line 401, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
+/* line 413, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
 .nl-overlay {
   position: fixed;
   visibility: hidden;
@@ -66344,7 +66347,7 @@ html {
   height: 100%;
 }
 
-/* line 408, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
+/* line 420, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
 .nl-field.nl-field-open ul,
 .nl-field.nl-field-open ~ .nl-overlay {
   visibility: visible;
@@ -66356,12 +66359,12 @@ html {
   transition: visibility 0s 0s, opacity 0.3s, transform 0.3s;
 }
 
-/* line 415, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
+/* line 427, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
 .nl-field.nl-field-open ~ .nl-overlay {
   z-index: 9999;
 }
 
-/* line 420, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
+/* line 432, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
 #queue-card-form {
   height: 100%;
   width: 100%;
@@ -66369,7 +66372,7 @@ html {
   overflow: hidden;
   position: relative;
 }
-/* line 428, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
+/* line 440, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
 #queue-card-form div.questions {
   position: relative;
   height: 825px;
@@ -66378,26 +66381,26 @@ html {
   text-align: center;
   background-color: salmon;
 }
-/* line 436, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
+/* line 448, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
 #queue-card-form div.questions .nl-field a {
   color: darkred;
   font-size: 1.2em;
   font-weight: 400;
   border-bottom: 1px dashed;
 }
-/* line 444, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
+/* line 456, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
 #queue-card-form div.next_step {
   margin-top: 0;
   overflow: hidden;
   *zoom: 1;
   text-align: center;
 }
-/* line 451, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
+/* line 463, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
 #queue-card-form img.pick_card {
   height: 100px;
 }
 
-/* line 458, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
+/* line 470, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
 #card_form_questions {
   position: absolute;
   left: 0;
@@ -66406,23 +66409,23 @@ html {
   margin-top: 350px;
   color: white;
 }
-/* line 467, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
+/* line 479, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
 #card_form_questions input {
   color: black;
 }
-/* line 471, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
+/* line 483, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
 #card_form_questions.ng-enter {
   -moz-animation: slideInRight 0.5s both ease;
   -webkit-animation: slideInRight 0.5s both ease;
   animation: slideInRight 0.5s both ease;
 }
-/* line 475, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
+/* line 487, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
 #card_form_questions.ng-leave {
   -moz-animation: slideOutLeft 0.5s both ease;
   -webkit-animation: slideOutLeft 0.5s both ease;
   animation: slideOutLeft 0.5s both ease;
 }
-/* line 481, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
+/* line 493, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
 #card_form_questions .find_card_step .card-spinner {
   position: absolute;
   right: 0;
@@ -66431,7 +66434,7 @@ html {
   margin-left: auto;
   top: 100px;
 }
-/* line 485, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
+/* line 497, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
 #card_form_questions .find_card_step .find_card {
   position: absolute;
   right: 0;
@@ -66439,39 +66442,39 @@ html {
   margin-right: auto;
   margin-left: auto;
 }
-/* line 487, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
+/* line 499, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
 #card_form_questions .find_card_step .find_card .pick_card {
   display: inline;
   margin: 0 5px;
 }
-/* line 491, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
+/* line 503, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
 #card_form_questions .find_card_step .find_card .pick_card label > input {
   visibility: hidden;
   position: absolute;
 }
-/* line 495, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
+/* line 507, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
 #card_form_questions .find_card_step .find_card .pick_card label > input + img {
   cursor: pointer;
   border: 2px solid transparent;
 }
-/* line 499, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
+/* line 511, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
 #card_form_questions .find_card_step .find_card .pick_card label > input:checked + img {
   border: 4px solid green;
 }
-/* line 503, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
+/* line 515, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
 #card_form_questions .find_card_step .find_card.ng-hide-add {
   -moz-animation: fadeOut 0.4s both ease-out;
   -webkit-animation: fadeOut 0.4s both ease-out;
   animation: fadeOut 0.4s both ease-out;
 }
-/* line 506, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
+/* line 518, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
 #card_form_questions .find_card_step .find_card.ng-hide-remove {
   -moz-animation: fadeIn 0.35s 0.65s both ease-in;
   -webkit-animation: fadeIn 0.35s 0.65s both ease-in;
   animation: fadeIn 0.35s 0.65s both ease-in;
 }
 
-/* line 514, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
+/* line 526, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
 .card_progress_bullets {
   cursor: default;
   max-width: 280px;
@@ -66479,13 +66482,13 @@ html {
   margin: 0 auto;
   margin-top: 10px;
 }
-/* line 520, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
+/* line 532, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
 .card_progress_bullets .bullet {
   font-size: 2.5rem;
   line-height: 0.5;
   color: lightgrey;
 }
-/* line 524, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
+/* line 536, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_logged_in_home.scss */
 .card_progress_bullets .bullet.active {
   color: black;
 }
@@ -75424,10 +75427,9 @@ html {
   background: #77716d;
 }
 
-/* line 8, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
+/* line 9, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
 .my_people_view .single_card_div {
-  padding: 0;
-  margin: 15px 1.5%;
+  padding: 15px 1.5%;
 }
 /* line 12, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
 .my_people_view .single_card_div.col-xs-3 {
@@ -75455,26 +75457,27 @@ html {
 }
 /* line 40, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
 .my_people_view .single_card_div .recipient_card .recipient_info {
+  position: relative;
   height: 100%;
   background-color: white;
   border-top: 5pt solid #3D5DA2;
 }
-/* line 45, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
+/* line 46, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
 .my_people_view .single_card_div .recipient_card .recipient_info.selected {
   border: 2pt solid #00B00C;
   border-top: 5pt solid #00B00C;
 }
-/* line 50, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
+/* line 51, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
 .my_people_view .single_card_div .recipient_card .recipient_info .name {
   font-size: 1.3em;
 }
-/* line 58, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
+/* line 59, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
 .my_people_view .single_card_div .recipient_card .recipient_info .events .event {
   font-size: 0.75em;
   color: #598491;
   font-style: italic;
 }
-/* line 66, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
+/* line 67, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
 .my_people_view .single_card_div .recipient_card .recipient_info .profile_picture {
   height: 90px;
   width: 90px;
@@ -75487,35 +75490,35 @@ html {
   background-color: #CFCBC8;
   border: 1pt solid #BBBABA;
 }
-/* line 79, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
+/* line 80, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
 .my_people_view .single_card_div .recipient_card .recipient_info .profile_picture .image {
   position: absolute;
   right: 0;
   bottom: 0;
   height: 90px;
 }
-/* line 87, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
+/* line 88, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
 .my_people_view .single_card_div .recipient_card .recipient_info .overlay_view, .my_people_view .single_card_div .recipient_card .recipient_info .recipient_options.overlay {
   width: 100%;
   height: 100%;
   display: none;
   position: absolute;
-  top: 0px;
-  left: 0px;
+  top: 0;
+  left: 0;
 }
-/* line 95, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
+/* line 96, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
 .my_people_view .single_card_div .recipient_card .recipient_info .overlay_view div, .my_people_view .single_card_div .recipient_card .recipient_info .recipient_options.overlay div {
   position: relative;
   display: inline-block;
   top: 40%;
 }
-/* line 102, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
+/* line 103, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
 .my_people_view .single_card_div .recipient_card .recipient_info .overlay_view .option_buttons, .my_people_view .single_card_div .recipient_card .recipient_info .recipient_options.overlay .option_buttons {
   top: 40%;
   width: 50px;
   margin: 0 5px;
 }
-/* line 106, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
+/* line 107, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
 .my_people_view .single_card_div .recipient_card .recipient_info .overlay_view .option_buttons button, .my_people_view .single_card_div .recipient_card .recipient_info .recipient_options.overlay .option_buttons button {
   color: white;
   border: 1.5pt solid white;
@@ -75523,97 +75526,97 @@ html {
   height: 45px;
   border-radius: 50%;
 }
-/* line 112, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
+/* line 113, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
 .my_people_view .single_card_div .recipient_card .recipient_info .overlay_view .option_buttons button.edit-recipient, .my_people_view .single_card_div .recipient_card .recipient_info .recipient_options.overlay .option_buttons button.edit-recipient {
   background-color: #BBBABA;
 }
-/* line 114, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
+/* line 115, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
 .my_people_view .single_card_div .recipient_card .recipient_info .overlay_view .option_buttons button.edit-recipient:hover, .my_people_view .single_card_div .recipient_card .recipient_info .recipient_options.overlay .option_buttons button.edit-recipient:hover {
   background-color: #898989;
 }
-/* line 117, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
+/* line 118, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
 .my_people_view .single_card_div .recipient_card .recipient_info .overlay_view .option_buttons button.edit-recipient:focus, .my_people_view .single_card_div .recipient_card .recipient_info .recipient_options.overlay .option_buttons button.edit-recipient:focus {
   outline: 0;
   background-color: #898989;
 }
-/* line 122, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
+/* line 123, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
 .my_people_view .single_card_div .recipient_card .recipient_info .overlay_view .option_buttons button.select-recipient, .my_people_view .single_card_div .recipient_card .recipient_info .recipient_options.overlay .option_buttons button.select-recipient {
   background-color: #00ca0e;
 }
-/* line 124, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
+/* line 125, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
 .my_people_view .single_card_div .recipient_card .recipient_info .overlay_view .option_buttons button.select-recipient:hover, .my_people_view .single_card_div .recipient_card .recipient_info .recipient_options.overlay .option_buttons button.select-recipient:hover {
   background-color: #00970a;
 }
-/* line 127, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
+/* line 128, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
 .my_people_view .single_card_div .recipient_card .recipient_info .overlay_view .option_buttons button.select-recipient:focus, .my_people_view .single_card_div .recipient_card .recipient_info .recipient_options.overlay .option_buttons button.select-recipient:focus {
   outline: 0;
   background-color: #007d09;
 }
-/* line 132, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
+/* line 133, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
 .my_people_view .single_card_div .recipient_card .recipient_info .overlay_view .option_buttons button.send-recipient, .my_people_view .single_card_div .recipient_card .recipient_info .recipient_options.overlay .option_buttons button.send-recipient {
   background-color: #e35542;
 }
-/* line 134, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
+/* line 135, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
 .my_people_view .single_card_div .recipient_card .recipient_info .overlay_view .option_buttons button.send-recipient:hover, .my_people_view .single_card_div .recipient_card .recipient_info .recipient_options.overlay .option_buttons button.send-recipient:hover {
   background-color: #d3341f;
 }
-/* line 137, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
+/* line 138, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
 .my_people_view .single_card_div .recipient_card .recipient_info .overlay_view .option_buttons button.send-recipient:focus, .my_people_view .single_card_div .recipient_card .recipient_info .recipient_options.overlay .option_buttons button.send-recipient:focus {
   outline: 0;
   background-color: #bd2f1c;
 }
-/* line 144, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
+/* line 145, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
 .my_people_view .single_card_div .recipient_card .recipient_info .overlay_view .option_buttons .text, .my_people_view .single_card_div .recipient_card .recipient_info .recipient_options.overlay .option_buttons .text {
   color: white;
   margin-right: 5px;
 }
-/* line 152, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
+/* line 153, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
 .my_people_view .single_card_div .recipient_card .recipient_info:hover .overlay_view {
   display: block;
   background-color: black;
   opacity: 0.75;
 }
-/* line 157, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
+/* line 158, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
 .my_people_view .single_card_div .recipient_card .recipient_info:hover .recipient_options.overlay {
   display: block;
 }
-/* line 166, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
+/* line 167, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
 .my_people_view .single_card_div.add_recipient .recipient_card {
   display: table;
   width: 100%;
   cursor: pointer;
   box-shadow: none;
 }
-/* line 171, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
+/* line 172, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
 .my_people_view .single_card_div.add_recipient .recipient_card .recipient_info {
   display: table-cell;
   vertical-align: middle;
   border: 1pt solid #BCBBBD;
   color: #BCBBBD;
 }
-/* line 172, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
+/* line 173, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
 .my_people_view .single_card_div.add_recipient .recipient_card .recipient_info .add_title {
   font-size: 1.4em;
 }
-/* line 174, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
+/* line 175, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
 .my_people_view .single_card_div.add_recipient .recipient_card .recipient_info .add_title .glyphicon {
   margin-right: 10px;
 }
-/* line 182, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
+/* line 183, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
 .my_people_view .single_card_div.add_recipient .recipient_card .recipient_info:hover {
   border: 1.5pt solid #867CAD;
   color: #867CAD;
 }
-/* line 192, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
+/* line 193, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
 .my_people_view .options {
   height: 50px;
   width: 300px;
 }
-/* line 198, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
+/* line 199, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
 .my_people_view .options .form_input {
   display: inline-block;
 }
-/* line 202, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
+/* line 203, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
 .my_people_view .options .form_input .filter_select {
   height: 35px;
   width: 160px;
@@ -75624,7 +75627,7 @@ html {
   color: #BBBABA;
   background-color: transparent;
 }
-/* line 214, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
+/* line 215, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
 .my_people_view .options .form_input .send_card {
   display: block;
   width: 100px;
@@ -75649,7 +75652,7 @@ html {
   -webkit-transition: all 0.1s ease;
   transition: all 0.1s ease;
 }
-/* line 231, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
+/* line 232, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
 .my_people_view .options .form_input .send_card:active {
   -moz-box-shadow: 1px 1px 1px #CA6556, 0px 1px 2px rgba(0, 0, 0, 0.9);
   -webkit-box-shadow: 1px 1px 1px #CA6556, 0px 1px 2px rgba(0, 0, 0, 0.9);
@@ -75657,12 +75660,12 @@ html {
   position: relative;
   top: 2px;
 }
-/* line 241, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
+/* line 242, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
 .my_people_view .filter_people {
   width: 35%;
   margin-left: 15px;
 }
-/* line 244, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
+/* line 245, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
 .my_people_view .filter_people .filter_people_input {
   border-radius: 20px;
   width: 100%;
@@ -75676,18 +75679,18 @@ html {
   -moz-transition: all 2s;
   transition: all 0.25s;
 }
-/* line 258, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
+/* line 259, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
 .my_people_view .filter_people .filter_people_input.active {
   background-color: none;
   background-position: -40px center;
   text-indent: 4px;
   width: 55%;
 }
-/* line 265, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
+/* line 266, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
 .my_people_view .filter_people .filter_people_input:focus {
   outline: 0;
 }
-/* line 270, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
+/* line 271, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_my_people.scss */
 .my_people_view .filter_people .search_icon {
   position: absolute;
   left: 27px;

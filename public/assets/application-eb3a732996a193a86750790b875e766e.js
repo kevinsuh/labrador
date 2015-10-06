@@ -73921,7 +73921,6 @@ angular.module('vr.directives.nlForm.text',[])
 	var app = angular.module('card-queue').controller("MainController", function($rootScope, $scope, $state, $timeout, $window, user) {
 
 			$scope.user = user;
-			console.log(user);
 
 			$scope.logOut = function() {
 				user.logOut().success(function(data) {
@@ -74412,8 +74411,9 @@ calendarDemoApp.controller('CalendarCtrl',
 
 				$modal.open({
 					templateUrl: 'angular/manage_recipients/recipient_modal_form.html',
-					backdrop: true,
-					windowClass: 'modal',
+					backdrop: 'static',
+					animation: false,
+					windowClass: "recipient_modal_form center_modal",
 					controller: function ($scope, $modalInstance, relationships, occasions, recipients, currentRecipients) {
 
 						$scope.recipients           = recipients; // the "factory" recipients object
@@ -74550,10 +74550,7 @@ calendarDemoApp.controller('CalendarCtrl',
 						currentRecipients: function() {
 							return recipients.currentRecipients;
 						}
-					},
-					animation: false,
-					size: "md",
-					windowClass: "recipient_modal_form center_modal"
+					}
 				});
 			};
 			
@@ -75762,7 +75759,7 @@ angular.module("templates").run(["$templateCache", function($templateCache) {
 // source: app/assets/javascripts/templates/angular/card_queue/greeting_central.html.erb
 
 angular.module("templates").run(["$templateCache", function($templateCache) {
-  $templateCache.put("angular/card_queue/greeting_central.html", '<div>\n	<aside class="col-md-3 col-xs-3" ng-controller="ManageRecipientsController">\n		<div ui-view="my_people"></div>\n	</aside>\n\n	<div class="col-md-9 col-xs-9 card_queue" ng-controller="CardQueueController">\n		<div ui-view="calendar"></div>\n	</div>\n</div>')
+  $templateCache.put("angular/card_queue/greeting_central.html", '<div class="greeting_central_view">\n	<aside class="col-md-3 col-xs-3" ng-controller="ManageRecipientsController">\n		<div ui-view="my_people"></div>\n	</aside>\n\n	<div class="col-md-9 col-xs-9 card_queue" ng-controller="CardQueueController">\n		<div ui-view="calendar"></div>\n	</div>\n</div>')
 }]);
 
 // Angular Rails Template
@@ -75825,7 +75822,7 @@ angular.module("templates").run(["$templateCache", function($templateCache) {
 // source: app/assets/javascripts/templates/angular/manage_recipients/card_view.html.erb
 
 angular.module("templates").run(["$templateCache", function($templateCache) {
-  $templateCache.put("angular/manage_recipients/card_view.html", '<div class="row">\n	<div class="filter_people pull-left">\n		<div class="form_input">\n			<input type="text" ng-model="filteredName" ng-change="recipientNameFilter(filteredName)" class="filter_people_input"><i class="glyphicon glyphicon-search search_icon"></i></input>\n		</div>\n	</div>\n	<div class="options pull-right">\n		<div class="form_input btn-group">\n			<button class="filter_select dropdown-toggle" data-toggle="dropdown" ng-click=\'open=!open\'>{{recipientsFilter}}<i class="glyphicon glyphicon-menu-down"></i></button>\n			<ul class="dropdown-menu">\n				<li ng-repeat="filter in filterOptions" ng-click="updateFilterView(filter); $parent.open = !$parent.open">\n					<a href="#">{{filter}}</a>\n				</li>\n			</ul>\n		</div>\n\n		<div class="form_input">\n			<form>\n				<input type="hidden" ng-model="selectedUsers"/>\n				<a class="send_card" ng-click="multiple_queue()">Send Card</a>\n			</form>\n		</div>\n	</div>\n</div>\n\n<div class="row">\n	<div ng-repeat="recipient in currentRecipients">\n		<div class="col-xs-3 single_card_div" ng-if="recipient.is_visible == 1">\n			<div class="recipient_card">\n				<div class="relationship_group">\n					<div ng-if="isInArray(recipient.id, selectedRecipientIDs)" class="icon_header selected">\n						<i class="glyphicon glyphicon-check"></i>\n					</div>\n				</div>\n				<div class="recipient_info" ng-class="{\'selected\': isInArray(recipient.id, selectedRecipientIDs)}">\n					<div class="profile_picture_container">\n						<div class="profile_picture">\n							<img class="image" ng-src="{{recipient.profile_picture}}" />\n						</div>\n					</div>\n					<div class="name">\n						{{recipient.first_name}} {{recipient.last_name}}\n					</div>\n					<!-- should go through recipient\'s "events" and provide appropriate divs -->\n					<div class="events">\n						<div class="event" ng-repeat="occasion in recipient.occasions">\n							<span ng-if="occasion.occasion.name">{{occasion.occasion.name}} in {{daysFromToday(occasion.recipient_occasion.occasion_date)}} - {{occasion.recipient_occasion.occasion_date | date: "MMM. d"}}</span>\n						</div>\n					</div>\n\n					<div class="overlay_view">\n					</div>\n					<div class="recipient_options overlay">\n						<div class="option_buttons">\n							<button class="btn select-recipient" ng-click="select(recipient)"><i class="glyphicon glyphicon-check"></i></button>\n							<br>\n							<span class="text">Select</span>\n						</div>\n						<div class="option_buttons">\n							<button class="btn send-recipient" ng-click="single_queue(recipient)"><i class="glyphicon glyphicon-envelope"></i></button>\n							<br>\n							<span class="text">Send</span>\n						</div>\n						<div class="option_buttons">\n							<button class="btn edit-recipient" ng-click="open_modal_form(recipient)"><i class="glyphicon glyphicon-pencil"></i></button>\n							<br>\n							<span class="text">Edit</span>\n						</div>\n					</div>\n\n				</div>\n			</div>\n		</div>\n	</div>\n\n	<div class="col-xs-3 single_card_div add_recipient">\n		<div class="recipient_card" ng-click="open_modal_form(newRecipient)">\n			<div class="recipient_info" ng-class="{\'selected\': isInArray(recipient.id, selectedRecipientIDs)}">\n				<span class="add_title"><i class="glyphicon glyphicon-plus"></i>ADD PERSON</span>\n			</div>\n		</div>\n	</div>\n</div>')
+  $templateCache.put("angular/manage_recipients/card_view.html", '<div class="row">\n	<div class="filter_people pull-left">\n		<div class="form_input">\n			<input type="text" ng-model="filteredName" ng-change="recipientNameFilter(filteredName)" class="filter_people_input"><i class="glyphicon glyphicon-search search_icon"></i></input>\n		</div>\n	</div>\n	<div class="options pull-right">\n		<div class="form_input btn-group">\n			<button class="filter_select dropdown-toggle" data-toggle="dropdown" ng-click=\'open=!open\'>{{recipientsFilter}}<i class="glyphicon glyphicon-menu-down"></i></button>\n			<ul class="dropdown-menu">\n				<li ng-repeat="filter in filterOptions" ng-click="updateFilterView(filter); $parent.open = !$parent.open">\n					<a href="#">{{filter}}</a>\n				</li>\n			</ul>\n		</div>\n\n		<div class="form_input">\n			<form>\n				<input type="hidden" ng-model="selectedUsers"/>\n				<a class="send_card" ng-click="multiple_queue()">Send Card</a>\n			</form>\n		</div>\n	</div>\n</div>\n\n<div class="row">	\n	<div class="col-xs-6 col-sm-4 col-md-3 single_card_div"  ng-repeat="recipient in currentRecipients" ng-if="recipient.is_visible == 1">\n		<div class="recipient_card">\n			<div class="relationship_group">\n				<div ng-if="isInArray(recipient.id, selectedRecipientIDs)" class="icon_header selected">\n					<i class="glyphicon glyphicon-check"></i>\n				</div>\n			</div>\n			<div class="recipient_info" ng-class="{\'selected\': isInArray(recipient.id, selectedRecipientIDs)}">\n				<div class="profile_picture_container">\n					<div class="profile_picture">\n						<img class="image" ng-src="{{recipient.profile_picture}}" />\n					</div>\n				</div>\n				<div class="name">\n					{{recipient.first_name}} {{recipient.last_name}}\n				</div>\n				<!-- should go through recipient\'s "events" and provide appropriate divs -->\n				<div class="events">\n					<div class="event" ng-repeat="occasion in recipient.occasions">\n						<span ng-if="occasion.occasion.name">{{occasion.occasion.name}} in {{daysFromToday(occasion.recipient_occasion.occasion_date)}} - {{occasion.recipient_occasion.occasion_date | date: "MMM. d"}}</span>\n					</div>\n				</div>\n\n				<div class="overlay_view">\n				</div>\n				<div class="recipient_options overlay">\n					<div class="option_buttons">\n						<button class="btn select-recipient" ng-click="select(recipient)"><i class="glyphicon glyphicon-check"></i></button>\n						<br>\n						<span class="text">Select</span>\n					</div>\n					<div class="option_buttons">\n						<button class="btn send-recipient" ng-click="single_queue(recipient)"><i class="glyphicon glyphicon-envelope"></i></button>\n						<br>\n						<span class="text">Send</span>\n					</div>\n					<div class="option_buttons">\n						<button class="btn edit-recipient" ng-click="open_modal_form(recipient)"><i class="glyphicon glyphicon-pencil"></i></button>\n						<br>\n						<span class="text">Edit</span>\n					</div>\n				</div>\n\n			</div>\n		</div>\n	</div>\n\n	<div class="col-xs-6 col-sm-4 col-md-3 single_card_div add_recipient">\n		<div class="recipient_card" ng-click="open_modal_form(newRecipient)">\n			<div class="recipient_info" ng-class="{\'selected\': isInArray(recipient.id, selectedRecipientIDs)}">\n				<span class="add_title"><i class="glyphicon glyphicon-plus"></i>ADD PERSON</span>\n			</div>\n		</div>\n	</div>\n\n</div>')
 }]);
 
 // Angular Rails Template
