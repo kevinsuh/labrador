@@ -5,10 +5,10 @@ $card_profile_picture_size: 90px;
 .my_people_view {
 	// card-based view of recipients!
 		
+	$single_card_top_padding: 15px;
 	.single_card_div {
 
-		padding: 0;
-		margin: 15px 1.5%;
+		padding: $single_card_top_padding 1.5%;
 		&.col-xs-3 {
 			width: 22%;	
 		}
@@ -38,6 +38,7 @@ $card_profile_picture_size: 90px;
 			}
 
 			.recipient_info {
+				position: relative;
 				height: 100%;
 				background-color: white;
 				border-top: 5pt solid $pacific_blue; // this is what will be different based on relationship group
@@ -89,8 +90,8 @@ $card_profile_picture_size: 90px;
 					height: 100%;
 					display: none;
 					position: absolute;
-					top: 0px;
-					left: 0px;
+					top: 0;
+					left: 0;
 					// this is the overall recipient_options div
 					div {
 						position: relative;

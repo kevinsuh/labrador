@@ -158,8 +158,9 @@
 
 				$modal.open({
 					templateUrl: 'angular/manage_recipients/recipient_modal_form.html',
-					backdrop: true,
-					windowClass: 'modal',
+					backdrop: 'static',
+					animation: false,
+					windowClass: "recipient_modal_form center_modal",
 					controller: function ($scope, $modalInstance, relationships, occasions, recipients, currentRecipients) {
 
 						$scope.recipients           = recipients; // the "factory" recipients object
@@ -296,10 +297,7 @@
 						currentRecipients: function() {
 							return recipients.currentRecipients;
 						}
-					},
-					animation: false,
-					size: "md",
-					windowClass: "recipient_modal_form center_modal"
+					}
 				});
 			};
 			

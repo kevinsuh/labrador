@@ -9,6 +9,13 @@ $modal_profile_picture_size: 110px;
 	margin-top: 20px;
 	margin-right: 20px;
 	min-height: 780px;
+
+	.greeting_central_view {
+		min-width: 1100px;
+	}
+
+	// .my_people_view {		
+	// }
 }
 /**
  * 		LEFT-HAND SECTION (USER INFO)
@@ -25,6 +32,11 @@ $modal_profile_picture_size: 110px;
 
 // the modal to add/update recipients
 .recipient_modal_form {
+
+	// .modal-dialog {
+ //    width :90%;
+ //    max-width: 600px;
+	// }
 
 	// top half of modal
 	.recipient_info {

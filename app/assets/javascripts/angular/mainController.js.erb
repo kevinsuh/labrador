@@ -7,7 +7,6 @@
 	var app = angular.module('card-queue').controller("MainController", function($rootScope, $scope, $state, $timeout, $window, user) {
 
 			$scope.user = user;
-			console.log(user);
 
 			$scope.logOut = function() {
 				user.logOut().success(function(data) {
