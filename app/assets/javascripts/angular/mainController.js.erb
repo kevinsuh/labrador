@@ -4,7 +4,7 @@
 	 * 		main controller to handle layout-level functionality
 	 */
 	 
-	var app = angular.module('card-queue').controller("MainController", function($rootScope, $scope, $state, $timeout, $window, user) {
+	var app = angular.module('card-queue').controller("MainController", function($rootScope, $document, $scope, $state, $timeout, $window, user) {
 
 			$scope.user = user;
 
@@ -15,6 +15,21 @@
 	      });
 			}
 			$scope.state = $state;
+
+			currentUrl = $window.location.hash;
+			var headerTitle;
+			if (currentUrl == '#/' || currentUrl == '') { // home page
+				headerTitle = "Greeting Central";
+			} else if (currentUrl == '#/my_people') {
+				console.log(currentUrl);
+				console.log(headerTitle);
+				headerTitle = "My People";
+			} else {
+				headerTitle = "Cardagain";
+			}
+			$scope.headerTitle = headerTitle;
+
+
 
 	});
 

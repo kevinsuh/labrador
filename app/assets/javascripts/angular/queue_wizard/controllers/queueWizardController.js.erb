@@ -6,13 +6,12 @@
 	var app = angular.module('queue-wizard').controller("QueueWizardController", function($rootScope, $scope, $state, $stateParams, $timeout, recipients, cards, usSpinnerService) {
 				
 		// load in user and relationships factories
-    $scope.testImage = "/assets/blank_user.png";
     $scope.recipients = recipients;
-    $scope.selectedRecipients = recipients.selectedRecipients;
+    $scope.selectedRecipients = recipients.selectedRecipients; // selected recipients is simply passed in from the overarching controller that encompasses this UIRouter view as well as my people UIRouter view.
+    // this view uses the same recipients model to transfer data
     $scope.stateParams = $stateParams;
 
     console.log(recipients.selectedRecipients);
-    
 		
 	});
 
