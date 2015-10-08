@@ -110,6 +110,7 @@
         url: '/queue_card',
         abstract: true,
         templateUrl: "angular/queue_wizard/home.html",
+        controller: "QueueWizardController",
         resolve: {
           userInfoPromise: ['user', function(user) { // return user basic info
             return user.getCurrentUser();
@@ -117,6 +118,7 @@
         }
       })
       .state('queue.home', {
+        abstract: true,
         url: '/:recipients',
         views: {
           'recipients': {
@@ -139,6 +141,11 @@
             return recipients.retrieveRecipients(recipient_ids);
           }]
         }
+      })
+      .state('queue.home.step1', {
+        url:'',
+        replace: true,
+        templateUrl: "angular/queue_wizard/wizard_step_one.html"
       });
 
     $urlRouterProvider.otherwise('/');

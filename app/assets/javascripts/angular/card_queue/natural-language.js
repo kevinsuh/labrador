@@ -56,9 +56,9 @@ angular.module('vr.directives.nlForm.select',[])
 			},
       controller: 'nlSelectCtrl',
 			template:
-				"<div ng-form='nlSelect' class='nl-field nl-dd' ng-class=\"{'nl-field-open': opened}\">" +
+				"<div ng-form='nlSelect' class='nl-field nl-dd wizard_field' ng-class=\"{'nl-field-open': opened}\"><i class='glyphicon glyphicon-menu-down wizard_down_icon'></i>" +
 					"<a class='nl-field-toggle' ng-click='open($event)' ng-bind='getSelected()'></a>" +
-					"<ul ng-class=\"{'slideUpwards': (fieldType == 'occasion'), 'slideDownwards': (fieldType == 'relationship')}\">" +
+					"<ul ng-class=\"{'slideDownwards': (fieldType == 'occasion'), 'slideDownwards': (fieldType == 'relationship')}\">" +
 						"<li ng-repeat='label in getLabels()' ng-class=\"{'nl-dd-checked': isSelected(label)}\" ng-hide=\"isSelected(label) && fieldType != 'flavor'\" ng-click='select(label)' ng-bind='label'></li>" +
 					"</ul>" +
 				"</div>",
@@ -310,10 +310,11 @@ angular.module('vr.directives.nlForm.select',[])
 					}
 				}
 			} else {
+
 				switch($scope.fieldType) {
 					case "occasion":
 						// occasions will slide upward -- thus requires selected option to be at back
-						var newOptions = moveProperty($scope.options, option, "back");
+						var newOptions = moveProperty($scope.options, option, "front");
 						break;
 					case "relationship":
 						// relationships will slide downward -- thus requires selected option to be at front

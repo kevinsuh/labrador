@@ -11,7 +11,12 @@
     // this view uses the same recipients model to transfer data
     $scope.stateParams = $stateParams;
 
+    $scope.occasions = cards.occasions;
+
+    $scope.newCard = cards.newCard;
+
     console.log(recipients.selectedRecipients);
+    console.log($state.current);
 		
 	});
 
