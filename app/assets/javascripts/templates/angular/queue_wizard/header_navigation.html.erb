@@ -1,6 +1,9 @@
+<!-- all conditionals regarding back here -->
 <div class="back">
 	<button class="btn navigation_button left_align" ng-click="wizardBack()"><i class="glyphicon glyphicon-arrow-left"></i></button>
 </div>
+
+<!-- center display for form state -->
 <div class="main_display">
 	<div class="title">
 		Choose a Card
@@ -8,13 +11,19 @@
 	<br>
 	<div>
 		<p class="progress_bullets">
-			<span class="bullet"><a ui-sref-active="active" ui-sref=".profile">•</a></span>
-			<span class="bullet"><a ui-sref-active="active" ui-sref=".address">•</a></span>
-			<span class="bullet"><a ui-sref-active="active" ui-sref=".interests">•</a></span>
-			<span class="bullet"><a ui-sref-active="active" ui-sref=".interests">•</a></span>
+			<span class="bullet"><a ng-class="{'active': currentState == 'queue.home.step1'}">•</a></span>
+			<span class="bullet"><a ng-class="{'active': currentState == 'queue.home.step2'}">•</a></span>
+			<span class="bullet"><a ng-class="{'active': currentState == 'queue.home.step3'}">•</a></span>
+			<span class="bullet"><a ng-class="{'active': currentState == 'queue.home.step4'}">•</a></span>
 		</p>
 	</div>
 </div>
-<div class="forward">
-	<button class="btn navigation_button right_align" ng-click="wizardNext()"><i class="glyphicon glyphicon-arrow-right"></i></button>
+
+<!-- hold all conditionals regarding forward here -->
+<div class="forward_container">
+
+	<div class="forward">
+		<button class="btn navigation_button right_align" ng-click="nextStep()" class="disabled" ng-class="{'disabled': !wizardStateisValid()}"><i class="glyphicon glyphicon-arrow-right"></i></button>
+	</div>
+
 </div>

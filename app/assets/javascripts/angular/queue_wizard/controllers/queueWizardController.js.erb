@@ -19,6 +19,36 @@
 
     console.log(recipients.selectedRecipients);
     console.log($state.current);
+
+
+    // control what happens on each state of UI-Router
+    $scope.$on('$stateChangeSuccess',
+		  function(event, toState) {
+		    $scope.currentState = toState.name;
+		  }
+		)
+
+    // run more extensive tests here
+		$scope.wizardStateisValid = function() {
+			return true;
+		}
+
+		// get the next step for the wizard form
+		$scope.nextStep = function() {
+			currentState = $scope.currentState;
+			console.log(currentState);
+			switch(currentState) {
+				case "queue.home.step1":
+				console.log("here in current state");
+					$state.go("queue.home.step2");
+				case "queue.home.step2":
+					$state.go("queue.home.step3");
+				case "queue.home.step3":
+					$state.go("queue.home.step4");
+				case "queue.home.step4":
+			}
+
+		}
 		
 	});
 
