@@ -539,16 +539,10 @@ $modal_profile_picture_size: 110px;
 	}
 }
 
-
-
-
-#test_view {
-	margin-left:100px;
-	&.ng-enter {
-						@include animation(slideInRight 0.5s both ease);
-					}
-
-					&.ng-leave {
-						@include animation(slideOutLeft 0.5s both ease);
-					}
+/* The starting CSS styles for the enter animation */
+.fade.ng-hide-add { // when hiding the pic
+	@include animation(fadeOut 0.4s both ease-out);
+}
+.fade.ng-hide-remove { // when showing the pic
+	@include animation(fadeIn 0.35s 0.65s both ease-in);
 }

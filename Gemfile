@@ -16,7 +16,7 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 
-gem 'angularjs-rails'
+gem 'angularjs-rails', '1.3.15'
 gem 'angular-rails-templates'
 gem 'angular_rails_csrf'
 gem 'angularjs-file-upload-rails', '~> 1.1.6'
