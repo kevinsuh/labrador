@@ -145,7 +145,26 @@
       .state('queue.home.step1', {
         url:'',
         replace: true,
-        templateUrl: "angular/queue_wizard/wizard_step_one.html"
+        views: {
+          'header': {
+            templateUrl: "angular/queue_wizard/header_navigation.html"
+          },
+          'form': {
+            templateUrl: "angular/queue_wizard/wizard_step_one.html"
+          }  
+        }
+      })
+      .state('queue.home.step2', {
+        replace: true,
+        templateUrl: "angular/queue_wizard/wizard_step_two.html"
+      })
+      .state('queue.home.step3', {
+        replace: true,
+        templateUrl: "angular/queue_wizard/wizard_step_three.html"
+      })
+      .state('queue.home.step4', {
+        replace: true,
+        templateUrl: "angular/queue_wizard/wizard_step_four.html"
       });
 
     $urlRouterProvider.otherwise('/');

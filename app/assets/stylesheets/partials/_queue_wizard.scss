@@ -185,7 +185,7 @@ $queue_wizard_profile_picture_size: 100px;
 							$field_padding: 5px 5px 5px 25px;
 							$font_size: 2em;
 
-							background-color: $ben_light_grey;
+							background-color: $white_grey;
 							text-align: left;
 							font-size: $font_size;
 							padding: $field_padding;
@@ -208,7 +208,7 @@ $queue_wizard_profile_picture_size: 100px;
 								max-height: 400px;
 								overflow-y: scroll;
 								background-color: $white_grey;
-								font-size: 0.9em; // current hack to balance the view
+								font-size: 0.85em; // current hack to balance the font-size view
 								padding: $field_padding;
 								min-width: $field_width;
 
