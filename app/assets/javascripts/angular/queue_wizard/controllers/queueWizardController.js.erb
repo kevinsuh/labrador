@@ -36,18 +36,37 @@
 		// get the next step for the wizard form
 		$scope.nextStep = function() {
 			currentState = $scope.currentState;
-			console.log(currentState);
 			switch(currentState) {
 				case "queue.home.step1":
-				console.log("here in current state");
 					$state.go("queue.home.step2");
+					break;
 				case "queue.home.step2":
 					$state.go("queue.home.step3");
+					break;
 				case "queue.home.step3":
 					$state.go("queue.home.step4");
+					break;
 				case "queue.home.step4":
+					break;
 			}
+		}
 
+		// get previous step for the wizard form
+		$scope.previousStep = function() {
+			currentState = $scope.currentState;
+			switch(currentState) {
+				case "queue.home.step1":
+					break;
+				case "queue.home.step2":
+					$state.go("queue.home.step1");
+					break;
+				case "queue.home.step3":
+					$state.go("queue.home.step2");
+					break;
+				case "queue.home.step4":
+					$state.go("queue.home.step3");
+					break;
+			}
 		}
 		
 	});

@@ -157,21 +157,26 @@
       .state('queue.home.step2', {
         replace: true,
         views: {
-          'header': {
-              templateUrl: "angular/queue_wizard/header_navigation.html"
-            },
-            'form': {
-              templateUrl: "angular/queue_wizard/wizard_step_two.html"
-            }
+          'form': {
+            templateUrl: "angular/queue_wizard/wizard_step_two.html"
+          }
         }
       })
       .state('queue.home.step3', {
         replace: true,
-        templateUrl: "angular/queue_wizard/wizard_step_three.html"
+        views: {
+          'form': {
+            templateUrl: "angular/queue_wizard/wizard_step_three.html"
+          }
+        }
       })
       .state('queue.home.step4', {
         replace: true,
-        templateUrl: "angular/queue_wizard/wizard_step_four.html"
+        views: {
+          'form': {
+            templateUrl: "angular/queue_wizard/wizard_step_four.html"
+          }
+        }
       });
 
     $urlRouterProvider.otherwise('/');
