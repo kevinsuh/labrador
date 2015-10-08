@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/carrierwaveuploader/carrierwave.git
-  revision: 7802f70fa581d1a7ca5728b5e5a75e8bd2720d9f
+  revision: 1e4e7b0bf20fee70d8ac3815d0921144f39e14cf
   specs:
     carrierwave (0.10.0)
       activemodel (>= 3.2.0)
@@ -10,16 +10,16 @@ GIT
 
 GIT
   remote: https://github.com/stripe/stripe-ruby
-  revision: 5e3474c70cc4f140fe195fd51a5529ea8b23ca2f
+  revision: e75fd86ae5554ddc4fbd10a4405455ff8e25d079
   specs:
-    stripe (1.25.0)
+    stripe (1.29.1)
       json (~> 1.8.1)
       rest-client (~> 1.4)
 
 GEM
   remote: https://rubygems.org/
   specs:
-    CFPropertyList (2.3.1)
+    CFPropertyList (2.3.2)
     actionmailer (4.2.0)
       actionpack (= 4.2.0)
       actionview (= 4.2.0)
@@ -64,10 +64,10 @@ GEM
     angular_rails_csrf (1.0.4)
       rails (>= 3, < 5)
     angularjs-file-upload-rails (1.1.6)
-    angularjs-rails (1.4.4)
+    angularjs-rails (1.4.7)
     ansi (1.5.0)
     arel (6.0.3)
-    autoprefixer-rails (6.0.0)
+    autoprefixer-rails (6.0.3)
       execjs
       json
     bcrypt (3.1.10)
@@ -108,7 +108,7 @@ GEM
       sprockets (< 2.13)
     debug_inspector (0.0.2)
     diff-lcs (1.2.5)
-    domain_name (0.5.24)
+    domain_name (0.5.25)
       unf (>= 0.0.5, < 1.0.0)
     erubis (2.7.0)
     excon (0.45.4)
@@ -168,7 +168,7 @@ GEM
     fog-ecloud (0.3.0)
       fog-core
       fog-xml
-    fog-google (0.0.7)
+    fog-google (0.1.1)
       fog-core
       fog-json
       fog-xml
@@ -193,7 +193,7 @@ GEM
       fog-core
       fog-json
       fog-xml
-    fog-sakuracloud (1.0.1)
+    fog-sakuracloud (1.3.3)
       fog-core
       fog-json
     fog-serverlove (0.1.2)
@@ -250,7 +250,7 @@ GEM
     jquery-ui-rails (5.0.5)
       railties (>= 3.2.16)
     json (1.8.3)
-    kgio (2.9.3)
+    kgio (2.10.0)
     listen (3.0.3)
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9)
@@ -260,14 +260,14 @@ GEM
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
     method_source (0.8.2)
-    mime-types (2.6.1)
+    mime-types (2.6.2)
     mini_backtrace (0.1.3)
       minitest (> 1.2.0)
       rails (>= 2.3.3)
-    mini_magick (4.3.1)
+    mini_magick (4.3.5)
     mini_portile (0.6.2)
-    minitest (5.8.0)
-    minitest-reporters (1.0.20)
+    minitest (5.8.1)
+    minitest-reporters (1.1.2)
       ansi
       builder
       minitest (>= 5.0)
@@ -276,15 +276,15 @@ GEM
     nenv (0.2.0)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
-    net-ssh (2.9.2)
+    net-ssh (3.0.1)
     netrc (0.10.3)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
-    notiffany (0.0.7)
+    notiffany (0.0.8)
       nenv (~> 0.1)
       shellany (~> 0.0)
     pg (0.18.3)
-    pry (0.10.1)
+    pry (0.10.2)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
@@ -363,7 +363,7 @@ GEM
       multi_json (~> 1.0)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
-    sprockets-rails (2.3.2)
+    sprockets-rails (2.3.3)
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (>= 2.8, < 4.0)

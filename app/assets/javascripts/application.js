@@ -2,7 +2,6 @@
 //= require jquery_ujs
 //= require jquery-ui
 //= require angular
-//= require angular-animate
 //= require angular-messages
 //= require angular-ui-router
 //= require angular-rails-templates
@@ -22,6 +21,7 @@
 //= require jquery.fancybox-plus.js
 //= require clickoutside.directive.js
 //= require angularjs-file-upload
+//= require angular-animate
 //= require ngImgCrop-master/compile/unminified/ng-img-crop.js
 //= require_tree .
 //= require_tree ./templates
