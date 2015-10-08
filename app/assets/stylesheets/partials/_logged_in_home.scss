@@ -538,3 +538,17 @@ $modal_profile_picture_size: 110px;
 		}
 	}
 }
+
+
+
+
+#test_view {
+	margin-left:100px;
+	&.ng-enter {
+						@include animation(slideInRight 0.5s both ease);
+					}
+
+					&.ng-leave {
+						@include animation(slideOutLeft 0.5s both ease);
+					}
+}

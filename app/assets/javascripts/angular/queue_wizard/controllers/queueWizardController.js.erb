@@ -20,11 +20,6 @@
     console.log(recipients.selectedRecipients);
     console.log($state.current);
 
-    $scope.test = false;
-    $scope.triggerTest = function() {
-    	$scope.test = !$scope.test;
-    }
-
 
     // control what happens on each state of UI-Router
     $scope.$on('$stateChangeSuccess',
