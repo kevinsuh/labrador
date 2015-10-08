@@ -126,6 +126,9 @@
           },
           'wizard': {
             templateUrl: "angular/queue_wizard/wizard.html"
+          },
+          'header': {
+            templateUrl: "angular/queue_wizard/header_navigation.html"
           }
         },
        resolve: {
@@ -146,12 +149,9 @@
         url:'',
         replace: true,
         views: {
-          'header': {
-            templateUrl: "angular/queue_wizard/header_navigation.html"
-          },
           'form': {
             templateUrl: "angular/queue_wizard/wizard_step_one.html"
-          }
+          } 
         }
       })
       .state('queue.home.step2', {
@@ -161,7 +161,7 @@
               templateUrl: "angular/queue_wizard/header_navigation.html"
             },
             'form': {
-              templateUrl: "angular/queue_wizard/wizard_step_one.html"
+              templateUrl: "angular/queue_wizard/wizard_step_two.html"
             }
         }
       })
