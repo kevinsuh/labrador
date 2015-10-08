@@ -10,15 +10,61 @@
     $scope.selectedRecipients = recipients.selectedRecipients; // selected recipients is simply passed in from the overarching controller that encompasses this UIRouter view as well as my people UIRouter view.
     // this view uses the same recipients model to transfer data
     $scope.stateParams = $stateParams;
-
     $scope.occasions = cards.occasions;
-
     $scope.testRecipient = $scope.selectedRecipients[0];
-
     $scope.newCard = cards.newCard;
 
     console.log(recipients.selectedRecipients);
     console.log($state.current);
+
+    $scope.recipientNames = function() {
+    	
+    	recipients = $scope.selectedRecipients;
+    	recipient_names = recipients.map(function(elem) {
+    		return elem.first_name;
+    	});
+
+    	if (recipient_names.length > 0) {
+				
+				text        = '';
+				conjunction = "and";
+				comma       = '';
+				ctr         = 1;
+				max_names   = 4; // max # of names to show before we default to "others"
+				
+				keepGoing   = true;
+    		angular.forEach(recipient_names, function(value) {
+
+    			if (keepGoing) {
+
+    				// this is where you will add the final value
+	    			if (ctr == max_names) {
+	    				keepGoing = false;
+
+							remaining_count = (recipient_names.length+1) - ctr;
+							other           = remaining_count > 1 ? "others" : "other";
+							comma           += conjunction+' ';
+							text            += comma + " " + remaining_count + " " + other;
+
+	    			} else {
+
+	    				text += comma+value;
+							ctr++;
+							if(recipient_names.length > 2){
+								comma = ', ';
+							} else {
+								comma = ' ';
+							}
+							if(ctr == recipient_names.length) {
+								comma += conjunction+' ';
+							}
+	    			}
+
+    			}
+				})
+    	}
+    	return text;
+    }
 
 
     // control what happens on each state of UI-Router
