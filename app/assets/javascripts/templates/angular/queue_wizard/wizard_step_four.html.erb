@@ -1,5 +1,21 @@
 <div class="centered_view">
 	<div class="question">
-		<span>I want to send STEP FOUR a card for </span><nl-select field-type="occasion" value="newCard.occasion" options="occasions" name="occasion">
+		<span>{{recipientNames()}} need this by
+
+		<div class="date" ng-controller="DatepickerDemoCtrl">
+			<div class="form_input date_input">
+				<input type="date" datepicker-popup json-date ng-model="newCard.recipientArrivalDate" is-open="status.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" placeholder="mm/dd/yyyy" required/>
+			</div>
+			<span class="input-group-btn date_span">
+        <button type="button" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+      </span>
+		</div>
 	</div>
+
 </div>
+<!-- 
+<label for="card_date" style="color: darkred; border-bottom: 1px dashed; font-weight: 500; cursor: pointer; margin-top: 10px; font-size: 1.2em;"><i ng-hide="newCard.recipientArrivalDate" class="glyphicon glyphicon-calendar"></i>{{newCard.recipientArrivalDate}}</label>
+<div style="width: 40%; margin: 0 auto;">
+<datepicker date-min-limit="{{minimumRecipientDate}}" date-format="MMM d, yyyy" style="text-align:left;">
+		<input style="width: 100%; display:none;" id="card_date" ng-model="newCard.recipientArrivalDate" type="text"></input>
+</datepicker> -->

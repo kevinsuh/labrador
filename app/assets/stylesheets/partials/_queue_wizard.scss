@@ -185,6 +185,28 @@ $queue_wizard_profile_picture_size: 100px;
 						width: 100%;
 					}
 
+					.date {
+						display: inline;
+						position: relative;
+						.date_input {
+							display: inline;
+							input {
+								padding-left: 2em;
+								width: 35%;
+							}
+						}
+						.date_span {
+							position: absolute;
+							left: 10px;
+							top: -30px;
+							button {
+								background-color: transparent;
+								border: none;
+								font-size: 0.4em;
+							}
+						}
+					}
+
 					.question {
 						text-align: center;
 						span {

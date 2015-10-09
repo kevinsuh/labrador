@@ -17,6 +17,9 @@
     console.log(recipients.selectedRecipients);
     console.log($state.current);
 
+    // set the minimum recipient date
+    $scope.minimumRecipientDate = recipientDate();
+
     $scope.recipientNames = function() {
     	
     	recipients = $scope.selectedRecipients;
@@ -118,3 +121,16 @@
 	});
 
 })();
+
+/**
+ * return the recipient's date
+ */
+function recipientDate() {
+	var recipientDate = new Date();
+  recipientDate.setDate(recipientDate.getDate()+14);
+  var day = recipientDate.getDate();
+  var month = recipientDate.getMonth() + 1;
+  var year = recipientDate.getFullYear();
+  recipientDate = month+"/"+day+"/"+year;
+  return recipientDate;
+}
