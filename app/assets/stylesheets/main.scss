@@ -10,6 +10,7 @@ html, body, .container.container-full {
 
 body {
 	@include base_font;
+  background-color: $white_grey !important;
 }
 
 section {
@@ -25,9 +26,13 @@ span, p {
 }
 
 .cardagain { // main container of cardagain app
-  height: 100%;
   width: 100%;
+  height: 100%;
   position: absolute;
+}
+
+.clear {
+  clear: both;
 }
 
 .container.main_page {
@@ -39,7 +44,6 @@ span, p {
     margin: 0;
     width: 100%;
     padding: 0;
-    background-color: $white_grey;
     min-height: 1000px;
     min-width: 1250px;
     max-width: 1850px;
@@ -103,11 +107,8 @@ span, p {
   footer {
     @include box_sizing;
     z-index: 1001;
-    position: absolute;
     height: $footer_height;
     width: 100%;
-    bottom: 0;
-    margin: 0;
 
   }
 
