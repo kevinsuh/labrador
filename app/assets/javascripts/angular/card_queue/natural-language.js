@@ -56,7 +56,7 @@ angular.module('vr.directives.nlForm.select',[])
 			},
       controller: 'nlSelectCtrl',
 			template:
-				"<div ng-form='nlSelect' class='nl-field nl-dd wizard_field' ng-class=\"{'nl-field-open': opened}\"><i class='glyphicon glyphicon-menu-down wizard_down_icon'></i>" +
+				"<div ng-form='nlSelect' class='nl-field nl-dd wizard_field' ng-class=\"{'nl-field-open': opened}\"><i class='glyphicon glyphicon-menu-down wizard_down_icon' style='cursor: pointer;' ng-click='open($event)'></i>" +
 					"<a class='nl-field-toggle' ng-click='open($event)' ng-bind='getSelected()'></a>" +
 					"<ul ng-class=\"{'slideDownwards': (fieldType == 'occasion'), 'slideDownwards': (fieldType == 'relationship')}\">" +
 						"<li ng-repeat='label in getLabels()' ng-class=\"{'nl-dd-checked': isSelected(label)}\" ng-hide=\"isSelected(label) && fieldType != 'flavor'\" ng-click='select(label)' ng-bind='label'></li>" +
