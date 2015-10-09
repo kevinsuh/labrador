@@ -1,9 +1,9 @@
 <div class="greeting_central_view">
-	<aside class="col-md-3 col-xs-3" ng-controller="ManageRecipientsController">
-		<div ui-view="my_people"></div>
+	<aside class="col-md-3 col-xs-3 my_people_view" ng-controller="ManageRecipientsController">
+		<div ui-view="my_people" class="my_people_ui_view"></div>
 	</aside>
 
-	<div class="col-md-9 col-xs-9 card_queue" ng-controller="CardQueueController">
-		<div ui-view="calendar"></div>
+	<div class="col-md-9 col-xs-9 card_queue calendar_view" ng-controller="CardQueueController">
+		<div ui-view="calendar" class="calendar_ui_view"></div>
 	</div>
 </div>

@@ -2,282 +2,299 @@
 
 $greeting_central_profile_picture_size: 40px;
 
-
-.my_people_section, .calendar_section {
-
-	box-shadow: $grey_box_shadow;
-
-	.my_people, .calendar_view {
-
-		background-color: white;
-		margin: -1px;
-		max-height: 750px;
-		overflow-y: scroll;
-		overflow-x: hidden;
-
-		// header
-		.table_header {
-			background-color: $medium_grey;
-			width: 100.5%;
-			display: table;
-			.title {
-				display: table-cell;
-				vertical-align: middle;
-				padding-left: 7px;
-				padding-top: 2px;
-				div {
-					span {
-						font-size: 1.2em;
-						line-height: 1;
-						color: $dark_purple;
-					}
-				}
-			}
-			.add {
-				display: table-cell;
-				vertical-align: middle;
-				text-align: center;
-				padding: 7px 7px 7px 0;
-				margin: 5px;
-				width: 2.5em;
-				div {
-					border: 1pt solid white;
-					cursor: pointer;
-					span {
-						font-size: 1.5em;
-						line-height: 1;
-						color: white;
-					}				
-				}
-			}
+.greeting_central_view {
+	.my_people_view {
+		height: 100%;
+		.my_people_ui_view {
+			height: 100%;
 		}
+	}
+	.calendar_view {
+		height: 100%;
+		.calendar_ui_view {
+			height: 100%;
+		}
+	}
 
-		
-		/**
-		 * 		MY PEOPLE SECTION
-		 */
-		.recipients {
+	.my_people_section, .calendar_section {
 
-			width: 100%;
-			table-layout: fixed;
-			overflow: hidden;
+		box-shadow: $grey_box_shadow;
+		height: 100%;
 
-			.recipient_row {
-				width: 100%;
-				border-bottom: $box_border;
+		.my_people {
+			height: 100%;
+		}
+		.my_people, .calendar_view {
 
-				.image_cell {
-					overflow: hidden;
-					width: 20%;
-					padding: 0 1%;
+			background-color: white;
+			margin: -1px;
+			overflow-y: scroll;
+			overflow-x: hidden;
 
-					.profile_picture_container {
-
-						height:100%;
-						float: left;
-						width: 0;
-
-						// recipient picture
-						.profile_picture {
-							height: $greeting_central_profile_picture_size; 
-							width: $greeting_central_profile_picture_size; 
-							overflow:hidden;
-							-webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC); //overflow hidden for chrome
-							background-color: $light_grey;
-							border: 1pt solid $medium_dark_grey; 
-
-							margin: 0 auto;
-							margin-top: 5px;
-							float: left;
-
-							border-radius: 50%;
-							position: relative;
-
-							.image {
-								position: absolute;
-								bottom: 0;
-								height: $greeting_central_profile_picture_size;
-							}
-						}
-					}
-				}
-
-				.info_cell {
-					width: 50%;
-					padding: 8px 2px;
-					overflow-x: hidden;
-					.recipient_info {
-						display: block;
-						// specific spans
-						&.name {
-							font-size: 1em;
+			// header
+			.table_header {
+				background-color: $medium_grey;
+				width: 100.5%;
+				display: table;
+				.title {
+					display: table-cell;
+					vertical-align: middle;
+					padding-left: 7px;
+					padding-top: 2px;
+					div {
+						span {
+							font-size: 1.2em;
 							line-height: 1;
-							font-weight: 500;
+							color: $dark_purple;
 						}
-						&.relationship {
-							font-size: 0.7em;
-							color: $medium_dark_grey;
-						}
-						&.birthday {
-							font-size: 0.6em;
-							color: $light_teal;
-						}
-					}	
+					}
 				}
-
-				.actions_cell {
-					width: 30%;
-					padding-right: 6px;
-					vertical-align: bottom;
-					padding-bottom: 5px;
-					text-align: right;
-
-					// notification icons inside the action cell
-					.notifications {
-					  display: inline;
-					  float: right;
-					  padding-top: 0.5em;
-					  padding-right: 0.5em;
-					  position: relative;
+				.add {
+					display: table-cell;
+					vertical-align: middle;
+					text-align: center;
+					padding: 7px 7px 7px 0;
+					margin: 5px;
+					width: 2.5em;
+					div {
+						border: 1pt solid white;
+						cursor: pointer;
+						span {
+							font-size: 1.5em;
+							line-height: 1;
+							color: white;
+						}				
 					}
-
-					// notifications stuff
-					.notification_container {
-					  position: relative;
-					  display: inline;
-					  margin: 0;
-					  margin-right: 4px;
-					  margin-left: 12px;
-					  float: left;
-					}
-
-					.notification_bubble {
-					  position: relative;
-					  top: 4px;
-					  right: -11px;
-					  padding: 1px 5px;
-					  background-color: $soft_red;
-					  color: white;
-					  font-weight: bold;
-					  font-size: 0.5em;
-					  border-radius: 40px;
-					  box-shadow: 1px 1px 1px gray;
-					  z-index: 100;
-					  &.delete_recipient {
-					  	top: -2px;
-					  	font-size: 1em;
-					  }
-					}
-
-					.icon {
-						position: absolute;
-						width: 20px;
-						height: 20px;
-					}
-				}	
-
+				}
 			}
-		}
 
-		/**
-		 * 		CALENDAR SECTION
-		 */
+			
+			/**
+			 * 		MY PEOPLE SECTION
+			 */
+			.recipients {
 
-		.calendar_container {
+				width: 100%;
+				table-layout: fixed;
+				overflow: hidden;
 
-			padding: 10px;
+				.recipient_row {
+					width: 100%;
+					border-bottom: $box_border;
 
-			// body for calendar
-			.calendar {
-				border: 1.5pt solid $dark_purple;
+					.image_cell {
+						overflow: hidden;
+						width: 20%;
+						padding: 0 1%;
 
-				// header
-				.fc-toolbar {
-					padding: 5px;
-					margin: 0;
+						.profile_picture_container {
 
-					h2 {
-						text-transform: uppercase;
-						color: $dark_grey;
-					}
-					.fc-button-group {
-						display: block;
-					}
-					.fc-button {
-						display: block;
-					}
-				}
+							height:100%;
+							float: left;
+							width: 0;
 
-				// body within the calendar view
-				.fc-body {
+							// recipient picture
+							.profile_picture {
+								height: $greeting_central_profile_picture_size; 
+								width: $greeting_central_profile_picture_size; 
+								overflow:hidden;
+								-webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC); //overflow hidden for chrome
+								background-color: $light_grey;
+								border: 1pt solid $medium_dark_grey; 
 
-					// week row
-					.fc-row.fc-week {
-						height: 100px;
+								margin: 0 auto;
+								margin-top: 5px;
+								float: left;
 
-						.fc-content-skeleton {
-							height: 100%;
+								border-radius: 50%;
+								position: relative;
 
-							// what contains the week's data
-							table {
-								height: 100%;
-
-								// each container
-								.fc-event-container {
-									vertical-align: bottom;
-									padding-right: 5px;
-									padding-bottom: 10px;
-
-									.fc-event.birthday {
-
-										.fc-content {
-											text-align: right;
-											.fc-title {
-												height:40px;
-											}
-											.fc-title:before {
-												content:"\2b";
-											  font-family:"Glyphicons Halflings";
-											  line-height:1;
-											  margin:10px;
-											  display:inline-block;
-											}
-
-										}
-									}
-									a {
-										float: right;
-										font-size: 20px;
-										border: none;
-										cursor: default;
-									}
-									// hack for now
-									.fc-content {
-										display: none;
-									}
+								.image {
+									position: absolute;
+									bottom: 0;
+									height: $greeting_central_profile_picture_size;
 								}
 							}
+						}
+					}
 
+					.info_cell {
+						width: 50%;
+						padding: 8px 2px;
+						overflow-x: hidden;
+						.recipient_info {
+							display: block;
+							// specific spans
+							&.name {
+								font-size: 1em;
+								line-height: 1;
+								font-weight: 500;
+							}
+							&.relationship {
+								font-size: 0.7em;
+								color: $medium_dark_grey;
+							}
+							&.birthday {
+								font-size: 0.6em;
+								color: $light_teal;
+							}
+						}	
+					}
+
+					.actions_cell {
+						width: 30%;
+						padding-right: 6px;
+						vertical-align: bottom;
+						padding-bottom: 5px;
+						text-align: right;
+
+						// notification icons inside the action cell
+						.notifications {
+						  display: inline;
+						  float: right;
+						  padding-top: 0.5em;
+						  padding-right: 0.5em;
+						  position: relative;
 						}
 
-					}
-					.recipient-popover {
-						background-color: rgba(0,0,0,0.85);
-				    border-radius: 5px;
-				    bottom: 28px;
-				    box-shadow: 0 0 5px rgba(0,0,0,0.4);
-				    color: #fff;
-				    font-size: 12px;
-				    font-family: 'Helvetica',sans-serif;
-				    left: -95px;
-				    padding: 7px 10px;
-				    position: absolute;
-				    width: 150px;
-				    z-index: 999999;
-					}
+						// notifications stuff
+						.notification_container {
+						  position: relative;
+						  display: inline;
+						  margin: 0;
+						  margin-right: 4px;
+						  margin-left: 12px;
+						  float: left;
+						}
+
+						.notification_bubble {
+						  position: relative;
+						  top: 4px;
+						  right: -11px;
+						  padding: 1px 5px;
+						  background-color: $soft_red;
+						  color: white;
+						  font-weight: bold;
+						  font-size: 0.5em;
+						  border-radius: 40px;
+						  box-shadow: 1px 1px 1px gray;
+						  z-index: 100;
+						  &.delete_recipient {
+						  	top: -2px;
+						  	font-size: 1em;
+						  }
+						}
+
+						.icon {
+							position: absolute;
+							width: 20px;
+							height: 20px;
+						}
+					}	
+
 				}
 			}
 
+			/**
+			 * 		CALENDAR SECTION
+			 */
+
+			.calendar_container {
+
+				padding: 10px;
+
+				// body for calendar
+				.calendar {
+					border: 1.5pt solid $dark_purple;
+
+					// header
+					.fc-toolbar {
+						padding: 5px;
+						margin: 0;
+
+						h2 {
+							text-transform: uppercase;
+							color: $dark_grey;
+						}
+						.fc-button-group {
+							display: block;
+						}
+						.fc-button {
+							display: block;
+						}
+					}
+
+					// body within the calendar view
+					.fc-body {
+
+						// week row
+						.fc-row.fc-week {
+							height: 100px;
+
+							.fc-content-skeleton {
+								height: 100%;
+
+								// what contains the week's data
+								table {
+									height: 100%;
+
+									// each container
+									.fc-event-container {
+										vertical-align: bottom;
+										padding-right: 5px;
+										padding-bottom: 10px;
+
+										.fc-event.birthday {
+
+											.fc-content {
+												text-align: right;
+												.fc-title {
+													height:40px;
+												}
+												.fc-title:before {
+													content:"\2b";
+												  font-family:"Glyphicons Halflings";
+												  line-height:1;
+												  margin:10px;
+												  display:inline-block;
+												}
+
+											}
+										}
+										a {
+											float: right;
+											font-size: 20px;
+											border: none;
+											cursor: default;
+										}
+										// hack for now
+										.fc-content {
+											display: none;
+										}
+									}
+								}
+
+							}
+
+						}
+						.recipient-popover {
+							background-color: rgba(0,0,0,0.85);
+					    border-radius: 5px;
+					    bottom: 28px;
+					    box-shadow: 0 0 5px rgba(0,0,0,0.4);
+					    color: #fff;
+					    font-size: 12px;
+					    font-family: 'Helvetica',sans-serif;
+					    left: -95px;
+					    padding: 7px 10px;
+					    position: absolute;
+					    width: 150px;
+					    z-index: 999999;
+						}
+					}
+				}
+
+			}
 		}
 	}
 }

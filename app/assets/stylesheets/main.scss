@@ -24,6 +24,12 @@ span, p {
 	@include adjust-font-size-to(1.2em);
 }
 
+.cardagain { // main container of cardagain app
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+
 .container.main_page {
 
   /**
@@ -35,7 +41,7 @@ span, p {
     padding: 0;
     background-color: $white_grey;
     min-height: 1000px;
-    //min-width: 1150px;
+    min-width: 1250px;
     max-width: 1850px;
     position: absolute;
   }
@@ -92,6 +98,20 @@ span, p {
   }
 
   /**
+   *     FOOTER
+   */
+  footer {
+    @include box_sizing;
+    z-index: 1001;
+    position: absolute;
+    height: $footer_height;
+    width: 100%;
+    bottom: 0;
+    margin: 0;
+
+  }
+
+  /**
    *     HEADER
    */
   header {
@@ -100,6 +120,9 @@ span, p {
     z-index: 1001;
 
     &.navbar {
+      height: $header_height;
+      width: 100%;
+      position: absolute;
       margin: -0.2em;
     }
     /* navbar section of header */

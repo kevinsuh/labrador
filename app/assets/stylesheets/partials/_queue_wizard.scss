@@ -1,7 +1,7 @@
 @import "base";
 
 $queue_wizard_profile_picture_size: 100px;
-$header_hight: 10%;
+$header_height: 10%;
 
 // this is the overarching container div
 .queue_card {
@@ -22,7 +22,7 @@ $header_hight: 10%;
 
 		// the header of the recipients form
 		.header.navigation {
-			height: $header_hight;
+			height: $header_height;
 			background-color: $soft_red;
 
 			.recipients_header {
@@ -62,7 +62,7 @@ $header_hight: 10%;
 		.inner_container {
 
 			@include display-flex; // inline-flex display for all browsers
-			height:100%;
+			height: 100% - $header_height;
 			width: 100%;
 			overflow: scroll;
 			
@@ -133,7 +133,7 @@ $header_hight: 10%;
 
 		// the header of the wizard form
 		.header.navigation {
-			height: $header_hight;
+			height: $header_height;
 			background-color: $dark_purple;
 			$navigation_width: 13%;
 
@@ -203,7 +203,7 @@ $header_hight: 10%;
 		// the inner container -- aka the form itself
 		.inner_container {
 
-			height:100%;
+			height: 100% - $header_height;
 
 			.wizard_form {
 
@@ -215,7 +215,7 @@ $header_hight: 10%;
 				.form_container {
 
 					@include display-flex; // inline-flex display for all browsers
-					height: 100% - $header_hight; // minus height of header
+					height: 100% - $header_height; // minus height of header
 					width: 100%;
 					position: absolute;
 					left: 0;

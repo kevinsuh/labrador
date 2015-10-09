@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row my_people_filter">
 	<div class="filter_people pull-left">
 		<div class="form_input">
 			<input type="text" ng-model="filteredName" ng-change="recipientNameFilter(filteredName)" class="filter_people_input"><i class="glyphicon glyphicon-search search_icon"></i></input>
@@ -23,7 +23,7 @@
 	</div>
 </div>
 
-<div class="row">	
+<div class="row my_people_cards">	
 	<div class="col-xs-6 col-md-4 col-lg-3 single_card_div" ng-repeat="recipient in currentRecipients" ng-if="recipient.is_visible == 1">
 		<div class="recipient_card" ng-mouseover="displayOverlay()" ng-mouseleave="hideOverlay()" ng-click="toggleOverlay()">
 			<div class="recipient_info" ng-class="{'selected': isInArray(recipient.id, selectedRecipientIDs)}">
