@@ -318,42 +318,74 @@ $header_height: 10%;
 					}
 
 					// this is for displaying the card flavor filters
-					.flavor_filters {
+					.flavor_filters_container {
+						width: 97%;
+						margin: auto;
+						.flavor_filters {
 
-						height: 50px;
-						display: flex;
-						margin-top: 20px;
+							height: 50px;
+							display: flex;
+							margin-top: 20px;
 
-						.options_container { // div containing the actual options
-							margin: auto;
-							display: table;
-							width: 90%;
-							height: 100%;
-							border: 1pt solid darkgray;
-							background-color: lightgrey;
-
-							.flavors {
+							.options_container { // div containing the actual options
+								margin: auto;
+								display: table;
 								width: 100%;
-								padding: 10px 0;
-								.option {
-									margin: 0 23pt;
+								height: 100%;
+								border: 1pt solid darkgray;
+								background-color: lightgrey;
+
+								.flavors {
+									width: 100%;
+									padding: 10px 0;
+									.option {
+										margin: 0 23pt;
+									}
+								}
+
+								.favorites {
+									padding: 0;
+									width: 5%;
+									border-left: 1pt solid black;
+									display: table-cell;
+									.option { // span of option
+										text-align: center;
+									}
 								}
 							}
+						}	
+					}
+					
 
-							.favorites {
-								padding: 0;
-								width: 5%;
-								border-left: 1pt solid black;
-								display: table-cell;
-								.option { // span of option
-									text-align: center;
+					.cards_container {
+						height: 100%;
+						width: 97%;
+						margin: 20px auto;
+
+						// the left half of the box that will show the card preview
+						.card_preview_container {
+							height: 100%;
+							.preview_box {
+								height: 100%;
+								border: 1pt solid black;
+								.preview {
+
 								}
 							}
+						}
 
-							
-
-							
-
+						// the right half of the box that will show filtered choices and checkout
+						.filtered_choices_container {
+							height: 100%;
+							.filtered_choices_box {
+								height: 59%;
+								margin-bottom: 3%;
+								border: 1pt solid black;
+							}
+							.confirmation_box {
+								height: 39%;
+								border: 1pt solid black;
+							}
 						}
 
 					}

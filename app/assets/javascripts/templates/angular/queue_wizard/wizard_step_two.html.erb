@@ -1,24 +1,31 @@
-<div class="col-xs-12 flavor_filters">
-	<div class="options_container">
-		<div class="flavors">
-			<span class="option" ng-repeat="(flavor, id) in cardFlavors">{{flavor}}</span>
-		</div>
-		<div class="favorites">
-			<div class="option">
-				<i class="favorite glyphicon glyphicon-star-empty"></i>
+<div class="row flavor_filters_container">
+	<div class="col-xs-12 flavor_filters">
+		<div class="options_container">
+			<div class="flavors">
+				<span class="option" ng-repeat="(flavor, id) in cardFlavors">{{flavor}}</span>
+			</div>
+			<div class="favorites">
+				<div class="option">
+					<i class="favorite glyphicon glyphicon-star-empty"></i>
+				</div>
 			</div>
 		</div>
 	</div>
 </div>
 
-<div class="row cards">
-	<div class="col-xs-6 card_preview">
-
-	</div>
-	<div class="col-xs-6 filtered_cards">
-		<div class="choices">
+<div class="row cards_container">
+	<div class="col-xs-6 card_preview_container">
+		<div class="preview_box">
+			<div class="preview">
+			</div>
 		</div>
-		<div class="confirmation">
+	</div>
+	<div class="col-xs-6 filtered_choices_container">
+		<div class="filtered_choices_box">
+			<!-- display each of the 6 choices here... -->
+		</div>
+		<div class="confirmation_box">
+			<!-- this is where confirm card comes -->
 		</div>
 	</div>
 </div>

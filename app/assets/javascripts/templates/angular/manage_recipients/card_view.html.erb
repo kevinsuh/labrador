@@ -29,9 +29,12 @@
 			<div class="recipient_info" ng-class="{'selected': isInArray(recipient.id, selectedRecipientIDs)}">
 
 				<div class="relationship_group">
+					<% if false %>
+					<% # this is the green check icon that we will be excluding for now %>
 					<div ng-if="isInArray(recipient.id, selectedRecipientIDs)" class="icon_header selected">
 						<i class="glyphicon glyphicon-check"></i>
 					</div>
+					<% end %>
 				</div>
 
 				<div class="profile_picture_container">
@@ -53,7 +56,7 @@
 				<!-- hidden overlay to go over card -->
 				<div class="overlay_view" ng-class="{display:viewOverlay}">
 				</div>
-				<div class="recipient_options overlay" ng-class="{display:viewOverlay}">
+				<div class="recipient_options overlay" ng-class="{display:viewOverlay}" ng-click="select(recipient)">
 					<div class="option_buttons">
 						<button class="btn select-recipient" ng-click="select(recipient)"><i class="glyphicon glyphicon-check"></i></button>
 						<br>
