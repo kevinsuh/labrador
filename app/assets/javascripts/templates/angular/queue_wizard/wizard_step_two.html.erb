@@ -1,5 +1,24 @@
-<div class="centered_view">
-	<div class="question">
-		<span>I want to send STEP TWO a card for </span><nl-select field-type="occasion" value="newCard.occasion" options="occasions" name="occasion">
+<div class="col-xs-12 flavor_filters">
+	<div class="options_container">
+		<div class="flavors">
+			<span class="option" ng-repeat="(flavor, id) in cardFlavors">{{flavor}}</span>
+		</div>
+		<div class="favorites">
+			<div class="option">
+				<i class="favorite glyphicon glyphicon-star-empty"></i>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="row cards">
+	<div class="col-xs-6 card_preview">
+
+	</div>
+	<div class="col-xs-6 filtered_cards">
+		<div class="choices">
+		</div>
+		<div class="confirmation">
+		</div>
 	</div>
 </div>

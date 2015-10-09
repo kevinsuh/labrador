@@ -217,7 +217,10 @@ $header_height: 10%;
 
 				.form_container {
 
-					@include display-flex; // inline-flex display for all browsers
+					&.flex {
+						@include display-flex; // inline-flex display for all browsers
+					}
+
 					height: 100% - $header_height; // minus height of header
 					width: 100%;
 					position: absolute;
@@ -313,6 +316,48 @@ $header_height: 10%;
 							}
 						}
 					}
+
+					// this is for displaying the card flavor filters
+					.flavor_filters {
+
+						height: 50px;
+						display: flex;
+						margin-top: 20px;
+
+						.options_container { // div containing the actual options
+							margin: auto;
+							display: table;
+							width: 90%;
+							height: 100%;
+							border: 1pt solid darkgray;
+							background-color: lightgrey;
+
+							.flavors {
+								width: 100%;
+								padding: 10px 0;
+								.option {
+									margin: 0 23pt;
+								}
+							}
+
+							.favorites {
+								padding: 0;
+								width: 5%;
+								border-left: 1pt solid black;
+								display: table-cell;
+								.option { // span of option
+									text-align: center;
+								}
+							}
+
+							
+
+							
+
+						}
+
+					}
+
 				}
 			}
 		}	

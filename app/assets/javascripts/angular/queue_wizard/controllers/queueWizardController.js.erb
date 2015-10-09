@@ -11,17 +11,17 @@
     // this view uses the same recipients model to transfer data
     $scope.stateParams = $stateParams;
     $scope.occasions = cards.occasions;
+    $scope.cardFlavors = cards.cardFlavors;
+    console.log($scope.cardFlavors);
     $scope.testRecipient = $scope.selectedRecipients[0];
     $scope.newCard = cards.newCard;
-
-    console.log(recipients.selectedRecipients);
-    console.log($state.current);
 
     // set the minimum recipient date
     $scope.minimumRecipientDate = recipientDate();
     $scope.minimumRecipientDateString = recipientDateString();
 
     $scope.testDate = new Date();
+    $scope.verticalCenter = true;
 
     $scope.recipientNames = function() {
     	
@@ -84,6 +84,27 @@
 		$scope.wizardStateisValid = function() {
 			return true;
 		}
+
+		// view changes in state
+		$rootScope.$on('$stateChangeStart', 
+			function(event, toState, toParams, fromState, fromParams){ 
+				currentState = toState.name;
+				switch(currentState) {
+					case "queue.home.step1":
+						$scope.verticalCenter = true;
+						break;
+					case "queue.home.step2":
+						$scope.verticalCenter = false;
+						break;
+					case "queue.home.step3":
+						$scope.verticalCenter = true;
+						break;
+					case "queue.home.step4":
+						$scope.verticalCenter = false;
+						break;
+				}
+		})
+
 
 		// get the next step for the wizard form
 		$scope.nextStep = function() {

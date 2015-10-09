@@ -138,6 +138,9 @@
           occasionPromise: ['cards', function(cards) {
             return cards.getOccasions();
           }],
+          flavorPromise: ['cards', function(cards) {
+            return cards.getCardFlavors();
+          }],
           recipient_ids: ['$stateParams', function($stateParams) {
             // turn string into array
             recipient_ids = $stateParams.recipients.split(",");
