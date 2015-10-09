@@ -17,13 +17,14 @@ $header_height: 10%;
 		border-right: 1pt solid black;
 		position: relative;
 		height: 100%;
+		overflow: hidden;
 		margin:0;
 		padding:0;
 
 		// the header of the recipients form
 		.header.navigation {
 			height: $header_height;
-			background-color: $soft_red;
+			background-color: $wizard_red;
 
 			.recipients_header {
 				height: 100%;
@@ -59,12 +60,14 @@ $header_height: 10%;
 			}			
 		}
 
+		// left side bar after header
 		.inner_container {
 
 			@include display-flex; // inline-flex display for all browsers
 			height: 100% - $header_height;
 			width: 100%;
-			overflow: scroll;
+			overflow: auto;
+			background-color: $wizard_grey;
 			
 			.centered_view {
 				margin: auto 0px;
@@ -134,7 +137,7 @@ $header_height: 10%;
 		// the header of the wizard form
 		.header.navigation {
 			height: $header_height;
-			background-color: $dark_purple;
+			background-color: $wizard_purple;
 			$navigation_width: 13%;
 
 			.wizard_header {

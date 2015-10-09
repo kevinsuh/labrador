@@ -71,6 +71,11 @@ $inactive_grey: #BCBBBD;
 $active_grey: #1B1B1B;
 $dark_teal: #598491;
 
+// queue wizard colors
+$wizard_red: #E76F6B;
+$wizard_purple: #746999;
+$wizard_grey: #F0F0F0;
+
 @mixin base_font {
 	font-family: $base-font-family;
 	font-weight: $base-font-weight;
