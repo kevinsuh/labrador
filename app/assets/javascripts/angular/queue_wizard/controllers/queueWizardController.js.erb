@@ -19,6 +19,9 @@
 
     // set the minimum recipient date
     $scope.minimumRecipientDate = recipientDate();
+    $scope.minimumRecipientDateString = recipientDateString();
+
+    $scope.testDate = new Date();
 
     $scope.recipientNames = function() {
     	
@@ -126,11 +129,22 @@
  * return the recipient's date
  */
 function recipientDate() {
+	// minimum time is 2 weeks for now
+	var recipientDate = new Date();
+  recipientDate.setDate(recipientDate.getDate()+14);
+  // var day = recipientDate.getDate();
+  // var month = recipientDate.getMonth() + 1;
+  // var year = recipientDate.getFullYear();
+  // recipientDate = month+"/"+day+"/"+year;
+  return recipientDate;
+}
+
+function recipientDateString() {
 	var recipientDate = new Date();
   recipientDate.setDate(recipientDate.getDate()+14);
   var day = recipientDate.getDate();
   var month = recipientDate.getMonth() + 1;
   var year = recipientDate.getFullYear();
-  recipientDate = month+"/"+day+"/"+year;
+  recipientDate = year+"-"+month+"-"+day;
   return recipientDate;
 }
