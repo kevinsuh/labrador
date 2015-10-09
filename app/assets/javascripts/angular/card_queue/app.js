@@ -124,11 +124,14 @@
           'recipients': {
             templateUrl: "angular/queue_wizard/recipients.html"
           },
+          'recipients_header': {
+            templateUrl: "angular/queue_wizard/recipients_header.html"
+          },
           'wizard': {
             templateUrl: "angular/queue_wizard/wizard.html"
           },
-          'header': {
-            templateUrl: "angular/queue_wizard/header_navigation.html"
+          'wizard_header': {
+            templateUrl: "angular/queue_wizard/wizard_header.html"
           }
         },
        resolve: {

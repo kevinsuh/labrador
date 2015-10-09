@@ -1,6 +1,7 @@
 @import "base";
 
 $queue_wizard_profile_picture_size: 100px;
+$header_hight: 10%;
 
 // this is the overarching container div
 .queue_card {
@@ -18,6 +19,45 @@ $queue_wizard_profile_picture_size: 100px;
 		height: 100%;
 		margin:0;
 		padding:0;
+
+		// the header of the recipients form
+		.header.navigation {
+			height: $header_hight;
+			background-color: $soft_red;
+
+			.recipients_header {
+				height: 100%;
+				@include display-flex; // inline-flex display for all browsers
+				div {
+					display: inline-block;
+					text-align: center;
+					color: white;
+
+					&.main_display {
+						width: 100%;
+						margin: auto 0;
+						padding-top: 4%;
+						.title {
+							font-size: 1.8em;
+						}
+						.progress_bullets {
+							.bullet {
+								font-size: 2.5rem;
+								margin: 0 3px;
+								a {
+									color: $ben_light_grey;
+									opacity: 0.45;
+									&.active {
+										color: white;
+										opacity: 1;
+									}
+								}
+							}
+						}
+					}
+				}	
+			}			
+		}
 
 		.inner_container {
 
@@ -91,61 +131,73 @@ $queue_wizard_profile_picture_size: 100px;
 		padding: 0;
 		height: 100%;
 
-		$header_hight: 7%;
-
 		// the header of the wizard form
 		.header.navigation {
 			height: $header_hight;
 			background-color: $dark_purple;
+			$navigation_width: 13%;
 
-			div {
-				display: inline-block;
-				text-align: center;
-				color: white;
+			.wizard_header {
+				height: 100%;
+				@include display-flex; // inline-flex display for all browsers
+				div {
+					display: inline-block;
+					text-align: center;
+					color: white;
 
-				&.back {
-					width: 15%;
-					padding-left: 10px;
-				}
-
-				&.main_display {
-					width: 69%;
-					padding-top: 15px;
-					.title {
-						font-size: 1.4em;
-					}
-					.progress_bullets {
-						.bullet {
-							font-size: 2.5rem;
-							margin: 0 3px;
-							a.active {
-								color: $extra_dark_grey;
+					&.main_display {
+						width: 100% - 2*$navigation_width;
+						margin: auto 0;
+						.title {
+							font-size: 3em;
+						}
+						.progress_bullets {
+							.bullet {
+								font-size: 2.5rem;
+								margin: 0 3px;
+								a.active {
+									color: $extra_dark_grey;
+								}
 							}
 						}
 					}
 				}
+				.navigation_container {
+					width: $navigation_width;
+					margin: auto 0;
+					padding: 0 2em;
+					height: 50%;
 
-				&.forward {
-					width: 15%;
-					padding-right: 10px;
+					.direction {
+						width: 100%;
+						height: 100%;
+						.navigation_button {
+							width: 100%;
+							height: 100%;
+							background-color: transparent;
+							border: 1pt solid white;
+							color: white;
+							&:hover {
+								background-color: adjust-lightness($dark_purple, -5%);
+							}
+							&:focus {
+								outline: 0;
+							}
+						}
+					}					
 				}
+
 			}
-			.navigation_button {
-				background-color: adjust-lightness($dark_purple, 5%);
-				width: 15%;
-				color: white;
-				top: 17px;
-				position: absolute;
-				&:hover {
-					background-color: adjust-lightness($dark_purple, -5%);
-				}
-				&.left_align {
-					left: 20px;
-				}
-				&.right_align {
-					right: 20px;
-				}
-			}
+
+			// .navigation_button {
+				
+			// 	&.left_align {
+			// 		left: 20px;
+			// 	}
+			// 	&.right_align {
+			// 		right: 20px;
+			// 	}
+			// }
 		}
 
 		// the inner container -- aka the form itself

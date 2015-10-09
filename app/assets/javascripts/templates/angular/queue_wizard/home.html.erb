@@ -1,11 +1,14 @@
 <div ng-controller="QueueWizardController" class="queue_card">
 	<div class="col-xs-2 col-md-3 recipients_container">
+		<header class="header navigation">
+		 	<div ui-view="recipients_header" class="recipients_header" style="width: 100%;"></div>
+		</header>
 		<div class="inner_container" ui-view="recipients"></div>
 	</div>
 
 	<div class="col-xs-10 col-md-9 wizard_container">
 		<header class="header navigation">
-		 	<div ui-view="header" style="width: 100%;"></div>
+		 	<div ui-view="wizard_header" class="wizard_header" style="width: 100%;"></div>
 		</header>
 		<div class="inner_container" ui-view="wizard"></div>
 	</div>

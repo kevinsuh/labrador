@@ -1,0 +1,32 @@
+<!-- all conditionals regarding back here -->
+<div class="back_container navigation_container">
+	<div class="back direction">
+		<button class="btn navigation_button left_align" ng-click="previousStep()"><i class="glyphicon glyphicon-arrow-left"></i></button>
+	</div>
+</div>
+
+
+<!-- center display for form state -->
+<div class="main_display">
+	<div class="title" ng-if="currentState == 'queue.home.step1'">
+		For what occassion?
+	</div>
+	<div class="title" ng-if="currentState == 'queue.home.step2'">
+		The perfect card should be...
+	</div>
+	<div class="title" ng-if="currentState == 'queue.home.step3'">
+		Third step?
+	</div>
+	<div class="title" ng-if="currentState == 'queue.home.step4'">
+		Pick the date
+	</div>
+</div>
+
+<!-- hold all conditionals regarding forward here -->
+<div class="forward_container navigation_container">
+
+	<div class="forward direction">
+		<button class="btn navigation_button right_align" ng-click="nextStep()" class="disabled" ng-class="{'disabled': !wizardStateisValid()}"><i class="glyphicon glyphicon-arrow-right"></i></button>
+	</div>
+
+</div>
