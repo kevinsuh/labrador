@@ -386,14 +386,61 @@ $header_height: 10%;
 							.card_preview_container {
 								height: 100%;
 								.preview_box {
+									display: table;
+									width: 100%;
 									height: 100%;
 									border: 1pt solid black;
+									
 									.preview {
+										display: table-row;
+										width: 100%;
+										height: 90%;
 										.card_image {
+											display: table-cell;
+											position: relative;
+											width: 90%;
+											height: 95%;
+											margin: 2.5% 5% 0 5%;
+											-webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC); //overflow hidden for chrome
+
+											float: left;
+											//margin-top: 5px;
+											//position: relative;
 											.image {
+												position: absolute;
 												width: 100%;
 											}
 										}
+										.card_name {
+											display: inline-block;
+											width: 100%;
+											text-align: center;
+										}
+									}
+
+									.preview_options {
+										display: table-row;
+										width: 100%;
+										height: 9%;
+										.options {
+											display: table;
+											width: 100%;
+											height: 100%;
+											.option {
+												display: table-cell;
+												width: 50%;
+												height: 100%;
+												text-align: center;
+												cursor: default;
+												background-color: $wizard_grey;
+												color: scale-lightness($extra_dark_grey, 15%);
+												&.selected {
+													background-color: white;
+													color: $wizard_red;
+												}
+											}
+										}
+										
 									}
 								}
 							}
@@ -417,18 +464,21 @@ $header_height: 10%;
 											margin: 2.5% 1.5%;
 											padding: 10px;
 											cursor: pointer;
+											position: relative;
 											.card_image {
 												height: 100%;
 												width: 100%;
 												-webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC); //overflow hidden for chrome
 
 												margin: 0 auto;
-												margin-top: 5px;
 												float: left;
-												position: relative;
+												//margin-top: 5px;
+												//position: relative;
 												.image {
 													position: absolute;
-													width: 100%;
+													height: 100%;
+													left: -6%;
+													top: 0;
 												}
 											}
 											.card_name {

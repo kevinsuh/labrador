@@ -130,8 +130,12 @@
     }
 
     $scope.selectCard = function(card) {
-    	console.log(card);
     	$scope.cards.selectedCard = card;
+    }
+
+    // decide which side to preview
+    $scope.selectPreviewSide = function(side) {
+    	$scope.previewSide = side;
     }
 
 
@@ -173,6 +177,8 @@
 						$scope.cardsLoadedFirstTime  = false; // first time display entire view
 						$scope.cardsLoading = false; // second time just top right corner
 						$scope.cardsLoading = false; // second time just top right corner
+
+						$scope.previewSide = 'outside'; // default to outside view
 
 						// refresh flavors whenver you are on step 2
 						$scope.selectedFlavorIDs = [];
