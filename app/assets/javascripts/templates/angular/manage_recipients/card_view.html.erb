@@ -58,7 +58,7 @@
 				</div>
 				<div class="recipient_options overlay" ng-class="{display:viewOverlay}" ng-click="select(recipient)">
 					<div class="option_buttons">
-						<button class="btn select-recipient" ng-click="select(recipient)"><i class="glyphicon glyphicon-check"></i></button>
+						<button class="btn select-recipient" ng-click="select(recipient); $event.stopPropagation();"><i class="glyphicon glyphicon-check"></i></button>
 						<br>
 						<span class="text">Select</span>
 					</div>
