@@ -129,8 +129,9 @@
     	
     }
 
-    $scope.isInArray = function(value, array) {
-    	return array.indexOf(value) > -1;
+    $scope.selectCard = function(card) {
+    	console.log(card);
+    	$scope.cards.selectedCard = card;
     }
 
 
@@ -144,6 +145,10 @@
 		    $scope.currentState = toState.name;
 		  }
 		)
+
+		$scope.isInArray = function(value, array) {
+    	return array.indexOf(value) > -1;
+    }
 
     // run more extensive tests here
 		$scope.wizardStateisValid = function() {

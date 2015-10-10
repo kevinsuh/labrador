@@ -389,7 +389,11 @@ $header_height: 10%;
 									height: 100%;
 									border: 1pt solid black;
 									.preview {
-
+										.card_image {
+											.image {
+												width: 100%;
+											}
+										}
 									}
 								}
 							}
@@ -404,7 +408,7 @@ $header_height: 10%;
 									.filtered_choices {
 										height: 100%;
 										&.ng-hide-remove { // when showing the card choices
-											@include animation(fadeIn 0.35s 0.65s both ease-in);
+											@include animation(fadeIn 0.15s 0.35s both ease-in);
 										}
 										.choice {
 											height: 45%;

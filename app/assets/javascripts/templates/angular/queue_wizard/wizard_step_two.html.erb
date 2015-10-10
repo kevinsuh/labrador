@@ -24,6 +24,9 @@
 
 			<div class="preview_box">
 				<div class="preview">
+					<div class="card_image">
+						<img class="image" ng-src="{{cards.selectedCard.card_images[0]}}" ng-if="cards.selectedCard" />
+					</div>
 				</div>
 			</div>
 
@@ -35,7 +38,7 @@
 					<span class="card-spinner" us-spinner spinner-key="card-find-spinner"></span>
 				</div>
 				<div class="filtered_choices" ng-show="cardsLoaded">
-					<div class="choice" ng-repeat="card in cards.occasionCards">
+					<div class="choice" ng-repeat="card in cards.occasionCards" ng-click="selectCard(card)">
 						<div class="card_image">
 							<img class="image" ng-src="{{card.card_images[0]}}" />
 						</div>
