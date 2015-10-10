@@ -9,7 +9,7 @@ $header_height: 10%;
 	width: 100%;
 	position:absolute;
 	height: 100%; 
-	min-width: 800px;
+	min-width: 1500px;
 
 	// the entire left-side column
 	.recipients_container {
@@ -340,6 +340,13 @@ $header_height: 10%;
 									padding: 10px 0;
 									.option {
 										margin: 0 40pt;
+										color: $wizard_grey;
+										opacity: 0.75;
+										cursor: pointer;
+										&.selected {
+											color: $wizard_red;
+											opacity: 1;
+										}
 									}
 								}
 

@@ -22,6 +22,7 @@
 
     $scope.testDate = new Date();
     $scope.verticalCenter = true;
+    $scope.selectedFlavorIDs = [];
 
     $scope.recipientNames = function() {
     	
@@ -70,6 +71,26 @@
 				})
     	}
     	return text;
+    }
+
+    /**
+     * select the flavor, which will refresh the card choices with the given filter specifities
+     * @param  int flavor_id
+     */
+    $scope.selectFlavor = function(flavorID) {
+
+    	if (isInArray(flavorID, $scope.selectedFlavorIDs)) {
+    		$scope.selectedFlavorIDs = arrayWithValueRemoved(flavorID, $scope.selectedFlavorIDs);
+    	} else {
+    		$scope.selectedFlavorIDs.push(flavorID);
+    	}
+
+    	console.log($scope.selectedFlavorIDs);
+    	
+    }
+
+    $scope.isInArray = function(value, array) {
+    	return array.indexOf(value) > -1;
     }
 
 
