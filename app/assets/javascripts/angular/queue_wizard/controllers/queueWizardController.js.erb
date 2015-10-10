@@ -12,9 +12,13 @@
     $scope.stateParams = $stateParams;
     $scope.occasions = cards.occasions;
     $scope.cardFlavors = cards.cardFlavors;
-    console.log($scope.cardFlavors);
     $scope.testRecipient = $scope.selectedRecipients[0];
+    $scope.cards = cards;
     $scope.newCard = cards.newCard;
+
+    // when you first open the scope, default to birthday cards
+    birthdayOccasionID = 7;
+    cards.getCardsForOccasion(birthdayOccasionID);
 
     // set the minimum recipient date
     $scope.minimumRecipientDate = recipientDate();
@@ -86,6 +90,7 @@
      */
     $scope.selectFlavor = function(flavorID) {
 
+    	console.log($scope.cards.occasionCards);
     	if (isInArray(flavorID, $scope.selectedFlavorIDs)) {
     		$scope.selectedFlavorIDs = arrayWithValueRemoved(flavorID, $scope.selectedFlavorIDs);
     	} else {

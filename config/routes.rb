@@ -46,6 +46,7 @@ Rails.application.routes.draw do
   # cards
   get 'cards/get_flavors'
   post 'cards/get_curated_cards'
+  post 'cards/get_cards_for_occasion'
 
   # queue wizard
   get 'queue_card' => 'cards#queue_wizard'

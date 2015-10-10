@@ -49,6 +49,15 @@ class Card < ActiveRecord::Base
 			curated_cards
 		end
 
+		# get all cards for a specific occasion
+		def for_occasion(occasion_id)
+			cards_for_occasion = Card.joins("
+				LEFT JOIN card_occasions 
+					ON card_occasions.card_id = cards.id").where("
+				card_occasions.occasion_id IN (:occasion_ids)", occasion_ids: [occasion_id])
+			cards_for_occasion
+		end
+
 		# get the cards associated with specific filters
 		# this is initially for admin use
 		def all_with_filters(filters = {})

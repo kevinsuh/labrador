@@ -16,6 +16,11 @@ class CardSerializer < ActiveModel::Serializer
       data[:errors] = object.errors.messages
     end
 
+    # card flavors
+    card_flavors = CardFlavor.where(card_id: data[:id])
+    data[:card_flavors] = card_flavors
+
+    # card images
     card_images = CardImage.where(card_id: data[:id])
     
     card_image_urls = card_images.map { 

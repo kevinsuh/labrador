@@ -26,6 +26,15 @@ class CardsController < ApplicationController
 
   end
 
+  def get_cards_for_occasion
+    occasion_id = params[:occasion_id]
+    cards = Card.for_occasion occasion_id
+
+    respond_to do |format|
+      format.json { render json: cards }
+    end
+  end
+
   # initialize card queue wizard
   def queue_wizard
 

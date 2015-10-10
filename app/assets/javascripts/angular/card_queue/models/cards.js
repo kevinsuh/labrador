@@ -38,6 +38,7 @@
         recipientAddress: "",
         notes: ""
       },
+      occasionCards: {}, // all cards for an occasion
       occasions: {},
       relationships: {},
       cardFlavors: {}
@@ -64,8 +65,11 @@
      * get all the cards for a specific occasion
      * current use-case is for when user selects a specific occasion. defaults to birthday.
      */
-    o.getCuratedCards = function() {
-      
+    o.getCardsForOccasion = function(occasionID) {
+      return $http.post('/cards/get_cards_for_occasion.json', {occasion_id: occasionID}).success(function(data) {
+        var cards = data.cards;
+        o.occasionCards = cards;
+      })
     }
 
     o.getOccasions = function() {
