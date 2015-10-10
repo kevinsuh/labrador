@@ -50,7 +50,7 @@
 
 				<div class="filtered_choices" ng-show="cardsLoaded">
 					<!-- display each of the 6 choices here... -->
-					<div class="choice" ng-repeat="card in cards.selectableCards" ng-click="selectCard(card)">
+					<div class="choice" ng-repeat="card in cards.selectableCards" ng-class="{'selected': card == cards.selectedCard}" ng-click="selectCard(card)" ng-if="selectedFlavorIDs.length > 0">
 						<div class="card_image">
 							<img class="image" ng-src="{{card.card_images[0]}}" />
 						</div>
@@ -59,14 +59,18 @@
 						</div>
 					</div>
 
+					<div class="no_choices" ng-if="selectedFlavorIDs.length == 0">
+						<h3 style="text-align: center; font-style: italic;">Please select a flavor filter.</h3>
+					</div>
+
 					<div class="no_choices" ng-if="cards.selectableCards.length == 0">
 						<h3 style="text-align: center; font-style: italic;">Sorry, we currently have no cards for your selected filter.</h3>
 					</div>
 				</div>
 				
 			</div>
-			<div class="confirmation_box">
-				<!-- this is where confirm card comes -->
+			<div class="confirmation_box" ng-if="cards.selectedCard">
+				<button class="card_button" ng-click="nextStep()">Pick Card</button>
 			</div>
 		</div>
 	</div>

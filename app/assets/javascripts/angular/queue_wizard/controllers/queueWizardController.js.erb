@@ -87,7 +87,6 @@
      */
     $scope.selectFlavor = function(flavorID) {
 
-    	console.log($scope.cards.occasionCards);
     	if (isInArray(flavorID, $scope.selectedFlavorIDs)) {
     		$scope.selectedFlavorIDs = arrayWithValueRemoved(flavorID, $scope.selectedFlavorIDs);
     	} else {
@@ -101,32 +100,40 @@
     	selectedFlavorCards = filterCardsOnFlavors(allCards, flavorIDs);
     	$scope.cards.selectableCards = selectedFlavorCards;
 
-    	// first time card load view different from subsequent ones
-    	if ($scope.spinCounter == 0) {
-    		// this is where you will put in the timeout before spinning then displaying the card options
-	    	$scope.cardsLoadingFirstTime = true;
-	    	usSpinnerService.spin('card-find-spinner');
-	    	$timeout(function() {
-	    		usSpinnerService.stop('card-find-spinner');
-					$scope.cardsLoadingFirstTime = false;
-					$scope.cardsLoadedFirstTime  = true;
-					$scope.cardsLoaded           = true;
-	    	}, 1750);
+    	// don't simulate load if you havent selected any flavors
+    	if (flavorIDs.length > 0) {
+
+    		// first time card load view different from subsequent ones
+    		if ($scope.spinCounter == 0) {
+	    		// this is where you will put in the timeout before spinning then displaying the card options
+		    	$scope.cardsLoadingFirstTime = true;
+		    	usSpinnerService.spin('card-find-spinner');
+		    	$timeout(function() {
+		    		usSpinnerService.stop('card-find-spinner');
+						$scope.cardsLoadingFirstTime = false;
+						$scope.cardsLoadedFirstTime  = true;
+						$scope.cardsLoaded           = true;
+		    	}, 1750);
+	    	} else {
+	    		randomTime = getRandomInt(800, 2250); // to make loading seem random
+	    		$scope.cardsLoading = true;
+	    		$scope.cardsLoaded = false;
+	    		usSpinnerService.spin('card-find-spinner');
+		    	$timeout(function() {
+		    		usSpinnerService.stop('card-find-spinner');
+		    		$scope.cardsLoading = false;
+		    		$scope.cardsLoaded = true;
+		    	}, randomTime);	
+	    	}
+
     	} else {
-    		randomTime = getRandomInt(800, 2250); // to make loading seem random
-    		$scope.cardsLoading = true;
-    		$scope.cardsLoaded = false;
-    		usSpinnerService.spin('card-find-spinner');
-	    	$timeout(function() {
-	    		usSpinnerService.stop('card-find-spinner');
-	    		$scope.cardsLoading = false;
-	    		$scope.cardsLoaded = true;
-	    	}, randomTime);	
+
+    		$scope.cardsLoading = false;
+    		$scope.cardsLoaded = true;
+
     	}
 
-    	$scope.cardsLoaded = false;
     	$scope.spinCounter++;
-    	console.log($scope.selectedFlavorIDs);
     	
     }
 
@@ -138,7 +145,6 @@
     $scope.selectPreviewSide = function(side) {
     	$scope.previewSide = side;
     }
-
 
     /**
      * 			SHARED / OVERARCHING FUNCTIONALITY
