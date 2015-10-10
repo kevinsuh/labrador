@@ -35,10 +35,13 @@
 					<span class="card-spinner" us-spinner spinner-key="card-find-spinner"></span>
 				</div>
 				<div class="filtered_choices" ng-show="cardsLoaded">
-					{{occasionCards}}
-
-					<div>
-						{{cards.occasionCards}}
+					<div class="choice" ng-repeat="card in cards.occasionCards">
+						<div class="card_image">
+							<img class="image" ng-src="{{card.card_images[0]}}" />
+						</div>
+						<div class="card_name">
+							Card Name
+						</div>
 					</div>
 				</div>
 				<!-- display each of the 6 choices here... -->

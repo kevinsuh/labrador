@@ -398,17 +398,45 @@ $header_height: 10%;
 							.filtered_choices_container {
 								height: 100%;
 								.filtered_choices_box {
-									height: 59%;
+									height: 69%;
 									margin-bottom: 3%;
 									border: 1pt solid black;
 									.filtered_choices {
+										height: 100%;
 										&.ng-hide-remove { // when showing the card choices
 											@include animation(fadeIn 0.35s 0.65s both ease-in);
+										}
+										.choice {
+											height: 45%;
+											display: inline-block;
+											width: 30%;
+											margin: 2.5% 1.5%;
+											padding: 10px;
+											cursor: pointer;
+											.card_image {
+												height: 100%;
+												width: 100%;
+												-webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC); //overflow hidden for chrome
+
+												margin: 0 auto;
+												margin-top: 5px;
+												float: left;
+												position: relative;
+												.image {
+													position: absolute;
+													width: 100%;
+												}
+											}
+											.card_name {
+												display: inline-block;
+												width: 100%;
+												text-align: center;
+											}
 										}
 									}
 								}
 								.confirmation_box {
-									height: 39%;
+									height: 29%;
 									border: 1pt solid black;
 								}
 							}
