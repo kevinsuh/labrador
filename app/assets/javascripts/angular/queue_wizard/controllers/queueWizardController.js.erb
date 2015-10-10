@@ -175,21 +175,7 @@
 						$scope.verticalCenter = true;
 						break;
 					case "queue.home.step2":
-
 						$scope.verticalCenter = false;
-
-						// refresh spinner whenever you are on step 2
-				    $scope.spinCounter = 0;
-						$scope.cardsLoadingFirstTime = false; // first time hide entire view
-						$scope.cardsLoadedFirstTime  = false; // first time display entire view
-						$scope.cardsLoading = false; // second time just top right corner
-						$scope.cardsLoading = false; // second time just top right corner
-
-						$scope.previewSide = 'outside'; // default to outside view
-
-						// refresh flavors whenver you are on step 2
-						$scope.selectedFlavorIDs = [];
-
 						break;
 					case "queue.home.step3":
 						$scope.verticalCenter = true;
@@ -206,6 +192,21 @@
 			currentState = $scope.currentState;
 			switch(currentState) {
 				case "queue.home.step1":
+
+					// right now we are refreshing stuff if you GO to that page.
+
+					// refresh spinner
+			    $scope.spinCounter = 0;
+					$scope.cardsLoadingFirstTime = false;
+					$scope.cardsLoadedFirstTime  = false;
+					$scope.cardsLoading = false; // second time loading
+					$scope.cardsLoading = false; // second time loading
+
+					$scope.previewSide = 'outside'; // default to outside view of card
+
+					// refresh flavors
+					$scope.selectedFlavorIDs = [];
+					
 					$state.go("queue.home.step2");
 					break;
 				case "queue.home.step2":
