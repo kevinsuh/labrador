@@ -362,41 +362,58 @@ $header_height: 10%;
 							}
 						}	
 					}
-					
-
+										
 					.cards_container {
 						height: 100%;
 						width: 97%;
 						margin: 20px auto;
 
-						// the left half of the box that will show the card preview
-						.card_preview_container {
+						.find_card { // this is the div that holds the spinner
+							position: relative;
+							width: 100%;
 							height: 100%;
-							.preview_box {
-								height: 100%;
-								border: 1pt solid black;
-								.preview {
+						}
 
+						.cards_loaded_view {
+							&.ng-hide-add { // when hiding the pic
+								//@include animation(fadeOut 0.4s both ease-out);
+							}
+							&.ng-hide-remove { // when showing the pic
+								@include animation(fadeIn 0.35s 0.65s both ease-in);
+							}
+
+							// the left half of the box that will show the card preview
+							.card_preview_container {
+								height: 100%;
+								.preview_box {
+									height: 100%;
+									border: 1pt solid black;
+									.preview {
+
+									}
+								}
+							}
+
+							// the right half of the box that will show filtered choices and checkout
+							.filtered_choices_container {
+								height: 100%;
+								.filtered_choices_box {
+									height: 59%;
+									margin-bottom: 3%;
+									border: 1pt solid black;
+									.filtered_choices {
+										&.ng-hide-remove { // when showing the card choices
+											@include animation(fadeIn 0.35s 0.65s both ease-in);
+										}
+									}
+								}
+								.confirmation_box {
+									height: 39%;
+									border: 1pt solid black;
 								}
 							}
 						}
-
-						// the right half of the box that will show filtered choices and checkout
-						.filtered_choices_container {
-							height: 100%;
-							.filtered_choices_box {
-								height: 59%;
-								margin-bottom: 3%;
-								border: 1pt solid black;
-							}
-							.confirmation_box {
-								height: 39%;
-								border: 1pt solid black;
-							}
-						}
-
 					}
-
 				}
 			}
 		}	

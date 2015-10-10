@@ -141,6 +141,14 @@ function daydiff(first, second) {
     return Math.round((second-first)/(1000*60*60*24)) + 1;
 }
 
+/**
+ * Returns a random integer between min (inclusive) and max (inclusive)
+ * Using Math.round() will give you a non-uniform distribution!
+ */
+function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 
 
 // potential new schema is to change "is_visible" property

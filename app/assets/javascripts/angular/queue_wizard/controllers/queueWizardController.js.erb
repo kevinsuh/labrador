@@ -24,6 +24,13 @@
     $scope.verticalCenter = true;
     $scope.selectedFlavorIDs = [];
 
+    // current hack to control the spinners
+    $scope.spinCounter = 0;
+		$scope.cardsLoadingFirstTime = false; // first time hide entire view
+		$scope.cardsLoadedFirstTime  = false; // first time display entire view
+		$scope.cardsLoading = false; // second time just top right corner
+		$scope.cardsLoading = false; // second time just top right corner
+
     $scope.recipientNames = function() {
     	
     	recipients = $scope.selectedRecipients;
@@ -83,8 +90,33 @@
     		$scope.selectedFlavorIDs = arrayWithValueRemoved(flavorID, $scope.selectedFlavorIDs);
     	} else {
     		$scope.selectedFlavorIDs.push(flavorID);
+    	}	
+
+    	// first time card load view different from subsequent ones
+    	if ($scope.spinCounter == 0) {
+    		// this is where you will put in the timeout before spinning then displaying the card options
+	    	$scope.cardsLoadingFirstTime = true;
+	    	usSpinnerService.spin('card-find-spinner');
+	    	$timeout(function() {
+	    		usSpinnerService.stop('card-find-spinner');
+					$scope.cardsLoadingFirstTime = false;
+					$scope.cardsLoadedFirstTime  = true;
+					$scope.cardsLoaded           = true;
+	    	}, 1750);
+    	} else {
+    		randomTime = getRandomInt(800, 2250); // to make loading seem random
+    		$scope.cardsLoading = true;
+    		$scope.cardsLoaded = false;
+    		usSpinnerService.spin('card-find-spinner');
+	    	$timeout(function() {
+	    		usSpinnerService.stop('card-find-spinner');
+	    		$scope.cardsLoading = false;
+	    		$scope.cardsLoaded = true;
+	    	}, randomTime);	
     	}
 
+    	$scope.cardsLoaded = false;
+    	$scope.spinCounter++;
     	console.log($scope.selectedFlavorIDs);
     	
     }
