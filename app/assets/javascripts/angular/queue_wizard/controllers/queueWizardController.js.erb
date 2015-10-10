@@ -26,12 +26,6 @@
 		 * 			STEP ONE FUNCTIONS
 		 */
 
-		 // load new cards whenever occasion changes
-		$scope.$watch('newCard.occasion', function(newValue, oldValue){
-			occasionID = newValue;
-      cards.getCardsForOccasion(occasionID);
-     });
-
     $scope.recipientNames = function() {
     	
     	recipients = $scope.selectedRecipients;
@@ -98,7 +92,14 @@
     		$scope.selectedFlavorIDs = arrayWithValueRemoved(flavorID, $scope.selectedFlavorIDs);
     	} else {
     		$scope.selectedFlavorIDs.push(flavorID);
-    	}	
+    	}
+
+    	allCards = $scope.cards.occasionCards;
+    	selectedFlavorCards = []; // this will be array holding cards of specific flavor
+    	flavorIDs = $scope.selectedFlavorIDs;
+
+    	selectedFlavorCards = filterCardsOnFlavors(allCards, flavorIDs);
+    	$scope.cards.selectableCards = selectedFlavorCards;
 
     	// first time card load view different from subsequent ones
     	if ($scope.spinCounter == 0) {
@@ -142,6 +143,12 @@
     /**
      * 			SHARED / OVERARCHING FUNCTIONALITY
      */
+
+   	// load new cards whenever occasion changes
+		$scope.$watch('newCard.occasion', function(newValue, oldValue){
+			occasionID = newValue;
+      cards.getCardsForOccasion(occasionID);
+     });
 
     // control what happens on each state of UI-Router
     $scope.$on('$stateChangeSuccess',

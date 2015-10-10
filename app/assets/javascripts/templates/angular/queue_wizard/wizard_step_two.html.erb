@@ -47,8 +47,10 @@
 				<div class="find_card" ng-show="cardsLoading">
 					<span class="card-spinner" us-spinner spinner-key="card-find-spinner"></span>
 				</div>
+
 				<div class="filtered_choices" ng-show="cardsLoaded">
-					<div class="choice" ng-repeat="card in cards.occasionCards" ng-click="selectCard(card)">
+					<!-- display each of the 6 choices here... -->
+					<div class="choice" ng-repeat="card in cards.selectableCards" ng-click="selectCard(card)">
 						<div class="card_image">
 							<img class="image" ng-src="{{card.card_images[0]}}" />
 						</div>
@@ -56,8 +58,12 @@
 							Card Name
 						</div>
 					</div>
+
+					<div class="no_choices" ng-if="cards.selectableCards.length == 0">
+						<h3 style="text-align: center; font-style: italic;">Sorry, we currently have no cards for your selected filter.</h3>
+					</div>
 				</div>
-				<!-- display each of the 6 choices here... -->
+				
 			</div>
 			<div class="confirmation_box">
 				<!-- this is where confirm card comes -->

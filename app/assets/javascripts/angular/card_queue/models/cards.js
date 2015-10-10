@@ -39,6 +39,7 @@
         notes: ""
       },
       occasionCards: {}, // all cards for an occasion
+      selectableCards: {}, // cards that user can select from
       occasions: {},
       relationships: {},
       cardFlavors: {}

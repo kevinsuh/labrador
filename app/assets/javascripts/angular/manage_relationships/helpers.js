@@ -68,6 +68,29 @@ function filterArray(filterType, filterTerm, startingArray) {
 }
 
 /**
+ * return the filtered card array based on passed in flavor IDs
+ * @param  {array} cards     all cards to filter on
+ * @param  {array} flavorIDs array of flavor ID ints
+ * @return {array} filtered Cards
+ */
+function filterCardsOnFlavors(cards, flavorIDs) {
+	
+	filteredCards = cards.filter(function(card) {
+
+		// get all the cardFlavorIDs of each card
+		cardFlavorIDs = card.card_flavors.map(function(card_flavor) { 
+  		return card_flavor.flavor_id;
+  	});
+
+		// filter based on whether selected flavorIDs is present in the array of that card's cardFlavorIDs
+		passesFlavorTest = flavorIDs.every(elem => isInArray(elem, cardFlavorIDs));
+		return passesFlavorTest;
+		
+	});
+	return filteredCards;
+}
+
+/**
  * Converts data uri to Blob. Necessary for uploading.
  * @see
  *   http://stackoverflow.com/questions/4998908/convert-data-uri-to-file-then-append-to-formdata
