@@ -60,6 +60,14 @@
       });
     }
 
+    /**
+     * get all the cards for a specific occasion
+     * current use-case is for when user selects a specific occasion. defaults to birthday.
+     */
+    o.getCuratedCards = function() {
+      
+    }
+
     o.getOccasions = function() {
       return $http.get('/occasions/get_occasions.json').success(function(data) {
         var occasions = data.occasions;

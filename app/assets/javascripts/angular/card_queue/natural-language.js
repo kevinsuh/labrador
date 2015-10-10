@@ -64,6 +64,11 @@ angular.module('vr.directives.nlForm.select',[])
 				"</div>",
 			link: function(scope, element, attributes) {
 
+				// handle if scope is occasions to have birthday show up first
+				if (scope.fieldType == 'occasion') {
+					scope.options = moveProperty(scope.options, "Birthday", "back");
+				}
+
 				// is this required
 				scope.required = !angular.isUndefined(attributes.required);
 
