@@ -146,9 +146,33 @@
 
    	// load new cards whenever occasion changes
 		$scope.$watch('newCard.occasion', function(newValue, oldValue){
+
 			occasionID = newValue;
+
+			// get all occasion-specific cards when user selects an occasion
       cards.getCardsForOccasion(occasionID);
-     });
+
+      // get suggestedDate whenever user selects an occasion
+      suggestedDate = getDefaultDateForOccasionID(occasionID);
+
+      selectedRecipients = $scope.recipients.selectedRecipients;
+    	
+    	// we only have custom suggested dates if one recipient is selected
+      if (selectedRecipients.length == 1) {
+
+      	recipientOccasions = selectedRecipients[0].occasions;
+
+      	recipientOccasions.forEach(function(occasion) {
+      		recipientOccasionID = occasion.occasion.id;
+      		if (recipientOccasionID == occasionID) {
+      			suggestedDate = parseDateForNextOccasion(occasion.recipient_occasion.occasion_date);
+      		}
+      	});
+      }
+
+      $scope.cards.newCard.recipientArrivalDate = suggestedDate;
+
+    });
 
     // control what happens on each state of UI-Router
     $scope.$on('$stateChangeSuccess',
@@ -206,7 +230,7 @@
 
 					// refresh flavors
 					$scope.selectedFlavorIDs = [];
-					
+
 					$state.go("queue.home.step2");
 					break;
 				case "queue.home.step2":

@@ -4,7 +4,7 @@
 
 		<div class="date" ng-controller="DatepickerDemoCtrl">
 			<div class="form_input date_input">
-				<input type="date" datepicker-popup json-date ng-model="newCard.recipientArrivalDate" is-open="status.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" placeholder="mm/dd/yyyy" min="{{minimumRecipientDateString}}" min-date="minimumRecipientDate"/>
+				<input type="date" datepicker-popup json-date ng-model="cards.newCard.recipientArrivalDate" is-open="status.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" placeholder="mm/dd/yyyy" min="{{minimumRecipientDateString}}" min-date="minimumRecipientDate"/>
 			</div>
 			<span class="input-group-btn date_span">
         <button type="button" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>

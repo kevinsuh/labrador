@@ -4,36 +4,11 @@
 	 * this controller is specific to the managing relationship within the "Greeting Central" module
 	 */
 	var app = angular.module('card-queue').controller("recipientOccasionsCtrl", function($rootScope, $scope) {
-		
-    suggested_date = "";
 
 		// pre-fill certain events
 		$scope.$watch('occasion_hash.recipient_occasion.occasion_id', function(newValue, oldValue){
-				
-        switch (newValue) {
-          case 1: // christmas
-            suggested_date = parseDateForNextOccasion("2015-12-25");
-            break;
-          case 2: // hannukah
-            suggested_date = parseDateForNextOccasion("2015-12-6");
-            break;
-          case 3: // new year's
-            suggested_date = parseDateForNextOccasion("2015-1-1");
-            // suggested_date = "01/01/16";
-            break;
-          case 4: // mother's day
-            suggested_date = parseDateForNextOccasion("2015-5-8");
-            // suggested_date = "05/08/16";
-            break;
-          case 5: // father's day
-            suggested_date = parseDateForNextOccasion("2015-6-19");
-            // suggested_date = "06/19/16";
-            break;
-          case 13: // valentine's
-            suggested_date = parseDateForNextOccasion("2015-2-14");
-            // suggested_date = "02/14/16";
-            break;
-        }
+      occasionID = newValue;
+			suggested_date = getDefaultDateForOccasionID(occasionID);
 
         // ONLY IF THIS OCCASION HAS NOT ALREADY BEEN SAVED
         if (!$scope.occasion_hash.recipient_occasion.occasion_date || (newValue != oldValue)) {

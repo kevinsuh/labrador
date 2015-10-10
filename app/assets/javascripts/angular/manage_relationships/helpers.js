@@ -8,6 +8,39 @@ function arrayObjectIndexOf(myArray, searchTerm, property) {
     return -1;
 }
 
+/**
+ * recommended date based on occasion
+ * ex. 12/25/15 for christmas
+ */
+function getDefaultDateForOccasionID(occasionID) {
+  suggested_date = "";
+  switch (occasionID) {
+    case 1: // christmas
+      suggested_date = parseDateForNextOccasion("2015-12-25");
+      break;
+    case 2: // hannukah
+      suggested_date = parseDateForNextOccasion("2015-12-6");
+      break;
+    case 3: // new year's
+      suggested_date = parseDateForNextOccasion("2015-1-1");
+      // suggested_date = "01/01/16";
+      break;
+    case 4: // mother's day
+      suggested_date = parseDateForNextOccasion("2015-5-8");
+      // suggested_date = "05/08/16";
+      break;
+    case 5: // father's day
+      suggested_date = parseDateForNextOccasion("2015-6-19");
+      // suggested_date = "06/19/16";
+      break;
+    case 13: // valentine's
+      suggested_date = parseDateForNextOccasion("2015-2-14");
+      // suggested_date = "02/14/16";
+      break;
+  }
+  return suggested_date;
+}
+
 // filter the array to another level based on the filterType and filterTerm
 function filterArray(filterType, filterTerm, startingArray) {
 	var finalArray = [];
