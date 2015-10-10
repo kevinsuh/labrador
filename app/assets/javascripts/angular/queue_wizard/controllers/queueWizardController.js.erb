@@ -12,13 +12,8 @@
     $scope.stateParams = $stateParams;
     $scope.occasions = cards.occasions;
     $scope.cardFlavors = cards.cardFlavors;
-    $scope.testRecipient = $scope.selectedRecipients[0];
     $scope.cards = cards;
     $scope.newCard = cards.newCard;
-
-    // when you first open the scope, default to birthday cards
-    birthdayOccasionID = 7;
-    cards.getCardsForOccasion(birthdayOccasionID);
 
     // set the minimum recipient date
     $scope.minimumRecipientDate = recipientDate();
@@ -26,14 +21,16 @@
 
     $scope.testDate = new Date();
     $scope.verticalCenter = true;
-    $scope.selectedFlavorIDs = [];
 
-    // current hack to control the spinners
-    $scope.spinCounter = 0;
-		$scope.cardsLoadingFirstTime = false; // first time hide entire view
-		$scope.cardsLoadedFirstTime  = false; // first time display entire view
-		$scope.cardsLoading = false; // second time just top right corner
-		$scope.cardsLoading = false; // second time just top right corner
+		/**
+		 * 			STEP ONE FUNCTIONS
+		 */
+
+		 // load new cards whenever occasion changes
+		$scope.$watch('newCard.occasion', function(newValue, oldValue){
+			occasionID = newValue;
+      cards.getCardsForOccasion(occasionID);
+     });
 
     $scope.recipientNames = function() {
     	
@@ -84,6 +81,12 @@
     	return text;
     }
 
+
+
+		/**
+		 * 				STEP TWO FUNCTIONS
+		 */
+
     /**
      * select the flavor, which will refresh the card choices with the given filter specifities
      * @param  int flavor_id
@@ -131,6 +134,10 @@
     }
 
 
+    /**
+     * 			SHARED / OVERARCHING FUNCTIONALITY
+     */
+
     // control what happens on each state of UI-Router
     $scope.$on('$stateChangeSuccess',
 		  function(event, toState) {
@@ -152,7 +159,19 @@
 						$scope.verticalCenter = true;
 						break;
 					case "queue.home.step2":
+
 						$scope.verticalCenter = false;
+
+						// refresh spinner whenever you are on step 2
+				    $scope.spinCounter = 0;
+						$scope.cardsLoadingFirstTime = false; // first time hide entire view
+						$scope.cardsLoadedFirstTime  = false; // first time display entire view
+						$scope.cardsLoading = false; // second time just top right corner
+						$scope.cardsLoading = false; // second time just top right corner
+
+						// refresh flavors whenver you are on step 2
+						$scope.selectedFlavorIDs = [];
+
 						break;
 					case "queue.home.step3":
 						$scope.verticalCenter = true;
