@@ -197,6 +197,33 @@
 
     // run more extensive tests here
 		$scope.wizardStateisValid = function() {
+			currentState = $scope.currentState;
+			cards = $scope.cards;
+			switch (currentState) {
+				case "queue.home.step1": // occasion needs to be selected
+					if (cards.newCard.occasion > 0) {
+						return true;
+					} else {
+						return false;	
+					}
+				case "queue.home.step2": // card needs to be selected
+					if (cards.selectedCard) {
+						return true;
+					} else {
+						return false;
+					}
+					break;
+				case "queue.home.step3":
+					if (cards.newCard.recipientArrivalDate) {
+						return true;
+					} else {
+						return false;
+					}
+					break;
+				case "queue.home.step4":
+					$scope.verticalCenter = false;
+					break;
+			}
 			return true;
 		}
 
@@ -240,14 +267,21 @@
 
 					// refresh flavors
 					$scope.selectedFlavorIDs = [];
+					$scope.cards.selectedCard = null;
 
-					$state.go("queue.home.step2");
+					if ($scope.wizardStateisValid()) {
+						$state.go("queue.home.step2");
+					}
 					break;
 				case "queue.home.step2":
-					$state.go("queue.home.step3");
+					if ($scope.wizardStateisValid()) {
+						$state.go("queue.home.step3");
+					}
 					break;
 				case "queue.home.step3":
-					$state.go("queue.home.step4");
+					if ($scope.wizardStateisValid()) {
+						$state.go("queue.home.step4");
+					}
 					break;
 				case "queue.home.step4":
 					break;
