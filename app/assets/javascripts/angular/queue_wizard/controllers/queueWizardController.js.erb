@@ -3,7 +3,7 @@
 	/**
 	 * this controller is what will handle the queue wizard process
 	 */
-	var app = angular.module('queue-wizard').controller("QueueWizardController", function($rootScope, $scope, $state, $stateParams, $timeout, recipients, cards, usSpinnerService) {
+	var app = angular.module('queue-wizard').controller("QueueWizardController", function($rootScope, $scope, $state, $stateParams, $timeout, recipients, cards, user, usSpinnerService) {
 				
 		// load in user and relationships factories
     $scope.recipients = recipients;
@@ -14,6 +14,8 @@
     $scope.cardFlavors = cards.cardFlavors;
     $scope.cards = cards;
     $scope.newCard = cards.newCard;
+    $scope.user = user.currentUser;
+    $scope.userAddresses = $scope.user.addresses;
 
     // set the minimum recipient date
     $scope.minimumRecipientDate = recipientDate();
@@ -21,6 +23,8 @@
 
     $scope.testDate = new Date();
     $scope.verticalCenter = true;
+
+    console.log($scope.selectedRecipients);
 
 		/**
 		 * 			STEP ONE FUNCTIONS
@@ -266,6 +270,11 @@
 					$state.go("queue.home.step3");
 					break;
 			}
+		}
+
+		// ex. to get Birthday for occasionID 7
+		$scope.getNameFromID = function(object, id) {
+			return getKeyByValue(object, id);
 		}
 		
 	});

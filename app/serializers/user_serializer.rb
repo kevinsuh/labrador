@@ -37,6 +37,10 @@ class UserSerializer < ActiveModel::Serializer
     data[:gravatar_url] = gravatar_for user
     data[:status] = { logged_in: true }
 
+    # get address for user
+    addresses = user.addresses
+    data[:addresses] = addresses;
+
   	data
   end
 

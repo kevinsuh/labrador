@@ -154,6 +154,16 @@ function isInArray(value, array) {
   return array.indexOf(value) > -1;
 }
 
+function getKeyByValue(object, value) {
+	for ( var prop in object ) {
+		if (object.hasOwnProperty(prop)) {
+			if(object[prop] === value) {
+				return prop;
+			}
+		}
+	}
+}
+
 function arrayWithValueRemoved(value, array) {
 	var index = array.indexOf(value);
 	if (index > -1) {

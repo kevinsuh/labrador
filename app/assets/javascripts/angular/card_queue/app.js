@@ -141,6 +141,9 @@
           flavorPromise: ['cards', function(cards) {
             return cards.getCardFlavors();
           }],
+          userInfoPromise: ['user', function(user) { // return user basic info
+            return user.getCurrentUser();
+          }],
           recipient_ids: ['$stateParams', function($stateParams) {
             // turn string into array
             recipient_ids = $stateParams.recipients.split(",");
