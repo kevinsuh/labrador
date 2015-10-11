@@ -27,43 +27,67 @@ class OrdersController < ApplicationController
 
 	# validate, then queue card and return the successful card in JSON notation
   def queue_card_order
-  	# 1) validate card
-  	# 2) create new recipient (eventually you should also be able to CHOOSE past recipient)
-  	# 3) save order & order progress onto DB
-  	# 4) return queued card in json on success
-  			
-		recipient = current_user.recipients.create(
-			first_name: params[:recipientFirstName],
-			last_name: params[:recipientLastName],
-			relationship_id: params[:recipientRelationship]
-			)
+  	
+  	# only queue card if
+  	# 1. card is found in DB
+  	# 2. recipients are found in db AND belong to the current user
 
-		selected_card = params[:selectedCard]
+		recipients             = params[:selected_recipients]
+		selected_card          = params[:selected_card]
+		occasion_id            = params[:occasion_id]
+		recipient_arrival_date = params[:recipient_arrival_date]
+
+		success = true
+		orders = Array.new
 
 		if card = Card.find_by(id: selected_card[:id])
-			order = current_user.orders.create(
-				recipient_id: recipient.id,
-				card_id: card.id,
-				recipient_arrival_date: params[:recipientArrivalDate]
-				)
 
-			# by default all the order statuses will be false
-			order_status = OrderStatus.create(order_id: order.id) 
-			order_occasion = order.create_order_occasion(occasion_id: params[:occasion])
+			recipients.each do |recipient|
+				# we need to find recipient for the current user
+				if user_recipient = current_user.recipients.find_by(id: recipient[:id])
 
+					# currently we are defaulting pre-address if you have an address saved. but this will be an option very soon 10/11/15
+					if address = user_recipient.addresses.first
+						pre_address = true
+						address_id = address.id
+					else
+						pre_address = false
+						address_id = nil
+					end
 
-			respond_to do |format|
-				format.json { render json: order }
+					order = current_user.orders.create(
+						recipient_id: user_recipient.id,
+						card_id: card.id,
+						recipient_arrival_date: recipient_arrival_date,
+						pre_address: pre_address,
+						shipping_address_id: address_id)
+
+					# by default all the order statuses will be false
+					order_status = OrderStatus.create(
+						order_id: order.id) 
+					order_occasion = order.create_order_occasion(
+						occasion_id: occasion_id)
+
+					orders << order
+
+				else
+					success = false
+				end
+
 			end
-
 		else
+			success = false
+		end
 
+		if success
+			respond_to do |format|
+				format.json { render json: { data: orders } }
+			end
+		else
 			respond_to do |format|
 				format.json { render json: { success: false } }
 			end
-
 		end
 
-  end
-
+	end
 end

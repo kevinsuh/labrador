@@ -151,6 +151,22 @@
     }
 
     /**
+     * 			STEP FOUR FUNCTIONALITY
+     */
+    $scope.queueCard = function() {
+			cards                = $scope.cards;
+			
+			selectedCard         = $scope.cards.selectedCard;
+			selectedRecipients   = $scope.selectedRecipients;
+			occasionID           = cards.newCard.occasion;
+			recipientArrivalDate = cards.newCard.recipientArrivalDate
+
+			cards.queueCard(selectedCard, selectedRecipients, occasionID, recipientArrivalDate).success(function(data) {
+				console.log(data);
+			});
+    }
+
+    /**
      * 			SHARED / OVERARCHING FUNCTIONALITY
      */
 

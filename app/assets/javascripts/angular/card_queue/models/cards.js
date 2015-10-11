@@ -48,8 +48,9 @@
     /**
      * submit the card for queueing
      */
-    o.queueCard = function() {
-      return $http.post('orders/queue_card_order.json', o.newCard)
+    o.queueCard = function(selectedCard, selectedRecipients, occasionID, recipientArrivalDate) {
+      selectedCardObject = { selected_card: selectedCard, selected_recipients: selectedRecipients, occasion_id: occasionID, recipient_arrival_date: recipientArrivalDate };
+      return $http.post('orders/queue_card_order.json', selectedCardObject);
     }
         
     /**
