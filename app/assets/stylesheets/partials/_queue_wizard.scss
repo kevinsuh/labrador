@@ -317,6 +317,10 @@ $header_height: 10%;
 						}
 					}
 
+					/**
+					 * 			STEP TWO (choose card)
+					 */
+
 					// this is for displaying the card flavor filters
 					.flavor_filters_container {
 						width: 97%;
@@ -362,7 +366,7 @@ $header_height: 10%;
 							}
 						}	
 					}
-										
+
 					.cards_container {
 						height: 100%;
 						width: 97%;
@@ -498,6 +502,73 @@ $header_height: 10%;
 								}
 							}
 						}
+					}
+
+
+					/**
+					 * 		STEP THREE: Confirm your choices
+					 */
+					.confirmation_container {
+						
+						border-top: 2pt solid darkgray;
+						border-bottom: 2pt solid darkgray;
+						padding: 30px 0;
+						width: 90%;
+						margin: 60px auto;
+
+						// left-hand side of viewing the image
+						.card_preview_container {
+							height: 100%;
+							.preview {
+								height: 100%;
+								text-align: center;
+								.image {
+									// we need crop image functionality for cards, pronto.
+									//height: 100%;
+								}
+							}
+
+						}
+
+						// right-hand side of viewing your selected choices
+						.information_container {
+							.informations { // list of information
+								width: 90%;
+								.information {
+									margin-top: 30px;
+									&.first {
+										margin-top: 0;
+									}
+									.description { 
+										font-weight: 300;
+										color: $wizard_purple;
+										font-size: 2.1em;
+										margin-bottom: 0;
+										&.first {
+											margin-top: 0;
+										}
+									}
+									.answer {
+										font-weight: 400;
+										font-size: 2.2em;
+										border-bottom: 2.5pt solid $wizard_purple;
+										margin-top: 7px;
+									}
+								}
+							}
+						}
+					}
+
+					// div that will hold queue button
+					.confirmation_button_container {
+						margin-bottom: 200px;
+
+						.button_box {
+							width: 90%;
+							padding: 0 1%;
+							margin: 0 auto;
+						}
+
 					}
 				}
 			}

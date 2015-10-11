@@ -1,12 +1,45 @@
-<div class="centered_view">
-	<div class="question">
-		Occasion: {{cards.newCard.occasion}}
+<div class="row confirmation_container">
+
+	<div class="col-xs-6 card_preview_container">
+		<div class="preview">
+			<img class="image" ng-src="{{cards.selectedCard.card_images[0]}}" ng-if="cards.selectedCard" />
+		</div>
 	</div>
-	<div class="question">
-		Selected Card: {{cards.selectedCard}}
+
+	<div class="col-xs-6 information_container">
+		<div class="informations">
+			<div class="to information first">
+				<h3 class="description first">To:</h3>
+				<div class="answer">Kevin</div>
+			</div>
+			<div class="from information">
+				<h3 class="description">For:</h3>
+				<div class="answer">Christmas</div>
+			</div>
+			<div class="by information">
+				<h3 class="description">By:</h3>
+				<div class="answer">12/25/2015</div>
+			</div>
+			<div class="recipient_address information" ng-if="selectedRecipients.length == 1">
+				<!-- only for one recipient for now -->
+				<h3 class="description">{{recipientNames()}} Address:</h3>
+				<div class="answer">716 First St.</div>
+				<div class="answer">New Orleans, LA 70130</div>
+			</div>
+			<div class="user_address information">
+				<h3 class="description">Your Address:</h3>
+				<div class="answer">716 First St.</div>
+				<div class="answer">New Orleans, LA 70130</div>
+			</div>
+		</div>
 	</div>
-	<div class="question">
-		Recipient Date: {{cards.newCard.recipientArrivalDate}}
+
+</div>
+
+<div class="row confirmation_button_container">
+
+	<div class="button_box">
+		<button class="card_button" ng-click="nextStep()">QUEUE 1 CARD</button>
 	</div>
 
 </div>
