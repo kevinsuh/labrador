@@ -37,6 +37,7 @@ Rails.application.routes.draw do
         get 'index'
       end
     end
+    resources :card_images, only: [:edit, :update]
   end
 
 

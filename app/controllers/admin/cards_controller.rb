@@ -78,21 +78,6 @@ module Admin
 
 			@card = Card.create
 
-			unless picture.nil?
-				@card.card_images.create(picture: picture)
-
-				# TESTING FOR KEVIN
-				user = User.first
-				user.profile_pictures.create(picture: picture)
-
-				if recipient = user.recipients.find_by(id: 44)
-					recipient.profile_pictures.create(picture: picture)
-				end
-
-				# END OF TESTING FOR KEVIN
-
-			end
-
 			relationships.each do |relationship_id|
 				@card.card_relationships.create(relationship_id: relationship_id)
 			end
@@ -118,9 +103,13 @@ module Admin
 
 			end
 
-			flash[:success] = "Card successfully created"
-
-			redirect_to new_admin_card_path
+			if picture.nil?
+				flash[:success] = "Card successfully created without picture"
+				redirect_to new_admin_card_path
+			else
+				card_image = @card.card_images.create(picture: picture)
+				redirect_to edit_admin_card_image_path(card_image)
+			end
 
 		end
 
