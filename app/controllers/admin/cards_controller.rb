@@ -65,6 +65,8 @@ module Admin
 			card_params   = params[:card]
 			vendor_params = params[:vendor]
 
+			name = card_params[:name]
+
 			# all of these can be nil if not filled out!
 			picture       = card_params[:picture]
 			
@@ -76,7 +78,7 @@ module Admin
 			vendor_url    = vendor_params[:vendor_url]
 			new_vendor    = vendor_params[:new_vendor]
 
-			@card = Card.create
+			@card = Card.create(name: name)
 
 			relationships.each do |relationship_id|
 				@card.card_relationships.create(relationship_id: relationship_id)
@@ -119,10 +121,13 @@ module Admin
 			if @card = Card.find_by(id: params[:id])
 				card_params   = params[:card]
 
+				name 					= card_params[:name]
 				relationships = card_params[:relationships]
 				occasions     = card_params[:occasions]
 				flavors       = card_params[:flavors]
 				picture				= card_params[:picture]
+
+				@card.update_column(:name, name)
 
 				# purge each field and refresh with updated data
 				@card.relationships.delete_all

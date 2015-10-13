@@ -6,11 +6,23 @@
 		</div>
 	</div>
 	<div class="row card_admin_row">
+		<% flash.each do |message_type, message| %>
+			<div class="alert alert-<%= message_type %>"><%= message %></div>
+		<% end %>
 		<aside class="col-xs-3 col-xs-offset-1">
-			<h3>Add New Picture</h3>
-			<%= form_for([:admin, @card, @new_card_image], method: :post, html: {multipart: true}) do |f| %>
-				<%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png', class: "card_image_upload" %>
-				<%= f.submit "Add New Picture", class: "btn btn-primary" %>
+			<h3 style="margin-bottom:25px; text-decoration: underline;">Add New Picture</h3>
+			<%= form_for([:admin, @card, @new_card_image], method: :post, html: {multipart: true, style: "padding: 10px; border: 1pt solid black;"}) do |f| %>
+
+				<div class="form_input" style="margin: 15px 0;">
+					<%= f.label :picture, "Choose Picture: " %>
+					<%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png', class: "card_image_upload" %>
+				</div>
+				
+				<div class="form_input" style="margin: 15px 0;">
+					<%= f.label :side, "Image Side?" %>
+					<%= f.select :side, CardImage.sides %>
+				</div>
+				<%= f.submit "Save & Crop Picture", class: "btn btn-primary" %>
 			<% end %>
 		</aside>
 		<div class ="col-xs-7 card_options">

@@ -4,6 +4,12 @@
 		<h1 class="card_id" style="padding-left: 0; text-decoration: underline; margin: 30px 0;">Create New Card:</h1>
 		<%= form_for([:admin, @card], url: "/admin/cards", method: :post, html: {multipart: true}) do |f| %>
 		<div class="relationship_checkbox">
+			<h5>Name:</h5>
+			<%= f.label :name, "Name" %>
+			<%= f.text_field :name %>
+		</div>
+		<hr class="category_separator">
+		<div class="relationship_checkbox">
 			<h5>Recipients:</h5>
 			<% @relationships.each do |relationship| %>
 				<%= f.label "relationships_#{relationship.id}", relationship.name %>	

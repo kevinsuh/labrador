@@ -1,8 +1,8 @@
 $(document).on('ready page:load', function() {
 
 	$('#cropbox').Jcrop({
-		aspectRatio: 0.625,
-		setSelect: [0, 0, 125, 200],
+		aspectRatio: 0.75,
+		setSelect: [0, 0, 150, 200],
 		onSelect: update,
 		onChange: update
 	});
@@ -19,9 +19,9 @@ function update(coords) {
 
 function updatePreview(coords) {
 	 $('#preview').css({
-	 		width: Math.round(250/coords.w * $('#cropbox').width()) + 'px',
+	 		width: Math.round(300/coords.w * $('#cropbox').width()) + 'px',
       height: Math.round(400/coords.h * $('#cropbox').height()) + 'px',
-      marginLeft: '-' + Math.round(250/coords.w * coords.x) + 'px',
+      marginLeft: '-' + Math.round(300/coords.w * coords.x) + 'px',
       marginTop: '-' + Math.round(400/coords.h * coords.y) + 'px'
 	 });
 }

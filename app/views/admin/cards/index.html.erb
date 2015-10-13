@@ -8,6 +8,7 @@
 	<% 
 
 	card          = card_data[:card]
+	name          = card_data[:name]
 	relationships = card_data[:relationships]
 	occasions     = card_data[:occasions]
 	flavors       = card_data[:flavors]
@@ -43,6 +44,12 @@
 
 		</aside>
 		<div class ="col-xs-8 card_options">
+			<div class="relationship_checkbox">
+				<h5>Name:</h5>
+				<%= f.label :name, "Name" %>
+				<%= f.text_field :name %>
+			</div>
+			<hr class="category_separator">
 			<div class="relationship_checkbox">
 				<h5>Recipients:</h5>
 				<% @relationships.each do |relationship| %>

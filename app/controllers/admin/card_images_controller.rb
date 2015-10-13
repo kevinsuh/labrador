@@ -17,14 +17,15 @@ module Admin
   	def create
   		@card = Card.find(params[:card_id])
 
-  		card_image_params = params[:card_image]
-  		picture       		= card_image_params[:picture]
+			card_image_params = params[:card_image]
+			picture           = card_image_params[:picture]
+			side              = card_image_params[:side].to_i
 
   		if picture.nil?
   			flash[:danger] = "Could not add picture"
   			redirect_to admin_card_card_images_path(@card)
   		else
-  			@card_image = @card.card_images.create(picture: picture)
+  			@card_image = @card.card_images.create(picture: picture, side: side)
   			flash[:success] = "Please crop now"
   			render :crop
   		end

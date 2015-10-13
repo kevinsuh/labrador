@@ -1,5 +1,5 @@
 class CardSerializer < ActiveModel::Serializer
-  attributes :id
+  attributes :id, :name
 
   # return with the associated card_images
   def attributes
