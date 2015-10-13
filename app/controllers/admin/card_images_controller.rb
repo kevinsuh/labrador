@@ -36,6 +36,34 @@ module Admin
 			
 		end
 
+		def destroy
+			@card = Card.find(params[:card_id])
+			@card_image = CardImage.find(params[:id]).destroy
+			flash[:success] = "Card Image deleted"
+			redirect_to admin_card_card_images_path(@card)
+		end
+
+		# this is for updating on the card_images admin index
+		def update_image
+
+			@card             = Card.find(params[:card_id])
+			@card_image       = CardImage.find(params[:id])
+			
+			card_image_params = params[:card_image]
+			side              = card_image_params[:side].to_i
+
+			@card_image.update_column(:side, side)
+			if @card_image.picture.nil?
+				flash[:danger] = "Could not find picture"
+  			redirect_to admin_card_card_images_path(@card)
+  		else
+  			flash[:success] = "Please crop now"
+  			render :crop
+  		end
+
+		end
+
+		# this is the actual cropping of the image
 		def update
 			@card = Card.find(params[:card_id])
 			@card_image = CardImage.find(params[:id])

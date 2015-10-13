@@ -7,9 +7,12 @@ $header_height: 10%;
 .queue_card {
 
 	width: 100%;
-	position:absolute;
+	//position:absolute;
 	height: 100%; 
-	min-width: 1500px;
+	min-width: 2000px;
+	max-width: 2300px;
+	min-height: 1350px;
+	margin: 0 auto;
 
 	// the entire left-side column
 	.recipients_container {
@@ -412,7 +415,7 @@ $header_height: 10%;
 											//position: relative;
 											.image {
 												position: absolute;
-												width: 100%;
+												height: 100%;
 											}
 										}
 										.card_name {

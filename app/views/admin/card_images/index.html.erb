@@ -9,8 +9,11 @@
 		<% flash.each do |message_type, message| %>
 			<div class="alert alert-<%= message_type %>"><%= message %></div>
 		<% end %>
+
+		<!-- NEW CARD IMAGE -->
 		<aside class="col-xs-3 col-xs-offset-1">
 			<h3 style="margin-bottom:25px; text-decoration: underline;">Add New Picture</h3>
+			<hr>
 			<%= form_for([:admin, @card, @new_card_image], method: :post, html: {multipart: true, style: "padding: 10px; border: 1pt solid black;"}) do |f| %>
 
 				<div class="form_input" style="margin: 15px 0;">
@@ -25,39 +28,31 @@
 				<%= f.submit "Save & Crop Picture", class: "btn btn-primary" %>
 			<% end %>
 		</aside>
-		<div class ="col-xs-5 card_options">
+
+		<!-- EXISTING CARD IMAGES -->
+		<div class ="col-xs-offset-1 col-xs-5 card_options">
 			<h3>Crop Existing Pictures</h3>
 			<hr>
 			<div class="pictures_container" style="padding: 0 10px 10px 10px; border: 1pt solid black;">
-				<h3>Outside Pictures:</h3>
-				<% @outside_card_images = @card_images.where(side: 0) %>
-				<% @outside_card_images.each do |card_image| %>
+				<% @card_images.each do |card_image| %>
 					<div class="existing_pictures" style="margin: 15px 0;">
 						<span>
 						<%= if card_image && card_image.picture?
 							image_tag(card_image.picture.url, class: "card_image")
 						end %></span>
 						<span class="picture">
-							<!-- this needs to be where you can "UPDATE CROP" THE PICTURE -->
+							<%= form_for([:admin, @card, card_image], method: :post, html: {multipart: true, style: "margin-left: 10px; display: inline-block; padding: 10px; border: 1pt solid black; float: right;"}) do |f| %>
+								<h4 style="text-decoration: underline;">Edit Picture</h4>
+								<div class="form_input" style="margin: 15px 0;">
+									<%= f.label :side, "Image Side?" %>
+									<%= f.select :side, CardImage.sides, selected: card_image[:side] %>
+								</div>
+								<%= f.submit "Save & Crop Picture", class: "btn btn-primary" %>
+								<%= link_to "Delete Card", admin_card_card_image_path(@card, card_image), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+							<% end %>
+							
 						</span>
-
-					</div>
-				<% end %>
-			</div>
-			<hr>
-			<div class="pictures_container" style="padding: 0 10px 10px 10px; border: 1pt solid black;">
-				<h3>Inside Pictures:</h3>
-				<% @inside_card_images = @card_images.where(side: 1) %>
-				<% @inside_card_images.each do |card_image| %>
-					<div class="existing_pictures" style="margin: 15px 0;">
-						<span>
-						<%= if card_image && card_image.picture?
-							image_tag(card_image.picture.url, class: "card_image")
-						end %></span>
-						<span class="picture">
-							<!-- this needs to be where you can "UPDATE CROP" THE PICTURE -->
-						</span>
-
+						<hr style="border: 1pt solid black !important; width: 100%;">
 					</div>
 				<% end %>
 			</div>

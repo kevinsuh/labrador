@@ -125,7 +125,6 @@ module Admin
 				relationships = card_params[:relationships]
 				occasions     = card_params[:occasions]
 				flavors       = card_params[:flavors]
-				picture				= card_params[:picture]
 
 				@card.update_column(:name, name)
 
@@ -143,13 +142,6 @@ module Admin
 				@card.flavors.delete_all
 				flavors.each do |flavor_id|
 					@card.card_flavors.create(flavor_id: flavor_id)
-				end
-
-				# this is not what you want to do in the near future regarding pictures
-				# only when you have something in that picture input
-				unless picture.nil?
-					@card.card_images.destroy_all
-					@card.card_images.create(picture: picture)
 				end
 
 				vendor_id     = card_params[:vendor]

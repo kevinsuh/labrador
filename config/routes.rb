@@ -36,9 +36,11 @@ Rails.application.routes.draw do
         post 'index'
         get 'index'
       end
-      resources :card_images, only: [:index, :create, :edit, :update]
+      resources :card_images, only: [:index, :create, :edit, :update, :destroy]
     end
   end
+
+  post 'admin/cards/:card_id/card_images/:id' => "admin/card_images#update_image"
 
 
   get 'relationships/get_relationships'

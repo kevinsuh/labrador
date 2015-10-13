@@ -25,25 +25,21 @@
 	<div class="row card_admin_row">
 		<h1 class="card_id">Card ID: <%=card.id%></h1>
 		<%= form_for([:admin, card], html: {multipart: true}) do |f| %>
-		<aside class="col-xs-4">
-			<% if false # for future version %>
+		<aside class="col-xs-4" style="text-align: center;">
 			<% card_images.each do |card_image| %>
-				<span> <%= if card_image.picture?
+				<div class="image" style="margin:15px 0;"> <%= if card_image.picture?
 					image_tag(card_image.picture.url, class: "card_image") 
-				end %></span>
+				end %>
+				<% if card_image[:side] == 0 %>
+				<div>(Outside)</div>
+				<% else %>
+				<div>(Inside)</div>
+				<% end %>
+			</div>
 			<% end %>
-			<% end %>
-
-			<span><%= 
-			if card_image && card_image.picture?
-				image_tag(card_image.picture.url, class: "card_image")
-			end %></span>
-			<span class="picture">
-				<%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png', class: "card_image_upload" %>
-			</span>
-
+			<%= link_to "Edit Card Images", admin_card_card_images_path(card), class: "btn link_button" %>
 		</aside>
-		<div class ="col-xs-8 card_options">
+		<div class ="col-xs-8 card_options" style="padding: 20px; border: 1pt solid black;">
 			<div class="relationship_checkbox">
 				<h5>Name:</h5>
 				<%= f.label :name, "Name" %>
