@@ -10,7 +10,7 @@ class CardImage < ActiveRecord::Base
 
   def crop_image
     if crop_x.present?
-      mini_magick = MiniMagick::Image.open(self.picture.large.path)
+      mini_magick = MiniMagick::Image.open(self.picture.path)
       crop_params = "#{crop_w}x#{crop_h}+#{crop_x}+#{crop_y}"
       mini_magick.crop(crop_params)
       mini_magick.write(self.picture.path)

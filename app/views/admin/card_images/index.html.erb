@@ -2,7 +2,8 @@
 <div class="card_images_container" style="margin-top:100px;">
 	<div class="row options_row">
 		<div class="col-xs-2 col-xs-offset-1">
-			<%= link_to "Back to All Cards", admin_cards_path, class: "btn link_button" %>
+			<%= link_to "Back to All Cards", admin_cards_path, class: "btn btn-primary" %>
+			<%= link_to "Create Card", new_admin_card_path, class: "btn link_button" %>
 		</div>
 	</div>
 	<div class="row card_admin_row">
@@ -48,7 +49,7 @@
 									<%= f.select :side, CardImage.sides, selected: card_image[:side] %>
 								</div>
 								<%= f.submit "Save & Crop Picture", class: "btn btn-primary" %>
-								<%= link_to "Delete Card", admin_card_card_image_path(@card, card_image), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+								<%= link_to "Delete Image", admin_card_card_image_path(@card, card_image), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
 							<% end %>
 							
 						</span>

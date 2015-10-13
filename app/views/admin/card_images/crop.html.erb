@@ -1,21 +1,17 @@
-
-
-
-
 <!-- card display -->
 <div class="card_images_container" style="margin-top:100px;">
 	<div class="row card_admin_row">
 		<div class="col-xs-8 col-xs-offset-1">
 			<h1>Crop The Picture</h1>
 			<div class="image" style="margin-top: 50px;">
-				<%= image_tag @card_image.picture.url(:large), id: "cropbox" %>
+				<%= image_tag @card_image.picture.url, id: "cropbox" %>
 			</div>
 
 			<!-- preview of crop -->
 			<div class="preview" style="margin-top:40px;">
 				<h4>Preview</h4>
 				<div style="width:300px; height: 400px; overflow:hidden; display: inline-block; border: 2pt solid black;">
-					<%= image_tag @card_image.picture.url(:large), id: "preview" %>
+					<%= image_tag @card_image.picture.url, id: "preview" %>
 				</div>
 			</div>
 

@@ -21,11 +21,17 @@
 
 	<div ng-show="cardsLoadedFirstTime" class="cards_loaded_view" style="height: 100%;">
 		<div class="col-xs-6 card_preview_container">
-
 			<div class="preview_box">
-				<div class="preview">
+				<div class="preview outside" ng-if="previewSide == 'outside'">
 					<div class="card_image">
-						<img class="image" ng-src="{{cards.selectedCard.card_images[0]}}" ng-if="cards.selectedCard" />
+						OUTSIDE
+						<img class="image" ng-src="{{cards.selectedCard.outsideImages[testCount].picture.url}}" ng-if="cards.selectedCard" />
+					</div>
+				</div>
+				<div class="preview outside" ng-if="previewSide == 'inside'">
+					<div class="card_image">
+						INSIDE
+						<img class="image" ng-src="{{cards.selectedCard.outsideImages[testCount].picture.url}}" ng-if="cards.selectedCard" />
 					</div>
 				</div>
 				<div class="preview_options">
@@ -52,7 +58,7 @@
 					<!-- display each of the 6 choices here... -->
 					<div class="choice" ng-repeat="card in cards.selectableCards" ng-class="{'selected': card == cards.selectedCard}" ng-click="selectCard(card)" ng-if="selectedFlavorIDs.length > 0">
 						<div class="card_image">
-							<img class="image" ng-src="{{card.card_images[0]}}" />
+							<img class="image" ng-src="{{card.card_images[0].picture.url}}" />
 						</div>
 						<div class="card_name">
 							{{card.name}}

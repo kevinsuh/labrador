@@ -23,11 +23,11 @@ class CardSerializer < ActiveModel::Serializer
     # card images
     card_images = CardImage.where(card_id: data[:id])
     
-    card_image_urls = card_images.map { 
-    	|image| image.picture.url if image.picture? 
-  		}.compact
+    # card_image_urls = card_images.map { 
+    # 	|image| image.picture.url if image.picture? 
+  		# }.compact
 
-  	data[:card_images] = card_image_urls
+  	data[:card_images] = card_images
 
   	data
   end

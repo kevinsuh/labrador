@@ -142,9 +142,26 @@
     }
 
     $scope.selectCard = function(card) {
-    	$scope.cards.selectedCard = card;
-    }
 
+    	// create arrays of inside / outside images before attaching selected card
+    	outsideImages = [];
+    	insideImages = [];
+
+    	card.card_images.forEach(function(card_image) {
+    		if (card_image.side == "outside") {
+    			outsideImages.push(card_image);
+    		} else if (card_image.side == "inside") {
+    			insideImages.push(card_image);
+    		}
+    	}); 
+
+    	card.outsideImages = outsideImages;
+    	card.insideImages = insideImages;
+
+    	$scope.cards.selectedCard = card;
+    	console.log($scope.cards.selectedCard);
+    }
+    $scope.testCount = 0;
     // decide which side to preview
     $scope.selectPreviewSide = function(side) {
     	$scope.previewSide = side;
