@@ -10,10 +10,22 @@
 			<div class="image" style="margin-top: 50px;">
 				<%= image_tag @card_image.picture.url(:large), id: "cropbox" %>
 			</div>
+
+			<!-- preview of crop -->
+			<div class="preview" style="margin-top:40px;">
+				<h4>Preview</h4>
+				<div style="width:250px; height: 400px; overflow:hidden; display: inline-block; border: 2pt solid black;">
+					<%= image_tag @card_image.picture.url(:large), id: "preview" %>
+				</div>
+			</div>
+
 			<%= form_for [:admin, @card, @card_image] do |f| %>
 				<% %w[x y w h].each do |attribute| %>
-					<%= f.text_field "crop_#{attribute}" %><br>
+					<%= f.hidden_field "crop_#{attribute}" %><br>
 				<% end %>
+				<div class="actions">
+					<%= f.submit "Crop", class: "btn btn-primary" %>
+				</div>
 			<% end %>
 		</div>
 

@@ -14,4 +14,14 @@ function update(coords) {
 	$('#card_image_crop_y').val(coords.y);
 	$('#card_image_crop_w').val(coords.w);
 	$('#card_image_crop_h').val(coords.h);
+	updatePreview(coords);
+}
+
+function updatePreview(coords) {
+	 $('#preview').css({
+	 		width: Math.round(250/coords.w * $('#cropbox').width()) + 'px',
+      height: Math.round(400/coords.h * $('#cropbox').height()) + 'px',
+      marginLeft: '-' + Math.round(250/coords.w * coords.x) + 'px',
+      marginTop: '-' + Math.round(400/coords.h * coords.y) + 'px'
+	 });
 }

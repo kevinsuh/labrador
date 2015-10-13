@@ -4,10 +4,16 @@ class CardImage < ActiveRecord::Base
   validate :picture_size
 
   attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
-  after_update :crop_picture
+  after_update :crop_image
 
-  def crop_picture
-  	picture.recreate_versions! if crop_x.present?
+  def crop_image
+    if crop_x.present?
+      mini_magick = MiniMagick::Image.open(self.picture.large.path)
+      crop_params = "#{crop_w}x#{crop_h}+#{crop_x}+#{crop_y}"
+      mini_magick.crop(crop_params)
+      mini_magick.write(self.picture.path)
+      picture.recreate_versions!
+    end
   end
 
   private 

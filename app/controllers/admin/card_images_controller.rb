@@ -36,8 +36,20 @@ module Admin
 		end
 
 		def update
-			puts params.inspect
+			@card = Card.find(params[:card_id])
+			@card_image = CardImage.find(params[:id])
+			if @card_image.update_attributes(card_image_params)
+				flash[:success] = "Successfully cropped image"
+			else
+				flash[:danger] = "Failed to crop image"
+			end
+			redirect_to admin_card_card_images_path(@card)
 		end
 
+		private
+
+			def card_image_params
+				params.require(:card_image).permit(:crop_x, :crop_y, :crop_w, :crop_h)
+			end
 	end
 end
