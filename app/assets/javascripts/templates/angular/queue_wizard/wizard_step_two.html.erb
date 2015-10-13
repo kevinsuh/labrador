@@ -24,16 +24,16 @@
 			<div class="preview_box">
 				<div class="preview outside" ng-if="previewSide == 'outside'">
 					<div class="card_image" ng-if="cards.selectedCard.outsideImages[outsideImageCount]">
-						<i class="glyphicon glyphicon-menu-left prev_image direction" ng-if="outsideImageCount > 0"></i>
+						<i class="glyphicon glyphicon-menu-left prev_image direction" ng-if="outsideImageCount > 0" ng-click="prevImage('outside')"></i>
 						<img class="image" ng-src="{{cards.selectedCard.outsideImages[outsideImageCount].picture.url}}" />
-						<i class="glyphicon glyphicon-menu-right next_image direction"></i>
+						<i class="glyphicon glyphicon-menu-right next_image direction" ng-if="outsideImageCount < (outsideImageLength-1)" ng-click="nextImage('outside')"></i>
 					</div>
 				</div>
 				<div class="preview outside" ng-if="previewSide == 'inside'">
 					<div class="card_image" ng-if="cards.selectedCard.insideImages[insideImageCount]">
-						<i class="glyphicon glyphicon-menu-left prev_image direction" ng-if="insideImageCount > 0"></i>
+						<i class="glyphicon glyphicon-menu-left prev_image direction" ng-if="insideImageCount > 0" ng-click="prevImage('inside')"></i>
 						<img class="image" ng-src="{{cards.selectedCard.insideImages[insideImageCount].picture.url}}" />
-						<i class="glyphicon glyphicon-menu-right next_image direction"></i>
+						<i class="glyphicon glyphicon-menu-right next_image direction" ng-if="insideImageCount < (insideImageLength - 1)" ng-click="nextImage('inside')"></i>
 					</div>
 				</div>
 				<div class="preview_options">

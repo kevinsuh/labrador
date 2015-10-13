@@ -146,9 +146,10 @@
 		$scope.insideImageCount  = 0;
     $scope.selectCard = function(card) {
 
-    	// reset the image preview count each time
-    	$scope.outsideImageCount = 0;
-    	$scope.insideImageCount  = 0;
+    	// reset the image preview settings each time
+			$scope.outsideImageCount = 0;
+			$scope.insideImageCount  = 0;
+			$scope.previewSide       = 'outside';
 
     	// create arrays of inside / outside images before attaching selected card
     	outsideImages = [];
@@ -165,8 +166,29 @@
     	card.outsideImages = outsideImages;
     	card.insideImages = insideImages;
 
+    	// to handle the max
+    	$scope.outsideImageLength = card.outsideImages.length;
+    	$scope.insideImageLength = card.insideImages.length;
+
     	$scope.cards.selectedCard = card;
 
+    }
+
+    // iterate through the images
+    $scope.nextImage = function(side) {
+    	if (side == 'outside') {
+    		$scope.outsideImageCount++;
+    	} else if (side == 'inside') {
+    		$scope.insideImageCount++;
+    	}
+    }
+
+    $scope.prevImage = function(side) {
+    	if (side == 'outside') {
+    		$scope.outsideImageCount--;
+    	} else if (side == 'inside') {
+    		$scope.insideImageCount--;
+    	}
     }
     
     // decide which side to preview
