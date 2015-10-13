@@ -103,12 +103,13 @@ module Admin
 
 			end
 
+			# should always be nil in current design
 			if picture.nil?
-				flash[:success] = "Card successfully created without picture"
-				redirect_to new_admin_card_path
+				flash[:success] = "Please add pictures"
+				redirect_to admin_card_card_images_path(@card)
 			else
-				card_image = @card.card_images.create(picture: picture)
-				redirect_to edit_admin_card_image_path(card_image)
+				#card_image = @card.card_images.create(picture: picture)
+				redirect_to admin_card_card_images_path(@card)
 			end
 
 		end

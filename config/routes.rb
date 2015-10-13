@@ -36,8 +36,8 @@ Rails.application.routes.draw do
         post 'index'
         get 'index'
       end
+      resources :card_images, only: [:index, :create, :edit, :update]
     end
-    resources :card_images, only: [:edit, :update]
   end
 
 

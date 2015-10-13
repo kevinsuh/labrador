@@ -1,0 +1,38 @@
+<!-- card display -->
+<div class="card_images_container" style="margin-top:100px;">
+	<div class="row card_admin_row">
+		<aside class="col-xs-3 col-xs-offset-1">
+			<h3>Add New Picture</h3>
+			<%= form_for([:admin, @card, @new_card_image], method: :post, html: {multipart: true}) do |f| %>
+				<%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png', class: "card_image_upload" %>
+				<%= f.submit "Add New Picture", class: "btn btn-primary" %>
+			<% end %>
+		</aside>
+		<div class ="col-xs-7 card_options">
+			<h3>Crop Existing Pictures</h3>
+			<% @card_images.each do |card_image| %>
+
+			<% if false # for future version %>
+			<% card_images.each do |card_image| %>
+				<span> <%= if card_image.picture?
+					image_tag(card_image.picture.url, class: "card_image") 
+				end %></span>
+			<% end %>
+			<% end %>
+
+			<div class="existing_pictures" style="margin: 15px 0;">
+				<span>
+				<%= if card_image && card_image.picture?
+					image_tag(card_image.picture.url, class: "card_image")
+				end %></span>
+				<span class="picture">
+					<!-- this needs to be where you can "UPDATE CROP" THE PICTURE -->
+				</span>
+
+				<% end %>
+			</div>
+		</div>
+
+	</div>
+	<hr>
+</div>

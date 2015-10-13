@@ -3,7 +3,7 @@
 	<h1 class="card_id">Create New Card:</h1>
 	<%= form_for([:admin, @card], url: "/admin/cards", method: :post, html: {multipart: true}) do |f| %>
 	<aside class="col-xs-4">
-		<span class="picture">
+		<span class="picture" style="display: none;">
 			Card image:
 			<%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png', class: "card_image_upload" %>
 		</span>
