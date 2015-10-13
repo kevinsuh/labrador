@@ -141,7 +141,14 @@
     	
     }
 
+    // to iterate through preview of selected cards
+		$scope.outsideImageCount = 0;
+		$scope.insideImageCount  = 0;
     $scope.selectCard = function(card) {
+
+    	// reset the image preview count each time
+    	$scope.outsideImageCount = 0;
+    	$scope.insideImageCount  = 0;
 
     	// create arrays of inside / outside images before attaching selected card
     	outsideImages = [];
@@ -159,9 +166,9 @@
     	card.insideImages = insideImages;
 
     	$scope.cards.selectedCard = card;
-    	console.log($scope.cards.selectedCard);
+
     }
-    $scope.testCount = 0;
+    
     // decide which side to preview
     $scope.selectPreviewSide = function(side) {
     	$scope.previewSide = side;

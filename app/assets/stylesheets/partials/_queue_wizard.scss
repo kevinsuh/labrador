@@ -417,6 +417,25 @@ $header_height: 10%;
 												position: absolute;
 												height: 100%;
 											}
+
+											.direction { // the glyphicons to handle left/right of image selection
+												color: grey;
+												z-index: 9999999;
+												top: 50%;
+												font-size: 3em;
+												position: absolute;
+												cursor: pointer;
+												&:hover {
+													color: white;
+												}
+												&.prev_image {
+													left: 0;
+												}
+												&.next_image {
+													right: 0;
+												}
+											}
+
 										}
 										.card_name {
 											display: inline-block;

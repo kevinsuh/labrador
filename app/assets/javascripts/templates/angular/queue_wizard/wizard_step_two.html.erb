@@ -23,15 +23,17 @@
 		<div class="col-xs-6 card_preview_container">
 			<div class="preview_box">
 				<div class="preview outside" ng-if="previewSide == 'outside'">
-					<div class="card_image">
-						OUTSIDE
-						<img class="image" ng-src="{{cards.selectedCard.outsideImages[testCount].picture.url}}" ng-if="cards.selectedCard" />
+					<div class="card_image" ng-if="cards.selectedCard.outsideImages[outsideImageCount]">
+						<i class="glyphicon glyphicon-menu-left prev_image direction" ng-if="outsideImageCount > 0"></i>
+						<img class="image" ng-src="{{cards.selectedCard.outsideImages[outsideImageCount].picture.url}}" />
+						<i class="glyphicon glyphicon-menu-right next_image direction"></i>
 					</div>
 				</div>
 				<div class="preview outside" ng-if="previewSide == 'inside'">
-					<div class="card_image">
-						INSIDE
-						<img class="image" ng-src="{{cards.selectedCard.outsideImages[testCount].picture.url}}" ng-if="cards.selectedCard" />
+					<div class="card_image" ng-if="cards.selectedCard.insideImages[insideImageCount]">
+						<i class="glyphicon glyphicon-menu-left prev_image direction" ng-if="insideImageCount > 0"></i>
+						<img class="image" ng-src="{{cards.selectedCard.insideImages[insideImageCount].picture.url}}" />
+						<i class="glyphicon glyphicon-menu-right next_image direction"></i>
 					</div>
 				</div>
 				<div class="preview_options">
