@@ -1,6 +1,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
+//= require jquery.Jcrop
 //= require angular
 //= require angular-messages
 //= require angular-ui-router

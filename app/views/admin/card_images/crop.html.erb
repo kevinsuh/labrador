@@ -1,0 +1,22 @@
+
+
+
+
+<!-- card display -->
+<div class="card_images_container" style="margin-top:100px;">
+	<div class="row card_admin_row">
+		<div class="col-xs-8 col-xs-offset-1">
+			<h1>Crop The Picture</h1>
+			<div class="image" style="margin-top: 50px;">
+				<%= image_tag @card_image.picture.url(:large), id: "cropbox" %>
+			</div>
+			<%= form_for [:admin, @card, @card_image] do |f| %>
+				<% %w[x y w h].each do |attribute| %>
+					<%= f.text_field "crop_#{attribute}" %><br>
+				<% end %>
+			<% end %>
+		</div>
+
+	</div>
+	<hr>
+</div>

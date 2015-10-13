@@ -15,6 +15,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
+gem 'jcrop-rails-v2'
 
 gem 'angularjs-rails', '1.3.15'
 gem 'angular-rails-templates'

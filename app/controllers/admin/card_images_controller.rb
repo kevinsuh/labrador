@@ -26,9 +26,9 @@ module Admin
   		else
   			@card_image = @card.card_images.create(picture: picture)
   			flash[:success] = "Please crop now"
-  			redirect_to admin_card_card_images_path(@card) # should be crop
+  			render :crop
   		end
-  		
+
   	end
 
 		def edit
