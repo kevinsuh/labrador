@@ -25,29 +25,43 @@
 				<%= f.submit "Save & Crop Picture", class: "btn btn-primary" %>
 			<% end %>
 		</aside>
-		<div class ="col-xs-7 card_options">
+		<div class ="col-xs-5 card_options">
 			<h3>Crop Existing Pictures</h3>
-			<% @card_images.each do |card_image| %>
+			<hr>
+			<div class="pictures_container" style="padding: 0 10px 10px 10px; border: 1pt solid black;">
+				<h3>Outside Pictures:</h3>
+				<% @outside_card_images = @card_images.where(side: 0) %>
+				<% @outside_card_images.each do |card_image| %>
+					<div class="existing_pictures" style="margin: 15px 0;">
+						<span>
+						<%= if card_image && card_image.picture?
+							image_tag(card_image.picture.url, class: "card_image")
+						end %></span>
+						<span class="picture">
+							<!-- this needs to be where you can "UPDATE CROP" THE PICTURE -->
+						</span>
 
-			<% if false # for future version %>
-			<% card_images.each do |card_image| %>
-				<span> <%= if card_image.picture?
-					image_tag(card_image.picture.url, class: "card_image") 
-				end %></span>
-			<% end %>
-			<% end %>
-
-			<div class="existing_pictures" style="margin: 15px 0;">
-				<span>
-				<%= if card_image && card_image.picture?
-					image_tag(card_image.picture.url, class: "card_image")
-				end %></span>
-				<span class="picture">
-					<!-- this needs to be where you can "UPDATE CROP" THE PICTURE -->
-				</span>
-
+					</div>
 				<% end %>
 			</div>
+			<hr>
+			<div class="pictures_container" style="padding: 0 10px 10px 10px; border: 1pt solid black;">
+				<h3>Inside Pictures:</h3>
+				<% @inside_card_images = @card_images.where(side: 1) %>
+				<% @inside_card_images.each do |card_image| %>
+					<div class="existing_pictures" style="margin: 15px 0;">
+						<span>
+						<%= if card_image && card_image.picture?
+							image_tag(card_image.picture.url, class: "card_image")
+						end %></span>
+						<span class="picture">
+							<!-- this needs to be where you can "UPDATE CROP" THE PICTURE -->
+						</span>
+
+					</div>
+				<% end %>
+			</div>
+
 		</div>
 
 	</div>
