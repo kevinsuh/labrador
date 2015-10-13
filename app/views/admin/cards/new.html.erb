@@ -1,15 +1,8 @@
-<div class="row card_admin_row">
-	<%= link_to "Back to index", admin_cards_path, class: "btn" %>
-	<h1 class="card_id">Create New Card:</h1>
-	<%= form_for([:admin, @card], url: "/admin/cards", method: :post, html: {multipart: true}) do |f| %>
-	<aside class="col-xs-4">
-		<span class="picture" style="display: none;">
-			Card image:
-			<%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png', class: "card_image_upload" %>
-		</span>
-
-	</aside>
-	<div class ="col-xs-8 card_options">
+<div class="row card_admin_row" style="margin-top:70px;">
+	<div class ="col-xs-5 col-xs-offset-1 card_options">
+		<%= link_to "Back to index", admin_cards_path, class: "btn" %>
+		<h1 class="card_id" style="padding-left: 0; text-decoration: underline; margin: 30px 0;">Create New Card:</h1>
+		<%= form_for([:admin, @card], url: "/admin/cards", method: :post, html: {multipart: true}) do |f| %>
 		<div class="relationship_checkbox">
 			<h5>Recipients:</h5>
 			<% @relationships.each do |relationship| %>
@@ -52,7 +45,7 @@
 		</div>
 		<hr class="category_separator">
 		<div class="submit">
-			<%= f.submit "Save and Crop Pictures", class: "btn btn-primary" %>
+			<%= f.submit "Continue to Pictures", class: "btn btn-primary" %>
 		</div>
 		<% end %>
 	</div>
