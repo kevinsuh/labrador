@@ -12,11 +12,12 @@ class CardImage < ActiveRecord::Base
     if crop_x.present?
 
       if Rails.env.production? 
-        path = "https://cardagain-data2.s3.amazonaws.com/#{self.picture.url}"
+        path = "https://cardagain-data2.s3.amazonaws.com#{self.picture.url}"
+        puts path
       else
         path = self.picture.path
       end
-      
+
       mini_magick = MiniMagick::Image.open(path)
       crop_params = "#{crop_w}x#{crop_h}+#{crop_x}+#{crop_y}"
       mini_magick.crop(crop_params)
