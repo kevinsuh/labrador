@@ -84884,12 +84884,11 @@ html {
 .queue_card {
   width: 100%;
   height: 100%;
-  min-width: 2000px;
+  min-width: 1440px;
   max-width: 2300px;
-  min-height: 1350px;
   margin: 0 auto;
 }
-/* line 18, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 17, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .recipients_container {
   background-color: white;
   border-right: 1pt solid black;
@@ -84899,49 +84898,49 @@ html {
   margin: 0;
   padding: 0;
 }
-/* line 28, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 27, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .recipients_container .header.navigation {
   height: 10%;
   background-color: #E76F6B;
 }
-/* line 32, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 31, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .recipients_container .header.navigation .recipients_header {
   height: 100%;
   display: -webkit-flex;
   display: flex;
 }
-/* line 35, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 34, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .recipients_container .header.navigation .recipients_header div {
   display: inline-block;
   text-align: center;
   color: white;
 }
-/* line 40, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 39, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .recipients_container .header.navigation .recipients_header div.main_display {
   width: 100%;
   margin: auto 0;
   padding-top: 4%;
 }
-/* line 44, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 43, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .recipients_container .header.navigation .recipients_header div.main_display .title {
   font-size: 1.8em;
 }
-/* line 48, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 47, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .recipients_container .header.navigation .recipients_header div.main_display .progress_bullets .bullet {
   font-size: 2.5rem;
   margin: 0 3px;
 }
-/* line 51, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 50, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .recipients_container .header.navigation .recipients_header div.main_display .progress_bullets .bullet a {
   color: #E8E8E8;
   opacity: 0.45;
 }
-/* line 54, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 53, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .recipients_container .header.navigation .recipients_header div.main_display .progress_bullets .bullet a.active {
   color: white;
   opacity: 1;
 }
-/* line 67, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 66, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .recipients_container .inner_container {
   display: -webkit-flex;
   display: flex;
@@ -84950,23 +84949,23 @@ html {
   overflow: auto;
   background-color: #F0F0F0;
 }
-/* line 75, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 74, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .recipients_container .inner_container .centered_view {
   margin: auto 0px;
   width: 100%;
 }
-/* line 79, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 78, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .recipients_container .inner_container .centered_view .recipient {
   width: 100%;
   margin: 35px 0;
 }
-/* line 84, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 83, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .recipients_container .inner_container .centered_view .recipient .profile_picture_container {
   height: 100%;
   width: 50%;
   margin: 0 auto;
 }
-/* line 91, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 90, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .recipients_container .inner_container .centered_view .recipient .profile_picture_container .profile_picture {
   height: 100px;
   width: 100px;
@@ -84979,77 +84978,77 @@ html {
   border-radius: 50%;
   position: relative;
 }
-/* line 105, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 104, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .recipients_container .inner_container .centered_view .recipient .profile_picture_container .profile_picture .image {
   position: absolute;
   bottom: 0;
   height: 100px;
 }
-/* line 113, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 112, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .recipients_container .inner_container .centered_view .recipient .name_container {
   width: 50%;
   margin: 0 auto;
   text-align: center;
 }
-/* line 118, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 117, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .recipients_container .inner_container .centered_view .recipient .name_container .name {
   font-size: 1.5em;
 }
-/* line 134, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 133, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .wizard_container {
   background-color: white;
   position: relative;
   padding: 0;
   height: 100%;
 }
-/* line 141, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 140, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .wizard_container .header.navigation {
   height: 10%;
   background-color: #746999;
 }
-/* line 146, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 145, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .wizard_container .header.navigation .wizard_header {
   height: 100%;
   display: -webkit-flex;
   display: flex;
 }
-/* line 149, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 148, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .wizard_container .header.navigation .wizard_header div {
   display: inline-block;
   text-align: center;
   color: white;
 }
-/* line 154, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 153, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .wizard_container .header.navigation .wizard_header div.main_display {
   width: 74%;
   margin: auto 0;
 }
-/* line 157, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 156, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .wizard_container .header.navigation .wizard_header div.main_display .title {
   font-size: 3em;
 }
-/* line 161, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 160, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .wizard_container .header.navigation .wizard_header div.main_display .progress_bullets .bullet {
   font-size: 2.5rem;
   margin: 0 3px;
 }
-/* line 164, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 163, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .wizard_container .header.navigation .wizard_header div.main_display .progress_bullets .bullet a.active {
   color: #4A4A4A;
 }
-/* line 171, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 170, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .wizard_container .header.navigation .wizard_header .navigation_container {
   width: 13%;
   margin: auto 0;
   padding: 0 2em;
   height: 50%;
 }
-/* line 177, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 176, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .wizard_container .header.navigation .wizard_header .navigation_container .direction {
   width: 100%;
   height: 100%;
 }
-/* line 180, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 179, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .wizard_container .header.navigation .wizard_header .navigation_container .direction .navigation_button {
   width: 100%;
   height: 100%;
@@ -85057,26 +85056,26 @@ html {
   border: 1pt solid white;
   color: white;
 }
-/* line 186, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 185, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .wizard_container .header.navigation .wizard_header .navigation_container .direction .navigation_button:hover {
   background-color: #655e88;
 }
-/* line 189, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 188, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .wizard_container .header.navigation .wizard_header .navigation_container .direction .navigation_button:focus {
   outline: 0;
 }
-/* line 210, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 209, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .wizard_container .inner_container {
   height: 90%;
 }
-/* line 214, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 213, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .wizard_container .inner_container .wizard_form {
   width: 100%;
   height: 100%;
   position: relative;
   overflow-x: hidden;
 }
-/* line 221, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 220, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .wizard_container .inner_container .wizard_form .form_container {
   height: 90%;
   width: 100%;
@@ -85092,66 +85091,66 @@ html {
    * 		STEP THREE: Confirm your choices
    */
 }
-/* line 223, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 222, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .wizard_container .inner_container .wizard_form .form_container.flex {
   display: -webkit-flex;
   display: flex;
 }
-/* line 235, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 234, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .wizard_container .inner_container .wizard_form .form_container.ng-enter {
   -moz-animation: slideInRight 0.5s both ease;
   -webkit-animation: slideInRight 0.5s both ease;
   animation: slideInRight 0.5s both ease;
 }
-/* line 239, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 238, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .wizard_container .inner_container .wizard_form .form_container.ng-leave {
   -moz-animation: slideOutLeft 0.5s both ease;
   -webkit-animation: slideOutLeft 0.5s both ease;
   animation: slideOutLeft 0.5s both ease;
 }
-/* line 244, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 243, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .wizard_container .inner_container .wizard_form .form_container .centered_view {
   margin: auto 0px;
   width: 100%;
 }
-/* line 249, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 248, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .wizard_container .inner_container .wizard_form .form_container .date {
   display: inline;
   position: relative;
 }
-/* line 252, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 251, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .wizard_container .inner_container .wizard_form .form_container .date .date_input {
   display: inline;
 }
-/* line 254, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 253, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .wizard_container .inner_container .wizard_form .form_container .date .date_input input {
   padding-left: 2em;
   width: 28%;
 }
-/* line 259, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 258, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .wizard_container .inner_container .wizard_form .form_container .date .date_span {
   position: absolute;
   left: 10px;
   top: -30px;
 }
-/* line 263, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 262, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .wizard_container .inner_container .wizard_form .form_container .date .date_span button {
   background-color: transparent;
   border: none;
   font-size: 0.4em;
 }
-/* line 271, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 270, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .wizard_container .inner_container .wizard_form .form_container .question {
   text-align: center;
   /**
    * 			NL FORM FOR WIZARD
    */
 }
-/* line 273, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 272, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .wizard_container .inner_container .wizard_form .form_container .question span {
   font-size: 2em;
 }
-/* line 282, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 281, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .wizard_container .inner_container .wizard_form .form_container .question .wizard_field {
   background-color: #F7F7F7;
   text-align: left;
@@ -85159,18 +85158,18 @@ html {
   padding: 5px 5px 5px 25px;
   min-width: 250px;
 }
-/* line 296, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 295, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .wizard_container .inner_container .wizard_form .form_container .question .wizard_field a {
   color: black;
 }
-/* line 299, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 298, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .wizard_container .inner_container .wizard_form .form_container .question .wizard_field .wizard_down_icon {
   float: right;
   right: 15px;
   top: 5px;
   color: #898989;
 }
-/* line 307, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 306, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .wizard_container .inner_container .wizard_form .form_container .question .wizard_field ul {
   max-height: 400px;
   overflow-y: scroll;
@@ -85179,22 +85178,22 @@ html {
   padding: 5px 5px 5px 25px;
   min-width: 250px;
 }
-/* line 316, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 315, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .wizard_container .inner_container .wizard_form .form_container .question .wizard_field ul li {
   color: black;
 }
-/* line 328, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 327, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .wizard_container .inner_container .wizard_form .form_container .flavor_filters_container {
   width: 97%;
   margin: auto;
 }
-/* line 331, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 330, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .wizard_container .inner_container .wizard_form .form_container .flavor_filters_container .flavor_filters {
   height: 50px;
   display: flex;
   margin-top: 20px;
 }
-/* line 337, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 336, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .wizard_container .inner_container .wizard_form .form_container .flavor_filters_container .flavor_filters .options_container {
   margin: auto;
   display: table;
@@ -85203,85 +85202,85 @@ html {
   border: 1pt solid darkgray;
   background-color: lightgrey;
 }
-/* line 345, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 344, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .wizard_container .inner_container .wizard_form .form_container .flavor_filters_container .flavor_filters .options_container .flavors {
   width: 100%;
   padding: 10px 0;
 }
-/* line 348, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 347, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .wizard_container .inner_container .wizard_form .form_container .flavor_filters_container .flavor_filters .options_container .flavors .option {
   margin: 0 40pt;
   color: #F0F0F0;
   opacity: 0.75;
   cursor: pointer;
 }
-/* line 353, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 352, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .wizard_container .inner_container .wizard_form .form_container .flavor_filters_container .flavor_filters .options_container .flavors .option.selected {
   color: #E76F6B;
   opacity: 1;
 }
-/* line 360, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 359, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .wizard_container .inner_container .wizard_form .form_container .flavor_filters_container .flavor_filters .options_container .favorites {
   padding: 0;
   width: 5%;
   border-left: 1pt solid black;
   display: table-cell;
 }
-/* line 365, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 364, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .wizard_container .inner_container .wizard_form .form_container .flavor_filters_container .flavor_filters .options_container .favorites .option {
   text-align: center;
 }
-/* line 373, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 372, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .wizard_container .inner_container .wizard_form .form_container .cards_container {
   height: 100%;
   width: 97%;
   margin: 20px auto;
 }
-/* line 378, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 377, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .wizard_container .inner_container .wizard_form .form_container .cards_container .find_card {
   position: relative;
   width: 100%;
   height: 100%;
 }
-/* line 388, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 387, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .wizard_container .inner_container .wizard_form .form_container .cards_container .cards_loaded_view.ng-hide-remove {
   -moz-animation: fadeIn 0.35s 0.65s both ease-in;
   -webkit-animation: fadeIn 0.35s 0.65s both ease-in;
   animation: fadeIn 0.35s 0.65s both ease-in;
 }
-/* line 393, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 392, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .wizard_container .inner_container .wizard_form .form_container .cards_container .cards_loaded_view .card_preview_container {
   height: 100%;
 }
-/* line 395, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 394, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .wizard_container .inner_container .wizard_form .form_container .cards_container .cards_loaded_view .card_preview_container .preview_box {
   display: table;
   width: 100%;
   height: 100%;
   border: 1pt solid black;
 }
-/* line 401, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 400, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .wizard_container .inner_container .wizard_form .form_container .cards_container .cards_loaded_view .card_preview_container .preview_box .preview {
   display: table-row;
   width: 100%;
   height: 90%;
 }
-/* line 405, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 404, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .wizard_container .inner_container .wizard_form .form_container .cards_container .cards_loaded_view .card_preview_container .preview_box .preview .card_image {
   display: table-cell;
   position: relative;
   width: 90%;
   height: 95%;
-  margin: 2.5% 5% 0 5%;
+  margin: 2.5% 5% 3% 5%;
   -webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC);
   float: left;
+  text-align: center;
 }
 /* line 416, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .wizard_container .inner_container .wizard_form .form_container .cards_container .cards_loaded_view .card_preview_container .preview_box .preview .card_image .image {
-  position: absolute;
   height: 100%;
 }
-/* line 421, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 420, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .wizard_container .inner_container .wizard_form .form_container .cards_container .cards_loaded_view .card_preview_container .preview_box .preview .card_image .direction {
   color: grey;
   z-index: 9999999;
@@ -85290,37 +85289,37 @@ html {
   position: absolute;
   cursor: pointer;
 }
-/* line 428, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 427, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .wizard_container .inner_container .wizard_form .form_container .cards_container .cards_loaded_view .card_preview_container .preview_box .preview .card_image .direction:hover {
   color: white;
 }
-/* line 431, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 430, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .wizard_container .inner_container .wizard_form .form_container .cards_container .cards_loaded_view .card_preview_container .preview_box .preview .card_image .direction.prev_image {
   left: 0;
 }
-/* line 434, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 433, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .wizard_container .inner_container .wizard_form .form_container .cards_container .cards_loaded_view .card_preview_container .preview_box .preview .card_image .direction.next_image {
   right: 0;
 }
-/* line 440, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 439, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .wizard_container .inner_container .wizard_form .form_container .cards_container .cards_loaded_view .card_preview_container .preview_box .preview .card_name {
   display: inline-block;
   width: 100%;
   text-align: center;
 }
-/* line 447, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 446, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .wizard_container .inner_container .wizard_form .form_container .cards_container .cards_loaded_view .card_preview_container .preview_box .preview_options {
   display: table-row;
   width: 100%;
   height: 9%;
 }
-/* line 451, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 450, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .wizard_container .inner_container .wizard_form .form_container .cards_container .cards_loaded_view .card_preview_container .preview_box .preview_options .options {
   display: table;
   width: 100%;
   height: 100%;
 }
-/* line 455, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 454, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .wizard_container .inner_container .wizard_form .form_container .cards_container .cards_loaded_view .card_preview_container .preview_box .preview_options .options .option {
   display: table-cell;
   width: 50%;
@@ -85330,32 +85329,32 @@ html {
   background-color: #F0F0F0;
   color: #656565;
 }
-/* line 463, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 462, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .wizard_container .inner_container .wizard_form .form_container .cards_container .cards_loaded_view .card_preview_container .preview_box .preview_options .options .option.selected {
   background-color: white;
   color: #E76F6B;
 }
-/* line 475, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 474, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .wizard_container .inner_container .wizard_form .form_container .cards_container .cards_loaded_view .filtered_choices_container {
   height: 100%;
 }
-/* line 478, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 477, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .wizard_container .inner_container .wizard_form .form_container .cards_container .cards_loaded_view .filtered_choices_container .filtered_choices_box {
   height: 69%;
   margin-bottom: 3%;
   border: 1pt solid black;
 }
-/* line 482, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 481, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .wizard_container .inner_container .wizard_form .form_container .cards_container .cards_loaded_view .filtered_choices_container .filtered_choices_box .filtered_choices {
   height: 100%;
 }
-/* line 484, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 483, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .wizard_container .inner_container .wizard_form .form_container .cards_container .cards_loaded_view .filtered_choices_container .filtered_choices_box .filtered_choices.ng-hide-remove {
   -moz-animation: fadeIn 0.15s 0.35s both ease-in;
   -webkit-animation: fadeIn 0.15s 0.35s both ease-in;
   animation: fadeIn 0.15s 0.35s both ease-in;
 }
-/* line 487, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 486, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .wizard_container .inner_container .wizard_form .form_container .cards_container .cards_loaded_view .filtered_choices_container .filtered_choices_box .filtered_choices .choice {
   height: 45%;
   display: inline-block;
@@ -85365,11 +85364,11 @@ html {
   cursor: pointer;
   position: relative;
 }
-/* line 495, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 494, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .wizard_container .inner_container .wizard_form .form_container .cards_container .cards_loaded_view .filtered_choices_container .filtered_choices_box .filtered_choices .choice.selected {
   border: 3pt solid #00B00C;
 }
-/* line 498, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 497, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .wizard_container .inner_container .wizard_form .form_container .cards_container .cards_loaded_view .filtered_choices_container .filtered_choices_box .filtered_choices .choice .card_image {
   height: 95%;
   width: 100%;
@@ -85377,24 +85376,24 @@ html {
   margin: 0 auto;
   float: left;
 }
-/* line 507, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 506, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .wizard_container .inner_container .wizard_form .form_container .cards_container .cards_loaded_view .filtered_choices_container .filtered_choices_box .filtered_choices .choice .card_image .image {
   position: absolute;
   height: 100%;
   left: -6%;
   top: 0;
 }
-/* line 514, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 513, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .wizard_container .inner_container .wizard_form .form_container .cards_container .cards_loaded_view .filtered_choices_container .filtered_choices_box .filtered_choices .choice .card_name {
   display: inline-block;
   width: 100%;
   text-align: center;
 }
-/* line 522, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 521, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .wizard_container .inner_container .wizard_form .form_container .cards_container .cards_loaded_view .filtered_choices_container .confirmation_box {
   height: 29%;
 }
-/* line 533, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 532, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .wizard_container .inner_container .wizard_form .form_container .confirmation_container {
   border-top: 2pt solid darkgray;
   border-bottom: 2pt solid darkgray;
@@ -85402,57 +85401,57 @@ html {
   width: 90%;
   margin: 60px auto;
 }
-/* line 542, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 541, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .wizard_container .inner_container .wizard_form .form_container .confirmation_container .card_preview_container {
   height: 100%;
 }
-/* line 544, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 543, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .wizard_container .inner_container .wizard_form .form_container .confirmation_container .card_preview_container .preview {
   height: 100%;
   text-align: center;
 }
-/* line 557, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 556, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .wizard_container .inner_container .wizard_form .form_container .confirmation_container .information_container .informations {
   width: 90%;
 }
-/* line 559, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 558, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .wizard_container .inner_container .wizard_form .form_container .confirmation_container .information_container .informations .information {
   margin-top: 30px;
 }
-/* line 561, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 560, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .wizard_container .inner_container .wizard_form .form_container .confirmation_container .information_container .informations .information.first {
   margin-top: 0;
 }
-/* line 564, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 563, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .wizard_container .inner_container .wizard_form .form_container .confirmation_container .information_container .informations .information .description {
   font-weight: 300;
   color: #746999;
   font-size: 2.1em;
   margin-bottom: 0;
 }
-/* line 569, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 568, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .wizard_container .inner_container .wizard_form .form_container .confirmation_container .information_container .informations .information .description.first {
   margin-top: 0;
 }
-/* line 573, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 572, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .wizard_container .inner_container .wizard_form .form_container .confirmation_container .information_container .informations .information .answer {
   font-weight: 400;
   font-size: 2.2em;
   border-bottom: 2.5pt solid #746999;
   margin-top: 7px;
 }
-/* line 585, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 584, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .wizard_container .inner_container .wizard_form .form_container .confirmation_button_container {
   margin-bottom: 200px;
 }
-/* line 588, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 587, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .queue_card .wizard_container .inner_container .wizard_form .form_container .confirmation_button_container .button_box {
   width: 90%;
   padding: 0 1%;
   margin: 0 auto;
 }
 
-/* line 601, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 600, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .card_button {
   display: block;
   width: 100%;
@@ -85476,7 +85475,7 @@ html {
   -webkit-transition: all 0.1s ease;
   transition: all 0.1s ease;
 }
-/* line 617, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 616, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .card_button:active {
   -moz-box-shadow: 1px 1px 1px #CA6556, 0px 1px 2px rgba(0, 0, 0, 0.9);
   -webkit-box-shadow: 1px 1px 1px #CA6556, 0px 1px 2px rgba(0, 0, 0, 0.9);
@@ -85484,7 +85483,7 @@ html {
   position: relative;
   top: 2px;
 }
-/* line 623, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
+/* line 622, /Users/kevinsuh34/Desktop/git/cardagain/app/assets/stylesheets/partials/_queue_wizard.scss */
 .card_button:focus {
   outline: 0;
 }
