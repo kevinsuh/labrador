@@ -12,7 +12,7 @@ class CardImage < ActiveRecord::Base
     if crop_x.present?
 
       if Rails.env.production? 
-        path = self.picture.url
+        path = "https://cardagain-data2.s3.amazonaws.com/#{self.picture.url}"
       else
         path = self.picture.path
       end
