@@ -10,7 +10,14 @@ class CardImage < ActiveRecord::Base
 
   def crop_image
     if crop_x.present?
-      mini_magick = MiniMagick::Image.open(self.picture.path)
+
+      if Rails.env.production? 
+        path = self.picture.url
+      else
+        path = self.picture.path
+      end
+      
+      mini_magick = MiniMagick::Image.open(path)
       crop_params = "#{crop_w}x#{crop_h}+#{crop_x}+#{crop_y}"
       mini_magick.crop(crop_params)
       mini_magick.write(self.picture.path)
