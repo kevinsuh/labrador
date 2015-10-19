@@ -25,14 +25,14 @@
 				<div class="preview outside" ng-if="previewSide == 'outside'">
 					<div class="card_image" ng-if="cards.selectedCard.outsideImages[outsideImageCount]">
 						<i class="glyphicon glyphicon-menu-left prev_image direction" ng-if="outsideImageCount > 0" ng-click="prevImage('outside')"></i>
-						<img class="image" ng-src="{{cards.selectedCard.outsideImages[outsideImageCount].picture.url}}" />
+						<img class="image" ng-src="{{cards.selectedCard.outsideImages[outsideImageCount].picture.large.url}}" />
 						<i class="glyphicon glyphicon-menu-right next_image direction" ng-if="outsideImageCount < (outsideImageLength-1)" ng-click="nextImage('outside')"></i>
 					</div>
 				</div>
 				<div class="preview outside" ng-if="previewSide == 'inside'">
 					<div class="card_image" ng-if="cards.selectedCard.insideImages[insideImageCount]">
 						<i class="glyphicon glyphicon-menu-left prev_image direction" ng-if="insideImageCount > 0" ng-click="prevImage('inside')"></i>
-						<img class="image" ng-src="{{cards.selectedCard.insideImages[insideImageCount].picture.url}}" />
+						<img class="image" ng-src="{{cards.selectedCard.insideImages[insideImageCount].picture.large.url}}" />
 						<i class="glyphicon glyphicon-menu-right next_image direction" ng-if="insideImageCount < (insideImageLength - 1)" ng-click="nextImage('inside')"></i>
 					</div>
 				</div>
@@ -60,7 +60,7 @@
 					<!-- display each of the 6 choices here... -->
 					<div class="choice" ng-repeat="card in cards.selectableCards" ng-class="{'selected': card == cards.selectedCard}" ng-click="selectCard(card)" ng-if="selectedFlavorIDs.length > 0">
 						<div class="card_image">
-							<img class="image" ng-src="{{card.card_images[0].picture.url}}" />
+							<img class="image" ng-src="{{card.card_images[0].picture.large.url}}" />
 						</div>
 						<div class="card_name">
 							{{card.name}}

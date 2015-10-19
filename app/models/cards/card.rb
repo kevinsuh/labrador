@@ -62,6 +62,8 @@ class Card < ActiveRecord::Base
 		# this is initially for admin use
 		def all_with_filters(filters = {})
 
+			page = filters[:page]
+
 			cards = Card.joins("
 				LEFT JOIN card_relationships
 					ON card_relationships.card_id = cards.id
@@ -70,8 +72,10 @@ class Card < ActiveRecord::Base
 				LEFT JOIN card_flavors
 					ON card_flavors.card_id = cards.id
 				LEFT JOIN card_vendors
-					ON card_vendors.card_id = cards.id").limit(40)
+					ON card_vendors.card_id = cards.id").paginate(page: page, per_page: 40)
 
+			#Card.joins("LEFT JOIN card_relationships ON card_relationships.card_id = cards.id LEFT JOIN card_occasions ON card_occasions.card_id = cards.id LEFT JOIN card_flavors ON card_flavors.card_id = cards.id LEFT JOIN card_vendors ON card_vendors.card_id = cards.id").paginate(page: 1)
+			
 			where_statement = String.new
 
 			filterCount = 1

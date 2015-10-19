@@ -9,7 +9,9 @@ module Admin
 
 		def index
 
-			filter_params    = params[:filters]
+			filter_params = params[:filters]
+			page          = params[:page]
+
 			if filter_params
 				occasion_ids     = filter_params[:occasions]
 				relationship_ids = filter_params[:relationships]
@@ -22,11 +24,12 @@ module Admin
 			filters[:relationships] = relationship_ids
 			filters[:flavors]       = flavor_ids
 			filters[:vendors]				= vendor_ids
+			filters[:page]					= page
 			
 			# go through each card to attach all relevant info
 			@cards_data = Hash.new
 			@cards = Card.all_with_filters filters
-
+			
 			@cards.each do |card|
 
 				@card_data = Hash.new

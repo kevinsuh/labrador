@@ -4,6 +4,7 @@
 <%= render 'search_filter' %>
 
 <!-- card display -->
+<%= will_paginate %>
 <% @cards_data.each do |key, card_data| %>
 	<% 
 
@@ -100,6 +101,8 @@
 	</div>
 	<hr>
 <% end %>
+
+<%= will_paginate %>
 
 <!-- jquery test to make sure picture size is reasonable -->
 <script type="text/javascript">
