@@ -70,7 +70,7 @@ class Card < ActiveRecord::Base
 				LEFT JOIN card_flavors
 					ON card_flavors.card_id = cards.id
 				LEFT JOIN card_vendors
-					ON card_vendors.card_id = cards.id")
+					ON card_vendors.card_id = cards.id").limit(40)
 
 			where_statement = String.new
 
