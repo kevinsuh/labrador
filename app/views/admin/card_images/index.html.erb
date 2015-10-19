@@ -39,7 +39,7 @@
 					<div class="existing_pictures" style="margin: 15px 0;">
 						<span>
 						<%= if card_image && card_image.picture?
-							image_tag(card_image.picture.url, class: "card_image")
+							image_tag(card_image.picture.url(:large), class: "card_image")
 						end %></span>
 						<span class="picture">
 							<%= form_for([:admin, @card, card_image], method: :post, html: {multipart: true, style: "margin-left: 10px; display: inline-block; padding: 10px; border: 1pt solid black; float: right;"}) do |f| %>

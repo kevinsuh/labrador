@@ -28,7 +28,7 @@
 		<aside class="col-xs-4" style="text-align: center;">
 			<% card_images.each do |card_image| %>
 				<div class="image" style="margin:15px 0;"> <%= if card_image.picture?
-					image_tag(card_image.picture.url, class: "card_image") 
+					image_tag(card_image.picture.url(:large), class: "card_image") 
 				end %>
 				<% if card_image[:side] == 0 %>
 				<div>(Outside)</div>

@@ -20,17 +20,23 @@ class AvatarUploader < CarrierWave::Uploader::Base
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
-  # def crop
-  #   if model.crop_x.present?
-  #     manipulate! do |img|
-  #       x = model.crop_x.to_i
-  #       y = model.crop_y.to_i
-  #       w = model.crop_w.to_i
-  #       h = model.crop_h.to_i
-  #       img.crop!(x, y, w, h)
-  #     end
-  #   end
-  # end
+  version :large do
+    process :crop
+    resize_to_limit(1500, 1500)
+  end
+
+  def crop
+    if model.crop_x.present?
+      manipulate! do |img|
+        x = model.crop_x
+        y = model.crop_y
+        w = model.crop_w
+        h = model.crop_h
+        img.crop "#{w}x#{h}+#{x}+#{y}"
+        img
+      end
+    end
+  end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url
