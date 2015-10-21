@@ -1,11 +1,3 @@
-//= require jquery
-//= require jquery_ujs
-//= require jquery-ui
-//= require jquery.Jcrop
-//= require angular
-//= require angular-messages
-//= require angular-ui-router
-//= require angular-rails-templates
 //= require bootstrap
 //= require ui-bootstrap-tpls-0.13.4.min.js
 //= require moment.min.js
@@ -21,6 +13,14 @@
 //= require angular.country-select.min.js
 //= require jquery.fancybox-plus.js
 //= require clickoutside.directive.js
+//= require jquery
+//= require jquery_ujs
+//= require jquery-ui
+//= require jquery.Jcrop
+//= require angular
+//= require angular-messages
+//= require angular-ui-router
+//= require angular-rails-templates
 //= require angularjs-file-upload
 //= require angular-animate
 //= require ngImgCrop-master/compile/unminified/ng-img-crop.js
