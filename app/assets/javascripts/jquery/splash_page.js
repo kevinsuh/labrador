@@ -13,4 +13,8 @@ $(document).on('ready page:load', function() {
 		}
 	});
 
+	$('#test_link').click(function() {
+		alert("testing!");
+	});
+
 });
