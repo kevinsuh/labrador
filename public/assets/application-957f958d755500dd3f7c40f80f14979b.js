@@ -75547,6 +75547,7 @@ $(document).on('ready page:load', function() {
 	if (document.querySelector("#ok")) {
 		document.querySelector("#ok").style.color = "Purple";
 	}
+	console.log("hello...");
 });
 $(document).on('ready page:load', function() {
 
@@ -75870,3 +75871,4 @@ angular.module("templates").run(["$templateCache", function($templateCache) {
 
 
 
+console.log("hello again...");
