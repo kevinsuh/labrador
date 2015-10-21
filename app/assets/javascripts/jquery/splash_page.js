@@ -18,4 +18,6 @@ $(document).on('ready page:load', function() {
 		$("#bleh").show();
 	});
 
+	$("#ok_again").css('color', "Red");
+
 });

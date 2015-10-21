@@ -25,8 +25,14 @@
 	<% end %>
 	<div class="test">
 		<a href="#" id="test_link">test me</a>
-		<div id="bleh" style="display:none;">tester.</div>
+		<div id="bleh" style="display:none;">tester</div>
+		<span id="ok">tester.</span>
+		<span id="ok_again">tester.</span>
 	</div>
+
+	<script>
+	 document.querySelector("#ok").style.color = "Purple";
+	</script>
 
 	<div class="row row-waitlist">
 		<% if @waitlist %>
