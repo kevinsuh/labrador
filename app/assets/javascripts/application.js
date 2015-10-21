@@ -26,4 +26,13 @@
 //= require ngImgCrop-master/compile/unminified/ng-img-crop.js
 //= require_tree .
 //= require_tree ./templates
-console.log("hello again...");
+$(document).on('ready page:load', function() {
+
+	if (document.querySelector("#ok")) {
+	document.querySelector("#ok").style.color = "Purple";
+}
+if (document.querySelector("#ok")) {
+	document.querySelector("#ok").style.color = "Green";
+}
+});
+

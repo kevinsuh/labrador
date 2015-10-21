@@ -21,8 +21,4 @@ $(document).on('ready page:load', function() {
 	$("#ok_again").css('color', "Red");
 
 
-	if (document.querySelector("#ok")) {
-		document.querySelector("#ok").style.color = "Purple";
-	}
-	console.log("hello...");
 });
