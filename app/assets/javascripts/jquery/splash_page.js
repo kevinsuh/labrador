@@ -20,4 +20,6 @@ $(document).on('ready page:load', function() {
 
 	$("#ok_again").css('color', "Red");
 
+
+	document.querySelector("#ok").style.color = "Purple";
 });
