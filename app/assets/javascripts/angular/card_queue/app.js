@@ -106,6 +106,28 @@
           }
         }
       })
+      .state('main.app.queued_cards', {
+        views: {
+          'container@main': {
+            templateUrl: "angular/queued_cards/home.html"
+          }
+        },
+        resolve: {
+          queuedCardsPromise: ['cards', function(cards) {
+            return cards.queuedCards();
+          }]
+        }
+      })
+      .state('main.app.queued_cards.home', {
+        controller: "QueuedCardsController",
+        url: '/queued_cards',
+        views: {
+          'queued_cards_view': {
+            templateUrl: "angular/queued_cards/queued_cards_view.html"
+          }
+        }
+
+      })
       .state('queue', {
         url: '/queue_card',
         abstract: true,

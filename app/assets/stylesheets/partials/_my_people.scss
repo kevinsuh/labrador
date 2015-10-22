@@ -2,6 +2,13 @@
 
 $card_profile_picture_size: 90px;
 
+.my_people.page_container {
+	width: -moz-calc(100% - 100px);
+  width: -webkit-calc(100% - 100px);
+  width: calc(100% - 100px);
+  position: absolute;
+}
+
 .my_people_view {
 	// card-based view of recipients!
 		
