@@ -51,12 +51,6 @@
           cardFlavorPromise: ['cards', function(cards) {
             return cards.getCardFlavors();
           }],
-          queuedCardsPromise: ['cards', function(cards) {
-            return cards.getOrderedCards('queued');
-          }],
-          purchasedCardsPromise: ['cards', function(cards) {
-            return cards.getOrderedCards('purchased');
-          }],
           currentRecipientsPromise: ['recipients', function(recipients) {
             return recipients.getCurrentRecipients();
           }],
@@ -114,8 +108,11 @@
         },
         resolve: {
           queuedCardsPromise: ['cards', function(cards) {
-            return cards.queuedCards();
-          }]
+            return cards.getOrderedCards('queued');
+          }],
+          purchasedCardsPromise: ['cards', function(cards) {
+            return cards.getOrderedCards('purchased');
+          }],
         }
       })
       .state('main.app.queued_cards.home', {

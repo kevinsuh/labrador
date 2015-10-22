@@ -1,0 +1,23 @@
+(function() {
+	
+	/**
+	 * this controller is specific for user viewing his queued / purchased cards
+	 */
+	var app = angular.module('card-queue').controller("QueuedCardsController", function($rootScope, $location, $window, $scope, $state, $timeout, cards, usSpinnerService) {
+			
+		$scope.cards          = cards;
+		$scope.queuedCards    = cards.queuedCards;
+		$scope.purchasedCards = cards.purchasedCards;
+
+		headerTitle = angular.element(document.querySelector("#currentTitle"));
+		headerTitle.text("Queued Cards");
+
+		// test whether you are currently at this state or not
+		$scope.$on('$stateChangeSuccess',
+		  function(event, toState) {
+		    $scope.currentState = toState.name;
+		    makeStateActive($scope.currentState);
+		  });
+	});
+
+})();
