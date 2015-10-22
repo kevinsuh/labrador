@@ -1,0 +1,24 @@
+(function() {
+	
+	/**
+	 * this is the controller used to handle checkout of the cards you queued
+	 */
+	var app = angular.module('card-queue').controller("CheckoutController", function($rootScope, $location, $window, $scope, $state, $timeout, usSpinnerService, user) {
+			
+		$scope.user = user;
+		console.log($scope.user);
+
+		headerTitle = angular.element(document.querySelector("#currentTitle"));
+		headerTitle.text("Checkout");
+
+		// test whether you are currently at this state or not
+		$scope.$on('$stateChangeSuccess',
+		  function(event, toState) {
+		    $scope.currentState = toState.name;
+		    makeStateActive($scope.currentState);
+	    });
+
+			
+	});
+
+})();

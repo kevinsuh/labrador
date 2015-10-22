@@ -123,7 +123,38 @@
             templateUrl: "angular/queued_cards/queued_cards_view.html"
           }
         }
-
+      })
+      .state('main.app.checkout', {
+        views: {
+          'container@main': {
+            templateUrl: "angular/checkout/home.html"
+          }
+        },
+        controller: "CheckoutController",
+        resolve: {
+          userInfoPromise: ['user', function(user) { // return user basic info
+            return user.getCurrentUser();
+          }]
+          // order_ids: ['$stateParams', function($stateParams) {
+          //   // turn string into array
+          //   order_ids = $stateParams.selected_order_ids.split(",");
+          //   return order_ids;
+          // }]
+          // selectedOrdersPromise: ['orders', function(recipients) { // uses the recipient_ids that were passed in from above resolve
+          //   return orders.retrieveOrders(order_ids);
+          // }]
+        }
+      })
+      .state('main.app.checkout.home', {
+        url: '/checkout',
+        views: {
+          'cards': {
+            templateUrl: "angular/checkout/cards.html"
+          },
+          'purchase': {
+            templateUrl: "angular/checkout/purchase.html"
+          }
+        }
       })
       .state('queue', {
         url: '/queue_card',
@@ -168,7 +199,7 @@
             recipient_ids = $stateParams.recipients.split(",");
             return recipient_ids;
           }],
-          selectedRecipientsPromise: ['recipients', function(recipients) {
+          selectedRecipientsPromise: ['recipients', function(recipients) { // uses the recipient_ids that were passed in from above resolve
             return recipients.retrieveRecipients(recipient_ids);
           }]
         }
