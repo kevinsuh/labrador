@@ -1,0 +1,48 @@
+(function() {
+	
+	/**
+	 * this controller is specific for user viewing his queued / purchased cards
+	 */
+	var app = angular.module('card-queue').controller("QueuedCardsController", function($rootScope, $location, $window, $scope, $state, $timeout, cards, usSpinnerService) {
+			
+		$scope.cards            = cards;
+		$scope.queuedCards      = cards.queuedCards;
+		$scope.purchasedCards   = cards.purchasedCards;
+		$scope.selectedOrderIDs = [];
+
+		headerTitle = angular.element(document.querySelector("#currentTitle"));
+		headerTitle.text("Queued Cards");
+
+		// test whether you are currently at this state or not
+		$scope.$on('$stateChangeSuccess',
+		  function(event, toState) {
+		    $scope.currentState = toState.name;
+		    makeStateActive($scope.currentState);
+		  });
+
+		/**
+		 * get cards that are selected for checkout to purchase them
+		 * this will be done by holding the selected order IDs in an array so we know exactly which ones the user 'selected' for purchase checkout
+		 */
+		$scope.checkout = function() {
+
+			queuedCards      = $scope.queuedCards;
+			selectedOrderIDs = $scope.selectedOrderIDs;
+			
+			queuedCards.forEach(function(card) {
+				selectedOrderIDs.push(card.id);
+			});
+
+			order_ids = selectedOrderIDs.join();
+			console.log(order_ids);
+
+			$state.go("main.app.checkout.home", {selected_order_ids: "order_ids"});
+
+			// for now, for testing purposes, assume all have been selected
+			
+
+		}
+
+	});
+
+})();
