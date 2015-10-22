@@ -241,9 +241,7 @@
       		}
       	});
       }
-
       $scope.cards.newCard.recipientArrivalDate = suggestedDate;
-
     });
 
     // control what happens on each state of UI-Router
@@ -394,8 +392,8 @@ function recipientDate() {
 function recipientDateString() {
 	var recipientDate = new Date();
   recipientDate.setDate(recipientDate.getDate()+14);
-  var day = recipientDate.getDate();
-  var month = recipientDate.getMonth() + 1;
+  var day = ('0' + recipientDate.getDate()).slice(-2);
+  var month = ('0' + (recipientDate.getMonth()+1)).slice(-2);
   var year = recipientDate.getFullYear();
   recipientDate = year+"-"+month+"-"+day;
   return recipientDate;

@@ -21,9 +21,11 @@
 			if (currentUrl == '#/' || currentUrl == '') { // home page
 				headerTitle = "Greeting Central";
 			} else if (currentUrl == '#/my_people') {
-				console.log(currentUrl);
-				console.log(headerTitle);
 				headerTitle = "My People";
+			} else if (currentUrl == '#/queued_cards') {
+				headerTitle = 'Queued Cards';
+			} else if (currentUrl == '#/checkout') {
+				headerTitle = 'Checkout';
 			} else {
 				headerTitle = "Cardagain";
 			}
