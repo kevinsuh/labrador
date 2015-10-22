@@ -116,7 +116,8 @@ function filterCardsOnFlavors(cards, flavorIDs) {
   	});
 
 		// filter based on whether selected flavorIDs is present in the array of that card's cardFlavorIDs
-		passesFlavorTest = flavorIDs.every(elem => isInArray(elem, cardFlavorIDs));
+		// passesFlavorTest = flavorIDs.every(elem => isInArray(elem, cardFlavorIDs));
+		return true;
 		return passesFlavorTest;
 		
 	});
