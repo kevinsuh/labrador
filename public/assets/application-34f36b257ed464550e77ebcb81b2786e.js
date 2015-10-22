@@ -76021,4 +76021,8 @@ $(document).on('ready page:load', function() {
 if (document.querySelector("#ok")) {
 	document.querySelector("#ok").style.color = "Green";
 }
+alert("hi third time!");
+console.log("sup third time!");
 });
+alert("hi again!");
+console.log("sup again!");
