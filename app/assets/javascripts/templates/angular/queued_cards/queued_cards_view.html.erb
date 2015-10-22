@@ -1,2 +1,22 @@
-{{queuedCards}}
-<!-- <div ng-repea -->
+<div class="row queued_cards">	
+	<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 single_card_div" ng-repeat="queuedCard in queuedCards" style="margin: 30px 0;">
+		<div class="queuedCard">
+			<div class="card_info">
+				<div class="info">
+					For: {{queuedCard.recipient.first_name}} {{queuedCard.recipient.last_name}}
+				</div>
+				<div class="info">
+					Occasion: {{queuedCard.order_occasion.name}}
+				</div>
+				<div class="info">
+					Image: <img class="image" ng-src="{{queuedCard.card_images[0]}}" />
+				</div>
+				<div class="info">
+					Arrival Date: {{queuedCard.recipient_arrival_date | date: "MMM. d"}}
+				</div>
+				
+			</div>
+		</div>
+	</div>
+
+</div>
