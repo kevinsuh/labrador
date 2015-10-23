@@ -41,6 +41,16 @@ class UserSerializer < ActiveModel::Serializer
     addresses = user.addresses
     data[:addresses] = addresses;
 
+    # get stripe account
+    # user needs customer_id in order to retrieve card info
+    if stripe_account = user.stripe_account
+
+      customer_id      = stripe_account.customer_id
+      customer         = Stripe::Customer.retrieve(customer_id)
+      data[:stripe_account] = customer
+
+    end
+
   	data
   end
 
