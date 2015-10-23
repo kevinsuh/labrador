@@ -134,6 +134,9 @@
         resolve: {
           userInfoPromise: ['user', function(user) { // return user basic info
             return user.getCurrentUser();
+          }],
+          queuedCardsPromise: ['cards', function(cards) {
+            return cards.getOrderedCards('queued');
           }]
           // order_ids: ['$stateParams', function($stateParams) {
           //   // turn string into array

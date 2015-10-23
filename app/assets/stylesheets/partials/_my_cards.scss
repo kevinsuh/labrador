@@ -1,0 +1,22 @@
+@import "base";
+
+.my_cards_container { // holds queued and purchased cards view
+	&.ng-enter {
+	@include animation(slideInRight 0.5s both ease);
+	}
+
+	&.ng-leave {
+		@include animation(slideOutLeft 0.5s both ease);
+	}
+	.queued_cards {
+
+		
+
+		.queued_cards_ui_view {
+			// the ui-view containing the queued cards page
+	
+			
+
+		}
+	}
+}

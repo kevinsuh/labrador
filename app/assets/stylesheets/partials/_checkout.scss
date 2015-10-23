@@ -1,0 +1,30 @@
+@import "base";
+
+.checkout_container {
+
+	.checkout_cards_container {
+
+		.cards_ui_view {
+			width: 100%;
+
+			.card_part {
+				display: inline-block;
+				&.image_div {
+					.image {
+						width: 150px;
+					}
+				}
+			}
+
+		}
+
+	}
+
+	.checkout_purchase_container {
+
+		.purchase_ui_view {
+			width: 100%;
+		}
+
+	}
+}

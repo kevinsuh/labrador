@@ -3,10 +3,12 @@
 	/**
 	 * this is the controller used to handle checkout of the cards you queued
 	 */
-	var app = angular.module('card-queue').controller("CheckoutController", function($rootScope, $location, $window, $scope, $state, $timeout, usSpinnerService, user) {
+	var app = angular.module('card-queue').controller("CheckoutController", function($rootScope, $location, $window, $scope, $state, $timeout, usSpinnerService, user, cards) {
 			
 		$scope.user = user;
 		console.log($scope.user);
+		$scope.cards            = cards;
+		$scope.queuedCards      = cards.queuedCards;
 
 		headerTitle = angular.element(document.querySelector("#currentTitle"));
 		headerTitle.text("Checkout");
