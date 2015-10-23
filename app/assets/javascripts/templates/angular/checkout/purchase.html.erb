@@ -1,1 +1,44 @@
-hello this should have address and credit card information for you to purchase!
+<div class="payment_div">
+
+	<div class="sub_total">
+		<h3>Subtotal ({{queuedCards.length}} Cards): ${{queuedCards.length * 5}}.00</h3>
+	</div>
+
+	<div class="delivery_date">
+		<h5>Delivery Date:</h5>
+	</div>
+
+	<div class="user_information">
+		<div class="shipping">
+
+			<div class="header">
+				<h6 class="header_title">Shipping Info</h6>
+				<div class="options" style="display: inline-block;">
+					<a href="#">edit</a> / <a href="#">change</a>
+				</div>
+			</div>
+
+			<!-- this will be your saved primary address -->
+			<div class="address">
+				<div class="name">
+					{{user.primary_address.first_name}} {{user.primary_address.last_name}}
+				</div>
+				<div class="street">
+					{{user.primary_address.street}}
+				</div>
+				<div class="street_two">
+					{{user.primary_address.city}}, {{user.primary_address.state}} {{user.primary_address.zipcode}}
+				</div>
+			</div>
+
+			<!-- this will also display your other saved addresses -->
+
+		</div>
+		<div class="payment">
+			<div class="header">
+				<h6 class="header_title">Payment Method</h6>
+			</div>
+		</div>
+	</div>
+
+</div>

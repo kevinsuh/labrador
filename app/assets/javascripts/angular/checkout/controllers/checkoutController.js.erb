@@ -5,10 +5,13 @@
 	 */
 	var app = angular.module('card-queue').controller("CheckoutController", function($rootScope, $location, $window, $scope, $state, $timeout, usSpinnerService, user, cards) {
 			
-		$scope.user = user;
+		$scope.user           = user.currentUser;
+
 		console.log($scope.user);
-		$scope.cards            = cards;
-		$scope.queuedCards      = cards.queuedCards;
+
+		$scope.stripe_account = user.stripe_account
+		$scope.cards          = cards;
+		$scope.queuedCards    = cards.queuedCards;
 
 		headerTitle = angular.element(document.querySelector("#currentTitle"));
 		headerTitle.text("Checkout");
