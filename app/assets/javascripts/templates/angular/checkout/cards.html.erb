@@ -8,12 +8,38 @@
 	<div class="card" ng-repeat="queuedCard in queuedCards">
 
 		<div class="select card_part">
+			<input id="selected_card_{{$index}}" class="checkbox" type="checkbox"/>
 		</div>
-		<div class="image_div card_part" style="width: 200px;">
+		<div class="image_div card_part">
 			<img class="image" ng-src="{{queuedCard.card_images[0]}}" />
 		</div>
 		<div class="information card_part">
-			<h5>{{queuedCard.recipient.first_name}} {{queuedCard.recipient.last_name}}</h5>
+			<div class="card_title info">
+				<h4>Birthday Card</h4>
+				<h5>for <span style="font-weight: bold;">{{queuedCard.recipient.first_name}} {{queuedCard.recipient.last_name}}</span></h5>
+			</div>
+
+			<div class="delivery info">
+				<h5>Delivery Date:</h5>
+				<h5>04/16/2015</h5>
+			</div>
+
+			<div class="address info">
+				<h5>Address:</h5>
+				<!-- address info -->
+				<div class="address_info current" ng-class="{ 'show': isInArray(address.id, visibleOptions.addressInfos) }">
+					<div class="name detail">
+						Kevin Suh
+					</div>
+					<div class="street detail">
+						716 First St.
+					</div>
+					<div class="street_two detail">
+						New Orleans, LA 70130
+					</div>
+				</div>
+			</div>
+			
 		</div>
 
 	</div>

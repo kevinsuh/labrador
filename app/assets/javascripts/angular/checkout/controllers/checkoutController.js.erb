@@ -28,23 +28,58 @@
 		headerTitle = angular.element(document.querySelector("#currentTitle"));
 		headerTitle.text("Checkout");
 
+		$scope.viewAddressList = false;
+		$scope.editingAddress = true;
+
 		// view all of user's addresses
 		$scope.toggleAddressList = function() {
-			addresses = $scope.user.addresses;
-			addressIDs = addresses.map(function(address) {
-				return address.id;
-			});
-			$scope.visibleOptions.addresses = addressIDs;
+			$scope.viewAddressList = !$scope.viewAddressList;
 		}
 
 		// edit single address
-		$scope.editAddress = function(addressID) {
+		$scope.editAddress = function(address) {
+
+			$scope.editingAddress = angular.copy(address);
 
 			// add the addressID to visible address forms
-			$scope.visibleOptions.addressForms.push(addressID);
+			$scope.visibleOptions.addressForms.push(address.id);
 
 			// remove the addressID from visible address infos
-			$scope.visibleOptions.addressInfos = arrayWithValueRemoved(addressID, $scope.visibleOptions.addressInfos);
+			$scope.visibleOptions.addressInfos = arrayWithValueRemoved(address.id, $scope.visibleOptions.addressInfos);
+			
+		}
+
+		// save the editing single address
+		$scope.saveAddress = function() {
+
+			editedAddress = $scope.editingAddress;
+
+			// should call a function to save address
+
+			addresses = $scope.user.addresses;
+			for (var i = 0; i < addresses.length; i++) {
+				if (addresses[i].id == editedAddress.id) {
+					$scope.user.addresses[i] = editedAddress;
+				}
+			}
+
+			// remove the addressID from visible address forms
+			$scope.visibleOptions.addressForms = arrayWithValueRemoved(editedAddress.id, $scope.visibleOptions.addressForms);
+
+			// add the addressID to visible address infos
+			$scope.visibleOptions.addressInfos.push(editedAddress.id);
+		}
+
+		// cancel the editing single address
+		$scope.cancelSave = function() {
+
+			editedAddress = $scope.editingAddress;
+
+			// remove the addressID from visible address forms
+			$scope.visibleOptions.addressForms = arrayWithValueRemoved(editedAddress.id, $scope.visibleOptions.addressForms);
+
+			// add the addressID to visible address infos
+			$scope.visibleOptions.addressInfos.push(editedAddress.id);
 			
 		}
 

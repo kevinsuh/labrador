@@ -29,14 +29,38 @@
 			}
 			.card {
 				 width: 100%;
-				 padding: 20px 0 20px 15px;
+				 padding: 0;
+				 float: left;
+				 margin: 10px 0;
+
+				 h4, h5 {
+				 	margin: 0;
+				 }
 
 				 .card_part {
 					display: inline-block;
-					&.image_div {
-						.image {
-							width: 150px;
+					&.select {
+						float: left;
+						height: 100%;
+						margin-right: 10px;
+						input {
+							width: 20px;
+							height: 20px;
 						}
+					}
+					&.image_div {
+						float: left;
+						margin-right: 40px;
+						.image {
+							height: 225px;
+						}
+					}
+					&.information {
+						float: left;
+						height: 100%;
+					}
+					.info {
+						margin-bottom: 20px;
 					}
 				}
 			}
@@ -86,20 +110,13 @@
 
 						.address_info {
 							padding: 5px 0 5px 25px;
-							background-color: white;
-							display: none;
-							&.show {
-								display: block;
-							}
 							.detail {
 								line-height: 1.2em;
 							}
 						}
 						.address_form {
 							float: left;
-							background-color: white;
 							padding: 10px 20px;
-
 							.name {
 								.form_input {
 									width: 49%;
