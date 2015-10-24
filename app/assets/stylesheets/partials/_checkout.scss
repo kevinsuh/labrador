@@ -7,24 +7,127 @@
 		.cards_ui_view {
 			width: 100%;
 
-			.card_part {
-				display: inline-block;
-				&.image_div {
-					.image {
-						width: 150px;
+			.cards_list {
+				height: 600px;
+				overflow-y: scroll;
+				border: 1pt solid grey;
+				border-radius: 10px;
+			}
+			.card {
+				 width: 100%;
+				 padding: 20px 0 20px 15px;
+				 border-bottom: 1pt solid grey;
+
+				 .card_part {
+					display: inline-block;
+					&.image_div {
+						.image {
+							width: 150px;
+						}
 					}
 				}
 			}
-
 		}
-
 	}
 
 	.checkout_purchase_container {
 
 		.purchase_ui_view {
 			width: 100%;
-		}
 
+			.payment_div {
+
+				padding: 10px;
+				
+				.subtotal {
+
+					font-weight: 600;
+
+				}
+
+				.user_information {
+					float: left;
+					width: 100%;
+					@include border-radius(2px);
+		    	@include box-shadow(1px 3px 1px lightgrey, 0px 2px 5px rgba(0,0,0,.7));
+
+					// shared between shipping + payment
+					.header {
+						background-color: lightgrey;
+						padding: 8px;
+						.header_title {
+							color: purple;
+							font-weight: 600;
+							font-size: 1em;
+							margin: 0;
+							display: inline-block;
+						}
+						.options {
+							float: right;
+							display: inline-block;
+							a {
+								color: blue;
+							}
+						}
+					}
+
+					// shipping specific
+					.shipping {
+
+						.address_info {
+							padding: 5px 0 5px 25px;
+							background-color: white;
+							.detail {
+								line-height: 1.2em;
+							}
+						}
+						.address {
+							float: left;
+							background-color: white;
+							padding: 10px 20px;
+						}
+						.form_field {
+							margin: 5px 0;
+						}
+
+						.address_list {
+							.address_info {
+								border-bottom: 1pt solid grey;
+							}
+						}
+
+						.options {
+							.save_address {
+								.checkbox {
+									height: 1em;
+									width: 1em;
+									float: left;
+									margin-right: 5px;
+									margin-top: 3px;
+								}
+								label {
+									float: left;
+									height: 1em;
+									font-weight: normal;
+								}
+							}
+							.change_address {
+								float: right;
+							}
+						}
+						
+
+					}
+
+					// credit card specific
+					.payment {
+						float: left;
+						width: 100%;
+
+					}
+
+				}
+			}
+		}
 	}
 }
