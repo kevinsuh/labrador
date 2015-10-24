@@ -2,6 +2,10 @@
 
 .checkout_container {
 
+	.link_option {
+		cursor: pointer;
+	}
+
 	.checkout_cards_container {
 
 		.cards_ui_view {
@@ -37,12 +41,13 @@
 
 			.payment_div {
 
-				padding: 10px;
+				padding: 0 10px;
 				
 				.subtotal {
-
 					font-weight: 600;
-
+					.title {
+						margin: 0 0 15px 0;
+					}
 				}
 
 				.user_information {
@@ -81,10 +86,44 @@
 								line-height: 1.2em;
 							}
 						}
-						.address {
+						.address_form {
 							float: left;
 							background-color: white;
 							padding: 10px 20px;
+
+							.name {
+								.form_input {
+									width: 49%;
+									display: inline-block;
+								}
+								.first_name {
+									float: left;
+								}
+								.last_name {
+									float: right;
+								}
+							}
+
+							.form_input {
+								input {
+									padding-left: 5px;
+								}
+							}
+
+							// custom widths for the address forminputs on checkout
+							.city {
+								width: 29%;
+							}
+							.state {
+								width: 14.5%;
+							}
+							.zip {
+								width: 15.5%;
+							}
+							.country {
+								width: 32%;
+							}
+
 						}
 						.form_field {
 							margin: 5px 0;

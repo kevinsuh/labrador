@@ -13,8 +13,15 @@
 		$scope.cards          = cards;
 		$scope.queuedCards    = cards.queuedCards;
 
+		$scope.viewAddressList    = false;
+		$scope.viewCreditCardList = false;
+
 		headerTitle = angular.element(document.querySelector("#currentTitle"));
 		headerTitle.text("Checkout");
+
+		$scope.toggleAddressList = function() {
+			$scope.viewAddressList = !$scope.viewAddressList;
+		}
 
 		// test whether you are currently at this state or not
 		$scope.$on('$stateChangeSuccess',

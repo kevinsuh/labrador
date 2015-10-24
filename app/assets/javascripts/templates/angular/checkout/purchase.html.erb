@@ -1,7 +1,7 @@
 <div class="payment_div">
 
 	<div class="subtotal">
-		<h3>Subtotal ({{queuedCards.length}} Cards): ${{queuedCards.length * 5}}.00</h3>
+		<h3 class="title">Subtotal ({{queuedCards.length}} Cards): ${{queuedCards.length * 5}}.00</h3>
 	</div>
 
 	<div class="user_information">
@@ -10,7 +10,7 @@
 			<div class="header">
 				<h6 class="header_title">Shipping Info</h6>
 				<div class="options">
-					<a href="#">new</a> / <a href="#">edit</a> / <a href="#">change</a>
+					<a class="link_option">new</a> / <a class="link_option">edit</a> / <a class="link_option" ng-click="toggleAddressList()">change</a>
 				</div>
 			</div>
 
@@ -23,86 +23,98 @@
 					{{user.primary_address.street}}
 				</div>
 				<div class="street_two detail">
-					{{user.primary_address.city}}, {{user.primary_address.state}} {{user.primary_address.zipcode}}
+					{{user.primary_address.city}}, {{user.primary_address.state | stateAbbreviation}} {{user.primary_address.zipcode}}
 				</div>
 			</div>
 
-			<div class="address_list">
-				<div class="address_info" ng-repeat="address in user.addresses">
-					<div class="name detail">
-						{{address.first_name}} {{address.last_name}}
-					</div>
-					<div class="street detail">
-						{{address.street}}
-					</div>
-					<div class="street_two detail">
-						{{address.city}}, {{address.state}} {{address.zipcode}}
-					</div>
-				</div>
-			</div>
+			<div class="address_list" ng-show="viewAddressList">
 
-			<!-- update address form -->
-			<div class="address">
-				<div class="name form_field">
-					<div class="name">
-						<div class="form_input">
-				      <input ng-model="recipient.primary_address.street" type="text" placeholder="Name"/>
-				    </div>
-					</div>
-				</div>
-				<div class="street form_field">
-					<div class="street">
-						<div class="form_input">
-				      <input ng-model="recipient.primary_address.street" type="text" placeholder="Street"/>
-				    </div>
-					</div>
-				</div>
+				<div class="address" ng-repeat="address in user.addresses">
 
-				<div class="address_other form_field">
-					<div class="city">
-						<div class="form_input">
-				      <input ng-model="recipient.primary_address.city" type="text" placeholder="City"/>
-				    </div>
-					</div>
-
-					<div class="state">
-						<div class="form_input">
-							<select ng-model="recipient.primary_address.state">
-					  		<option value="">State</option>
-					  		<% us_states.each { |state, abrv| %>
-					  			<option value="<%= state %>"><%= abrv %></option>
-								<% } %>
-					  	</select>
+					<!-- address info -->
+					<div class="address_info">
+						<div class="name detail">
+							{{address.first_name}} {{address.last_name}}
+						</div>
+						<div class="street detail">
+							{{address.street}}
+						</div>
+						<div class="street_two detail">
+							{{address.city}}, {{address.state}} {{address.zipcode}}
 						</div>
 					</div>
 
-					<div class="zip">
-						<div class="form_input">
-				      <input ng-model="recipient.primary_address.zipcode" type="text" placeholder="Zip"/>
-				    </div>
-					</div>
-
-					<div class="country">
-						<div class="form_input">
-							<country-select data-ng-model="recipient.primary_address.country"></country-select>
+					<!-- update address form -->
+					<div class="address_form">
+						<div class="name form_field">
+							<div class="name">
+								<div class="form_input first_name">
+						      <input ng-model="address.first_name" type="text" placeholder="First Name"/>
+						    </div>
+						    <div class="form_input last_name">
+						      <input ng-model="address.last_name" type="text" placeholder="Last Name"/>
+						    </div>
+							</div>
 						</div>
-					</div>
-				</div>
 
-				<div class="options form_field">
-					<div class="options">
-						<div class="form_input save_address">
-				      <input id="save_address" class="checkbox" ng-model="recipient.primary_address.street" type="checkbox"/><label for="save_address">Save Address</label>
-				    </div>
-				    <div class="form_input">
-				      <a href="#" class="change_address">Change</a>
-				    </div>
+						<div class="street form_field">
+							<div class="street">
+								<div class="form_input">
+						      <input ng-model="address.street" type="text" placeholder="Street"/>
+						    </div>
+							</div>
+						</div>
+
+						<div class="address_other form_field">
+							<div class="city">
+								<div class="form_input">
+						      <input ng-model="address.city" type="text" placeholder="City"/>
+						    </div>
+							</div>
+
+							<div class="state">
+								<div class="form_input">
+									<select ng-model="address.state">
+							  		<option value="">State</option>
+							  		<% us_states.each { |state, abrv| %>
+							  			<option value="<%= state %>"><%= abrv %></option>
+										<% } %>
+							  	</select>
+								</div>
+							</div>
+
+							<div class="zip">
+								<div class="form_input">
+						      <input ng-model="address.zipcode" type="text" placeholder="Zip"/>
+						    </div>
+							</div>
+
+							<div class="country">
+								<div class="form_input">
+									<country-select data-ng-model="address.country"></country-select>
+								</div>
+							</div>
+						</div>
+
+						<div class="options form_field">
+							<div class="options">
+								<div class="form_input save_address">
+						      <input id="save_address_{{$index}}" class="checkbox" ng-model="recipient.primary_address.street" type="checkbox"/><label for="save_address_{{$index}}">Save Address</label>
+						    </div>
+						    <div class="form_input">
+						      <a class="change_address link_option">Change</a>
+						    </div>
+							</div>
+						</div>
+
 					</div>
+
 				</div>
+				
 
 			</div>
 
-			<!-- this will also display your other saved addresses -->
+
 
 		</div>
 		<div class="payment">
