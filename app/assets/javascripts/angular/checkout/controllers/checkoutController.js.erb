@@ -13,14 +13,39 @@
 		$scope.cards          = cards;
 		$scope.queuedCards    = cards.queuedCards;
 
-		$scope.viewAddressList    = false;
 		$scope.viewCreditCardList = false;
+
+		$scope.finalOptions = {
+			address: $scope.user.primary_address
+		};
+
+		$scope.visibleOptions = {
+			addressInfos: [$scope.user.primary_address.id],
+			addressForms: [],
+			creditCards: []
+		}
 
 		headerTitle = angular.element(document.querySelector("#currentTitle"));
 		headerTitle.text("Checkout");
 
+		// view all of user's addresses
 		$scope.toggleAddressList = function() {
-			$scope.viewAddressList = !$scope.viewAddressList;
+			addresses = $scope.user.addresses;
+			addressIDs = addresses.map(function(address) {
+				return address.id;
+			});
+			$scope.visibleOptions.addresses = addressIDs;
+		}
+
+		// edit single address
+		$scope.editAddress = function(addressID) {
+
+			// add the addressID to visible address forms
+			$scope.visibleOptions.addressForms.push(addressID);
+
+			// remove the addressID from visible address infos
+			$scope.visibleOptions.addressInfos = arrayWithValueRemoved(addressID, $scope.visibleOptions.addressInfos);
+			
 		}
 
 		// test whether you are currently at this state or not
@@ -30,7 +55,10 @@
 		    makeStateActive($scope.currentState);
 	    });
 
-			
+		$scope.isInArray = function(value, array) {
+    	return array.indexOf(value) > -1;
+    }	
+
 	});
 
 })();

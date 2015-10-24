@@ -6,21 +6,30 @@
 		cursor: pointer;
 	}
 
+	hr.border_line {
+		margin-top: 10px;
+	}
+
 	.checkout_cards_container {
+
+		.subtotal {
+			font-weight: 600;
+			height: 15px;
+			.title {
+				margin: 0;
+			}
+		}
 
 		.cards_ui_view {
 			width: 100%;
 
 			.cards_list {
-				height: 600px;
+				height: 700px;
 				overflow-y: scroll;
-				border: 1pt solid grey;
-				border-radius: 10px;
 			}
 			.card {
 				 width: 100%;
 				 padding: 20px 0 20px 15px;
-				 border-bottom: 1pt solid grey;
 
 				 .card_part {
 					display: inline-block;
@@ -43,23 +52,15 @@
 
 				padding: 0 10px;
 				
-				.subtotal {
-					font-weight: 600;
-					.title {
-						margin: 0 0 15px 0;
-					}
-				}
-
 				.user_information {
 					float: left;
 					width: 100%;
-					@include border-radius(2px);
-		    	@include box-shadow(1px 3px 1px lightgrey, 0px 2px 5px rgba(0,0,0,.7));
+					// @include border-radius(2px);
+		   //  	@include box-shadow(1px 3px 1px lightgrey, 0px 2px 5px rgba(0,0,0,.7));
 
 					// shared between shipping + payment
 					.header {
-						background-color: lightgrey;
-						padding: 8px;
+						
 						.header_title {
 							color: purple;
 							font-weight: 600;
@@ -78,10 +79,18 @@
 
 					// shipping specific
 					.shipping {
+						.header {
+							margin-top: 10px;
+							height: 15px;
+						}
 
 						.address_info {
 							padding: 5px 0 5px 25px;
 							background-color: white;
+							display: none;
+							&.show {
+								display: block;
+							}
 							.detail {
 								line-height: 1.2em;
 							}
@@ -136,7 +145,7 @@
 						}
 
 						.options {
-							.save_address {
+							.save_address, .is_primary {
 								.checkbox {
 									height: 1em;
 									width: 1em;

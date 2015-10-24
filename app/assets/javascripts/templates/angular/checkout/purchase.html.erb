@@ -1,43 +1,30 @@
 <div class="payment_div">
 
-	<div class="subtotal">
-		<h3 class="title">Subtotal ({{queuedCards.length}} Cards): ${{queuedCards.length * 5}}.00</h3>
-	</div>
-
 	<div class="user_information">
 		<div class="shipping">
 
 			<div class="header">
-				<h6 class="header_title">Shipping Info</h6>
-				<div class="options">
+				<h6 class="header_title">Step 1: Shipping Info</h6>
+				<!-- <div class="options">
 					<a class="link_option">new</a> / <a class="link_option">edit</a> / <a class="link_option" ng-click="toggleAddressList()">change</a>
-				</div>
+				</div> -->
 			</div>
+			<hr class="border_line">
 
-			<!-- this will be your saved primary address -->
-			<div class="address_info current">
-				<div class="name detail">
-					{{user.primary_address.first_name}} {{user.primary_address.last_name}}
-				</div>
-				<div class="street detail">
-					{{user.primary_address.street}}
-				</div>
-				<div class="street_two detail">
-					{{user.primary_address.city}}, {{user.primary_address.state | stateAbbreviation}} {{user.primary_address.zipcode}}
-				</div>
-			</div>
-
-			<div class="address_list" ng-show="viewAddressList">
+			<div class="address_list">
 
 				<div class="address" ng-repeat="address in user.addresses">
-
+					
 					<!-- address info -->
-					<div class="address_info">
+					<div class="address_info current" ng-class="{ 'show': isInArray(address.id, visibleOptions.addressInfos) }">
 						<div class="name detail">
 							{{address.first_name}} {{address.last_name}}
 						</div>
 						<div class="street detail">
 							{{address.street}}
+							<div class="singleAddressOptions" style="float: right; padding-right:10px;">
+								 <a class="link_option" ng-click="editAddress(address.id)">edit</a> / <a class="link_option">change</a>
+							</div>
 						</div>
 						<div class="street_two detail">
 							{{address.city}}, {{address.state}} {{address.zipcode}}
@@ -45,7 +32,7 @@
 					</div>
 
 					<!-- update address form -->
-					<div class="address_form">
+					<div class="address_form" ng-class="{ 'show': isInArray(address.id, visibleOptions.addressForms) }">
 						<div class="name form_field">
 							<div class="name">
 								<div class="form_input first_name">
@@ -98,30 +85,33 @@
 
 						<div class="options form_field">
 							<div class="options">
+								<div class="form_input is_primary">
+						      <input id="is_primary_{{$index}}" class="checkbox" ng-model="address.is_primary" type="checkbox"/><label for="is_primary_{{$index}}">Save Address</label>
+						    </div>
+						    <!-- 
 								<div class="form_input save_address">
 						      <input id="save_address_{{$index}}" class="checkbox" ng-model="recipient.primary_address.street" type="checkbox"/><label for="save_address_{{$index}}">Save Address</label>
-						    </div>
+						    </div> -->
 						    <div class="form_input">
 						      <a class="change_address link_option">Change</a>
 						    </div>
 							</div>
 						</div>
-
 					</div>
 
 				</div>
-				
-
+			
 			</div>
-
-
-
 		</div>
+
 		<div class="payment">
 			<div class="header">
 				<h6 class="header_title">Payment Method</h6>
 			</div>
+			<hr>
 		</div>
+		
+
 	</div>
 
 </div>
