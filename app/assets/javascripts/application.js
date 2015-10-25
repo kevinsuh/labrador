@@ -26,5 +26,7 @@
 //= require ngImgCrop-master/compile/unminified/ng-img-crop.js
 //= require Case.js
 //= require CaseFilter.js
+//= require angular-stripe/angular-credit-cards.js
+//= require angular-stripe/angular-stripe.js
 //= require_tree .
 //= require_tree ./templates
