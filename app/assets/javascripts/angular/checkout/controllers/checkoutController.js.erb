@@ -3,7 +3,7 @@
 	/**
 	 * this is the controller used to handle checkout of the cards you queued
 	 */
-	var app = angular.module('card-queue').controller("CheckoutController", function($rootScope, $location, $window, $scope, $state, $timeout, usSpinnerService, user, cards) {
+	var app = angular.module('card-queue').controller("CheckoutController", function($rootScope, $location, $window, $scope, $state, $timeout, usSpinnerService, user, cards, stripe) {
 		
 		/**
 		 * 			CONFIGURATION FOR CHECKOUT CONTROLLER
@@ -196,15 +196,52 @@
 			newPayment      = $scope.newPayment;
 			shippingAddress = $scope.finalOptions.address;
 
-			user.createPayment(newPayment, shippingAddress)
-			.success(function(data) {
-				console.log("success in create payment!");
-				console.log(data);
+			if (newPayment.same_as_shipping_address) {
+				newPayment.address = shippingAddress;
+			}
+
+			return stripe.card.createToken({
+				number: newPayment.number,
+				cvc: newPayment.cvc,
+				exp_month: newPayment.exp_month,
+				exp_year: newPayment.exp_year,
+				name: newPayment.name,
+				address_line1: newPayment.address.street,
+				address_city: newPayment.address.city,
+				address_state: newPayment.address.state,
+				address_zip: newPayment.address.zipcode,
+				address_country: newPayment.address.country
 			})
-			.error(function(data) {
-				console.log("error in user createPayment function");
+			.then(function(data) {
+				console.log("success!!");
 				console.log(data);
+
+				cardToken = data.id;
+				card      = data.card;
+
+				// save this to our database now
+				user.createPayment(cardToken)
+				.success(function(data) {
+					console.log("success in create payment!");
+					console.log(data);
+					console.log(card);
+
+					// this is where you can now bring them back to card list
+    		 	$scope.user.stripe_customer.sources.data.push(card);
+      		$scope.displayPaymentView('paymentList');
+					
+				})
+				.error(function(data) {
+					console.log("error in user createPayment function");
+					console.log(data);
+				});
 			})
+			.catch(function(err) {
+				if (err.type && /^Stripe/.test(err.type)) {
+          console.log('Stripe error: ', err.message);
+        }
+        $scope.paymentAlerts.push({type: "danger", msg: err.message});
+			});
 			
 		}
 

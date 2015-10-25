@@ -468,8 +468,8 @@ end
 					</div>
 
 					<!-- new payment method form -->
-					<form name="ccForm" class="payment_form new_address" ng-show="viewNewPaymentForm">
-						
+					<form name="ccForm" class="payment_form new_address" ng-show="viewNewPaymentForm" novalidate>
+
 						<div class="card_icons">
 							<img class="cc" ng-src="assets/icons/credit_cards_sprite.png" />
 						</div>
@@ -482,7 +482,7 @@ end
 
 						<div class="number form_field">
 							<div class="form_input">
-								<input type="text" name="ccNumber" cc-number cc-type="cardType" cc-format ng-model="newPayment.number" novalidate placeholder="Cardholder Number"/>
+								<input type="text" name="ccNumber" cc-number cc-format ng-model="newPayment.number" placeholder="Cardholder Number" novalidate/>
 							</div>
 						</div>
 

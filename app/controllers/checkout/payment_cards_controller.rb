@@ -53,18 +53,6 @@ module Checkout
 
 		end
 
-		def create_json
-			puts params.inspect
-
-			if false
-
-			else
-				respond_to do |format|
-          format.json { render json: { payment: false } }
-        end
-			end
-		end
-
 		def update_json
 
 			card_params = params[:payment_card]
@@ -138,6 +126,36 @@ module Checkout
 			end
 
 			redirect_to checkout_payment_cards_path
+
+		end
+
+		# save credit card via json
+		def create_json
+			puts params.inspect
+
+			stripe_token = params[:stripe_token]
+			email = current_user.email
+
+			# create a stripe_account if user does not have one yet
+			create_stripe_account email
+			customer_id    = current_user.stripe_account.customer_id
+			customer       = Stripe::Customer.retrieve(customer_id)
+
+			# create card with options
+			if customer.sources.create(source: stripe_token)
+				respond_to do |format|
+          format.json { render json: { payment: true } }
+        end
+			else
+				respond_to do |format|
+          format.json { render json: { payment: false } }
+        end
+			end
+
+			rescue Stripe::CardError => e
+				respond_to do |format|
+          format.json { render json: { payment: false, message: e.message } }
+        end
 
 		end
 
