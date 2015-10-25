@@ -8,7 +8,7 @@
 			</div>
 			<hr class="border_line">
 
-			<alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
+			<alert ng-repeat="alert in addressAlerts" type="{{alert.type}}" close="closeAddressAlert($index)">{{alert.msg}}</alert>
 
 			<div class="selected_address" ng-show="viewSelectedAddress">
 
@@ -32,15 +32,14 @@
 
 				<!-- first time user is entering an address -->
 				<div ng-hide="finalOptions.address">
-
-					<div class="address_form new_address" ng-show="viewNewAddressForm">
+					<div class="address_form new_address">
 						<div class="name form_field">
 							<div class="name">
 								<div class="form_input first_name">
-						      <input ng-model="newAddress.first_name" type="text" placeholder="First Name"/>
+						      <input ng-model="firstTimeAddress.first_name" type="text" placeholder="First Name"/>
 						    </div>
 						    <div class="form_input last_name">
-						      <input ng-model="newAddress.last_name" type="text" placeholder="Last Name"/>
+						      <input ng-model="firstTimeAddress.last_name" type="text" placeholder="Last Name"/>
 						    </div>
 							</div>
 						</div>
@@ -48,7 +47,7 @@
 						<div class="street form_field">
 							<div class="street">
 								<div class="form_input">
-						      <input ng-model="newAddress.street" type="text" placeholder="Street"/>
+						      <input ng-model="firstTimeAddress.street" type="text" placeholder="Street"/>
 						    </div>
 							</div>
 						</div>
@@ -56,13 +55,13 @@
 						<div class="address_other form_field">
 							<div class="city">
 								<div class="form_input">
-						      <input ng-model="newAddress.city" type="text" placeholder="City"/>
+						      <input ng-model="firstTimeAddress.city" type="text" placeholder="City"/>
 						    </div>
 							</div>
 
 							<div class="state">
 								<div class="form_input">
-									<select ng-model="newAddress.state">
+									<select ng-model="firstTimeAddress.state">
 							  		<option value="">State</option>
 							  		<% us_states.each { |state, abrv| %>
 							  			<option value="<%= state %>"><%= abrv %></option>
@@ -73,13 +72,13 @@
 
 							<div class="zip">
 								<div class="form_input">
-						      <input ng-model="newAddress.zipcode" type="text" placeholder="Zip"/>
+						      <input ng-model="firstTimeAddress.zipcode" type="text" placeholder="Zip"/>
 						    </div>
 							</div>
 
 							<div class="country">
 								<div class="form_input">
-									<country-select data-ng-model="newAddress.country"></country-select>
+									<country-select data-ng-model="firstTimeAddress.country"></country-select>
 								</div>
 							</div>
 						</div>
@@ -87,17 +86,11 @@
 						<div class="options form_field">
 							<div class="options">
 								<div class="form_input is_primary">
-						      <input id="is_primary_newAddress" class="checkbox" ng-model="newAddress.is_primary" type="checkbox"/><label for="is_primary_newAddress">Default shipping address</label>
+						      <input id="is_primary_firstTimeAddress" class="checkbox" ng-model="firstTimeAddress.is_primary" type="checkbox"/><label for="is_primary_firstTimeAddress">Default shipping address</label>
 						    </div>
 							</div>
 						</div>
 
-						<div class="actions form_field">
-							<div class="button_box">
-								<button class="card_button shipping_button cancel" ng-click="cancelSave()">CANCEL</button>
-								<button class="card_button shipping_button save" ng-click="createAddress()">SAVE</button>
-							</div>
-						</div>
 					</div>
 				</div>
 				
@@ -275,11 +268,106 @@
 		</div>
 
 		<div class="payment">
+
 			<div class="header">
 				<h6 class="header_title">Step 2: Payment Method</h6>
 				<span style="float: right;" class="glyphicon glyphicon-menu-down"></span>
 			</div>
 			<hr class="border_line">
+
+			<alert ng-repeat="alert in paymentAlerts" type="{{alert.type}}" close="closePaymentAlert($index)">{{alert.msg}}</alert>
+
+			<div ng-show="viewPaymentSection">
+			
+				<div class="card_icons">
+					<img class="cc" ng-src="assets/icons/credit_cards_sprite.png" />
+				</div>
+
+				<div class="selected_payment" ng-show="viewSelectedPayment">
+
+					<div ng-show="finalOptions.payment">
+						<!-- address info -->
+						<div class="payment_info selected">
+						</div>
+					</div>
+
+					<!-- first time user is entering an address -->
+					<div ng-hide="finalOptions.payment">
+
+						NEW PAYMENT FORM
+
+						<!-- <div class="address_form new_address" ng-show="viewNewAddressForm">
+							<div class="name form_field">
+								<div class="name">
+									<div class="form_input first_name">
+							      <input ng-model="newAddress.first_name" type="text" placeholder="First Name"/>
+							    </div>
+							    <div class="form_input last_name">
+							      <input ng-model="newAddress.last_name" type="text" placeholder="Last Name"/>
+							    </div>
+								</div>
+							</div>
+
+							<div class="street form_field">
+								<div class="street">
+									<div class="form_input">
+							      <input ng-model="newAddress.street" type="text" placeholder="Street"/>
+							    </div>
+								</div>
+							</div>
+
+							<div class="address_other form_field">
+								<div class="city">
+									<div class="form_input">
+							      <input ng-model="newAddress.city" type="text" placeholder="City"/>
+							    </div>
+								</div>
+
+								<div class="state">
+									<div class="form_input">
+										<select ng-model="newAddress.state">
+								  		<option value="">State</option>
+								  		<% us_states.each { |state, abrv| %>
+								  			<option value="<%= state %>"><%= abrv %></option>
+											<% } %>
+								  	</select>
+									</div>
+								</div>
+
+								<div class="zip">
+									<div class="form_input">
+							      <input ng-model="newAddress.zipcode" type="text" placeholder="Zip"/>
+							    </div>
+								</div>
+
+								<div class="country">
+									<div class="form_input">
+										<country-select data-ng-model="newAddress.country"></country-select>
+									</div>
+								</div>
+							</div>
+
+							<div class="options form_field">
+								<div class="options">
+									<div class="form_input is_primary">
+							      <input id="is_primary_newAddress" class="checkbox" ng-model="newAddress.is_primary" type="checkbox"/><label for="is_primary_newAddress">Default shipping address</label>
+							    </div>
+								</div>
+							</div>
+
+							<div class="actions form_field">
+								<div class="button_box">
+									<button class="card_button shipping_button cancel" ng-click="cancelSave()">CANCEL</button>
+									<button class="card_button shipping_button save" ng-click="createAddress()">SAVE</button>
+								</div>
+							</div>
+						</div> -->
+
+					</div>
+					
+				</div>
+			</div>
+
 		</div>
 		
 

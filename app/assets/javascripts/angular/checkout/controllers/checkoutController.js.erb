@@ -15,10 +15,16 @@
 
 		console.log($scope.user);
 
-
+		// these are all on initial load (defaults)
 		$scope.finalOptions = {
-			address: $scope.user.primary_address
+			address: $scope.user.primary_address,
+			payment: null
 		};
+
+		$scope.firstTimeAddress = {}; // this will be false unless you are first time purchasing and thus filling out that form
+		if ($scope.user.primary_address) {
+			$scope.firstTimeAddress = false;
+		}
 
 		// for handling new and updating addresses
 		$scope.editingAddress = {};
@@ -29,11 +35,24 @@
 		$scope.viewNewAddressForm  = false;
 		$scope.viewEditAddressForm = false;
 		$scope.viewSelectedAddress = true;
+		
+		$scope.viewPaymentList     = false;
+		$scope.viewNewPaymentForm  = false;
+		$scope.viewEditPaymentForm = false;
+		$scope.viewSelectedPayment = true;
 
-		$scope.viewCreditCardList  = false;	
+		// the payment section view is triggered by either an existing primary address, or completely filled out firstTimeAddress
+		$scope.viewPaymentSection  = $scope.user.primary_address
+		$scope.$watch('firstTimeAddress', function(address) {
+			// if something exists for all the fields, then we are good to go
+			if (address.first_name && address.last_name && address.street && address.city && address.state && address.zipcode && address.country) {
+				$scope.viewPaymentSection = true;
+			}
+		}, true);
 
-		// for displaying messages
-		$scope.alerts = [];
+		// for displaying alert messages
+		$scope.addressAlerts = [];
+		$scope.paymentAlerts = [];
 
 		/**
 		 * 			SHIPPING ADDRESS FUNCTIONS
@@ -86,7 +105,7 @@
       	} else {
       		// stay in here and let user know it failed
       		console.log("failed to add address");
-      		$scope.alerts.push({type: "danger", msg: "Failed to add address."});
+      		$scope.addressAlerts.push({type: "danger", msg: "Failed to add address."});
       	}
       })
       .error(function(data) {
@@ -119,7 +138,7 @@
       	} else {
       		// stay in here and let user know it failed
       		console.log("failed to add address");
-      		$scope.alerts.push({type: "danger", msg: "Failed to update address."});
+      		$scope.addressAlerts.push({type: "danger", msg: "Failed to update address."});
       	}
       })
       .error(function(data) {
@@ -175,8 +194,12 @@
 
     }
 
-    $scope.closeAlert = function(index) {
-	    $scope.alerts.splice(index, 1);
+    $scope.closeAddressAlert = function(index) {
+	    $scope.addressAlerts.splice(index, 1);
+	  };
+
+	  $scope.closePaymentAlert = function(index) {
+	    $scope.paymentAlerts.splice(index, 1);
 	  };
 
 
