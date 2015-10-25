@@ -1,6 +1,6 @@
 (function() {
 
-  var app = angular.module('card-queue', ['manage-recipients', 'queue-wizard', 'ngAnimate', 'ngMessages', 'ui.router', 'ui.bootstrap.alert', 'templates', 'vr.directives.nlForm', 'angularSpinner', 'fancyboxplus', 'angular-click-outside', 'calendarApp', 'CaseFilter']);
+  var app = angular.module('card-queue', ['manage-recipients', 'queue-wizard', 'ngAnimate', 'ngMessages', 'ui.router', 'ui.bootstrap.alert', 'templates', 'vr.directives.nlForm', 'angularSpinner', 'fancyboxplus', 'angular-click-outside', 'calendarApp', 'CaseFilter', 'angular-credit-cards', 'angular-stripe']);
 
   app.config(function($stateProvider, $urlRouterProvider, $locationProvider, usSpinnerConfigProvider) {
 
