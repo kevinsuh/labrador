@@ -53,6 +53,60 @@ module Checkout
 
 		end
 
+		def update_json
+
+			card_params = params[:payment_card]
+
+			card_id    = card_params[:id]
+			
+			# updatable fields
+			name       = card_params[:name]
+			exp_month  = card_params[:exp_month]
+			exp_year   = card_params[:exp_year]
+			is_primary = card_params[:is_primary]
+
+			if stripe_account = current_user.stripe_account
+
+				customer_id = stripe_account.customer_id
+				customer    = Stripe::Customer.retrieve(customer_id)
+				card        = customer.sources.retrieve(card_id)
+
+				card.name      = name
+				card.exp_month = exp_month
+				card.exp_year  = exp_year
+				card.save
+
+				if is_primary
+					customer.default_source = card_id
+					customer.save
+				end
+
+				respond_to do |format|
+					format.json { render json: { payment: card } }
+				end
+
+			else
+				respond_to do |format|
+          format.json { render json: { payment: false } }
+        end
+			end
+      
+      # address = Address.find(params[:id])
+      # if address.update_attributes(address_params)
+      #   if address.is_primary?
+      #     address.set_primary
+      #   end
+      #   respond_to do |format|
+      #     format.json { render json: address }
+      #   end
+      # else
+      #   respond_to do |format|
+      #     format.json { render json: {address: false} }
+      #   end
+      # end
+      
+    end
+
 		# update via stripe
 		def update_card
 

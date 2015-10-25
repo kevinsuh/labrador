@@ -35,6 +35,10 @@
       return $http.post('/checkout/addresses/create_json.json', address);
     };
 
+    o.updatePayment = function(payment) {
+      return $http.post('/checkout/payment_cards/update_json.json', payment);
+    };
+
     return o;    
 
   }]);

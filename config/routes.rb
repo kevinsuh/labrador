@@ -16,10 +16,12 @@ Rails.application.routes.draw do
       end
     end
     # edit / select cards
-    resources :payment_cards, path: "cards", only: [:index, :create, :new, :destroy] do
+    resources :payment_cards, only: [:index, :create, :new, :destroy] do
       collection do
         post 'update_card'
         post 'set_for_order'
+        post 'update_json'
+        post 'create_json'
       end
     end
     # edit / select order

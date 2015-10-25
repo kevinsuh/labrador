@@ -28,7 +28,12 @@
 
 		// iterate through to find the primary credit card
 		// since there is no "primary_card" like we have primary_address
-		
+		payments = $scope.user.stripe_customer.sources.data;
+		for (var i = 0; i < payments.length; i++) {
+			if (payments[i].id == $scope.user.primary_card.id) {
+				$scope.user.stripe_customer.sources.data[i].is_primary = true;
+			}
+		}
 
 		// handling first time address / card
 		$scope.firstTimeAddress = {};
@@ -101,9 +106,6 @@
 
 			// for cancel / save purposes
 			$scope.editingPayment = angular.copy(payment);
-			if (payment.id == $scope.user.primary_card.id) {
-				$scope.editingPayment.is_primary = true;
-			}
 
 			$scope.displayPaymentView('editPaymentForm');
 		}
@@ -111,10 +113,43 @@
 		// cancel the editing single payment methdo
 		// simply returns to the payment list
 		$scope.cancelPaymentSave = function() {
-
 			$scope.displayPaymentView('paymentList');
-			
 		}
+
+		// save the editing single address
+		$scope.updatePayment = function() {
+
+			editedPayment = $scope.editingPayment;
+
+			// call a function to save address
+			user.updatePayment(editedPayment)
+      .success(function(data) {
+      	payment = data.payment;
+      	if (payment) {
+
+      		$scope.displayPaymentView('paymentList');
+
+      		// update payment on client-side view
+      		payments = $scope.user.stripe_customer.sources.data;
+      		for (var i = 0; i < payments.length; i++) {
+						if (payments[i].id == editedPayment.id) {
+							$scope.user.stripe_customer.sources.data[i] = editedPayment;
+						}
+					}
+
+      	} else {
+      		// let user know it failed
+  		 		console.log("failed to update card");
+      		$scope.paymentAlerts.push({type: "danger", msg: "Failed to update card."});
+      	}
+      	
+      })
+      .error(function(data) {
+        console.log("error in user updatePayment function");
+        console.log(data);
+      });	
+		}
+
 
 
 		// view address list
@@ -185,9 +220,9 @@
       	address = data.address;
       	if (address) {
 
-      		// remove the addressID from visible address forms
 					$scope.displayAddressView('addressList');
 
+					// update address on client-side view
       		addresses = $scope.user.addresses;
 					for (var i = 0; i < addresses.length; i++) {
 						if (addresses[i].id == editedAddress.id) {
@@ -203,10 +238,7 @@
       .error(function(data) {
         console.log("error in user saveAddress function");
         console.log(data);
-      });
-
-      
-			
+      });	
 		}
 
 		// cancel the editing single address
