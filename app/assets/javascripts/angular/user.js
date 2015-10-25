@@ -31,6 +31,10 @@
       return $http.post('/checkout/addresses/update_json.json', address);
     };
 
+    o.createAddress = function(address) {
+      return $http.post('/checkout/addresses/create_json.json', address);
+    };
+
     return o;    
 
   }]);

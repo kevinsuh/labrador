@@ -79,6 +79,7 @@
 				cursor: pointer;
 				&:hover {
 					color: scale-lightness($link_blue, -60%);
+					text-decoration: none;
 				}
 			}
 		}
@@ -99,9 +100,8 @@
 
 					// shared between shipping + payment
 					.header {
-						
+						color: purple;
 						.header_title {
-							color: purple;
 							font-weight: 600;
 							font-size: 1em;
 							margin: 0;

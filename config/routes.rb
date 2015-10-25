@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     resources :addresses, only: [:index, :new, :create, :update] do
       collection do
         post 'update_json'
+        post 'create_json'
         post 'set_for_order'
         post 'delete'
       end

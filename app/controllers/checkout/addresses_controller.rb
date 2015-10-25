@@ -100,14 +100,59 @@ module Checkout
         respond_to do |format|
           format.json { render json: address }
         end
+      else
+        respond_to do |format|
+          format.json { render json: {address: false} }
+        end
       end
+      
+    end
+
+    def create_json
+
+      address = current_user.addresses.new(address_params)
+      if address.save
+        # if just-saved address is first one, set it as default
+        address_count = current_user.addresses.count
+        if address.is_primary? || address_count == 1
+          address.set_primary
+        end
+
+        respond_to do |format|
+          format.json { render json: address }
+        end
+      else
+        respond_to do |format|
+          format.json { render json: {address: false} }
+        end
+      end
+
+      # if address.save
+      #   # take user's queued orders and set shipping_address_id
+      #   self.queued_orders_shipping_address = @address
+
+      #   redirect_to checkout_payment_cards_path
+      # else
+      #   flash[:danger] = "Unable to save address."
+      #   redirect_to checkout_addresses_path
+      # end
+
+      
+
+      # address = Address.find(params[:id])
+      # if address.update_attributes(address_params)
+      #   if address.is_primary?
+      #     address.set_primary
+      #   end
+        
+      # end
     end
 
     private
 
     	# to ensure which values we are receiving from our form
     	def address_params
-    		params.require(:address).permit(:first_name, :last_name, :street, :suite, :city, :state, :zipcode, :is_primary)
+    		params.require(:address).permit(:first_name, :last_name, :street, :suite, :city, :state, :zipcode, :country, :is_primary)
     	end
   end
 

@@ -5,46 +5,49 @@
 	 */
 	var app = angular.module('card-queue').controller("CheckoutController", function($rootScope, $location, $window, $scope, $state, $timeout, usSpinnerService, user, cards) {
 			
+		headerTitle = angular.element(document.querySelector("#currentTitle"));
+		headerTitle.text("Checkout");
+
 		$scope.user           = user.currentUser;
-
-		console.log($scope.user);
-
 		$scope.stripe_account = user.stripe_account
 		$scope.cards          = cards;
 		$scope.queuedCards    = cards.queuedCards;
 
-		$scope.viewCreditCardList = false;
+		console.log($scope.user);
+
 
 		$scope.finalOptions = {
 			address: $scope.user.primary_address
 		};
 
-		$scope.visibleOptions = {
-			addressInfos: [$scope.user.primary_address.id],
-			addressForms: [],
-			creditCards: []
-		}
-
-		headerTitle = angular.element(document.querySelector("#currentTitle"));
-		headerTitle.text("Checkout");
+		// for handling new and updating addresses
+		$scope.editingAddress = {};
+		$scope.newAddress     = {};
 		
+		// to handle toggling of displays
 		$scope.viewAddressList     = false;
+		$scope.viewNewAddressForm  = false;
 		$scope.viewEditAddressForm = false;
 		$scope.viewSelectedAddress = true;
 
+		$scope.viewCreditCardList  = false;	
+
+		// for displaying messages
+		$scope.alerts = [];
+
+		/**
+		 * 			SHIPPING ADDRESS FUNCTIONS
+		 */
+
 		// view address list
 		$scope.displayAddressList = function() {
-			$scope.viewAddressList     = true;
-			$scope.viewEditAddressForm = false;
-			$scope.viewSelectedAddress = false;
+			$scope.displayAddressView('addressList');
 		}
 
 		// make this your final shipping address
 		$scope.chooseAddress = function(address) {
 			$scope.finalOptions.address = address;
-			$scope.viewAddressList      = false;
-			$scope.viewEditAddressForm  = false;
-			$scope.viewSelectedAddress  = true;
+			$scope.displayAddressView('selectedAddress');
 		}
 
 		// edit single address
@@ -53,9 +56,43 @@
 			// for cancel / save purposes
 			$scope.editingAddress = angular.copy(address);
 
-			$scope.viewAddressList     = false;
-			$scope.viewEditAddressForm = true;
-			$scope.viewSelectedAddress = false;
+			$scope.displayAddressView('editAddressForm');
+
+		}
+
+		// create new address
+		$scope.newAddressForm = function() {
+
+			// fresh template every time
+			$scope.newAddress = {};
+			$scope.displayAddressView('newAddressForm');
+
+		}
+
+		// save the creating new single address
+		$scope.createAddress = function() {
+
+			newAddress = $scope.newAddress;
+
+			// should call a function to save address
+			user.createAddress(newAddress)
+      .success(function(data) {
+      	// nothing to do on success
+      	address = data.address
+      	if (address) {
+      		newAddress.id = address.id	
+      		$scope.user.addresses.push(newAddress);
+      		$scope.displayAddressView('addressList');
+      	} else {
+      		// stay in here and let user know it failed
+      		console.log("failed to add address");
+      		$scope.alerts.push({type: "danger", msg: "Failed to add address."});
+      	}
+      })
+      .error(function(data) {
+        console.log("error in user createAddress function");
+        console.log(data);
+      });
 
 		}
 
@@ -64,27 +101,33 @@
 
 			editedAddress = $scope.editingAddress;
 
-			// should call a function to save address
+			// call a function to save address
 			user.updateAddress(editedAddress)
       .success(function(data) {
-      	// nothing to do on success
+      	address = data.address;
+      	if (address) {
+
+      		// remove the addressID from visible address forms
+					$scope.displayAddressView('addressList');
+
+      		addresses = $scope.user.addresses;
+					for (var i = 0; i < addresses.length; i++) {
+						if (addresses[i].id == editedAddress.id) {
+							$scope.user.addresses[i] = editedAddress;
+						}
+					}
+      	} else {
+      		// stay in here and let user know it failed
+      		console.log("failed to add address");
+      		$scope.alerts.push({type: "danger", msg: "Failed to update address."});
+      	}
       })
       .error(function(data) {
         console.log("error in user saveAddress function");
         console.log(data);
       });
 
-      addresses = $scope.user.addresses;
-			for (var i = 0; i < addresses.length; i++) {
-				if (addresses[i].id == editedAddress.id) {
-					$scope.user.addresses[i] = editedAddress;
-				}
-			}
-
-			// remove the addressID from visible address forms
-			$scope.viewAddressList     = true;
-			$scope.viewEditAddressForm = false;
-			$scope.viewSelectedAddress = false;
+      
 			
 		}
 
@@ -92,12 +135,13 @@
 		// for now, this means just return to address list view
 		$scope.cancelSave = function() {
 
-			// remove the addressID from visible address forms
-			$scope.viewAddressList     = true;
-			$scope.viewEditAddressForm = false;
-			$scope.viewSelectedAddress = false;
+			$scope.displayAddressView('addressList');
 			
 		}
+
+		/**
+		 * 			BILLING INFORMATION FUNCTIONS
+		 */
 
 		// test whether you are currently at this state or not
 		$scope.$on('$stateChangeSuccess',
@@ -107,8 +151,34 @@
 	    });
 
 		$scope.isInArray = function(value, array) {
-    	return array.indexOf(value) > -1;
-    }	
+    	// return array.indexOf(value) > -1;
+    	return true;
+    };
+
+    // helper function to display specific address view
+    $scope.displayAddressView = function(view) {
+
+    	$scope.viewAddressList     = false;
+			$scope.viewNewAddressForm  = false;
+			$scope.viewEditAddressForm = false;
+			$scope.viewSelectedAddress = false;
+
+			if (view == 'addressList') {
+				$scope.viewAddressList = true;
+			} else if (view == 'newAddressForm') {
+				$scope.viewNewAddressForm  = true;	
+			} else if (view == 'editAddressForm') {
+				$scope.viewEditAddressForm = true;
+			} else if (view == 'selectedAddress') {
+				$scope.viewSelectedAddress = true;
+			}
+
+    }
+
+    $scope.closeAlert = function(index) {
+	    $scope.alerts.splice(index, 1);
+	  };
+
 
 	});
 
