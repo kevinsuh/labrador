@@ -37,7 +37,7 @@ class UserSerializer < ActiveModel::Serializer
     data[:gravatar_url] = gravatar_for user
     data[:status] = { logged_in: true }
 
-    # get address for user
+    # get addresses for user
     addresses = user.addresses
     data[:addresses] = addresses;
 
@@ -61,8 +61,17 @@ class UserSerializer < ActiveModel::Serializer
 
       customer_id      = stripe_account.customer_id
       customer         = Stripe::Customer.retrieve(customer_id)
-      data[:stripe_account] = customer
+      data[:stripe_customer] = customer
 
+      # get the default card for user
+      cards = customer.sources.data
+      default_source = customer.default_source
+      cards.each do |card|
+        if card.id == default_source
+          data[:primary_card] = card
+          break
+        end
+      end
     end
 
   	data

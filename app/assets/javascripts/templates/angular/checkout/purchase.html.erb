@@ -346,8 +346,20 @@ end
 				<div class="selected_payment" ng-show="viewSelectedPayment">
 
 					<div ng-show="finalOptions.payment">
-						<!-- address info -->
+						<!-- card info -->
 						<div class="payment_info selected">
+							<div class="name detail">
+								{{finalOptions.address.first_name}} {{finalOptions.address.last_name}}
+							</div>
+							<div class="street detail">
+								{{finalOptions.address.street}}
+								<div class="singleAddressOptions link_options">
+									 <a class="link_option" ng-click="editAddress(finalOptions.address)">edit</a> / <a ng-click="displayAddressList()" class="link_option">change</a>
+								</div>
+							</div>
+							<div class="street_two detail">
+								{{finalOptions.address.city}}, {{finalOptions.address.state | stateAbbreviation}} {{finalOptions.address.zipcode}}
+							</div>
 						</div>
 					</div>
 

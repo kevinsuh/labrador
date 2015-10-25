@@ -4,31 +4,50 @@
 	 * this is the controller used to handle checkout of the cards you queued
 	 */
 	var app = angular.module('card-queue').controller("CheckoutController", function($rootScope, $location, $window, $scope, $state, $timeout, usSpinnerService, user, cards) {
-			
+		
+		/**
+		 * 			CONFIGURATION FOR CHECKOUT CONTROLLER
+		 */
+
 		headerTitle = angular.element(document.querySelector("#currentTitle"));
 		headerTitle.text("Checkout");
 
-		$scope.user           = user.currentUser;
-		$scope.stripe_account = user.stripe_account
-		$scope.cards          = cards;
-		$scope.queuedCards    = cards.queuedCards;
+		$scope.user            = user.currentUser;
+		$scope.stripe_customer = $scope.user.stripe_customer
+		$scope.cards           = cards;
+		$scope.queuedCards     = cards.queuedCards;
 
 		console.log($scope.user);
+		console.log($scope.stripe_customer);
 
-		// these are all on initial load (defaults)
+		// the options to attach with this order
 		$scope.finalOptions = {
 			address: $scope.user.primary_address,
-			payment: null
+			payment: $scope.user.primary_card
 		};
 
-		$scope.firstTimeAddress = {}; // this will be false unless you are first time purchasing and thus filling out that form
+		// iterate through to find the primary credit card
+		// since there is no "primary_card" like we have primary_address
+		
+
+		// handling first time address / card
+		$scope.firstTimeAddress = {};
 		if ($scope.user.primary_address) {
 			$scope.firstTimeAddress = false;
 		}
 
-		// for handling new and updating addresses
+		$scope.firstTimePayment = {};
+		if ($scope.user.primary_card) {
+			$scope.firstTimePayment = false;
+		}
+
+		
+		// for handling new and updating addresses /cards
 		$scope.editingAddress = {};
 		$scope.newAddress     = {};
+
+		$scope.editingPayment = {};
+		$scope.newPayment     = {};
 		
 		// to handle toggling of displays
 		$scope.viewAddressList     = false;
