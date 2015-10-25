@@ -41,7 +41,6 @@
 			$scope.firstTimePayment = false;
 		}
 
-		
 		// for handling new and updating addresses /cards
 		$scope.editingAddress = {};
 		$scope.newAddress     = {};
@@ -61,13 +60,23 @@
 		$scope.viewSelectedPayment = true;
 
 		// the payment section view is triggered by either an existing primary address, or completely filled out firstTimeAddress
-		$scope.viewPaymentSection  = $scope.user.primary_address
+		// this is our way of validating that both address and payment card options are filled
+		$scope.addressIsFilled = $scope.user.primary_address
+		$scope.paymentIsFilled = $scope.user.primary_card
+
 		$scope.$watch('firstTimeAddress', function(address) {
 			// if something exists for all the fields, then we are good to go
 			if (address.first_name && address.last_name && address.street && address.city && address.state && address.zipcode && address.country) {
-				$scope.viewPaymentSection = true;
+				$scope.addressIsFilled = true;
 			}
 		}, true);
+
+		// $scope.$watch('firstTimePayment', function(payment) {
+		// 	// if something exists for all the fields, then we are good to go
+		// 	if (address.first_name && address.last_name && address.street && address.city && address.state && address.zipcode && address.country) {
+		// 		$scope.addressIsFilled = true;
+		// 	}
+		// }, true);
 
 		// for displaying alert messages
 		$scope.addressAlerts = [];

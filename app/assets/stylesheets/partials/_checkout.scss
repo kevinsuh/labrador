@@ -117,21 +117,23 @@
 					}
 
 					// shipping specific
-					.shipping {
+					.shipping, .payment {
 						.header {
 							margin-top: 10px;
 							height: 15px;
 						}
 
-						.selected_address {
+						.selected_address, .selected_payment {
 							padding: 10px 0;
 						}
 
-						.address_info {
+						.address_info, .payment_info {
 							padding: 10px 0 10px 15px;
 							display: table;
 							width: 100%;
 							height: 100%;
+
+							
 							.selectAddressSection {
 								display: table-cell;
 								vertical-align: middle;
@@ -205,37 +207,6 @@
 							&.actions {
 								margin-top: 15px;
 							}
-							.shipping_button {
-								display: inline-block;
-								width: 49%;
-								font-size: 1.1em;
-								padding: 5px 0;
-
-								&.cancel {
-									float: left;
-									background-color: $cancel_grey;
-									@include border-radius(2px);
-    							@include box-shadow(1px 2px 1px $cancel_grey_shade, 0px 2px 5px rgba(0,0,0,.7));
-									&:active {
-
-										@include box-shadow(1px 1px 1px $cancel_grey, 0px 1px 2px rgba(0,0,0,.9));
-									    position: relative;
-									    top: 2px;
-									}
-								}
-								&.save {
-									float: right;
-									background-color: $save_blue;
-									@include border-radius(2px);
-    							@include box-shadow(1px 2px 1px $save_blue_shade, 0px 2px 5px rgba(0,0,0,.7));
-    							&:active {
-
-										@include box-shadow(1px 1px 1px $save_blue, 0px 1px 2px rgba(0,0,0,.9));
-									    position: relative;
-									    top: 2px;
-									}
-								}
-							}
 						}
 
 						.options {
@@ -275,6 +246,39 @@
 					}
 
 				}
+			}
+		}
+	}
+
+	.shipping_button {
+		display: inline-block;
+		font-size: 1.1em;
+		padding: 5px 0;
+
+		&.cancel {
+			width: 49%;
+			float: left;
+			background-color: $cancel_grey;
+			@include border-radius(2px);
+			@include box-shadow(1px 2px 1px $cancel_grey_shade, 0px 2px 5px rgba(0,0,0,.7));
+			&:active {
+
+				@include box-shadow(1px 1px 1px $cancel_grey, 0px 1px 2px rgba(0,0,0,.9));
+			    position: relative;
+			    top: 2px;
+			}
+		}
+		&.save {
+			width: 49%;
+			float: right;
+			background-color: $save_blue;
+			@include border-radius(2px);
+			@include box-shadow(1px 2px 1px $save_blue_shade, 0px 2px 5px rgba(0,0,0,.7));
+			&:active {
+
+				@include box-shadow(1px 1px 1px $save_blue, 0px 1px 2px rgba(0,0,0,.9));
+			    position: relative;
+			    top: 2px;
 			}
 		}
 	}

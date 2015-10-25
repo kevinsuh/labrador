@@ -609,7 +609,7 @@ $header_height: 10%;
     border: none;
     padding: 10px 0;
     @include border-radius(2px);
-    @include box-shadow(2px 4px 1px $button_shade_red, 0px 2px 5px rgba(0,0,0,.7));
+    @include box-shadow(1px 2px 1px $button_shade_red, 0px 2px 5px rgba(0,0,0,.7));
 		text-align: center;
 			
 		@include transition(all 0.1s ease);

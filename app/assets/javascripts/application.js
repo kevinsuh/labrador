@@ -24,5 +24,7 @@
 //= require angularjs-file-upload
 //= require angular-animate
 //= require ngImgCrop-master/compile/unminified/ng-img-crop.js
+//= require Case.js
+//= require CaseFilter.js
 //= require_tree .
 //= require_tree ./templates
