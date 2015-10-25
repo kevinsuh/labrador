@@ -190,6 +190,24 @@
 
 		}
 
+		// save the creating new single payment
+		$scope.createPayment = function() {
+
+			newPayment      = $scope.newPayment;
+			shippingAddress = $scope.finalOptions.address;
+
+			user.createPayment(newPayment, shippingAddress)
+			.success(function(data) {
+				console.log("success in create payment!");
+				console.log(data);
+			})
+			.error(function(data) {
+				console.log("error in user createPayment function");
+				console.log(data);
+			})
+			
+		}
+
 		// save the creating new single address
 		$scope.createAddress = function() {
 

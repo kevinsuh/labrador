@@ -53,6 +53,18 @@ module Checkout
 
 		end
 
+		def create_json
+			puts params.inspect
+
+			if false
+
+			else
+				respond_to do |format|
+          format.json { render json: { payment: false } }
+        end
+			end
+		end
+
 		def update_json
 
 			card_params = params[:payment_card]
@@ -90,20 +102,6 @@ module Checkout
           format.json { render json: { payment: false } }
         end
 			end
-      
-      # address = Address.find(params[:id])
-      # if address.update_attributes(address_params)
-      #   if address.is_primary?
-      #     address.set_primary
-      #   end
-      #   respond_to do |format|
-      #     format.json { render json: address }
-      #   end
-      # else
-      #   respond_to do |format|
-      #     format.json { render json: {address: false} }
-      #   end
-      # end
       
     end
 

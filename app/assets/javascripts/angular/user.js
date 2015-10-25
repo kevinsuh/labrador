@@ -39,6 +39,15 @@
       return $http.post('/checkout/payment_cards/update_json.json', payment);
     };
 
+    o.createPayment = function(payment, shippingAddress) {
+      payment_object = {
+        payment: payment,
+        shipping_address: shippingAddress
+      }
+      // we need shipping address if user wants billing to be same as shipping address
+      return $http.post('/checkout/payment_cards/create_json.json', payment_object);
+    }
+
     return o;    
 
   }]);

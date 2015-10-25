@@ -454,7 +454,7 @@ end
 							</div>
 
 							<div class="exp detail">
-								exp. {{finalOptions.payment.exp_month}}/{{finalOptions.payment.exp_year}}
+								exp. {{payment.exp_month}}/{{payment.exp_year}}
 							</div>
 						</div>
 						
@@ -468,8 +468,8 @@ end
 					</div>
 
 					<!-- new payment method form -->
-					<div class="payment_form new_address" ng-show="viewNewPaymentForm">
-
+					<form name="ccForm" class="payment_form new_address" ng-show="viewNewPaymentForm">
+						
 						<div class="card_icons">
 							<img class="cc" ng-src="assets/icons/credit_cards_sprite.png" />
 						</div>
@@ -482,7 +482,7 @@ end
 
 						<div class="number form_field">
 							<div class="form_input">
-								<input cc-number cc-type="cardType" cc-format ng-model="newPayment.number" novalidate placeholder="Cardholder Number"/>
+								<input type="text" name="ccNumber" cc-number cc-type="cardType" cc-format ng-model="newPayment.number" novalidate placeholder="Cardholder Number"/>
 							</div>
 						</div>
 
@@ -590,11 +590,10 @@ end
 						<div class="actions form_field">
 							<div class="button_box">
 								<button class="card_button shipping_button cancel" ng-click="cancelPaymentSave()">CANCEL</button>
-								<button class="card_button shipping_button save" ng-click="createPayment()">SAVE</button>
+								<button class="card_button shipping_button save" ng-disabled="ccForm.$invalid" ng-click="createPayment()">SAVE</button>
 							</div>
 						</div>
-
-					</div>
+					</form>
 						
 					<!-- update payment method form -->
 					<div class="payment_form update_payment" ng-show="viewEditPaymentForm">
