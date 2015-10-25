@@ -205,11 +205,31 @@
 							// custom widths for payment method
 							.month {
 								width: 150px;
+								margin-right: 2px;
 								float: left;
 							}
 							.year {
 								width: 80px;
 								float: left;
+								margin-right: 15px;
+							}
+							.cvc {
+								width: 85px;
+								float: left;
+								input {
+									width: 60px;
+									float: left;
+								}
+								.glyphicon {
+									float: left;
+									width: 20px;
+									left: 5px;
+									top: 12px;
+									color: $link_blue;
+								}
+								.cvcTooltip {
+									left: 10px;
+								}
 							}
 
 						}
@@ -221,7 +241,7 @@
 						}
 
 						.options {
-							.save_address, .save_payment, .is_primary {
+							.save_address, .save_payment, .is_primary, .same_as_shipping_address {
 								.checkbox {
 									height: 1em;
 									width: 1em;

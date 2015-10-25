@@ -99,11 +99,12 @@
 		$scope.choosePayment = function(payment) {
 			$scope.finalOptions.payment = payment;
 			$scope.displayPaymentView('selectedPayment');
+			$scope.paymentIsFilled = true;
 		}
 
 		$scope.newPaymentForm = function() {
 			// fresh template every time
-			$scope.newPayment = {};
+			$scope.newPayment = { is_primary: true, same_as_shipping_address: true }; // default suggest new payment methods to be primary
 			$scope.displayPaymentView('newPaymentForm');
 		}
 
@@ -133,8 +134,6 @@
       	payment = data.payment;
       	if (payment) {
 
-      		$scope.displayPaymentView('paymentList');
-
       		// update payment on client-side view
       		payments = $scope.user.stripe_customer.sources.data;
       		for (var i = 0; i < payments.length; i++) {
@@ -142,6 +141,8 @@
 							$scope.user.stripe_customer.sources.data[i] = editedPayment;
 						}
 					}
+
+					$scope.displayPaymentView('paymentList');
 
       	} else {
       		// let user know it failed
@@ -167,6 +168,7 @@
 		$scope.chooseAddress = function(address) {
 			$scope.finalOptions.address = address;
 			$scope.displayAddressView('selectedAddress');
+			$scope.addressIsFilled      = true;
 		}
 
 		// edit single address
@@ -263,10 +265,12 @@
     // helper function to display specific address view
     $scope.displayAddressView = function(view) {
 
-    	$scope.viewAddressList     = false;
+			$scope.viewAddressList     = false;
 			$scope.viewNewAddressForm  = false;
 			$scope.viewEditAddressForm = false;
 			$scope.viewSelectedAddress = false;
+			
+			$scope.addressIsFilled     = false;
 
 			if (view == 'addressList') {
 				$scope.viewAddressList = true;
@@ -283,10 +287,12 @@
     // helper function to display specific payments view
     $scope.displayPaymentView = function(view) {
 
-    	$scope.viewPaymentList     = false;
+			$scope.viewPaymentList     = false;
 			$scope.viewNewPaymentForm  = false;
 			$scope.viewEditPaymentForm = false;
 			$scope.viewSelectedPayment = false;
+			
+			$scope.paymentIsFilled     = false;
 
 			if (view == 'paymentList') {
 				$scope.viewPaymentList = true;
