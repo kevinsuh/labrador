@@ -59,8 +59,7 @@
 		$scope.viewEditPaymentForm = false;
 		$scope.viewSelectedPayment = true;
 
-		// the payment section view is triggered by either an existing primary address, or completely filled out firstTimeAddress
-		// this is our way of validating that both address and payment card options are filled
+		// validate that both address and payment card options are filled -- whether it's from saved data or first-time
 		$scope.addressIsFilled = $scope.user.primary_address
 		$scope.paymentIsFilled = $scope.user.primary_card
 
@@ -86,12 +85,44 @@
 		 * 			SHIPPING ADDRESS FUNCTIONS
 		 */
 
+		// view payment list
+		$scope.displayPaymentList = function() {
+			$scope.displayPaymentView('paymentList');
+		}
+
+		// selecting "use" on payment list
+		$scope.choosePayment = function(payment) {
+			$scope.finalOptions.payment = payment;
+			$scope.displayPaymentView('selectedPayment');
+		}
+
+		// edit single payment method
+		$scope.editPayment = function(payment) {
+
+			// for cancel / save purposes
+			$scope.editingPayment = angular.copy(payment);
+			if (payment.id == $scope.user.primary_card.id) {
+				$scope.editingPayment.is_primary = true;
+			}
+
+			$scope.displayPaymentView('editPaymentForm');
+		}
+
+		// cancel the editing single payment methdo
+		// simply returns to the payment list
+		$scope.cancelPaymentSave = function() {
+
+			$scope.displayPaymentView('paymentList');
+			
+		}
+
+
 		// view address list
 		$scope.displayAddressList = function() {
 			$scope.displayAddressView('addressList');
 		}
 
-		// make this your final shipping address
+		// selecting "use" on address list
 		$scope.chooseAddress = function(address) {
 			$scope.finalOptions.address = address;
 			$scope.displayAddressView('selectedAddress');
@@ -180,27 +211,16 @@
 
 		// cancel the editing single address
 		// for now, this means just return to address list view
-		$scope.cancelSave = function() {
+		$scope.cancelAddressSave = function() {
 
 			$scope.displayAddressView('addressList');
 			
 		}
 
 		/**
-		 * 			BILLING INFORMATION FUNCTIONS
+		 * 			PAYMENT METHOD FUNCTIONS
 		 */
 
-		// test whether you are currently at this state or not
-		$scope.$on('$stateChangeSuccess',
-		  function(event, toState) {
-		    $scope.currentState = toState.name;
-		    makeStateActive($scope.currentState);
-	    });
-
-		$scope.isInArray = function(value, array) {
-    	// return array.indexOf(value) > -1;
-    	return true;
-    };
 
     // helper function to display specific address view
     $scope.displayAddressView = function(view) {
@@ -218,6 +238,26 @@
 				$scope.viewEditAddressForm = true;
 			} else if (view == 'selectedAddress') {
 				$scope.viewSelectedAddress = true;
+			}
+
+    }
+
+    // helper function to display specific payments view
+    $scope.displayPaymentView = function(view) {
+
+    	$scope.viewPaymentList     = false;
+			$scope.viewNewPaymentForm  = false;
+			$scope.viewEditPaymentForm = false;
+			$scope.viewSelectedPayment = false;
+
+			if (view == 'paymentList') {
+				$scope.viewPaymentList = true;
+			} else if (view == 'newPaymentForm') {
+				$scope.viewNewPaymentForm  = true;	
+			} else if (view == 'editPaymentForm') {
+				$scope.viewEditPaymentForm = true;
+			} else if (view == 'selectedPayment') {
+				$scope.viewSelectedPayment = true;
 			}
 
     }

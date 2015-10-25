@@ -133,8 +133,8 @@
 							width: 100%;
 							height: 100%;
 
-							
-							.selectAddressSection {
+
+							.selectAddressSection, .selectPaymentSection {
 								display: table-cell;
 								vertical-align: middle;
 								width: 40px;
@@ -154,20 +154,21 @@
 								line-height: 1.2em;
 							}
 						}
-						.addresses {
-							.address_info {
+						.addresses, .payments {
+							.address_info, .payment_info {
 								border-bottom: 1pt solid lightgrey;
 								&.selected {
 									background-color: $hover_blue;
 								}
 							}
-							.new_address_option {
+							.new_address_option, .payment_option {
 								padding: 10px 0 10px 25px;
 							}
 						}
-						.address_form {
+						.address_form, .payment_form {
 							float: left;
 							padding: 10px 20px;
+							width: 100%;
 							.name {
 								.form_input {
 									width: 49%;
@@ -201,6 +202,16 @@
 								width: 32%;
 							}
 
+							// custom widths for payment method
+							.month {
+								width: 150px;
+								float: left;
+							}
+							.year {
+								width: 80px;
+								float: left;
+							}
+
 						}
 						.form_field {
 							margin: 5px 0;
@@ -210,7 +221,7 @@
 						}
 
 						.options {
-							.save_address, .is_primary {
+							.save_address, .save_payment, .is_primary {
 								.checkbox {
 									height: 1em;
 									width: 1em;

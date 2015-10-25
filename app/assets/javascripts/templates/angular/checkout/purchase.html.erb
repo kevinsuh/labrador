@@ -248,7 +248,7 @@ end
 
 					<div class="actions form_field">
 						<div class="button_box">
-							<button class="card_button shipping_button cancel" ng-click="cancelSave()">CANCEL</button>
+							<button class="card_button shipping_button cancel" ng-click="cancelAddressSave()">CANCEL</button>
 							<button class="card_button shipping_button save" ng-click="createAddress()">SAVE</button>
 						</div>
 					</div>
@@ -316,7 +316,7 @@ end
 
 					<div class="actions form_field">
 						<div class="button_box">
-							<button class="card_button shipping_button cancel" ng-click="cancelSave()">CANCEL</button>
+							<button class="card_button shipping_button cancel" ng-click="cancelAddressSave()">CANCEL</button>
 							<button class="card_button shipping_button save" ng-click="updateAddress()">SAVE</button>
 						</div>
 					</div>
@@ -426,7 +426,7 @@ end
 
 							<div class="actions form_field">
 								<div class="button_box">
-									<button class="card_button shipping_button cancel" ng-click="cancelSave()">CANCEL</button>
+									<button class="card_button shipping_button cancel" ng-click="cancelAddressSave()">CANCEL</button>
 									<button class="card_button shipping_button save" ng-click="createAddress()">SAVE</button>
 								</div>
 							</div>
@@ -436,37 +436,39 @@ end
 
 				<div class="payments" ng-controller="SingleCheckoutController">
 
-					<!-- address info -->
-					<div class="address_info" ng-repeat="address in user.addresses" ng-show="viewAddressList" ng-class="{'selected': address.id == selectedAddress.id}" ng-click="selectedAddress.id = address.id">
-						<div class="selectAddressSection">
-							<input ng-model="selectedAddress.id" value="{{address.id}}" type="radio" name="single_address"/>
+					<!-- payments info -->
+					<div class="payment_info" ng-repeat="payment in stripe_customer.sources.data" ng-show="viewPaymentList" ng-class="{'selected': payment.last4 == selectedPayment.last4}" ng-click="selectedPayment.last4 = payment.last4">
+
+						<div class="selectPaymentSection">
+							<input ng-model="selectedPayment.last4" value="{{payment.last4}}" type="radio" name="single_payment"/>
 						</div>
 						<div class="detailsSection">
 							<div class="name detail">
-								{{address.first_name}} {{address.last_name}}
+								{{payment.name}}
 							</div>
-							<div class="street detail">
-								{{address.street}}
-								<div class="link_options singleAddressOptions" ng-show="selectedAddress.id == address.id">
-									 <a class="link_option" ng-click="editAddress(address)">edit</a> / <a ng-click="chooseAddress(address)" class="link_option">use</a>
+							<div class="card detail">
+								**** **** **** {{payment.last4}} <img ng-src="assets/icons/{{payment.brand | snakeCase}}.png" style="height: 1.5em;"/>
+								<div class="link_options singleAddressOptions" ng-show="selectedPayment.last4 == payment.last4">
+									 <a class="link_option" ng-click="editPayment(payment)">edit</a> / <a ng-click="choosePayment(payment)" class="link_option">use</a>
 								</div>
 							</div>
-							<div class="street_two detail">
-								{{address.city}}, {{address.state | stateAbbreviation}} {{address.zipcode}}
+
+							<div class="exp detail">
+								exp. {{finalOptions.payment.exp_month}}/{{finalOptions.payment.exp_year}}
 							</div>
 						</div>
 						
 					</div>
 
-					<!-- option for new address to append to this list -->
-					<div class="new_address_option" ng-show="viewAddressList">
+					<!-- option for new payment to append to this list -->
+					<div class="new_payment_option" ng-show="viewPaymentList">
 						<div class="link_options">
-							<a class="link_option" ng-click="newAddressForm()">add new shipping address</a>
+							<a class="link_option" ng-click="newPaymentForm()">add new payment method</a>
 						</div>
 					</div>
 
-					<!-- new address form -->
-					<div class="address_form new_address" ng-show="viewNewAddressForm">
+					<!-- new payment method form -->
+					<div class="payment_form new_address" ng-show="viewNewPaymentForm">
 						<div class="name form_field">
 							<div class="name">
 								<div class="form_input first_name">
@@ -527,76 +529,54 @@ end
 
 						<div class="actions form_field">
 							<div class="button_box">
-								<button class="card_button shipping_button cancel" ng-click="cancelSave()">CANCEL</button>
+								<button class="card_button shipping_button cancel" ng-click="cancelAddressSave()">CANCEL</button>
 								<button class="card_button shipping_button save" ng-click="createAddress()">SAVE</button>
 							</div>
 						</div>
 					</div>
 						
-					<!-- update address form -->
-					<div class="address_form update_address" ng-show="viewEditAddressForm">
+					<!-- update payment method form -->
+					<div class="payment_form update_payment" ng-show="viewEditPaymentForm">
+
+						<div class="exp form_field">
+							<h5 style="margin-bottom: 5px;">Expiration date</h5>
+							<div class="month form_input">
+								<select ng-model="editingPayment.exp_month" class="card_month">
+						  		<% Date::MONTHNAMES.compact.each_with_index.map { |name, i| %>
+						  			<option value="<%= i+1 %>"><%= "#{i+1} - #{name}" %></option>
+						  		<% } %> 
+						  	</select>
+							</div>
+
+							<div class="year form_input">
+								<select ng-model="editingPayment.exp_year" class="card_year">
+						  		<option value="">Year</option>
+						  		<% (Date.today.year..(Date.today.year+15)).each do |date| %>
+						  			<option value="<%= date %>"><%= date %></option>
+						  		<% end %>
+						  	</select>
+							</div>
+						</div>
+
 						<div class="name form_field">
-							<div class="name">
-								<div class="form_input first_name">
-						      <input ng-model="editingAddress.first_name" type="text" placeholder="First Name"/>
-						    </div>
-						    <div class="form_input last_name">
-						      <input ng-model="editingAddress.last_name" type="text" placeholder="Last Name"/>
-						    </div>
-							</div>
-						</div>
-
-						<div class="street form_field">
-							<div class="street">
-								<div class="form_input">
-						      <input ng-model="editingAddress.street" type="text" placeholder="Street"/>
-						    </div>
-							</div>
-						</div>
-
-						<div class="address_other form_field">
-							<div class="city">
-								<div class="form_input">
-						      <input ng-model="editingAddress.city" type="text" placeholder="City"/>
-						    </div>
-							</div>
-
-							<div class="state">
-								<div class="form_input">
-									<select ng-model="editingAddress.state">
-							  		<option value="">State</option>
-							  		<% us_states.each { |state, abrv| %>
-							  			<option value="<%= state %>"><%= abrv %></option>
-										<% } %>
-							  	</select>
-								</div>
-							</div>
-
-							<div class="zip">
-								<div class="form_input">
-						      <input ng-model="editingAddress.zipcode" type="text" placeholder="Zip"/>
-						    </div>
-							</div>
-
-							<div class="country">
-								<div class="form_input">
-									<country-select data-ng-model="editingAddress.country"></country-select>
-								</div>
+							<h5 style="margin-bottom: 5px;">Name on card</h5>
+							<div class="name form_input">
+								<input ng-model="editingPayment.name" type="text" placeholder="Name"/>
 							</div>
 						</div>
 
 						<div class="options form_field">
 							<div class="options">
 								<div class="form_input is_primary">
-						      <input id="is_primary_{{editingAddress.id}}" class="checkbox" ng-model="editingAddress.is_primary" type="checkbox"/><label for="is_primary_{{editingAddress.id}}">Default shipping address</label>
+						      <input id="is_primary_editingPayment" class="checkbox" ng-model="editingPayment.is_primary" type="checkbox"/><label for="is_primary_editingPayment">Default payment method</label>
 						    </div>
 							</div>
 						</div>
 
 						<div class="actions form_field">
 							<div class="button_box">
-								<button class="card_button shipping_button cancel" ng-click="cancelSave()">CANCEL</button>
-								<button class="card_button shipping_button save" ng-click="updateAddress()">SAVE</button>
+								<button class="card_button shipping_button cancel" ng-click="cancelPaymentSave()">CANCEL</button>
+								<button class="card_button shipping_button save" ng-click="updatePayment()">SAVE</button>
 							</div>
 						</div>
 
