@@ -1,0 +1,16 @@
+(function() {
+	
+	/**
+	 * this is the controller used to handle checkout of the cards you queued
+	 */
+	var app = angular.module('card-queue').controller("SingleAddressController", function($rootScope, $scope) {
+			
+		$scope.selectedAddress = {id: 0};
+
+		$scope.selectAddress = function(address) {
+			$scope.selectedAddress = address.id;
+		}
+
+	});
+
+})();

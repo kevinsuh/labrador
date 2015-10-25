@@ -27,6 +27,10 @@
       return $http.get('/logout_angular.json');
     }
 
+    o.updateAddress = function(address) {
+      return $http.post('/checkout/addresses/update_json.json', address);
+    };
+
     return o;    
 
   }]);

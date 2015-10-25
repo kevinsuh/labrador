@@ -90,6 +90,19 @@ module Checkout
 
     end
 
+    def update_json
+      
+      address = Address.find(params[:id])
+      if address.update_attributes(address_params)
+        if address.is_primary?
+          address.set_primary
+        end
+        respond_to do |format|
+          format.json { render json: address }
+        end
+      end
+    end
+
     private
 
     	# to ensure which values we are receiving from our form

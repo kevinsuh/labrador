@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     # edit / select addresses
     resources :addresses, only: [:index, :new, :create, :update] do
       collection do
+        post 'update_json'
         post 'set_for_order'
         post 'delete'
       end

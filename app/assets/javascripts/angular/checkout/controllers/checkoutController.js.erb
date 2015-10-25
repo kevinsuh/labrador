@@ -27,36 +27,54 @@
 
 		headerTitle = angular.element(document.querySelector("#currentTitle"));
 		headerTitle.text("Checkout");
+		
+		$scope.viewAddressList     = false;
+		$scope.viewEditAddressForm = false;
+		$scope.viewSelectedAddress = true;
 
-		$scope.viewAddressList = false;
-		$scope.editingAddress = true;
+		// view address list
+		$scope.displayAddressList = function() {
+			$scope.viewAddressList     = true;
+			$scope.viewEditAddressForm = false;
+			$scope.viewSelectedAddress = false;
+		}
 
-		// view all of user's addresses
-		$scope.toggleAddressList = function() {
-			$scope.viewAddressList = !$scope.viewAddressList;
+		// make this your final shipping address
+		$scope.chooseAddress = function(address) {
+			$scope.finalOptions.address = address;
+			$scope.viewAddressList      = false;
+			$scope.viewEditAddressForm  = false;
+			$scope.viewSelectedAddress  = true;
 		}
 
 		// edit single address
 		$scope.editAddress = function(address) {
 
+			// for cancel / save purposes
 			$scope.editingAddress = angular.copy(address);
 
-			// add the addressID to visible address forms
-			$scope.visibleOptions.addressForms.push(address.id);
+			$scope.viewAddressList     = false;
+			$scope.viewEditAddressForm = true;
+			$scope.viewSelectedAddress = false;
 
-			// remove the addressID from visible address infos
-			$scope.visibleOptions.addressInfos = arrayWithValueRemoved(address.id, $scope.visibleOptions.addressInfos);
-			
 		}
 
 		// save the editing single address
-		$scope.saveAddress = function() {
+		$scope.updateAddress = function() {
 
 			editedAddress = $scope.editingAddress;
 
 			// should call a function to save address
+			user.updateAddress(editedAddress)
+      .success(function(data) {
+      	// nothing to do on success
+      })
+      .error(function(data) {
+        console.log("error in user saveAddress function");
+        console.log(data);
+      });
 
-			addresses = $scope.user.addresses;
+      addresses = $scope.user.addresses;
 			for (var i = 0; i < addresses.length; i++) {
 				if (addresses[i].id == editedAddress.id) {
 					$scope.user.addresses[i] = editedAddress;
@@ -64,22 +82,20 @@
 			}
 
 			// remove the addressID from visible address forms
-			$scope.visibleOptions.addressForms = arrayWithValueRemoved(editedAddress.id, $scope.visibleOptions.addressForms);
-
-			// add the addressID to visible address infos
-			$scope.visibleOptions.addressInfos.push(editedAddress.id);
+			$scope.viewAddressList     = true;
+			$scope.viewEditAddressForm = false;
+			$scope.viewSelectedAddress = false;
+			
 		}
 
 		// cancel the editing single address
+		// for now, this means just return to address list view
 		$scope.cancelSave = function() {
 
-			editedAddress = $scope.editingAddress;
-
 			// remove the addressID from visible address forms
-			$scope.visibleOptions.addressForms = arrayWithValueRemoved(editedAddress.id, $scope.visibleOptions.addressForms);
-
-			// add the addressID to visible address infos
-			$scope.visibleOptions.addressInfos.push(editedAddress.id);
+			$scope.viewAddressList     = true;
+			$scope.viewEditAddressForm = false;
+			$scope.viewSelectedAddress = false;
 			
 		}
 

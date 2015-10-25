@@ -78,6 +78,14 @@ $wizard_grey: #F0F0F0;
 $button_red: #C44228;
 $button_shade_red: #983C2A;
 
+// checkout colors
+$save_blue: #589AC9;
+$save_blue_shade: #426C98;
+$cancel_grey: #BBBABA;
+$cancel_grey_shade: #868686;
+$hover_blue: #ECF7FD;
+$link_blue: #64A4D0;
+
 @mixin base_font {
 	font-family: $base-font-family;
 	font-weight: $base-font-weight;
