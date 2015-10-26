@@ -13,14 +13,14 @@
 	</div>
 </div>
 
-<div class="row cards_container" style="overflow-x: scroll;">
+<div class="row cards_container">
 
 	<div class="find_card" ng-show="cardsLoadingFirstTime">
 		<span class="card-spinner" us-spinner spinner-key="card-find-spinner"></span>
 	</div>
 
-	<div ng-show="cardsLoadedFirstTime" class="cards_loaded_view" style="height: 100%; min-width: 1500px;">
-		<div class="col-xs-6 card_preview_container" style="overflow-x: scroll;">
+	<div ng-show="cardsLoadedFirstTime" class="cards_loaded_view" style="height: 100%; padding: 0 15px; ">
+		<div class="card_preview_container" style="width: 55%; float: left;" ng-if="cards.selectedCard">
 			<div class="preview_box">
 				<div class="preview outside" ng-if="previewSide == 'outside'">
 					<div class="card_image" ng-if="cards.selectedCard.outsideImages[outsideImageCount]">
@@ -49,18 +49,19 @@
 			</div>
 
 		</div>
-		<div class="col-xs-6 filtered_choices_container">
+		<div class="filtered_choices_container" style="width: 44%; float: right;">
 
 			<div class="filtered_choices_box">
 				<div class="find_card" ng-show="cardsLoading">
 					<span class="card-spinner" us-spinner spinner-key="card-find-spinner"></span>
 				</div>
 
-				<div class="filtered_choices" ng-show="cardsLoaded">
+				<div class="filtered_choices" style="float: left;" ng-show="cardsLoaded">
+					<img ng-repeat="card in cards.selectableCards" class="col-xs-6 col-md-4 image" ng-src="{{card.card_images[0].picture.large.url}}" />
 					<!-- display each of the 6 choices here... -->
 					<div class="choice" ng-repeat="card in cards.selectableCards" ng-class="{'selected': card == cards.selectedCard}" ng-click="selectCard(card)" ng-if="selectedFlavorIDs.length > 0">
 						<div class="card_image">
-							<img class="image" ng-src="{{card.card_images[0].picture.large.url}}" />
+ 							<img class="image" ng-src="{{card.card_images[0].picture.large.url}}" />
 						</div>
 						<div class="card_name">
 							{{card.name}}

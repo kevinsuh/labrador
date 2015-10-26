@@ -20,20 +20,16 @@
 		console.log($scope.user);
 		console.log($scope.stripe_customer);
 
+		console.log($scope.queuedCards);
+
+		$scope.initialCardOptions = $scope.queuedCards; // it wont be queued cards, but there will be an initial amount of card options
+
 		// the options to attach with this order
 		$scope.finalOptions = {
 			address: $scope.user.primary_address,
-			payment: $scope.user.primary_card
+			payment: $scope.user.primary_card,
+			cards: angular.copy($scope.initialCardOptions) // this is what will go through for final purchase
 		};
-
-		// iterate through to find the primary credit card
-		// since there is no "primary_card" like we have primary_address
-		payments = $scope.user.stripe_customer.sources.data;
-		for (var i = 0; i < payments.length; i++) {
-			if (payments[i].id == $scope.user.primary_card.id) {
-				$scope.user.stripe_customer.sources.data[i].is_primary = true;
-			}
-		}
 
 		// handling first time address / card
 		$scope.firstTimeAddress = {};
@@ -42,8 +38,18 @@
 		}
 
 		$scope.firstTimePayment = {};
-		if ($scope.user.primary_card) {
+		if ($scope.user.primary_card != 'undefined') {
 			$scope.firstTimePayment = false;
+		} else {
+			// iterate through to find the primary credit card
+			// if it is not their first time paying
+			// since there is no "primary_card" like we have primary_address
+			payments = $scope.user.stripe_customer.sources.data;
+			for (var i = 0; i < payments.length; i++) {
+				if (payments[i].id == $scope.user.primary_card.id) {
+					$scope.user.stripe_customer.sources.data[i].is_primary = true;
+				}
+			}
 		}
 
 		// for handling new and updating addresses /cards
@@ -90,75 +96,6 @@
 		 * 			SHIPPING ADDRESS FUNCTIONS
 		 */
 
-		// view payment list
-		$scope.displayPaymentList = function() {
-			$scope.displayPaymentView('paymentList');
-		}
-
-		// selecting "use" on payment list
-		$scope.choosePayment = function(payment) {
-			$scope.finalOptions.payment = payment;
-			$scope.displayPaymentView('selectedPayment');
-			$scope.paymentIsFilled = true;
-		}
-
-		$scope.newPaymentForm = function() {
-			// fresh template every time
-			$scope.newPayment = { is_primary: true, same_as_shipping_address: true }; // default suggest new payment methods to be primary
-			$scope.displayPaymentView('newPaymentForm');
-		}
-
-		// edit single payment method
-		$scope.editPayment = function(payment) {
-
-			// for cancel / save purposes
-			$scope.editingPayment = angular.copy(payment);
-
-			$scope.displayPaymentView('editPaymentForm');
-		}
-
-		// cancel the editing single payment methdo
-		// simply returns to the payment list
-		$scope.cancelPaymentSave = function() {
-			$scope.displayPaymentView('paymentList');
-		}
-
-		// save the editing single address
-		$scope.updatePayment = function() {
-
-			editedPayment = $scope.editingPayment;
-
-			// call a function to save address
-			user.updatePayment(editedPayment)
-      .success(function(data) {
-      	payment = data.payment;
-      	if (payment) {
-
-      		// update payment on client-side view
-      		payments = $scope.user.stripe_customer.sources.data;
-      		for (var i = 0; i < payments.length; i++) {
-						if (payments[i].id == editedPayment.id) {
-							$scope.user.stripe_customer.sources.data[i] = editedPayment;
-						}
-					}
-
-					$scope.displayPaymentView('paymentList');
-
-      	} else {
-      		// let user know it failed
-  		 		console.log("failed to update card");
-      		$scope.paymentAlerts.push({type: "danger", msg: "Failed to update card."});
-      	}
-      	
-      })
-      .error(function(data) {
-        console.log("error in user updatePayment function");
-        console.log(data);
-      });	
-		}
-
-
-
 		// view address list
 		$scope.displayAddressList = function() {
 			$scope.displayAddressView('addressList');
@@ -188,61 +125,6 @@
 			$scope.newAddress = {};
 			$scope.displayAddressView('newAddressForm');
 
-		}
-
-		// save the creating new single payment
-		$scope.createPayment = function() {
-
-			newPayment      = $scope.newPayment;
-			shippingAddress = $scope.finalOptions.address;
-
-			if (newPayment.same_as_shipping_address) {
-				newPayment.address = shippingAddress;
-			}
-
-			return stripe.card.createToken({
-				number: newPayment.number,
-				cvc: newPayment.cvc,
-				exp_month: newPayment.exp_month,
-				exp_year: newPayment.exp_year,
-				name: newPayment.name,
-				address_line1: newPayment.address.street,
-				address_city: newPayment.address.city,
-				address_state: newPayment.address.state,
-				address_zip: newPayment.address.zipcode,
-				address_country: newPayment.address.country
-			})
-			.then(function(data) {
-				console.log("success!!");
-				console.log(data);
-
-				cardToken = data.id;
-				card      = data.card;
-
-				// save this to our database now
-				user.createPayment(cardToken)
-				.success(function(data) {
-					console.log("success in create payment!");
-					console.log(data);
-					console.log(card);
-
-					// this is where you can now bring them back to card list
-    		 	$scope.user.stripe_customer.sources.data.push(card);
-      		$scope.displayPaymentView('paymentList');
-					
-				})
-				.error(function(data) {
-					console.log("error in user createPayment function");
-					console.log(data);
-				});
-			})
-			.catch(function(err) {
-				if (err.type && /^Stripe/.test(err.type)) {
-          console.log('Stripe error: ', err.message);
-        }
-        $scope.paymentAlerts.push({type: "danger", msg: err.message});
-			});
-			
 		}
 
 		// save the creating new single address
@@ -315,6 +197,174 @@
 		/**
 		 * 			PAYMENT METHOD FUNCTIONS
 		 */
+		
+		// view payment list
+		$scope.displayPaymentList = function() {
+			$scope.displayPaymentView('paymentList');
+		}
+
+		// selecting "use" on payment list
+		$scope.choosePayment = function(payment) {
+			$scope.finalOptions.payment = payment;
+			$scope.displayPaymentView('selectedPayment');
+			$scope.paymentIsFilled = true;
+		}
+
+		$scope.newPaymentForm = function() {
+			// fresh template every time
+			$scope.newPayment = { is_primary: true, same_as_shipping_address: true }; // default suggest new payment methods to be primary
+			$scope.displayPaymentView('newPaymentForm');
+		}
+
+		// edit single payment method
+		$scope.editPayment = function(payment) {
+
+			// for cancel / save purposes
+			$scope.editingPayment = angular.copy(payment);
+
+			$scope.displayPaymentView('editPaymentForm');
+		}
+
+		// cancel the editing single payment methdo
+		// simply returns to the payment list
+		$scope.cancelPaymentSave = function() {
+			$scope.displayPaymentView('paymentList');
+		}
+
+		// save the creating new single payment
+		$scope.createPayment = function() {
+
+			newPayment      = $scope.newPayment;
+			shippingAddress = $scope.finalOptions.address;
+
+			if (newPayment.same_as_shipping_address) {
+				newPayment.address = shippingAddress;
+			}
+
+			return stripe.card.createToken({
+				number: newPayment.number,
+				cvc: newPayment.cvc,
+				exp_month: newPayment.exp_month,
+				exp_year: newPayment.exp_year,
+				name: newPayment.name,
+				address_line1: newPayment.address.street,
+				address_city: newPayment.address.city,
+				address_state: newPayment.address.state,
+				address_zip: newPayment.address.zipcode,
+				address_country: newPayment.address.country
+			})
+			.then(function(data) {
+				
+				cardToken = data.id;
+				card      = data.card;
+
+				// save this to our database now
+				user.createPayment(cardToken)
+				.success(function(data) {
+
+					// this is where you can now bring them back to card list
+    		 	$scope.user.stripe_customer.sources.data.push(card);
+      		$scope.displayPaymentView('paymentList');
+					
+				})
+				.error(function(data) {
+					console.log("error in user createPayment function");
+					console.log(data);
+				});
+			})
+			.catch(function(err) {
+				if (err.type && /^Stripe/.test(err.type)) {
+          console.log('Stripe error: ', err.message);
+        }
+        $scope.paymentAlerts.push({type: "danger", msg: err.message});
+			});
+			
+		}
+
+		// save the editing single address
+		$scope.updatePayment = function() {
+
+			editedPayment = $scope.editingPayment;
+
+			// call a function to save address
+			user.updatePayment(editedPayment)
+      .success(function(data) {
+      	payment = data.payment;
+      	if (payment) {
+
+      		// update payment on client-side view
+      		payments = $scope.user.stripe_customer.sources.data;
+      		for (var i = 0; i < payments.length; i++) {
+						if (payments[i].id == editedPayment.id) {
+							$scope.user.stripe_customer.sources.data[i] = editedPayment;
+						}
+					}
+
+					$scope.displayPaymentView('paymentList');
+
+      	} else {
+      		// let user know it failed
+  		 		console.log("failed to update card");
+      		$scope.paymentAlerts.push({type: "danger", msg: "Failed to update card."});
+      	}
+      	
+      })
+      .error(function(data) {
+        console.log("error in user updatePayment function");
+        console.log(data);
+      });	
+		}
+
+		/**
+		 * 			CARDS FUNCTIONS
+		 */
+		
+		// if it is in cards array -- remove it.
+		// if not -- add it
+		$scope.toggleInFinalCardsArray = function(card) {
+
+			finalCards = $scope.finalOptions.cards;
+			finalCardIDs = finalCards.map(function(card) {
+				return card.id;
+			});
+
+			cardID = card.id;
+
+			if (isInArray(cardID, finalCardIDs)) {
+				var index = finalCardIDs.indexOf(cardID);
+				if (index > -1) {
+					$scope.finalOptions.cards.splice(index, 1);
+				}
+			} else {
+				$scope.finalOptions.cards.push(card);
+			}
+		}
+
+		// checks if that card is in the finalOptions.cards array
+		$scope.isInFinalCardsArray = function(card) {
+
+			cardID = card.id;
+			finalCardOptions = $scope.finalOptions.cards;
+
+			cardInArray = false;
+			for (var i = 0; i < finalCardOptions.length; i++) {
+				if (cardID == finalCardOptions[i].id) {
+					cardInArray = true;
+					break;
+				}
+			}
+			return cardInArray;
+
+		}
+
+		/**
+		 * 			SUBMIT ORDER
+		 */
+		$scope.submitOrder = function() {
+
+			console.log($scope.finalOptions);
+
+		}
 
 
     // helper function to display specific address view

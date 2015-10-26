@@ -9,8 +9,8 @@ $header_height: 10%;
 	width: 100%;
 	//position:absolute;
 	height: 100%; 
-	min-width: 1440px;
-	max-width: 2300px;
+	// min-width: 1440px;
+	// max-width: 2300px;
 	margin: 0 auto;
 
 	// the entire left-side column
@@ -39,9 +39,10 @@ $header_height: 10%;
 					&.main_display {
 						width: 100%;
 						margin: auto 0;
-						padding-top: 4%;
+						padding: 4% 5px 0 5px;
 						.title {
 							font-size: 1.8em;
+							line-height: 1em;
 						}
 						.progress_bullets {
 							.bullet {
@@ -155,6 +156,7 @@ $header_height: 10%;
 						margin: auto 0;
 						.title {
 							font-size: 3em;
+							line-height: 1;
 						}
 						.progress_bullets {
 							.bullet {
@@ -332,6 +334,7 @@ $header_height: 10%;
 							height: 50px;
 							display: flex;
 							margin-top: 20px;
+							overflow-x: scroll;
 
 							.options_container { // div containing the actual options
 								margin: auto;
@@ -344,8 +347,9 @@ $header_height: 10%;
 								.flavors {
 									width: 100%;
 									padding: 10px 0;
+									overflow-x: scroll;
 									.option {
-										margin: 0 40pt;
+										margin: 0 3%;
 										color: $wizard_grey;
 										opacity: 0.75;
 										cursor: pointer;
@@ -394,7 +398,6 @@ $header_height: 10%;
 								.preview_box {
 									display: table;
 									width: 100%;
-									height: 100%;
 									border: 1pt solid black;
 									
 									.preview {
@@ -404,9 +407,10 @@ $header_height: 10%;
 										.card_image {
 											display: table-cell;
 											position: relative;
-											width: 90%;
+											width: 100%;
 											height: 95%;
-											margin: 2.5% 5% 3% 5%;
+											margin: 5% 0;
+											padding: 0 10px;
 											-webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC); //overflow hidden for chrome
 
 											float: left;
@@ -414,7 +418,7 @@ $header_height: 10%;
 											//margin-top: 5px;
 											//position: relative;
 											.image {
-												height: 100%;
+												max-width: 100%;
 											}
 
 											.direction { // the glyphicons to handle left/right of image selection
@@ -475,7 +479,8 @@ $header_height: 10%;
 								height: 100%;
 								$filtered_choices_height: 69%;
 								.filtered_choices_box {
-									height: $filtered_choices_height;
+									float: left;
+									padding: 10px 0;
 									margin-bottom: 3%;
 									border: 1pt solid black;
 									.filtered_choices {

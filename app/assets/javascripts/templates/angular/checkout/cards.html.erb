@@ -1,22 +1,22 @@
 <div class="subtotal">
-	<h3 class="title">Subtotal ({{queuedCards.length}} Cards): ${{queuedCards.length * 5}}.00</h3>
+	<h3 class="title">Subtotal ({{finalOptions.cards.length}} Cards): ${{finalOptions.cards.length * 5}}.00</h3>
 </div>
 <hr>
 
 <div class="cards_list">
 
-	<div class="card" ng-repeat="queuedCard in queuedCards">
+	<div class="card" ng-repeat="card in initialCardOptions" ng-click="toggleInFinalCardsArray(card)">
 
-		<div class="select card_part">
-			<input id="selected_card_{{$index}}" class="checkbox" type="checkbox"/>
+		<div class="select card_part" ng-class="{'what': isInFinalCardsArray(card)}">
+			<input ng-checked="isInFinalCardsArray(card)" class="checkbox" type="checkbox"/>
 		</div>
 		<div class="image_div card_part">
-			<img class="image" ng-src="{{queuedCard.card_images[0]}}" />
+			<img class="image" ng-src="{{card.card_images[0]}}" />
 		</div>
 		<div class="information card_part">
 			<div class="card_title info">
 				<h4>Birthday Card</h4>
-				<h5>for <span style="font-weight: bold;">{{queuedCard.recipient.first_name}} {{queuedCard.recipient.last_name}}</span></h5>
+				<h5>for <span style="font-weight: bold;">{{card.recipient.first_name}} {{card.recipient.last_name}}</span></h5>
 			</div>
 
 			<div class="delivery info">
