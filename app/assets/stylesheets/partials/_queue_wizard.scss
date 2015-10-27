@@ -1,7 +1,7 @@
 @import "base";
 
 $queue_wizard_profile_picture_size: 100px;
-$header_height: 10%;
+$header_height: 90px;
 
 // this is the overarching container div
 .queue_card {
@@ -41,13 +41,14 @@ $header_height: 10%;
 						margin: auto 0;
 						padding: 4% 5px 0 5px;
 						.title {
-							font-size: 1.8em;
+							font-size: 1.2em;
 							line-height: 1em;
 						}
 						.progress_bullets {
+							font-size: 0em;
 							.bullet {
-								font-size: 2.5rem;
-								margin: 0 3px;
+								font-size: 2rem;
+								margin: 0 2px;
 								a {
 									color: $ben_light_grey;
 									opacity: 0.45;
@@ -67,7 +68,7 @@ $header_height: 10%;
 		.inner_container {
 
 			@include display-flex; // inline-flex display for all browsers
-			height: 100% - $header_height;
+			height: calc(100% - 90px); // header_height == 90px
 			width: 100%;
 			overflow: auto;
 			background-color: $wizard_grey;
@@ -117,7 +118,7 @@ $header_height: 10%;
 
 						.name {
 							
-							font-size:1.5em;
+							font-size: 1.2em;
 						}
 					}
 
@@ -155,7 +156,7 @@ $header_height: 10%;
 						width: 100% - 2*$navigation_width;
 						margin: auto 0;
 						.title {
-							font-size: 3em;
+							font-size: 2em;
 							line-height: 1;
 						}
 						.progress_bullets {
@@ -210,7 +211,7 @@ $header_height: 10%;
 		// the inner container -- aka the form itself
 		.inner_container {
 
-			height: 100% - $header_height;
+			height: calc(100% - 90px); // header_height == 90px
 
 			.wizard_form {
 
@@ -225,7 +226,7 @@ $header_height: 10%;
 						@include display-flex; // inline-flex display for all browsers
 					}
 
-					height: 100% - $header_height; // minus height of header
+					height: calc(100% - 90px); // header_height == 90px
 					width: 100%;
 					position: absolute;
 					left: 0;
@@ -259,8 +260,8 @@ $header_height: 10%;
 						}
 						.date_span {
 							position: absolute;
-							left: 10px;
-							top: -30px;
+							right: 295px;
+							top: -13px;
 							button {
 								background-color: transparent;
 								border: none;
@@ -272,7 +273,7 @@ $header_height: 10%;
 					.question {
 						text-align: center;
 						span {
-							font-size: 2em;
+							font-size: 1.5em;
 						}	
 
 						/**
@@ -285,7 +286,7 @@ $header_height: 10%;
 							// variables
 							$field_width: 250px;
 							$field_padding: 5px 5px 5px 25px;
-							$font_size: 2em;
+							$font_size: 1.5em;
 
 							background-color: $white_grey;
 							text-align: left;
@@ -331,10 +332,11 @@ $header_height: 10%;
 						margin: auto;
 						.flavor_filters {
 
-							height: 50px;
+							height: 57px;
 							display: flex;
 							margin-top: 20px;
 							overflow-x: scroll;
+							overflow-y: hidden;
 
 							.options_container { // div containing the actual options
 								margin: auto;
@@ -347,7 +349,6 @@ $header_height: 10%;
 								.flavors {
 									width: 100%;
 									padding: 10px 0;
-									overflow-x: scroll;
 									.option {
 										margin: 0 3%;
 										color: $wizard_grey;
@@ -392,13 +393,14 @@ $header_height: 10%;
 								@include animation(fadeIn 0.35s 0.65s both ease-in);
 							}
 
-							// the left half of the box that will show the card preview
+							// the left half of the box that will show the card previewf
 							.card_preview_container {
 								height: 100%;
 								.preview_box {
 									display: table;
 									width: 100%;
 									border: 1pt solid black;
+									margin-bottom: 50px;
 									
 									.preview {
 										display: table-row;
@@ -568,7 +570,7 @@ $header_height: 10%;
 									.description { 
 										font-weight: 300;
 										color: $wizard_purple;
-										font-size: 2.1em;
+										font-size: 1.6em;
 										margin-bottom: 0;
 										&.first {
 											margin-top: 0;
@@ -576,7 +578,7 @@ $header_height: 10%;
 									}
 									.answer {
 										font-weight: 400;
-										font-size: 2.2em;
+										font-size: 1.5em;
 										border-bottom: 2.5pt solid $wizard_purple;
 										margin-top: 7px;
 									}
