@@ -120,6 +120,7 @@
 		    	}, 1750);
 	    	} else {
 	    		randomTime = getRandomInt(800, 2250); // to make loading seem random
+	    		// randomTime*=100;
 	    		$scope.cardsLoading = true;
 	    		$scope.cardsLoaded = false;
 	    		usSpinnerService.spin('card-find-spinner');

@@ -3,11 +3,11 @@
 		<span>{{recipientNames()}} need this by
 		<div class="date" ng-controller="DatepickerDemoCtrl">
 			<div class="form_input date_input">
+				<span class="input-group-btn date_span">
+		      <button type="button" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+		    </span>
 				<input type="date" datepicker-popup json-date ng-model="cards.newCard.recipientArrivalDate" is-open="status.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" placeholder="mm/dd/yyyy" min="2015-11-10" min-date="minimumRecipientDate"/>
 			</div>
-			<span class="input-group-btn date_span">
-        <button type="button" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-      </span>
 		</div>
 	</div>
 
