@@ -1,3 +1,28 @@
+<div class="row queued_cards_filter">
+	<div class="filter_people pull-left">
+		<div class="form_input">
+			<input type="text" ng-model="filteredName" ng-change="recipientNameFilter(filteredName)" class="filter_people_input"><i class="glyphicon glyphicon-search search_icon"></i></input>
+		</div>
+	</div>
+	<div class="options pull-right">
+		<div class="form_input btn-group">
+			<button class="filter_select dropdown-toggle" data-toggle="dropdown" ng-click='open=!open'>{{recipientsFilter}}<i class="glyphicon glyphicon-menu-down"></i></button>
+			<ul class="dropdown-menu">
+				<li ng-repeat="filter in filterOptions" ng-click="updateFilterView(filter); $parent.open = !$parent.open">
+					<a href="#">{{filter}}</a>
+				</li>
+			</ul>
+		</div>
+
+		<div class="form_input">
+			<form>
+				<input type="hidden" ng-model="selectedUsers"/>
+				<a class="send_card" ng-click="multiple_queue()">Send Card</a>
+			</form>
+		</div>
+	</div>
+</div>
+
 <div class="row queued_cards">	
 	<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 single_card_div" ng-repeat="queuedCard in queuedCards" style="margin: 30px 0;">
 		<div class="queuedCard">
