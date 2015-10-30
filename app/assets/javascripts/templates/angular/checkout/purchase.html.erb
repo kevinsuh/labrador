@@ -360,77 +360,135 @@ end
 
 					<!-- first time user is entering an address -->
 					<div ng-hide="finalOptions.payment">
-						<div class="card_icons">
-							<img class="cc" ng-src="assets/icons/credit_cards_sprite.png" />
-						</div>
-						NEW PAYMENT FORM
 
-						<!-- <div class="address_form new_address" ng-show="viewNewAddressForm">
-							<div class="name form_field">
-								<div class="name">
-									<div class="form_input first_name">
-							      <input ng-model="newAddress.first_name" type="text" placeholder="First Name"/>
-							    </div>
-							    <div class="form_input last_name">
-							      <input ng-model="newAddress.last_name" type="text" placeholder="Last Name"/>
-							    </div>
+						<!-- first time user is entering a payment -->
+						<form name="ccForm" class="payment_form new_payment" ng-hide="finalOptions.payment" novalidate>
+
+							<div class="card_icons">
+								<img class="cc" ng-src="assets/icons/credit_cards_sprite.png" />
+							</div>
+
+							<div class="full_name form_field">
+								<div class="form_input">
+									<input ng-model="firstTimePayment.name" placeholder="Cardholder Name"/>
 								</div>
 							</div>
 
-							<div class="street form_field">
-								<div class="street">
-									<div class="form_input">
-							      <input ng-model="newAddress.street" type="text" placeholder="Street"/>
-							    </div>
+							<div class="number form_field">
+								<div class="form_input">
+									<input type="text" name="ccNumber" cc-number cc-format ng-model="firstTimePayment.number" placeholder="Cardholder Number" novalidate/>
 								</div>
 							</div>
 
-							<div class="address_other form_field">
-								<div class="city">
-									<div class="form_input">
-							      <input ng-model="newAddress.city" type="text" placeholder="City"/>
-							    </div>
+							<div class="exp form_field">
+								<div class="month form_input">
+									<select ng-model="firstTimePayment.exp_month" class="card_month">
+										<option value="">Month</option>
+							  		<% Date::MONTHNAMES.compact.each_with_index.map { |name, i| %>
+							  			<option value="<%= i+1 %>"><%= "#{i+1} - #{name}" %></option>
+							  		<% } %> 
+							  	</select>
 								</div>
 
-								<div class="state">
+								<div class="year form_input">
+									<select ng-model="firstTimePayment.exp_year" class="card_year">
+							  		<option value="">Year</option>
+							  		<% (Date.today.year..(Date.today.year+15)).each do |date| %>
+							  			<option value="<%= date %>"><%= date %></option>
+							  		<% end %>
+							  	</select>
+								</div>
+
+								<div class="cvc form_input">
 									<div class="form_input">
-										<select ng-model="newAddress.state">
-								  		<option value="">State</option>
-								  		<% us_states.each { |state, abrv| %>
-								  			<option value="<%= state %>"><%= abrv %></option>
-											<% } %>
-								  	</select>
+										<input cc-cvc ng-model="firstTimePayment.cvc" novalidate placeholder="CVC"/>
+										<span class="glyphicon glyphicon-question-sign" tooltip-class="cvcTooltip" tooltip-placement="right" tooltip="Your CVC is the 3-digit security code on the back of your credit card."></span>
 									</div>
 								</div>
 
-								<div class="zip">
-									<div class="form_input">
-							      <input ng-model="newAddress.zipcode" type="text" placeholder="Zip"/>
-							    </div>
-								</div>
-
-								<div class="country">
-									<div class="form_input">
-										<country-select data-ng-model="newAddress.country"></country-select>
-									</div>
-								</div>
 							</div>
 
 							<div class="options form_field">
 								<div class="options">
 									<div class="form_input is_primary">
-							      <input id="is_primary_newAddress" class="checkbox" ng-model="newAddress.is_primary" type="checkbox"/><label for="is_primary_newAddress">Default shipping address</label>
+							      <input id="is_primary_firstTimePayment" class="checkbox" ng-model="firstTimePayment.is_primary" type="checkbox"/><label for="is_primary_firstTimePayment">Default payment method</label>
 							    </div>
+								</div>
+							</div>
+
+							<div class="address_separator form_field">
+								<hr class="border_line" style="margin: 5px 0;">
+							</div>
+							{{firstTimePayment}}
+
+							<div class="options form_field">
+								<div class="options">
+									<div class="form_input same_as_shipping_address">
+							      <input id="same_as_shipping_address_firstTimePayment" class="checkbox" ng-model="firstTimePayment.same_as_shipping_address" type="checkbox"/><label for="same_as_shipping_address_firstTimePayment">Billing address same as shipping address</label>
+							    </div>
+								</div>
+							</div>
+
+							<!-- BILLING ADDRESS here, default filled as shipping address -->
+							<div ng-hide="firstTimePayment.same_as_shipping_address">
+								<div class="name form_field">
+									<div class="name">
+										<div class="form_input first_name">
+								      <input ng-model="newPayment.address.first_name" type="text" placeholder="First Name"/>
+								    </div>
+								    <div class="form_input last_name">
+								      <input ng-model="newPayment.address.last_name" type="text" placeholder="Last Name"/>
+								    </div>
+									</div>
+								</div>
+
+								<div class="street form_field">
+									<div class="street">
+										<div class="form_input">
+								      <input ng-model="newPayment.address.street" type="text" placeholder="Street"/>
+								    </div>
+									</div>
+								</div>
+
+								<div class="address_other form_field">
+									<div class="city">
+										<div class="form_input">
+								      <input ng-model="newPayment.address.city" type="text" placeholder="City"/>
+								    </div>
+									</div>
+
+									<div class="state">
+										<div class="form_input">
+											<select ng-model="newPayment.address.state">
+									  		<option value="">State</option>
+									  		<% us_states.each { |state, abrv| %>
+									  			<option value="<%= state %>"><%= abrv %></option>
+												<% } %>
+									  	</select>
+										</div>
+									</div>
+
+									<div class="zip">
+										<div class="form_input">
+								      <input ng-model="newPayment.address.zipcode" type="text" placeholder="Zip"/>
+								    </div>
+									</div>
+
+									<div class="country">
+										<div class="form_input">
+											<country-select data-ng-model="newPayment.address.country"></country-select>
+										</div>
+									</div>
 								</div>
 							</div>
 
 							<div class="actions form_field">
 								<div class="button_box">
-									<button class="card_button shipping_button cancel" ng-click="cancelAddressSave()">CANCEL</button>
-									<button class="card_button shipping_button save" ng-click="createAddress()">SAVE</button>
+									<button class="card_button shipping_button cancel" ng-click="cancelPaymentSave()">CANCEL</button>
+									<button class="card_button shipping_button save" ng-disabled="ccForm.$invalid" ng-click="createPayment()">SAVE</button>
 								</div>
 							</div>
-						</div> -->
+						</form>
 					</div>
 				</div>
 
@@ -468,7 +526,7 @@ end
 					</div>
 
 					<!-- new payment method form -->
-					<form name="ccForm" class="payment_form new_address" ng-show="viewNewPaymentForm" novalidate>
+					<form name="ccForm" class="payment_form new_payment" ng-show="viewNewPaymentForm" novalidate>
 
 						<div class="card_icons">
 							<img class="cc" ng-src="assets/icons/credit_cards_sprite.png" />

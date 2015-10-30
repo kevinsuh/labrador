@@ -32,24 +32,30 @@
 		};
 
 		// handling first time address / card
-		$scope.firstTimeAddress = {};
+		$scope.firstTimeAddress = {
+			is_primary: true
+		};
 		if ($scope.user.primary_address) {
 			$scope.firstTimeAddress = false;
 		}
 
-		$scope.firstTimePayment = {};
-		if ($scope.user.primary_card != 'undefined') {
+		$scope.firstTimePayment = {
+			is_primary: true,
+			same_as_shipping_address: true
+		};
+		if ($scope.user.primary_card != 'undefined' && $scope.user.primary_card != undefined) {
 			$scope.firstTimePayment = false;
-		} else {
-			// iterate through to find the primary credit card
-			// if it is not their first time paying
+
+			// iterate through to find the primary credit card if it is not their first time paying
 			// since there is no "primary_card" like we have primary_address
+
 			payments = $scope.user.stripe_customer.sources.data;
 			for (var i = 0; i < payments.length; i++) {
 				if (payments[i].id == $scope.user.primary_card.id) {
 					$scope.user.stripe_customer.sources.data[i].is_primary = true;
 				}
 			}
+
 		}
 
 		// for handling new and updating addresses /cards
@@ -122,7 +128,9 @@
 		$scope.newAddressForm = function() {
 
 			// fresh template every time
-			$scope.newAddress = {};
+			$scope.newAddress = {
+				is_primary: true
+			};
 			$scope.displayAddressView('newAddressForm');
 
 		}
@@ -212,7 +220,10 @@
 
 		$scope.newPaymentForm = function() {
 			// fresh template every time
-			$scope.newPayment = { is_primary: true, same_as_shipping_address: true }; // default suggest new payment methods to be primary
+			$scope.newPayment = {
+				is_primary: true,
+				same_as_shipping_address: true
+			}; // default suggest new payment methods to be primary
 			$scope.displayPaymentView('newPaymentForm');
 		}
 
