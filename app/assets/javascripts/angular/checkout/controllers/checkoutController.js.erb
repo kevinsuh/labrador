@@ -28,11 +28,6 @@
 		$scope.cards           = cards;
 		$scope.queuedCards     = cards.queuedCards;
 
-		console.log($scope.user);
-		console.log($scope.stripe_customer);
-
-		console.log($scope.queuedCards);
-
 		$scope.initialCardOptions = $scope.queuedCards; // it wont be queued cards, but there will be an initial amount of card options
 
 		// the options to attach with this order
@@ -87,9 +82,27 @@
 		$scope.viewEditPaymentForm = false;
 		$scope.viewSelectedPayment = true;
 
+		console.log($scope.user);
+		console.log($scope.stripe_customer);
+		console.log($scope.queuedCards);
+		console.log($scope.finalOptions);
+
 		// validate that both address and payment card options are filled -- whether it's from saved data or first-time
-		$scope.addressIsFilled = $scope.user.primary_address
-		$scope.paymentIsFilled = $scope.user.primary_card
+		if ($scope.finalOptions.address) {
+			$scope.addressIsFilled = true;
+		}
+		if ($scope.finalOptions.payment) {
+			$scope.paymentIsFilled = true;	
+		}
+		$scope.$watch('finalOptions', function(finalOptions) {
+			if (finalOptions.address) {
+				$scope.addressIsFilled = true;
+			}
+			if (finalOptions.payment) {
+				$scope.paymentIsFilled = true;
+			}
+			console.log(finalOptions);
+		}, true);
 
 		$scope.$watch('firstTimeAddress', function(address) {
 			// if something exists for all the address fields
@@ -128,10 +141,12 @@
 				}
 			}
 
-			if (cardInfoIsFilled && billingAddressIsFIlled) {
-				$scope.paymentIsFilled = true;
-			} else {
-				$scope.paymentIsFilled = false;
+			if (!$scope.finalOptions.payment) {
+				if (cardInfoIsFilled && billingAddressIsFIlled) {
+					$scope.paymentIsFilled = true;
+				} else {
+					$scope.paymentIsFilled = false;
+				}	
 			}
 
 		}, true);
@@ -415,7 +430,107 @@
 		 */
 		$scope.submitOrder = function() {
 
-			console.log($scope.finalOptions);
+			// 2 paths. either both are saved, or one of them is firstTime
+			// if at least one is firstTime, then you must go through separate process of purchasing
+			// otherwise, we can use the saved information and go with it since that means finalOptions has already been set with the user's choices
+			
+			if ($scope.firstTimeAddress || $scope.firstTimePayment) {
+
+				// FIRST TIME ENTERING ADDRESS
+				if ($scope.firstTimeAddress) {
+					firstTimeAddress = $scope.firstTimeAddress;
+					user.createAddress(firstTimeAddress)
+		      .success(function(data) {
+		      	
+		      	// attach to finalOptions on success
+		      	address = data.address
+		      	if (address) {
+		      		$scope.finalOptions.address = address;
+		      	} else {
+		      		// stay in here and let user know it failed
+		      		console.log("failed to create address");
+		      		$scope.addressAlerts.push({type: "danger", msg: "Failed to add address."});
+		      	}
+		      })
+		      .error(function(data) {
+		        console.log("error in submit order createAddress function");
+		        console.log(data);
+		      });
+				}
+
+				// FIRST TIME ENTERING PAYMENT
+				if ($scope.firstTimePayment) {
+
+					firstTimePayment = $scope.firstTimePayment;
+
+					// shipping address for firstTimeAddress, or saved address
+					if ($scope.firstTimeAddress) {
+						shippingAddress = $scope.firstTimeAddress;
+					} else {
+						shippingAddress = $scope.finalOptions.address;
+					}
+
+					// same as shipping address, or manually inputed address
+					if (firstTimePayment.same_as_shipping_address) {
+						firstTimePayment.address = shippingAddress;
+					}
+
+					stripe.card.createToken({
+						number: firstTimePayment.number,
+						cvc: firstTimePayment.cvc,
+						exp_month: firstTimePayment.exp_month,
+						exp_year: firstTimePayment.exp_year,
+						name: firstTimePayment.name,
+						address_line1: firstTimePayment.address.street,
+						address_city: firstTimePayment.address.city,
+						address_state: firstTimePayment.address.state,
+						address_zip: firstTimePayment.address.zipcode,
+						address_country: firstTimePayment.address.country
+					})
+					.then(function(data) {
+						
+						cardToken = data.id;
+						card      = data.card;
+
+						// save this to our database now
+						user.createPayment(cardToken)
+						.success(function(data) {
+
+							// attach to finalOptions on success
+							// exit here if payment AND address is successfully saved
+		    		 	$scope.finalOptions.payment = card;
+		    		 	if ($scope.finalOptions.payment && $scope.finalOptions.address) {
+		    		 		$scope.purchaseCards($scope.finalOptions);
+		    		 		return;
+		    		 	}
+
+						})
+						.error(function(data) {
+							console.log("error in submit order createPayment function");
+							console.log(data);
+						});
+						
+					})
+					.catch(function(err) {
+						if (err.type && /^Stripe/.test(err.type)) {
+		          console.log('Stripe error: ', err.message);
+		        }
+		        $scope.paymentAlerts.push({type: "danger", msg: err.message});
+					});
+
+				}
+
+			} else { // both have been saved before
+				$scope.purchaseCards($scope.finalOptions);
+			}
+			
+		}
+
+		// this is what will get pushed for the final purchasing of thecards
+		$scope.purchaseCards = function(finalOptions) {
+
+			console.log("in actual purchase cards function");
+			console.log(finalOptions);
 
 		}
 

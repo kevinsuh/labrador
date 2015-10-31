@@ -68,7 +68,9 @@ end
 			</div>
 			<hr class="border_line">
 
-			<alert ng-repeat="alert in addressAlerts" type="{{alert.type}}" close="closeAddressAlert($index)">{{alert.msg}}</alert>
+			<div class="alerts_container" ng-if="addressAlerts.length > 0">
+				<alert ng-repeat="alert in addressAlerts" type="{{alert.type}}" close="closeAddressAlert($index)">{{alert.msg}}</alert>
+			</div>
 
 			<div class="selected_address" ng-show="viewSelectedAddress">
 
@@ -334,13 +336,15 @@ end
 			</div>
 			<hr class="border_line">
 
-			<alert ng-repeat="alert in paymentAlerts" type="{{alert.type}}" close="closePaymentAlert($index)">{{alert.msg}}</alert>
+			<div class="alerts_container" ng-if="paymentAlerts.length > 0">
+				<alert ng-repeat="alert in paymentAlerts" type="{{alert.type}}" close="closePaymentAlert($index)">{{alert.msg}}</alert>
+			</div>
 
 			<div ng-show="addressIsFilled">
 
 				<div class="selected_payment" ng-show="viewSelectedPayment">
 
-					<div ng-if="finalOptions.payment">
+					<div class="selected_payment" ng-if="finalOptions.payment">
 						<!-- card info -->
 						<div class="payment_info selected">
 							<div class="name detail">
