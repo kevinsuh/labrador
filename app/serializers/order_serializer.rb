@@ -35,6 +35,10 @@ class OrderSerializer < ActiveModel::Serializer
     recipient = Recipient.find_by(id: recipient_id)
     data[:recipient] = recipient
 
+    # get recipient address
+    recipient_address = recipient.addresses.first
+    data[:recipient_address] = recipient_address
+
     data
 
   end

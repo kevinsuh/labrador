@@ -15,27 +15,24 @@
 		</div>
 		<div class="information card_part">
 			<div class="card_title info">
-				<h4>Birthday Card</h4>
+				<h4>{{card.order_occasion.name}} Card</h4>
 				<h5>for <span style="font-weight: bold;">{{card.recipient.first_name}} {{card.recipient.last_name}}</span></h5>
 			</div>
 
 			<div class="delivery info">
 				<h5>Delivery Date:</h5>
-				<h5>04/16/2015</h5>
+				<h5>{{card.recipient_arrival_date | date:"MM/dd/yyyy"}}</h5>
 			</div>
 
-			<div class="address info">
+			<div class="address info" ng-if="card.recipient_address">
 				<h5>Address:</h5>
 				<!-- address info -->
-				<div class="address_info current" ng-class="{ 'show': isInArray(address.id, visibleOptions.addressInfos) }">
-					<div class="name detail">
-						Kevin Suh
-					</div>
+				<div class="address_info">
 					<div class="street detail">
-						716 First St.
+						{{card.recipient_address.street}}
 					</div>
 					<div class="street_two detail">
-						New Orleans, LA 70130
+						{{card.recipient_address.city}}, {{finalOptions.address.state | stateAbbreviation}} {{card.recipient_address.zipcode}}
 					</div>
 				</div>
 			</div>
