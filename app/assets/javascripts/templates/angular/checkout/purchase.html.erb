@@ -72,7 +72,7 @@ end
 
 			<div class="selected_address" ng-show="viewSelectedAddress">
 
-				<div ng-show="finalOptions.address">
+				<div ng-if="finalOptions.address">
 					<!-- address info -->
 					<div class="address_info selected">
 						<div class="name detail">
@@ -91,7 +91,7 @@ end
 				</div>
 
 				<!-- first time user is entering an address -->
-				<div ng-hide="finalOptions.address">
+				<div ng-if="!finalOptions.address">
 					<div class="address_form new_address">
 						<div class="name form_field">
 							<div class="name">
@@ -340,7 +340,7 @@ end
 
 				<div class="selected_payment" ng-show="viewSelectedPayment">
 
-					<div ng-show="finalOptions.payment">
+					<div ng-if="finalOptions.payment">
 						<!-- card info -->
 						<div class="payment_info selected">
 							<div class="name detail">
@@ -358,11 +358,10 @@ end
 						</div>
 					</div>
 
-					<!-- first time user is entering an address -->
-					<div ng-hide="finalOptions.payment">
+					<div ng-if="!finalOptions.payment">
 
 						<!-- first time user is entering a payment -->
-						<form name="ccForm" class="payment_form new_payment" ng-hide="finalOptions.payment" novalidate>
+						<form name="ccForm" class="payment_form new_payment" novalidate>
 
 							<div class="card_icons">
 								<img class="cc" ng-src="assets/icons/credit_cards_sprite.png" />
@@ -419,7 +418,6 @@ end
 							<div class="address_separator form_field">
 								<hr class="border_line" style="margin: 5px 0;">
 							</div>
-							{{firstTimePayment}}
 
 							<div class="options form_field">
 								<div class="options">
@@ -434,10 +432,10 @@ end
 								<div class="name form_field">
 									<div class="name">
 										<div class="form_input first_name">
-								      <input ng-model="newPayment.address.first_name" type="text" placeholder="First Name"/>
+								      <input ng-model="firstTimePayment.address.first_name" type="text" placeholder="First Name"/>
 								    </div>
 								    <div class="form_input last_name">
-								      <input ng-model="newPayment.address.last_name" type="text" placeholder="Last Name"/>
+								      <input ng-model="firstTimePayment.address.last_name" type="text" placeholder="Last Name"/>
 								    </div>
 									</div>
 								</div>
@@ -445,7 +443,7 @@ end
 								<div class="street form_field">
 									<div class="street">
 										<div class="form_input">
-								      <input ng-model="newPayment.address.street" type="text" placeholder="Street"/>
+								      <input ng-model="firstTimePayment.address.street" type="text" placeholder="Street"/>
 								    </div>
 									</div>
 								</div>
@@ -453,13 +451,13 @@ end
 								<div class="address_other form_field">
 									<div class="city">
 										<div class="form_input">
-								      <input ng-model="newPayment.address.city" type="text" placeholder="City"/>
+								      <input ng-model="firstTimePayment.address.city" type="text" placeholder="City"/>
 								    </div>
 									</div>
 
 									<div class="state">
 										<div class="form_input">
-											<select ng-model="newPayment.address.state">
+											<select ng-model="firstTimePayment.address.state">
 									  		<option value="">State</option>
 									  		<% us_states.each { |state, abrv| %>
 									  			<option value="<%= state %>"><%= abrv %></option>
@@ -470,22 +468,15 @@ end
 
 									<div class="zip">
 										<div class="form_input">
-								      <input ng-model="newPayment.address.zipcode" type="text" placeholder="Zip"/>
+								      <input ng-model="firstTimePayment.address.zipcode" type="text" placeholder="Zip"/>
 								    </div>
 									</div>
 
 									<div class="country">
 										<div class="form_input">
-											<country-select data-ng-model="newPayment.address.country"></country-select>
+											<country-select data-ng-model="firstTimePayment.address.country"></country-select>
 										</div>
 									</div>
-								</div>
-							</div>
-
-							<div class="actions form_field">
-								<div class="button_box">
-									<button class="card_button shipping_button cancel" ng-click="cancelPaymentSave()">CANCEL</button>
-									<button class="card_button shipping_button save" ng-disabled="ccForm.$invalid" ng-click="createPayment()">SAVE</button>
 								</div>
 							</div>
 						</form>
@@ -505,7 +496,7 @@ end
 								{{payment.name}}
 							</div>
 							<div class="card detail">
-								**** **** **** {{payment.last4}} <img ng-src="assets/icons/{{payment.brand | snakeCase}}.png" style="height: 1.5em;"/>
+								**** **** **** {{payment.last4}} <img ng-if="payment.brand" ng-src="assets/icons/{{payment.brand | snakeCase}}.png" style="height: 1.5em;"/>
 								<div class="link_options singleAddressOptions" ng-show="selectedPayment.last4 == payment.last4">
 									 <a class="link_option" ng-click="editPayment(payment)">edit</a> / <a ng-click="choosePayment(payment)" class="link_option">use</a>
 								</div>

@@ -1,4 +1,15 @@
 (function() {
+
+	/**
+	 * 		NOTES:
+	 * 		1. finalOptions is what is submitted to user 
+	 * 		2. when INFO HAS NOT YET BEEN ENTERED BEFORE, firstTimeAddress / firstTimePayment will be called. this will automatically save to your account then never be called for future checkouts for that user
+	 * 		3. you can enter NEW info via newAddress / newPayment
+	 * 		4. this means that shipping info + payment method have: a. finalOption b. listOptions c. newOption d. firstTimeOption -- as well as update functionality of existing cards
+	 * 		5. we look out for front-end validity of checkout via addressIsFilled and paymentIsFilled. If these are BOTH true, then the purchase button will show automatically
+	 * 		6. submitOrder will look for firstTimeAddress or firstTimePayment. these will both be false if it is not the user's first time. if it is the first time, it will try to create it first before processing any orders
+	 * 		7. for stripe, you must create the stripe customer and then attach the card for firstTimeCheckout.
+	 */
 	
 	/**
 	 * this is the controller used to handle checkout of the cards you queued
@@ -81,18 +92,49 @@
 		$scope.paymentIsFilled = $scope.user.primary_card
 
 		$scope.$watch('firstTimeAddress', function(address) {
-			// if something exists for all the fields, then we are good to go
+			// if something exists for all the address fields
 			if (address.first_name && address.last_name && address.street && address.city && address.state && address.zipcode && address.country) {
 				$scope.addressIsFilled = true;
+			} else {
+				// if final payment is not already filled
+				if (!$scope.finalOptions.address) {
+					$scope.addressIsFilled = false;
+				}
 			}
 		}, true);
 
-		// $scope.$watch('firstTimePayment', function(payment) {
-		// 	// if something exists for all the fields, then we are good to go
-		// 	if (address.first_name && address.last_name && address.street && address.city && address.state && address.zipcode && address.country) {
-		// 		$scope.addressIsFilled = true;
-		// 	}
-		// }, true);
+		$scope.$watch('firstTimePayment', function(payment) {
+
+			// these 2 portions must be filled for firstTimePayment to pass front-end validation
+			var cardInfoIsFilled;
+			var billingAddressIsFIlled;
+
+			// CREDIT CARD SECTION
+			if (payment.name && payment.number && payment.exp_month && payment.exp_year && payment.cvc) {
+				cardInfoIsFilled = true;
+			}	else {
+				if (!$scope.finalOptions.payment) {
+					cardInfoIsFilled = false;
+				}
+			}		
+
+			// BILLING ADDRESS SECTION
+			billing_address = payment.address;
+			if (payment.same_as_shipping_address || (billing_address && billing_address.first_name && billing_address.last_name && billing_address.street && billing_address.city && billing_address.state && billing_address.zipcode && billing_address.country)) {
+				billingAddressIsFIlled = true;
+			} else {
+				if (!$scope.finalOptions.address) {
+					billingAddressIsFIlled = false;	
+				}
+			}
+
+			if (cardInfoIsFilled && billingAddressIsFIlled) {
+				$scope.paymentIsFilled = true;
+			} else {
+				$scope.paymentIsFilled = false;
+			}
+
+		}, true);
 
 		// for displaying alert messages
 		$scope.addressAlerts = [];
