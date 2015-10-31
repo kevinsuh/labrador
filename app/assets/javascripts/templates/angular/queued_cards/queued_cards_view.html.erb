@@ -25,6 +25,7 @@
 
 	<tr class="queue_row title">
 		<th class="field check">
+			CHK
 		</th>
 		<th class="field person">
 			<h4>Person</h4>
@@ -43,8 +44,9 @@
 		</th>
 	</tr>
 
-	<tr class=" queue_row single_card" ng-repeat="queuedCard in queuedCards">
+	<tr class=" queue_row single_card" ng-repeat="queuedCard in queuedCards" ng-class="{'even':$index%2 == 0, 'odd':$index%2 == 1}">
 		<td class="field check">
+			ch:{{$index}}
 		</td>
 		<td class="field person">
 			<div class="profile_picture_container">

@@ -24,8 +24,15 @@ $card_profile_picture_size: 70px;
 			// header row
 			.queue_row {
 
+				&.even {
+					background-color: $medium_grey;
+				}
+				&.odd {
+
+				}
+
 				.field {
-					padding-left: 10px;
+					padding: 5px 10px;
 					vertical-align: middle;
 				}
 
