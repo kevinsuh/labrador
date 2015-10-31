@@ -15,41 +15,64 @@
 		</div>
 
 		<div class="form_input">
-			<form>
-				<input type="hidden" ng-model="selectedUsers"/>
-				<a class="send_card" ng-click="multiple_queue()">Send Card</a>
-			</form>
+			<a class="send_card" ng-click="checkout()" style="width: 120px;">Send Now ({{queuedCards.length}})</a>
 		</div>
 	</div>
 </div>
 
-<div class="row queued_cards">	
-	<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 single_card_div" ng-repeat="queuedCard in queuedCards" style="margin: 30px 0;">
-		<div class="queuedCard">
-			<div class="card_info">
-				<div class="info">
-					For: {{queuedCard.recipient.first_name}} {{queuedCard.recipient.last_name}}
+
+<table class="queued_cards">
+
+	<tr class="queue_row title">
+		<th class="field check">
+		</th>
+		<th class="field person">
+			<h4>Person</h4>
+		</th>
+		<th class="field occasion">
+			<h4>Occasion</h4>
+		</th>
+		<th class="field card_selection">
+			<h4>Card Selection</h4>
+		</th>
+		<th class="field occasion_date">
+			<h4>Occasion Date</h4>
+		</th>
+		<th class="field ship_date">
+			<h4>Ship Date</h4>
+		</th>
+	</tr>
+
+	<tr class=" queue_row single_card" ng-repeat="queuedCard in queuedCards">
+		<td class="field check">
+		</td>
+		<td class="field person">
+			<div class="profile_picture_container">
+				<div class="profile_picture">
+					<img class="image" ng-src="{{queuedCard.recipient_picture}}" />
 				</div>
-				<div class="info">
-					Occasion: {{queuedCard.order_occasion.name}}
-				</div>
-				<div class="info">
-					Image: <img class="image" ng-src="{{queuedCard.card_images[0]}}" />
-				</div>
-				<div class="info">
-					Arrival Date: {{queuedCard.recipient_arrival_date | date: "MMM. d"}}
-				</div>
-				
 			</div>
-		</div>
-	</div>
+			<div class="name">
+				{{queuedCard.recipient.first_name}} {{queuedCard.recipient.last_name}}
+			</div>
+		</td>
+		<td class="field occasion">
+			{{queuedCard.order_occasion.name}}
+		</td>
+		<td class="field card_selection">
+			<div class="card_picture_container">
+				<div class="card_picture">
+					<img class="image" ng-src="{{queuedCard.card_images[0]}}" />
+				</div>
+			</div>
+		</td>
+		<td class="field occasion_date">
+			{{queuedCard.recipient_arrival_date | date:"MM/dd/yyyy"}}
+		</td>
+		<td class="field ship_date">
+			SHIP DATE?
+		</td>
+	</tr>
 
-	<div class="row confirmation_button_container">
+</table>
 
-	<div class="button_box">
-		<button class="card_button" ng-click="checkout()">PURCHASE {{queuedCards.length}} CARDS</button>
-	</div>
-
-</div>
-
-</div>

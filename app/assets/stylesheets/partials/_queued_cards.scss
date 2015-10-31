@@ -1,0 +1,128 @@
+@import "base";
+$card_profile_picture_size: 70px;
+
+// container home view
+.my_cards_container {
+
+	// queued cards specifically
+	.queued_cards_view {
+		min-width: 465px;
+		width: 100%;
+
+		// top header
+		.queued_cards_filter {
+
+		}
+
+		// table holding the queued cards
+		.queued_cards {
+			width: 100%;
+			tbody {
+				background-color: transparent;
+			}
+
+			// header row
+			.queue_row {
+
+				.field {
+					padding-left: 10px;
+					vertical-align: middle;
+				}
+
+				&.title {
+					border-bottom: 2pt solid grey;
+
+					// determine column widths here
+					.check {
+						width: 10%;
+					}
+					.person {
+						width: 30%;
+					}
+					.occasion {
+						width: 15%;
+					}
+					.card_selection {
+						width: 15%;
+					}
+					.occasion_date {
+						width: 15%;
+					}
+					.ship_date {
+						width: 15%;
+					}
+				}
+
+				.check {
+
+				}
+				.person {
+
+					.profile_picture_container {
+						display: inline-block;
+						vertical-align: middle;
+						// recipient picture
+						.profile_picture {
+							height: $card_profile_picture_size; 
+							width: $card_profile_picture_size; 
+							overflow:hidden;
+							-webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC); // overflow hidden for chrome
+							margin: 0 auto;
+							margin-top: 5px;
+
+							border-radius: 50%;
+							position: relative;
+							background-color: $light_grey;
+							//border: 1pt solid $medium_dark_grey; 
+
+							.image {
+								position: absolute;
+								right: 0;
+								bottom: 0;
+								height: $card_profile_picture_size;
+							}
+						}
+					}
+					.name {
+						display: inline-block;
+					}
+
+				}
+				.occasion {
+
+				}
+				.card_selection {
+					.card_picture_container {
+						.card_picture {
+							.image {
+								height: 85px;
+							}
+						}
+					}
+
+				}
+				.occasion_date {
+
+				}
+				.ship_date {
+					
+				}
+
+				&.title {
+
+
+				}
+
+				&.single_card {
+
+				}
+				
+				
+			}
+		}
+
+
+	}
+}
+
+

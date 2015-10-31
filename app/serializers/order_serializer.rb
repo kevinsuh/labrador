@@ -39,6 +39,12 @@ class OrderSerializer < ActiveModel::Serializer
     recipient_address = recipient.addresses.first
     data[:recipient_address] = recipient_address
 
+    # recipient profile picture if it exists
+    profile_picture = recipient.profile_pictures.first
+    if profile_picture && profile_picture.picture?
+      data[:recipient_picture] = profile_picture.picture.url
+    end
+
     data
 
   end

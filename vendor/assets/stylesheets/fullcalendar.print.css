@@ -39,7 +39,7 @@ thead,
 tbody,
 .fc-row {
 	border-color: #ccc !important;
-	background: #fff !important;
+	/*background: #fff;*/
 }
 
 /* kill the overlaid, absolutely-positioned common components */
