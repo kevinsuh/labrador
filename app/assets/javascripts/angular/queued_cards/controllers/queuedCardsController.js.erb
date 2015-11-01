@@ -23,6 +23,83 @@
 		  });
 
 		/**
+		 * 			SELECTED CARDS FUNCTIONS
+		 */
+		
+		// if it is in selectedOrders array -- remove it.
+		// if not -- add it
+		$scope.toggleInSelectedOrdersArray = function(order) {
+
+			selectedOrderIDs = $scope.selectedOrderIDs;
+			orderID          = order.id;
+
+			if (isInArray(orderID, selectedOrderIDs)) {
+				var index = selectedOrderIDs.indexOf(orderID);
+				if (index > -1) {
+					$scope.selectedOrderIDs.splice(index, 1);
+				}
+			} else {
+				$scope.selectedOrderIDs.push(orderID);
+			}
+		}
+
+		// checks if this order's ID is in the selectedOrderIDs
+		$scope.isInSelectedOrdersArray = function(order) {
+
+			selectedOrderIDs = $scope.selectedOrderIDs;
+			orderID          = order.id;
+
+			orderInArray = false;
+			for (var i = 0; i < selectedOrderIDs.length; i++) {
+				if (orderID == selectedOrderIDs[i]) {
+					orderInArray = true;
+					break;
+				}
+			}
+			return orderInArray;
+
+		}
+
+		// allows you to toggle between having all queued cards selected or not
+		$scope.toggleSelectAllQueuedCards = function() {
+
+			queuedCards = $scope.queuedCards;
+			queuedCardIDs = queuedCards.map(function(card) {
+				return card.id;
+			});
+
+			if ($scope.allQueuedCardsAreSelected()) {
+				$scope.selectedOrderIDs = [];
+			} else {
+				$scope.selectedOrderIDs = queuedCardIDs;
+			}
+
+		}
+
+		// checks to see if all queued cards are already selected or not
+		$scope.allQueuedCardsAreSelected = function() {
+
+			allQueuedCardsAreSelected = true;
+
+			queuedCards = $scope.queuedCards;
+			queuedCardIDs = queuedCards.map(function(card) {
+				return card.id;
+			});
+
+			selectedOrderIDs = $scope.selectedOrderIDs;
+
+			// if even one of the IDs is not in the queuedCardIDs array, then this is not true
+			for (var i = 0; i < queuedCardIDs.length; i++) {
+				if (!isInArray(queuedCardIDs[i], selectedOrderIDs)) {
+					allQueuedCardsAreSelected = false;
+					break;
+				}
+			}
+
+			return allQueuedCardsAreSelected;
+		}
+
+		/**
 		 * get cards that are selected for checkout to purchase them
 		 * this will be done by holding the selected order IDs in an array so we know exactly which ones the user 'selected' for purchase checkout
 		 */
@@ -30,11 +107,6 @@
 
 			queuedCards      = $scope.queuedCards;
 			selectedOrderIDs = $scope.selectedOrderIDs;
-			
-			// right now they are queued cards but are selected instead
-			queuedCards.forEach(function(card) {
-				selectedOrderIDs.push(card.id);
-			});
 
 			$state.go("main.app.checkout.home", {selected_order_ids: selectedOrderIDs });
 

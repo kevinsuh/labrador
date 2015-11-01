@@ -169,8 +169,6 @@
         resolve: {
           selected_order_ids: ['cards', '$stateParams', function(cards, $stateParams) {
             selected_order_ids = $stateParams.selected_order_ids;
-            console.log("HERE IN SELECTED ORDER IDS");
-            console.log(selected_order_ids);
             return cards.getOrdersForIDs(selected_order_ids);
             // get cards from those via ID
           }]

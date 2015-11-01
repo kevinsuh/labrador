@@ -36,6 +36,7 @@ $card_profile_picture_size: 70px;
 					vertical-align: middle;
 				}
 
+				// TITLE ROW SPECIFIC
 				&.title {
 					border-bottom: 2pt solid grey;
 
@@ -60,8 +61,13 @@ $card_profile_picture_size: 70px;
 					}
 				}
 
+				// ALL ROWS IN TABLE
 				.check {
-
+					text-align: center;
+					.checkbox {
+						display: inline;
+						@include transform(scale(1.3));
+					}
 				}
 				.person {
 
