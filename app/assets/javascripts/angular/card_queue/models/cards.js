@@ -110,7 +110,6 @@
       
       return $http.post('/orders/orders_for_user.json', orderDirections).success(function(data) {
         data["orderType"] = orderType;
-        console.log(data);
         if (orderType == "queued") {
           o.queuedCards = data.orders;
         } else if (orderType == "purchased") {

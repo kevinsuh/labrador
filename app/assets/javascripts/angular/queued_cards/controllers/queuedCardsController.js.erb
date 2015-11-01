@@ -9,6 +9,7 @@
 		$scope.queuedCards      = cards.queuedCards;
 		$scope.purchasedCards   = cards.purchasedCards;
 		$scope.selectedOrderIDs = [];
+		$scope.tableView        = 'queued';
 
 		console.log($scope.queuedCards);
 
@@ -22,6 +23,17 @@
 		    $scope.currentState = toState.name;
 		    makeStateActive($scope.currentState);
 		  });
+
+		/**
+		 * choose which table view you want to display, either queued or purchased cards
+		 * @param {string} cardStatus 'queued' or 'purchased'
+		 */
+		$scope.setTableView = function(cardStatus) {
+			$scope.tableView = cardStatus;
+			if (cardStatus == 'purchased') {
+				$scope.selectedOrderIDs = [];
+			}
+		}
 
 		/**
 		 * 			FILTER FUNCTIONALITY

@@ -359,4 +359,11 @@ footer {
   }
 }
 
+// for link disabled
+a.disabled {
+  pointer-events: none;
+  cursor: default;
+  background-color: $dark_grey !important;
+  box-shadow: none !important;
+}
 

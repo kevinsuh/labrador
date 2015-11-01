@@ -4,9 +4,16 @@
 	 * 		main controller to handle layout-level functionality
 	 */
 	 
-	var app = angular.module('card-queue').controller("MainController", function($rootScope, $document, $scope, $state, $timeout, $window, user) {
+	var app = angular.module('card-queue').controller("MainController", function($rootScope, $document, $scope, $state, $timeout, $window, user, cards) {
 
 			$scope.user = user;
+			$scope.cards = cards;
+
+
+			console.log("what.");
+			cards.getOrderedCards('queued');
+			console.log(cards)
+			console.log(user);
 
 			$scope.logOut = function() {
 				user.logOut().success(function(data) {
