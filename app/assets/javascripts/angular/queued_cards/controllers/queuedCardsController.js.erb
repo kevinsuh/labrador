@@ -24,6 +24,54 @@
 		  });
 
 		/**
+		 * 			FILTER FUNCTIONALITY
+		 */
+		
+		$scope.filteredName = ""; // recipient name filter to put in the input
+
+		/**
+		 * this takes the name filter, and returns all of the queued cards that have recipients that match the name filter
+		 *
+		 * it works by taking all the recipients of the queued cards, then putting the orders that have recipient names matching the filter into a visibleOrderIDs array
+		 * 
+		 * @param  string name
+		 */
+		$scope.recipientNameFilter = function(name) {
+
+			queuedCards = $scope.queuedCards;
+			queuedCardRecipients = queuedCards.map(function(card) {
+				return card.recipient;
+			});
+			relationshipFilter = $scope.recipientsFilter;
+			$scope.filteredName = name;
+
+			name = name.toLowerCase();
+
+			visibleRecipients = filterArray("name", name, queuedCardRecipients);
+			visibleRecipientIDs = visibleRecipients.map(function(recipient) { return recipient.id });
+			visibleOrderIDs = [];
+
+			// go through all the orders and only if they have recipient name that matches the filter
+			for (var i = 0; i < queuedCards.length; i++) {
+				order = queuedCards[i];
+				if (isInArray(order.recipient.id, visibleRecipientIDs)) {
+					visibleOrderIDs.push(order.id);
+				}
+			}
+
+			// set the view's queued card "visibility" here
+			for (var i = 0; i < queuedCards.length; ++i) {
+				queuedCard = queuedCards[i];
+				if (isInArray(queuedCard.id, visibleOrderIDs)) {
+					queuedCard.is_visible = 1;
+				} else {
+					queuedCard.is_visible = 0;
+				}
+			}
+
+		};
+
+		/**
 		 * 			SELECTED CARDS FUNCTIONS
 		 */
 		
