@@ -13,7 +13,8 @@
 		console.log($scope.queuedCards);
 
 		headerTitle = angular.element(document.querySelector("#currentTitle"));
-		headerTitle.text("Queued Cards");
+		queuedCardsCount = $scope.queuedCards.length;
+		headerTitle.text("Queued Cards ("+queuedCardsCount+")");
 
 		// test whether you are currently at this state or not
 		$scope.$on('$stateChangeSuccess',
