@@ -14,6 +14,7 @@
     var o = {
       purchasedCards: [], // purchased but not yet delivered
       queuedCards:[], // queued but not purchased
+      selectedCardsForPurchase: [], // cards that user is trying to check out with
       newCard: { // current card being filled out
         occasion: "",
         recipientRelationship: "",
@@ -115,6 +116,22 @@
         } else if (orderType == "purchased") {
           o.purchasedCards = data.orders;
         }
+      });
+
+    }
+
+    /**
+     * get the cards via the array of ids pased in
+     * @param  int array cardIDs
+     */
+    o.getOrdersForIDs = function(orderIDs) {
+
+      return $http.post('/orders/get_selected_orders.json', {selected_order_ids: orderIDs })
+      .success(function(data) {
+        console.log("in get orders for ids");
+        console.log(data);
+        orders = data.orders;
+        o.selectedCardsForPurchase = orders;
       });
 
     }

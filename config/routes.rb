@@ -60,6 +60,7 @@ Rails.application.routes.draw do
 
   # orders
   post 'orders/orders_for_user'
+  post 'orders/get_selected_orders'
   post 'orders/queue_card_order'
 
   # recipients (add/update 'my people')

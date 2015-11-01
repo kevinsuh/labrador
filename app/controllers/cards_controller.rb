@@ -25,7 +25,7 @@ class CardsController < ApplicationController
   	end
 
   end
-
+  
   def get_cards_for_occasion
     occasion_id = params[:occasion_id]
     cards = Card.for_occasion occasion_id

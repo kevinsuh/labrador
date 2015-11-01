@@ -14,7 +14,10 @@
 	/**
 	 * this is the controller used to handle checkout of the cards you queued
 	 */
-	var app = angular.module('card-queue').controller("CheckoutController", function($rootScope, $location, $window, $scope, $state, $timeout, usSpinnerService, user, cards, stripe) {
+	var app = angular.module('card-queue').controller("CheckoutController", function($rootScope, $location, $window, $scope, $state, $stateParams, $timeout, usSpinnerService, user, cards, stripe) {
+
+		$scope.selectedCardsForPurchase = cards.selectedCardsForPurchase;
+		console.log(cards);
 		
 		/**
 		 * 			CONFIGURATION FOR CHECKOUT CONTROLLER
@@ -23,18 +26,22 @@
 		headerTitle = angular.element(document.querySelector("#currentTitle"));
 		headerTitle.text("Checkout");
 
-		$scope.user            = user.currentUser;
-		$scope.stripe_customer = $scope.user.stripe_customer
-		$scope.cards           = cards;
-		$scope.queuedCards     = cards.queuedCards;
+		$scope.user                     = user.currentUser;
+		$scope.stripe_customer          = $scope.user.stripe_customer
+		$scope.cards                    = cards;
+		$scope.queuedCards              = cards.queuedCards;
+		$scope.selectedCardsForPurchase = cards.selectedCardsForPurchase; // this is the initial choice of the user
 
-		$scope.initialCardOptions = $scope.queuedCards; // it wont be queued cards, but there will be an initial amount of card options
+		// temp. hack that if selectedCardsForPurchase is 0, then we will default to all of your queued cards. this will handle refresh and also coming in from the queue wizard
+		if (cards.selectedCardsForPurchase.length == 0) {
+			$scope.selectedCardsForPurchase = cards.queuedCards;
+		}
 
 		// the options to attach with this order
 		$scope.finalOptions = {
 			address: $scope.user.primary_address,
 			payment: $scope.user.primary_card,
-			cards: angular.copy($scope.initialCardOptions) // this is what will go through for final purchase
+			cards: angular.copy($scope.selectedCardsForPurchase) // this is what will go through for final purchase
 		};
 
 		// handling first time address / card

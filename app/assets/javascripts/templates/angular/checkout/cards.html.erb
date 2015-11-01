@@ -5,7 +5,7 @@
 
 <div class="cards_list">
 
-	<div class="card" ng-repeat="card in initialCardOptions" ng-click="toggleInFinalCardsArray(card)">
+	<div class="card" ng-repeat="card in selectedCardsForPurchase" ng-click="toggleInFinalCardsArray(card)">
 
 		<div class="select card_part" ng-class="{'what': isInFinalCardsArray(card)}">
 			<input ng-checked="isInFinalCardsArray(card)" class="checkbox" type="checkbox"/>

@@ -25,6 +25,17 @@ class OrdersController < ApplicationController
 
 	end
 
+	def get_selected_orders
+    
+    selected_order_ids = params[:selected_order_ids]
+    selected_orders = Order.where("id IN (:order_ids)", order_ids: selected_order_ids)
+
+    respond_to do |format|
+      format.json {render json: selected_orders }
+    end
+
+  end
+
 	# validate, then queue card and return the successful card in JSON notation
   def queue_card_order
   	

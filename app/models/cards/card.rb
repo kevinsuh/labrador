@@ -19,6 +19,7 @@ class Card < ActiveRecord::Base
 	has_one :vendor, through: :card_vendor
 
 	class << self
+
 		# return the curated cards for the 3 current filters
 		# ex. occasion = christmas
 		# ex. relationship = mother

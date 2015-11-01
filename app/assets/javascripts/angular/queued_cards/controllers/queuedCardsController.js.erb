@@ -31,17 +31,12 @@
 			queuedCards      = $scope.queuedCards;
 			selectedOrderIDs = $scope.selectedOrderIDs;
 			
+			// right now they are queued cards but are selected instead
 			queuedCards.forEach(function(card) {
 				selectedOrderIDs.push(card.id);
 			});
 
-			order_ids = selectedOrderIDs.join();
-			console.log(order_ids);
-
-			$state.go("main.app.checkout.home", {selected_order_ids: "order_ids"});
-
-			// for now, for testing purposes, assume all have been selected
-			
+			$state.go("main.app.checkout.home", {selected_order_ids: selectedOrderIDs });
 
 		}
 
