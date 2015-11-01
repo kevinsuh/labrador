@@ -29,7 +29,7 @@ $card_profile_picture_size: 70px;
 		}
 
 		// table holding the queued cards
-		.queued_cards {
+		.queued_cards, .purchased_cards {
 			width: 100%;
 			tbody {
 				background-color: transparent;

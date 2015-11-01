@@ -101,32 +101,32 @@
 		</th>
 	</tr>
 
-	<tr class=" queue_row single_card" ng-repeat="queuedCard in queuedCards" ng-class="{'even':$index%2 == 0, 'odd':$index%2 == 1}" ng-click="toggleInSelectedOrdersArray(queuedCard)" ng-if="queuedCard.is_visible != 0">
+	<tr class="queue_row single_card" ng-repeat="purchasedCard in purchasedCards" ng-class="{'even':$index%2 == 0, 'odd':$index%2 == 1}" ng-click="toggleInSelectedOrdersArray(purchasedCard)" ng-if="purchasedCard.is_visible != 0">
 		<td class="field check">
-			<input ng-checked="isInSelectedOrdersArray(queuedCard)" class="checkbox" type="checkbox"/>
+			<input ng-checked="isInSelectedOrdersArray(purchasedCard)" class="checkbox" type="checkbox"/>
 		</td>
 		<td class="field person">
 			<div class="profile_picture_container">
 				<div class="profile_picture">
-					<img class="image" ng-src="{{queuedCard.recipient_picture}}" />
+					<img class="image" ng-src="{{purchasedCard.recipient_picture}}" />
 				</div>
 			</div>
 			<div class="name">
-				{{queuedCard.recipient.first_name}} {{queuedCard.recipient.last_name}}
+				{{purchasedCard.recipient.first_name}} {{purchasedCard.recipient.last_name}}
 			</div>
 		</td>
 		<td class="field occasion">
-			{{queuedCard.order_occasion.name}}
+			{{purchasedCard.order_occasion.name}}
 		</td>
 		<td class="field card_selection">
 			<div class="card_picture_container">
 				<div class="card_picture">
-					<img class="image" ng-src="{{queuedCard.card_images[0]}}" />
+					<img class="image" ng-src="{{purchasedCard.card_images[0]}}" />
 				</div>
 			</div>
 		</td>
 		<td class="field occasion_date">
-			{{queuedCard.recipient_arrival_date | date:"MM/dd/yyyy"}}
+			{{purchasedCard.recipient_arrival_date | date:"MM/dd/yyyy"}}
 		</td>
 		<td class="field ship_date">
 			SHIP DATE?
