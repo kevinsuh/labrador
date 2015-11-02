@@ -81,8 +81,7 @@
 <table class="purchased_cards" ng-if="tableView == 'purchased'">
 
 	<tr class="queue_row title">
-		<th class="field check" ng-click="toggleSelectAllQueuedCards()">
-			<input ng-checked="allQueuedCardsAreSelected()" class="checkbox" type="checkbox"/>
+		<th class="field check">
 		</th>
 		<th class="field person">
 			<h4>Person</h4>
@@ -103,7 +102,6 @@
 
 	<tr class="queue_row single_card" ng-repeat="purchasedCard in purchasedCards" ng-class="{'even':$index%2 == 0, 'odd':$index%2 == 1}" ng-click="toggleInSelectedOrdersArray(purchasedCard)" ng-if="purchasedCard.is_visible != 0">
 		<td class="field check">
-			<input ng-checked="isInSelectedOrdersArray(purchasedCard)" class="checkbox" type="checkbox"/>
 		</td>
 		<td class="field person">
 			<div class="profile_picture_container">

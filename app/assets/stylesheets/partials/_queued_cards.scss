@@ -12,8 +12,12 @@ $card_profile_picture_size: 70px;
 		// buttons to choose b/w queued and purchased
 		.choose_cards_view {
 			.option {
+				float: left;
+				padding: 5px;
+				cursor: pointer;
 				&.selected {
-					background-color: purple;
+					background-color: green;
+					color: white;
 				}
 			}
 
