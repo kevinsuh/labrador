@@ -27,6 +27,53 @@ module Checkout
 
 		end
 
+		# stripe purchase cards in json fashion
+		def submit_order_json
+
+			shipping_address_id = params[:shipping_address_id]
+			payment_id          = params[:payment_id]
+			order_ids           = params[:order_ids]
+			customer_id         = current_user.stripe_account.customer_id
+			
+			# currently, $5 includes tax + shipping
+			# stripe is in cents
+			total_charge = ((order_ids.count * 5) * 100).to_i
+
+			charge = Stripe::Charge.create(
+				amount: total_charge,
+				currency: "usd",
+				customer: customer_id,
+				source: payment_id,
+				description: "Purchase of #{order_ids.count} cards from #{current_user.email}. Order IDs: #{order_ids}"
+			)
+
+			# more stuff if charge was successful
+			if charge
+				orders = Order.where("id IN (:order_ids)", order_ids: order_ids)
+				# we need to update the order status from queued => purchased
+				orders.each do |order|
+					order.status.update_columns(purchased: true)
+				end
+
+				respond_to do |format|
+	        format.json { render json: { success: true, order_ids: order_ids } }
+	      end
+
+			else
+
+				respond_to do |format|
+	        format.json { render json: { success: false } }
+	      end
+
+			end
+
+			rescue Stripe::CardError => e
+				respond_to do |format|
+          format.json { render json: { success: false, message: e.message } }
+        end
+
+		end
+
 		# purchase the cards and send back to root url!
 		def submit_order
 

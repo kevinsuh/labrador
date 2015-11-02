@@ -536,8 +536,31 @@
 		// this is what will get pushed for the final purchasing of thecards
 		$scope.purchaseCards = function(finalOptions) {
 
-			console.log("in actual purchase cards function");
-			console.log(finalOptions);
+			shippingAddress = finalOptions.address;
+			payment         = finalOptions.payment;
+			orders          = finalOptions.cards;
+
+			shippingAddressID = shippingAddress.id;
+			paymentID         = payment.id;
+			orderIDs          = orders.map(function(order) {
+				return order.id;
+			});
+
+			// 1. charge the card and if successful, then update everything
+			cards.submitOrder(shippingAddressID, paymentID, orderIDs)
+			.success(function(data) {
+        console.log("in submitOrder function of purchaseCards");
+        console.log(data);
+        success = data.success;
+        if (success) {
+        	orderIDs = data.order_ids;
+        	console.log("success for these order IDs:");
+        	console.log(orderIDs);
+        } else {
+        	console.log("FAILURE!!!");
+        	console.log(data.message);
+        }
+      });
 
 		}
 

@@ -135,6 +135,12 @@
 
     }
 
+    o.submitOrder = function(shippingAddressID, paymentID, orderIDs) {
+
+      return $http.post('/checkout/submit_order_json.json', { shipping_address_id: shippingAddressID, payment_id: paymentID, order_ids: orderIDs });
+
+    }
+
     return o;    
 
   }]);

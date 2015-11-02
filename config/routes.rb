@@ -28,6 +28,7 @@ Rails.application.routes.draw do
     get '' => 'orders#view_cart'
     get 'final' => 'orders#final_confirmation'
     post 'submit_order' => 'orders#submit_order'
+    post 'submit_order_json' => 'orders#submit_order_json'
   end
 
   # admin
