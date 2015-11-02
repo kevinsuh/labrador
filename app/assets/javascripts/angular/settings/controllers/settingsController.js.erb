@@ -1,0 +1,20 @@
+(function() {
+	
+	/**
+	 * this controller is specific for user viewing his queued / purchased cards
+	 */
+	var app = angular.module('card-queue').controller("SettingsController", function($rootScope, $location, $window, $scope, $state, $timeout) {
+			
+		headerTitle = angular.element(document.querySelector("#currentTitle"));
+		headerTitle.text("Settings");
+
+		// test whether you are currently at this state or not
+		$scope.$on('$stateChangeSuccess',
+		  function(event, toState) {
+		    $scope.currentState = toState.name;
+		    makeStateActive($scope.currentState);
+		  });
+
+	});
+
+})();

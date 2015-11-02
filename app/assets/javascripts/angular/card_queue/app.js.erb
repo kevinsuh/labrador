@@ -131,6 +131,22 @@
           }
         }
       })
+      .state('main.app.settings', {
+        views: {
+          'container@main': {
+            templateUrl: "angular/settings/home.html"
+          }
+        }
+      })
+      .state('main.app.settings.home', {
+        controller: "SettingsController",
+        url: '/settings',
+        views: {
+          'primary_settings_view': {
+            templateUrl: "angular/settings/primary_settings_view.html"
+          }
+        }
+      })
       .state('main.app.checkout', {
         views: {
           'container@main': {
