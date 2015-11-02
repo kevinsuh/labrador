@@ -145,6 +145,11 @@
           'primary_settings_view': {
             templateUrl: "angular/settings/primary_settings_view.html"
           }
+        },
+        resolve: {
+          userInfoPromise: ['user', function(user) { // return user basic info
+            return user.getCurrentUser();
+          }]
         }
       })
       .state('main.app.checkout', {

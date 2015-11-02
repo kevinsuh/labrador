@@ -3,10 +3,13 @@
 	/**
 	 * this controller is specific for user viewing his queued / purchased cards
 	 */
-	var app = angular.module('card-queue').controller("SettingsController", function($rootScope, $location, $window, $scope, $state, $timeout) {
+	var app = angular.module('card-queue').controller("SettingsController", function($rootScope, $location, $window, $scope, $state, $timeout, user) {
 			
 		headerTitle = angular.element(document.querySelector("#currentTitle"));
 		headerTitle.text("Settings");
+
+		console.log("in settings controller");
+		console.log(user);
 
 		// test whether you are currently at this state or not
 		$scope.$on('$stateChangeSuccess',
