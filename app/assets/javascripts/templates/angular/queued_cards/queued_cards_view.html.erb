@@ -1,10 +1,10 @@
 <div class="row queued_cards_filter">
 
 	<div class="choose_cards_view pull-left">
-		<div class="form_input" ng-click="setTableView('queued')">
+		<div class="form_input option" ng-click="setTableView('queued')" ng-class="{'selected': tableView == 'queued'}">
 			Unpurchased
 		</div>
-		<div class="form_input" ng-click="setTableView('purchased')">
+		<div class="form_input option" ng-click="setTableView('purchased')" ng-class="{'selected': tableView == 'purchased'}">
 			Purchased
 		</div>
 	</div>

@@ -9,7 +9,17 @@ $card_profile_picture_size: 70px;
 		min-width: 465px;
 		width: 100%;
 
-		// top header
+		// buttons to choose b/w queued and purchased
+		.choose_cards_view {
+			.option {
+				&.selected {
+					background-color: purple;
+				}
+			}
+
+		}
+
+		// filter at top
 		.queued_cards_filter {
 
 			.options {

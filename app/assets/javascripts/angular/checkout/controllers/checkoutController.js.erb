@@ -552,10 +552,16 @@
         console.log("in submitOrder function of purchaseCards");
         console.log(data);
         success = data.success;
+        
         if (success) {
         	orderIDs = data.order_ids;
         	console.log("success for these order IDs:");
         	console.log(orderIDs);
+
+        	// let's go to root for now
+	        // this will eventually be receipt page
+	        $state.go("main.app.greeting_central");
+	        
         } else {
         	console.log("FAILURE!!!");
         	console.log(data.message);
