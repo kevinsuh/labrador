@@ -306,6 +306,7 @@ $greeting_central_profile_picture_size: 40px;
   &.delete_bubble {
   	top: 8px;
   	right: -10px;
+  	cursor: pointer;
   	padding: 0 3px 3px 3px;
   	color: $medium_dark_grey;
   	border-radius: 50px;
