@@ -254,7 +254,7 @@ $card_profile_picture_size: 90px;
 		$input_width: 100px;
 
 		height: 50px;
-		width: 300px;
+		width: 335px;
 
 		.form_input {
 			display: inline-block;
@@ -294,7 +294,18 @@ $card_profile_picture_size: 90px;
 				    position: relative;
 				    top: 2px;
 				}
-			}		
+			}
+
+			.delete_recipient_button {
+				height: 35px;
+				width: 35px;
+				margin-right: -3px;
+				margin-left: 5px;
+				color: $dark_grey;
+				background-color: $white_grey;
+				border: 1pt solid $medium_dark_grey;
+
+			}
 	  }
 	}
 	

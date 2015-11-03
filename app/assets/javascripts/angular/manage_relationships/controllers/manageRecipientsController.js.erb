@@ -47,6 +47,58 @@
 				}
 			};
 
+			// this is for the trash delete button in my people cards view
+			$scope.deleteSelectedRecipients = function() {
+				selectedRecipientIDs = $scope.selectedRecipientIDs;
+				if (confirm("Are you sure?")) {
+
+					recipients.deleteRecipients(selectedRecipientIDs)
+					.success(function(data) {
+						
+						// upon success, delete all the currentRecipients that you deleted on the server side
+						deletedRecipients = data.recipients;
+						deletedRecipientIDs = deletedRecipients.map(function(recipient) {
+							return recipient.id;
+						});
+						currentRecipients = $scope.currentRecipients;
+						currentRecipientIDs = currentRecipients.map(function(recipient) {
+							return recipient.id;
+						});
+
+						// this will go through each deletedRecipientID and remove currentRecipients of that recipientID
+						$.each(deletedRecipientIDs, function(i) {
+							recipientID = deletedRecipientIDs[i];
+							if (isInArray(recipientID, currentRecipientIDs)) {
+								var index = currentRecipientIDs.indexOf(recipientID);
+								if (index > -1) {
+									$scope.currentRecipients.splice(index, 1);
+								}
+							}
+						});
+
+					})
+					.error(function(data) {
+						console.log("error in delete selected recipients of manage recipients controller");
+						console.log(data);
+					})
+
+					// recipients.deleteRecipient(recipient)
+		   //    .success(function(data) {
+					// 	// remove from current view
+		   //    	$.each(recipients.currentRecipients, function(i) {
+		   //    		if (recipients.currentRecipients[i].id === recipient_id) {
+		   //    			recipients.currentRecipients.splice(i, 1);
+		   //    			return false;
+		   //    		}
+		   //    	})
+		   //    })
+		   //    .error(function(data) {
+	    //       console.log(data);
+	    //     });
+
+				}
+			}
+
 			// custom function to return days from today -- of next calendar year
 			// dateString = (ex. 2/12/1992)
 			$scope.daysFromToday = function(dateString) {

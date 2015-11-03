@@ -168,6 +168,18 @@ class RecipientsController < ApplicationController
     end
   end
 
+  # delete recipients that based on array of recipient_ids
+  def delete_selected_recipients
+    recipient_ids = params[:recipient_ids]
+    recipients = Recipient.where("id IN (:recipient_ids)", recipient_ids: recipient_ids)
+    recipients.each do |recipient|
+      recipient.deleted!
+    end
+    respond_to do |format|
+      format.json { render json: recipients }
+    end
+  end
+
   # get recipients from array of recipient IDS
   # ONLY if the recipients belong to current_user!
   def get_recipients

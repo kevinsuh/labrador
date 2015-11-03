@@ -81,6 +81,11 @@
       return $http.post('recipients/delete_for_current.json', recipient)
     }
 
+    // pass in an array of recipientIDs to delete
+    o.deleteRecipients = function(recipientIDs) {
+      return $http.post('recipients/delete_selected_recipients.json', {recipient_ids: recipientIDs});
+    }
+
     /**
      * start queue card process for recipients
      */
