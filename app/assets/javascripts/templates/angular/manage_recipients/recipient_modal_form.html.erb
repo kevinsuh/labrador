@@ -165,6 +165,20 @@
 	</div>
 </form>
 <div class="modal-footer">
-	<button class="cancel-btn btn" ng-click="cancel()">Cancel</button>				
-  <button class="submit-btn btn" ng-click="submit()">Save</button>
+
+	<div class="delete_button_container">
+		<h5 ng-click="deleteRecipient(recipient)" class="delete_text_button">DELETE PERSON</h5>
+	</div>
+
+	<div class="action_button_container">
+		<button class="recipient_button cancel" ng-click="cancel()">Cancel</button>
+	  <button class="recipient_button save" ng-click="submit()">Save</button>
+	</div>
+
+  <!-- <div class="form_input">
+			<form>
+				<input type="hidden" ng-model="selectedUsers"/>
+				<a class="send_card" ng-click="multiple_queue()">Send Card</a>
+			</form>
+		</div> -->
 </div>

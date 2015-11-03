@@ -300,6 +300,27 @@
 							$modalInstance.dismiss('cancel');
 						}
 
+						// delete recipient on modal
+						$scope.deleteRecipient = function(recipient) {
+							recipient_id = recipient.id
+							if (confirm("Are you sure?")) {
+								recipients.deleteRecipient(recipient)
+					      .success(function(data) {
+									// remove from current view
+					      	$.each(currentRecipients, function(i) {
+					      		if (currentRecipients[i].id === recipient_id) {
+					      			recipients.currentRecipients.splice(i, 1);
+					      			return false;
+					      		}
+					      	})
+					      	$modalInstance.dismiss('cancel');
+					      })
+					      .error(function(data) {
+				          console.log(data);
+				        });
+							}
+						};
+
 						// modal form submit
 						$scope.submit = function() {
 
