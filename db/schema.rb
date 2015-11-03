@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151013012708) do
+ActiveRecord::Schema.define(version: 20151103030618) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "first_name"
@@ -235,9 +235,10 @@ ActiveRecord::Schema.define(version: 20151013012708) do
     t.integer  "user_id"
     t.string   "first_name"
     t.string   "last_name"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.integer  "relationship_id"
+    t.integer  "status",          default: 0
   end
 
   add_index "recipients", ["user_id"], name: "index_recipients_on_user_id"

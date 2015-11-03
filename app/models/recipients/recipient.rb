@@ -10,5 +10,7 @@ class Recipient < ActiveRecord::Base
   # has many occasions through recipient_occasions
   has_many :recipient_occasions, dependent: :destroy
   has_many :occasions, through: :recipient_occasions
+
+  enum status: [ :live, :deleted, :archived ]
   
 end
