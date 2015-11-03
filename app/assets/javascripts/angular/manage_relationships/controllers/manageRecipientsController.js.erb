@@ -69,8 +69,11 @@
 						$.each(deletedRecipientIDs, function(i) {
 							recipientID = deletedRecipientIDs[i];
 							if (isInArray(recipientID, currentRecipientIDs)) {
+								
 								var index = currentRecipientIDs.indexOf(recipientID);
 								if (index > -1) {
+									// splice both to keep the currentRecipientIDs array syncd with the scope.currentRecipients array
+									currentRecipientIDs.splice(index, 1);
 									$scope.currentRecipients.splice(index, 1);
 								}
 							}
