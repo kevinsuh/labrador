@@ -2,7 +2,7 @@ class RecipientsController < ApplicationController
   	
   # get all of current_user's recipients
   def get_current_recipients
-    recipients = current_user.recipients
+    recipients = current_user.recipients.live # only get the live recipients!
     respond_to do |format|
       format.json { render json: recipients }
     end
@@ -162,7 +162,7 @@ class RecipientsController < ApplicationController
 
   def delete_for_current
     recipient = Recipient.find(params[:id])
-    recipient.destroy
+    recipient.deleted!
     respond_to do |format|
       format.json { render json: recipient }
     end
