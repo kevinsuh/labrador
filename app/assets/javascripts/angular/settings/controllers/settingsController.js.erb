@@ -8,8 +8,7 @@
 		headerTitle = angular.element(document.querySelector("#currentTitle"));
 		headerTitle.text("Settings");
 
-		console.log("in settings controller");
-		console.log(user);
+		$scope.currentUser = user.currentUser;
 
 		// test whether you are currently at this state or not
 		$scope.$on('$stateChangeSuccess',
