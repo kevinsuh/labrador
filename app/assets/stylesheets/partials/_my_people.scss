@@ -314,10 +314,11 @@ $card_profile_picture_size: 90px;
 .delete_button_container {
 	width: 35%;
 	float: left;
+	text-align: left;
 	.delete_text_button {
 		color: $cancel_grey;
 		cursor: pointer;
-		text-align: left;
+		display: inline;
 		margin-top: 5px;
 	}
 }
