@@ -158,34 +158,6 @@ $greeting_central_profile_picture_size: 40px;
 						  position: relative;
 						}
 
-						// notifications stuff
-						.notification_container {
-						  position: relative;
-						  display: inline;
-						  margin: 0;
-						  margin-right: 4px;
-						  margin-left: 12px;
-						  float: left;
-						}
-
-						.notification_bubble {
-						  position: relative;
-						  top: 4px;
-						  right: -11px;
-						  padding: 1px 5px;
-						  background-color: $soft_red;
-						  color: white;
-						  font-weight: bold;
-						  font-size: 0.5em;
-						  border-radius: 40px;
-						  box-shadow: 1px 1px 1px gray;
-						  z-index: 100;
-						  &.delete_recipient {
-						  	top: -2px;
-						  	font-size: 1em;
-						  }
-						}
-
 						.icon {
 							position: absolute;
 							width: 20px;
@@ -298,4 +270,48 @@ $greeting_central_profile_picture_size: 40px;
 			}
 		}
 	}
+}
+
+
+// notifications stuff
+.notification_container {
+  position: relative;
+  display: inline;
+  margin: 0;
+  margin-right: 4px;
+  margin-left: 12px;
+  float: left;
+  &.delete_container {
+  	margin: 0 5px;
+  	float: right;
+  }
+}
+
+.notification_bubble {
+  position: relative;
+  top: 4px;
+  right: -11px;
+  padding: 1px 5px;
+  background-color: $soft_red;
+  color: white;
+  font-weight: bold;
+  font-size: 0.5em;
+  border-radius: 40px;
+  box-shadow: 1px 1px 1px gray;
+  z-index: 100;
+  &.delete_recipient {
+  	top: -2px;
+  	font-size: 1em;
+  }
+  &.delete_bubble {
+  	top: 8px;
+  	right: -10px;
+  	padding: 0 3px 3px 3px;
+  	color: $medium_dark_grey;
+  	border-radius: 50px;
+  	border: 2pt solid $medium_dark_grey;
+  	box-shadow: none;
+  	font-size: 1em;
+  	background-color: white;
+  }
 }
