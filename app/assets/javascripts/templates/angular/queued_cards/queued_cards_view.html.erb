@@ -100,7 +100,7 @@
 		</th>
 	</tr>
 
-	<tr class="queue_row single_card" ng-repeat="purchasedCard in purchasedCards" ng-class="{'even':$index%2 == 0, 'odd':$index%2 == 1}" ng-click="toggleInSelectedOrdersArray(purchasedCard)" ng-if="purchasedCard.is_visible != 0">
+	<tr class="queue_row single_card" ng-repeat="purchasedCard in purchasedCards" ng-class="{'even':$index%2 == 0, 'odd':$index%2 == 1}"ng-if="purchasedCard.is_visible != 0">
 		<td class="field check">
 		</td>
 		<td class="field person">
