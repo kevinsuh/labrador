@@ -32,17 +32,18 @@ class OrderSerializer < ActiveModel::Serializer
 
     # attach recipient information
     recipient_id = data[:recipient_id]
-    recipient = Recipient.find_by(id: recipient_id)
-    data[:recipient] = recipient
+    if recipient = Recipient.find_by(id: recipient_id)
+      data[:recipient] = recipient
 
-    # get recipient address
-    recipient_address = recipient.addresses.first
-    data[:recipient_address] = recipient_address
+      # get recipient address
+      recipient_address = recipient.addresses.first
+      data[:recipient_address] = recipient_address
 
-    # recipient profile picture if it exists
-    profile_picture = recipient.profile_pictures.first
-    if profile_picture && profile_picture.picture?
-      data[:recipient_picture] = profile_picture.picture.url
+      # recipient profile picture if it exists
+      profile_picture = recipient.profile_pictures.first
+      if profile_picture && profile_picture.picture?
+        data[:recipient_picture] = profile_picture.picture.url
+      end
     end
 
     data

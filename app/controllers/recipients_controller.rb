@@ -88,14 +88,17 @@ class RecipientsController < ApplicationController
 
     # 3) save recipient address if exists
     if params[:primary_address]
+
       address_params = params[:primary_address]
+      first_name     = params[:first_name]
+      last_name      = params[:last_name]
 
       # update vs create
       if id = address_params[:id]
         address = Address.find(address_params[:id])
         address.update_columns(
-          first_name: address_params[:first_name],
-          last_name: address_params[:last_name],
+          first_name: first_name,
+          last_name: last_name,
           street: address_params[:street],
           suite: address_params[:suite],
           city: address_params[:city],
@@ -105,8 +108,8 @@ class RecipientsController < ApplicationController
         )
       else
         address = recipient.addresses.new(
-          first_name: address_params[:first_name],
-          last_name: address_params[:last_name],
+          first_name: first_name,
+          last_name: last_name,
           street: address_params[:street],
           suite: address_params[:suite],
           city: address_params[:city],
@@ -114,6 +117,7 @@ class RecipientsController < ApplicationController
           zipcode: address_params[:zipcode],
           country: address_params[:country]
         )
+
         if address.save
           # since recipient is created, you know this is first address
           address.set_primary

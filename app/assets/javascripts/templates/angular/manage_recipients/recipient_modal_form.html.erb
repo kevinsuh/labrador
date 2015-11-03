@@ -124,7 +124,15 @@ end
 				<div class="street form_field">
 					<div class="street">
 						<div class="form_input">
-				      <input ng-model="recipient.primary_address.street" type="text" placeholder="Street"/>
+				      <input ng-model="recipient.primary_address.street" type="text" placeholder="Address Line 1"/>
+				    </div>
+					</div>
+				</div>
+
+				<div class="street form_field">
+					<div class="street">
+						<div class="form_input">
+				      <input ng-model="recipient.primary_address.suite" type="text" placeholder="Address Line 2"/>
 				    </div>
 					</div>
 				</div>
@@ -226,7 +234,7 @@ end
 	</div>
 </form>
 <div class="modal-footer">
-	<div class="delete_button_container">
+	<div class="delete_button_container" ng-if="recipient.id">
 		<h5 ng-click="deleteRecipient(recipient)" class="delete_text_button">DELETE PERSON</h5>
 	</div>
 

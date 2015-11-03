@@ -20,6 +20,7 @@
         },
         primary_address: {
           street: "",
+          suite: "",
           city: "",
           state: "",
           zipcode: "",
@@ -38,6 +39,7 @@
           street: "",
           city: "",
           state: "",
+          suite: "",
           zipcode: "",
           country: "United States"
         },
