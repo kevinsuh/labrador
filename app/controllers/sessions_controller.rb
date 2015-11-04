@@ -1,8 +1,9 @@
 class SessionsController < ApplicationController
+
+	layout "wizard_application"
   
   # login form
   def new
-  	render layout: "wizard_application"
   end
 
   # login

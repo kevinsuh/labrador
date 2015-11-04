@@ -1,8 +1,14 @@
-<% provide(:title, "Settings") %>
+<% provide(:title, "Password Reset") %>
 
 <div class="login_container container-full">
 
 	<div class="login_box">
+
+		<% flash.each do |message_type, message| %>
+			<% if message_type == 'info' %>
+				<div class="info_message"><%= message %></div>
+			<% end %>
+		<% end %>
 
 		<div class="form">
 
@@ -16,9 +22,14 @@
 
 			<%= form_for(:password_reset, url: password_resets_path) do |f| %>
 				
-				<% flash.each do |message_type, message| %>
-					<div class="invalid_message"><%= message %></div>
-				<% end %>
+				<div class="invalid_message_container">
+					<% flash.each do |message_type, message| %>
+						<% if message_type == 'danger' %>
+							<div class="invalid_message"><%= message %></div>
+						<% end %>
+					<% end %>
+				</div>
+
 				<div class="form_input">
 					<%= f.text_field :email, placeholder: "Email", class: 'form-control text_field' %>
 					<i class="glyphicon text_field_icon glyphicon-user"></i>

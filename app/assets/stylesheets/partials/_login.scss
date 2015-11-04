@@ -11,7 +11,7 @@
 	// the centered box to log-in
 	.login_box {
 		box-shadow: $grey_box_shadow;
-		height: 354px;
+		min-height: 354px;
 		width: 464px;
 		position: absolute;
 		left: 50%;
@@ -20,11 +20,18 @@
 		padding: 32px 30px;
 		background-color: white;
 
-		.invalid_message {
-	  	color: $login_red;
-	  	font-style: italic;
+		.invalid_message_container {
+			margin: 6px 0;
+			.invalid_message {
+		  	color: $login_red;
+		  	font-style: italic;
+		  	float: left;
+		  	font-size: 14px;
+		  }
+		}
+
+	  .info_message {
 	  	margin: 6px 0;
-	  	float: left;
 	  	font-size: 14px;
 	  }
 

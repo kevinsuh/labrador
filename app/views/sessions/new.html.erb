@@ -4,9 +4,13 @@
 
 	<div class="login_box">
 
-		<% flash.each do |message_type, message| %>
-			<div class="invalid_message"><%= message %></div>
-		<% end %>
+		<div class="invalid_message_container">
+			<% flash.each do |message_type, message| %>
+				<% if message_type == 'danger' %>
+					<div class="invalid_message"><%= message %></div>
+				<% end %>
+			<% end %>
+		</div>
 
 		<div class="form">
 

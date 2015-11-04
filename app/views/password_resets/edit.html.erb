@@ -1,22 +1,54 @@
-<% provide(:title, "Settings") %>
-<h1>Reset Password</h1>
+<% provide(:title, "Password Reset") %>
 
-<div class="row">
-	<div class="col-xs-6 col-xs-offset-3">
-		<p style="text-align:center;">Please enter your new password.</p>
-		<%= form_for(@user, url: password_reset_path(params[:id])) do |f| %>
-			<%= render 'shared/error_messages', object: f.object %>
-			
-			<%= hidden_field_tag :email, @user.email %>
+<div class="login_container container-full">
 
-			<%= f.label :password %>
-			<%= f.password_field :password %>
+	<div class="login_box">
 
-			<%= f.label :password_confirmation %>
-			<%= f.password_field :password_confirmation %>
-
-			<%= f.submit "Reset Password" %>
-
+		<% flash.each do |message_type, message| %>
+			<% if message_type == 'info' %>
+				<div class="info_message"><%= message %></div>
+			<% end %>
 		<% end %>
+
+		<div class="form">
+
+			<div class="form_input">
+				<h2 style="text-align: left;">Reset Your Password</h2>
+			</div>
+
+			<div class="form_input">
+				<p class="form_text">Enter a new password to continue.</p>
+			</div>
+
+			<%= form_for(@user, url: password_reset_path(params[:id])) do |f| %>
+
+			<div class="invalid_message_container">
+				<% if f.object.errors.any? %>
+					<% f.object.errors.full_messages.each do |error_message| %>
+						<div class="invalid_message"><%= error_message %></div>
+					<% end %>
+				<% end %>
+			</div>
+				
+				<%= hidden_field_tag :email, @user.email %>
+
+				<div class="form_input" style="margin-top: 20px;">
+					<%= f.password_field :password, placeholder: "Password", class: 'form-control text_field password' %>
+					<i class="glyphicon text_field_icon glyphicon-lock"></i>
+				</div>
+
+				<div class="form_input" style="margin-top: 20px;">
+					<%= f.password_field :password_confirmation, placeholder: "Confirm new password", class: 'form-control text_field password' %>
+					<i class="glyphicon text_field_icon glyphicon-lock"></i>
+				</div>
+
+				<div class="form_input button_container">
+					<%= f.submit "SAVE CHANGES", class: "submit_button reset_password_button" %>
+				</div>
+
+			<% end %>
+			
+
+		</div>
 	</div>
 </div>

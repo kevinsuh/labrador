@@ -2,8 +2,9 @@ class PasswordResetsController < ApplicationController
 
 	before_action :get_user, only: [:edit, :update]
 
+  layout "wizard_application"
+
   def new
-    render layout: "wizard_application"
   end
 
   def create
@@ -14,7 +15,7 @@ class PasswordResetsController < ApplicationController
   		@user.reset_password
   		@user.send_password_reset_email
   		flash.now[:info] = "Password reset email sent."
-  		redirect_to root_url
+  		render 'new'
   	else
   		flash.now[:danger] = "Could not find email. Please try again."
   		render 'new'
