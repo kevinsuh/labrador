@@ -8,14 +8,9 @@
 	margin: 0;
 	padding: 0;
 
-	.invalid_message {
-  	color: $login_red;
-  	font-style: italic;
-  	margin: 6px 0;
-  }
-
 	// the centered box to log-in
 	.login_box {
+		box-shadow: $grey_box_shadow;
 		height: 354px;
 		width: 464px;
 		position: absolute;
@@ -24,86 +19,102 @@
 		margin: -177px 0 0 -232px;
 		padding: 32px 30px;
 		background-color: white;
-	}
 
-	.form_input {
+		.invalid_message {
+	  	color: $login_red;
+	  	font-style: italic;
+	  	margin: 6px 0;
+	  	float: left;
+	  	font-size: 14px;
+	  }
 
-		position: relative;
-		float: left;
-  	width: 100%;
+	  .form_input {
 
-		.text_field {
-      width: 100%;
-      height: 44px;
-      text-indent: 32px;
-      border: 1pt solid $medium_dark_grey;
-      border-radius: 0;
+			position: relative;
+			float: left;
+	  	width: 100%;
 
-      &:focus {
-        outline: 0;
-      }
-      &.password {
-      }
-    }
+			.text_field {
+	      width: 100%;
+	      height: 44px;
+	      text-indent: 32px;
+	      border: 1pt solid $medium_dark_grey;
+	      border-radius: 0;
 
-    .text_field_icon {
-    	position: absolute;
-    	left: 18px;
-    	top: 14px;
-    	color: $dark_grey;
-    	font-size: 0.8em;
-    }
-
-    .form_text {
-    	font-size: 14px;
-    	font-weight: normal;
-    }
-
-    .remember_me_container {
-    	display: inline-block;
-    	margin: 0;
-    	.remember_me_checkbox {
-	    	position: absolute;
-	    	margin: 0;
-	    	height: 32px;
-	    }
-	    .remember_me_text {
-	    	font-size: 14px;
-	    	font-weight: normal;
-	    	margin-left: 24px;
-	    }
-    }
-
-    .forgot_password_container {
-    	float: right;
-    	.forgot_password_link {
-    		font-size: 14px;
-    		font-weight: normal;
-    		color: black;
-    	}
-    }
-    
-    &.button_container {
-    	text-align: center;
-    	margin-top: 30px;
-    	.login_button {
-	    	background-color: $login_red;
-	    	color: white;
-	    	width: 300px;
-	    	height: 40px;
-	    	border: none;
-	    	border-radius: 4px;
-	    	&:focus {
+	      &:focus {
 	        outline: 0;
 	      }
-	    }	
-    }
+	      &.password {
+	      }
+	    }
 
-    .signup_text {
-    	font-size: 14px;
-    	font-weight: normal;
+	    .text_field_icon {
+	    	position: absolute;
+	    	left: 18px;
+	    	top: 14px;
+	    	color: $dark_grey;
+	    	font-size: 0.8em;
+	    }
 
-    }
-    
+	    .form_text {
+	    	font-size: 14px;
+	    	font-weight: normal;
+	    }
+
+	    .remember_me_container {
+	    	display: inline-block;
+	    	margin: 0;
+	    	.remember_me_checkbox {
+		    	position: absolute;
+		    	margin: 0;
+		    	height: 32px;
+		    }
+		    .remember_me_text {
+		    	font-size: 14px;
+		    	font-weight: normal;
+		    	margin-left: 24px;
+		    }
+	    }
+
+	    .forgot_password_container {
+	    	float: right;
+	    	.forgot_password_link {
+	    		font-size: 14px;
+	    		font-weight: normal;
+	    		color: black;
+	    	}
+	    }
+	    
+	    &.button_container {
+	    	text-align: center;
+	    	margin-top: 30px;
+	    	.submit_button {
+		    	background-color: $login_red;
+		    	color: white;
+		    	width: 300px;
+		    	height: 40px;
+		    	border: none;
+		    	border-radius: 4px;
+		    	&.login_button {
+		    		width: 300px;
+		    	}
+		    	&.reset_password_button {
+		    		width: 241px;
+		    	}
+		    	&:focus {
+		        outline: 0;
+		      }
+		    }	
+	    }
+
+	    .signup_text, .form_text {
+	    	font-size: 14px;
+	    	font-weight: normal;
+
+	    }
+
+	    
+		}
+
 	}
 }

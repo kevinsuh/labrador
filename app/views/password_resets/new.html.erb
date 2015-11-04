@@ -1,16 +1,42 @@
 <% provide(:title, "Settings") %>
-<h1>Forgot Password?</h1>
 
-<div class="row">
-	<div class="col-xs-6 col-xs-offset-3">
-		<p style="text-align:center;">We will send you an email, which will allow you to reset your password!</p>
-		<%= form_for(:password_reset, url: password_resets_path) do |f| %>
+<div class="login_container container-full">
+
+	<div class="login_box">
+
+		<div class="form">
+
+			<div class="form_input">
+				<h2 style="text-align: left;">Forgot your password?</h2>
+			</div>
+
+			<div class="form_input">
+				<p class="form_text">Let's fix that! Enter your email address below and we'll send you a link to reset your password.</p>
+			</div>
+
+			<%= form_for(:password_reset, url: password_resets_path) do |f| %>
+				
+				<% flash.each do |message_type, message| %>
+					<div class="invalid_message"><%= message %></div>
+				<% end %>
+				<div class="form_input">
+					<%= f.text_field :email, placeholder: "Email", class: 'form-control text_field' %>
+					<i class="glyphicon text_field_icon glyphicon-user"></i>
+				</div>
+
+				<div class="form_input button_container">
+					<%= f.submit "RESET PASSWORD", class: "submit_button reset_password_button" %>
+				</div>
+
+				<div class="form_input" style="margin-top: 9px;">
+					<p class="signup_text" style="text-align: center;"><%= link_to "Back to Login", login_path %></p>
+				</div>
+
+			<% end %>
 			
-			<%= f.label :email %>
-			<%= f.text_field :email %>
 
-			<%= f.submit "Send email", class: "btn btn-primary" %>
-
-		<% end %>
+		</div>
 	</div>
+	
+
 </div>

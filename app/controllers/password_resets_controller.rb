@@ -3,6 +3,7 @@ class PasswordResetsController < ApplicationController
 	before_action :get_user, only: [:edit, :update]
 
   def new
+    render layout: "wizard_application"
   end
 
   def create
@@ -12,10 +13,10 @@ class PasswordResetsController < ApplicationController
   	if @user
   		@user.reset_password
   		@user.send_password_reset_email
-  		flash[:info] = "Password reset email sent."
+  		flash.now[:info] = "Password reset email sent."
   		redirect_to root_url
   	else
-  		flash[:danger] = "Could not find email. Please try again."
+  		flash.now[:danger] = "Could not find email. Please try again."
   		render 'new'
   	end
   end
@@ -27,7 +28,7 @@ class PasswordResetsController < ApplicationController
   def update
   	# get user and update
   	if !@user.reset_in_time?
-      flash[:danger] = "Password resent has expired."
+      flash.now[:danger] = "Password resent has expired."
       redirect_to new_password_reset_path
     elsif @user.update_attributes(password_params)
       if (params[:user][:password].blank? && params[:user][:password_confirmation].blank?)
@@ -53,7 +54,7 @@ class PasswordResetsController < ApplicationController
   		if potential_user && potential_user.authenticated?(:password_reset, password_reset_token)
   			@user = potential_user
   		else
-  			flash[:danger] = "Could not reset password. Please try again."
+  			flash.now[:danger] = "Could not reset password. Please try again."
   			redirect_to root_url
   		end
   	end
