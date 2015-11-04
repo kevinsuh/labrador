@@ -8,6 +8,12 @@
 	margin: 0;
 	padding: 0;
 
+	.invalid_message {
+  	color: $login_red;
+  	font-style: italic;
+  	margin: 6px 0;
+  }
+
 	// the centered box to log-in
 	.login_box {
 		height: 354px;
@@ -83,7 +89,7 @@
     	.login_button {
 	    	background-color: $login_red;
 	    	color: white;
-	    	width: 241px;
+	    	width: 300px;
 	    	height: 40px;
 	    	border: none;
 	    	border-radius: 4px;

@@ -3,6 +3,11 @@
 <div class="login_container container-full">
 
 	<div class="login_box">
+
+		<% flash.each do |message_type, message| %>
+			<div class="invalid_message"><%= message %></div>
+		<% end %>
+
 		<div class="form">
 
 			<%= form_for :session, url: login_path, html: { class: "login_form" } do |f| %>
