@@ -253,6 +253,15 @@ $card_profile_picture_size: 90px;
 	@media only screen and (max-device-width: 600px) {
 		.single_card_div {
 			width: 100%;
+			height: 405px;
+		}
+		.recipient_card {
+			@include transform(scale(2));
+			width: 50%;
+			margin: 0 auto;
+		}
+		.my_people_cards {
+			margin-top: 100px;
 		}
 	}
 
