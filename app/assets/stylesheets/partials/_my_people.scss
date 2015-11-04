@@ -6,7 +6,7 @@ $card_profile_picture_size: 90px;
 	width: -moz-calc(100% - 100px);
   width: -webkit-calc(100% - 100px);
   width: calc(100% - 100px);
-  min-width: 500px;
+  min-width: 545px;
   position: absolute;
 }
 
@@ -246,6 +246,13 @@ $card_profile_picture_size: 90px;
 					}
 				}	
 			}
+		}
+	}
+
+	// for iphone views
+	@media only screen and (max-device-width: 600px) {
+		.single_card_div {
+			width: 100%;
 		}
 	}
 

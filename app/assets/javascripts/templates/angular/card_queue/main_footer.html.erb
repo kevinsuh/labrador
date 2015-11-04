@@ -1,15 +1,31 @@
-<div>
-  <nav>
-		<ul>
-			<% if false %>
-			<li><%= link_to "Contact", contact_us_path %></li>
-			<% if logged_in? %>
-				<li><%= link_to "Log out", logout_path, method: "delete" %></li>
-			<% else %>
-				<li><%= link_to "Sign up", signup_path %></li>
-				<li><%= link_to "Log in", login_path %></li>
-			<% end %>
-			<% end %>
-		</ul>
-	</nav>
+<% if false %>
+<div class="icon_holder">
+	<div ui-sref-active="active">
+		<a class="state_link box logo" ui-sref="main.app.greeting_central.home">
+			<h3 class="title" style="text-align: center;">
+				C
+			</h3>
+		</a>
+	</div>
+	<div ui-sref-active="active">
+		<a ui-sref="main.app.my_people.home" class="state_link box side_link" id="my_people">
+			My People
+		</a>
+	</div>
+	<div ui-sref-active="active">
+		<a ui-sref="main.app.queued_cards.home" class="state_link box side_link" id="queued_cards">
+			Queued Cards
+		</a>
+	</div>
+	<div ui-sref-active="active">
+		<a ui-sref="main.app.settings.home" class="state_link box side_link" id="settings">
+			Settings
+		</a>
+	</div>
+	<!-- <div ui-sref-active="active">
+		<a ui-sref="main.app.queued_cards.home" class="state_link box side_link" id="queued_cards">
+			Queued Cards
+		</a>
+	</div> -->
 </div>
+<% end %>

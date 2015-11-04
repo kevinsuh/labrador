@@ -1,10 +1,11 @@
 @import "partials/base";
 
 html {
-	overflow-y: scroll;
+	min-height: 100%;
+  position: relative;
 }
 
-html, body, .container.container-full {
+body, .container.container-full {
   height: 100%;
 }
 
@@ -29,6 +30,7 @@ span, p {
   width: 100%;
   height: 100%;
   position: absolute;
+  overflow: auto;
 }
 
 .clear {
