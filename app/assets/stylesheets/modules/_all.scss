@@ -86,6 +86,9 @@ $cancel_grey_shade: #868686;
 $hover_blue: #ECF7FD;
 $link_blue: #64A4D0;
 
+// login colors
+$login_red: #E02C4B;
+
 @mixin base_font {
 	font-family: $base-font-family;
 	font-weight: $base-font-weight;

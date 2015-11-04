@@ -12,7 +12,7 @@
 					<i class="glyphicon text_field_icon glyphicon-user"></i>
 				</div>
 
-				<div class="form_input">
+				<div class="form_input" style="margin-top: 20px;">
 					<%= f.password_field :password, placeholder: "Password", class: 'form-control text_field password' %>
 					<i class="glyphicon text_field_icon glyphicon-lock"></i>
 				</div>
@@ -28,13 +28,16 @@
 					</label>
 				</div>
 
-				<div class="form_input">
-					<%= f.submit "Log in", class: "send_card" %>
+				<div class="form_input button_container">
+					<%= f.submit "Log in", class: "login_button" %>
 				</div>
 
 			<% end %>
 
-			<p>Don't have an account? <%= link_to "Sign Up", signup_path %></p>
+			<div class="form_input" style="margin-top: 20px; text-align: center;">
+				<p class="signup_text">Don't have an account? <%= link_to "Sign Up", signup_path %></p>
+			</div>
+			
 
 		</div>
 	</div>
