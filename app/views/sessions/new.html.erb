@@ -1,32 +1,43 @@
 <% provide(:title, "Login") %>
 
-<div class="row">
-	<div class="col-md-6 col-md-offset-3">
+<div class="login_container container-full">
 
-		<h1>Log in</h1>
+	<div class="login_box">
+		<div class="form">
 
-		<%= form_for :session, url: login_path, html: { class: "login_form" } do |f| %>
+			<%= form_for :session, url: login_path, html: { class: "login_form" } do |f| %>
 
-			<%= f.label :email %>
-			<%= f.text_field :email, class: 'form-control' %>
+				<div class="form_input">
+					<%= f.text_field :email, placeholder: "Email", class: 'form-control text_field' %>
+					<i class="glyphicon text_field_icon glyphicon-user"></i>
+				</div>
 
-			<%= f.label :password %>
-			<%= link_to "(forgot password?)", new_password_reset_path %>
-			<%= f.password_field :password, class: 'form-control' %>
+				<div class="form_input">
+					<%= f.password_field :password, placeholder: "Password", class: 'form-control text_field password' %>
+					<i class="glyphicon text_field_icon glyphicon-lock"></i>
+				</div>
+				
+				<div class="form_input" style="margin-top: 12px;">
 
-			<%= f.label :remember_me, class: "checkbox inline" do %>
-				<%= f.check_box :remember_me %>
-				<span>Remember me</span>
+					<%= f.label :remember_me, class: "checkbox inline remember_me_container" do %>
+						<%= f.check_box :remember_me, class: 'remember_me_checkbox' %>
+						<span class="form_text remember_me_text">Remember me</span>
+					<% end %>
+					<label class="forgot_password_container">
+						<%= link_to "Forgot your password?", new_password_reset_path, class: "forgot_password_link" %>
+					</label>
+				</div>
+
+				<div class="form_input">
+					<%= f.submit "Log in", class: "send_card" %>
+				</div>
+
 			<% end %>
 
-			<%= f.submit "Log in", class: "btn btn-primary" %>
+			<p>Don't have an account? <%= link_to "Sign Up", signup_path %></p>
 
-		<% end %>
-
-		<p>New User? <%= link_to "Sign up now!", signup_path %></p>
-
+		</div>
 	</div>
+	
+
 </div>
-
-
-

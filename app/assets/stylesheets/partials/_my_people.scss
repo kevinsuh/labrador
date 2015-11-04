@@ -21,15 +21,15 @@ $card_profile_picture_size: 90px;
       border-radius: 20px;
       width: 100%;
       height: $box_size / 2.5;
-      background-size: 250px 250px;
-      background-position: 7px center;
-      background-repeat: no-repeat;
-      text-indent: 32px;
+      // background-size: 250px 250px;
+      // background-position: 7px center;
+      // background-repeat: no-repeat;
+      text-indent: 20px;
       border: 1.5pt solid $medium_dark_grey;
 
-      -webkit-transition: all 0.25s;
-      -moz-transition: all 2s;
-      transition: all 0.25s;
+      // -webkit-transition: all 0.25s;
+      // -moz-transition: all 2s;
+      // transition: all 0.25s;
 
       &.active {
         background-color: none;

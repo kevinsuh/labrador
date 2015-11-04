@@ -2,6 +2,7 @@ class SessionsController < ApplicationController
   
   # login form
   def new
+  	render layout: "wizard_application"
   end
 
   # login

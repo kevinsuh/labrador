@@ -1,0 +1,78 @@
+@import "base";
+
+.login_container {
+	background-color: $wizard_purple;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+
+	// the centered box to log-in
+	.login_box {
+		height: 354px;
+		width: 464px;
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		margin: -177px 0 0 -232px;
+		padding: 32px 30px;
+		background-color: white;
+	}
+
+	.form_input {
+		position: relative;
+		.text_field {
+      width: 100%;
+      height: 44px;
+      text-indent: 32px;
+      border: 1pt solid $medium_dark_grey;
+      border-radius: 0;
+
+      &:focus {
+        outline: 0;
+      }
+      &.password {
+      	margin-top: 20px;
+      }
+    }
+
+    .text_field_icon {
+    	position: absolute;
+    	left: 18px;
+    	top: 14px;
+    	color: $dark_grey;
+    	font-size: 0.8em;
+    }
+
+    .form_text {
+    	font-size: 14px;
+    	font-weight: norma;
+    }
+
+    .remember_me_container {
+    	display: inline-block;
+    	margin: 0;
+    	.remember_me_checkbox {
+	    	position: absolute;
+	    	margin: 0;
+	    	height: 32px;
+	    }
+	    .remember_me_text {
+	    	font-size: 14px;
+	    	font-weight: normal;
+	    	margin-left: 24px;
+	    }
+    }
+
+    .forgot_password_container {
+    	float: right;
+    	.forgot_password_link {
+    		font-size: 14px;
+    		font-weight: normal;
+    		color: black;
+    	}
+    }
+    
+	}
+}
