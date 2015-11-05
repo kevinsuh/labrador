@@ -1,0 +1,92 @@
+@import "base";
+
+// for iphone portrait views!
+@media only screen and (max-device-width: 600px) {
+
+	// hide left bar and show footer
+	.cardagain {
+
+		margin-bottom: $mobile_box_size + 5px; // handle the footer being at the bottom now
+
+		// OVERALL APP STUFF
+		.logged_in_home {
+			margin-left: 0;
+
+		}
+		.left_bar {
+			display: none;
+		}
+
+		.header_bar {
+			padding-left: 0;
+		}
+
+		.main_footer {
+			display: table;
+			position: fixed;
+			bottom: 0;
+			height: $mobile_box_size;
+			width: 100%;
+	    z-index: 1005;
+	    background-color: $medium_grey;
+
+	    .icon_holder {
+
+	      width: 100%;
+	      display: table-row;
+
+	      .tab_button {
+	        display: table-cell;
+	        width: 25%;
+	        vertical-align: middle;
+	        text-align: center;
+
+	        &:hover {
+	          color: white;
+	          background-color: $link_click_purple;
+	          cursor: pointer;
+	        }
+
+	        // main cardagain logo
+	        &.logo {
+	        	background-color: black;
+	        	border-bottom: none;
+	        	.title {
+	        		margin: 0;
+	        		color: white;
+	        	}
+	        }
+
+	        // the text inside each tab button
+	        .state_link {
+			      &.side_link {
+			        color: black;
+			      }
+			      &:hover {
+			        text-decoration: none;
+			      }
+			      &:active {
+			        text-decoration: none;
+			      }
+			      &:focus {
+			        text-decoration: none;
+			      }
+			    }
+
+	      }
+
+	    }
+
+		}
+
+		// MY PEOPLE STUFF
+		.my_people {
+			&.page_container {
+				width: 100%;
+				.single_card_div {
+					width: 100%;
+				}
+			}
+		}
+	}
+}

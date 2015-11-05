@@ -116,7 +116,6 @@ span, p {
   footer {
     @include box_sizing;
     z-index: 1001;
-    height: $footer_height;
     width: 100%;
 
   }

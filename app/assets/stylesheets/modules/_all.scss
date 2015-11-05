@@ -89,6 +89,9 @@ $link_blue: #64A4D0;
 // login colors
 $login_red: #E02C4B;
 
+// mobile specific
+$mobile_box_size: 120px;
+
 @mixin base_font {
 	font-family: $base-font-family;
 	font-weight: $base-font-weight;
