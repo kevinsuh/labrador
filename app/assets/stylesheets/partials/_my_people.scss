@@ -74,6 +74,7 @@ $card_profile_picture_size: 90px;
 			box-shadow: $grey_box_shadow;
 			text-align: center;
 			overflow-y: hidden;
+			-webkit-overflow-scrolling: touch;
 
 			.icon_header {
 				&.selected {
@@ -120,6 +121,7 @@ $card_profile_picture_size: 90px;
 					height: $card_profile_picture_size; 
 					width: $card_profile_picture_size; 
 					overflow:hidden;
+					-webkit-overflow-scrolling: touch;
 					-webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC); // overflow hidden for chrome
 					margin: 0 auto;
 					margin-top: 5px;
