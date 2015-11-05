@@ -6,8 +6,6 @@
 	// angular app POST-LOGIN
 	.cardagain {
 
-		margin-bottom: 400px; // handle the footer being at the bottom now
-
 		// better scroll for mobile
 		overflow: inherit;
 		-webkit-overflow-scrolling: touch;
@@ -103,6 +101,9 @@
 				}
 				.single_card_div {
 					width: 100%;
+					&.add_recipient {
+						margin-bottom: 100px;
+					}
 				}
 			}
 		}
