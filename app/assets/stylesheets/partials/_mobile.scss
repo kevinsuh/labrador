@@ -6,7 +6,8 @@
 	// angular app POST-LOGIN
 	.cardagain {
 
-		margin-bottom: 250px; // handle the footer being at the bottom now
+		margin-bottom: 400px; // handle the footer being at the bottom now
+		-webkit-overflow-scrolling: touch; // better scroll for mobile
 
 		// OVERALL APP STUFF
 		.logged_in_home {
