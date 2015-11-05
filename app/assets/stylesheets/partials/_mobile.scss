@@ -7,7 +7,10 @@
 	.cardagain {
 
 		margin-bottom: 400px; // handle the footer being at the bottom now
-		-webkit-overflow-scrolling: touch; // better scroll for mobile
+
+		// better scroll for mobile
+		overflow: inherit;
+		-webkit-overflow-scrolling: touch;
 
 		// OVERALL APP STUFF
 		.logged_in_home {
