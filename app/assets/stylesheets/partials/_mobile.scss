@@ -6,7 +6,7 @@
 	// angular app POST-LOGIN
 	.cardagain {
 
-		margin-bottom: 220px; // handle the footer being at the bottom now
+		margin-bottom: 250px; // handle the footer being at the bottom now
 
 		// OVERALL APP STUFF
 		.logged_in_home {
@@ -87,6 +87,16 @@
 		.my_people {
 			&.page_container {
 				width: 100%;
+				min-width: 0;
+				.my_people_filter {
+					.filter_people {
+						width: 100%;
+						margin-left: 0;
+					}
+					.options {
+						margin-top: 25px;
+					}
+				}
 				.single_card_div {
 					width: 100%;
 				}

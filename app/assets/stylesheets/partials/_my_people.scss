@@ -13,10 +13,13 @@ $card_profile_picture_size: 90px;
 // for the filter bar at the top view
 .my_people_view, .queued_cards_view {
 
+	.my_people_filter {
+		margin: 0;
+	}
+
 	// search people functionality
 	.filter_people {
     width: 35%;
-    margin-left: 15px;
     .filter_people_input {
       border-radius: 20px;
       width: 100%;
