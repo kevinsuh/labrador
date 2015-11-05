@@ -1,26 +1,30 @@
 @import "base";
 
 // for iphone portrait views!
-@media only screen and (max-device-width: 600px) {
+@media only screen and (max-device-width: 2600px) {
 
-	// hide left bar and show footer
+	// angular app POST-LOGIN
 	.cardagain {
 
-		margin-bottom: $mobile_box_size + 5px; // handle the footer being at the bottom now
+		margin-bottom: 220px; // handle the footer being at the bottom now
 
 		// OVERALL APP STUFF
 		.logged_in_home {
 			margin-left: 0;
 
 		}
+
+		// left bar
 		.left_bar {
 			display: none;
 		}
 
+		// header
 		.header_bar {
 			padding-left: 0;
 		}
 
+		// footer
 		.main_footer {
 			display: table;
 			position: fixed;
@@ -79,7 +83,7 @@
 
 		}
 
-		// MY PEOPLE STUFF
+		// MY PEOPLE
 		.my_people {
 			&.page_container {
 				width: 100%;
@@ -87,6 +91,17 @@
 					width: 100%;
 				}
 			}
+		}
+
+	}
+
+	// log in before main cardagain app
+	.login_container {
+		.login_box {
+			width: 100%;
+			margin-left: 0;
+			left: 0;
+			background-color: white;
 		}
 	}
 }
