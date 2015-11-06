@@ -1,7 +1,7 @@
 @import "base";
 
 // for iphone portrait views!
-@media only screen and (max-device-width: 2600px) {
+@media only screen and (max-device-width: 600px) {
 
 	// angular app POST-LOGIN
 	.cardagain {
@@ -123,7 +123,7 @@
 			position: relative;
 			left: 0;
 			top: 0;
-			max-width: 464px;
+			max-width: 400px;
 			margin: 0 auto;
 			margin-top: 40px;
 		}
