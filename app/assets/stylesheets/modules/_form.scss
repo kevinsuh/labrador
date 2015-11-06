@@ -3,7 +3,8 @@ $regular-light-weight: 400;
 $regular-weight: 400;
 
 // Base Font
-$form-font-family: "Gill Sans Light", Trebuchet, Sans-Serif;
+$form-font-family: "Gill Sans";
+$form-weight: lighter;
 $form-font-size: 20px;
 $form-line-height: 1.4;
 
@@ -21,7 +22,7 @@ $button-blue: #4fa9c6;
 
 @mixin form_font {
 	font-family: $form-font-family;
-  font-weight: $regular-weight;
+  font-weight: $form-weight;
 	font-size: $form-font-size;
 	line-height: $form-line-height;
 }

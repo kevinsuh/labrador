@@ -1,7 +1,11 @@
 <% provide(:title, "Password Reset") %>
 
-<div class="login_container container-full">
+<div class="login_page container-full">
 
+	<div class="login_image">
+		<%= image_tag('cardagain_pink_logo.png', alt: 'Cardagain', class: "main_logo") %>
+	</div>
+	
 	<div class="login_box">
 
 		<% flash.each do |message_type, message| %>

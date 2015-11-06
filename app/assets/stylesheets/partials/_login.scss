@@ -11,8 +11,13 @@ $login_box_shadow: 1px 1px 2px 0px rgba(58,58,58,0.50);
 	padding: 0;
 
 	.login_image {
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		width: 464px;
+		height: 60px;
+		margin: -265px 0 0 -232px;
 		text-align: center;
-		margin-bottom: 60px;
 	}
 
 	// the centered box to log-in
@@ -25,7 +30,7 @@ $login_box_shadow: 1px 1px 2px 0px rgba(58,58,58,0.50);
 		position: absolute;
 		left: 50%;
 		top: 50%;
-		margin: -229px 0 0 -232px;
+		margin: -177px 0 0 -232px;
 		padding: 32px 30px;
 
 		.invalid_message_container {
@@ -97,13 +102,14 @@ $login_box_shadow: 1px 1px 2px 0px rgba(58,58,58,0.50);
 	    	.forgot_password_link {
 	    		font-size: 14px;
 	    		font-weight: normal;
-	    		color: black;
+	    		color: $extra_dark_grey;
 	    	}
 	    }
 	    
 	    .signup_text, .form_text, .signup_link {
 	    	font-size: 14px;
 	    	font-weight: normal;
+	    	color: $extra_dark_grey;
 	    }
 
 	    
