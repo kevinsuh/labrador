@@ -1,8 +1,8 @@
 @import "base";
 
-$login_box_shadow: 0px 0px 17px 0px grey;
+$login_box_shadow: 1px 1px 2px 0px rgba(58,58,58,0.50);
 
-.login_container {
+.login_page {
 	background-color: $beige;
 	position: absolute;
 	width: 100%;
@@ -10,18 +10,23 @@ $login_box_shadow: 0px 0px 17px 0px grey;
 	margin: 0;
 	padding: 0;
 
+	.login_image {
+		text-align: center;
+		margin-bottom: 60px;
+	}
+
 	// the centered box to log-in
 	.login_box {
 		box-shadow: $login_box_shadow;
+		background: #FFFFFF;
+		border-radius: 4px;
 		min-height: 354px;
 		width: 464px;
 		position: absolute;
 		left: 50%;
 		top: 50%;
-		margin: -177px 0 0 -232px;
+		margin: -229px 0 0 -232px;
 		padding: 32px 30px;
-		background-color: white;
-		border-radius: 6px;
 
 		.invalid_message_container {
 			margin: 6px 0;
@@ -96,10 +101,9 @@ $login_box_shadow: 0px 0px 17px 0px grey;
 	    	}
 	    }
 	    
-	    .signup_text, .form_text {
+	    .signup_text, .form_text, .signup_link {
 	    	font-size: 14px;
 	    	font-weight: normal;
-
 	    }
 
 	    
