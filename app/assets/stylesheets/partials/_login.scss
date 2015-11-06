@@ -1,7 +1,9 @@
 @import "base";
 
+$login_box_shadow: 0px 0px 17px 0px grey;
+
 .login_container {
-	background-color: $wizard_purple;
+	background-color: $beige;
 	position: absolute;
 	width: 100%;
 	height: 100%;
@@ -10,7 +12,7 @@
 
 	// the centered box to log-in
 	.login_box {
-		box-shadow: $grey_box_shadow;
+		box-shadow: $login_box_shadow;
 		min-height: 354px;
 		width: 464px;
 		position: absolute;
@@ -19,6 +21,7 @@
 		margin: -177px 0 0 -232px;
 		padding: 32px 30px;
 		background-color: white;
+		border-radius: 6px;
 
 		.invalid_message_container {
 			margin: 6px 0;
