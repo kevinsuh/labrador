@@ -82,7 +82,6 @@
 	      }
 
 	    }
-
 		}
 
 		// MY PEOPLE
@@ -107,6 +106,14 @@
 				}
 			}
 		}
+
+		// MY QUEUED CARDS
+		.my_cards_container {
+			.queued_cards_view {
+				min-width: 0;	
+			}
+		}
+
 
 	}
 
