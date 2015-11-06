@@ -8,7 +8,7 @@
 	position: absolute;
 	height: 100%;
 	width: 100%;
-	background: url(../splash_bg.png) no-repeat center center fixed;
+	background: url(/assets/splash_bg.png) no-repeat center center fixed;
 	@include background-size(cover);
 	.tagline {
 		color: white;
