@@ -15,8 +15,9 @@ $login_box_shadow: 1px 1px 2px 0px rgba(58,58,58,0.50);
 		left: 50%;
 		top: 50%;
 		width: 464px;
-		height: 60px;
 		margin: -265px 0 0 -232px;
+		height: 60px;
+		margin-bottom: 100px;
 		text-align: center;
 	}
 
@@ -32,6 +33,7 @@ $login_box_shadow: 1px 1px 2px 0px rgba(58,58,58,0.50);
 		top: 50%;
 		margin: -177px 0 0 -232px;
 		padding: 32px 30px;
+		margin-bottom:100px;
 
 		.invalid_message_container {
 			margin: 6px 0;
