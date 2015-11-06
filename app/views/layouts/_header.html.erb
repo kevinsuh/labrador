@@ -34,31 +34,20 @@
 							</li>
 						</ul>
 					</li>
-
-					<!-- ignore  -->
-					<% if false %>
-					<div class="notifications">
-					  <div class="notification_container">
-					  	<a href="#" id="view_queued">
-						  	<%= image_tag('queued_icon.png', alt: 'Queued Orders', class: "icon") %>
-						  	<span id="queued_count" class="notification_bubble"><%= queued_orders.count %></span>
-					  	</a>
-					  </div>
-					  <div class="notification_container">
-					  	<a href="#" id="view_purchased">
-						  	<%= image_tag('purchased_icon.png', alt: 'Purchased Orders', class: "icon") %>
-						  	<span id="purchased_count" class="notification_bubble"><%= purchased_orders.count %></span>
-					  	</a>
-					  </div>
-					</div>
-					<% end %>
 				</ul>
 			</div>
 		<% else %>
-			<ul class="nav navbar-nav pull-right">
-				<li><%= link_to "How does it work?", about_path %></li>
-				<li><%= link_to "The Inspiration", why_path %></li>
-				<li><%= link_to "The Team", team_path %></li>
+			<!-- logged out view -->
+			<ul class="nav navbar-nav pull-left">
+				<li class="main_logo_container">
+					<a class="logo_link" href="/"><%= image_tag('cardagain_white_logo.png', alt: 'Cardagain', class: "main_logo") %></a>
+				</li>
+			</ul>
+			<ul class="nav navbar-nav pull-right main_links">
+				<li class="main_link"><%= link_to "About", about_path %></li>
+				<li class="main_link"><%= link_to "Blog", team_path %></li>
+				<li class="main_link"><%= link_to "Log In", login_path %></li>
+				<li class="signup_link button_container signup_button_container"><%= link_to "SIGN UP", signup_path, class: "submit_button signup_button" %></li>
 			</ul>
 		<% end %>
 	</nav>

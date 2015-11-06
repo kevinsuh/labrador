@@ -1,29 +1,21 @@
 <div class="center" id="splash_page">
-	<div class="row row-logo">
-		<%= image_tag('cardagain_logo.png', alt: 'Cardagain', class: "splash_logo") %>
+
+	<div style="margin-left: 54px; margin-top: 250px;">
+		<div>
+			<h1 class="tagline">Be your</h1>
+			<h1 class="tagline">most thoughtful self</h1>
+		</div>
+		<div style="margin-top: 13px;">
+			<p class="tagline_description">Deliver on the moments you think of someone.</p>
+			<p class="tagline_description">We make it easy for you to write a message</p>
+			<p class="tagline_description">to your favorite people for any occasion.</p>
+		</div>
+		<div style="margin-top: 23px;">
+			<div class="button_container signup_button_container"><%= link_to "SIGN UP", signup_path, class: "submit_button main_signup_button" %></div>
+		</div>
 	</div>
 
 	<% if false %>
-
-	<div class="row">
-		<div class="col-xs-4">
-			<p>
-				Cardagain allows you to queue greeting card purchases for the important dates in your life. Several weeks before each event, we deliver you the card of your choice, pre-addressed and pre-stamped, so that you can write your personal message in time for delivery.
-			</p>
-		</div>
-		<div class="col-xs-4">
-			<p>
-				We want to remember our friends' birthdays. Or our parents' anniversary. Or mother's and father's day. But we often forget until it's too late to do anything but give them a text or facebook post the day of. We want to help you remember in time.
-			</p>
-		</div>
-		<div class="col-xs-4">
-			<p>
-				With our application, you can see all your dates in advance and act now before you forget. We don't want to write your message for you, or sent a printed message. We know that you want to handwrite and deliver it yourself. We don't want to take anything away from your thoughtfulness.
-			</p>
-		</div>
-	</div>
-	<% end %>
-
 	<div class="row row-waitlist">
 		<% if @waitlist %>
 			<%= @waitlist.inspect %>
@@ -44,7 +36,7 @@
 			</div>
 		</div>
 	</div>
-	<br><br><br><br><br><br>
+	<% end %>
 	<% if false %>
 	<%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
 	<% end %>	

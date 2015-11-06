@@ -1,8 +1,28 @@
+@import "base";
+
 /**
  * 		LOGGED OUT HOME / SPLASH PAGE
  */
 
-.splash_logo {
-	display: block;
-	margin: auto;
+#splash_page {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	background: url(../splash_bg.png) no-repeat center center fixed;
+	@include background-size(cover);
+	.tagline {
+		color: white;
+		text-align: left;
+		font-weight: none;
+		font-family: $base-font-family;
+		font-weight: lighter;
+		font-size: 64px;
+		line-height: 72px;
+	}
+	.tagline_description {
+		color: white;
+		font-size: 24px;
+		line-height: 36px;
+		margin: 0;
+	}
 }
