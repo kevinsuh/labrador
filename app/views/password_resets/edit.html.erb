@@ -2,57 +2,61 @@
 
 <div class="login_page container-full">
 
-	<div class="login_image">
-		<%= image_tag('cardagain_pink_logo.png', alt: 'Cardagain', class: "main_logo") %>
-	</div>
-	
-	<div class="login_box">
+	<div class="login_container">
+		<div class="login_image">
+			<%= image_tag('cardagain_pink_logo.png', alt: 'Cardagain', class: "main_logo") %>
+		</div>
 
-		<% flash.each do |message_type, message| %>
-			<% if message_type == 'info' %>
-				<div class="info_message"><%= message %></div>
-			<% end %>
-		<% end %>
+		<div class="login_box">
 
-		<div class="form">
-
-			<div class="form_input">
-				<h2 style="text-align: left;">Reset Your Password</h2>
-			</div>
-
-			<div class="form_input">
-				<p class="form_text">Enter a new password to continue.</p>
-			</div>
-
-			<%= form_for(@user, url: password_reset_path(params[:id])) do |f| %>
-
-			<div class="invalid_message_container">
-				<% if f.object.errors.any? %>
-					<% f.object.errors.full_messages.each do |error_message| %>
-						<div class="invalid_message"><%= error_message %></div>
-					<% end %>
+			<% flash.each do |message_type, message| %>
+				<% if message_type == 'info' %>
+					<div class="info_message"><%= message %></div>
 				<% end %>
-			</div>
-				
-				<%= hidden_field_tag :email, @user.email %>
-
-				<div class="form_input" style="margin-top: 20px;">
-					<%= f.password_field :password, placeholder: "Password", class: 'form-control text_field password' %>
-					<i class="glyphicon text_field_icon glyphicon-lock"></i>
-				</div>
-
-				<div class="form_input" style="margin-top: 20px;">
-					<%= f.password_field :password_confirmation, placeholder: "Confirm new password", class: 'form-control text_field password' %>
-					<i class="glyphicon text_field_icon glyphicon-lock"></i>
-				</div>
-
-				<div class="form_input button_container">
-					<%= f.submit "SAVE CHANGES", class: "submit_button reset_password_button" %>
-				</div>
-
 			<% end %>
-			
 
+			<div class="form">
+
+				<div class="form_input">
+					<h2 style="text-align: left;">Reset Your Password</h2>
+				</div>
+
+				<div class="form_input">
+					<p class="form_text">Enter a new password to continue.</p>
+				</div>
+
+				<%= form_for(@user, url: password_reset_path(params[:id])) do |f| %>
+
+				<div class="invalid_message_container">
+					<% if f.object.errors.any? %>
+						<% f.object.errors.full_messages.each do |error_message| %>
+							<div class="invalid_message"><%= error_message %></div>
+						<% end %>
+					<% end %>
+				</div>
+					
+					<%= hidden_field_tag :email, @user.email %>
+
+					<div class="form_input" style="margin-top: 20px;">
+						<%= f.password_field :password, placeholder: "Password", class: 'form-control text_field password' %>
+						<i class="glyphicon text_field_icon glyphicon-lock"></i>
+					</div>
+
+					<div class="form_input" style="margin-top: 20px;">
+						<%= f.password_field :password_confirmation, placeholder: "Confirm new password", class: 'form-control text_field password' %>
+						<i class="glyphicon text_field_icon glyphicon-lock"></i>
+					</div>
+
+					<div class="form_input button_container">
+						<%= f.submit "SAVE CHANGES", class: "submit_button reset_password_button" %>
+					</div>
+
+				<% end %>
+				
+
+			</div>
 		</div>
 	</div>
+	
+	
 </div>

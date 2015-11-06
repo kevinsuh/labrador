@@ -2,56 +2,59 @@
 
 <div class="login_page container-full">
 
-	<div class="login_image">
-		<%= image_tag('cardagain_pink_logo.png', alt: 'Cardagain', class: "main_logo") %>
-	</div>
-	
-	<div class="login_box">
+	<div class="login_container">
+		<div class="login_image">
+			<%= image_tag('cardagain_pink_logo.png', alt: 'Cardagain', class: "main_logo") %>
+		</div>
 
-		<% flash.each do |message_type, message| %>
-			<% if message_type == 'info' %>
-				<div class="info_message"><%= message %></div>
+		<div class="login_box">
+
+			<% flash.each do |message_type, message| %>
+				<% if message_type == 'info' %>
+					<div class="info_message"><%= message %></div>
+				<% end %>
 			<% end %>
-		<% end %>
 
-		<div class="form">
+			<div class="form">
 
-			<div class="form_input">
-				<h2 style="text-align: left;">Forgot your password?</h2>
-			</div>
-
-			<div class="form_input">
-				<p class="form_text">Let's fix that! Enter your email address below and we'll send you a link to reset your password.</p>
-			</div>
-
-			<%= form_for(:password_reset, url: password_resets_path) do |f| %>
-				
-				<div class="invalid_message_container">
-					<% flash.each do |message_type, message| %>
-						<% if message_type == 'danger' %>
-							<div class="invalid_message"><%= message %></div>
-						<% end %>
-					<% end %>
+				<div class="form_input">
+					<h2 style="text-align: left;">Forgot your password?</h2>
 				</div>
 
 				<div class="form_input">
-					<%= f.text_field :email, placeholder: "Email", class: 'form-control text_field' %>
-					<i class="glyphicon text_field_icon glyphicon-user"></i>
+					<p class="form_text">Let's fix that! Enter your email address below and we'll send you a link to reset your password.</p>
 				</div>
 
-				<div class="form_input button_container">
-					<%= f.submit "RESET PASSWORD", class: "submit_button reset_password_button" %>
-				</div>
+				<%= form_for(:password_reset, url: password_resets_path) do |f| %>
+					
+					<div class="invalid_message_container">
+						<% flash.each do |message_type, message| %>
+							<% if message_type == 'danger' %>
+								<div class="invalid_message"><%= message %></div>
+							<% end %>
+						<% end %>
+					</div>
 
-				<div class="form_input" style="margin-top: 9px;">
-					<p class="signup_text" style="text-align: center;"><%= link_to "Back to Login", login_path %></p>
-				</div>
+					<div class="form_input">
+						<%= f.text_field :email, placeholder: "Email", class: 'form-control text_field' %>
+						<i class="glyphicon text_field_icon glyphicon-user"></i>
+					</div>
 
-			<% end %>
-			
+					<div class="form_input button_container">
+						<%= f.submit "RESET PASSWORD", class: "submit_button reset_password_button" %>
+					</div>
 
+					<div class="form_input" style="margin-top: 9px;">
+						<p class="signup_text" style="text-align: center;"><%= link_to "Back to Login", login_path %></p>
+					</div>
+
+				<% end %>
+				
+
+			</div>
 		</div>
 	</div>
+	
 	
 
 </div>
