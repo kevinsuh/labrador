@@ -20,18 +20,7 @@
 			headerTitle = angular.element(document.querySelector("#currentTitle"));
 			headerTitle.text("My People");
 
-			// alternate between the headers
-			my_people_header = angular.element(document.querySelector("#my_people_header"));
-			occasions_header = angular.element(document.querySelector("#occasions_header"));
-			queue_card_header = angular.element(document.querySelector("#queue_card_header"));
-			queued_cards_header = angular.element(document.querySelector("#queued_cards_header"));
-			settings_header = angular.element(document.querySelector("#settings_header"));
-
-			my_people_header.css({display: "block"});
-			occasions_header.css({display: "none"});
-			queue_card_header.css({display: "none"});
-			queued_cards_header.css({display: "none"});
-			settings_header.css({display: "none"});
+			$scope.currentTitle = "My People";
 
 			// test whether you are currently at this state or not
 			$scope.$on('$stateChangeSuccess',

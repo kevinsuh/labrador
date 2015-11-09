@@ -8,7 +8,7 @@
 	}
 
 	#mobile_header {
-		display: block !important;
+		display: block;
 	}
 
 	// angular app POST-LOGIN
@@ -21,6 +21,7 @@
 		// OVERALL APP STUFF
 		.logged_in_home {
 			margin-left: 0;
+			padding-top: $mobile_header_size + 10px;
 
 		}
 
@@ -32,8 +33,14 @@
 		// header
 		.header_bar {
 			height: $mobile_header_size;
-			padding-left: 0;
 			background-color: $header_grey;
+			position: fixed;
+			top: 0;
+			
+			padding-left: 0;
+			margin-left: 0;
+			margin-right: 0;
+			border-radius: 0;
 			.main_header {
 				.header_container {
 					height: $mobile_header_size;

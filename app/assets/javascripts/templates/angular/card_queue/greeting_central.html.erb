@@ -1,10 +1,17 @@
-<div class="greeting_central_view">
-	<aside class="col-md-3 col-xs-3 my_people_view" ng-controller="ManageRecipientsController">
-		<div ui-view="my_people" class="my_people_ui_view"></div>
-	</aside>
+<div ng-controller="CardQueueController">
 
-	<div class="col-md-9 col-xs-9 card_queue calendar_view" ng-controller="CardQueueController">
-		<div ui-view="calendar" class="calendar_ui_view"></div>
+	<header class="navbar header_bar" id="mobile_header">
+	 <div class="main_header" ui-view="header"></div>
+	</header>
+
+	<div class="greeting_central_view">
+		<aside class="col-md-3 col-xs-3 my_people_view" ng-controller="ManageRecipientsController">
+			<div ui-view="my_people" class="my_people_ui_view"></div>
+		</aside>
+
+		<div class="col-md-9 col-xs-9 card_queue calendar_view">
+			<div ui-view="calendar" class="calendar_ui_view"></div>
+		</div>
 	</div>
+	<br class="clear" />
 </div>
-<br class="clear" />
