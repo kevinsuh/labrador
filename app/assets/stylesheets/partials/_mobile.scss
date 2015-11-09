@@ -7,6 +7,10 @@
 		display: none;
 	}
 
+	#mobile_header {
+		display: block !important;
+	}
+
 	// angular app POST-LOGIN
 	.container.main_page .cardagain {
 
@@ -33,10 +37,37 @@
 			.main_header {
 				.header_container {
 					height: $mobile_header_size;
+
+					// title container to left of each page
 					.title_container {
-						padding-left: 0;
+						padding-left: 10px;
 						.title {
 							color: white;
+						}
+					}
+
+					.mobile_header_container {
+
+						// defaulting to hiding these at first
+						.custom_header {
+							display: none;
+						}
+
+						// but if they have the class, then it will be displayed
+						.my_people {
+							display: table-cell;
+						}
+						.occasions {
+							display: table-cell;
+						}
+						.queue_card {
+							display: table-cell;
+						}
+						.queued_cards {
+							display: table-cell;
+						}
+						.settings {
+							display: table-cell;
 						}
 					}
 				}

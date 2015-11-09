@@ -6,7 +6,7 @@
 			{{headerTitle}}
 		</h3>
 	</div>
-	<!-- floated right -->
+	<!-- floated right this will only show up on website -->
 	<div id="website_header">
 		<ul class="nav navbar-nav">
 			<li class="dropdown pull-right right_most">
@@ -27,4 +27,26 @@
 			</li>
 		</ul>
 	</div>
+
+	<!-- mobile header -->
+	<div id="mobile_header" class="mobile_header_container">
+		<div id="my_people_header" class="custom_header" ng-class="{'my_people': headerTitle == 'My People'}">
+			my people header
+		</div>
+		<div id="occasions_header" class="custom_header" ng-class="{'occasions': headerTitle == 'Occasions'}">
+			occasions header
+		</div>
+
+		<!-- WE ARE CHANGING THIS TO QUEUE CARD -->
+		<div id="queue_card_header" class="custom_header" ng-class="{'queue_card': headerTitle == 'Greeting Central'}">
+			queue card header
+		</div>
+		<div id="queued_cards_header" class="custom_header" ng-class="{'queued_cards': headerTitle == 'Queued Cards'}">
+			queued cards header
+		</div>
+		<div id="settings_header" class="custom_header" ng-class="{'settings': headerTitle == 'Settings'}">
+			settings header
+		</div>
+	</div>
+
 </nav>

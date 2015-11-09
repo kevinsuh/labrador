@@ -14,6 +14,10 @@ body {
   background-color: $white_grey !important;
 }
 
+#mobile_header {
+  display: none;
+}
+
 section {
   overflow: auto;
 }
