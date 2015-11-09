@@ -32,7 +32,7 @@ a {
   @include adjust-font-size-to(1.4em);
 }
 
-p, input {
+p, input, h1, h2, h3, h4, h5, h6 {
   font-family: $base-font-family !important;
   font-weight: lighter !important;
 }
