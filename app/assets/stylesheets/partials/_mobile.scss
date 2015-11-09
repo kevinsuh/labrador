@@ -3,6 +3,10 @@
 // for iphone portrait views!
 @media only screen and (max-device-width: 2600px) {
 
+	#website_header {
+		display: none;
+	}
+
 	// angular app POST-LOGIN
 	.container.main_page .cardagain {
 

@@ -7,6 +7,24 @@
 		</h3>
 	</div>
 	<!-- floated right -->
-	<div>
+	<div id="website_header">
+		<ul class="nav navbar-nav">
+			<li class="dropdown pull-right right_most">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img ng-src="{{user.currentUser.gravatar_url}}" alt="{{user.currentUser.first_name}}" class="user_gravatar" /></a>
+				<ul class="dropdown-menu dropdown-menu-right absolute">
+					<li><span style="cursor: default;">{{user.currentUser.email}}</span></li>
+					<li class="divider"></li>
+					<li><a href="#">Profile</a></li>
+					<li><a href="#">Settings</a></li>
+					<li class="divider"></li>
+					<li ng-if="user.currentUser.is_admin"><span><a href="/admin/" >Admin</a></li>
+					<li><span><a href="/card_survey/index">Card Survey</a></span></li>
+					<li class="divider"></li>
+					<li>
+						<a style="cursor: pointer;" ng-click="logOut()">Log Out</a>
+					</li>
+				</ul>
+			</li>
+		</ul>
 	</div>
 </nav>
