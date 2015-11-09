@@ -1,7 +1,7 @@
 @import "base";
 
 // for iphone portrait views!
-@media only screen and (max-device-width: 600px) {
+@media only screen and (max-device-width: 2600px) {
 
 	// angular app POST-LOGIN
 	.cardagain {
@@ -43,24 +43,85 @@
 
 	      .tab_button {
 	        display: table-cell;
-	        width: 25%;
+	        width: 20%;
 	        vertical-align: middle;
 	        text-align: center;
 
-	        &:hover {
-	          color: white;
-	          background-color: $link_click_purple;
-	          cursor: pointer;
+	        &.queue_card {
+	        	background-color: $login_red;
 	        }
 
-	        // main cardagain logo
-	        &.logo {
-	        	background-color: black;
-	        	border-bottom: none;
-	        	.title {
-	        		margin: 0;
-	        		color: white;
+	        .my_people_image {
+	        	background: url(/assets/icons/basic_icons/all_icons_and_buttons.png) -68px 0px;
+	        	width: 71px;
+	        	height: 58px;
+	        }
+
+	        .occasions_image {
+	        	background: url(/assets/icons/basic_icons/all_icons_and_buttons.png) -68px -61px;
+	        	width: 71px;
+	        	height: 58px;
+	        }
+
+	        .queue_card_image {
+	        	background: url(/assets/icons/basic_icons/all_icons_and_buttons.png) -68px -122px;
+	        	width: 71px;
+	        	height: 58px;
+	        }
+
+	        .queued_cards_image {
+	        	background: url(/assets/icons/basic_icons/all_icons_and_buttons.png) -68px -175px;
+	        	width: 71px;
+	        	height: 58px;
+	        }
+
+	        .settings_image {
+	        	background: url(/assets/icons/basic_icons/all_icons_and_buttons.png) -68px -233px;
+	        	width: 71px;
+	        	height: 58px;
+	        }
+
+	        // hovering over that tab
+	        &:hover {
+	          cursor: pointer;
+	          .my_people_image {
+	          	background: url(/assets/icons/basic_icons/all_icons_and_buttons.png) 96px 0px;
+	          }
+	          .occasions_image {
+	          	background: url(/assets/icons/basic_icons/all_icons_and_buttons.png) 96px -61px;
+	          }
+	          .queue_card_image {
+	          	background: url(/assets/icons/basic_icons/all_icons_and_buttons.png) 96px -122px;
+	          }
+	          .queued_cards_image {
+	          	background: url(/assets/icons/basic_icons/all_icons_and_buttons.png) 96px -175px;
+	          }
+	          .settings_image {
+	          	background: url(/assets/icons/basic_icons/all_icons_and_buttons.png) 96px -233px;
+	          }
+	        }
+
+	        // currently on that tab
+	        &.active {
+	        	&.queue_card {
+	        		background-color: $login_red;
 	        	}
+	        	background-color: $beige;
+	        	.my_people_image {
+	          	background: url(/assets/icons/basic_icons/all_icons_and_buttons.png) 96px 0px;
+	          }
+	          .occasions_image {
+	          	background: url(/assets/icons/basic_icons/all_icons_and_buttons.png) 96px -61px;
+	          }
+	          .queue_card_image {
+	          	background: url(/assets/icons/basic_icons/all_icons_and_buttons.png) 96px -122px;
+	          }
+	          .queued_cards_image {
+	          	background: url(/assets/icons/basic_icons/all_icons_and_buttons.png) 96px -175px;
+	          }
+	          .settings_image {
+	          	background: url(/assets/icons/basic_icons/all_icons_and_buttons.png) 96px -233px;
+	          }
 	        }
 
 	        // the text inside each tab button
