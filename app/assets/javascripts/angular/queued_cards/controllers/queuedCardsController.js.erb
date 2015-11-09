@@ -17,6 +17,8 @@
 		queuedCardsCount = $scope.queuedCards.length;
 		headerTitle.text("Queued Cards ("+queuedCardsCount+")");
 
+		$scope.currentTitle = "Queued Cards ("+queuedCardsCount+")";
+
 		// test whether you are currently at this state or not
 		$scope.$on('$stateChangeSuccess',
 		  function(event, toState) {

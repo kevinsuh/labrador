@@ -1,3 +1,11 @@
-<div class="col-xs-12 my_cards_container" ng-controller="QueuedCardsController">
- 	<div ui-view="queued_cards_view" class="queued_cards_view"></div>
+<div ng-controller="QueuedCardsController">
+
+	<header class="navbar header_bar" id="mobile_header">
+	 <div class="main_header" ui-view="header"></div>
+	</header>
+
+	<div class="col-xs-12 my_cards_container">
+	 	<div ui-view="queued_cards_view" class="queued_cards_view"></div>
+	</div>
+
 </div>
