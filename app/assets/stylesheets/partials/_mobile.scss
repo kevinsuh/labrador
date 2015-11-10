@@ -36,7 +36,7 @@
 			background-color: $header_grey;
 			position: fixed;
 			top: 0;
-			
+
 			padding-left: 0;
 			margin-left: 0;
 			margin-right: 0;
@@ -107,52 +107,52 @@
 	        }
 
 	        .my_people_image {
-	        	background: url(/assets/icons/basic_icons/all_icons_and_buttons.png) -68px 0px;
-	        	width: 71px;
-	        	height: 58px;
+	        	background: url(/assets/icons/basic_icons/all_basic_icons.png) -122px 0px;
+	        	width: 47px;
+	        	height: 42px;
 	        }
 
 	        .occasions_image {
-	        	background: url(/assets/icons/basic_icons/all_icons_and_buttons.png) -68px -61px;
-	        	width: 71px;
-	        	height: 58px;
+	        	background: url(/assets/icons/basic_icons/all_basic_icons.png) 192px 0;
+	        	width: 47px;
+	        	height: 42px;
 	        }
 
 	        .queue_card_image {
-	        	background: url(/assets/icons/basic_icons/all_icons_and_buttons.png) -68px -122px;
-	        	width: 71px;
-	        	height: 58px;
+	        	background: url(/assets/icons/basic_icons/all_basic_icons.png) 143px 0;
+	        	width: 47px;
+	        	height: 42px;
 	        }
 
 	        .queued_cards_image {
-	        	background: url(/assets/icons/basic_icons/all_icons_and_buttons.png) -68px -175px;
-	        	width: 71px;
-	        	height: 58px;
+	        	background: url(/assets/icons/basic_icons/all_basic_icons.png) 93px 0;
+	        	width: 47px;
+	        	height: 42px;
 	        }
 
 	        .settings_image {
-	        	background: url(/assets/icons/basic_icons/all_icons_and_buttons.png) -68px -233px;
-	        	width: 71px;
-	        	height: 58px;
+	        	background: url(/assets/icons/basic_icons/all_basic_icons.png) 49px 0;
+	        	width: 47px;
+	        	height: 42px;
 	        }
 
 	        // hovering over that tab
 	        &:hover {
 	          cursor: pointer;
 	          .my_people_image {
-	          	background: url(/assets/icons/basic_icons/all_icons_and_buttons.png) 96px 0px;
+	          	background: url(/assets/icons/basic_icons/all_basic_icons.png) -122px -50px;
 	          }
 	          .occasions_image {
-	          	background: url(/assets/icons/basic_icons/all_icons_and_buttons.png) 96px -61px;
+	          	background: url(/assets/icons/basic_icons/all_basic_icons.png) 192px -50px;
 	          }
 	          .queue_card_image {
-	          	background: url(/assets/icons/basic_icons/all_icons_and_buttons.png) 96px -122px;
+	          	background: url(/assets/icons/basic_icons/all_basic_icons.png) 143px -50px;
 	          }
 	          .queued_cards_image {
-	          	background: url(/assets/icons/basic_icons/all_icons_and_buttons.png) 96px -175px;
+	          	background: url(/assets/icons/basic_icons/all_basic_icons.png) 93px -50px;
 	          }
 	          .settings_image {
-	          	background: url(/assets/icons/basic_icons/all_icons_and_buttons.png) 96px -233px;
+	          	background: url(/assets/icons/basic_icons/all_basic_icons.png) 49px -50px;
 	          }
 	        }
 
@@ -163,19 +163,19 @@
 	        	}
 	        	background-color: $beige;
 	        	.my_people_image {
-	          	background: url(/assets/icons/basic_icons/all_icons_and_buttons.png) 96px 0px;
+	          	background: url(/assets/icons/basic_icons/all_basic_icons.png) -122px -100px;
 	          }
 	          .occasions_image {
-	          	background: url(/assets/icons/basic_icons/all_icons_and_buttons.png) 96px -61px;
+	          	background: url(/assets/icons/basic_icons/all_basic_icons.png) 192px -100px;
 	          }
 	          .queue_card_image {
-	          	background: url(/assets/icons/basic_icons/all_icons_and_buttons.png) 96px -122px;
+	          	background: url(/assets/icons/basic_icons/all_basic_icons.png) 143px -50px;
 	          }
 	          .queued_cards_image {
-	          	background: url(/assets/icons/basic_icons/all_icons_and_buttons.png) 96px -175px;
+	          	background: url(/assets/icons/basic_icons/all_basic_icons.png) 93px -100px;
 	          }
 	          .settings_image {
-	          	background: url(/assets/icons/basic_icons/all_icons_and_buttons.png) 96px -233px;
+	          	background: url(/assets/icons/basic_icons/all_basic_icons.png) 49px -100px;
 	          }
 	        }
 
