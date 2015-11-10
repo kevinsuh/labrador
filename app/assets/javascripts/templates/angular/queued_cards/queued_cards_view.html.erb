@@ -95,9 +95,6 @@
 		<th class="field occasion_date">
 			<h4>Occasion Date</h4>
 		</th>
-		<th class="field ship_date">
-			<h4>Ship Date</h4>
-		</th>
 	</tr>
 
 	<tr class="queue_row single_card" ng-repeat="purchasedCard in purchasedCards" ng-class="{'even':$index%2 == 0, 'odd':$index%2 == 1}"ng-if="purchasedCard.is_visible != 0">
@@ -126,9 +123,6 @@
 		<td class="field occasion_date">
 			{{purchasedCard.recipient_arrival_date | date:"MM/dd/yyyy"}}
 		</td>
-		<td class="field ship_date">
-			SHIP DATE?
-		</td>
 	</tr>
-
+	<div class="footer_space" style="height:100px;">&nbsp;</div>
 </table>

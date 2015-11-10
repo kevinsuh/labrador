@@ -291,7 +291,7 @@
 				.single_card_div {
 					width: 100%;
 					&.add_recipient {
-						margin-bottom: 200px;
+						//margin-bottom: 200px;
 					}
 				}
 			}
@@ -318,4 +318,9 @@
 			margin-top: 40px;
 		}
 	}
+}
+
+.footer_space {
+	height:80px;
+	float: left;
 }
