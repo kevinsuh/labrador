@@ -67,7 +67,7 @@
         }
       })
       .state('main.app.greeting_central.home', {
-        url: "/",
+        url: "/greeting_central",
         views: {
           'calendar': {
             templateUrl: "angular/card_queue/calendar.html"
@@ -103,7 +103,7 @@
       })
       .state('main.app.my_people.home', {
         controller: "ManageRecipientsController",
-        url: '/my_people',
+        url: '/',
         views: {
           'card_view': {
             templateUrl: "angular/manage_recipients/card_view.html"
