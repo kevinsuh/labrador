@@ -29,17 +29,8 @@
 
 <div class="row my_people_cards">	
 	<div class="col-xs-6 col-md-4 col-lg-3 single_card_div" ng-repeat="recipient in currentRecipients" ng-if="recipient.is_visible == 1">
-		<div class="recipient_card" ng-class="{'selected': isInArray(recipient.id, selectedRecipientIDs)}" ng-mouseover="displayOverlay()" ng-mouseleave="hideOverlay()" ng-click="toggleOverlay()">
+		<div class="recipient_card" ng-class="{'selected': isInArray(recipient.id, selectedRecipientIDs)}" ng-click="select(recipient)">
 			<div class="recipient_info">
-
-				<div class="relationship_group">
-					<% if false %>
-					<% # this is the green check icon that we will be excluding for now %>
-					<div ng-if="isInArray(recipient.id, selectedRecipientIDs)" class="icon_header selected">
-						<i class="glyphicon glyphicon-check"></i>
-					</div>
-					<% end %>
-				</div>
 
 				<div class="profile_picture_container">
 					<div class="profile_picture">
@@ -47,20 +38,22 @@
 					</div>
 				</div>
 
-				<div class="name">
-					{{recipient.first_name}} {{recipient.last_name}}
-				</div>
+				<div class="recipient_info_container">
+					<div class="name">
+						{{recipient.first_name}} {{recipient.last_name}}
+					</div>
 
-				<div class="events">
-					<div class="event" ng-repeat="occasion in recipient.occasions">
-						<span ng-if="occasion.occasion.name">{{occasion.occasion.name}} in {{daysFromToday(occasion.recipient_occasion.occasion_date)}} - {{occasion.recipient_occasion.occasion_date | date: "MMM. d"}}</span>
+					<div class="events">
+						<div class="event" ng-repeat="occasion in recipient.occasions">
+							<span ng-if="occasion.occasion.name">{{occasion.occasion.name}} in {{daysFromToday(occasion.recipient_occasion.occasion_date)}} - {{occasion.recipient_occasion.occasion_date | date: "MMM. d"}}</span>
+						</div>
 					</div>
 				</div>
 
 				<!-- hidden overlay to go over card -->
 				<div class="overlay_view" ng-class="{display:viewOverlay}">
 				</div>
-				<div class="recipient_options overlay" ng-class="{display:viewOverlay}" ng-click="select(recipient)">
+				<div class="recipient_options overlay" ng-class="{display:viewOverlay}" >
 					<div class="option_buttons">
 						<button class="btn select-recipient" ng-click="select(recipient); $event.stopPropagation();"><i class="glyphicon glyphicon-check"></i></button>
 						<br>

@@ -1,6 +1,8 @@
 @import "base";
 
-$card_profile_picture_size: 90px;
+$recipient_card_height: 100px;
+$card_profile_picture_size: 80px;
+$picture_container_width: 5%;
 
 .my_people.page_container {
 	width: -moz-calc(100% - 100px);
@@ -67,13 +69,15 @@ $card_profile_picture_size: 90px;
 		&.col-xs-4 {
 
 		}
-
-		$recipient_card_height: 100px;
 		.recipient_card {
 			height: $recipient_card_height;
 			background-color: white;
 			box-shadow: $grey_box_shadow;
 			text-align: center;
+			display: table;
+			width: 100%;
+			outline: 1px solid transparent;
+			border-left: 5px solid $mobile_purple;
 
 			.icon_header {
 				&.selected {
@@ -89,9 +93,9 @@ $card_profile_picture_size: 90px;
 				}
 			}
 			&.selected {
+				outline: 1px solid $selection_green;
+				border-left: 5px solid $selection_green;
 				.recipient_info {
-					outline: 1px solid $selection_green;
-					border-left: 5px solid $selection_green;
 				}
 			}
 
@@ -99,44 +103,52 @@ $card_profile_picture_size: 90px;
 				position: relative;
 				height: 100%;
 				background-color: white;
-				outline: 1px solid transparent;
-				border-left: 5px solid $mobile_purple;
-
-				.name {
-					font-size: 1.3em;
-				}
-
-				// group of events
-				.events {
-					
-					// each individual event
-					.event {
-						font-size: 0.75em;
-						color: $dark_teal;
-						font-style: italic;
-					}
-				}
+				display: table-row;
 
 				// recipient picture
-				.profile_picture {
-					height: $card_profile_picture_size; 
-					width: $card_profile_picture_size; 
-					overflow:hidden;
-					-webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC); // overflow hidden for chrome
-					margin: 0 auto;
-					margin-top: 5px;
+				.profile_picture_container {
+					width: $picture_container_width;
+					display: table-cell;
+					vertical-align: middle;
+					.profile_picture {
+						display: inline-block;
+						height: $card_profile_picture_size; 
+						width: $card_profile_picture_size; 
+						overflow:hidden;
+						-webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC); // overflow hidden for chrome
+						border-radius: 50%;
+						position: relative;
+						background-color: $light_grey;
+						border: 1pt solid $medium_dark_grey; 
 
-					border-radius: 50%;
-					position: relative;
-					background-color: $light_grey;
-					border: 1pt solid $medium_dark_grey; 
-
-					.image {
-						position: absolute;
-						right: 0;
-						bottom: 0;
-						height: $card_profile_picture_size;
+						.image {
+							position: absolute;
+							right: 0;
+							bottom: 0;
+							height: $card_profile_picture_size;
+						}
 					}
+				}
+
+				.recipient_info_container {
+					width: 40%;
+					display: table-cell;
+					vertical-align: middle;
+					.name {
+						text-align: left;
+						font-size: 1.3em;
+					}
+
+					// group of events
+					.events {
+						text-align: left;
+						// each individual event
+						.event {
+							font-size: 0.75em;
+							color: $dark_teal;
+							font-style: italic;
+						}
+					}	
 				}
 
 				.overlay_view, .recipient_options.overlay {
@@ -202,26 +214,6 @@ $card_profile_picture_size: 90px;
 						}
 					}
 
-				}
-
-				.overlay_view {
-					background-color: black;
-					opacity: 0.75;
-					&.display {
-						display: block;
-					}
-				}
-				.recipient_options.overlay {
-					&.display {
-						display: block;
-					}
-				}
-
-				&:hover .overlay_view {
-					display: block;
-				}
-				&:hover .recipient_options.overlay {
-					display: block;
 				}
 
 			}
