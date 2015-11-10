@@ -57,10 +57,10 @@ $card_profile_picture_size: 90px;
 	
 	// card-based view of recipients!
 		
-	$single_card_top_padding: 15px;
+	$single_card_top_padding: 5px;
 	.single_card_div {
 
-		padding: $single_card_top_padding 1.5%;
+		padding: $single_card_top_padding 20px;
 		&.col-xs-3 {
 			width: 22%;	
 		}
@@ -68,12 +68,12 @@ $card_profile_picture_size: 90px;
 
 		}
 
+		$recipient_card_height: 100px;
 		.recipient_card {
-			height: 187px;
+			height: $recipient_card_height;
 			background-color: white;
 			box-shadow: $grey_box_shadow;
 			text-align: center;
-			overflow-y: hidden;
 
 			.icon_header {
 				&.selected {
@@ -88,17 +88,19 @@ $card_profile_picture_size: 90px;
 					color: white;
 				}
 			}
+			&.selected {
+				.recipient_info {
+					outline: 1px solid $selection_green;
+					border-left: 5px solid $selection_green;
+				}
+			}
 
 			.recipient_info {
 				position: relative;
 				height: 100%;
 				background-color: white;
-				border-top: 5pt solid $pacific_blue; // this is what will be different based on relationship group
-
-				&.selected {
-					border: 2pt solid $selection_green;
-					border-top: 5pt solid $selection_green;
-				}
+				outline: 1px solid transparent;
+				border-left: 5px solid $mobile_purple;
 
 				.name {
 					font-size: 1.3em;
