@@ -33,7 +33,7 @@
 		// header
 		.header_bar {
 			height: $mobile_header_size;
-			background-color: $header_grey;
+			background-color: $mobile_dark_purple;
 			position: fixed;
 			top: 0;
 
@@ -52,6 +52,80 @@
 							color: white;
 						}
 					}
+
+					// the options to the right of each page
+					.options_container {
+						float: right;
+						margin-right: 20px;
+						.header_option {
+
+							margin-right: 20px;
+							padding: 1px 13px;
+							
+							.add_person_image {
+								background: url(/assets/icons/basic_icons/all_basic_icons.png) -4px 4px;
+			        	width: 35px;
+			        	height: 47px;
+							}
+
+							.delete_person_image {
+								background: url(/assets/icons/basic_icons/all_basic_icons.png) -41px 4px;
+			        	width: 35px;
+			        	height: 47px;
+							}
+
+							.search_person_image {
+								background: url(/assets/icons/basic_icons/all_basic_icons.png) -78px 4px;
+			        	width: 35px;
+			        	height: 47px;
+							}
+
+							&:hover {
+
+								.add_person_image {
+									background: url(/assets/icons/basic_icons/all_basic_icons.png) -4px -36px;
+				        	width: 35px;
+				        	height: 47px;
+								}
+
+								.delete_person_image {
+									background: url(/assets/icons/basic_icons/all_basic_icons.png) -41px -36px;
+				        	width: 35px;
+				        	height: 47px;
+								}
+
+								.search_person_image {
+									background: url(/assets/icons/basic_icons/all_basic_icons.png) -78px -36px;
+				        	width: 35px;
+				        	height: 47px;
+								}
+
+							}
+
+							&:active {
+								background-color: $mobile_purple;
+								.add_person_image {
+									background: url(/assets/icons/basic_icons/all_basic_icons.png) -4px -76px;
+				        	width: 35px;
+				        	height: 47px;
+								}
+
+								.delete_person_image {
+									background: url(/assets/icons/basic_icons/all_basic_icons.png) -41px -76px;
+				        	width: 35px;
+				        	height: 47px;
+								}
+
+								.search_person_image {
+									background: url(/assets/icons/basic_icons/all_basic_icons.png) -78px -76px;
+				        	width: 35px;
+				        	height: 47px;
+								}
+							}
+
+						}
+					}
+
 
 					.mobile_header_container {
 

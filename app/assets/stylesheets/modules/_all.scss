@@ -94,6 +94,8 @@ $header_grey: #848484;
 // mobile specific
 $mobile_box_size: 80px;
 $mobile_header_size: 50px;
+$mobile_dark_purple: #4D4B70;
+$mobile_purple: #8976D3;
 
 @mixin base_font {
 	font-family: $base-font-family;
