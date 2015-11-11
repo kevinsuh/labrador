@@ -34,7 +34,8 @@
 			height: $mobile_header_size * 2; // will contain both "top" header and "bottom" header
 			position: fixed;
 			top: 0;
-
+			left: -1px;
+			width: 101%;
 			padding-left: 0;
 			margin-left: 0;
 			margin-right: 0;
