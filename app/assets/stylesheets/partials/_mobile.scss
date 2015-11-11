@@ -31,8 +31,7 @@
 
 		// header
 		.header_bar {
-			height: $mobile_header_size;
-			background-color: $mobile_dark_purple;
+			height: $mobile_header_size * 2; // will contain both "top" header and "bottom" header
 			position: fixed;
 			top: 0;
 
@@ -42,95 +41,111 @@
 			border-radius: 0;
 			.main_header {
 				.header_container {
-					height: $mobile_header_size;
-
-					// title container to left of each page
-					.title_container {
-						padding-left: 20px;
-						.title {
-							color: white;
-							margin-left: 0;
+					height: 100%;
+					width: 100%;
+					// the top half of header
+					.top_header_container {
+						background-color: $mobile_dark_purple;
+						height: $mobile_header_size;
+						float: left;
+						width: 100%;
+						// title container to left of each page
+						.title_container {
+							padding-left: 20px;
+							float: left;
+							margin-top: $mobile_header_size / 4;
+							.title {
+								color: white;
+								margin-left: 0;
+							}
 						}
-					}
 
-					// the options to the right of each page
-					.options_container {
-						float: right;
-						margin-right: 7px;
-						.header_option {
+						// the options to the right of each page
+						.options_container {
+							float: right;
+							margin-right: 7px;
+							.header_option {
 
-							margin-right: 20px;
-							padding: 1px 13px;
-
-							.add_person_image {
-								background: url(/assets/icons/basic_icons/all_basic_icons.png) -4px 4px;
-			        	width: 35px;
-			        	height: 47px;
-							}
-
-							.delete_person_image {
-								background: url(/assets/icons/basic_icons/all_basic_icons.png) -41px 4px;
-			        	width: 35px;
-			        	height: 47px;
-							}
-
-							.search_person_image {
-								background: url(/assets/icons/basic_icons/all_basic_icons.png) -78px 4px;
-			        	width: 35px;
-			        	height: 47px;
-							}
-
-							&:hover {
+								margin-right: 20px;
+								padding: 1px 13px;
+								display: inline-block;
 
 								.add_person_image {
-									background: url(/assets/icons/basic_icons/all_basic_icons.png) -4px -36px;
+									background: url(/assets/icons/basic_icons/all_basic_icons.png) -4px 4px;
 				        	width: 35px;
 				        	height: 47px;
 								}
 
 								.delete_person_image {
-									background: url(/assets/icons/basic_icons/all_basic_icons.png) -41px -36px;
+									background: url(/assets/icons/basic_icons/all_basic_icons.png) -41px 4px;
 				        	width: 35px;
 				        	height: 47px;
 								}
 
 								.search_person_image {
-									background: url(/assets/icons/basic_icons/all_basic_icons.png) -78px -36px;
+									background: url(/assets/icons/basic_icons/all_basic_icons.png) -78px 4px;
 				        	width: 35px;
 				        	height: 47px;
 								}
 
-							}
+								&:hover {
 
-							&.add_person {
+									.add_person_image {
+										background: url(/assets/icons/basic_icons/all_basic_icons.png) -4px -36px;
+					        	width: 35px;
+					        	height: 47px;
+									}
+
+									.delete_person_image {
+										background: url(/assets/icons/basic_icons/all_basic_icons.png) -41px -36px;
+					        	width: 35px;
+					        	height: 47px;
+									}
+
+									.search_person_image {
+										background: url(/assets/icons/basic_icons/all_basic_icons.png) -78px -36px;
+					        	width: 35px;
+					        	height: 47px;
+									}
+
+								}
+
+								&.add_person {
+									&.selected {
+										background-color: $mobile_purple;
+									}
+								}
 								&.selected {
-									background-color: $mobile_purple;
+									
+									.add_person_image {
+										background: url(/assets/icons/basic_icons/all_basic_icons.png) -4px -76px;
+					        	width: 35px;
+					        	height: 47px;
+									}
+
+									.delete_person_image {
+										background: url(/assets/icons/basic_icons/all_basic_icons.png) -41px -76px;
+					        	width: 35px;
+					        	height: 47px;
+									}
+
+									.search_person_image {
+										background: url(/assets/icons/basic_icons/all_basic_icons.png) -78px -76px;
+					        	width: 35px;
+					        	height: 47px;
+									}
 								}
+
 							}
-							&.selected {
-								
-								.add_person_image {
-									background: url(/assets/icons/basic_icons/all_basic_icons.png) -4px -76px;
-				        	width: 35px;
-				        	height: 47px;
-								}
-
-								.delete_person_image {
-									background: url(/assets/icons/basic_icons/all_basic_icons.png) -41px -76px;
-				        	width: 35px;
-				        	height: 47px;
-								}
-
-								.search_person_image {
-									background: url(/assets/icons/basic_icons/all_basic_icons.png) -78px -76px;
-				        	width: 35px;
-				        	height: 47px;
-								}
-							}
-
 						}
 					}
 
+					.bottom_header_container {
+						height: $mobile_header_size;
+						float: left;
+						width: 100%;
+					}
+					
 
 					.mobile_header_container {
 
@@ -285,12 +300,11 @@
 			// my people filters underneath the header
 			.header_dropdown_tool {
 				 width: 100%;
-				 position: fixed;
-				 top: $mobile_header_size - 3px;
 				 height: $mobile_header_size;
 				 background-color: $white_grey;
 				 box-shadow: 0px 2px 6px 0px $normal_grey;
 				 z-index: 999999;
+				 float: left;
 			}
 			.delete_people_container {
 				display: table;

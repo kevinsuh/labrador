@@ -154,10 +154,8 @@ p, input, h1, h2, h3, h4, h5, h6 {
       display: table;
 
       div {
-        height: 100%;
         display: table-cell;
         vertical-align: middle;
-        padding-left: 20px;
       }
 
       // each box within the header

@@ -1,21 +1,47 @@
 <nav class="header_container" ng-if="user.status.logged_in">
-	<!-- floated left -->
-	<div class="title_container">
-		<h3 id="currentTitle" class="title">
-			{{currentTitle}}
-		</h3>
+
+	<div class="top_header_container">
+		<!-- floated left -->
+		<div class="title_container">
+			<h3 id="currentTitle" class="title">
+				{{currentTitle}}
+			</h3>
+		</div>
+		
+		<!-- floated right -->
+		<div class="options_container">
+			<div class="header_option add_person" ng-class="{'selected':addPersonActive}" ng-click="addPersonToggle()">
+				<img src="/assets/trans_background.png" class="add_person_image"></img>
+			</div>
+			<div class="header_option delete_person" ng-class="{'selected': deletePersonActive}" ng-click="deletePersonToggle()">
+				<img src="/assets/trans_background.png" class="delete_person_image"></img>
+			</div>
+			<div class="header_option search_person" ng-class="{'selected': searchPersonActive}" ng-click="searchPersonToggle()">
+				<img src="/assets/trans_background.png" class="search_person_image"></img>
+			</div>
+		</div>
 	</div>
-	
-	<!-- floated right -->
-	<div class="options_container">
-		<div class="header_option add_person" ng-class="{'selected':addPersonActive}" ng-click="addPersonToggle()">
-			<img src="/assets/trans_background.png" class="add_person_image"></img>
+
+	<!-- the part of the header that comes for each click on the main header -->
+	<div class="bottom_header_container">
+		<!-- filter person header_bar -->
+		<div class="filter_people_container header_dropdown_tool" ng-show="searchPersonActive">
+			<div class="form_input">
+				<input type="text" placeholder="Who are you thinking about?" ng-model="filteredName" ng-change="recipientNameFilter(filteredName)" class="filter_people_input"></input>
+			</div>
 		</div>
-		<div class="header_option delete_person" ng-class="{'selected': deletePersonActive}" ng-click="deletePersonToggle()">
-			<img src="/assets/trans_background.png" class="delete_person_image"></img>
-		</div>
-		<div class="header_option search_person" ng-class="{'selected': searchPersonActive}" ng-click="searchPersonToggle()">
-			<img src="/assets/trans_background.png" class="search_person_image"></img>
+
+		<!-- delete person header_bar -->
+		<div class="delete_people_container header_dropdown_tool" ng-show="deletePersonActive && selectedRecipients.length > 0">
+			<div class="delete_recipients">
+				Are you sure you want to delete {{recipientNames()}}<span class="header_span" ng-if="selectedRecipients.length >= 1 && selectedRecipients.length <= 10">'s</span><span class="header_span" ng-if="selectedRecipients.length > 10">'</span> record<span class="header_span" ng-if="selectedRecipients.length > 1">s</span>?
+				
+			</div>
+			<div class="delete_options">
+				<button class="btn button no_button" ng-click="deletePersonToggle()">NO</button>
+				<button class="btn button yes_button" ng-click="deleteSelectedRecipients()">YES</button>
+			</div>
 		</div>
 	</div>
+
 </nav>

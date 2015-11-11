@@ -1,0 +1,255 @@
+<% 
+def us_states
+  [
+    ['Alabama', 'AL'],
+    ['Alaska', 'AK'],
+    ['Arizona', 'AZ'],
+    ['Arkansas', 'AR'],
+    ['California', 'CA'],
+    ['Colorado', 'CO'],
+    ['Connecticut', 'CT'],
+    ['Delaware', 'DE'],
+    ['District of Columbia', 'DC'],
+    ['Florida', 'FL'],
+    ['Georgia', 'GA'],
+    ['Hawaii', 'HI'],
+    ['Idaho', 'ID'],
+    ['Illinois', 'IL'],
+    ['Indiana', 'IN'],
+    ['Iowa', 'IA'],
+    ['Kansas', 'KS'],
+    ['Kentucky', 'KY'],
+    ['Louisiana', 'LA'],
+    ['Maine', 'ME'],
+    ['Maryland', 'MD'],
+    ['Massachusetts', 'MA'],
+    ['Michigan', 'MI'],
+    ['Minnesota', 'MN'],
+    ['Mississippi', 'MS'],
+    ['Missouri', 'MO'],
+    ['Montana', 'MT'],
+    ['Nebraska', 'NE'],
+    ['Nevada', 'NV'],
+    ['New Hampshire', 'NH'],
+    ['New Jersey', 'NJ'],
+    ['New Mexico', 'NM'],
+    ['New York', 'NY'],
+    ['North Carolina', 'NC'],
+    ['North Dakota', 'ND'],
+    ['Ohio', 'OH'],
+    ['Oklahoma', 'OK'],
+    ['Oregon', 'OR'],
+    ['Pennsylvania', 'PA'],
+    ['Puerto Rico', 'PR'],
+    ['Rhode Island', 'RI'],
+    ['South Carolina', 'SC'],
+    ['South Dakota', 'SD'],
+    ['Tennessee', 'TN'],
+    ['Texas', 'TX'],
+    ['Utah', 'UT'],
+    ['Vermont', 'VT'],
+    ['Virginia', 'VA'],
+    ['Washington', 'WA'],
+    ['West Virginia', 'WV'],
+    ['Wisconsin', 'WI'],
+    ['Wyoming', 'WY']
+  ]
+end
+
+%>
+
+<!-- unique modal form each time you open -->
+<form ng-submit="submit()">
+
+	<!-- name / relationship -->
+	<div class="modal-header family">
+		<div class="body">
+			<div class="row recipient_info">
+				<!-- image cropper controller start -->
+				<div class="profile_picture_container" ng-controller="ImageCropperCtrl">
+					<div class="profile_picture">
+						<img class="image" ng-src="{{recipient.profile_picture}}" ng-hide="recipientImage">
+						<img class="image" ng-src="{{myCroppedImage}}" />
+					</div>
+					<input class="picture_upload" nv-file-select type="file" uploader="uploader" id="fileInput"/>
+					<div class="potential_crop_area" ng-show="recipientImage" style="float:left; margin-top:25px; height: 150px;">
+						<div class="cropArea">
+					    <img-crop image="recipientImage" result-image="myCroppedImage" area-min-size="60"></img-crop>
+					  </div>
+					</div>
+				</div>
+				<!-- image cropper controller end -->
+
+				<div class="basic_info">
+					<div class="name form_field">
+						<div class="first_name">
+							<div class="form_input">
+					      <input ng-model="recipient.first_name" type="text" placeholder="First Name"/>
+					    </div>
+						</div>
+
+						<div class="last_name">
+							<div class="form_input">
+					      <input ng-model="recipient.last_name" type="text" placeholder="Last Name"/>
+					    </div>
+						</div>
+
+					</div>
+
+					<div class="relationship form_field">
+						<div class="relationship">
+
+							<div class="relationship_input form_input">
+								<select ng-model="recipient.relationship.id" ng-options="value as key for (key, value) in relationships"></select>
+								
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- address + occasions -->
+	<div class="modal-body modal_body">
+		<div class="body">
+			<div class="row address_title">
+
+				<h3 class="modal_title">Address</h3>
+				<h6 ng-if="recipient.id" class="last_updated">Last Updated: {{recipient.primary_address.updated_at | date:'MM/dd/yy'}}</h6>
+				<hr>
+			</div>
+			<div class="row address">
+				<div class="street form_field">
+					<div class="street">
+						<div class="form_input">
+				      <input ng-model="recipient.primary_address.street" type="text" placeholder="Address Line 1"/>
+				    </div>
+					</div>
+				</div>
+
+				<div class="street form_field">
+					<div class="street">
+						<div class="form_input">
+				      <input ng-model="recipient.primary_address.suite" type="text" placeholder="Address Line 2"/>
+				    </div>
+					</div>
+				</div>
+
+				<div class="address_other form_field">
+					<div class="city">
+						<div class="form_input">
+				      <input ng-model="recipient.primary_address.city" type="text" placeholder="City"/>
+				    </div>
+					</div>
+
+					<div class="state">
+						<div class="form_input">
+							<select ng-model="recipient.primary_address.state">
+					  		<option value="">State</option>
+					  		<% us_states.each { |state, abrv| %>
+					  			<option value="<%= state %>"><%= abrv %></option>
+								<% } %>
+					  	</select>
+						</div>
+					</div>
+
+					<div class="zip">
+						<div class="form_input">
+				      <input ng-model="recipient.primary_address.zipcode" type="text" placeholder="Zip"/>
+				    </div>
+					</div>
+
+					<div class="country">
+						<div class="form_input">
+							<country-select data-ng-model="recipient.primary_address.country"></country-select>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+			<div class="row events_title">
+				<h3 class="modal_title">Occasions</h3>
+				<hr>
+			</div>
+
+			<div class="row events" ng-repeat="occasion_hash in recipient.occasions" ng-controller="recipientOccasionsCtrl">
+				<div class="events form_field">
+					<div class="notification_container delete_container">
+				  	<span ng-click="removeOccasion(occasion_hash)" class="delete_bubble notification_bubble">&mdash;</span>
+				  </div>
+					<!-- <span class="glyphicon glyphicon-minus remove-occasion" ng-click="removeOccasion(occasion_hash)"></span> -->
+					<div class="occasion">
+						<div class="occasion_input form_input">
+							<select ng-model="occasion_hash.recipient_occasion.occasion_id" ng-options="value as key for (key, value) in occasions"></select>
+						</div>
+					</div>
+
+					<div class="date" ng-controller="DatepickerDemoCtrl">
+						<div class="form_input date_input">
+							<input type="date" datepicker-popup json-date ng-model="occasion_hash.recipient_occasion.occasion_date" is-open="status.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" placeholder="mm/dd/yyyy" required/>
+						</div>
+						<div class="form_input date_button">
+							<span class="input-group-btn date_span">
+                <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+            </div>
+					</div>
+
+					<% if false %>
+					<div class="month">
+						<div class="form_input">
+							<select ng-model="user.first_name">
+					  		<option value="">Month</option>
+					  		<% us_states.each { |state, abrv| %>
+					  			<option value="<%= state %>"><%= abrv %></option>
+								<% } %>
+					  	</select>
+						</div>
+					</div>
+
+					<div class="day">
+						<div class="form_input">
+				      <input ng-model="user.first_name" type="text" placeholder="Day"/>
+				    </div>
+					</div>
+
+					<div class="year">
+						<div class="form_input">
+							<select ng-model="user.first_name">
+					  		<option value="user.first_name">Year</option>
+					  		<% us_states.each { |state, abrv| %>
+					  			<option value="<%= state %>"><%= abrv %></option>
+								<% } %>
+					  	</select>
+						</div>
+					</div>
+					<% end %>
+				</div>
+			</div>
+			<div class="row add_new_event">
+				<span class="add-occasion" ng-click="newOccasion()"><i class="glyphicon glyphicon-plus add-occasion-glyph"></i>Add New Event</span>
+			</div>
+		</div>
+		<hr style="margin-left:15px; margin-right: 15px;">
+	</div>
+</form>
+<div class="modal-footer">
+	<div class="delete_button_container" ng-if="recipient.id">
+		<h5 ng-click="deleteRecipient(recipient)" class="delete_text_button">DELETE PERSON</h5>
+	</div>
+
+	<div class="action_button_container">
+		<button class="recipient_button cancel" ng-click="cancel()">Cancel</button>
+	  <button class="recipient_button save" ng-click="submit()">Save</button>
+	</div>
+
+  <!-- <div class="form_input">
+			<form>
+				<input type="hidden" ng-model="selectedUsers"/>
+				<a class="send_card" ng-click="multiple_queue()">Send Card</a>
+			</form>
+		</div> -->
+</div>
