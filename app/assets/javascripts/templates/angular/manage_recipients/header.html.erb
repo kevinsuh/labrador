@@ -8,13 +8,13 @@
 	
 	<!-- floated right -->
 	<div class="options_container">
-		<div class="header_option add_person">
+		<div class="header_option add_person" ng-class="{'selected':addPersonActive}" ng-click="addPersonToggle()">
 			<img src="/assets/trans_background.png" class="add_person_image"></img>
 		</div>
-		<div class="header_option delete_person">
+		<div class="header_option delete_person" ng-class="{'selected': deletePersonActive}" ng-click="deletePersonToggle()">
 			<img src="/assets/trans_background.png" class="delete_person_image"></img>
 		</div>
-		<div class="header_option search_person">
+		<div class="header_option search_person" ng-class="{'selected': searchPersonActive}" ng-click="searchPersonToggle()">
 			<img src="/assets/trans_background.png" class="search_person_image"></img>
 		</div>
 	</div>

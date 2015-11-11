@@ -22,6 +22,25 @@
 
 			$scope.currentTitle = "My People";
 
+			/**
+			 * 		MY PEOPLE HEADER
+			 */
+			$scope.addPersonActive = false;
+			$scope.deletePersonActive = false;
+			$scope.searchPersonActive = false;
+
+			$scope.addPersonToggle = function() {
+				$scope.addPersonActive = !$scope.addPersonActive;
+			}
+
+			$scope.deletePersonToggle = function() {
+				$scope.deletePersonActive = !$scope.deletePersonActive;
+			}
+
+			$scope.searchPersonToggle = function() {
+				$scope.searchPersonActive = !$scope.searchPersonActive;
+			}
+
 			// test whether you are currently at this state or not
 			$scope.$on('$stateChangeSuccess',
 			  function(event, toState) {
