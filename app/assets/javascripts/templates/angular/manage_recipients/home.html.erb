@@ -2,9 +2,20 @@
 	<header class="navbar header_bar" id="mobile_header">
 	 <div class="main_header" ui-view="header"></div>
 	</header>
-	<div class="filter_people_container" ng-show="searchPersonActive">
+	<div class="filter_people_container header_dropdown_tool" ng-show="searchPersonActive">
 		<div class="form_input">
 			<input type="text" placeholder="Who are you thinking about?" ng-model="filteredName" ng-change="recipientNameFilter(filteredName)" class="filter_people_input"></input>
+		</div>
+	</div>
+
+	<div class="delete_people_container header_dropdown_tool" ng-show="deletePersonActive && selectedRecipients.length > 0">
+		<div class="delete_recipients">
+			Are you sure you want to delete {{recipientNames()}}<span class="header_span" ng-if="selectedRecipients.length == 1">'s</span><span class="header_span" ng-if="selectedRecipients.length > 1 && selectedRecipients.length <= 10">s'</span><span class="header_span" ng-if="selectedRecipients.length > 10">'</span> record?
+			
+		</div>
+		<div class="delete_options" style="display: table-cell; vertical-align: middle; text-align: center; width: 25%;">
+			<button ng-click="deletePersonToggle()">No</button>
+			<button>Yes</button>
 		</div>
 	</div>
 

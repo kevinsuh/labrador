@@ -46,9 +46,10 @@
 
 					// title container to left of each page
 					.title_container {
-						padding-left: 10px;
+						padding-left: 20px;
 						.title {
 							color: white;
+							margin-left: 0;
 						}
 					}
 
@@ -282,16 +283,39 @@
 		.my_people_container {
 
 			// my people filters underneath the header
-			
+			.header_dropdown_tool {
+				 width: 100%;
+				 position: fixed;
+				 top: $mobile_header_size - 3px;
+				 height: $mobile_header_size;
+				 background-color: $white_grey;
+				 box-shadow: 0px 2px 6px 0px $normal_grey;
+				 z-index: 999999;
+			}
+			.delete_people_container {
+				display: table;
+				.delete_recipients {
+					display: table-cell;
+					vertical-align: middle;
+					text-align: left;
+					width: 75%;
+					padding-left: 20px;
+					font-weight: 400;
+				}
+				.delete_options {
+
+				}
+			}
+
+			.header_span {
+				font-weight: 400;
+				font-size: 14px;
+			}
+
 			.filter_people_container {
-		    position: fixed;
-		    width: 100%;
+
 		    text-align: center;
-		    height: 50px;
-		    z-index: 999999;
-		    background-color: $white_grey;
-		    box-shadow: 0px 2px 6px 0px $normal_grey;
-		    top: 47px;
+		    
 		    .form_input {
 		    	position: relative;
 		    	width: 95%;
