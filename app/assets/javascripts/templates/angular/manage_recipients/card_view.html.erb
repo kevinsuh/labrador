@@ -1,3 +1,4 @@
+<% if false # OLD FILTER OPTIONS %>
 <div class="row my_people_filter">
 	<div class="options pull-right">
 		<div class="form_input btn-group">
@@ -9,10 +10,6 @@
 			</ul>
 		</div>
 
-		<div class="form_input btn-group">
-			<button class="glyphicon glyphicon-trash delete_recipients_button" ng-click="deleteSelectedRecipients()" ng-disabled="selectedRecipientIDs.length == 0"></button>
-		</div>
-
 		<div class="form_input">
 			<form>
 				<input type="hidden" ng-model="selectedUsers"/>
@@ -21,6 +18,7 @@
 		</div>
 	</div>
 </div>
+<% end %>
 
 <div class="row my_people_cards">	
 	<div class="col-xs-6 col-md-4 col-lg-3 single_card_div" ng-repeat="recipient in currentRecipients" ng-if="recipient.is_visible == 1">

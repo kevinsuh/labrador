@@ -4,7 +4,6 @@
 	 * this controller is specific to the managing relationship within the "Greeting Central" module
 	 */
 	var app = angular.module('card-queue').controller("ManageRecipientsController", function($rootScope, $location, $window, $scope, $state, $timeout, $modal, recipients, cards, usSpinnerService, FileUploader) {
-				
 
 			// new manage relationships feature!
 			$scope.recipients               = recipients; // the "factory" recipients object
@@ -87,7 +86,7 @@
 				
 				recipients = $scope.selectedRecipients;
 				recipient_names = recipients.map(function(elem) {
-					return elem.first_name;
+					return elem.first_name + " " + elem.last_name;
 				});
 
 				text = '';
@@ -136,56 +135,54 @@
 			// this is for the trash delete button in my people cards view
 			$scope.deleteSelectedRecipients = function() {
 				selectedRecipientIDs = $scope.selectedRecipientIDs;
-				if (confirm("Are you sure?")) {
+				recipients = $scope.recipients;
+				recipients.deleteRecipients(selectedRecipientIDs)
+				.success(function(data) {
+					
+					// upon success, delete all the currentRecipients that you deleted on the server side
+					deletedRecipients = data.recipients;
+					deletedRecipientIDs = deletedRecipients.map(function(recipient) {
+						return recipient.id;
+					});
+					currentRecipients = $scope.currentRecipients;
+					currentRecipientIDs = currentRecipients.map(function(recipient) {
+						return recipient.id;
+					});
 
-					recipients.deleteRecipients(selectedRecipientIDs)
-					.success(function(data) {
-						
-						// upon success, delete all the currentRecipients that you deleted on the server side
-						deletedRecipients = data.recipients;
-						deletedRecipientIDs = deletedRecipients.map(function(recipient) {
-							return recipient.id;
-						});
-						currentRecipients = $scope.currentRecipients;
-						currentRecipientIDs = currentRecipients.map(function(recipient) {
-							return recipient.id;
-						});
-
-						// this will go through each deletedRecipientID and remove currentRecipients of that recipientID
-						$.each(deletedRecipientIDs, function(i) {
-							recipientID = deletedRecipientIDs[i];
-							if (isInArray(recipientID, currentRecipientIDs)) {
-								
-								var index = currentRecipientIDs.indexOf(recipientID);
-								if (index > -1) {
-									// splice both to keep the currentRecipientIDs array syncd with the scope.currentRecipients array
-									currentRecipientIDs.splice(index, 1);
-									$scope.currentRecipients.splice(index, 1);
-								}
+					// this will go through each deletedRecipientID and remove currentRecipients of that recipientID
+					$.each(deletedRecipientIDs, function(i) {
+						recipientID = deletedRecipientIDs[i];
+						if (isInArray(recipientID, currentRecipientIDs)) {
+							
+							var index = currentRecipientIDs.indexOf(recipientID);
+							if (index > -1) {
+								// splice both to keep the currentRecipientIDs array syncd with the scope.currentRecipients array
+								currentRecipientIDs.splice(index, 1);
+								$scope.currentRecipients.splice(index, 1);
 							}
-						});
+						}
+					});
 
-					})
-					.error(function(data) {
-						console.log("error in delete selected recipients of manage recipients controller");
-						console.log(data);
-					})
+				})
+				.error(function(data) {
+					console.log("error in delete selected recipients of manage recipients controller");
+					console.log(data);
+				})
 
-					// recipients.deleteRecipient(recipient)
-		   //    .success(function(data) {
-					// 	// remove from current view
-		   //    	$.each(recipients.currentRecipients, function(i) {
-		   //    		if (recipients.currentRecipients[i].id === recipient_id) {
-		   //    			recipients.currentRecipients.splice(i, 1);
-		   //    			return false;
-		   //    		}
-		   //    	})
-		   //    })
-		   //    .error(function(data) {
-	    //       console.log(data);
-	    //     });
+				// recipients.deleteRecipient(recipient)
+	   //    .success(function(data) {
+				// 	// remove from current view
+	   //    	$.each(recipients.currentRecipients, function(i) {
+	   //    		if (recipients.currentRecipients[i].id === recipient_id) {
+	   //    			recipients.currentRecipients.splice(i, 1);
+	   //    			return false;
+	   //    		}
+	   //    	})
+	   //    })
+	   //    .error(function(data) {
+    //       console.log(data);
+    //     });
 
-				}
 			}
 
 			// custom function to return days from today -- of next calendar year

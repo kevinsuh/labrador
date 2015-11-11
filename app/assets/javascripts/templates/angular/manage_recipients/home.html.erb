@@ -10,12 +10,12 @@
 
 	<div class="delete_people_container header_dropdown_tool" ng-show="deletePersonActive && selectedRecipients.length > 0">
 		<div class="delete_recipients">
-			Are you sure you want to delete {{recipientNames()}}<span class="header_span" ng-if="selectedRecipients.length == 1">'s</span><span class="header_span" ng-if="selectedRecipients.length > 1 && selectedRecipients.length <= 10">s'</span><span class="header_span" ng-if="selectedRecipients.length > 10">'</span> record?
+			Are you sure you want to delete {{recipientNames()}}<span class="header_span" ng-if="selectedRecipients.length >= 1 && selectedRecipients.length <= 10">'s</span><span class="header_span" ng-if="selectedRecipients.length > 10">'</span> record<span class="header_span" ng-if="selectedRecipients.length > 1">s</span>?
 			
 		</div>
-		<div class="delete_options" style="display: table-cell; vertical-align: middle; text-align: center; width: 25%;">
-			<button ng-click="deletePersonToggle()">No</button>
-			<button>Yes</button>
+		<div class="delete_options">
+			<button class="btn button no_button" ng-click="deletePersonToggle()">NO</button>
+			<button class="btn button yes_button" ng-click="deleteSelectedRecipients()">YES</button>
 		</div>
 	</div>
 
