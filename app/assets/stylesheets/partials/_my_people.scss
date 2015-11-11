@@ -2,7 +2,9 @@
 
 $recipient_card_height: 100px;
 $card_profile_picture_size: 80px;
-$picture_container_width: 5%;
+$picture_container_width: 10%;
+$edit_container_width: 10%;
+$recipient_info_container_width: 80%;
 
 .my_people.page_container {
 	width: -moz-calc(100% - 100px);
@@ -110,6 +112,8 @@ $picture_container_width: 5%;
 					width: $picture_container_width;
 					display: table-cell;
 					vertical-align: middle;
+					text-align: left;
+					padding-left: 20px;
 					.profile_picture {
 						display: inline-block;
 						height: $card_profile_picture_size; 
@@ -131,12 +135,13 @@ $picture_container_width: 5%;
 				}
 
 				.recipient_info_container {
-					width: 40%;
+					width: $recipient_info_container_width;
 					display: table-cell;
 					vertical-align: middle;
 					.name {
 						text-align: left;
 						font-size: 1.3em;
+						font-weight: 400;
 					}
 
 					// group of events
@@ -147,8 +152,28 @@ $picture_container_width: 5%;
 							font-size: 0.75em;
 							color: $dark_teal;
 							font-style: italic;
+							font-weight: 200;
 						}
 					}	
+				}
+
+				.edit_container {
+					width: $edit_container_width;
+					display: table-cell;
+					vertical-align: middle;
+					text-align: right;
+					padding-right: 20px;
+				}
+				.btn.edit-recipient {
+					background: url(/assets/icons/basic_icons/all_basic_icons.png) 3px 45px;
+        	width: 8px;
+        	height: 25px;
+        	&:focus {
+        		outline: 0;
+        	}
+        	&:active {
+        		box-shadow: none;
+        	}
 				}
 
 				.overlay_view, .recipient_options.overlay {
