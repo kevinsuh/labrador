@@ -286,6 +286,7 @@
 		    z-index: 999999;
 		    background-color: $white_grey;
 		    box-shadow: 0px 2px 6px 0px $normal_grey;
+		    top: 47px;
 		    .form_input {
 		    	position: relative;
 		    	width: 95%;
@@ -355,4 +356,11 @@
 .footer_space {
 	height:80px;
 	float: left;
+}
+
+// to handle mobile browser nonsense
+.fixfixed .header_bar, 
+.fixfixed .main_footer,
+.fixfixed .filter_people_container { 
+    position: absolute !important;
 }
