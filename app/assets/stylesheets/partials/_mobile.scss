@@ -360,7 +360,10 @@
 
 // to handle mobile browser nonsense
 .fixfixed .header_bar, 
-.fixfixed .main_footer,
 .fixfixed .filter_people_container { 
     position: absolute !important;
+}
+
+.fixfixed .main_footer {
+	display: none !important;
 }
