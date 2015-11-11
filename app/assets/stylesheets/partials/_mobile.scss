@@ -21,7 +21,6 @@
 		// OVERALL APP STUFF
 		.logged_in_home {
 			margin-left: 0;
-			padding-top: $mobile_header_size + 10px;
 
 		}
 
@@ -275,27 +274,60 @@
 		}
 
 		// MY PEOPLE
-		.my_people {
-			&.page_container {
-				width: 100%;
-				min-width: 0;
-				.my_people_filter {
-					.filter_people {
-						width: 100%;
-						margin-left: 0;
-					}
-					.options {
-						margin-top: 25px;
-					}
-				}
-				.single_card_div {
+		.my_people_container {
+
+			// my people filters underneath the header
+			
+			.filter_people_container {
+		    position: fixed;
+		    width: 100%;
+		    text-align: center;
+		    height: 50px;
+		    z-index: 999999;
+		    background-color: $white_grey;
+		    box-shadow: 0px 2px 6px 0px $normal_grey;
+		    .form_input {
+		    	position: relative;
+		    	width: 95%;
+		    	display: inline-block;
+		    	margin-top: 8px;
+		    	.filter_people_input {
+			      border-radius: 0;
+			      height: 34px;
+			      text-indent: 15px;
+			      border: 1.5pt solid $medium_dark_grey;
+
+			      &:focus {
+			        outline: 0;
+			      }
+			    }
+		    }
+		  }
+
+		  // actual body of my people
+			.my_people {
+				&.page_container {
 					width: 100%;
-					&.add_recipient {
-						//margin-bottom: 200px;
+					min-width: 0;
+					.my_people_filter {
+						.filter_people {
+							width: 100%;
+							margin-left: 0;
+						}
+						.options {
+							margin-top: 25px;
+						}
+					}
+					.single_card_div {
+						width: 100%;
+						&.add_recipient {
+							//margin-bottom: 200px;
+						}
 					}
 				}
 			}
 		}
+
 
 		// MY QUEUED CARDS
 		.my_cards_container {

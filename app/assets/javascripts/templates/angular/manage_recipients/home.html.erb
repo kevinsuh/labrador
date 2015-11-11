@@ -1,7 +1,13 @@
-<div ng-controller="ManageRecipientsController">
+<div class="my_people_container" ng-controller="ManageRecipientsController">
 	<header class="navbar header_bar" id="mobile_header">
 	 <div class="main_header" ui-view="header"></div>
 	</header>
+	<div class="filter_people_container">
+		<div class="form_input">
+			<input type="text" placeholder="Who are you thinking about?" ng-model="filteredName" ng-change="recipientNameFilter(filteredName)" class="filter_people_input"></input>
+		</div>
+	</div>
+
 
 	<div class="col-md-12 col-xs-12 my_people page_container">
 		<div class="my_people_view page_view" ui-view="card_view"></div>
