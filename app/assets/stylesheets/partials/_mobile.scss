@@ -64,35 +64,38 @@
 
 						// the options at right of header
 						.options_container {
+							height: 100%;
 							float: right;
 							margin-right: 7px;
 							$header_icon_width: 35px;
 							$header_icon_height: 44px;
-							margin-top: ($top_header_height - $header_icon_height) / 2;
 							.header_option {
+								
+								height: 100%;
+								padding: 0;
+								display: inline-block;
 
+								.header_icon {
+									margin: ($top_header_height - $header_icon_height) / 2 10px;
+								}
 								&.search_person {
 									margin-right: 35px;
 								}
 
-								margin-right: 20px;
-								padding: 0;
-								display: inline-block;
-
 								.add_person_image {
-									background: url(/assets/icons/basic_icons/all_basic_icons.png) -4px 4px;
+									background: url(/assets/icons/basic_icons/all_basic_icons.png) -4px 3px;
 				        	width: $header_icon_width;
 				        	height: $header_icon_height;
 								}
 
 								.delete_person_image {
-									background: url(/assets/icons/basic_icons/all_basic_icons.png) -41px 4px;
+									background: url(/assets/icons/basic_icons/all_basic_icons.png) -41px 3px;
 				        	width: $header_icon_width;
 				        	height: $header_icon_height;
 								}
 
 								.search_person_image {
-									background: url(/assets/icons/basic_icons/all_basic_icons.png) -78px 4px;
+									background: url(/assets/icons/basic_icons/all_basic_icons.png) -78px 3px;
 				        	width: $header_icon_width;
 				        	height: $header_icon_height;
 								}
@@ -100,19 +103,19 @@
 								&:hover {
 
 									.add_person_image {
-										background: url(/assets/icons/basic_icons/all_basic_icons.png) -4px -36px;
+										background: url(/assets/icons/basic_icons/all_basic_icons.png) -4px -38px;
 					        	width: $header_icon_width;
 					        	height: $header_icon_height;
 									}
 
 									.delete_person_image {
-										background: url(/assets/icons/basic_icons/all_basic_icons.png) -41px -36px;
+										background: url(/assets/icons/basic_icons/all_basic_icons.png) -41px -38px;
 					        	width: $header_icon_width;
 					        	height: $header_icon_height;
 									}
 
 									.search_person_image {
-										background: url(/assets/icons/basic_icons/all_basic_icons.png) -78px -36px;
+										background: url(/assets/icons/basic_icons/all_basic_icons.png) -78px -38px;
 					        	width: $header_icon_width;
 					        	height: $header_icon_height;
 									}
@@ -127,19 +130,19 @@
 								&.selected {
 									
 									.add_person_image {
-										background: url(/assets/icons/basic_icons/all_basic_icons.png) -4px -76px;
+										background: url(/assets/icons/basic_icons/all_basic_icons.png) -4px -78px;
 					        	width: $header_icon_width;
 					        	height: $header_icon_height;
 									}
 
 									.delete_person_image {
-										background: url(/assets/icons/basic_icons/all_basic_icons.png) -41px -76px;
+										background: url(/assets/icons/basic_icons/all_basic_icons.png) -41px -78px;
 					        	width: $header_icon_width;
 					        	height: $header_icon_height;
 									}
 
 									.search_person_image {
-										background: url(/assets/icons/basic_icons/all_basic_icons.png) -78px -76px;
+										background: url(/assets/icons/basic_icons/all_basic_icons.png) -78px -78px;
 					        	width: $header_icon_width;
 					        	height: $header_icon_height;
 									}
