@@ -411,10 +411,10 @@
 			.my_people {
 				&.page_container {
 					width: 100%;
+					height: 100%;
 					padding-top: $mobile_header_size;
 					padding-bottom: $footer_height;
 					position: relative;
-					height: calc(100vh - 10px);
 					overflow-y: scroll;
 					overflow-x: hidden;
 					.my_people_filter {
