@@ -65,48 +65,54 @@
 						.options_container {
 							float: right;
 							margin-right: 7px;
+							$header_icon_width: 35px;
+							$header_icon_height: 44px;
 							.header_option {
 
+								&.search_person {
+									margin-right: 35px;
+								}
+
 								margin-right: 20px;
-								padding: 1px 13px;
+								padding: 0;
 								display: inline-block;
 
 								.add_person_image {
 									background: url(/assets/icons/basic_icons/all_basic_icons.png) -4px 4px;
-				        	width: 35px;
-				        	height: 47px;
+				        	width: $header_icon_width;
+				        	height: $header_icon_height;
 								}
 
 								.delete_person_image {
 									background: url(/assets/icons/basic_icons/all_basic_icons.png) -41px 4px;
-				        	width: 35px;
-				        	height: 47px;
+				        	width: $header_icon_width;
+				        	height: $header_icon_height;
 								}
 
 								.search_person_image {
 									background: url(/assets/icons/basic_icons/all_basic_icons.png) -78px 4px;
-				        	width: 35px;
-				        	height: 47px;
+				        	width: $header_icon_width;
+				        	height: $header_icon_height;
 								}
 
 								&:hover {
 
 									.add_person_image {
 										background: url(/assets/icons/basic_icons/all_basic_icons.png) -4px -36px;
-					        	width: 35px;
-					        	height: 47px;
+					        	width: $header_icon_width;
+					        	height: $header_icon_height;
 									}
 
 									.delete_person_image {
 										background: url(/assets/icons/basic_icons/all_basic_icons.png) -41px -36px;
-					        	width: 35px;
-					        	height: 47px;
+					        	width: $header_icon_width;
+					        	height: $header_icon_height;
 									}
 
 									.search_person_image {
 										background: url(/assets/icons/basic_icons/all_basic_icons.png) -78px -36px;
-					        	width: 35px;
-					        	height: 47px;
+					        	width: $header_icon_width;
+					        	height: $header_icon_height;
 									}
 
 								}
@@ -120,20 +126,20 @@
 									
 									.add_person_image {
 										background: url(/assets/icons/basic_icons/all_basic_icons.png) -4px -76px;
-					        	width: 35px;
-					        	height: 47px;
+					        	width: $header_icon_width;
+					        	height: $header_icon_height;
 									}
 
 									.delete_person_image {
 										background: url(/assets/icons/basic_icons/all_basic_icons.png) -41px -76px;
-					        	width: 35px;
-					        	height: 47px;
+					        	width: $header_icon_width;
+					        	height: $header_icon_height;
 									}
 
 									.search_person_image {
 										background: url(/assets/icons/basic_icons/all_basic_icons.png) -78px -76px;
-					        	width: 35px;
-					        	height: 47px;
+					        	width: $header_icon_width;
+					        	height: $header_icon_height;
 									}
 								}
 
@@ -191,6 +197,9 @@
 	      width: 100%;
 	      display: table-row;
 
+	      $tab_icon_width: 47px;
+	      $tab_icon_height:  42px;
+
 	      .tab_button {
 	        display: table-cell;
 	        width: 20%;
@@ -203,32 +212,32 @@
 
 	        .my_people_image {
 	        	background: url(/assets/icons/basic_icons/all_basic_icons.png) -122px 0px;
-	        	width: 47px;
-	        	height: 42px;
+	        	width: $tab_icon_width;
+	        	height: $tab_icon_height;
 	        }
 
 	        .occasions_image {
-	        	background: url(/assets/icons/basic_icons/all_basic_icons.png) 192px 0;
-	        	width: 47px;
-	        	height: 42px;
+	        	background: url(/assets/icons/basic_icons/all_basic_icons.png) 192px 0px;
+	        	width: $tab_icon_width;
+	        	height: $tab_icon_height;
 	        }
 
 	        .queue_card_image {
-	        	background: url(/assets/icons/basic_icons/all_basic_icons.png) 143px 0;
-	        	width: 47px;
-	        	height: 42px;
+	        	background: url(/assets/icons/basic_icons/all_basic_icons.png) 143px 0px;
+	        	width: $tab_icon_width;
+	        	height: $tab_icon_height;
 	        }
 
 	        .queued_cards_image {
-	        	background: url(/assets/icons/basic_icons/all_basic_icons.png) 93px 0;
-	        	width: 47px;
-	        	height: 42px;
+	        	background: url(/assets/icons/basic_icons/all_basic_icons.png) 93px 0px;
+	        	width: $tab_icon_width;
+	        	height: $tab_icon_height;
 	        }
 
 	        .settings_image {
-	        	background: url(/assets/icons/basic_icons/all_basic_icons.png) 49px 0;
-	        	width: 47px;
-	        	height: 42px;
+	        	background: url(/assets/icons/basic_icons/all_basic_icons.png) 49px 0px;
+	        	width: $tab_icon_width;
+	        	height: $tab_icon_height;
 	        }
 
 	        // hovering over that tab
@@ -450,6 +459,16 @@
 			margin: 0 auto;
 			margin-top: 40px;
 		}
+	}
+
+	// settings view
+	.settings_container {
+		margin-top: $mobile_header_size;
+	}
+
+	// queued cards view
+	.my_cards_container {
+		margin-top: $mobile_header_size;	
 	}
 }
 
