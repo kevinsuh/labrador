@@ -47,7 +47,7 @@
 					// the top half of header
 					.top_header_container {
 						background-color: $mobile_dark_purple;
-						height: $mobile_header_size;
+						height: $mobile_header_size - 2px;
 						float: left;
 						width: 100%;
 						// title container to left of each page
@@ -297,6 +297,26 @@
 
 		// MY PEOPLE
 		.my_people_container {
+
+			// full-page recipient form to be used on mobile!
+		  .recipient_form_container {
+		  	position: absolute;
+		  	margin-top: $mobile_header_size - 3px;
+		  	padding: 0;
+
+		  	.recipient_form_view {
+		  		padding: 0;
+		  		margin: 0;
+
+		  		.modal-header {
+		  			&.family {
+		  				background-color: $mobile_purple;		
+		  			}
+		  		}
+
+		  	
+		  	}
+		  }
 
 			// my people filters underneath the header
 			.header_dropdown_tool {
