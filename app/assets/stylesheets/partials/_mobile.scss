@@ -414,7 +414,7 @@
 					padding-top: $mobile_header_size;
 					padding-bottom: $footer_height;
 					position: relative;
-					height: 736px - $footer_height - $mobile_header_size;
+					height: calc(100vh - 10px);
 					overflow-y: scroll;
 					overflow-x: hidden;
 					.my_people_filter {
