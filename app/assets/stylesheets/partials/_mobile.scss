@@ -46,15 +46,16 @@
 					width: 100%;
 					// the top half of header
 					.top_header_container {
+						$top_header_height: $mobile_header_size + 2px;
 						background-color: $mobile_dark_purple;
-						height: $mobile_header_size - 2px;
+						height: $top_header_height;
 						float: left;
 						width: 100%;
 						// title container to left of each page
 						.title_container {
 							padding-left: 20px;
 							float: left;
-							margin-top: $mobile_header_size / 4;
+							margin-top: $top_header_height / 4;
 							.title {
 								color: white;
 								margin-left: 0;
@@ -67,6 +68,7 @@
 							margin-right: 7px;
 							$header_icon_width: 35px;
 							$header_icon_height: 44px;
+							margin-top: ($top_header_height - $header_icon_height) / 2;
 							.header_option {
 
 								&.search_person {
