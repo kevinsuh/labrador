@@ -412,7 +412,11 @@
 				&.page_container {
 					width: 100%;
 					padding-top: $mobile_header_size;
-					
+					padding-bottom: $footer_height;
+					position: relative;
+					height: 736px - $footer_height - $mobile_header_size;
+					overflow-y: scroll;
+					overflow-x: hidden;
 					.my_people_filter {
 						.filter_people {
 							width: 100%;
