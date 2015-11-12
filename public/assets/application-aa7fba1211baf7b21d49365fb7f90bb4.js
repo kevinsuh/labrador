@@ -75499,6 +75499,9 @@ calendarDemoApp.controller('CalendarCtrl',
 	 */
 	var app = angular.module('card-queue').controller("ManageRecipientsController", function($rootScope, $location, $window, $scope, $state, $timeout, $modal, recipients, cards, usSpinnerService, FileUploader) {
 
+			// infinite scroll once this angular controller is loaded
+			ScaleContentToDevice();
+
 			// new manage relationships feature!
 			$scope.recipients               = recipients; // the "factory" recipients object
 			$scope.relationships            = recipients.relationships;
@@ -76953,6 +76956,9 @@ function recipientDateString() {
 		$scope.selectedOrderIDs = [];
 		$scope.tableView        = 'queued';
 
+		// infinite scroll once this angular controller is loaded
+		ScaleContentToDevice();
+
 		console.log($scope.queuedCards);
 
 		headerTitle = angular.element(document.querySelector("#currentTitle"));
@@ -77129,6 +77135,9 @@ function recipientDateString() {
 			
 		headerTitle = angular.element(document.querySelector("#currentTitle"));
 		headerTitle.text("Settings");
+
+		// infinite scroll once this angular controller is loaded
+		ScaleContentToDevice();
 
 		$scope.currentTitle = "Settings";
 
@@ -77727,8 +77736,6 @@ function updatePreview(coords) {
 // mobile specific helper functions
 $(document).on('ready page:load', function() {	
 
-	ScaleContentToDevice();
-
 	 if ('ontouchstart' in window) {
 	    /* cache dom references */ 
 	    var $body = $('body'); 
@@ -77764,10 +77771,6 @@ function ScaleContentToDevice() {
 
    var contentheight = viewportHeight - headerHeight - footerHeight - contentMargins;
 
-   console.log("creating content height");
-   console.log(contentheight);
-   console.log(content);
-   // $(".page_container").height(58);
    content.height(contentheight);
 }
 ;

@@ -11,6 +11,9 @@
 		$scope.selectedOrderIDs = [];
 		$scope.tableView        = 'queued';
 
+		// infinite scroll once this angular controller is loaded
+		ScaleContentToDevice();
+
 		console.log($scope.queuedCards);
 
 		headerTitle = angular.element(document.querySelector("#currentTitle"));

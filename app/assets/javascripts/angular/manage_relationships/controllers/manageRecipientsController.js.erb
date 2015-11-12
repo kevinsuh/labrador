@@ -5,6 +5,9 @@
 	 */
 	var app = angular.module('card-queue').controller("ManageRecipientsController", function($rootScope, $location, $window, $scope, $state, $timeout, $modal, recipients, cards, usSpinnerService, FileUploader) {
 
+			// infinite scroll once this angular controller is loaded
+			ScaleContentToDevice();
+
 			// new manage relationships feature!
 			$scope.recipients               = recipients; // the "factory" recipients object
 			$scope.relationships            = recipients.relationships;

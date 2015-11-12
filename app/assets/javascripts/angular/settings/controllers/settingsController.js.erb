@@ -8,6 +8,9 @@
 		headerTitle = angular.element(document.querySelector("#currentTitle"));
 		headerTitle.text("Settings");
 
+		// infinite scroll once this angular controller is loaded
+		ScaleContentToDevice();
+
 		$scope.currentTitle = "Settings";
 
 		$scope.currentUser = user.currentUser;

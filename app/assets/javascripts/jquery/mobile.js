@@ -1,8 +1,6 @@
 // mobile specific helper functions
 $(document).on('ready page:load', function() {	
 
-	ScaleContentToDevice();
-
 	 if ('ontouchstart' in window) {
 	    /* cache dom references */ 
 	    var $body = $('body'); 
@@ -38,9 +36,5 @@ function ScaleContentToDevice() {
 
    var contentheight = viewportHeight - headerHeight - footerHeight - contentMargins;
 
-   console.log("creating content height");
-   console.log(contentheight);
-   console.log(content);
-   // $(".page_container").height(58);
    content.height(contentheight);
 }
