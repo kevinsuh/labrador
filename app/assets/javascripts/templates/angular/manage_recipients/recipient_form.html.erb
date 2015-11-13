@@ -65,33 +65,45 @@ end
 	<div class="modal-header basic_info">
 		<div class="row recipient_info">
 
-			<div class="title_container">
-				<h3 class="recipient_form_title">Add New Person</h3>
+			<div ng-controller="ImageCropperCtrl">
+				<div class="title_container">
+					<h3 class="recipient_form_title" ng-hide="activeRecipientImage">Add New Person</h3>
+					<h3 class="recipient_form_title" ng-show="activeRecipientImage">Crop picture</h3>
+				</div>
+
+				<!-- image cropper controller start -->
+				<div class="profile_picture_container">
+					<div class="profile_picture" id="recipientPicture" ng-hide="activeRecipientImage">
+						<i class="camera_icon"></i> <!-- the camera overlay icon -->
+						<img class="image" ng-src="{{recipient.profile_picture}}" ng-hide="recipientImage">
+						<img class="image" ng-src="{{myCroppedImage}}" />
+					</div>
+
+					<div class="crop_picture_container" ng-show="activeRecipientImage">
+						<input class="picture_upload" nv-file-select type="file" uploader="uploader" id="fileInput" style="display: none;"/>
+						<div class="potential_crop_area" ng-show="recipientImage">
+							<div class="cropArea">
+						    <img-crop image="recipientImage" result-image="myCroppedImage" area-min-size="60"></img-crop>
+						  </div>
+						</div>
+						<div class="button_container">
+							<button type="button" class="submit_button cancel_button recipient_form_button" ng-click="cancelRecipientImage()">CANCEL</button>
+							<button type="button" class="submit_button save_button recipient_form_button" ng-click="saveRecipientImage()">SAVE</button>
+						</div>
+					</div>
+				</div>
+
+				<div class="name_container" ng-hide="activeRecipientImage">
+					<div class="first_name form_input">
+						<input ng-model="recipient.first_name" type="text" placeholder="First Name" class="name_input recipient_form_input"/>
+					</div>
+					<div class="last_name form_input">
+						<input ng-model="recipient.last_name" type="text" placeholder="Last Name" class="name_input recipient_form_input"/>
+					</div>
+				</div>
+
 			</div>
 
-			<!-- image cropper controller start -->
-			<div class="profile_picture_container" ng-controller="ImageCropperCtrl">
-				<div class="profile_picture" id="recipientPicture">
-					<i class="camera_icon"></i> <!-- the camera overlay icon -->
-					<img class="image" ng-src="{{recipient.profile_picture}}" ng-hide="recipientImage">
-					<img class="image" ng-src="{{myCroppedImage}}" />
-				</div>
-				<input class="picture_upload" nv-file-select type="file" uploader="uploader" id="fileInput" style="display: none;"/>
-				<div class="potential_crop_area" ng-show="recipientImage">
-					<div class="cropArea">
-				    <img-crop image="recipientImage" result-image="myCroppedImage" area-min-size="60"></img-crop>
-				  </div>
-				</div>
-			</div>
-
-			<div class="name_container">
-				<div class="first_name form_input">
-					<input ng-model="recipient.first_name" type="text" placeholder="First Name" class="name_input recipient_form_input"/>
-				</div>
-				<div class="last_name form_input">
-					<input ng-model="recipient.last_name" type="text" placeholder="Last Name" class="name_input recipient_form_input"/>
-				</div>
-			</div>
 		</div>
 	</div>
 

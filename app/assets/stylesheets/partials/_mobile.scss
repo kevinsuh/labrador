@@ -433,9 +433,16 @@
 							}
 
 							.potential_crop_area {
-								margin: 22px 0;
+								margin: 22px 0 0 0;
 								height: 150px;
 								float: none;
+							}
+							.button_container {
+								margin-top: 15px;
+								margin-bottom: 10px;
+								.cancel_button {
+									margin-right: 15px;
+								}
 							}
 
 						}

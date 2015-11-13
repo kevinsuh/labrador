@@ -3,6 +3,17 @@
     angular.module('card-queue').controller("ImageCropperCtrl", function($scope)
     {
     	// scope.recipients, scope.recipient, scope.uploader passed in from outer controller of recipient modal form
+      
+      $scope.activeRecipientImage = false;
+
+      $scope.cancelRecipientImage = function() {
+        $scope.activeRecipientImage = false;
+        $scope.recipientImage = false;
+      }
+
+      $scope.saveRecipientImage = function() {
+        $scope.activeRecipientImage = false;
+      }
 
       // show preview with cropping image
       $scope.uploader.onAfterAddingFile = function(item) {
@@ -14,6 +25,7 @@
       	reader.onload = function(event) {
       		$scope.$apply(function() {
       			$scope.recipientImage = event.target.result;
+            $scope.activeRecipientImage = true;
       		});
       	};
       	reader.readAsDataURL(item._file);
