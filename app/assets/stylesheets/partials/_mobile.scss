@@ -323,11 +323,13 @@
 		  		padding: 0;
 		  		margin: 0;
 
+		  		$recipient_info_height: 275px;
 		  		$picture_container_width: 120px;
 		  		$picture_size: 120px;
 		  		$name_input_width: 210px;
 
 		  		.modal-header {
+		  			height: $recipient_info_height;
 		  			&.basic_info {
 		  				background-color: $mobile_purple;	
 		  				padding: 0;	
@@ -449,6 +451,11 @@
 							}
 
 						}
+		  		}
+
+		  		.modal-body {
+		  			overflow-x: hidden;
+		  			overflow-y: scroll;
 		  		}
 
 		  	

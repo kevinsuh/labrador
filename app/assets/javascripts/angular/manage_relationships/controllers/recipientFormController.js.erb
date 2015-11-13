@@ -3,6 +3,9 @@
 	angular.module('card-queue').controller("RecipientFormController", function($rootScope, $scope, recipients, cards, FileUploader)
     {
 
+    // sets height for the address/occasions body of form
+  	ScaleContentToDeviceForRecipientForm();
+
 		console.log("holla");
 		console.log($scope.selectedRecipient);
 
