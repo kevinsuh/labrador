@@ -59,7 +59,7 @@ end
 %>
 
 <!-- unique modal form each time you open -->
-<form ng-submit="submit()">
+<form ng-submit="submit()" ng-controller="RecipientFormController">
 
 	<!-- name / relationship -->
 	<div class="modal-header basic_info">
@@ -71,11 +71,12 @@ end
 
 			<!-- image cropper controller start -->
 			<div class="profile_picture_container" ng-controller="ImageCropperCtrl">
-				<div class="profile_picture">
+				<div class="profile_picture" id="recipientPicture">
+					<i class="camera_icon"></i> <!-- the camera overlay icon -->
 					<img class="image" ng-src="{{recipient.profile_picture}}" ng-hide="recipientImage">
 					<img class="image" ng-src="{{myCroppedImage}}" />
 				</div>
-				<input class="picture_upload" nv-file-select type="file" uploader="uploader" id="fileInput"/>
+				<input class="picture_upload" nv-file-select type="file" uploader="uploader" id="fileInput" style="display: none;"/>
 				<div class="potential_crop_area" ng-show="recipientImage" style="float:left; margin-top:25px; height: 150px;">
 					<div class="cropArea">
 				    <img-crop image="recipientImage" result-image="myCroppedImage" area-min-size="60"></img-crop>

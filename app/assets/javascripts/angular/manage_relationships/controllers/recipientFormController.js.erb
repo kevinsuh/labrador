@@ -20,6 +20,15 @@
 			}
 		});
 
+		// trigger file upload with clicking on profile picture circle
+		recipientPicture = angular.element(document.querySelector("#recipientPicture"));
+		fileInput = angular.element(document.querySelector("#fileInput"));
+
+		recipientPicture.click(function() {
+			console.log("click!");
+			fileInput.click();
+		});
+
 		// callback on successful upload
 		$scope.uploader.onSuccessItem = function(fileItem, response, status, headers) {
 			console.log("new success item");

@@ -359,11 +359,21 @@
 								display: block;
 								text-align: center;
 								margin-top: 22px;
+								.camera_icon {
+									background: url(/assets/icons/basic_icons/all_basic_icons.png) -191px -148px;
+									width: 40px;
+									height: 34px;
+									position: absolute;
+									left: 40px;
+									top: 42px;
+									z-index: 99999999;
+								}
 								.profile_picture {
 									display: inline-block;
 									height: $picture_size; 
 									width: $picture_size; 
 									overflow:hidden;
+									cursor: pointer;
 									-webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC); // overflow hidden for chrome
 									border-radius: 50%;
 									position: relative;
