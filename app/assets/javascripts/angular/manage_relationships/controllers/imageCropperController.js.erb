@@ -5,6 +5,9 @@
     	// scope.recipients, scope.recipient, scope.uploader passed in from outer controller of recipient modal form
       
       $scope.activeRecipientImage = false;
+      
+      fileInput = angular.element(document.querySelector("#fileInput"));
+
 
       $scope.cancelRecipientImage = function() {
         $scope.activeRecipientImage = false;
@@ -20,6 +23,8 @@
       	
       	// make the new uploaded image crop-able
       	$scope.myCroppedImage = "";
+
+        fileInput.val("");
 
       	var reader = new FileReader();
       	reader.onload = function(event) {
