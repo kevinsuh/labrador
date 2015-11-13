@@ -27,7 +27,8 @@ function ScaleContentToDevice() {
    scroll(0, 0);
    //var headerHeight = $(".main_header:visible").outerHeight();
    var headerHeight = 50;
-   var footerHeight = $(".main_footer:visible").outerHeight();
+   //var footerHeight = $(".main_footer:visible").outerHeight();
+   var footerHeight = 80;
 
    var viewportHeight = $(window).height();
 
@@ -45,18 +46,23 @@ function ScaleContentToDeviceForRecipientForm() {
 
 	scroll(0, 0);
  var headerHeight = 50;
- var footerHeight = $(".main_footer:visible").outerHeight();
+ //var footerHeight = $(".main_footer:visible").outerHeight();
+ var footerHeight = 80;
  var viewportHeight = $(window).height();
+
+ var content = $(".page_container:visible");
+ var contentMargins =  content.outerHeight() - content.height();
+
+ var contentheight = viewportHeight - headerHeight - footerHeight - contentMargins;
 
  var modal_header = $(".modal-header:visible");
  var modal_header_height = modal_header.outerHeight();
- 
- var content = $(".modal-body:visible");
 
- var contentMargins =  content.outerHeight() - content.height();
+ var modalBody = $(".modal-body:visible");
+ var modalBodyMargins =  modalBody.outerHeight() - modalBody.height();
 
- var contentheight = viewportHeight - headerHeight - footerHeight - modal_header_height - contentMargins;
+ var modalBodyHeight = contentheight - modal_header_height - footerHeight;
 
- content.height(contentheight);
+ modalBody.height(modalBodyHeight);
 
 }
