@@ -12,5 +12,12 @@
 		<div class="recipient_form_view page_view" ui-view="recipient_form"></div>
 	</div>
 
-	
+	<div class="footer_bar" id="mobile_footer">
+		<div class="main_footer" ui-view="footer"></div>
+	</div>
+
+	<div class="footer_bar" id="mobile_footer" ng-show="addPersonActive">
+		<div class="main_footer" ui-view="recipient_form_footer"></div>
+	</div>
+
 </div>
