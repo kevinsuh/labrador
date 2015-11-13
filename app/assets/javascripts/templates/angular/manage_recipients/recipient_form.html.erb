@@ -110,27 +110,27 @@ end
 	<!-- address + occasions -->
 	<div class="modal-body modal_body">
 		<div class="body">
-			<div class="row address_title">
 
-				<h3 class="modal_title">Address</h3>
-				<h6 ng-if="recipient.id" class="last_updated">Last Updated: {{recipient.primary_address.updated_at | date:'MM/dd/yy'}}</h6>
-				<hr>
+			<div class="title_container">
+				<h3 class="recipient_form_title address_title">Address</h3>
 			</div>
-			<div class="row address">
-				<div class="street form_field">
-					<div class="street">
-						<div class="form_input">
-				      <input ng-model="recipient.primary_address.street" type="text" placeholder="Address Line 1"/>
-				    </div>
-					</div>
+
+			<div class="row address_title">
+				<h6 ng-if="recipient.id" class="last_updated">Last Updated: {{recipient.primary_address.updated_at | date:'MM/dd/yy'}}</h6>
+			</div>
+
+			<div class="row address_inputs_container">
+
+				<div class="street_container">
+					<div class="street form_input">
+			      <input class="street_input recipient_form_input" ng-model="recipient.primary_address.street" type="text" placeholder="Address Line 1"/>
+			    </div>
 				</div>
 
-				<div class="street form_field">
-					<div class="street">
-						<div class="form_input">
-				      <input ng-model="recipient.primary_address.suite" type="text" placeholder="Address Line 2"/>
-				    </div>
-					</div>
+				<div class="street_container">
+					<div class="street form_input">
+			      <input class="street_input recipient_form_input" ng-model="recipient.primary_address.suite" type="text" placeholder="Address Line 2"/>
+			    </div>
 				</div>
 
 				<div class="address_other form_field">
