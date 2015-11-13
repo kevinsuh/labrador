@@ -1,0 +1,150 @@
+(function() {
+
+	angular.module('card-queue').controller("RecipientFormController", function($rootScope, $scope, recipients, cards, FileUploader)
+    {
+
+		console.log("holla");
+		console.log($scope.selectedRecipient);
+
+		console.log("holla2");
+		console.log($scope.newRecipient);
+
+		console.log($scope.occasions);
+		console.log($scope.relationships);
+
+		$scope.uploader = new FileUploader({
+			url: "/recipients/upload_recipient_picture.json",
+			headers: {
+			  'X-Transaction': 'POST Example',
+			  'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+			}
+		});
+
+		// callback on successful upload
+		$scope.uploader.onSuccessItem = function(fileItem, response, status, headers) {
+			console.log("new success item");
+			console.log(response);
+			// update profile picture
+			recipient = response.recipient;
+			$scope.recipient = recipient;
+			// $scope.recipients.updatePictureOnSuccess(response.recipient);
+      index = findWithAttr($scope.currentRecipients, 'id', recipient.id);
+      console.log(index);
+      console.log(recipient);
+      recipients.currentRecipients[index] = recipient;
+      $scope.recipients.currentRecipients[index] = recipient;
+      console.log($scope.currentRecipients);
+      console.log(recipients.currentRecipients);
+
+			//profile_picture_id = response.profile_picture_id;
+			//$scope.recipients.updatePictureForRecipient($scope.recipient.id, profile_picture_id);
+    };
+
+		$scope.newOccasion = function() {
+			occasionTemplate = {
+				recipient_occasion: {
+					occasion_date: "",
+					occasion_id: 7,
+					recipient_id: $scope.recipient.id
+				}
+			};
+			$scope.recipient.occasions.push(occasionTemplate);
+		}
+
+		// remove this occasion on modal form
+		$scope.removeOccasion = function(occasion_hash) {
+
+			// find index where the recipient_occasion id equals this occasion_hash's recipient_occasion id
+			occasion_hashes = $scope.recipient.occasions;
+			recipient_occasion_id = occasion_hash.recipient_occasion.id;
+			index = -1;
+
+			for(var i = 0; i < occasion_hashes.length; i += 1) {
+        if(occasion_hashes[i].recipient_occasion.id === recipient_occasion_id) {
+            index = i;
+        }
+	    }
+
+	    // if recipient_occasion_id is found, remove it from recipients occasions
+	    new_occasion_hashes = arrayWithIndexRemoved(index, occasion_hashes);
+    	$scope.recipient.occasions = new_occasion_hashes
+
+		}
+
+		// delete recipient on modal
+		$scope.deleteRecipient = function(recipient) {
+			recipient_id = recipient.id
+			if (confirm("Are you sure?")) {
+				recipients.deleteRecipient(recipient)
+	      .success(function(data) {
+					// remove from current view
+	      	$.each(currentRecipients, function(i) {
+	      		if (currentRecipients[i].id === recipient_id) {
+	      			recipients.currentRecipients.splice(i, 1);
+	      			return false;
+	      		}
+	      	})
+	      })
+	      .error(function(data) {
+          console.log(data);
+        });
+			}
+		};
+
+		// modal form submit
+		$scope.submit = function() {
+
+			recipients        = $scope.recipients; // factory recipients
+			recipient         = $scope.recipient; // passed in recipient
+			currentRecipients = $scope.currentRecipients; // existing recipients
+			recipientIndex = arrayObjectIndexOf(currentRecipients, recipient.id, "id");
+
+			fileUploader = $scope.uploader;
+
+			console.log(recipient);
+
+			return;
+
+			// don't run this below stuff yet.
+
+			if (isNewRecipient) { // create
+
+	    	recipients.createRecipient()
+	      .success(function(data) {
+	      	recipient = data.recipient
+	      	$scope.recipient = data.recipient;
+					recipients.currentRecipients.push(recipient)
+					recipients.newRecipient = recipients.newRecipientTemplate;
+
+					// upload file after creating recipient
+					fileUploader.uploadAll();
+	      })
+	      .error(function(data) {
+          console.log("error in create recipient submit modal");
+          console.log(data);
+        });
+			} else { // update
+				
+				recipients.updateRecipient(recipient)
+				.success(function(data) {
+					// replace that existing recipient
+					recipient = data.recipient;
+					$scope.currentRecipients[recipientIndex] = recipient;
+
+					// upload file after creating recipient
+					fileUploader.uploadAll();
+				})
+				.error(function(data) {
+					console.log("error in update recipient modal");
+					console.log(data);
+				})
+			}
+
+		};
+
+
+	});
+
+})();
+
+
