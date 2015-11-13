@@ -70,7 +70,7 @@
 							$header_icon_width: 35px;
 							$header_icon_height: 44px;
 							.header_option {
-								
+
 								height: 100%;
 								padding: 0;
 								display: inline-block;
@@ -323,10 +323,108 @@
 		  		padding: 0;
 		  		margin: 0;
 
+		  		$recipient_info_height: 285px;
+		  		$picture_container_width: 120px;
+		  		$picture_size: 120px;
+		  		$name_input_width: 210px;
+
 		  		.modal-header {
-		  			&.family {
-		  				background-color: $mobile_purple;		
+		  			&.basic_info {
+		  				height: $recipient_info_height;
+		  				background-color: $mobile_purple;	
+		  				padding: 0;	
 		  			}
+
+		  			.recipient_info {
+							position: relative;
+							height: 100%;
+							display: block;
+							margin: 0;
+
+							.title_container {
+								margin-top: 20px;
+								.recipient_form_title {
+									color: $white_grey;
+									text-align: center;
+									font-size: 20px;
+									line-height: 23px;
+									margin: 0;
+								}
+							}
+
+							// recipient picture
+							.profile_picture_container {
+								width: 100%;
+								display: block;
+								text-align: center;
+								margin-top: 22px;
+								.profile_picture {
+									display: inline-block;
+									height: $picture_size; 
+									width: $picture_size; 
+									overflow:hidden;
+									-webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC); // overflow hidden for chrome
+									border-radius: 50%;
+									position: relative;
+									background-color: $picture_grey;
+									border: 1px solid white; 
+									.image {
+										position: absolute;
+										right: 0;
+										bottom: 0;
+										height: $picture_size;
+									}
+								}
+								.picture_upload {
+									margin: 0 auto;
+								}
+							}
+
+							.name_container {
+
+								text-align: center;
+								margin-top: 22px;
+
+								.form_input {
+									display: inline-block;
+									width: $name_input_width;
+									margin: 0 22px;
+									.name_input {
+										padding: 0;
+										text-align: center;
+										border-radius: 0;
+										border: none;
+										border-bottom: 1px solid $white_grey;
+										background-color: transparent;
+										color: $white_grey;
+										height: 1.5em;
+										font-size: 30px;
+										&:focus {
+											outline: 0;
+										}
+
+										// for placeholder font color
+										&::-webkit-input-placeholder {
+										   color: $white_grey;
+										}
+
+										&:-moz-placeholder { /* Firefox 18- */
+										   color: $white_grey;  
+										}
+
+										&::-moz-placeholder {  /* Firefox 19+ */
+										   color: $white_grey;  
+										}
+
+										&:-ms-input-placeholder {  
+										   color: $white_grey;  
+										}
+									}
+								}
+
+							}
+
+						}
 		  		}
 
 		  	

@@ -62,39 +62,33 @@ end
 <form ng-submit="submit()">
 
 	<!-- name / relationship -->
-	<div class="modal-header family">
-		<div class="body">
-			<div class="row recipient_info">
-				<!-- image cropper controller start -->
-				<div class="profile_picture_container" ng-controller="ImageCropperCtrl">
-					<div class="profile_picture">
-						<img class="image" ng-src="{{recipient.profile_picture}}" ng-hide="recipientImage">
-						<img class="image" ng-src="{{myCroppedImage}}" />
-					</div>
-					<input class="picture_upload" nv-file-select type="file" uploader="uploader" id="fileInput"/>
-					<div class="potential_crop_area" ng-show="recipientImage" style="float:left; margin-top:25px; height: 150px;">
-						<div class="cropArea">
-					    <img-crop image="recipientImage" result-image="myCroppedImage" area-min-size="60"></img-crop>
-					  </div>
-					</div>
+	<div class="modal-header basic_info">
+		<div class="row recipient_info">
+
+			<div class="title_container">
+				<h3 class="recipient_form_title">Add New Person</h3>
+			</div>
+
+			<!-- image cropper controller start -->
+			<div class="profile_picture_container" ng-controller="ImageCropperCtrl">
+				<div class="profile_picture">
+					<img class="image" ng-src="{{recipient.profile_picture}}" ng-hide="recipientImage">
+					<img class="image" ng-src="{{myCroppedImage}}" />
 				</div>
-				<!-- image cropper controller end -->
+				<!-- <input class="picture_upload" nv-file-select type="file" uploader="uploader" id="fileInput"/> -->
+				<!-- <div class="potential_crop_area" ng-show="recipientImage" style="float:left; margin-top:25px; height: 150px;">
+					<div class="cropArea">
+				    <img-crop image="recipientImage" result-image="myCroppedImage" area-min-size="60"></img-crop>
+				  </div>
+				</div> -->
+			</div>
 
-				<div class="basic_info">
-					<div class="name form_field">
-						<div class="first_name">
-							<div class="form_input">
-					      <input ng-model="recipient.first_name" type="text" placeholder="First Name"/>
-					    </div>
-						</div>
-
-						<div class="last_name">
-							<div class="form_input">
-					      <input ng-model="recipient.last_name" type="text" placeholder="Last Name"/>
-					    </div>
-						</div>
-
-					</div>
+			<div class="name_container">
+				<div class="first_name form_input">
+					<input ng-model="recipient.first_name" type="text" placeholder="First Name" class="name_input"/>
+				</div>
+				<div class="last_name form_input">
+					<input ng-model="recipient.last_name" type="text" placeholder="Last Name" class="name_input"/>
 				</div>
 			</div>
 		</div>
