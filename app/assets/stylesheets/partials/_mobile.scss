@@ -326,7 +326,7 @@
 		  		$recipient_info_height: 275px;
 		  		$picture_container_width: 120px;
 		  		$picture_size: 120px;
-		  		$name_input_width: 210px;
+		  		$name_input_width: 200px;
 
 		  		.modal-header {
 		  			height: $recipient_info_height;
@@ -395,11 +395,17 @@
 
 								text-align: center;
 								margin: 22px 0;
+								padding: 0 20px;
 
 								.form_input {
 									display: inline-block;
-									width: $name_input_width;
-									margin: 0 22px;
+									//width: $name_input_width;
+									&.first_name {
+										margin-right: 22px;
+									}
+									width: -moz-calc(50% - 18px);
+								  width: -webkit-calc(50% - 18px);
+								  width: calc(50% - 18px);
 									.name_input {
 										padding: 0;
 										text-align: center;
