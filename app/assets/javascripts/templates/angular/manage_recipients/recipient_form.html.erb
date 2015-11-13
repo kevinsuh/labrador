@@ -77,7 +77,7 @@ end
 					<img class="image" ng-src="{{myCroppedImage}}" />
 				</div>
 				<input class="picture_upload" nv-file-select type="file" uploader="uploader" id="fileInput" style="display: none;"/>
-				<div class="potential_crop_area" ng-show="recipientImage" style="float:left; margin-top:25px; height: 150px;">
+				<div class="potential_crop_area" ng-show="recipientImage">
 					<div class="cropArea">
 				    <img-crop image="recipientImage" result-image="myCroppedImage" area-min-size="60"></img-crop>
 				  </div>
@@ -86,10 +86,10 @@ end
 
 			<div class="name_container">
 				<div class="first_name form_input">
-					<input ng-model="recipient.first_name" type="text" placeholder="First Name" class="name_input"/>
+					<input ng-model="recipient.first_name" type="text" placeholder="First Name" class="name_input recipient_form_input"/>
 				</div>
 				<div class="last_name form_input">
-					<input ng-model="recipient.last_name" type="text" placeholder="Last Name" class="name_input"/>
+					<input ng-model="recipient.last_name" type="text" placeholder="Last Name" class="name_input recipient_form_input"/>
 				</div>
 			</div>
 		</div>

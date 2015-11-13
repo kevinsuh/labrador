@@ -323,14 +323,12 @@
 		  		padding: 0;
 		  		margin: 0;
 
-		  		$recipient_info_height: 285px;
 		  		$picture_container_width: 120px;
 		  		$picture_size: 120px;
 		  		$name_input_width: 210px;
 
 		  		.modal-header {
 		  			&.basic_info {
-		  				height: $recipient_info_height;
 		  				background-color: $mobile_purple;	
 		  				padding: 0;	
 		  			}
@@ -394,7 +392,7 @@
 							.name_container {
 
 								text-align: center;
-								margin-top: 22px;
+								margin: 22px 0;
 
 								.form_input {
 									display: inline-block;
@@ -432,7 +430,12 @@
 										}
 									}
 								}
+							}
 
+							.potential_crop_area {
+								margin: 22px 0;
+								height: 150px;
+								float: none;
 							}
 
 						}
