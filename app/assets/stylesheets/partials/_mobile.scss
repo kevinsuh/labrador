@@ -178,8 +178,8 @@
 	      width: 100%;
 	      display: table-row;
 
-	      $tab_icon_width: 47px;
-	      $tab_icon_height:  42px;
+	      $tab_icon_width: 45px;
+	      $tab_icon_height:  45px;
 
 	      .tab_button {
 	        display: table-cell;
@@ -194,34 +194,37 @@
 	        .footer_icon {
 	        	width: $tab_icon_width;
 	        	height: $tab_icon_height;
+	        	display: inline-block;
 	        }
 
+	        $my_people_x: -124px;
+	        $occasions_x: -170px;
+	        $queue_card_x: -216px;
+	        $queued_cards_x: -266px;
+	        $settings_x: -312px;
+
+	        $non_active_y: 0px;
+	        $active_y: -98px;
+
 	        .my_people_image {
-	        	background-position: -122px 0px;
+	        	background-position: $my_people_x $non_active_y;
 	        }
 
 	        .occasions_image {
-	        	background: url(/assets/icons/basic_icons/all_basic_icons.png) 192px 0px;
-	        	width: $tab_icon_width;
-	        	height: $tab_icon_height;
+	        	background-position: $occasions_x $non_active_y;
 	        }
 
 	        .queue_card_image {
-	        	background: url(/assets/icons/basic_icons/all_basic_icons.png) 143px 0px;
-	        	width: $tab_icon_width;
-	        	height: $tab_icon_height;
+	        	width: 50px;
+	        	background-position: $queue_card_x $non_active_y;
 	        }
 
 	        .queued_cards_image {
-	        	background: url(/assets/icons/basic_icons/all_basic_icons.png) 93px 0px;
-	        	width: $tab_icon_width;
-	        	height: $tab_icon_height;
+	        	background-position: $queued_cards_x $non_active_y;
 	        }
 
 	        .settings_image {
-	        	background: url(/assets/icons/basic_icons/all_basic_icons.png) 49px 0px;
-	        	width: $tab_icon_width;
-	        	height: $tab_icon_height;
+	        	background-position: $settings_x $non_active_y;
 	        }
 
 	        // currently on that tab
@@ -231,19 +234,19 @@
 	        	}
 	        	background-color: $beige;
 	        	.my_people_image {
-	          	background-position: -122px -100px;
+	          	background-position: $my_people_x $active_y;
 	          }
 	          .occasions_image {
-	          	background: url(/assets/icons/basic_icons/all_basic_icons.png) 192px -100px;
+	          	background-position: $occasions_x $active_y;
 	          }
 	          .queue_card_image {
-	          	background: url(/assets/icons/basic_icons/all_basic_icons.png) 143px -50px;
+	          	background-position: $queue_card_x -50px;
 	          }
 	          .queued_cards_image {
-	          	background: url(/assets/icons/basic_icons/all_basic_icons.png) 93px -100px;
+	          	background-position: $queued_cards_x $active_y;
 	          }
 	          .settings_image {
-	          	background: url(/assets/icons/basic_icons/all_basic_icons.png) 49px -100px;
+	          	background-position: $settings_x $active_y;
 	          }
 	        }
 
