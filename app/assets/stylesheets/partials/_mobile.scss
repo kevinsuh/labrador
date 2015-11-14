@@ -3,6 +3,8 @@
 // for iphone portrait views!
 @media only screen and (max-device-width: 2600px) {
 
+	$form_width: 400px;
+
 	#website_header {
 		display: none;
 	}
@@ -300,7 +302,9 @@
 							position: relative;
 							height: 100%;
 							display: block;
-							margin: 0;
+							width: $form_width;
+							margin: 0 auto;
+
 
 							.title_container {
 								margin-top: 20px;
@@ -356,17 +360,20 @@
 
 								text-align: center;
 								margin: 22px 0;
-								padding: 0 20px;
+								padding: 0 40px;
 
 								.form_input {
 									display: inline-block;
 									//width: $name_input_width;
 									&.first_name {
-										margin-right: 22px;
+										float: left;
 									}
-									width: -moz-calc(50% - 19px);
-								  width: -webkit-calc(50% - 19px);
-								  width: calc(50% - 19px);
+									&.last_name {
+										float: right;
+									}
+									width: -moz-calc(50% - 10px);
+								  width: -webkit-calc(50% - 10px);
+								  width: calc(50% - 10px);
 									.name_input {
 										padding: 0;
 										text-align: center;
@@ -427,25 +434,43 @@
 
 		  			.body {
 		  				padding: 0 40px;
+		  				width: $form_width;
+		  				margin: 0 auto;
 
-		  				.title_container {
-								margin-top: 13px;
-								.recipient_form_title {
-									color: $form_black;
-									text-align: center;
-									font-size: 20px;
-									line-height: 23px;
-									margin: 0;
-									font-weight: 400 !important;
+		  				// address_other form input widths
+							$city_input_width: 46%;
+							$state_input_width: 23%;
+							$zipcode_input_width: 24%;
+							$state_menu_down_left: 67%;
+
+							// for more general inputs on the modal-body
+							.form_input_container {
+								margin: 20px 0;
+								position: relative;
+
+								.field {
+									display: inline-block;
+									&.city {
+										width: $city_input_width;
+										margin-right: 2.5%;
+									}
+									&.state {
+										width: $state_input_width;
+										margin-right: 2.5%;
+										.state_menu_down {
+											position: absolute;
+											left: $state_menu_down_left;
+											top: 15px;
+											z-index: -1;
+											color: $form_placeholder_grey;
+										}
+									}
+									&.zipcode {
+										width: $zipcode_input_width;
+										float: right;
+									}
 								}
 							}
-
-							.address_inputs_container {
-								margin-top: 20px;
-							}
-
-							// address form inputs
-							$street_input_width: 460px;
 
 							.form_input {
 								display: inline-block;
@@ -464,12 +489,25 @@
 									border: none;
 									border-bottom: 1px solid $form_placeholder_grey;
 									background-color: transparent;
-									color: $form_placeholder_grey;
+									color: $form_input_black;
 									font-size: 24px;
 									line-height: 28px;
 									height: 1.8em;
+									padding-left: 10px;
 									&:focus {
 										outline: 0;
+									}
+
+									&.state_input {
+									}
+									&.city_input {
+									}
+									&.zipcode_input {
+									}
+
+									&.select_input {
+										-webkit-appearance: none;
+  									-webkit-border-radius: 0px;
 									}
 
 									// for placeholder font color
@@ -490,10 +528,40 @@
 									}
 								}
 							}
+
+		  				/**
+		  				 * 	TITLE CONTAINER OF FORM BODY
+		  				 */
+		  				.title_container {
+								margin-top: 13px;
+								.recipient_form_title {
+									color: $form_black;
+									text-align: center;
+									font-size: 20px;
+									line-height: 23px;
+									margin: 0;
+									font-weight: 400 !important;
+								}
+							}
+
+							/**
+							 * 	ADDRESS CONTAINER OF FORM BODY
+							 */
+							.address_inputs_container {
+								margin: 0;
+							}
+
+							/**
+							 * 	OCCASIONS CONTAINER OF FORM BODY
+							 */
+							.events_title {
+								margin: 0;
+							}
+							.add_new_event {
+								margin: 0;
+							}
 		  			}
 		  		}
-
-		  	
 		  	}
 		  }
 

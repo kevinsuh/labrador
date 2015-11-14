@@ -121,46 +121,41 @@ end
 
 			<div class="row address_inputs_container">
 
-				<div class="street_container">
+				<div class="street_container form_input_container">
 					<div class="street form_input">
 			      <input class="street_input recipient_form_input" ng-model="recipient.primary_address.street" type="text" placeholder="Address Line 1"/>
 			    </div>
 				</div>
 
-				<div class="street_container">
+				<div class="street_container form_input_container">
 					<div class="street form_input">
 			      <input class="street_input recipient_form_input" ng-model="recipient.primary_address.suite" type="text" placeholder="Address Line 2"/>
 			    </div>
 				</div>
 
-				<div class="address_other form_field">
-					<div class="city">
+				<div class="address_other form_input_container form_field">
+					<div class="city field">
 						<div class="form_input">
-				      <input ng-model="recipient.primary_address.city" type="text" placeholder="City"/>
+				      <input class="recipient_form_input city_input" ng-model="recipient.primary_address.city" type="text" placeholder="City"/>
 				    </div>
 					</div>
 
-					<div class="state">
+					<div class="state field">
 						<div class="form_input">
-							<select ng-model="recipient.primary_address.state">
-					  		<option value="">State</option>
+							<select class="recipient_form_input select_input state_input" ng-model="recipient.primary_address.state">
+					  		<option value="">ST</option>
 					  		<% us_states.each { |state, abrv| %>
 					  			<option value="<%= state %>"><%= abrv %></option>
 								<% } %>
 					  	</select>
+					  	<i class="glyphicon glyphicon-menu-down state_menu_down"></i>
 						</div>
 					</div>
 
-					<div class="zip">
+					<div class="zipcode field">
 						<div class="form_input">
-				      <input ng-model="recipient.primary_address.zipcode" type="text" placeholder="Zip"/>
+				      <input class="zipcode_input recipient_form_input" ng-model="recipient.primary_address.zipcode" type="text" placeholder="Zip"/>
 				    </div>
-					</div>
-
-					<div class="country">
-						<div class="form_input">
-							<country-select data-ng-model="recipient.primary_address.country"></country-select>
-						</div>
 					</div>
 
 				</div>
@@ -232,6 +227,8 @@ end
 		<hr style="margin-left:15px; margin-right: 15px;">
 	</div>
 </form>
+
+<% if false %>
 <div class="modal-footer">
 	<div class="delete_button_container" ng-if="recipient.id">
 		<h5 ng-click="deleteRecipient(recipient)" class="delete_text_button">DELETE PERSON</h5>
@@ -250,3 +247,4 @@ end
 		</div> -->
 </div>
 
+<% end %>
