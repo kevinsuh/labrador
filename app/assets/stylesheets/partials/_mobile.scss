@@ -83,7 +83,6 @@
 								padding: ($mobile_header_size - $header_icon_height) / 2 10px;
 
 								&.search_person {
-									margin-right: 35px;
 								}
 
 								.header_icon {
@@ -302,7 +301,7 @@
 							position: relative;
 							height: 100%;
 							display: block;
-							width: $form_width;
+							//width: $form_width;
 							margin: 0 auto;
 
 
@@ -360,7 +359,7 @@
 
 								text-align: center;
 								margin: 22px 0;
-								padding: 0 40px;
+								padding: 0 20px;
 
 								.form_input {
 									display: inline-block;
@@ -433,8 +432,8 @@
 		  			padding: 0;
 
 		  			.body {
-		  				padding: 0 40px;
-		  				width: $form_width;
+		  				padding: 0 20px;
+		  				//width: $form_width;
 		  				margin: 0 auto;
 
 		  				// address_other form input widths
