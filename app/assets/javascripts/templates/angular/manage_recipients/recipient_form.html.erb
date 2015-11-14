@@ -111,6 +111,7 @@ end
 	<div class="modal-body modal_body">
 		<div class="body">
 
+			<!-- start of addresses -->
 			<div class="title_container">
 				<h3 class="recipient_form_title address_title">Address</h3>
 			</div>
@@ -157,75 +158,100 @@ end
 				      <input class="zipcode_input recipient_form_input" ng-model="recipient.primary_address.zipcode" type="text" placeholder="Zip"/>
 				    </div>
 					</div>
-
+				</div>
+				<div class="form_input_container address_options_container form_field">
+					<div class="new_address field">
+						<div class="form_input">
+							<span class="form_button add_address" ng-click="newOccasion()"><i class="glyphicon glyphicon-plus add-occasion-glyph"></i> ADD NEW ADDRESS</span>
+						</div>
+					</div>
+					<div class="delete_address field">
+						<div class="form_input">
+							<span class="form_button delete_address" ng-click="newOccasion()"><i class="glyphicon glyphicon-minus add-occasion-glyph"></i> DELETE ADDRESS</span>
+						</div>
+					</div>
 				</div>
 			</div>
 
-			<div class="row events_title">
-				<h3 class="modal_title">Occasions</h3>
-				<hr>
+			<!-- start of occasions -->
+			<div class="title_container">
+				<h3 class="recipient_form_title occasions_title">Occasions</h3>
 			</div>
 
-			<div class="row events" ng-repeat="occasion_hash in recipient.occasions" ng-controller="recipientOccasionsCtrl">
-				<div class="events form_field">
-					<div class="notification_container delete_container">
-				  	<span ng-click="removeOccasion(occasion_hash)" class="delete_bubble notification_bubble">&mdash;</span>
-				  </div>
-					<!-- <span class="glyphicon glyphicon-minus remove-occasion" ng-click="removeOccasion(occasion_hash)"></span> -->
-					<div class="occasion">
-						<div class="occasion_input form_input">
-							<select ng-model="occasion_hash.recipient_occasion.occasion_id" ng-options="value as key for (key, value) in occasions"></select>
-						</div>
-					</div>
+			<!-- the actual body of occasions -- each individual occasion div -->
+			<div class="occasions_body" ng-controller="recipientOccasionsCtrl">
 
-					<div class="date" ng-controller="DatepickerDemoCtrl">
-						<div class="form_input date_input">
-							<input type="date" datepicker-popup json-date ng-model="occasion_hash.recipient_occasion.occasion_date" is-open="status.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" placeholder="mm/dd/yyyy" required/>
-						</div>
-						<div class="form_input date_button">
-							<span class="input-group-btn date_span">
-                <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-              </span>
-            </div>
-					</div>
-
-					<% if false %>
-					<div class="month">
-						<div class="form_input">
-							<select ng-model="user.first_name">
-					  		<option value="">Month</option>
-					  		<% us_states.each { |state, abrv| %>
-					  			<option value="<%= state %>"><%= abrv %></option>
-								<% } %>
-					  	</select>
-						</div>
-					</div>
-
-					<div class="day">
-						<div class="form_input">
-				      <input ng-model="user.first_name" type="text" placeholder="Day"/>
-				    </div>
-					</div>
-
-					<div class="year">
-						<div class="form_input">
-							<select ng-model="user.first_name">
-					  		<option value="user.first_name">Year</option>
-					  		<% us_states.each { |state, abrv| %>
-					  			<option value="<%= state %>"><%= abrv %></option>
-								<% } %>
-					  	</select>
-						</div>
-					</div>
-					<% end %>
+				<!-- each existing occasion of recipient -->
+				<div ng-repeat="occasion_hash in recipient.occasions" class="existing_occasions_container form_field">
+					existing occasion!
+					{{occasion_hash}}
 				</div>
-			</div>
-			<div class="row add_new_event">
-				<span class="add-occasion" ng-click="newOccasion()"><i class="glyphicon glyphicon-plus add-occasion-glyph"></i>Add New Event</span>
+
+				<!-- new occasion always at the bottom -->
+				<div class="new_occasions_container form_field">
+
+					<!-- name of each occasion -->
+					<div class="occasion_name_container">
+						
+						<div class="occasion_name form_input_container field">
+							<div class="form_input">
+								<select class="recipient_form_input occasion_name_input select_input" ng-model="occasion_hash.recipient_occasion.occasion">
+						  		<option value="">Birthday</option>
+						  		<% us_states.each { |state, abrv| %>
+						  			<option value="<%= state %>"><%= abrv %></option>
+									<% } %>
+						  	</select>
+						  	<i class="glyphicon glyphicon-menu-down state_menu_down"></i>
+							</div>
+						</div>
+
+					</div>
+
+					<!-- date of each occasion -->
+					<div class="occasion_date_container">
+
+						<div class="month field form_input_container">
+							<div class="form_input">
+								<select class="recipient_form_input select_input month_input select_input" ng-model="occasion_hash.recipient_occasion.occasion_date">
+						  		<option value="">Month</option>
+						  		<% us_states.each { |state, abrv| %>
+						  			<option value="<%= state %>"><%= abrv %></option>
+									<% } %>
+						  	</select>
+						  	<i class="glyphicon glyphicon-menu-down state_menu_down"></i>
+							</div>
+						</div>
+
+						<div class="day field form_input_container">
+							<div class="form_input">
+					      <input class="recipient_form_input day_input" ng-model="occasion_hash.recipient_occasion.occasion_date" type="text" placeholder="Day"/>
+					    </div>
+						</div>
+
+					</div>
+
+					<!-- option at the end of new occasion -->
+					<div class="form_input_container address_options_container form_field">
+						<div class="new_address field">
+							<div class="form_input">
+								<span class="form_button add_address" ng-click="newOccasion()"><i class="glyphicon glyphicon-plus add-occasion-glyph"></i> ADD NEW EVENT</span>
+							</div>
+						</div>
+						<div class="delete_address field">
+							<div class="form_input">
+								<span class="form_button delete_address" ng-click="newOccasion()"><i class="glyphicon glyphicon-minus add-occasion-glyph"></i> DELETE EVENT</span>
+							</div>
+						</div>
+					</div>
+
+				</div>
 			</div>
 		</div>
 	</div>
 </form>
+
+
+
 
 <% if false %>
 <div class="modal-footer">

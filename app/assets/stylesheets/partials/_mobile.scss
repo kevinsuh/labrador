@@ -290,6 +290,9 @@
 		  		$picture_size: 121px;
 		  		$name_input_width: 200px;
 
+		  		/**
+		  		 * 		DIV CONTAINING PROFILE PICTURE AND FIRST/LAST NAME OPTIONS
+		  		 */
 		  		.modal-header {
 		  			height: $recipient_info_height;
 		  			&.basic_info {
@@ -426,6 +429,9 @@
 						}
 		  		}
 
+		  		/**
+		  		 * 	DIV CONTAINING ADDRESS AND OCCASIONS OPTIONS
+		  		 */
 		  		.modal-body {
 		  			overflow-x: hidden;
 		  			overflow-y: scroll;
@@ -440,12 +446,16 @@
 							$city_input_width: 46%;
 							$state_input_width: 23%;
 							$zipcode_input_width: 24%;
-							$state_menu_down_left: 67%;
 
 							// for more general inputs on the modal-body
 							.form_input_container {
 								margin: 20px 0;
 								position: relative;
+
+
+								&.address_other {
+									margin-bottom: 0;
+								}
 
 								.field {
 									display: inline-block;
@@ -456,10 +466,13 @@
 									&.state {
 										width: $state_input_width;
 										margin-right: 2.5%;
+										.form_input {
+											position: relative;
+										}
 										.state_menu_down {
 											position: absolute;
-											left: $state_menu_down_left;
-											top: 15px;
+											right: 10px;
+											top: 14px;
 											z-index: -1;
 											color: $form_placeholder_grey;
 										}
@@ -495,13 +508,6 @@
 									padding-left: 10px;
 									&:focus {
 										outline: 0;
-									}
-
-									&.state_input {
-									}
-									&.city_input {
-									}
-									&.zipcode_input {
 									}
 
 									&.select_input {
@@ -549,16 +555,57 @@
 							.address_inputs_container {
 								margin: 0;
 							}
-
-							/**
-							 * 	OCCASIONS CONTAINER OF FORM BODY
+							 /* 
+							 *	OCCASIONS CONTAINER OF FORM BODY
 							 */
-							.events_title {
-								margin: 0;
+							.address_options_container {
+								margin: 10px 0 0 0;
+								.field {
+									&.new_address {
+										float: left;
+									}
+									&.delete_address {
+										float: right;
+									}
+									.form_button {
+										color: $login_red;
+										font-size: 12px;
+										line-height: 14px;
+										font-weight: 300;
+										&.add_address {
+										}
+										&.delete_address {
+										}
+									}
+								}
 							}
-							.add_new_event {
-								margin: 0;
+
+							.new_occasions_container {
+								.state_menu_down {
+									position: absolute;
+									top: 14px;
+									right: 10px;
+									z-index: -1;
+									color: $form_placeholder_grey;
+								}
+								.occasion_name_container {
+								}
+								.occasion_date_container {
+									.form_input_container {
+										width: -moz-calc(50% - 10px);
+									  width: -webkit-calc(50% - 10px);
+									  width: calc(50% - 10px);
+									  margin-bottom: 0;
+									}
+									.month {
+										float: left;
+									}
+									.day {
+										float: right;
+									}
+								}
 							}
+
 		  			}
 		  		}
 		  	}
