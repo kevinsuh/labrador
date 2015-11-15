@@ -25,18 +25,57 @@
 			$scope.currentTitle = "My People";
 
 			// new occasion defaulted to birthday
+			// contains id, day, month, notes
 			$scope.newRecipientOccasion = {
+				newOccasion: true,
 				id: 7
 			};
+			$scope.newRecipientOccasionTemplate = angular.copy($scope.newRecipientOccasion);
+
 			// new address
 			$scope.newRecipientAddress = {
-
+				newAddress: true
 			};
+			$scope.newRecipientAddressTemplate = angular.copy($scope.newRecipientAddress);
+
+			// existing occasions / address
+			$scope.recipientOccasions = [
+				// TEST ONE
+				{ id: 7, day: 25, month: 12, notes: "Christmas for Kevin! \n\nmake this special" }
+
+			]; // this will be pre-populated when user hits "edit" on a recipient
+			$scope.recipientAddresses = []; // this will be pre-populated when user hits "edit ona recipient
 
 			$scope.createRecipient = function() {
 				console.log("yay creating recipient!");
+
+				// will always need to check both "added" occasions/addresses and the most recent occasion/address
+				console.log($scope.recipientOccasions);
 				console.log($scope.newRecipientOccasion);
+				console.log($scope.recipientAddresses);
 				console.log($scope.newRecipientAddress);
+			}
+
+			// create occasion with the given inputs
+			$scope.createOccasion = function(occasion) {
+				// 1. add to the "existing" occasions
+				// 2. reset template of most recent address
+				if (occasion.month && occasion.day) { // must have these data
+					occasion.newOccasion = false;
+					$scope.recipientOccasions.push(occasion);
+					$scope.newRecipientOccasion = $scope.newRecipientOccasionTemplate;
+				}
+			}
+
+			// delete this given occasion
+			$scope.deleteOccasion = function(occasion) {
+				occasions = $scope.recipientOccasions;
+				if (occasion.newOccasion) { // this is the tail-end "new" occasion
+					$scope.newRecipientOccasion = $scope.newRecipientOccasionTemplate
+				} else { // existing occasion
+					$scope.recipientOccasions = arrayWithValueRemoved(occasion, occasions);
+				}
+
 			}
 
 			/**

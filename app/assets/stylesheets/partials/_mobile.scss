@@ -572,6 +572,7 @@
 										font-size: 12px;
 										line-height: 14px;
 										font-weight: 300;
+										cursor: pointer;
 										&.add_address {
 										}
 										&.delete_address {
@@ -580,7 +581,7 @@
 								}
 							}
 
-							.new_occasions_container {
+							.new_occasions_container, .existing_occasions_container {
 								.state_menu_down {
 									position: absolute;
 									top: 14px;
