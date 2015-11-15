@@ -5,15 +5,34 @@
 	 */
 	var app = angular.module('card-queue').controller("recipientOccasionsCtrl", function($rootScope, $scope) {
 
+		// // pre-fill certain events
+		// $scope.$watch('occasion_hash.recipient_occasion.occasion_id', function(newValue, oldValue){
+  //     occasionID = newValue;
+		// 	suggested_date = getDefaultDateForOccasionID(occasionID);
+
+  //       // ONLY IF THIS OCCASION HAS NOT ALREADY BEEN SAVED
+  //       if (!$scope.occasion_hash.recipient_occasion.occasion_date || (newValue != oldValue)) {
+  //       	$scope.occasion_hash.recipient_occasion.occasion_date = suggested_date;	
+  //       }
+  //    });
+
+
 		// pre-fill certain events
-		$scope.$watch('occasion_hash.recipient_occasion.occasion_id', function(newValue, oldValue){
+		$scope.$watch('newRecipientOccasion.id', function(newValue, oldValue){
       occasionID = newValue;
+
 			suggested_date = getDefaultDateForOccasionID(occasionID);
 
         // ONLY IF THIS OCCASION HAS NOT ALREADY BEEN SAVED
-        if (!$scope.occasion_hash.recipient_occasion.occasion_date || (newValue != oldValue)) {
-        	$scope.occasion_hash.recipient_occasion.occasion_date = suggested_date;	
+        if (!$scope.newRecipientOccasion.month || (newValue != oldValue)) {
+        	$scope.newRecipientOccasion.month = suggested_date.month;
         }
+
+        if (!$scope.newRecipientOccasion.day || (newValue != oldValue)) {
+        	$scope.newRecipientOccasion.day = suggested_date.day;
+        }
+
+
      });
 
 	})

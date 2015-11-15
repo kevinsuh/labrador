@@ -24,6 +24,21 @@
 
 			$scope.currentTitle = "My People";
 
+			// new occasion defaulted to birthday
+			$scope.newRecipientOccasion = {
+				id: 7
+			};
+			// new address
+			$scope.newRecipientAddress = {
+
+			};
+
+			$scope.createRecipient = function() {
+				console.log("yay creating recipient!");
+				console.log($scope.newRecipientOccasion);
+				console.log($scope.newRecipientAddress);
+			}
+
 			/**
 			 * 		MY PEOPLE HEADER
 			 */
@@ -254,21 +269,6 @@
 					}
 				}
 				
-			}
-
-			/**
-			 * 			INDIVIDUAL OVERLAY CONFIG
-			 */
-			$scope.displayOverlay = function() {
-				this.viewOverlay = true;
-			}
-
-			$scope.hideOverlay = function() {
-				this.viewOverlay = false;
-			}
-
-			$scope.toggleOverlay = function() {
-				this.viewOverlay = !this.viewOverlay;
 			}
 
 			/**

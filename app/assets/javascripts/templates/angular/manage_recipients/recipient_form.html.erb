@@ -182,9 +182,8 @@ end
 			<div class="occasions_body" ng-controller="recipientOccasionsCtrl">
 
 				<!-- each existing occasion of recipient -->
-				<div ng-repeat="occasion_hash in recipient.occasions" class="existing_occasions_container form_field">
-					existing occasion!
-					{{occasion_hash}}
+				<div class="existing_occasions_container form_field" ng-repeat="occasion_hash in recipient.occasions">
+
 				</div>
 
 				<!-- new occasion always at the bottom -->
@@ -192,16 +191,11 @@ end
 
 					<!-- name of each occasion -->
 					<div class="occasion_name_container">
-						
+
 						<div class="occasion_name form_input_container field">
-							<div class="form_input">
-								<select class="recipient_form_input occasion_name_input select_input" ng-model="occasion_hash.recipient_occasion.occasion">
-						  		<option value="">Birthday</option>
-						  		<% us_states.each { |state, abrv| %>
-						  			<option value="<%= state %>"><%= abrv %></option>
-									<% } %>
-						  	</select>
-						  	<i class="glyphicon glyphicon-menu-down state_menu_down"></i>
+							<div class="occasion_input form_input">
+								<select class="recipient_form_input occasion_name_input select_input" ng-model="newRecipientOccasion.id" ng-options="value as key for (key, value) in occasions"></select>
+								<i class="glyphicon glyphicon-menu-down state_menu_down"></i>
 							</div>
 						</div>
 
@@ -212,10 +206,10 @@ end
 
 						<div class="month field form_input_container">
 							<div class="form_input">
-								<select class="recipient_form_input select_input month_input select_input" ng-model="occasion_hash.recipient_occasion.occasion_date">
+								<select class="recipient_form_input select_input month_input select_input" ng-model="newRecipientOccasion.month">
 						  		<option value="">Month</option>
-						  		<% us_states.each { |state, abrv| %>
-						  			<option value="<%= state %>"><%= abrv %></option>
+						  		<% (1...13).each { |month| %>
+						  			<option value="<%= month %>"><%= month %></option>
 									<% } %>
 						  	</select>
 						  	<i class="glyphicon glyphicon-menu-down state_menu_down"></i>
@@ -224,7 +218,18 @@ end
 
 						<div class="day field form_input_container">
 							<div class="form_input">
-					      <input class="recipient_form_input day_input" ng-model="occasion_hash.recipient_occasion.occasion_date" type="text" placeholder="Day"/>
+					      <input class="recipient_form_input day_input" ng-model="newRecipientOccasion.day" type="number" placeholder="Day"/>
+					    </div>
+						</div>
+
+					</div>
+
+					<!-- optional notes with each occasion -->
+					<div class="occasion_notes_container">
+
+						<div class="notes field form_input_container">
+							<div class="form_input">
+					      <textarea class="recipient_form_input notes_input" ng-model="newRecipientOccasion.notes" placeholder="Notes"/>
 					    </div>
 						</div>
 

@@ -13,28 +13,28 @@ function arrayObjectIndexOf(myArray, searchTerm, property) {
  * ex. 12/25/15 for christmas
  */
 function getDefaultDateForOccasionID(occasionID) {
-  suggested_date = "";
+  suggested_date = {month:"",day:""};
   switch (occasionID) {
     case 1: // christmas
-      suggested_date = parseDateForNextOccasion("2015-12-25");
+      suggested_date = {month:12,day:25}
       break;
     case 2: // hannukah
-      suggested_date = parseDateForNextOccasion("2015-12-6");
+      suggested_date = {month:12,day:6}
       break;
     case 3: // new year's
-      suggested_date = parseDateForNextOccasion("2015-1-1");
+      suggested_date = {month:1,day:1}
       // suggested_date = "01/01/16";
       break;
     case 4: // mother's day
-      suggested_date = parseDateForNextOccasion("2015-5-8");
+      suggested_date = {month:5,day:8}
       // suggested_date = "05/08/16";
       break;
     case 5: // father's day
-      suggested_date = parseDateForNextOccasion("2015-6-19");
+      suggested_date = {month:6,day:19}
       // suggested_date = "06/19/16";
       break;
     case 13: // valentine's
-      suggested_date = parseDateForNextOccasion("2015-2-14");
+      suggested_date = {month:2,day:14}
       // suggested_date = "02/14/16";
       break;
   }

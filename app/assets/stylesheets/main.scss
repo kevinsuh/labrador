@@ -421,3 +421,105 @@ a.disabled {
   box-shadow: none !important;
 }
 
+/**
+ * reusable button style for signup / login
+ */
+.button_container {
+  text-align: center;
+  margin-top: 30px;
+  &.signup_button_container {
+    margin-top: 0;
+  }
+  &.recipient_form_button_container {
+    width: 49%;
+    display: table;
+    table-layout: fixed;
+    margin-top: 20px;
+
+    .new_recipient_form_button {
+      border-radius: 2px;
+      height: 40px;
+      display: table-cell;
+      vertical-align: middle;
+      font-size: 16px;
+      line-height: 16px;
+      font-weight: 300;
+      cursor: pointer;
+    }
+
+    &.save {
+      float: right;
+      padding-right: 20px;
+      .new_recipient_form_button {
+        background-color: $login_red;
+      }
+    }
+    &.cancel {
+      float: left;
+      padding-left: 20px;
+      .new_recipient_form_button {
+        background-color: $no_button_grey;
+      }
+    }
+  }
+
+  .submit_button {
+    background-color: $login_red;
+    color: white;
+    width: 300px;
+    height: 40px;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+    &.login_button {
+      width: 300px;
+    }
+    &.signup_button {
+      width: 160px !important;
+      font-size: 18px !important;
+      line-height: 21px !important;
+      padding: 12.5px 0 !important;
+      &:hover {
+        background-color: $login_red;
+      }
+      &:focus {
+        background-color: $login_red;
+      }
+    }
+    &.main_signup_button {
+      font-size: 24px !important;
+      padding: 15px 0 !important;
+      line-height: 28px !important;
+      width: 400px !important;
+      float: left;
+      height: inherit;
+      &:hover {
+        background-color: $login_red;
+      }
+      &:focus {
+        background-color: $login_red;
+      }
+    }
+    &.reset_password_button {
+      width: 241px;
+    }
+    &:focus {
+      outline: 0;
+    }
+
+    &.recipient_form_button {
+      width: 100px;
+      height: 32px;
+      border-radius: 0;
+      font-size: 13px;
+      font-weight: 400;
+    }
+    &.save_button {
+      background-color: $yes_button_red;
+    }
+    &.cancel_button {
+      background-color: $no_button_grey;
+    }
+  }
+}
+

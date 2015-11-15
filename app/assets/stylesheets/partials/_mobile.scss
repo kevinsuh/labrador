@@ -591,6 +591,8 @@
 								.occasion_name_container {
 								}
 								.occasion_date_container {
+									float: left;
+									width: 100%;
 									.form_input_container {
 										width: -moz-calc(50% - 10px);
 									  width: -webkit-calc(50% - 10px);
@@ -602,6 +604,14 @@
 									}
 									.day {
 										float: right;
+									}
+								}
+								.occasion_notes_container {
+									float: left;
+									width: 100%;
+									margin-top: 20px;
+									.notes {
+
 									}
 								}
 							}
