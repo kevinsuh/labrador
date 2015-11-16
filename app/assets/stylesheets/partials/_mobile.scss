@@ -294,7 +294,7 @@
 		  		 * 		DIV CONTAINING PROFILE PICTURE AND FIRST/LAST NAME OPTIONS
 		  		 */
 		  		.modal-header {
-		  			// height: $recipient_info_height;
+		  			// min-height: $recipient_info_height;
 		  			&.basic_info {
 		  				background-color: $mobile_purple;	
 		  				padding: 0;	
@@ -363,6 +363,8 @@
 								text-align: center;
 								margin: 22px 0;
 								padding: 0 20px;
+								float: left;
+								width: 100%;
 
 								.form_input {
 									display: inline-block;
@@ -416,7 +418,7 @@
 							}
 							.button_container {
 								margin-top: 15px;
-								margin-bottom: 10px;
+								margin-bottom: 20px;
 								.cancel_button {
 									margin-right: 15px;
 								}

@@ -1461,8 +1461,8 @@ crop.factory('cropHost', ['$document', 'cropAreaCircle', 'cropAreaSquare', 'crop
         
         // need a max width / height
         // THIS IS WHERE CROP IMAGE HEIGHT AND WIDTH IS DETERMINED - KEVIN SUH
-        var width  = canvasDims[0] * 4;
-        var height = canvasDims[1] * 4;
+        var width  = canvasDims[0] * 5;
+        var height = canvasDims[1] * 5;
 
         elCanvas.prop('width',width).prop('height',height).css({'margin-left': '0px', 'margin-top': '0px'});
 
