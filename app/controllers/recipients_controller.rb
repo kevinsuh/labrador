@@ -88,49 +88,39 @@ class RecipientsController < ApplicationController
     # 1) find recipient
     recipient = Recipient.find(params[:id])
 
-    # 2) update first name, last name, relationship to you
-    relationship_id = params[:relationship] ? params[:relationship][:id] : nil
+    # 2) update first / last name
+    first_name = params[:first_name]
+    last_name = params[:last_name]
     recipient.update_columns(
       first_name: params[:first_name],
-      last_name: params[:last_name],
-      relationship_id: relationship_id
+      last_name: params[:last_name]
     )
 
-    # 3) save recipient address if exists
-    if params[:primary_address]
+    puts params.inspect
 
-      address_params = params[:primary_address]
-      first_name     = params[:first_name]
-      last_name      = params[:last_name]
+    # 3) update recipient addresses
+    addresses = params[:addresses]
+    if addresses
 
-      # update vs create
-      if id = address_params[:id]
-        address = Address.find(address_params[:id])
-        address.update_columns(
-          first_name: first_name,
-          last_name: last_name,
-          street: address_params[:street],
-          suite: address_params[:suite],
-          city: address_params[:city],
-          state: address_params[:state],
-          zipcode: address_params[:zipcode],
-          country: address_params[:country]
-        )
-      else
+      # delete all addresses then insert
+      recipient.addresses.delete_all
+
+      primary_set = false
+      addresses.each do |address|
         address = recipient.addresses.new(
           first_name: first_name,
           last_name: last_name,
-          street: address_params[:street],
-          suite: address_params[:suite],
-          city: address_params[:city],
-          state: address_params[:state],
-          zipcode: address_params[:zipcode],
-          country: address_params[:country]
-        )
-
+          street: address[:street],
+          city: address[:city],
+          suite: address[:suite],
+          state: address[:state],
+          zipcode: address[:zipcode],
+          )
         if address.save
-          # since recipient is created, you know this is first address
-          address.set_primary
+          unless primary_set
+            address.set_primary
+            primary_set = true
+          end
         end
       end
     end
@@ -138,34 +128,23 @@ class RecipientsController < ApplicationController
     # 4) save recipient occasions
     # our update will be to delete all occasions then create new ones
     occasions = params[:occasions]
+
     if occasions
 
       recipient.occasions.delete_all
-
       occasions.each do |occasion|
-        recipient_occasion = occasion[:recipient_occasion]
-        occasion_id        = recipient_occasion[:occasion_id]
-        occasion_date      = recipient_occasion[:occasion_date]
+
+        occasion_id = occasion[:recipient_occasion][:occasion_id]
+        day         = occasion[:recipient_occasion][:day]
+        month       = occasion[:recipient_occasion][:month]
+        notes       = occasion[:recipient_occasion][:notes]
 
         recipient.recipient_occasions.create(
-            occasion_id: occasion_id,
-            occasion_date: occasion_date
-          )
-
-        # update existing vs create new
-        # if id = recipient_occasion[:id]
-        #   update_recipient_occasion = RecipientOccasion.find(id)
-        #   update_recipient_occasion.update_columns(
-        #     occasion_id: occasion_id,
-        #     occasion_date: occasion_date
-        #   )
-        # else
-        #   recipient.recipient_occasions.create(
-        #     occasion_id: occasion_id,
-        #     occasion_date: occasion_date
-        #   )
-        # end
-
+          occasion_id: occasion_id,
+          day: day,
+          month: month,
+          notes: notes
+        )
       end
     end
 
