@@ -1461,10 +1461,18 @@ crop.factory('cropHost', ['$document', 'cropAreaCircle', 'cropAreaSquare', 'crop
         
         // need a max width / height
         // THIS IS WHERE CROP IMAGE HEIGHT AND WIDTH IS DETERMINED - KEVIN SUH
-        var width  = canvasDims[0] * 5;
-        var height = canvasDims[1] * 5;
+        var maxWidth = 350;
 
-        elCanvas.prop('width',width).prop('height',height).css({'margin-left': '0px', 'margin-top': '0px'});
+        var width  = canvasDims[0] * 10;
+        var height = canvasDims[1] * 10;
+
+        if (width > maxWidth) {
+          var aspectRatio = width / maxWidth;
+          height = height / aspectRatio;
+          width = maxWidth;
+        }
+
+        elCanvas.prop('width',width).prop('height',height).css({'margin-left': '10px', 'margin-right': '10px'});
 
         theArea.setX(ctx.canvas.width/2);
         theArea.setY(ctx.canvas.height/2);
