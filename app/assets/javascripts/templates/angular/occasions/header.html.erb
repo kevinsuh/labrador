@@ -25,15 +25,15 @@
 	<!-- the part of the header that comes for each click on the main header -->
 	<div class="bottom_header_container">
 		<!-- filter person header_bar -->
-		<div class="filter_people_container header_dropdown_tool" ng-show="searchPersonActive">
+		<div class="filter_occasions_container header_dropdown_tool" ng-show="searchPersonActive">
 			<div class="form_input">
-				<input type="text" placeholder="Who are you thinking about?" ng-model="filteredName" ng-change="recipientNameFilter(filteredName)" class="filter_people_input"></input>
+				<input type="text" placeholder="Who are you thinking about?" ng-model="filteredName" ng-change="occasionNameFilter(filteredName)" class="filter_occasions_input"></input>
 			</div>
 		</div>
 
 		<!-- delete person header_bar -->
-		<div class="delete_people_container header_dropdown_tool" ng-show="deleteOccasionActive && selectedOccasions.length > 0">
-			<div class="delete_recipients">
+		<div class="delete_occasions_container header_dropdown_tool" ng-show="deleteOccasionActive && selectedOccasions.length > 0">
+			<div class="delete_occasions">
 				Are you sure you want to delete {{occasionNames()}}<span class="header_span" ng-if="selectedOccasions.length >= 1 && selectedOccasions.length <= 10">'s</span><span class="header_span" ng-if="selectedOccasions.length > 10">'</span> record<span class="header_span" ng-if="selectedOccasions.length > 1">s</span>?
 				
 			</div>

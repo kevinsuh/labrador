@@ -7,7 +7,7 @@
       currentOccasions: [], // already existing occasions
       newOccasion: { // current schema to handle with rails back end occasions serializer
         day: "",
-        month: ""
+        month: "",
         notes: "",
         occasion_id: 7,
         recipient_id: "",
@@ -16,7 +16,7 @@
       },
       newOccasionTemplate: {
         day: "",
-        month: ""
+        month: "",
         notes: "",
         occasion_id: 7,
         recipient_id: "",

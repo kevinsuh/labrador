@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151116223900) do
+ActiveRecord::Schema.define(version: 20151116231626) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "first_name"
@@ -229,6 +229,7 @@ ActiveRecord::Schema.define(version: 20151116223900) do
     t.integer  "day"
     t.text     "notes"
     t.integer  "status",       default: 0
+    t.string   "name"
   end
 
   add_index "recipient_occasions", ["occasion_id"], name: "index_recipient_occasions_on_occasion_id"
