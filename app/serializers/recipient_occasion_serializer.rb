@@ -1,13 +1,10 @@
 class RecipientOccasionSerializer < ActiveModel::Serializer
-  attributes :id, :recipient_id, :occasion_id, :occasion_date
+  attributes :id, :recipient_id, :occasion_id, :day, :month, :notes
 
   # attribute method is hash of JSON attributes
   def attributes
   	data = super # get the current JSON object
   	recipient_occasion = object
-
-    puts "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
-    puts object.inspect
 
     recipient_id = data[:recipient_id]
     recipient = Recipient.find_by(id: recipient_id)

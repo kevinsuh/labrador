@@ -18,6 +18,7 @@
 		$scope.occasions                = cards.occasions;
 		$scope.selectedRecipients       = recipients.selectedRecipients;
 		$scope.selectedRecipientIDs     = recipients.selectedRecipientIDs;
+		console.log($scope.currentRecipients);
 
 		headerTitle = angular.element(document.querySelector("#currentTitle"));
 		headerTitle.text("My People");
@@ -300,10 +301,10 @@
 
 		// custom function to return days from today -- of next calendar year
 		// dateString = (ex. 2/12/1992)
-		$scope.daysFromToday = function(dateString) {
+		$scope.daysFromToday = function(month, day) {
 			
 			today = new Date();
-			daysFromToday = daydiff(today, parseDateForNextOccasion(dateString));
+			daysFromToday = daydiff(today, parseDateForNextOccasion(month, day));
 			if (daysFromToday > 1) {
 				return daysFromToday + " days";
 			} else {

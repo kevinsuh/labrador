@@ -38,7 +38,7 @@
 
 					<div class="events">
 						<div class="event" ng-repeat="occasion in recipient.occasions">
-							<span ng-if="occasion.occasion.name">{{occasion.occasion.name}} in {{daysFromToday(occasion.recipient_occasion.occasion_date)}} - {{occasion.recipient_occasion.occasion_date | date: "MMM. d"}}</span>
+							<span ng-if="occasion.occasion.name">{{occasion.occasion.name}} in {{daysFromToday(occasion.recipient_occasion.month, occasion.recipient_occasion.day)}} - {{occasion.recipient_occasion.month | integerToMonth}} {{occasion.recipient_occasion.day}}</span>
 						</div>
 					</div>
 				</div>
