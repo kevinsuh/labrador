@@ -77972,20 +77972,25 @@ $(document).on('ready page:load', function() {
 $(document).on("pageshow", function(){
    ScaleContentToDevice();
 });
-$(window).on('resize orientationchange', function(){ ScaleContentToDevice() });
+$(window).on('resize orientationchange', function(){ 
+	console.log("HEY orientationchange");
+	ScaleContentToDevice() });
 
 function ScaleContentToDevice() {
    scroll(0, 0);
    //var headerHeight = $(".main_header:visible").outerHeight();
    var headerHeight = 50;
-   //var footerHeight = $(".main_footer:visible").outerHeight();
-   var footerHeight = 80;
+   // //var footerHeight = $(".main_footer:visible").outerHeight();
+   // var footerHeight = 80;
 
-   // disregard footer height if crop image footer is here -- this is a big hack for now.
-   if (!$(".cropImageFooter:visible").length) {
-   	console.log("hey crop image footers visible!")
-   	footerHeight = 0;
-   }
+   // // disregard footer height if crop image footer is here -- this is a big hack for now.
+   // console.log($(".cropImage").length);
+   // if ($(".cropImage").length > 0) {
+   // 	console.log("hey crop image footers visible/..!")
+   // 	footerHeight = 0;
+   // }
+
+   footerHeight = 0;
 
    var viewportHeight = $(window).height();
 
