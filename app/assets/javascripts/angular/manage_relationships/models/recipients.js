@@ -27,7 +27,7 @@
           zipcode: "",
           country: "United States"
         },
-        address:[],
+        addresses:[],
         occasions: [] // the various "events" attached to this recipient
       },
       newRecipientTemplate: {
@@ -46,7 +46,7 @@
           zipcode: "",
           country: "United States"
         },
-        address:[],
+        addresses:[],
         occasions: [] // the various "events" attached to this recipient
       },
       relationships: {}, // list of relationship types

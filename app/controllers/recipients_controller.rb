@@ -49,10 +49,10 @@ class RecipientsController < ApplicationController
     if occasions
       occasions.each do |occasion|
 
-        occasion_id = occasion[:occasion_id]
-        day         = occasion[:day]
-        month       = occasion[:month]
-        notes       = occasion[:notes]
+        occasion_id = occasion[:recipient_occasion][:occasion_id]
+        day         = occasion[:recipient_occasion][:day]
+        month       = occasion[:recipient_occasion][:month]
+        notes       = occasion[:recipient_occasion][:notes]
         recipient.recipient_occasions.create(
           occasion_id: occasion_id,
           day: day,

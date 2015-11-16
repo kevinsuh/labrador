@@ -38,7 +38,9 @@
 		// contains id, day, month, notes
 		$scope.newRecipientOccasion = {
 			newOccasion: true,
-			occasion_id: 7
+			recipient_occasion: {
+				occasion_id: 7
+			}
 		};
 		$scope.newRecipientOccasionTemplate = angular.copy($scope.newRecipientOccasion);
 
@@ -339,20 +341,15 @@
 			isNewRecipient = $scope.isNewRecipient;
 			fileUploader = $scope.uploader;
 
-			// get most recent occasion/ address if it is filled out
-			occasions = angular.copy($scope.recipientOccasions);
-			addresses = angular.copy($scope.recipientAddresses);
-			if ($scope.newRecipientOccasion.month && $scope.newRecipientOccasion.day) {
-				occasions.push($scope.newRecipientOccasion);
+			// // get most recent occasion/ address if it is filled out
+			// occasions = angular.copy($scope.recipientOccasions);
+			// addresses = angular.copy($scope.recipientAddresses);
+			if ($scope.newRecipientOccasion.recipient_occasion.month && $scope.newRecipientOccasion.recipient_occasion.day) {
+				recipient.occasions.push($scope.newRecipientOccasion);
 			}
 			if ($scope.newRecipientAddress.street && $scope.newRecipientAddress.city && $scope.newRecipientAddress.state && $scope.newRecipientAddress.zipcode) {
-				addresses.push($scope.newRecipientAddress);
+				recipient.addresses.push($scope.newRecipientAddress);
 			}
-
-			recipient.occasions = occasions;
-			recipient.addresses = addresses;
-
-			// don't run this below stuff yet.
 
 			if (isNewRecipient) { // create
 
