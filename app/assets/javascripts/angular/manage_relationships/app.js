@@ -1,6 +1,6 @@
 (function() {
 
-  var app = angular.module('manage-recipients', ['ngAnimate', 'ngMessages', 'ui.router', 'templates', 'fancyboxplus', 'ui.bootstrap', 'countrySelect', 'angularFileUpload', 'ngImgCrop']);
+  var app = angular.module('manage-recipients', ['ngAnimate', 'ngMessages', 'ui.router', 'templates', 'ui.bootstrap', 'angularFileUpload', 'ngImgCrop']);
 
   app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
 
