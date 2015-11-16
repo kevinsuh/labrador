@@ -37,6 +37,7 @@
 
 		// header
 		.header_bar {
+			z-index: 99999;
 			height: $mobile_header_size * 2; // will contain both "top" header and "bottom" header
 			position: fixed;
 			top: 0;
@@ -297,7 +298,10 @@
 		  			// min-height: $recipient_info_height;
 		  			&.basic_info {
 		  				background-color: $mobile_purple;	
-		  				padding: 0;	
+		  				padding: 0;
+		  				&.cropImage {
+		  					min-height: 100%;
+		  				}
 		  			}
 
 		  			.recipient_info {
@@ -619,6 +623,17 @@
 							}
 
 		  			}
+		  		}
+
+		  		/**
+		  		 * 	DIV CONTAINING THE CROP IMAGE FOOTER
+		  		 */
+		  		.cropImageFooter {
+		  			position:fixed;
+		  			bottom: 0;
+		  			padding-bottom: 20px;
+		  			z-index: 99999;
+		  			background-color: $medium_grey;
 		  		}
 		  	}
 		  }

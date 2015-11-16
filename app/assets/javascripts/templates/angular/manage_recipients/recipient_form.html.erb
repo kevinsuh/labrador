@@ -59,307 +59,317 @@ end
 %>
 
 <!-- unique modal form each time you open -->
-<form ng-submit="submit()" ng-controller="RecipientFormController">
+<form ng-submit="submit()" ng-controller="RecipientFormController" style="height: 100%;">
 
-	<!-- name / relationship -->
-	<div class="modal-header basic_info">
-		<div class="row recipient_info">
+	<div ng-controller="ImageCropperCtrl" style="height: 100%;">
 
-			<div ng-controller="ImageCropperCtrl">
+		<!-- name / relationship -->
+		<div class="modal-header basic_info" ng-class="{'cropImage':activeRecipientImage}">
+			<div class="row recipient_info">
+
+				<div>
+					<div class="title_container">
+						<div ng-show="isNewRecipient">
+							<h3 class="recipient_form_title" ng-hide="activeRecipientImage">Add New Person</h3>
+						</div>
+						<div ng-show="!isNewRecipient">
+							<h3 class="recipient_form_title" ng-hide="activeRecipientImage">Edit Person Info</h3>
+						</div>
+						<h3 class="recipient_form_title" ng-show="activeRecipientImage">Crop picture</h3>
+					</div>
+
+					<!-- image cropper controller start -->
+					<div class="profile_picture_container">
+						<div class="profile_picture" id="recipientPicture" ng-hide="activeRecipientImage">
+							<i class="camera_icon"></i> <!-- the camera overlay icon -->
+							<img class="image" ng-src="{{selectedRecipient.profile_picture}}" ng-hide="recipientImage">
+							<img class="image" ng-src="{{myCroppedImage}}" />
+						</div>
+
+						<div class="crop_picture_container" ng-show="activeRecipientImage">
+							<input class="picture_upload" nv-file-select type="file" uploader="uploader" id="fileInput" style="display: none;"/>
+							<div class="potential_crop_area" ng-show="recipientImage">
+								<div class="cropArea">
+							    <img-crop image="recipientImage" result-image="myCroppedImage" area-min-size="60"></img-crop>
+							  </div>
+							</div>
+						</div>
+					</div>
+
+					<div class="name_container" ng-hide="activeRecipientImage">
+						<div class="first_name form_input">
+							<input ng-model="selectedRecipient.first_name" type="text" placeholder="First Name" class="name_input recipient_form_input"/>
+						</div>
+						<div class="last_name form_input">
+							<input ng-model="selectedRecipient.last_name" type="text" placeholder="Last Name" class="name_input recipient_form_input"/>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+
+		<!-- address + occasions -->
+		<div class="modal-body modal_body" ng-hide="activeRecipientImage">
+			<div class="body">
+
+				<!-- start of addresses -->
 				<div class="title_container">
-					<div ng-show="isNewRecipient">
-						<h3 class="recipient_form_title" ng-hide="activeRecipientImage">Add New Person</h3>
-					</div>
-					<div ng-show="!isNewRecipient">
-						<h3 class="recipient_form_title" ng-hide="activeRecipientImage">Edit Person Info</h3>
-					</div>
-					<h3 class="recipient_form_title" ng-show="activeRecipientImage">Crop picture</h3>
+					<h3 class="recipient_form_title address_title">Address</h3>
 				</div>
 
-				<!-- image cropper controller start -->
-				<div class="profile_picture_container">
-					<div class="profile_picture" id="recipientPicture" ng-hide="activeRecipientImage">
-						<i class="camera_icon"></i> <!-- the camera overlay icon -->
-						<img class="image" ng-src="{{selectedRecipient.profile_picture}}" ng-hide="recipientImage">
-						<img class="image" ng-src="{{myCroppedImage}}" />
-					</div>
+				<!-- <div class="row address_title">
+					<h6 ng-if="recipient.id" class="last_updated">Last Updated: {{recipient.primary_address.updated_at | date:'MM/dd/yy'}}</h6>
+				</div> -->
+				<div class="addresses_body">
 
-					<div class="crop_picture_container" ng-show="activeRecipientImage">
-						<input class="picture_upload" nv-file-select type="file" uploader="uploader" id="fileInput" style="display: none;"/>
-						<div class="potential_crop_area" ng-show="recipientImage">
-							<div class="cropArea">
-						    <img-crop image="recipientImage" result-image="myCroppedImage" area-min-size="60"></img-crop>
-						  </div>
-						</div>
-						<div class="button_container">
-							<button type="button" class="submit_button cancel_button recipient_form_button" ng-click="cancelRecipientImage()">CANCEL</button>
-							<button type="button" class="submit_button save_button recipient_form_button" ng-click="saveRecipientImage()">SAVE</button>
-						</div>
-					</div>
-				</div>
+					<div class="row existing_addresses_container" ng-repeat="address in selectedRecipient.addresses">
 
-				<div class="name_container" ng-hide="activeRecipientImage">
-					<div class="first_name form_input">
-						<input ng-model="selectedRecipient.first_name" type="text" placeholder="First Name" class="name_input recipient_form_input"/>
-					</div>
-					<div class="last_name form_input">
-						<input ng-model="selectedRecipient.last_name" type="text" placeholder="Last Name" class="name_input recipient_form_input"/>
-					</div>
-				</div>
-
-			</div>
-
-		</div>
-	</div>
-
-	<!-- address + occasions -->
-	<div class="modal-body modal_body">
-		<div class="body">
-
-			<!-- start of addresses -->
-			<div class="title_container">
-				<h3 class="recipient_form_title address_title">Address</h3>
-			</div>
-
-			<!-- <div class="row address_title">
-				<h6 ng-if="recipient.id" class="last_updated">Last Updated: {{recipient.primary_address.updated_at | date:'MM/dd/yy'}}</h6>
-			</div> -->
-			<div class="addresses_body">
-
-				<div class="row existing_addresses_container" ng-repeat="address in selectedRecipient.addresses">
-
-					<div class="street_container form_input_container">
-						<div class="street form_input">
-				      <input class="street_input recipient_form_input" ng-model="address.street" type="text" placeholder="Address Line 1"/>
-				    </div>
-					</div>
-
-					<div class="street_container form_input_container">
-						<div class="street form_input">
-				      <input class="street_input recipient_form_input" ng-model="address.suite" type="text" placeholder="Address Line 2"/>
-				    </div>
-					</div>
-
-					<div class="address_other form_input_container form_field">
-						<div class="city field">
-							<div class="form_input">
-					      <input class="recipient_form_input city_input" ng-model="address.city" type="text" placeholder="City"/>
+						<div class="street_container form_input_container">
+							<div class="street form_input">
+					      <input class="street_input recipient_form_input" ng-model="address.street" type="text" placeholder="Address Line 1"/>
 					    </div>
 						</div>
 
-						<div class="state field">
-							<div class="form_input">
-								<select class="recipient_form_input select_input state_input" ng-model="address.state">
-						  		<option value="">ST</option>
-						  		<% us_states.each { |state, abrv| %>
-						  			<option value="<%= state %>"><%= abrv %></option>
-									<% } %>
-						  	</select>
-						  	<i class="glyphicon glyphicon-menu-down state_menu_down"></i>
-							</div>
-						</div>
-
-						<div class="zipcode field">
-							<div class="form_input">
-					      <input class="zipcode_input recipient_form_input" ng-model="address.zipcode" type="text" placeholder="Zip"/>
-					    </div>
-						</div>
-					</div>
-					<div class="form_input_container address_options_container form_field">
-						<div class="delete_address field">
-							<div class="form_input">
-								<span class="form_button delete_address" ng-click="deleteAddress(address)"><i class="glyphicon glyphicon-minus add-occasion-glyph"></i> DELETE ADDRESS</span>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="row new_addresses_container">
-
-					<div class="street_container form_input_container">
-						<div class="street form_input">
-				      <input class="street_input recipient_form_input" ng-model="newRecipientAddress.street" type="text" placeholder="Address Line 1"/>
-				    </div>
-					</div>
-
-					<div class="street_container form_input_container">
-						<div class="street form_input">
-				      <input class="street_input recipient_form_input" ng-model="newRecipientAddress.suite" type="text" placeholder="Address Line 2"/>
-				    </div>
-					</div>
-
-					<div class="address_other form_input_container form_field">
-						<div class="city field">
-							<div class="form_input">
-					      <input class="recipient_form_input city_input" ng-model="newRecipientAddress.city" type="text" placeholder="City"/>
+						<div class="street_container form_input_container">
+							<div class="street form_input">
+					      <input class="street_input recipient_form_input" ng-model="address.suite" type="text" placeholder="Address Line 2"/>
 					    </div>
 						</div>
 
-						<div class="state field">
-							<div class="form_input">
-								<select class="recipient_form_input select_input state_input" ng-model="newRecipientAddress.state">
-						  		<option value="">ST</option>
-						  		<% us_states.each { |state, abrv| %>
-						  			<option value="<%= state %>"><%= abrv %></option>
-									<% } %>
-						  	</select>
-						  	<i class="glyphicon glyphicon-menu-down state_menu_down"></i>
+						<div class="address_other form_input_container form_field">
+							<div class="city field">
+								<div class="form_input">
+						      <input class="recipient_form_input city_input" ng-model="address.city" type="text" placeholder="City"/>
+						    </div>
+							</div>
+
+							<div class="state field">
+								<div class="form_input">
+									<select class="recipient_form_input select_input state_input" ng-model="address.state">
+							  		<option value="">ST</option>
+							  		<% us_states.each { |state, abrv| %>
+							  			<option value="<%= state %>"><%= abrv %></option>
+										<% } %>
+							  	</select>
+							  	<i class="glyphicon glyphicon-menu-down state_menu_down"></i>
+								</div>
+							</div>
+
+							<div class="zipcode field">
+								<div class="form_input">
+						      <input class="zipcode_input recipient_form_input" ng-model="address.zipcode" type="text" placeholder="Zip"/>
+						    </div>
 							</div>
 						</div>
-
-						<div class="zipcode field">
-							<div class="form_input">
-					      <input class="zipcode_input recipient_form_input" ng-model="newRecipientAddress.zipcode" type="text" placeholder="Zip"/>
-					    </div>
+						<div class="form_input_container address_options_container form_field">
+							<div class="delete_address field">
+								<div class="form_input">
+									<span class="form_button delete_address" ng-click="deleteAddress(address)"><i class="glyphicon glyphicon-minus add-occasion-glyph"></i> DELETE ADDRESS</span>
+								</div>
+							</div>
 						</div>
 					</div>
-					<div class="form_input_container address_options_container form_field">
-						<div class="new_address field">
-							<div class="form_input">
-								<span class="form_button add_address" ng-click="createAddress(newRecipientAddress)"><i class="glyphicon glyphicon-plus add-occasion-glyph"></i> ADD NEW ADDRESS</span>
-							</div>
-						</div>
-						<div class="delete_address field">
-							<div class="form_input">
-								<span class="form_button delete_address" ng-click="deleteAddress(newRecipientAddress)"><i class="glyphicon glyphicon-minus add-occasion-glyph"></i> DELETE ADDRESS</span>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+					<div class="row new_addresses_container">
 
-			<!-- start of occasions -->
-			<div class="title_container">
-				<h3 class="recipient_form_title occasions_title">Occasions</h3>
-			</div>
-
-			<!-- the actual body of occasions - each individual occasion div -->
-			<div class="occasions_body" ng-controller="recipientOccasionsCtrl">
-
-				<!-- each existing occasion of recipient -->
-				<div class="existing_occasions_container form_field" ng-repeat="occasionHash in selectedRecipient.occasions" ng-controller="recipientOccasionsCtrl">
-
-					<!-- name of each occasion -->
-					<div class="occasion_name_container">
-
-						<div class="occasion_name form_input_container field">
-							<div class="occasion_input form_input">
-								<select class="recipient_form_input occasion_name_input select_input" ng-model="occasionHash.recipient_occasion.occasion_id" ng-options="value as key for (key, value) in occasions"></select>
-								<i class="glyphicon glyphicon-menu-down state_menu_down"></i>
-							</div>
-						</div>
-
-					</div>
-
-					<!-- date of each occasion -->
-					<div class="occasion_date_container">
-
-						<div class="month field form_input_container">
-							<div class="form_input">
-								<select class="recipient_form_input select_input month_input select_input" ng-model="occasionHash.recipient_occasion.month">
-						  		<option value="">Month</option>
-						  		<% (1...13).each { |month| %>
-						  			<option value="<%= month %>"><%= month %></option>
-									<% } %>
-						  	</select>
-						  	<i class="glyphicon glyphicon-menu-down state_menu_down"></i>
-							</div>
-						</div>
-
-						<div class="day field form_input_container">
-							<div class="form_input">
-					      <input class="recipient_form_input day_input" ng-model="occasionHash.recipient_occasion.day" type="number" placeholder="Day"/>
+						<div class="street_container form_input_container">
+							<div class="street form_input">
+					      <input class="street_input recipient_form_input" ng-model="newRecipientAddress.street" type="text" placeholder="Address Line 1"/>
 					    </div>
 						</div>
 
-					</div>
-
-					<!-- optional notes with each occasion -->
-					<div class="occasion_notes_container">
-
-						<div class="notes field form_input_container">
-							<div class="form_input">
-					      <textarea class="recipient_form_input notes_input" ng-model="occasionHash.recipient_occasion.notes" placeholder="Notes"/>
+						<div class="street_container form_input_container">
+							<div class="street form_input">
+					      <input class="street_input recipient_form_input" ng-model="newRecipientAddress.suite" type="text" placeholder="Address Line 2"/>
 					    </div>
 						</div>
 
-					</div>
+						<div class="address_other form_input_container form_field">
+							<div class="city field">
+								<div class="form_input">
+						      <input class="recipient_form_input city_input" ng-model="newRecipientAddress.city" type="text" placeholder="City"/>
+						    </div>
+							</div>
 
-					<!-- option to delete at the end of existing occasion -->
-					<div class="form_input_container address_options_container form_field">
-						<div class="delete_address field">
-							<div class="form_input">
-								<span class="form_button delete_address" ng-click="deleteOccasion(occasionHash)"><i class="glyphicon glyphicon-minus add-occasion-glyph"></i> DELETE EVENT</span>
+							<div class="state field">
+								<div class="form_input">
+									<select class="recipient_form_input select_input state_input" ng-model="newRecipientAddress.state">
+							  		<option value="">ST</option>
+							  		<% us_states.each { |state, abrv| %>
+							  			<option value="<%= state %>"><%= abrv %></option>
+										<% } %>
+							  	</select>
+							  	<i class="glyphicon glyphicon-menu-down state_menu_down"></i>
+								</div>
+							</div>
+
+							<div class="zipcode field">
+								<div class="form_input">
+						      <input class="zipcode_input recipient_form_input" ng-model="newRecipientAddress.zipcode" type="text" placeholder="Zip"/>
+						    </div>
+							</div>
+						</div>
+						<div class="form_input_container address_options_container form_field">
+							<div class="new_address field">
+								<div class="form_input">
+									<span class="form_button add_address" ng-click="createAddress(newRecipientAddress)"><i class="glyphicon glyphicon-plus add-occasion-glyph"></i> ADD NEW ADDRESS</span>
+								</div>
+							</div>
+							<div class="delete_address field">
+								<div class="form_input">
+									<span class="form_button delete_address" ng-click="deleteAddress(newRecipientAddress)"><i class="glyphicon glyphicon-minus add-occasion-glyph"></i> DELETE ADDRESS</span>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 
-				<!-- new occasion always at the bottom -->
-				<div class="new_occasions_container form_field">
+				<!-- start of occasions -->
+				<div class="title_container">
+					<h3 class="recipient_form_title occasions_title">Occasions</h3>
+				</div>
 
-					<!-- name of each occasion -->
-					<div class="occasion_name_container">
+				<!-- the actual body of occasions - each individual occasion div -->
+				<div class="occasions_body" ng-controller="recipientOccasionsCtrl">
 
-						<div class="occasion_name form_input_container field">
-							<div class="occasion_input form_input">
-								<select class="recipient_form_input occasion_name_input select_input" ng-model="newRecipientOccasion.recipient_occasion.occasion_id" ng-options="value as key for (key, value) in occasions"></select>
-								<i class="glyphicon glyphicon-menu-down state_menu_down"></i>
+					<!-- each existing occasion of recipient -->
+					<div class="existing_occasions_container form_field" ng-repeat="occasionHash in selectedRecipient.occasions" ng-controller="recipientOccasionsCtrl">
+
+						<!-- name of each occasion -->
+						<div class="occasion_name_container">
+
+							<div class="occasion_name form_input_container field">
+								<div class="occasion_input form_input">
+									<select class="recipient_form_input occasion_name_input select_input" ng-model="occasionHash.recipient_occasion.occasion_id" ng-options="value as key for (key, value) in occasions"></select>
+									<i class="glyphicon glyphicon-menu-down state_menu_down"></i>
+								</div>
+							</div>
+
+						</div>
+
+						<!-- date of each occasion -->
+						<div class="occasion_date_container">
+
+							<div class="month field form_input_container">
+								<div class="form_input">
+									<select class="recipient_form_input select_input month_input select_input" ng-model="occasionHash.recipient_occasion.month">
+							  		<option value="">Month</option>
+							  		<% (1...13).each { |month| %>
+							  			<option value="<%= month %>"><%= month %></option>
+										<% } %>
+							  	</select>
+							  	<i class="glyphicon glyphicon-menu-down state_menu_down"></i>
+								</div>
+							</div>
+
+							<div class="day field form_input_container">
+								<div class="form_input">
+						      <input class="recipient_form_input day_input" ng-model="occasionHash.recipient_occasion.day" type="number" placeholder="Day"/>
+						    </div>
+							</div>
+
+						</div>
+
+						<!-- optional notes with each occasion -->
+						<div class="occasion_notes_container">
+
+							<div class="notes field form_input_container">
+								<div class="form_input">
+						      <textarea class="recipient_form_input notes_input" ng-model="occasionHash.recipient_occasion.notes" placeholder="Notes"/>
+						    </div>
+							</div>
+
+						</div>
+
+						<!-- option to delete at the end of existing occasion -->
+						<div class="form_input_container address_options_container form_field">
+							<div class="delete_address field">
+								<div class="form_input">
+									<span class="form_button delete_address" ng-click="deleteOccasion(occasionHash)"><i class="glyphicon glyphicon-minus add-occasion-glyph"></i> DELETE EVENT</span>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- new occasion always at the bottom -->
+					<div class="new_occasions_container form_field">
+
+						<!-- name of each occasion -->
+						<div class="occasion_name_container">
+
+							<div class="occasion_name form_input_container field">
+								<div class="occasion_input form_input">
+									<select class="recipient_form_input occasion_name_input select_input" ng-model="newRecipientOccasion.recipient_occasion.occasion_id" ng-options="value as key for (key, value) in occasions"></select>
+									<i class="glyphicon glyphicon-menu-down state_menu_down"></i>
+								</div>
+							</div>
+
+						</div>
+
+						<!-- date of each occasion -->
+						<div class="occasion_date_container">
+
+							<div class="month field form_input_container">
+								<div class="form_input">
+									<select class="recipient_form_input select_input month_input select_input" ng-model="newRecipientOccasion.recipient_occasion.month">
+							  		<option value="">Month</option>
+							  		<% (1...13).each { |month| %>
+							  			<option value="<%= month %>"><%= month %></option>
+										<% } %>
+							  	</select>
+							  	<i class="glyphicon glyphicon-menu-down state_menu_down"></i>
+								</div>
+							</div>
+
+							<div class="day field form_input_container">
+								<div class="form_input">
+						      <input class="recipient_form_input day_input" ng-model="newRecipientOccasion.recipient_occasion.day" type="number" placeholder="Day"/>
+						    </div>
+							</div>
+
+						</div>
+
+						<!-- optional notes with each occasion -->
+						<div class="occasion_notes_container">
+
+							<div class="notes field form_input_container">
+								<div class="form_input">
+						      <textarea class="recipient_form_input notes_input" ng-model="newRecipientOccasion.recipient_occasion.notes" placeholder="Notes"/>
+						    </div>
+							</div>
+
+						</div>
+
+						<!-- option at the end of new occasion -->
+						<div class="form_input_container address_options_container form_field">
+							<div class="new_address field">
+								<div class="form_input">
+									<span class="form_button add_address" ng-click="createOccasion(newRecipientOccasion)"><i class="glyphicon glyphicon-plus add-occasion-glyph"></i> ADD NEW EVENT</span>
+								</div>
+							</div>
+							<div class="delete_address field">
+								<div class="form_input">
+									<span class="form_button delete_address" ng-click="deleteOccasion(newRecipientOccasion)"><i class="glyphicon glyphicon-minus add-occasion-glyph"></i> DELETE EVENT</span>
+								</div>
 							</div>
 						</div>
 
 					</div>
-
-					<!-- date of each occasion -->
-					<div class="occasion_date_container">
-
-						<div class="month field form_input_container">
-							<div class="form_input">
-								<select class="recipient_form_input select_input month_input select_input" ng-model="newRecipientOccasion.recipient_occasion.month">
-						  		<option value="">Month</option>
-						  		<% (1...13).each { |month| %>
-						  			<option value="<%= month %>"><%= month %></option>
-									<% } %>
-						  	</select>
-						  	<i class="glyphicon glyphicon-menu-down state_menu_down"></i>
-							</div>
-						</div>
-
-						<div class="day field form_input_container">
-							<div class="form_input">
-					      <input class="recipient_form_input day_input" ng-model="newRecipientOccasion.recipient_occasion.day" type="number" placeholder="Day"/>
-					    </div>
-						</div>
-
-					</div>
-
-					<!-- optional notes with each occasion -->
-					<div class="occasion_notes_container">
-
-						<div class="notes field form_input_container">
-							<div class="form_input">
-					      <textarea class="recipient_form_input notes_input" ng-model="newRecipientOccasion.recipient_occasion.notes" placeholder="Notes"/>
-					    </div>
-						</div>
-
-					</div>
-
-					<!-- option at the end of new occasion -->
-					<div class="form_input_container address_options_container form_field">
-						<div class="new_address field">
-							<div class="form_input">
-								<span class="form_button add_address" ng-click="createOccasion(newRecipientOccasion)"><i class="glyphicon glyphicon-plus add-occasion-glyph"></i> ADD NEW EVENT</span>
-							</div>
-						</div>
-						<div class="delete_address field">
-							<div class="form_input">
-								<span class="form_button delete_address" ng-click="deleteOccasion(newRecipientOccasion)"><i class="glyphicon glyphicon-minus add-occasion-glyph"></i> DELETE EVENT</span>
-							</div>
-						</div>
-					</div>
-
 				</div>
 			</div>
 		</div>
+
+		<!-- CROP IMAGE FOOTER -->
+		<div class="modal-footer cropImageFooter new_recipient_footer" ng-show="activeRecipientImage">
+			<div class="button_container recipient_form_button_container cancel">
+				<div class="submit_button new_recipient_form_button" ng-click="cancelRecipientImage()">CANCEL</div>
+			</div>
+			<div class="button_container recipient_form_button_container save">
+				<div class="submit_button new_recipient_form_button" ng-click="saveRecipientImage()">SAVE</div>
+			</div>
+		</div>
+
 	</div>
 </form>
 
