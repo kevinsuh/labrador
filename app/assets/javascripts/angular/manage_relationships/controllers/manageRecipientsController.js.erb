@@ -33,6 +33,9 @@
 			  'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
 			}
 		});
+		$scope.image = {
+			myCroppedImage: " "
+		};
 
 		// new occasion defaulted to birthday
 		// contains id, day, month, notes
@@ -65,6 +68,10 @@
 
 			$scope.isNewRecipient = false;
 			$scope.selectedRecipient = recipient;
+			// reset cropped image
+  		$scope.image = {
+				myCroppedImage: " "
+			};
 
 			// reset the "new" form inputs just in case
 			$scope.newRecipientAddress = angular.copy($scope.newRecipientAddressTemplate);
@@ -411,6 +418,29 @@
 			$scope.deletePersonActive = false;
 			$scope.searchPersonActive = false;
 		}
+
+		/**
+		 * 		RECIPIENT FORM FUNCTIONALITY
+		 */
+		
+
+		// callback on successful upload
+		$scope.uploader.onSuccessItem = function(fileItem, response, status, headers) {
+			//console.log("new success item");
+
+			// update profile picture
+			recipient = response.recipient;
+			$scope.selectedRecipient = recipient;
+
+			// $scope.recipients.updatePictureOnSuccess(response.recipient);
+			// this is for updating recipient
+      index = findWithAttr($scope.currentRecipients, 'id', recipient.id);
+      $scope.recipients.currentRecipients[index] = recipient;
+      $scope.currentRecipients[index] = recipient;
+
+			//profile_picture_id = response.profile_picture_id;
+			//$scope.recipients.updatePictureForRecipient($scope.recipient.id, profile_picture_id);
+    };
 		
 	});
 

@@ -43,7 +43,7 @@
       $scope.uploader.onAfterAddingFile = function(item) {
       	
       	// make the new uploaded image crop-able
-      	$scope.myCroppedImage = "";
+      	$scope.image.myCroppedImage = "";
 
         fileInput.val("");
 
@@ -59,7 +59,7 @@
 
       // upload blob (cropped image) instead of file
       $scope.uploader.onBeforeUploadItem = function(item) {
-      	var blob = dataURItoBlob($scope.myCroppedImage);
+      	var blob = dataURItoBlob($scope.image.myCroppedImage);
       	item.formData.push({update_recipient_id: $scope.selectedRecipient.id});
       	item._file = blob;
       };

@@ -11,31 +11,6 @@
 			fileInput.click();
 		});
 
-		// callback on successful upload
-		$scope.uploader.onSuccessItem = function(fileItem, response, status, headers) {
-			console.log("new success item");
-			console.log(response);
-			console.log($scope.selectedRecipient);
-
-			// update profile picture
-			recipient = response.recipient;
-			$scope.selectedRecipient = recipient;
-
-			// $scope.recipients.updatePictureOnSuccess(response.recipient);
-			// this is for updating recipient
-      index = findWithAttr($scope.currentRecipients, 'id', recipient.id);
-      console.log(index);
-      console.log(recipient);
-      recipients.currentRecipients[index] = recipient;
-      $scope.recipients.currentRecipients[index] = recipient;
-      console.log($scope.currentRecipients);
-      console.log(recipients.currentRecipients);
-
-			//profile_picture_id = response.profile_picture_id;
-			//$scope.recipients.updatePictureForRecipient($scope.recipient.id, profile_picture_id);
-    };
-
-    
 		// create occasion with the given inputs
 		$scope.createOccasion = function(occasion) {
 			// 1. add to the "existing" occasions
@@ -45,7 +20,6 @@
 				$scope.selectedRecipient.occasions.push(occasion);
 				$scope.newRecipientOccasion = angular.copy($scope.newRecipientOccasionTemplate);
 			}
-
 		}
 
 		// delete this given occasion
