@@ -39,7 +39,7 @@
       // upload blob (cropped image) instead of file
       $scope.uploader.onBeforeUploadItem = function(item) {
       	var blob = dataURItoBlob($scope.myCroppedImage);
-      	item.formData.push({update_recipient_id: $scope.recipient.id});
+      	item.formData.push({update_recipient_id: $scope.selectedRecipient.id});
       	item._file = blob;
       };
 

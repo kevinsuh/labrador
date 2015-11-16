@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151115225541) do
+ActiveRecord::Schema.define(version: 20151116004159) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "first_name"
@@ -22,12 +22,12 @@ ActiveRecord::Schema.define(version: 20151115225541) do
     t.string   "state"
     t.integer  "zipcode"
     t.boolean  "is_primary",  default: false
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
     t.integer  "person_id"
     t.string   "person_type"
     t.boolean  "is_visible",  default: true
-    t.string   "country"
+    t.string   "country",     default: "United States"
   end
 
   add_index "addresses", ["person_type", "person_id"], name: "index_addresses_on_person_type_and_person_id"

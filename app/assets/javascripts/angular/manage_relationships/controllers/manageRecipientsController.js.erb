@@ -5,377 +5,394 @@
 	 */
 	var app = angular.module('card-queue').controller("ManageRecipientsController", function($rootScope, $location, $window, $scope, $state, $timeout, $modal, recipients, cards, usSpinnerService, FileUploader) {
 
-			// infinite scroll once this angular controller is loaded
-			ScaleContentToDevice();
+		// infinite scroll once this angular controller is loaded
+		ScaleContentToDevice();
 
-			// new manage relationships feature!
-			$scope.recipients               = recipients; // the "factory" recipients object
-			$scope.relationships            = recipients.relationships;
-			$scope.currentRecipients        = recipients.currentRecipients;
-			$scope.newRecipient             = recipients.newRecipient;
-			$scope.newRecipientTemplate     = recipients.newRecipientTemplate;
-			$scope.relationships            = recipients.relationships;
-			$scope.occasions                = cards.occasions;
-			$scope.selectedRecipients       = recipients.selectedRecipients;
-			$scope.selectedRecipientIDs     = recipients.selectedRecipientIDs;
+		// new manage relationships feature!
+		$scope.recipients               = recipients; // the "factory" recipients object
+		$scope.relationships            = recipients.relationships;
+		$scope.currentRecipients        = recipients.currentRecipients;
+		$scope.newRecipient             = recipients.newRecipient;
+		$scope.newRecipientTemplate     = recipients.newRecipientTemplate;
+		$scope.relationships            = recipients.relationships;
+		$scope.occasions                = cards.occasions;
+		$scope.selectedRecipients       = recipients.selectedRecipients;
+		$scope.selectedRecipientIDs     = recipients.selectedRecipientIDs;
 
-			headerTitle = angular.element(document.querySelector("#currentTitle"));
-			headerTitle.text("My People");
+		headerTitle = angular.element(document.querySelector("#currentTitle"));
+		headerTitle.text("My People");
 
-			$scope.currentTitle = "My People";
+		$scope.currentTitle = "My People";
 
-			// new occasion defaulted to birthday
-			// contains id, day, month, notes
-			$scope.newRecipientOccasion = {
-				newOccasion: true,
-				occasion_id: 7
-			};
-			$scope.newRecipientOccasionTemplate = angular.copy($scope.newRecipientOccasion);
+		$scope.uploader = new FileUploader({
+			url: "/recipients/upload_recipient_picture.json",
+			headers: {
+			  'X-Transaction': 'POST Example',
+			  'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+			}
+		});
 
-			// new address
-			$scope.newRecipientAddress = {
-				newAddress: true
-			};
-			$scope.newRecipientAddressTemplate = angular.copy($scope.newRecipientAddress);
+		// NEED TO THINK HOW TO GET EXISTING RECIPIENT VS NEW ONE
+		isNewRecipient = true;
+		$scope.selectedRecipient = $scope.newRecipient;
 
-			// existing occasions / address
-			$scope.recipientOccasions = [
-				// TEST ONE
-				{ occasion_id: 7, day: 25, month: 12, notes: "Christmas for Kevin! \n\nmake this special" }
+		// new occasion defaulted to birthday
+		// contains id, day, month, notes
+		$scope.newRecipientOccasion = {
+			newOccasion: true,
+			occasion_id: 7
+		};
+		$scope.newRecipientOccasionTemplate = angular.copy($scope.newRecipientOccasion);
 
-			]; // this will be pre-populated when user hits "edit" on a recipient
-			$scope.recipientAddresses = [
-				// TEST ONE
-				{ street: "2704 SW 311th St.", suite: "Suite 206", city: "Federal Way", state: "Washington", zipcode: 98023 }
-			]; // this will be pre-populated when user hits "edit ona recipient
+		// new address
+		$scope.newRecipientAddress = {
+			newAddress: true
+		};
+		$scope.newRecipientAddressTemplate = angular.copy($scope.newRecipientAddress);
 
-			$scope.createRecipient = function() {
-				console.log("yay creating recipient!");
-				// get most recent occasion/ address if it is filled out
-				occasions = angular.copy($scope.recipientOccasions);
-				addresses = angular.copy($scope.recipientAddresses);
-				if ($scope.newRecipientOccasion.month && $scope.newRecipientOccasion.day) {
-					occasions.push($scope.newRecipientOccasion);
-				}
-				if ($scope.newRecipientAddress.street && $scope.newRecipientAddress.city && $scope.newRecipientAddress.state && $scope.newRecipientAddress.zipcode) {
-					addresses.push($scope.newRecipientAddress);
-				}
+		// existing occasions / address
+		$scope.recipientOccasions = [
+			// TEST ONE
+			{ occasion_id: 7, day: 25, month: 12, notes: "Christmas for Kevin! \n\nmake this special" }
 
-				console.log("ready to submit with these");
-				console.log(occasions);
-				console.log(addresses);
+		]; // this will be pre-populated when user hits "edit" on a recipient
+		$scope.recipientAddresses = [
+			// TEST ONE
+			{ street: "2704 SW 311th St.", suite: "Suite 206", city: "Federal Way", state: "Washington", zipcode: 98023 }
+		]; // this will be pre-populated when user hits "edit ona recipient
+
+		// create recipient submit
+		$scope.saveRecipient = function() {
+
+			recipients        = $scope.recipients; // factory recipients
+			recipient         = $scope.selectedRecipient; // passed in recipient
+			currentRecipients = $scope.currentRecipients; // existing recipients
+			recipientIndex = arrayObjectIndexOf(currentRecipients, recipient.id, "id");
+
+			fileUploader = $scope.uploader;
+
+			// get most recent occasion/ address if it is filled out
+			occasions = angular.copy($scope.recipientOccasions);
+			addresses = angular.copy($scope.recipientAddresses);
+			if ($scope.newRecipientOccasion.month && $scope.newRecipientOccasion.day) {
+				occasions.push($scope.newRecipientOccasion);
+			}
+			if ($scope.newRecipientAddress.street && $scope.newRecipientAddress.city && $scope.newRecipientAddress.state && $scope.newRecipientAddress.zipcode) {
+				addresses.push($scope.newRecipientAddress);
 			}
 
-			// create occasion with the given inputs
-			$scope.createOccasion = function(occasion) {
-				// 1. add to the "existing" occasions
-				// 2. reset template of most recent address
-				if (occasion.month && occasion.day) { // must have these data
-					occasion.newOccasion = false;
-					$scope.recipientOccasions.push(occasion);
-					$scope.newRecipientOccasion = angular.copy($scope.newRecipientOccasionTemplate);
-				}
-			}
+			console.log("SUBMITTING RECIPIENT!");
+			recipient.occasions = occasions;
+			recipient.addresses = addresses;
+			console.log(recipient);
 
-			// delete this given occasion
-			$scope.deleteOccasion = function(occasion) {
-				occasions = $scope.recipientOccasions;
-				if (occasion.newOccasion) { // this is the tail-end "new" occasion
-					$scope.newRecipientOccasion = angular.copy($scope.newRecipientOccasionTemplate);
-				} else { // existing occasion
-					$scope.recipientOccasions = arrayWithValueRemoved(occasion, occasions);
-				}
-			}
+			// don't run this below stuff yet.
 
-			// create address with the given inputs
-			$scope.createAddress = function(address) {
-				// 1. add to the "existing" addresses
-				// 2. reset template of most recent address
-				if (address.street && address.city && address.state && address.zipcode) { // must have these data
-					address.newAddress = false;
-					$scope.recipientAddresses.push(address);
-					$scope.newRecipientAddress = angular.copy($scope.newRecipientAddressTemplate);
-				}
-			}
+			if (isNewRecipient) { // create
 
-			// delete this given address
-			$scope.deleteAddress = function(address) {
-				addresses = $scope.recipientAddresses;
-				if (address.newAddress) { // this is the tail-end "new" occasion
-					$scope.newRecipientAddress = angular.copy($scope.newRecipientAddressTemplate);
-				} else { // existing occasion
-					$scope.recipientAddresses = arrayWithValueRemoved(address, addresses);
-				}
-			}
+	    	recipients.createRecipient(recipient)
+	      .success(function(data) {
 
-			/**
-			 * 		MY PEOPLE HEADER
-			 */
-			$scope.addPersonActive = false;
-			$scope.deletePersonActive = false;
-			$scope.searchPersonActive = false;
-
-			$scope.addPersonToggle = function() {
-				$scope.addPersonActive = !$scope.addPersonActive;
-				$scope.deletePersonActive = false;
-				$scope.searchPersonActive = false;
-			}
-
-			$scope.deletePersonToggle = function() {
-
-				// must need at least one recipient to delete
-				if ($scope.selectedRecipientIDs == 0) {
-					$scope.deletePersonActive = false;
-				} else {
-					$scope.deletePersonActive = !$scope.deletePersonActive;
-					$scope.addPersonActive = false;
-					$scope.searchPersonActive = false;
-				}
+	      	recipient = data.recipient
+	      	$scope.currentRecipients.push(recipient);
+	      	$scope.selectedRecipient = recipient;
+	      	
+					// upload file after creating recipient
+					fileUploader.uploadAll();
+	      })
+	      .error(function(data) {
+          console.log("error in create recipient submit modal");
+          console.log(data);
+        });
+			} else { // update
 				
-			}
-
-			$scope.searchPersonToggle = function() {
-				$scope.searchPersonActive = !$scope.searchPersonActive;
-				$scope.deletePersonActive = false;
-				$scope.addPersonActive = false;
-			}
-
-			// test whether you are currently at this state or not
-			$scope.$on('$stateChangeSuccess',
-			  function(event, toState) {
-			    $scope.currentState = toState.name;
-			    makeStateActive($scope.currentState);
-		    });
-
-			// delete recipient
-			$scope.deleteRecipient = function(recipient) {
-				recipient_id = recipient.id
-				if (confirm("Are you sure?")) {
-					recipients.deleteRecipient(recipient)
-		      .success(function(data) {
-						// remove from current view
-		      	$.each(recipients.currentRecipients, function(i) {
-		      		if (recipients.currentRecipients[i].id === recipient_id) {
-		      			recipients.currentRecipients.splice(i, 1);
-		      			return false;
-		      		}
-		      	})
-		      })
-		      .error(function(data) {
-	          console.log(data);
-	        });
-				}
-			};
-			/**
-			 * get the recipient names based on array of selected recipients!
-			 */
-			$scope.recipientNames = function() {
-				
-				recipients = $scope.selectedRecipients;
-				recipient_names = recipients.map(function(elem) {
-					return elem.first_name + " " + elem.last_name;
-				});
-
-				text = '';
-				if (recipient_names.length > 0) {
-					
-					text        = '';
-					conjunction = "and";
-					comma       = '';
-					ctr         = 1;
-					max_names   = 10; // max # of names to show before we default to "others"
-					
-					keepGoing   = true;
-					angular.forEach(recipient_names, function(value) {
-
-						if (keepGoing) {
-
-							// this is where you will add the final value
-			  			if (ctr == max_names) {
-			  				keepGoing = false;
-
-								remaining_count = (recipient_names.length+1) - ctr;
-								other           = remaining_count > 1 ? "others" : "other";
-								comma           += conjunction+' ';
-								text            += comma + " " + remaining_count + " " + other;
-
-			  			} else {
-
-			  				text += comma+value;
-								ctr++;
-								if(recipient_names.length > 2){
-									comma = ', ';
-								} else {
-									comma = ' ';
-								}
-								if(ctr == recipient_names.length) {
-									comma += conjunction+' ';
-								}
-			  			}
-
-						}
-					})
-				}
-				return text;
-			}
-
-			// this is for the trash delete button in my people cards view
-			$scope.deleteSelectedRecipients = function() {
-				selectedRecipientIDs = $scope.selectedRecipientIDs;
-				recipients = $scope.recipients;
-				recipients.deleteRecipients(selectedRecipientIDs)
+				recipients.updateRecipient(recipient)
 				.success(function(data) {
-					
-					// upon success, delete all the currentRecipients that you deleted on the server side
-					deletedRecipients = data.recipients;
-					deletedRecipientIDs = deletedRecipients.map(function(recipient) {
-						return recipient.id;
-					});
-					currentRecipients = $scope.currentRecipients;
-					currentRecipientIDs = currentRecipients.map(function(recipient) {
-						return recipient.id;
-					});
+					// replace that existing recipient
+					recipient = data.recipient;
+					$scope.currentRecipients[recipientIndex] = recipient;
 
-					// this will go through each deletedRecipientID and remove currentRecipients of that recipientID
-					$.each(deletedRecipientIDs, function(i) {
-						recipientID = deletedRecipientIDs[i];
-						if (isInArray(recipientID, currentRecipientIDs)) {
-							
-							var index = currentRecipientIDs.indexOf(recipientID);
-							if (index > -1) {
-								// splice both to keep the currentRecipientIDs array syncd with the scope.currentRecipients array
-								currentRecipientIDs.splice(index, 1);
-								$scope.currentRecipients.splice(index, 1);
-							}
-						}
-					});
-
+					// upload file after creating recipient
+					fileUploader.uploadAll();
 				})
 				.error(function(data) {
-					console.log("error in delete selected recipients of manage recipients controller");
+					console.log("error in update recipient modal");
 					console.log(data);
 				})
-
-				// recipients.deleteRecipient(recipient)
-	   //    .success(function(data) {
-				// 	// remove from current view
-	   //    	$.each(recipients.currentRecipients, function(i) {
-	   //    		if (recipients.currentRecipients[i].id === recipient_id) {
-	   //    			recipients.currentRecipients.splice(i, 1);
-	   //    			return false;
-	   //    		}
-	   //    	})
-	   //    })
-	   //    .error(function(data) {
-    //       console.log(data);
-    //     });
-
 			}
 
-			// custom function to return days from today -- of next calendar year
-			// dateString = (ex. 2/12/1992)
-			$scope.daysFromToday = function(dateString) {
-				
-				today = new Date();
-				daysFromToday = daydiff(today, parseDateForNextOccasion(dateString));
-				if (daysFromToday > 1) {
-					return daysFromToday + " days";
-				} else {
-					return daysFromToday + " day";
-				}
+		};
+
+
+
+		/**
+		 * 		MY PEOPLE HEADER
+		 */
+		$scope.addPersonActive = false;
+		$scope.deletePersonActive = false;
+		$scope.searchPersonActive = false;
+
+		$scope.addPersonToggle = function() {
+			$scope.addPersonActive = !$scope.addPersonActive;
+			$scope.deletePersonActive = false;
+			$scope.searchPersonActive = false;
+		}
+
+		$scope.deletePersonToggle = function() {
+
+			// must need at least one recipient to delete
+			if ($scope.selectedRecipientIDs == 0) {
+				$scope.deletePersonActive = false;
+			} else {
+				$scope.deletePersonActive = !$scope.deletePersonActive;
+				$scope.addPersonActive = false;
+				$scope.searchPersonActive = false;
 			}
-
-			/**
-			 * 			FILTER RECIPIENTS FUNCTIONALITY
-			 */
-			$scope.recipientsFilter = "All";
-			$scope.filterOptions = ["All", "Family", "Friends"];
-			$scope.filteredName = "";
-
-			$scope.recipientNameFilter = function(name) {
-
-				currentRecipients = $scope.currentRecipients;
-				relationshipFilter = $scope.recipientsFilter;
-				$scope.filteredName = name;
-
-				name = name.toLowerCase();
-
-				visibleRecipients = filterArray("name", name, currentRecipients);
-				visibleRecipients = filterArray("relationship", relationshipFilter, visibleRecipients)
-				visibleRecipientIDs = visibleRecipients.map(function(item) { return item["id"]; });
-
-				// use visible recipients to get the IDs
-				for (index = 0; index < $scope.currentRecipients.length; ++index) {
-					recipient = $scope.currentRecipients[index];
-					recipient_id = recipient.id
-					if (isInArray(recipient_id, visibleRecipientIDs)) {
-						recipient.is_visible = 1;
-					} else {
-						recipient.is_visible = 0;
-					}
-				}
-			};
-
-			$scope.updateFilterView = function(filter) {
-				
-				currentRecipients = $scope.currentRecipients;
-				$scope.recipientsFilter = filter;
-				name = $scope.filteredName;
-				
-				visibleRecipients = filterArray("relationship", filter, currentRecipients);
-				visibleRecipients = filterArray("name", name, visibleRecipients);
-
-				visibleRecipientIDs = visibleRecipients.map(function(item) { return item["id"]; });
-
-				// use visible recipients to get the IDs
-				for (index = 0; index < $scope.currentRecipients.length; ++index) {
-					recipient = $scope.currentRecipients[index];
-					recipient_id = recipient.id
-					if (isInArray(recipient_id, visibleRecipientIDs)) {
-						recipient.is_visible = 1;
-					} else {
-						recipient.is_visible = 0;
-					}
-				}
-				
-			}
-
-			/**
-			 * 			RECIPIENT CARD BUTTON OPTIONS
-			 */
-			$scope.select = function(recipient) {
-				recipient_ids = $scope.selectedRecipientIDs;
-
-				if (isInArray(recipient.id, recipient_ids)) {
-					$scope.selectedRecipientIDs = arrayWithValueRemoved(recipient.id, $scope.selectedRecipientIDs);
-					$scope.selectedRecipients = arrayWithValueRemoved(recipient, $scope.selectedRecipients);
-				} else {
-					$scope.selectedRecipientIDs.push(recipient.id);
-					$scope.selectedRecipients.push(recipient);
-				}
-			};
-
-			$scope.isInArray = function(value, array) {
-			  return array.indexOf(value) > -1;
-			}
-
-			/**
-			 * this is single queue, so this will become the only one to send to queue wizard
-			 */
-			$scope.single_queue = function(recipient) {
-				recipients.selectedRecipientIDs = [recipient.id]
-				recipient_ids = [recipient.id];
-				$state.go("queue.home.step1", {recipients: recipient_ids});
-			};
-
-			/**
-			 * this is 1+ queue, from the send card button. this will use all of the "selected recipients" to queue
-			 */
-			$scope.multiple_queue = function() {
-				recipient_ids = recipients.selectedRecipientIDs.join();
-				$state.go("queue.home.step1", {recipients: recipient_ids});
-			};
 			
-		});
+		}
+
+		$scope.searchPersonToggle = function() {
+			$scope.searchPersonActive = !$scope.searchPersonActive;
+			$scope.deletePersonActive = false;
+			$scope.addPersonActive = false;
+		}
+
+		// test whether you are currently at this state or not
+		$scope.$on('$stateChangeSuccess',
+		  function(event, toState) {
+		    $scope.currentState = toState.name;
+		    makeStateActive($scope.currentState);
+	    });
+
+		// delete recipient
+		$scope.deleteRecipient = function(recipient) {
+			recipient_id = recipient.id
+			if (confirm("Are you sure?")) {
+				recipients.deleteRecipient(recipient)
+	      .success(function(data) {
+					// remove from current view
+	      	$.each(recipients.currentRecipients, function(i) {
+	      		if (recipients.currentRecipients[i].id === recipient_id) {
+	      			recipients.currentRecipients.splice(i, 1);
+	      			return false;
+	      		}
+	      	})
+	      })
+	      .error(function(data) {
+          console.log(data);
+        });
+			}
+		};
+		/**
+		 * get the recipient names based on array of selected recipients!
+		 */
+		$scope.recipientNames = function() {
+			
+			recipients = $scope.selectedRecipients;
+			recipient_names = recipients.map(function(elem) {
+				return elem.first_name + " " + elem.last_name;
+			});
+
+			text = '';
+			if (recipient_names.length > 0) {
+				
+				text        = '';
+				conjunction = "and";
+				comma       = '';
+				ctr         = 1;
+				max_names   = 10; // max # of names to show before we default to "others"
+				
+				keepGoing   = true;
+				angular.forEach(recipient_names, function(value) {
+
+					if (keepGoing) {
+
+						// this is where you will add the final value
+		  			if (ctr == max_names) {
+		  				keepGoing = false;
+
+							remaining_count = (recipient_names.length+1) - ctr;
+							other           = remaining_count > 1 ? "others" : "other";
+							comma           += conjunction+' ';
+							text            += comma + " " + remaining_count + " " + other;
+
+		  			} else {
+
+		  				text += comma+value;
+							ctr++;
+							if(recipient_names.length > 2){
+								comma = ', ';
+							} else {
+								comma = ' ';
+							}
+							if(ctr == recipient_names.length) {
+								comma += conjunction+' ';
+							}
+		  			}
+
+					}
+				})
+			}
+			return text;
+		}
+
+		// this is for the trash delete button in my people cards view
+		$scope.deleteSelectedRecipients = function() {
+			selectedRecipientIDs = $scope.selectedRecipientIDs;
+			recipients = $scope.recipients;
+			recipients.deleteRecipients(selectedRecipientIDs)
+			.success(function(data) {
+				
+				// upon success, delete all the currentRecipients that you deleted on the server side
+				deletedRecipients = data.recipients;
+				deletedRecipientIDs = deletedRecipients.map(function(recipient) {
+					return recipient.id;
+				});
+				currentRecipients = $scope.currentRecipients;
+				currentRecipientIDs = currentRecipients.map(function(recipient) {
+					return recipient.id;
+				});
+
+				// this will go through each deletedRecipientID and remove currentRecipients of that recipientID
+				$.each(deletedRecipientIDs, function(i) {
+					recipientID = deletedRecipientIDs[i];
+					if (isInArray(recipientID, currentRecipientIDs)) {
+						
+						var index = currentRecipientIDs.indexOf(recipientID);
+						if (index > -1) {
+							// splice both to keep the currentRecipientIDs array syncd with the scope.currentRecipients array
+							currentRecipientIDs.splice(index, 1);
+							$scope.currentRecipients.splice(index, 1);
+						}
+					}
+				});
+
+			})
+			.error(function(data) {
+				console.log("error in delete selected recipients of manage recipients controller");
+				console.log(data);
+			})
+
+			// recipients.deleteRecipient(recipient)
+   //    .success(function(data) {
+			// 	// remove from current view
+   //    	$.each(recipients.currentRecipients, function(i) {
+   //    		if (recipients.currentRecipients[i].id === recipient_id) {
+   //    			recipients.currentRecipients.splice(i, 1);
+   //    			return false;
+   //    		}
+   //    	})
+   //    })
+   //    .error(function(data) {
+  //       console.log(data);
+  //     });
+
+		}
+
+		// custom function to return days from today -- of next calendar year
+		// dateString = (ex. 2/12/1992)
+		$scope.daysFromToday = function(dateString) {
+			
+			today = new Date();
+			daysFromToday = daydiff(today, parseDateForNextOccasion(dateString));
+			if (daysFromToday > 1) {
+				return daysFromToday + " days";
+			} else {
+				return daysFromToday + " day";
+			}
+		}
+
+		/**
+		 * 			FILTER RECIPIENTS FUNCTIONALITY
+		 */
+		$scope.recipientsFilter = "All";
+		$scope.filterOptions = ["All", "Family", "Friends"];
+		$scope.filteredName = "";
+
+		$scope.recipientNameFilter = function(name) {
+
+			currentRecipients = $scope.currentRecipients;
+			relationshipFilter = $scope.recipientsFilter;
+			$scope.filteredName = name;
+
+			name = name.toLowerCase();
+
+			visibleRecipients = filterArray("name", name, currentRecipients);
+			visibleRecipients = filterArray("relationship", relationshipFilter, visibleRecipients)
+			visibleRecipientIDs = visibleRecipients.map(function(item) { return item["id"]; });
+
+			// use visible recipients to get the IDs
+			for (index = 0; index < $scope.currentRecipients.length; ++index) {
+				recipient = $scope.currentRecipients[index];
+				recipient_id = recipient.id
+				if (isInArray(recipient_id, visibleRecipientIDs)) {
+					recipient.is_visible = 1;
+				} else {
+					recipient.is_visible = 0;
+				}
+			}
+		};
+
+		$scope.updateFilterView = function(filter) {
+			
+			currentRecipients = $scope.currentRecipients;
+			$scope.recipientsFilter = filter;
+			name = $scope.filteredName;
+			
+			visibleRecipients = filterArray("relationship", filter, currentRecipients);
+			visibleRecipients = filterArray("name", name, visibleRecipients);
+
+			visibleRecipientIDs = visibleRecipients.map(function(item) { return item["id"]; });
+
+			// use visible recipients to get the IDs
+			for (index = 0; index < $scope.currentRecipients.length; ++index) {
+				recipient = $scope.currentRecipients[index];
+				recipient_id = recipient.id
+				if (isInArray(recipient_id, visibleRecipientIDs)) {
+					recipient.is_visible = 1;
+				} else {
+					recipient.is_visible = 0;
+				}
+			}
+			
+		}
+
+		/**
+		 * 			RECIPIENT CARD BUTTON OPTIONS
+		 */
+		$scope.select = function(recipient) {
+			recipient_ids = $scope.selectedRecipientIDs;
+
+			if (isInArray(recipient.id, recipient_ids)) {
+				$scope.selectedRecipientIDs = arrayWithValueRemoved(recipient.id, $scope.selectedRecipientIDs);
+				$scope.selectedRecipients = arrayWithValueRemoved(recipient, $scope.selectedRecipients);
+			} else {
+				$scope.selectedRecipientIDs.push(recipient.id);
+				$scope.selectedRecipients.push(recipient);
+			}
+		};
+
+		$scope.isInArray = function(value, array) {
+		  return array.indexOf(value) > -1;
+		}
+
+		/**
+		 * this is single queue, so this will become the only one to send to queue wizard
+		 */
+		$scope.single_queue = function(recipient) {
+			recipients.selectedRecipientIDs = [recipient.id]
+			recipient_ids = [recipient.id];
+			$state.go("queue.home.step1", {recipients: recipient_ids});
+		};
+
+		/**
+		 * this is 1+ queue, from the send card button. this will use all of the "selected recipients" to queue
+		 */
+		$scope.multiple_queue = function() {
+			recipient_ids = recipients.selectedRecipientIDs.join();
+			$state.go("queue.home.step1", {recipients: recipient_ids});
+		};
+		
+	});
 
 })();

@@ -12,42 +12,52 @@ class RecipientsController < ApplicationController
   def create_for_current
 
     # 1) create new recipient
+    first_name = params[:first_name]
+    last_name = params[:last_name]
     recipient = current_user.recipients.create(
-      first_name: params[:first_name],
-      last_name: params[:last_name],
-      relationship_id: params[:relationship][:id]
+      first_name: first_name,
+      last_name: last_name
       )
 
-    # 2) save recipient address
-    address_params = params[:primary_address]
-    address = recipient.addresses.new(
-      first_name: params[:first_name],
-      last_name: params[:last_name],
-      street: address_params[:street],
-      city: address_params[:city],
-      suite: address_params[:suite],
-      state: address_params[:state],
-      zipcode: address_params[:zipcode],
-      country: address_params[:country]
-    )
-
-    if address.save
-      # since recipient is created, you know this is first address
-      address.set_primary
+    # 2) save recipient addresses
+    addresses = params[:addresses]
+    if addresses
+      primary_set = false
+      addresses.each do |address|
+        address = recipient.addresses.new(
+          first_name: first_name,
+          last_name: last_name,
+          street: address[:street],
+          city: address[:city],
+          suite: address[:suite],
+          state: address[:state],
+          zipcode: address[:zipcode],
+          )
+        if address.save
+          unless primary_set
+            address.set_primary
+            primary_set = true
+          end
+        end
+      end
     end
+    
 
     # 3) save recipient occasions
     occasions = params[:occasions]
 
     if occasions
       occasions.each do |occasion|
-        recipient_occasion = occasion[:recipient_occasion]
-        occasion_id        = recipient_occasion[:occasion_id]
-        occasion_date      = recipient_occasion[:occasion_date]
 
+        occasion_id = occasion[:occasion_id]
+        day         = occasion[:day]
+        month       = occasion[:month]
+        notes       = occasion[:notes]
         recipient.recipient_occasions.create(
           occasion_id: occasion_id,
-          occasion_date: occasion_date
+          day: day,
+          month: month,
+          notes: notes
         )
       end
     end

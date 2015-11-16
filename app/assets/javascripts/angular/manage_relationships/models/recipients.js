@@ -71,8 +71,8 @@
       })
     }
 
-    o.createRecipient = function() {
-      return $http.post('recipients/create_for_current.json', o.newRecipient)
+    o.createRecipient = function(recipient) {
+      return $http.post('recipients/create_for_current.json', recipient)
     }
 
     o.updateRecipient = function(recipient) {
