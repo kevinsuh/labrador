@@ -6,6 +6,8 @@
 	var app = angular.module('card-queue').controller("OccasionsController", function($rootScope, $location, $window, $scope, $state, $timeout, occasions) {
 
 		console.log(occasions);
+		$scope.occasions = occasions; // factory object
+		$scope.currentOccasions = occasions.currentOccasions;
 
 		// new manage relationships feature!
 		// $scope.recipients               = recipients; // the "factory" recipients object
@@ -22,7 +24,7 @@
 		ScaleContentToDevice();
 
 		headerTitle = angular.element(document.querySelector("#currentTitle"));
-		$scope.currentTitle = "Upcoming Occasions";
+		$scope.currentTitle = "Occasions";
 		headerTitle.text($scope.currentTitle);
 
 		// test whether you are currently at this state or not

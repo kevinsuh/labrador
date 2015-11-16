@@ -24,8 +24,6 @@
     // get all occaisons associated with current user
     o.getCurrentOccasions = function() {
       return $http.get('/occasions/get_current_occasions.json').success(function(data) {
-        console.log("yay in get current occasions!");
-        console.log(data);
         var occasions = data.occasions;
         o.currentOccasions = occasions;
       })
