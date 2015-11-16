@@ -294,7 +294,7 @@
 		  		 * 		DIV CONTAINING PROFILE PICTURE AND FIRST/LAST NAME OPTIONS
 		  		 */
 		  		.modal-header {
-		  			height: $recipient_info_height;
+		  			// height: $recipient_info_height;
 		  			&.basic_info {
 		  				background-color: $mobile_purple;	
 		  				padding: 0;	
@@ -412,7 +412,6 @@
 
 							.potential_crop_area {
 								margin: 22px 0 0 0;
-								height: 150px;
 								float: none;
 							}
 							.button_container {

@@ -1457,7 +1457,14 @@ crop.factory('cropHost', ['$document', 'cropAreaCircle', 'cropAreaSquare', 'crop
           canvasDims[1]=minCanvasDims[1];
           canvasDims[0]=canvasDims[1]*imageRatio;
         }
-        elCanvas.prop('width',canvasDims[0]*1.5).prop('height',canvasDims[1]*1.5).css({'margin-left': '0px', 'margin-top': '0px'});
+        // elCanvas.prop('width',canvasDims[0]*2.5).prop('height',canvasDims[1]*2.5).css({'margin-left': '0px', 'margin-top': '0px'});
+        
+        // need a max width / height
+        // THIS IS WHERE CROP IMAGE HEIGHT AND WIDTH IS DETERMINED - KEVIN SUH
+        var width  = canvasDims[0] * 4;
+        var height = canvasDims[1] * 4;
+
+        elCanvas.prop('width',width).prop('height',height).css({'margin-left': '0px', 'margin-top': '0px'});
 
         theArea.setX(ctx.canvas.width/2);
         theArea.setY(ctx.canvas.height/2);
