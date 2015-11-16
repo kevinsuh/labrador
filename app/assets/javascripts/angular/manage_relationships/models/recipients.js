@@ -14,6 +14,7 @@
       newRecipient: {
         first_name: "",
         last_name: "",
+        profile_picture: " ",
         relationship: {
           id: 1,
           name: ""
@@ -26,11 +27,13 @@
           zipcode: "",
           country: "United States"
         },
-        occasions: [], // the various "events" attached to this recipient
+        address:[],
+        occasions: [] // the various "events" attached to this recipient
       },
       newRecipientTemplate: {
         first_name: "",
         last_name: "",
+        profile_picture: " ",
         relationship: {
           id: 1,
           name: ""
@@ -43,7 +46,8 @@
           zipcode: "",
           country: "United States"
         },
-        occasions: [], // the various "events" attached to this recipient
+        address:[],
+        occasions: [] // the various "events" attached to this recipient
       },
       relationships: {}, // list of relationship types
       selectedRecipients: [], // actual objects for who we're queueing for
