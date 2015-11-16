@@ -5,32 +5,40 @@
 	 */
 	var app = angular.module('card-queue').controller("recipientOccasionsCtrl", function($rootScope, $scope) {
 
-		// // pre-fill certain events
-		// $scope.$watch('occasion_hash.recipient_occasion.occasion_id', function(newValue, oldValue){
-  //     occasionID = newValue;
-		// 	suggested_date = getDefaultDateForOccasionID(occasionID);
+		// pre-fill for EXISTING OCCASIONS
+		$scope.$watch('occasion.occasion_id', function(newValue, oldValue){
+      occasionID = newValue;
 
-  //       // ONLY IF THIS OCCASION HAS NOT ALREADY BEEN SAVED
-  //       if (!$scope.occasion_hash.recipient_occasion.occasion_date || (newValue != oldValue)) {
-  //       	$scope.occasion_hash.recipient_occasion.occasion_date = suggested_date;	
-  //       }
-  //    });
+      if ($scope.occasion) {
+      	suggested_date = getDefaultDateForOccasionID(occasionID);
+
+	      // ONLY IF THIS OCCASION HAS NOT ALREADY BEEN SAVED
+	      if (!$scope.occasion.month || (newValue != oldValue)) {
+	      	$scope.occasion.month = suggested_date.month;
+	      }
+
+	      if (!$scope.occasion.day || (newValue != oldValue)) {
+	      	$scope.occasion.day = suggested_date.day;
+	      }	
+      }
+			
+     });
 
 
-		// pre-fill certain events
-		$scope.$watch('newRecipientOccasion.id', function(newValue, oldValue){
+		// pre-fill for NEW OCCASION
+		$scope.$watch('newRecipientOccasion.occasion_id', function(newValue, oldValue){
       occasionID = newValue;
 
 			suggested_date = getDefaultDateForOccasionID(occasionID);
 
-        // ONLY IF THIS OCCASION HAS NOT ALREADY BEEN SAVED
-        if (!$scope.newRecipientOccasion.month || (newValue != oldValue)) {
-        	$scope.newRecipientOccasion.month = suggested_date.month;
-        }
+      // ONLY IF THIS OCCASION HAS NOT ALREADY BEEN SAVED
+      if (!$scope.newRecipientOccasion.month || (newValue != oldValue)) {
+      	$scope.newRecipientOccasion.month = suggested_date.month;
+      }
 
-        if (!$scope.newRecipientOccasion.day || (newValue != oldValue)) {
-        	$scope.newRecipientOccasion.day = suggested_date.day;
-        }
+      if (!$scope.newRecipientOccasion.day || (newValue != oldValue)) {
+      	$scope.newRecipientOccasion.day = suggested_date.day;
+      }
 
 
      });

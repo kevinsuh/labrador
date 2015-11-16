@@ -28,7 +28,7 @@
 			// contains id, day, month, notes
 			$scope.newRecipientOccasion = {
 				newOccasion: true,
-				id: 7
+				occasion_id: 7
 			};
 			$scope.newRecipientOccasionTemplate = angular.copy($scope.newRecipientOccasion);
 
@@ -41,19 +41,29 @@
 			// existing occasions / address
 			$scope.recipientOccasions = [
 				// TEST ONE
-				{ id: 7, day: 25, month: 12, notes: "Christmas for Kevin! \n\nmake this special" }
+				{ occasion_id: 7, day: 25, month: 12, notes: "Christmas for Kevin! \n\nmake this special" }
 
 			]; // this will be pre-populated when user hits "edit" on a recipient
-			$scope.recipientAddresses = []; // this will be pre-populated when user hits "edit ona recipient
+			$scope.recipientAddresses = [
+				// TEST ONE
+				{ street: "2704 SW 311th St.", suite: "Suite 206", city: "Federal Way", state: "Washington", zipcode: 98023 }
+			]; // this will be pre-populated when user hits "edit ona recipient
 
 			$scope.createRecipient = function() {
 				console.log("yay creating recipient!");
+				// get most recent occasion/ address if it is filled out
+				occasions = angular.copy($scope.recipientOccasions);
+				addresses = angular.copy($scope.recipientAddresses);
+				if ($scope.newRecipientOccasion.month && $scope.newRecipientOccasion.day) {
+					occasions.push($scope.newRecipientOccasion);
+				}
+				if ($scope.newRecipientAddress.street && $scope.newRecipientAddress.city && $scope.newRecipientAddress.state && $scope.newRecipientAddress.zipcode) {
+					addresses.push($scope.newRecipientAddress);
+				}
 
-				// will always need to check both "added" occasions/addresses and the most recent occasion/address
-				console.log($scope.recipientOccasions);
-				console.log($scope.newRecipientOccasion);
-				console.log($scope.recipientAddresses);
-				console.log($scope.newRecipientAddress);
+				console.log("ready to submit with these");
+				console.log(occasions);
+				console.log(addresses);
 			}
 
 			// create occasion with the given inputs
@@ -63,7 +73,7 @@
 				if (occasion.month && occasion.day) { // must have these data
 					occasion.newOccasion = false;
 					$scope.recipientOccasions.push(occasion);
-					$scope.newRecipientOccasion = $scope.newRecipientOccasionTemplate;
+					$scope.newRecipientOccasion = angular.copy($scope.newRecipientOccasionTemplate);
 				}
 			}
 
@@ -71,11 +81,31 @@
 			$scope.deleteOccasion = function(occasion) {
 				occasions = $scope.recipientOccasions;
 				if (occasion.newOccasion) { // this is the tail-end "new" occasion
-					$scope.newRecipientOccasion = $scope.newRecipientOccasionTemplate
+					$scope.newRecipientOccasion = angular.copy($scope.newRecipientOccasionTemplate);
 				} else { // existing occasion
 					$scope.recipientOccasions = arrayWithValueRemoved(occasion, occasions);
 				}
+			}
 
+			// create address with the given inputs
+			$scope.createAddress = function(address) {
+				// 1. add to the "existing" addresses
+				// 2. reset template of most recent address
+				if (address.street && address.city && address.state && address.zipcode) { // must have these data
+					address.newAddress = false;
+					$scope.recipientAddresses.push(address);
+					$scope.newRecipientAddress = angular.copy($scope.newRecipientAddressTemplate);
+				}
+			}
+
+			// delete this given address
+			$scope.deleteAddress = function(address) {
+				addresses = $scope.recipientAddresses;
+				if (address.newAddress) { // this is the tail-end "new" occasion
+					$scope.newRecipientAddress = angular.copy($scope.newRecipientAddressTemplate);
+				} else { // existing occasion
+					$scope.recipientAddresses = arrayWithValueRemoved(address, addresses);
+				}
 			}
 
 			/**
