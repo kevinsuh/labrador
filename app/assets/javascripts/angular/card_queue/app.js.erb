@@ -122,6 +122,28 @@
           }
         }
       })
+      .state('main.app.occasions', {
+        views: {
+          'container@main': {
+            templateUrl: "angular/occasions/home.html"
+          }
+        }
+      })
+      .state('main.app.occasions.home', {
+        controller: "OccasionsController",
+        url: '/occasions',
+        views: {
+          'list_view': {
+            templateUrl: "angular/occasions/list_view.html"
+          },
+          'header': {
+            templateUrl: "angular/occasions/header.html"
+          },
+          'footer': {
+            templateUrl: "angular/card_queue/main_footer.html"
+          }
+        }
+      })
       .state('main.app.queued_cards', {
         views: {
           'container@main': {

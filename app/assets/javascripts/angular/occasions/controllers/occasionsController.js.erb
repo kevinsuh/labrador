@@ -1,0 +1,23 @@
+(function() {
+	
+	/**
+	 * this controller is specific for user viewing his queued / purchased cards
+	 */
+	var app = angular.module('card-queue').controller("OccasionsController", function($rootScope, $location, $window, $scope, $state, $timeout) {
+
+		// infinite scroll once this angular controller is loaded
+		ScaleContentToDevice();
+
+		headerTitle = angular.element(document.querySelector("#currentTitle"));
+		$scope.currentTitle = "Upcoming Occasions";
+		headerTitle.text($scope.currentTitle);
+
+		// test whether you are currently at this state or not
+		$scope.$on('$stateChangeSuccess',
+		  function(event, toState) {
+		    $scope.currentState = toState.name;
+		    makeStateActive($scope.currentState);
+		  });
+	});
+
+})();
