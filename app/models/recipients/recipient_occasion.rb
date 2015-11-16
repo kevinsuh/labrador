@@ -4,4 +4,6 @@ class RecipientOccasion < ActiveRecord::Base
 
   validates :recipient_id, presence: true
 	validates :occasion_id, presence: true
+
+	enum status: [ :live, :deleted, :archived ]
 end

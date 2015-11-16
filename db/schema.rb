@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151116004159) do
+ActiveRecord::Schema.define(version: 20151116223900) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "first_name"
@@ -223,11 +223,12 @@ ActiveRecord::Schema.define(version: 20151116004159) do
   create_table "recipient_occasions", force: :cascade do |t|
     t.integer  "recipient_id"
     t.integer  "occasion_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
     t.integer  "month"
     t.integer  "day"
     t.text     "notes"
+    t.integer  "status",       default: 0
   end
 
   add_index "recipient_occasions", ["occasion_id"], name: "index_recipient_occasions_on_occasion_id"

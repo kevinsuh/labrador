@@ -3,7 +3,20 @@
 	/**
 	 * this controller is specific for user viewing his queued / purchased cards
 	 */
-	var app = angular.module('card-queue').controller("OccasionsController", function($rootScope, $location, $window, $scope, $state, $timeout) {
+	var app = angular.module('card-queue').controller("OccasionsController", function($rootScope, $location, $window, $scope, $state, $timeout, occasions) {
+
+		console.log(occasions);
+
+		// new manage relationships feature!
+		// $scope.recipients               = recipients; // the "factory" recipients object
+		// $scope.relationships            = recipients.relationships;
+		// $scope.currentRecipients        = recipients.currentRecipients;
+		// $scope.newRecipient             = recipients.newRecipient;
+		// $scope.newRecipientTemplate     = recipients.newRecipientTemplate;
+		// $scope.relationships            = recipients.relationships;
+		// $scope.occasions                = cards.occasions;
+		// $scope.selectedRecipients       = recipients.selectedRecipients;
+		// $scope.selectedRecipientIDs     = recipients.selectedRecipientIDs;
 
 		// infinite scroll once this angular controller is loaded
 		ScaleContentToDevice();
@@ -18,6 +31,117 @@
 		    $scope.currentState = toState.name;
 		    makeStateActive($scope.currentState);
 		  });
+
+		/**
+		 * 		OCCASIONS HEADER
+		 */
+		$scope.addOccasionActive = false;
+		$scope.deleteOccasionActive = false;
+		$scope.searchOccasionActive = false;
+
+		$scope.addOccasionToggle = function() {
+
+			// disabled if currently on recipient_form
+			if ($scope.addOccasionActive) {
+				return;
+			}
+
+			// this will also lead to new recipient form
+			$scope.isNewOccasion = true;
+			$scope.selectedOccasion = angular.copy($scope.newOccasionTemplate);
+
+			// create backups in case user cancels
+			$scope.selectedOccasionTemplate = angular.copy($scope.selectedOccasion);
+			$scope.currentOccasionsTemplate = angular.copy($scope.currentOccasions);
+
+			$scope.addOccasionActive = !$scope.addOccasionActive;
+			$scope.deleteOccasionActive = false;
+			$scope.searchOccasionActive = false;
+		}
+
+		$scope.deleteOccasionToggle = function() {
+
+			// disabled if currently on recipient_form
+			if ($scope.addOccasionActive) {
+				return;
+			}
+
+			// must need at least one recipient to delete
+			if ($scope.selectedOccasionIDs == 0) {
+				$scope.deleteOccasionActive = false;
+			} else {
+				$scope.deleteOccasionActive = !$scope.deleteOccasionActive;
+				$scope.addOccasionActive = false;
+				$scope.searchOccasionActive = false;
+			}
+			
+		}
+
+		$scope.searchOccasionToggle = function() {
+
+			// disabled if currently on recipient_form
+			if ($scope.addOccasionActive) {
+				return;
+			}
+
+			$scope.searchOccasionActive = !$scope.searchOccasionActive;
+			$scope.deleteOccasionActive = false;
+			$scope.addOccasionActive = false;
+		}
+
+		/**
+		 * get the occasion names based on array of selected occasions!
+		 */
+		$scope.occasionNames = function() {
+			
+			// recipients = $scope.selectedRecipients;
+			// recipient_names = recipients.map(function(elem) {
+			// 	return elem.first_name + " " + elem.last_name;
+			// });
+
+			// text = '';
+			// if (recipient_names.length > 0) {
+				
+			// 	text        = '';
+			// 	conjunction = "and";
+			// 	comma       = '';
+			// 	ctr         = 1;
+			// 	max_names   = 10; // max # of names to show before we default to "others"
+				
+			// 	keepGoing   = true;
+			// 	angular.forEach(recipient_names, function(value) {
+
+			// 		if (keepGoing) {
+
+			// 			// this is where you will add the final value
+		 //  			if (ctr == max_names) {
+		 //  				keepGoing = false;
+
+			// 				remaining_count = (recipient_names.length+1) - ctr;
+			// 				other           = remaining_count > 1 ? "others" : "other";
+			// 				comma           += conjunction+' ';
+			// 				text            += comma + " " + remaining_count + " " + other;
+
+		 //  			} else {
+
+		 //  				text += comma+value;
+			// 				ctr++;
+			// 				if(recipient_names.length > 2){
+			// 					comma = ', ';
+			// 				} else {
+			// 					comma = ' ';
+			// 				}
+			// 				if(ctr == recipient_names.length) {
+			// 					comma += conjunction+' ';
+			// 				}
+		 //  			}
+
+			// 		}
+			// 	})
+			// }
+			// return text;
+		}
+
 	});
 
 })();
