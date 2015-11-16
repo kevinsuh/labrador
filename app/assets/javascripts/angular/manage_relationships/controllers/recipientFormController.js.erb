@@ -12,12 +12,13 @@
 		});
 
 		// create occasion with the given inputs
-		$scope.createOccasion = function(occasion) {
+		$scope.createOccasion = function(occasionHash) {
+			occasion = occasionHash.recipient_occasion;
 			// 1. add to the "existing" occasions
 			// 2. reset template of most recent address
 			if (occasion.month && occasion.day) { // must have these data
-				occasion.newOccasion = false;
-				$scope.selectedRecipient.occasions.push(occasion);
+				occasionHash.newOccasion = false;
+				$scope.selectedRecipient.occasions.push(occasionHash);
 				$scope.newRecipientOccasion = angular.copy($scope.newRecipientOccasionTemplate);
 			}
 		}
