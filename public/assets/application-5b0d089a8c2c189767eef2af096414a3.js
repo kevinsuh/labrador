@@ -75499,6 +75499,8 @@ calendarDemoApp.controller('CalendarCtrl',
       // use activeRecipientImage to alter CSS and z-index in order to overlay the crop-image footer when uploading new image
        $scope.$watch('activeRecipientImage',function(activeRecipientImage) {
 
+        ScaleContentToDevice();
+
         recipientFormFooterCancel = angular.element(document.querySelector("#recipientFormFooterCancel"));
         recipientFormFooterSave = angular.element(document.querySelector("#recipientFormFooterSave"));
 
@@ -75512,8 +75514,6 @@ calendarDemoApp.controller('CalendarCtrl',
           recipientFormFooterCancel.show();
           recipientFormFooterSave.show();
         }
-
-        ScaleContentToDeviceWithoutFooter();
         
       });
 
@@ -77981,22 +77981,11 @@ function ScaleContentToDevice() {
    //var footerHeight = $(".main_footer:visible").outerHeight();
    var footerHeight = 80;
 
-   var viewportHeight = $(window).height();
-
-   var content = $(".page_container:visible");
-   var contentMargins =  content.outerHeight() - content.height();
-
-   var contentheight = viewportHeight - headerHeight - footerHeight - contentMargins;
-
-   content.height(contentheight);
-}
-
-function ScaleContentToDeviceWithoutFooter() {
-   scroll(0, 0);
-   //var headerHeight = $(".main_header:visible").outerHeight();
-   var headerHeight = 50;
-   //var footerHeight = $(".main_footer:visible").outerHeight();
-   var footerHeight = 0;
+   // disregard footer height if crop image footer is here -- this is a big hack for now.
+   if (!$(".cropImageFooter:visible").length) {
+   	console.log("hey crop image footers visible!")
+   	footerHeight = 0;
+   }
 
    var viewportHeight = $(window).height();
 
@@ -78007,6 +77996,7 @@ function ScaleContentToDeviceWithoutFooter() {
 
    content.height(contentheight);
 }
+
 
 // this is specific for the recipient modal form
 // and adds scroll to the address / occaision part of the form
