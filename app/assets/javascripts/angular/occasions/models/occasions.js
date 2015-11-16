@@ -5,17 +5,23 @@
 
     var o = {
       currentOccasions: [], // already existing occasions
-      newOccasionHash: { // current schema to handle with rails back end occasions serializer
+      newOccasion: { // current schema to handle with rails back end occasions serializer
+        day: "",
+        month: ""
+        notes: "",
+        occasion_id: 7,
+        recipient_id: "",
         occasion: {},
-        recipient_occasion: {
-          occasion_id: 7
-        }
+        recipient: {}
       },
-      newOccasionHashTemplate: {
+      newOccasionTemplate: {
+        day: "",
+        month: ""
+        notes: "",
+        occasion_id: 7,
+        recipient_id: "",
         occasion: {},
-        recipient_occasion: {
-          occasion_id: 7
-        }
+        recipient: {}
       },
       selectedOccasions: [], // actual objects of what we're quering for
       selectedOccasionIDs:[] // IDs for the occasions
