@@ -4,8 +4,9 @@
   angular.module('manage-recipients').factory('occasions', ['$http', function($http) {
 
     var o = {
-      currentOccasions: [], // already existing occasions
-      newOccasion: { // current schema to handle with rails back end occasions serializer
+      currentOccasions: [], // one array of all occasions associated with the user
+      currentOccasionsByRecipient: [], // segmented by the recipient. an array of array of recipient_occasion objects
+      newOccasion: {
         day: "",
         month: "",
         notes: "",
@@ -30,8 +31,19 @@
     // get all occaisons associated with current user
     o.getCurrentOccasions = function() {
       return $http.get('/occasions/get_current_occasions.json').success(function(data) {
-        var occasions = data.occasions;
+
+        var occasionsByRecipient = data.occasions;
+        o.currentOccasionsByRecipient = occasionsByRecipient;
+
+        var occasions = [];
+        for (var i = 0; i < occasionsByRecipient.length; i++) {
+          for (var j = 0; j < occasionsByRecipient[i].length; j++) {
+            occasions.push(occasionsByRecipient[i][j]);
+          }
+        }
+
         o.currentOccasions = occasions;
+
       })
     }
 

@@ -776,6 +776,38 @@
 			margin-top: $mobile_header_size;
 		}
 
+		// OCCASIONS
+		.occasions_container {
+
+			.occasions {
+				padding: 0;
+				.occasions_view {
+
+					.occasions_list_container { // the actual container holding the table / rows of occasions
+						display: table;
+						width: 100%;
+						.occasion_row { // each individual row
+							display: table-row;
+							.occasion_detail {
+								display: table-cell;
+								border-bottom: 1pt solid $form_input_black;
+								&.description_container {
+									width: 75%;
+									text-align: left;
+									padding: 25px 15px;
+								}
+								&.date_container {
+									width: 25%;
+									text-align: right;
+									padding-right: 20px;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
 
 	}
 

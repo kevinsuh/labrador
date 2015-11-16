@@ -1,3 +1,10 @@
-<div style="margin-top:200px;">
-	{{currentOccasions}}
+<div class="occasions_list_container">
+	<div class="occasion_row" ng-repeat="occasion in currentOccasions">
+		<div class="description_container occasion_detail">
+			{{occasion.occasion.name}} for {{recipientFullName(occasion.recipient)}} 
+		</div>
+		<div class="date_container occasion_detail">
+			{{occasion.month}} / {{occasion.day}}
+		</div>
+	</div>
 </div>

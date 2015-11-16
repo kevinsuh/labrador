@@ -5,9 +5,14 @@
 	 */
 	var app = angular.module('card-queue').controller("OccasionsController", function($rootScope, $location, $window, $scope, $state, $timeout, occasions) {
 
-		console.log(occasions);
-		$scope.occasions = occasions; // factory object
-		$scope.currentOccasions = occasions.currentOccasions;
+		$scope.occasions                   = occasions; // factory object
+		$scope.currentOccasions            = occasions.currentOccasions;
+		$scope.currentOccasionsByRecipient = occasions.currentOccasionsByRecipient;
+
+		// concat first and last name
+		$scope.recipientFullName = function(recipient) {
+			return recipient.first_name + " " + recipient.last_name;
+		}
 
 		// new manage relationships feature!
 		// $scope.recipients               = recipients; // the "factory" recipients object
