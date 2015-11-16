@@ -18,7 +18,6 @@
 		$scope.occasions                = cards.occasions;
 		$scope.selectedRecipients       = recipients.selectedRecipients;
 		$scope.selectedRecipientIDs     = recipients.selectedRecipientIDs;
-		console.log($scope.currentRecipients);
 
 		headerTitle = angular.element(document.querySelector("#currentTitle"));
 		headerTitle.text("My People");
@@ -32,10 +31,6 @@
 			  'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
 			}
 		});
-
-		// NEED TO THINK HOW TO GET EXISTING RECIPIENT VS NEW ONE
-		isNewRecipient = true;
-		$scope.selectedRecipient = $scope.newRecipient;
 
 		// new occasion defaulted to birthday
 		// contains id, day, month, notes
@@ -51,85 +46,9 @@
 		};
 		$scope.newRecipientAddressTemplate = angular.copy($scope.newRecipientAddress);
 
-		// existing occasions / address
-		$scope.recipientOccasions = [
-			// TEST ONE
-			{ occasion_id: 7, day: 25, month: 12, notes: "Christmas for Kevin! \n\nmake this special" }
-
-		]; // this will be pre-populated when user hits "edit" on a recipient
-		$scope.recipientAddresses = [
-			// TEST ONE
-			{ street: "2704 SW 311th St.", suite: "Suite 206", city: "Federal Way", state: "Washington", zipcode: 98023 }
-		]; // this will be pre-populated when user hits "edit ona recipient
-
-		// create recipient submit
-		$scope.saveRecipient = function() {
-
-			recipients        = $scope.recipients; // factory recipients
-			recipient         = $scope.selectedRecipient; // passed in recipient
-			currentRecipients = $scope.currentRecipients; // existing recipients
-			recipientIndex = arrayObjectIndexOf(currentRecipients, recipient.id, "id");
-
-			fileUploader = $scope.uploader;
-
-			// get most recent occasion/ address if it is filled out
-			occasions = angular.copy($scope.recipientOccasions);
-			addresses = angular.copy($scope.recipientAddresses);
-			if ($scope.newRecipientOccasion.month && $scope.newRecipientOccasion.day) {
-				occasions.push($scope.newRecipientOccasion);
-			}
-			if ($scope.newRecipientAddress.street && $scope.newRecipientAddress.city && $scope.newRecipientAddress.state && $scope.newRecipientAddress.zipcode) {
-				addresses.push($scope.newRecipientAddress);
-			}
-
-			console.log("SUBMITTING RECIPIENT!");
-			recipient.occasions = occasions;
-			recipient.addresses = addresses;
-			console.log(recipient);
-
-			// don't run this below stuff yet.
-
-			if (isNewRecipient) { // create
-
-	    	recipients.createRecipient(recipient)
-	      .success(function(data) {
-
-	      	recipient = data.recipient
-	      	$scope.currentRecipients.push(recipient);
-	      	$scope.selectedRecipient = recipient;
-
-					// upload file after creating recipient
-					fileUploader.uploadAll();
-
-					// this will default back to home page
-					$scope.addPersonActive = false;
-					$scope.deletePersonActive = false;
-					$scope.searchPersonActive = false;
-	      })
-	      .error(function(data) {
-          console.log("error in create recipient submit modal");
-          console.log(data);
-        });
-			} else { // update
-				
-				recipients.updateRecipient(recipient)
-				.success(function(data) {
-					// replace that existing recipient
-					recipient = data.recipient;
-					$scope.currentRecipients[recipientIndex] = recipient;
-
-					// upload file after creating recipient
-					fileUploader.uploadAll();
-				})
-				.error(function(data) {
-					console.log("error in update recipient modal");
-					console.log(data);
-				})
-			}
-
-		};
-
-
+		// by default set to new recipient
+		$scope.isNewRecipient = true;
+		$scope.selectedRecipient = angular.copy($scope.newRecipientTemplate);
 
 		/**
 		 * 		MY PEOPLE HEADER
@@ -138,10 +57,33 @@
 		$scope.deletePersonActive = false;
 		$scope.searchPersonActive = false;
 
+		$scope.editPersonToggle = function(recipient) {
+			$scope.isNewRecipient = false;
+			$scope.selectedRecipient = recipient;
+
+			// create backups in case user cancels
+			$scope.selectedRecipientTemplate = angular.copy($scope.selectedRecipient);
+			$scope.currentRecipientsTemplate = angular.copy($scope.currentRecipients);
+
+			$scope.addPersonActive = !$scope.addPersonActive;
+			$scope.deletePersonActive = false;
+			$scope.searchPersonActive = false;
+		}			
+
 		$scope.addPersonToggle = function() {
 
+			// disabled if currently on recipient_form
+			if ($scope.addPersonActive) {
+				return;
+			}
+
 			// this will also lead to new recipient form
+			$scope.isNewRecipient = true;
 			$scope.selectedRecipient = angular.copy($scope.newRecipientTemplate);
+
+			// create backups in case user cancels
+			$scope.selectedRecipientTemplate = angular.copy($scope.selectedRecipient);
+			$scope.currentRecipientsTemplate = angular.copy($scope.currentRecipients);
 
 			$scope.addPersonActive = !$scope.addPersonActive;
 			$scope.deletePersonActive = false;
@@ -149,6 +91,11 @@
 		}
 
 		$scope.deletePersonToggle = function() {
+
+			// disabled if currently on recipient_form
+			if ($scope.addPersonActive) {
+				return;
+			}
 
 			// must need at least one recipient to delete
 			if ($scope.selectedRecipientIDs == 0) {
@@ -162,6 +109,12 @@
 		}
 
 		$scope.searchPersonToggle = function() {
+
+			// disabled if currently on recipient_form
+			if ($scope.addPersonActive) {
+				return;
+			}
+
 			$scope.searchPersonActive = !$scope.searchPersonActive;
 			$scope.deletePersonActive = false;
 			$scope.addPersonActive = false;
@@ -174,25 +127,6 @@
 		    makeStateActive($scope.currentState);
 	    });
 
-		// delete recipient
-		$scope.deleteRecipient = function(recipient) {
-			recipient_id = recipient.id
-			if (confirm("Are you sure?")) {
-				recipients.deleteRecipient(recipient)
-	      .success(function(data) {
-					// remove from current view
-	      	$.each(recipients.currentRecipients, function(i) {
-	      		if (recipients.currentRecipients[i].id === recipient_id) {
-	      			recipients.currentRecipients.splice(i, 1);
-	      			return false;
-	      		}
-	      	})
-	      })
-	      .error(function(data) {
-          console.log(data);
-        });
-			}
-		};
 		/**
 		 * get the recipient names based on array of selected recipients!
 		 */
@@ -276,26 +210,13 @@
 						}
 					}
 				});
-
+				// remove that delete active button
+				$scope.deletePersonActive = false;
 			})
 			.error(function(data) {
 				console.log("error in delete selected recipients of manage recipients controller");
 				console.log(data);
 			})
-
-			// recipients.deleteRecipient(recipient)
-   //    .success(function(data) {
-			// 	// remove from current view
-   //    	$.each(recipients.currentRecipients, function(i) {
-   //    		if (recipients.currentRecipients[i].id === recipient_id) {
-   //    			recipients.currentRecipients.splice(i, 1);
-   //    			return false;
-   //    		}
-   //    	})
-   //    })
-   //    .error(function(data) {
-  //       console.log(data);
-  //     });
 
 		}
 
@@ -402,6 +323,84 @@
 			recipient_ids = recipients.selectedRecipientIDs.join();
 			$state.go("queue.home.step1", {recipients: recipient_ids});
 		};
+
+		/**
+		 * 		SAVE / CANCEL FUNCTIONALITY ON RECIPIENT FORM
+		 */
+		// create recipient submit
+		$scope.saveRecipient = function() {
+
+			recipients        = $scope.recipients; // factory recipients
+			recipient         = $scope.selectedRecipient; // passed in recipient
+			currentRecipients = $scope.currentRecipients; // existing recipients
+			recipientIndex = arrayObjectIndexOf(currentRecipients, recipient.id, "id");
+			isNewRecipient = $scope.isNewRecipient;
+			fileUploader = $scope.uploader;
+
+			// get most recent occasion/ address if it is filled out
+			occasions = angular.copy($scope.recipientOccasions);
+			addresses = angular.copy($scope.recipientAddresses);
+			if ($scope.newRecipientOccasion.month && $scope.newRecipientOccasion.day) {
+				occasions.push($scope.newRecipientOccasion);
+			}
+			if ($scope.newRecipientAddress.street && $scope.newRecipientAddress.city && $scope.newRecipientAddress.state && $scope.newRecipientAddress.zipcode) {
+				addresses.push($scope.newRecipientAddress);
+			}
+
+			recipient.occasions = occasions;
+			recipient.addresses = addresses;
+
+			// don't run this below stuff yet.
+
+			if (isNewRecipient) { // create
+
+	    	recipients.createRecipient(recipient)
+	      .success(function(data) {
+
+	      	recipient = data.recipient
+	      	$scope.currentRecipients.push(recipient);
+	      	$scope.selectedRecipient = recipient;
+
+					// upload file after creating recipient
+					fileUploader.uploadAll();
+
+					// this will default back to home page
+					$scope.addPersonActive = false;
+					$scope.deletePersonActive = false;
+					$scope.searchPersonActive = false;
+	      })
+	      .error(function(data) {
+          console.log("error in create recipient submit modal");
+          console.log(data);
+        });
+			} else { // update
+				
+				recipients.updateRecipient(recipient)
+				.success(function(data) {
+					// replace that existing recipient
+					recipient = data.recipient;
+					$scope.currentRecipients[recipientIndex] = recipient;
+
+					// upload file after creating recipient
+					fileUploader.uploadAll();
+				})
+				.error(function(data) {
+					console.log("error in update recipient modal");
+					console.log(data);
+				})
+			}
+
+		};
+
+		// revert the work that was done
+		$scope.cancelRecipient = function() {
+			$scope.selectedRecipient = angular.copy($scope.selectedRecipientTemplate);
+			$scope.currentRecipients = angular.copy($scope.currentRecipientsTemplate);
+
+			$scope.addPersonActive = false;
+			$scope.deletePersonActive = false;
+			$scope.searchPersonActive = false;
+		}
 		
 	});
 

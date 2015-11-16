@@ -15,6 +15,9 @@ class RecipientSerializer < ActiveModel::Serializer
     primary_address = recipient.addresses.first
     data[:primary_address] = primary_address
 
+    addresses = recipient.addresses
+    data[:addresses] = addresses
+
     occasions = Array.new
 
     recipient_occasions = recipient.recipient_occasions

@@ -42,20 +42,33 @@
 			// 2. reset template of most recent address
 			if (occasion.month && occasion.day) { // must have these data
 				occasion.newOccasion = false;
-				$scope.recipientOccasions.push(occasion);
+				$scope.selectedRecipient.occasions.push(occasion);
 				$scope.newRecipientOccasion = angular.copy($scope.newRecipientOccasionTemplate);
 			}
+
 		}
 
 		// delete this given occasion
-		$scope.deleteOccasion = function(occasion) {
-			occasions = $scope.recipientOccasions;
-			if (occasion.newOccasion) { // this is the tail-end "new" occasion
+		$scope.deleteOccasion = function(occasionHash) {
+			
+			if (occasionHash.newOccasion) { // this is the tail-end "new" occasion
 				$scope.newRecipientOccasion = angular.copy($scope.newRecipientOccasionTemplate);
 			} else { // existing occasion
-				$scope.recipientOccasions = arrayWithValueRemoved(occasion, occasions);
+				
+				occasionHashes = $scope.selectedRecipient.occasions;
+				occasionID = occasionHash.recipient_occasion.occasion_id;
+
+				index = -1;
+
+				for(var i = 0; i < occasionHashes.length; i += 1) {
+	        if(occasionHashes[i].recipient_occasion.occasion_id === occasionID) {
+	            index = i;
+	        }
+		    }
+	   		$scope.selectedRecipient.occasions = arrayWithIndexRemoved(index, occasionHashes);
 			}
 		}
+
 
 		// create address with the given inputs
 		$scope.createAddress = function(address) {
@@ -63,18 +76,18 @@
 			// 2. reset template of most recent address
 			if (address.street && address.city && address.state && address.zipcode) { // must have these data
 				address.newAddress = false;
-				$scope.recipientAddresses.push(address);
+				$scope.selectedRecipient.addresses.push(address);
 				$scope.newRecipientAddress = angular.copy($scope.newRecipientAddressTemplate);
 			}
 		}
 
 		// delete this given address
 		$scope.deleteAddress = function(address) {
-			addresses = $scope.recipientAddresses;
-			if (address.newAddress) { // this is the tail-end "new" occasion
+			addresses = $scope.selectedRecipient.addresses;
+			if (address.newAddress) { // this is the tail-end "new" address
 				$scope.newRecipientAddress = angular.copy($scope.newRecipientAddressTemplate);
-			} else { // existing occasion
-				$scope.recipientAddresses = arrayWithValueRemoved(address, addresses);
+			} else { // existing addresses
+				$scope.selectedRecipient.addresses = arrayWithValueRemoved(address, addresses);
 			}
 		}
 
