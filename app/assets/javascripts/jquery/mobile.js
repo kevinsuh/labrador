@@ -40,6 +40,23 @@ function ScaleContentToDevice() {
    content.height(contentheight);
 }
 
+function ScaleContentToDeviceWithoutFooter() {
+   scroll(0, 0);
+   //var headerHeight = $(".main_header:visible").outerHeight();
+   var headerHeight = 50;
+   //var footerHeight = $(".main_footer:visible").outerHeight();
+   var footerHeight = 0;
+
+   var viewportHeight = $(window).height();
+
+   var content = $(".page_container:visible");
+   var contentMargins =  content.outerHeight() - content.height();
+
+   var contentheight = viewportHeight - headerHeight - footerHeight - contentMargins;
+
+   content.height(contentheight);
+}
+
 // this is specific for the recipient modal form
 // and adds scroll to the address / occaision part of the form
 function ScaleContentToDeviceForRecipientForm() {

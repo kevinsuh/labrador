@@ -12,12 +12,21 @@
       // use activeRecipientImage to alter CSS and z-index in order to overlay the crop-image footer when uploading new image
        $scope.$watch('activeRecipientImage',function(activeRecipientImage) {
 
+        recipientFormFooterCancel = angular.element(document.querySelector("#recipientFormFooterCancel"));
+        recipientFormFooterSave = angular.element(document.querySelector("#recipientFormFooterSave"));
+
         pageContainer = angular.element(document.querySelector(".recipient_form_container.page_container"));
         if (activeRecipientImage) {
           pageContainer.css("z-index",9999);
+          recipientFormFooterCancel.hide();
+          recipientFormFooterSave.hide();
         } else {
           pageContainer.css("z-index",99);
+          recipientFormFooterCancel.show();
+          recipientFormFooterSave.show();
         }
+
+        ScaleContentToDeviceWithoutFooter();
         
       });
 

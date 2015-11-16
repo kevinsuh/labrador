@@ -1472,7 +1472,7 @@ crop.factory('cropHost', ['$document', 'cropAreaCircle', 'cropAreaSquare', 'crop
           width = maxWidth;
         }
 
-        elCanvas.prop('width',width).prop('height',height).css({'margin-left': '10px', 'margin-right': '10px'});
+        elCanvas.prop('width',width).prop('height',height).css({'margin-left': '10px', 'margin-right': '10px', 'margin-bottom': '20px'});
 
         theArea.setX(ctx.canvas.width/2);
         theArea.setY(ctx.canvas.height/2);

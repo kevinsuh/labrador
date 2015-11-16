@@ -175,6 +175,10 @@
 	    z-index: 1005;
 	    background-color: $medium_grey;
 
+	    .new_recipient_footer {
+	    	height: 100%;
+	    }
+
 	    .icon_holder {
 
 	      width: 100%;
@@ -631,9 +635,9 @@
 		  		.cropImageFooter {
 		  			position:fixed;
 		  			bottom: 0;
-		  			padding-bottom: 20px;
 		  			z-index: 99999;
 		  			background-color: $medium_grey;
+		  			padding: 0px 0px 19px 0px;
 		  		}
 		  	}
 		  }
