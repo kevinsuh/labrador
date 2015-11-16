@@ -96,9 +96,14 @@
 	      	recipient = data.recipient
 	      	$scope.currentRecipients.push(recipient);
 	      	$scope.selectedRecipient = recipient;
-	      	
+
 					// upload file after creating recipient
 					fileUploader.uploadAll();
+
+					// this will default back to home page
+					$scope.addPersonActive = false;
+					$scope.deletePersonActive = false;
+					$scope.searchPersonActive = false;
 	      })
 	      .error(function(data) {
           console.log("error in create recipient submit modal");
@@ -133,6 +138,10 @@
 		$scope.searchPersonActive = false;
 
 		$scope.addPersonToggle = function() {
+
+			// this will also lead to new recipient form
+			$scope.selectedRecipient = angular.copy($scope.newRecipientTemplate);
+
 			$scope.addPersonActive = !$scope.addPersonActive;
 			$scope.deletePersonActive = false;
 			$scope.searchPersonActive = false;
