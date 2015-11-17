@@ -84,6 +84,13 @@
 		 		}
 		 }
 
+			// get rid of queueCardState upon selecting a recipient
+			$scope.$watch('selectedRecipientIDs.length', function(newValue, oldValue){
+			  if (newValue > 0) {
+			  	$scope.queueCardState = false;
+			  }
+			});
+
 		/**
 		 * 		MY PEOPLE HEADER
 		 */
