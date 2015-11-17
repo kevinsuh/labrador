@@ -290,346 +290,6 @@
 		  		padding: 0;
 		  		margin: 0;
 
-		  		$recipient_info_height: 275px;
-		  		$picture_container_width: 120px;
-		  		$picture_size: 121px;
-		  		$name_input_width: 200px;
-
-		  		/**
-		  		 * 		DIV CONTAINING PROFILE PICTURE AND FIRST/LAST NAME OPTIONS
-		  		 */
-		  		.modal-header {
-		  			// min-height: $recipient_info_height;
-		  			&.basic_info {
-		  				background-color: $mobile_purple;	
-		  				padding: 0;
-		  				&.cropImage {
-		  					min-height: 100%;
-		  				}
-		  			}
-
-		  			.recipient_info {
-							position: relative;
-							height: 100%;
-							display: block;
-							//width: $form_width;
-							margin: 0 auto;
-
-
-							.title_container {
-								margin-top: 20px;
-								.recipient_form_title {
-									color: $white_grey;
-									text-align: center;
-									font-size: 20px;
-									line-height: 23px;
-									margin: 0;
-									font-weight: 400 !important;
-								}
-							}
-
-							// recipient picture
-							.profile_picture_container {
-								width: 100%;
-								display: block;
-								text-align: center;
-								margin-top: 22px;
-								.camera_icon {
-									background: url(/assets/icons/basic_icons/all_basic_icons.png) -191px -148px;
-									width: 40px;
-									height: 34px;
-									position: absolute;
-									left: 40px;
-									top: 42px;
-									z-index: 99999999;
-								}
-								.profile_picture {
-									display: inline-block;
-									height: $picture_size; 
-									width: $picture_size; 
-									overflow:hidden;
-									cursor: pointer;
-									-webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC); // overflow hidden for chrome
-									border-radius: 50%;
-									position: relative;
-									background-color: $picture_grey;
-									border: 1px solid white; 
-									.image {
-										position: absolute;
-										right: 0;
-										bottom: 0;
-										height: $picture_size;
-									}
-								}
-								.picture_upload {
-									margin: 0 auto;
-								}
-							}
-
-							.name_container {
-
-								text-align: center;
-								margin: 22px 0;
-								padding: 0 20px;
-								float: left;
-								width: 100%;
-
-								.form_input {
-									display: inline-block;
-									//width: $name_input_width;
-									&.first_name {
-										float: left;
-									}
-									&.last_name {
-										float: right;
-									}
-									width: -moz-calc(50% - 10px);
-								  width: -webkit-calc(50% - 10px);
-								  width: calc(50% - 10px);
-									.name_input {
-										padding: 0;
-										text-align: center;
-										border-radius: 0;
-										border: none;
-										border-bottom: 1px solid $white_grey;
-										background-color: transparent;
-										color: $white_grey;
-										height: 1.5em;
-										font-size: 30px;
-										&:focus {
-											outline: 0;
-										}
-
-										// for placeholder font color
-										&::-webkit-input-placeholder {
-										   color: $white_grey;
-										}
-
-										&:-moz-placeholder { /* Firefox 18- */
-										   color: $white_grey;  
-										}
-
-										&::-moz-placeholder {  /* Firefox 19+ */
-										   color: $white_grey;  
-										}
-
-										&:-ms-input-placeholder {  
-										   color: $white_grey;  
-										}
-									}
-								}
-							}
-
-							.potential_crop_area {
-								margin: 22px 0 0 0;
-								float: none;
-							}
-							.button_container {
-								margin-top: 15px;
-								margin-bottom: 20px;
-								.cancel_button {
-									margin-right: 15px;
-								}
-								.recipient_form_button {
-									border-radius: 2px;
-								}
-							}
-
-						}
-		  		}
-
-		  		/**
-		  		 * 	DIV CONTAINING ADDRESS AND OCCASIONS OPTIONS
-		  		 */
-		  		.modal-body {
-		  			overflow-x: hidden;
-		  			overflow-y: scroll;
-		  			padding: 0;
-		  			padding-bottom: $footer_height;
-
-		  			.body {
-		  				padding: 0 20px;
-		  				//width: $form_width;
-		  				margin: 0 auto;
-
-		  				// address_other form input widths
-							$city_input_width: 46%;
-							$state_input_width: 23%;
-							$zipcode_input_width: 24%;
-
-							// for more general inputs on the modal-body
-							.form_input_container {
-								margin: 20px 0;
-								position: relative;
-
-
-								&.address_other {
-									margin-bottom: 0;
-								}
-
-								.field {
-									display: inline-block;
-									&.city {
-										width: $city_input_width;
-										margin-right: 2.5%;
-									}
-									&.state {
-										width: $state_input_width;
-										margin-right: 2.5%;
-										.form_input {
-											position: relative;
-										}
-										.state_menu_down {
-											position: absolute;
-											right: 10px;
-											top: 14px;
-											z-index: -1;
-											color: $form_placeholder_grey;
-										}
-									}
-									&.zipcode {
-										width: $zipcode_input_width;
-										float: right;
-									}
-								}
-							}
-
-							.form_input {
-								display: inline-block;
-								width: 100%;
-								margin: 0;
-
-								.street_input {
-									//width: 100%;
-								}
-
-								.recipient_form_input {
-									width: 100%;
-									padding: 0;
-									text-align: left;
-									border-radius: 0;
-									border: none;
-									border-bottom: 1px solid $form_placeholder_grey;
-									background-color: transparent;
-									color: $form_input_black;
-									font-size: 24px;
-									line-height: 28px;
-									height: 1.8em;
-									padding-left: 10px;
-									&:focus {
-										outline: 0;
-									}
-
-									&.select_input {
-										-webkit-appearance: none;
-  									-webkit-border-radius: 0px;
-									}
-
-									// for placeholder font color
-									&::-webkit-input-placeholder {
-									   color: $no_button_grey;
-									}
-
-									&:-moz-placeholder { /* Firefox 18- */
-									   color: $no_button_grey;  
-									}
-
-									&::-moz-placeholder {  /* Firefox 19+ */
-									   color: $no_button_grey;  
-									}
-
-									&:-ms-input-placeholder {  
-									   color: $no_button_grey;  
-									}
-								}
-							}
-
-		  				/**
-		  				 * 	TITLE CONTAINER OF FORM BODY
-		  				 */
-		  				.title_container {
-								margin-top: 13px;
-								.recipient_form_title {
-									color: $form_black;
-									text-align: center;
-									font-size: 20px;
-									line-height: 23px;
-									margin: 0;
-									font-weight: 400 !important;
-								}
-							}
-
-							/**
-							 * 	ADDRESS CONTAINER OF FORM BODY
-							 */
-							.new_addresses_container, .existing_addresses_container {
-								margin: 0;
-							}
-							 /* 
-							 *	OCCASIONS CONTAINER OF FORM BODY
-							 */
-							.address_options_container {
-								margin: 10px 0 0 0;
-								.field {
-									&.new_address {
-										float: left;
-									}
-									&.delete_address {
-										float: right;
-									}
-									.form_button {
-										color: $login_red;
-										font-size: 12px;
-										line-height: 14px;
-										font-weight: 300;
-										cursor: pointer;
-										&.add_address {
-										}
-										&.delete_address {
-										}
-									}
-								}
-							}
-
-							.new_occasions_container, .existing_occasions_container {
-								.state_menu_down {
-									position: absolute;
-									top: 14px;
-									right: 10px;
-									z-index: -1;
-									color: $form_placeholder_grey;
-								}
-								.occasion_name_container {
-								}
-								.occasion_date_container {
-									float: left;
-									width: 100%;
-									.form_input_container {
-										width: -moz-calc(50% - 10px);
-									  width: -webkit-calc(50% - 10px);
-									  width: calc(50% - 10px);
-									  margin-bottom: 0;
-									}
-									.month {
-										float: left;
-									}
-									.day {
-										float: right;
-									}
-								}
-								.occasion_notes_container {
-									float: left;
-									width: 100%;
-									margin-top: 20px;
-									.notes {
-
-									}
-								}
-							}
-
-		  			}
-		  		}
-
 		  		/**
 		  		 * 	DIV CONTAINING THE CROP IMAGE FOOTER
 		  		 */
@@ -641,6 +301,346 @@
 		  			padding: 0px 0px 19px 0px;
 		  		}
 		  	}
+
+		  	$recipient_info_height: 275px;
+	  		$picture_container_width: 120px;
+	  		$picture_size: 121px;
+	  		$name_input_width: 200px;
+
+	  		/**
+	  		 * 		DIV CONTAINING PROFILE PICTURE AND FIRST/LAST NAME OPTIONS
+	  		 */
+	  		.modal-header {
+	  			// min-height: $recipient_info_height;
+	  			&.basic_info {
+	  				background-color: $mobile_purple;	
+	  				padding: 0;
+	  				&.cropImage {
+	  					min-height: 100%;
+	  				}
+	  			}
+
+	  			.recipient_info {
+						position: relative;
+						height: 100%;
+						display: block;
+						//width: $form_width;
+						margin: 0 auto;
+
+
+						.title_container {
+							margin-top: 20px;
+							.recipient_form_title {
+								color: $white_grey;
+								text-align: center;
+								font-size: 20px;
+								line-height: 23px;
+								margin: 0;
+								font-weight: 400 !important;
+							}
+						}
+
+						// recipient picture
+						.profile_picture_container {
+							width: 100%;
+							display: block;
+							text-align: center;
+							margin-top: 22px;
+							.camera_icon {
+								background: url(/assets/icons/basic_icons/all_basic_icons.png) -191px -148px;
+								width: 40px;
+								height: 34px;
+								position: absolute;
+								left: 40px;
+								top: 42px;
+								z-index: 99999999;
+							}
+							.profile_picture {
+								display: inline-block;
+								height: $picture_size; 
+								width: $picture_size; 
+								overflow:hidden;
+								cursor: pointer;
+								-webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC); // overflow hidden for chrome
+								border-radius: 50%;
+								position: relative;
+								background-color: $picture_grey;
+								border: 1px solid white; 
+								.image {
+									position: absolute;
+									right: 0;
+									bottom: 0;
+									height: $picture_size;
+								}
+							}
+							.picture_upload {
+								margin: 0 auto;
+							}
+						}
+
+						.name_container {
+
+							text-align: center;
+							margin: 22px 0;
+							padding: 0 20px;
+							float: left;
+							width: 100%;
+
+							.form_input {
+								display: inline-block;
+								//width: $name_input_width;
+								&.first_name {
+									float: left;
+								}
+								&.last_name {
+									float: right;
+								}
+								width: -moz-calc(50% - 10px);
+							  width: -webkit-calc(50% - 10px);
+							  width: calc(50% - 10px);
+								.name_input {
+									padding: 0;
+									text-align: center;
+									border-radius: 0;
+									border: none;
+									border-bottom: 1px solid $white_grey;
+									background-color: transparent;
+									color: $white_grey;
+									height: 1.5em;
+									font-size: 30px;
+									&:focus {
+										outline: 0;
+									}
+
+									// for placeholder font color
+									&::-webkit-input-placeholder {
+									   color: $white_grey;
+									}
+
+									&:-moz-placeholder { /* Firefox 18- */
+									   color: $white_grey;  
+									}
+
+									&::-moz-placeholder {  /* Firefox 19+ */
+									   color: $white_grey;  
+									}
+
+									&:-ms-input-placeholder {  
+									   color: $white_grey;  
+									}
+								}
+							}
+						}
+
+						.potential_crop_area {
+							margin: 22px 0 0 0;
+							float: none;
+						}
+						.button_container {
+							margin-top: 15px;
+							margin-bottom: 20px;
+							.cancel_button {
+								margin-right: 15px;
+							}
+							.recipient_form_button {
+								border-radius: 2px;
+							}
+						}
+
+					}
+	  		}
+
+	  		/**
+	  		 * 	DIV CONTAINING ADDRESS AND OCCASIONS OPTIONS
+	  		 */
+	  		.modal-body {
+	  			overflow-x: hidden;
+	  			overflow-y: scroll;
+	  			padding: 0;
+	  			padding-bottom: $footer_height;
+
+	  			.body {
+	  				padding: 0 20px;
+	  				//width: $form_width;
+	  				margin: 0 auto;
+
+	  				// address_other form input widths
+						$city_input_width: 46%;
+						$state_input_width: 23%;
+						$zipcode_input_width: 24%;
+
+						// for more general inputs on the modal-body
+						.form_input_container {
+							margin: 20px 0;
+							position: relative;
+
+
+							&.address_other {
+								margin-bottom: 0;
+							}
+
+							.field {
+								display: inline-block;
+								&.city {
+									width: $city_input_width;
+									margin-right: 2.5%;
+								}
+								&.state {
+									width: $state_input_width;
+									margin-right: 2.5%;
+									.form_input {
+										position: relative;
+									}
+									.state_menu_down {
+										position: absolute;
+										right: 10px;
+										top: 14px;
+										z-index: -1;
+										color: $form_placeholder_grey;
+									}
+								}
+								&.zipcode {
+									width: $zipcode_input_width;
+									float: right;
+								}
+							}
+						}
+
+						.form_input {
+							display: inline-block;
+							width: 100%;
+							margin: 0;
+
+							.street_input {
+								//width: 100%;
+							}
+
+							.recipient_form_input {
+								width: 100%;
+								padding: 0;
+								text-align: left;
+								border-radius: 0;
+								border: none;
+								border-bottom: 1px solid $form_placeholder_grey;
+								background-color: transparent;
+								color: $form_input_black;
+								font-size: 24px;
+								line-height: 28px;
+								height: 1.8em;
+								padding-left: 10px;
+								&:focus {
+									outline: 0;
+								}
+
+								&.select_input {
+									-webkit-appearance: none;
+									-webkit-border-radius: 0px;
+								}
+
+								// for placeholder font color
+								&::-webkit-input-placeholder {
+								   color: $no_button_grey;
+								}
+
+								&:-moz-placeholder { /* Firefox 18- */
+								   color: $no_button_grey;  
+								}
+
+								&::-moz-placeholder {  /* Firefox 19+ */
+								   color: $no_button_grey;  
+								}
+
+								&:-ms-input-placeholder {  
+								   color: $no_button_grey;  
+								}
+							}
+						}
+
+	  				/**
+	  				 * 	TITLE CONTAINER OF FORM BODY
+	  				 */
+	  				.title_container {
+							margin-top: 13px;
+							.recipient_form_title {
+								color: $form_black;
+								text-align: center;
+								font-size: 20px;
+								line-height: 23px;
+								margin: 0;
+								font-weight: 400 !important;
+							}
+						}
+
+						/**
+						 * 	ADDRESS CONTAINER OF FORM BODY
+						 */
+						.new_addresses_container, .existing_addresses_container {
+							margin: 0;
+						}
+						 /* 
+						 *	OCCASIONS CONTAINER OF FORM BODY
+						 */
+						.address_options_container {
+							margin: 10px 0 0 0;
+							.field {
+								&.new_address {
+									float: left;
+								}
+								&.delete_address {
+									float: right;
+								}
+								.form_button {
+									color: $login_red;
+									font-size: 12px;
+									line-height: 14px;
+									font-weight: 300;
+									cursor: pointer;
+									&.add_address {
+									}
+									&.delete_address {
+									}
+								}
+							}
+						}
+
+						.new_occasions_container, .existing_occasions_container, .full_width_container {
+							.state_menu_down {
+								position: absolute;
+								top: 14px;
+								right: 10px;
+								z-index: -1;
+								color: $form_placeholder_grey;
+							}
+							.occasion_name_container {
+							}
+							.occasion_date_container {
+								float: left;
+								width: 100%;
+								.form_input_container {
+									width: -moz-calc(50% - 10px);
+								  width: -webkit-calc(50% - 10px);
+								  width: calc(50% - 10px);
+								  margin-bottom: 0;
+								}
+								.month {
+									float: left;
+								}
+								.day {
+									float: right;
+								}
+							}
+							.occasion_notes_container {
+								float: left;
+								width: 100%;
+								margin-top: 20px;
+								.notes {
+
+								}
+							}
+						}
+
+	  			}
+	  		}
 		  }
 
 			// my people filters underneath the header
@@ -806,6 +806,34 @@
 									padding-right: 20px;
 								}
 							}
+						}
+					}
+				}
+			}
+
+			.page_view {
+				.modal-header {
+
+					.recipient_info {
+						.title_container {
+							margin: 20px 0;
+						}
+					}
+				}
+
+				.modal-body {
+					margin-bottom: 25px;
+					.float_container {
+						float: left;
+						width: 100%;
+					}
+					.body {
+						.title_container {
+							margin-top: 40px;
+							margin-bottom: 10px;
+						}
+						.form_input_container {
+							margin: 0;
 						}
 					}
 				}

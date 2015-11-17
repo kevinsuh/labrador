@@ -131,7 +131,10 @@
         resolve: {
           currentOccasionsPromise: ['occasions', function(occasions) {
             return occasions.getCurrentOccasions();
-          }]
+          }],
+          occasionPromise: ['cards', function(cards) {
+            return cards.getOccasions();
+          }],
         }
       })
       .state('main.app.occasions.home', {

@@ -3,30 +3,41 @@
 	/**
 	 * this controller is specific for user viewing his queued / purchased cards
 	 */
-	var app = angular.module('card-queue').controller("OccasionsController", function($rootScope, $location, $window, $scope, $state, $timeout, occasions) {
+	var app = angular.module('card-queue').controller("OccasionsController", function($rootScope, $location, $window, $scope, $state, $timeout, occasions, cards) {
 
 		$scope.occasions                   = occasions; // factory object
 		$scope.currentOccasions            = occasions.currentOccasions;
 		$scope.currentOccasionsByRecipient = occasions.currentOccasionsByRecipient;
-		$scope.selectedOccasionIDs = occasions.selectedOccasionIDs;
-		$scope.selectedOccasions = occasions.selectedOccasions;
+		$scope.selectedOccasionIDs         = occasions.selectedOccasionIDs;
+		$scope.selectedOccasions           = occasions.selectedOccasions;
+		$scope.occasionCategories          = cards.occasions;
+		
+		$scope.newOccasion                 = occasions.newOccasion;
+		$scope.newOccasionTemplate         = occasions.newOccasionTemplate;
 
+		// by default set to new occasion
+		$scope.isNewOccasion    = true;
+		$scope.selectedOccasion = angular.copy($scope.newOccasionTemplate);
+
+		// get list of available recipients here into hash for "Person" select option
+		$scope.recipientCategories = [];
+		for (var index in occasions.currentOccasions) {
+			occasion = occasions.currentOccasions[index];
+			recipient = occasion.recipient;
+			recipientFullName = recipient.first_name + " " + recipient.last_name;
+			$scope.recipientCategories[recipientFullName] = recipient.id;
+    }
+    
+    // set recipientID to first key in recipientCategories hash
+    for (var key in $scope.recipientCategories) {
+    	$scope.newOccasion.recipient_id = $scope.recipientCategories[key];	
+    	break;
+    }
 
 		// concat first and last name
 		$scope.recipientFullName = function(recipient) {
 			return recipient.first_name + " " + recipient.last_name;
 		}
-
-		// new manage relationships feature!
-		// $scope.recipients               = recipients; // the "factory" recipients object
-		// $scope.relationships            = recipients.relationships;
-		// $scope.currentRecipients        = recipients.currentRecipients;
-		// $scope.newRecipient             = recipients.newRecipient;
-		// $scope.newRecipientTemplate     = recipients.newRecipientTemplate;
-		// $scope.relationships            = recipients.relationships;
-		// $scope.occasions                = cards.occasions;
-		// $scope.selectedRecipients       = recipients.selectedRecipients;
-		// $scope.selectedRecipientIDs     = recipients.selectedRecipientIDs;
 
 		// infinite scroll once this angular controller is loaded
 		ScaleContentToDevice();
