@@ -4,12 +4,20 @@
 	 <div class="main_header" ui-view="header"></div>
 	</header>
 
-	<div class="col-md-12 col-xs-12 occasions page_container" ng-hide="addPersonActive">
+	<div class="col-md-12 col-xs-12 occasions page_container" ng-hide="addOccasionActive">
 		<div class="occasions_view page_view" ui-view="list_view"></div>
 	</div>
 
+	<div class="col-xs-12 recipient_form_container page_container" ng-show="addOccasionActive">
+		<div class="recipient_form_view page_view" ui-view="occasion_form"></div>
+	</div>
+
 	<div class="footer_bar" id="mobile_footer">
-		<div class="main_footer" ui-view="footer"></div>
+		<div class="main_footer" ui-view="footer" ng-hide="addOccasionActive"></div>
+	</div>
+
+	<div class="footer_bar" id="mobile_footer" ng-show="addOccasionActive">
+		<div class="main_footer" ui-view="occasion_form_footer"></div>
 	</div>
 
 </div>

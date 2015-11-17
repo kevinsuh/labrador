@@ -41,6 +41,16 @@
 		    makeStateActive($scope.currentState);
 		  });
 
+		// revert the work that was done
+		$scope.cancelOccasion = function() {
+			$scope.selectedOccasion = angular.copy($scope.selectedOccasionTemplate);
+			$scope.currentOccasions = angular.copy($scope.currentOccasionsTemplate);
+
+			$scope.addOccasionActive = false;
+			$scope.deleteOccasionActive = false;
+			$scope.searchOccasionActive = false;
+		}
+
 		/**
 		 * 		OCCASIONS HEADER
 		 */

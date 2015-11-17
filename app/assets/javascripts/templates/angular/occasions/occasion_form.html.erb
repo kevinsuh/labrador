@@ -1,0 +1,71 @@
+<!-- unique modal form each time you open -->
+<form ng-submit="submit()" ng-controller="OccasionFormController" style="height: 100%;">
+
+	<!-- name / relationship -->
+	<div class="modal-header basic_info">
+		<div class="row recipient_info">
+			<div>
+
+				<div class="title_container">
+					<div ng-show="isNewOccasion">
+						<h3 class="recipient_form_title">New Occasion</h3>
+					</div>
+					<div ng-show="!isNewOccasion">
+						<h3 class="recipient_form_title">Edit Occasion</h3>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<!-- details on occasion -->
+	<div class="modal-body modal_body">
+
+		<div class="body">
+
+			<!-- recipient of occasion -->
+			<div class="title_container">
+				<h3 class="recipient_form_title address_title">Person</h3>
+			</div>
+
+			<div class="person_body form_body">
+			</div>
+
+			<!-- name of occasion -->
+			<div class="title_container">
+				<h3 class="recipient_form_title occasions_title">Occasion Name</h3>
+			</div>
+
+			<div class="name_body form_body">
+			</div>
+
+			<!-- category of occasion -->
+			<div class="title_container">
+				<h3 class="recipient_form_title occasions_title">Category</h3>
+			</div>
+
+			<div class="category_body form_body">
+			</div>
+
+			<!-- name of occasion -->
+			<div class="title_container">
+				<h3 class="recipient_form_title occasions_title">Date</h3>
+			</div>
+
+			<div class="date_body form_body">
+			</div>
+
+			<!-- name of occasion -->
+			<div class="title_container">
+				<h3 class="recipient_form_title occasions_title">Notes</h3>
+			</div>
+
+			<div class="notes_body">
+			</div>
+
+		</div>
+	</div>
+
+</form>
+
