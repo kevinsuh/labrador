@@ -63,6 +63,61 @@
 			$scope.searchOccasionActive = false;
 		}
 
+		// submit new occasion or update existing one
+		$scope.saveOccasion = function() {
+
+			occasions = $scope.occasions;
+			occasion = $scope.selectedOccasion;
+			currentOccasions = $scope.currentOccasions;
+			occasionIndex = arrayObjectIndexOf(currentOccasions, occasion.id, "id");
+			isNewOccasion = $scope.isNewOccasion;
+
+			if (isNewOccasion) { // create
+
+	    	occasions.createOccasion(occasion)
+	      .success(function(data) {
+
+	      	occasion = data.recipient_occasion
+	      	console.log(data);
+	      	console.log("success?");
+	      	console.log(occasion);
+	      	console.log("wut");
+	      	$scope.currentOccasions.push(occasion);
+	      	$scope.selectedOccasion = occasion;
+
+	      	console.log($scope.selectedOccasion);
+
+					// this will default back to home page
+					$scope.addOccasionActive = false;
+					$scope.deleteOccasionActive = false;
+					$scope.searchOccasionActive = false;
+	      })
+	      .error(function(data) {
+          console.log("error in create occasion submit modal");
+          console.log(data);
+        });
+			} else { // update
+				
+				occasions.updateOccasion(occasion)
+				.success(function(data) {
+					// replace that existing occasion
+					occasion = data.occasion;
+					$scope.selectedOccasion = occasion;
+					$scope.currentOccasions[occasionIndex] = occasion;
+
+					// this will default back to home page
+					$scope.addOccasionActive = false;
+					$scope.deleteOccasionActive = false;
+					$scope.searchOccasionActive = false;
+				})
+				.error(function(data) {
+					console.log("error in update occasion modal");
+					console.log(data);
+				})
+			}
+
+		}
+
 		/**
 		 * 		OCCASIONS HEADER
 		 */

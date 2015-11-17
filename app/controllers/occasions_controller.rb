@@ -24,6 +24,27 @@ class OccasionsController < ApplicationController
   end
 
   def create_for_current
+  	
+  	# get necessary params
+		month        = params[:month]
+		day          = params[:day]
+		notes        = params[:notes]
+		occasion_id  = params[:occasion_id]
+		recipient_id = params[:recipient_id]
+		name         = params[:name]
+
+  	occasion = RecipientOccasion.create(
+  		recipient_id: recipient_id,
+  		occasion_id: occasion_id,
+  		month: month,
+  		day: day,
+  		notes: notes,
+  		name: name
+  		)
+
+    respond_to do |format|
+      format.json { render json: occasion }
+    end
 
   end
 

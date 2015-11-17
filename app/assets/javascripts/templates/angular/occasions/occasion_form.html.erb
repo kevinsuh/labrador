@@ -7,10 +7,10 @@
 			<div>
 
 				<div class="title_container float_container">
-					<div ng-show="isNewOccasion">
+					<div ng-show="isselectedOccasion">
 						<h3 class="recipient_form_title">New Occasion</h3>
 					</div>
-					<div ng-show="!isNewOccasion">
+					<div ng-show="!isselectedOccasion">
 						<h3 class="recipient_form_title">Edit Occasion</h3>
 					</div>
 				</div>
@@ -32,7 +32,7 @@
 			<div class="person_container full_width_container">
 				<div class="occasion_name form_input_container float_container field">
 					<div class="occasion_input form_input">
-						<select class="recipient_form_input occasion_name_input select_input" ng-model="newOccasion.recipient_id" ng-options="value as key for (key, value) in recipientCategories"></select>
+						<select class="recipient_form_input occasion_name_input select_input" ng-model="selectedOccasion.recipient_id" ng-options="value as key for (key, value) in recipientCategories"></select>
 						<i class="glyphicon glyphicon-menu-down state_menu_down"></i>
 					</div>
 				</div>
@@ -45,7 +45,7 @@
 
 			<div class="form_input_container float_container">
 				<div class="form_input">
-		      <input class="recipient_form_input" ng-model="newOccasion.name" type="text" placeholder="Name"/>
+		      <input class="recipient_form_input" ng-model="selectedOccasion.name" type="text" placeholder="Name"/>
 		    </div>
 			</div>
 
@@ -57,7 +57,7 @@
 			<div class="category_container full_width_container">
 				<div class="occasion_name form_input_container float_container field">
 					<div class="occasion_input form_input">
-						<select class="recipient_form_input occasion_name_input select_input" ng-model="newOccasion.occasion_id" ng-options="value as key for (key, value) in occasionCategories"></select>
+						<select class="recipient_form_input occasion_name_input select_input" ng-model="selectedOccasion.occasion_id" ng-options="value as key for (key, value) in occasionCategories"></select>
 						<i class="glyphicon glyphicon-menu-down state_menu_down"></i>
 					</div>
 				</div>
@@ -73,7 +73,7 @@
 				<div class="occasion_date_container">
 					<div class="month field form_input_container float_container">
 						<div class="form_input">
-							<select class="recipient_form_input select_input month_input select_input" ng-model="newOccasion.month">
+							<select class="recipient_form_input select_input month_input select_input" ng-model="selectedOccasion.month">
 					  		<option value="">Month</option>
 					  		<% (1...13).each { |month| %>
 					  			<option value="<%= month %>"><%= month %></option>
@@ -85,7 +85,7 @@
 
 					<div class="day field form_input_container float_container">
 						<div class="form_input">
-				      <input class="recipient_form_input day_input" ng-model="newOccasion.day" type="number" placeholder="Day"/>
+				      <input class="recipient_form_input day_input" ng-model="selectedOccasion.day" type="number" placeholder="Day"/>
 				    </div>
 					</div>
 				</div>
@@ -102,7 +102,7 @@
 
 				<div class="notes field form_input_container float_container">
 					<div class="form_input">
-			      <textarea class="recipient_form_input notes_input" ng-model="occasion.notes" placeholder="Notes"/>
+			      <textarea class="recipient_form_input notes_input" ng-model="selectedOccasion.notes" placeholder="Notes"/>
 			    </div>
 				</div>
 
