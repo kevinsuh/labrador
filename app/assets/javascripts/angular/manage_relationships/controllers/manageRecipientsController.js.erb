@@ -16,7 +16,6 @@
 		$scope.newRecipientTemplate     = recipients.newRecipientTemplate;
 		$scope.relationships            = recipients.relationships;
 		$scope.occasions                = cards.occasions;
-		$scope.selectedRecipients       = recipients.selectedRecipients;
 		$scope.selectedRecipientIDs     = recipients.selectedRecipientIDs;
 
 		headerTitle = angular.element(document.querySelector("#currentTitle"));
@@ -147,9 +146,17 @@
 		 * get the recipient names based on array of selected recipients!
 		 */
 		$scope.recipientNames = function() {
-			
-			recipients = $scope.selectedRecipients;
-			recipient_names = recipients.map(function(elem) {
+
+			currentRecipients = $scope.currentRecipients;
+			selectedRecipientIDs = $scope.selectedRecipientIDs;
+			selectedRecipients = [];
+			for (var i in currentRecipients) {
+				if (isInArray(currentRecipients[i].id, selectedRecipientIDs)) {
+					selectedRecipients.push(currentRecipients[i])
+				}
+			}
+
+			recipient_names = selectedRecipients.map(function(elem) {
 				return elem.first_name + " " + elem.last_name;
 			});
 
@@ -312,10 +319,8 @@
 
 			if (isInArray(recipient.id, recipient_ids)) {
 				$scope.selectedRecipientIDs = arrayWithValueRemoved(recipient.id, $scope.selectedRecipientIDs);
-				$scope.selectedRecipients = arrayWithValueRemoved(recipient, $scope.selectedRecipients);
 			} else {
 				$scope.selectedRecipientIDs.push(recipient.id);
-				$scope.selectedRecipients.push(recipient);
 			}
 		};
 

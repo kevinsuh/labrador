@@ -32,9 +32,9 @@
 		</div>
 
 		<!-- delete person header_bar -->
-		<div class="delete_people_container header_dropdown_tool" ng-show="deletePersonActive && selectedRecipients.length > 0">
+		<div class="delete_people_container header_dropdown_tool" ng-show="deletePersonActive && selectedRecipientIDs.length > 0">
 			<div class="delete_recipients">
-				Are you sure you want to delete {{recipientNames()}}<span class="header_span" ng-if="selectedRecipients.length >= 1 && selectedRecipients.length <= 10">'s</span><span class="header_span" ng-if="selectedRecipients.length > 10">'</span> record<span class="header_span" ng-if="selectedRecipients.length > 1">s</span>?
+				Are you sure you want to delete {{recipientNames()}}<span class="header_span" ng-if="selectedRecipientIDs.length >= 1 && selectedRecipientIDs.length <= 10">'s</span><span class="header_span" ng-if="selectedRecipientIDs.length > 10">'</span> record<span class="header_span" ng-if="selectedRecipientIDs.length > 1">s</span>?
 				
 			</div>
 			<div class="delete_options">
