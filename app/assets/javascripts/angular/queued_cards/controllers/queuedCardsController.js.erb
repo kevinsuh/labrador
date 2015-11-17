@@ -52,7 +52,9 @@
 		 * 			FILTER FUNCTIONALITY
 		 */
 		
-		$scope.filteredName = ""; // recipient name filter to put in the input
+		$scope.filter = {
+			filteredName: ""
+		}; // recipient name filter to put in the input
 
 		/**
 		 * this takes the name filter, and returns all of the queued cards that have recipients that match the name filter
@@ -68,7 +70,7 @@
 				return card.recipient;
 			});
 			relationshipFilter = $scope.recipientsFilter;
-			$scope.filteredName = name;
+			$scope.filter.filteredName = name;
 
 			name = name.toLowerCase();
 

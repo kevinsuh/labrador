@@ -25,6 +25,15 @@
 			$scope.selectedRecipientIDs = [];
 		}
 
+		/**
+		 * 			FILTER RECIPIENTS FUNCTIONALITY
+		 */
+		$scope.recipientsFilter = "All";
+		$scope.filterOptions = ["All", "Family", "Friends"];
+		$scope.filter = {
+			filteredName: ""
+		}
+
 		headerTitle = angular.element(document.querySelector("#currentTitle"));
 		headerTitle.text("My People");
 
@@ -150,6 +159,13 @@
 			}
 
 			$scope.searchPersonActive = !$scope.searchPersonActive;
+
+			// if "unsearched" then don't filter anymore
+			if ($scope.searchPersonActive == false) {
+				$scope.filter.filteredName = "";
+				$scope.recipientNameFilter($scope.filter.filteredName);
+			}
+
 			$scope.deletePersonActive = false;
 			$scope.addPersonActive = false;
 		}
@@ -278,15 +294,12 @@
 		/**
 		 * 			FILTER RECIPIENTS FUNCTIONALITY
 		 */
-		$scope.recipientsFilter = "All";
-		$scope.filterOptions = ["All", "Family", "Friends"];
-		$scope.filteredName = "";
 
 		$scope.recipientNameFilter = function(name) {
 
 			currentRecipients = $scope.currentRecipients;
 			relationshipFilter = $scope.recipientsFilter;
-			$scope.filteredName = name;
+			$scope.filter.filteredName = name;
 
 			name = name.toLowerCase();
 
@@ -310,7 +323,7 @@
 			
 			currentRecipients = $scope.currentRecipients;
 			$scope.recipientsFilter = filter;
-			name = $scope.filteredName;
+			name = $scope.filter.filteredName;
 			
 			visibleRecipients = filterArray("relationship", filter, currentRecipients);
 			visibleRecipients = filterArray("name", name, visibleRecipients);

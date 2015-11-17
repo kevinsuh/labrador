@@ -27,7 +27,7 @@
 		<!-- filter person header_bar -->
 		<div class="filter_people_container header_dropdown_tool" ng-show="searchPersonActive">
 			<div class="form_input">
-				<input type="text" placeholder="Who are you thinking about?" ng-model="filteredName" ng-change="recipientNameFilter(filteredName)" class="filter_people_input"></input>
+				<input type="text" id="filterRecipientInput" placeholder="Who are you thinking about?" ng-model="filter.filteredName" ng-change="recipientNameFilter(filter.filteredName)" class="filter_people_input"></input>
 			</div>
 		</div>
 

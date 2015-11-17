@@ -189,6 +189,13 @@
 			}
 
 			$scope.searchOccasionActive = !$scope.searchOccasionActive;
+
+			// if "unsearched" then don't filter anymore
+			if ($scope.searchOccasionActive == false) {
+				$scope.filter.filteredName = "";
+				$scope.occasionNameFilter($scope.filter.filteredName);
+			}
+
 			$scope.deleteOccasionActive = false;
 			$scope.addOccasionActive = false;
 		}
@@ -302,13 +309,15 @@
 			return text;
 		}
 
-		$scope.filteredName = "";
+		$scope.filter = {
+			filteredName: ""
+		};
 		$scope.occasionNameFilter = function(name) {
 
 			currentOccasions = $scope.currentOccasions;
 			occasionFilter = $scope.occasionsFilter;
 
-			$scope.filteredName = name;
+			$scope.filter.filteredName = name;
 			name = name.toLowerCase();
 
 			visibleOccasions =  filterOccasionArrayByRecipientName(name, currentOccasions);
