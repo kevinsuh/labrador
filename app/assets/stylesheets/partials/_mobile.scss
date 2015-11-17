@@ -700,7 +700,7 @@
 				font-size: 14px;
 			}
 
-			.filter_people_container {
+			.filter_people_container, .filter_occasions_container {
 
 		    text-align: center;
 		    
@@ -709,7 +709,7 @@
 		    	width: 95%;
 		    	display: inline-block;
 		    	margin-top: 8px;
-		    	.filter_people_input {
+		    	.filter_people_input, .filter_occasions_input {
 			      border-radius: 0;
 			      height: 34px;
 			      text-indent: 15px;
@@ -831,7 +831,7 @@
 
 // to handle mobile browser nonsense
 .fixfixed .header_bar, 
-.fixfixed .filter_people_container { 
+.fixfixed .filter_people_container, .filter_occasions_container { 
     position: absolute !important;
 }
 

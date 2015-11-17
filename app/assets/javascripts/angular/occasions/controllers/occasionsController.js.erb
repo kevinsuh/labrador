@@ -8,6 +8,8 @@
 		$scope.occasions                   = occasions; // factory object
 		$scope.currentOccasions            = occasions.currentOccasions;
 		$scope.currentOccasionsByRecipient = occasions.currentOccasionsByRecipient;
+		$scope.selectedOccasionIDs = occasions.selectedOccasionIDs;
+
 
 		// concat first and last name
 		$scope.recipientFullName = function(recipient) {
@@ -90,6 +92,8 @@
 			if ($scope.addOccasionActive) {
 				return;
 			}
+
+			console.log("huh");
 
 			$scope.searchOccasionActive = !$scope.searchOccasionActive;
 			$scope.deleteOccasionActive = false;

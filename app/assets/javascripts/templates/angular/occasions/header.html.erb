@@ -16,7 +16,7 @@
 			<div class="header_option delete_person" ng-class="{'selected': deleteOccasionActive}" ng-click="deleteOccasionToggle()">
 				<i class="basic_icon header_icon delete_person_image"></i>
 			</div>
-			<div class="header_option search_person" ng-class="{'selected': searchPersonActive}" ng-click="searchPersonToggle()">
+			<div class="header_option search_person" ng-class="{'selected': searchOccasionActive}" ng-click="searchOccasionToggle()">
 				<i class="basic_icon header_icon search_person_image"></i>
 			</div>
 		</div>
@@ -25,7 +25,7 @@
 	<!-- the part of the header that comes for each click on the main header -->
 	<div class="bottom_header_container">
 		<!-- filter person header_bar -->
-		<div class="filter_occasions_container header_dropdown_tool" ng-show="searchPersonActive">
+		<div class="filter_occasions_container header_dropdown_tool" ng-show="searchOccasionActive">
 			<div class="form_input">
 				<input type="text" placeholder="Who are you thinking about?" ng-model="filteredName" ng-change="occasionNameFilter(filteredName)" class="filter_occasions_input"></input>
 			</div>
