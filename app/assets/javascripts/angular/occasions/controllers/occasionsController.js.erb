@@ -218,6 +218,30 @@
 			return text;
 		}
 
+		$scope.filteredName = "";
+		$scope.occasionNameFilter = function(name) {
+
+			currentOccasions = $scope.currentOccasions;
+			occasionFilter = $scope.occasionsFilter;
+
+			$scope.filteredName = name;
+			name = name.toLowerCase();
+
+			visibleOccasions =  filterOccasionArrayByRecipientName(name, currentOccasions);
+			visibleOccasionIDs = visibleOccasions.map(function(item) { return item["id"]; });
+
+			// use visible recipients to get the IDs
+			for (index = 0; index < $scope.currentOccasions.length; ++index) {
+				occasion = $scope.currentOccasions[index];
+				occasion_id = occasion.id
+				if (isInArray(occasion_id, visibleOccasionIDs)) {
+					occasion.is_visible = 1;
+				} else {
+					occasion.is_visible = 0;
+				}
+			}
+		};
+
 	});
 
 })();

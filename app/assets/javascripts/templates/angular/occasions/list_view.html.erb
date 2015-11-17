@@ -1,5 +1,5 @@
 <div class="occasions_list_container">
-	<div class="occasion_row" ng-repeat="occasion in currentOccasions" ng-class="{'selected': isInArray(occasion.id, selectedOccasionIDs)}" ng-click="select(occasion)">
+	<div class="occasion_row" ng-repeat="occasion in currentOccasions" ng-class="{'selected': isInArray(occasion.id, selectedOccasionIDs)}" ng-click="select(occasion)" ng-if="occasion.is_visible == 1">
 		<div class="description_container occasion_detail">
 			{{occasion.occasion.name}} for {{recipientFullName(occasion.recipient)}} 
 		</div>

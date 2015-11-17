@@ -100,6 +100,25 @@ function filterArray(filterType, filterTerm, startingArray) {
 	return finalArray;
 }
 
+function filterOccasionArrayByRecipientName(recipientName, startingArray) {
+	var finalArray = [];
+
+	if (recipientName == "") {
+		finalArray = startingArray;
+	} else {
+		searchLength = recipientName.length;
+		finalArray = startingArray.filter(function(occasion) {
+			recipient = occasion.recipient;
+			full_name = recipient.first_name + " " + recipient.last_name;
+
+			return full_name.substring(0, searchLength).toLowerCase() == recipientName;
+		});
+
+	}
+
+	return finalArray;
+}
+
 /**
  * return the filtered card array based on passed in flavor IDs
  * @param  {array} cards     all cards to filter on

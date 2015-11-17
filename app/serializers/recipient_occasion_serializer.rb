@@ -6,6 +6,8 @@ class RecipientOccasionSerializer < ActiveModel::Serializer
   	data = super # get the current JSON object
   	recipient_occasion = object
 
+    data[:is_visible] = 1 # visible by default
+
     recipient_id = data[:recipient_id]
     recipient = Recipient.find_by(id: recipient_id)
     data[:recipient] = recipient
