@@ -8,9 +8,6 @@
 		// infinite scroll once this angular controller is loaded
 		ScaleContentToDevice();
 
-		$scope.stateParams = $stateParams;
-		$scope.queueCardState = $stateParams.queueCardState;
-
 		// new manage relationships feature!
 		$scope.recipients               = recipients; // the "factory" recipients object
 		$scope.relationships            = recipients.relationships;
@@ -20,6 +17,13 @@
 		$scope.relationships            = recipients.relationships;
 		$scope.occasions                = cards.occasions;
 		$scope.selectedRecipientIDs     = recipients.selectedRecipientIDs;
+
+		$scope.stateParams = $stateParams;
+		$scope.queueCardState = $stateParams.queueCardState;
+		// unselect everyone if you are in "queueCardState"
+		if ($scope.queueCardState) {
+			$scope.selectedRecipientIDs = [];
+		}
 
 		headerTitle = angular.element(document.querySelector("#currentTitle"));
 		headerTitle.text("My People");
@@ -63,8 +67,10 @@
 		 $scope.queueCard = function() {
 		 		console.log("queueing card in my people!");
 		 		if ($scope.selectedRecipientIDs.length < 1) {
+		 			$scope.queueCardState = true;
 		 			console.log("you must select a person first!")
 		 		} else {
+		 			$scope.queueCardState = false;
 		 			console.log("OK now you're good to go")
 		 		}
 		 }

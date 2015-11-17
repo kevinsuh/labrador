@@ -22,6 +22,14 @@
 		    makeStateActive($scope.currentState);
 		  });
 
+		/**
+		 * 		SETTINGS FOOTER
+		 */
+		$scope.queueCard = function() {
+			// automatically just go to my people if in this view
+			$state.go("main.app.my_people.home", {queueCardState: true});
+		 }
+
 	});
 
 })();
