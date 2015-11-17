@@ -22,7 +22,6 @@ $(document).on("pageshow", function(){
    ScaleContentToDevice();
 });
 $(window).on('resize orientationchange', function(){ 
-	console.log("HEY orientationchange");
 	ScaleContentToDevice() });
 
 function ScaleContentToDevice() {

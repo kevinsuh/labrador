@@ -3,10 +3,13 @@
 	/**
 	 * this controller is specific to the managing relationship within the "Greeting Central" module
 	 */
-	var app = angular.module('card-queue').controller("ManageRecipientsController", function($rootScope, $location, $window, $scope, $state, $timeout, $modal, recipients, cards, usSpinnerService, FileUploader) {
+	var app = angular.module('card-queue').controller("ManageRecipientsController", function($rootScope, $location, $window, $stateParams, $scope, $state, $timeout, $modal, recipients, cards, usSpinnerService, FileUploader) {
 
 		// infinite scroll once this angular controller is loaded
 		ScaleContentToDevice();
+
+		$scope.stateParams = $stateParams;
+		$scope.queueCardState = $stateParams.queueCardState;
 
 		// new manage relationships feature!
 		$scope.recipients               = recipients; // the "factory" recipients object
@@ -20,8 +23,6 @@
 
 		headerTitle = angular.element(document.querySelector("#currentTitle"));
 		headerTitle.text("My People");
-
-		console.log($scope.currentRecipients);
 
 		$scope.currentTitle = "My People";
 
@@ -55,6 +56,18 @@
 		// by default set to new recipient
 		$scope.isNewRecipient = true;
 		$scope.selectedRecipient = angular.copy($scope.newRecipientTemplate);
+
+		/**
+		 * 		MY PEOPLE FOOTER
+		 */
+		 $scope.queueCard = function() {
+		 		console.log("queueing card in my people!");
+		 		if ($scope.selectedRecipientIDs.length < 1) {
+		 			console.log("you must select a person first!")
+		 		} else {
+		 			console.log("OK now you're good to go")
+		 		}
+		 }
 
 		/**
 		 * 		MY PEOPLE HEADER

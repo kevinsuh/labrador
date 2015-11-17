@@ -53,6 +53,24 @@
 		    makeStateActive($scope.currentState);
 		  });
 
+		/**
+		 * 		OCCASIONS FOOTER
+		 */
+		$scope.queueCard = function() {
+	 		console.log("queueing card in occasions tab!");
+	 		if ($scope.selectedOccasionIDs.length < 1) {
+	 			console.log("passing in state params?");
+	 			$state.go("main.app.my_people.home", {queueCardState: true});
+	 			console.log("please select a person");
+	 		} else {
+	 			console.log("OK you can queue based on occasion here")
+	 		}
+		 }
+
+		/**
+		 * 		OCCASIONS HEADER
+		 */
+
 		// revert the work that was done
 		$scope.cancelOccasion = function() {
 			$scope.selectedOccasion = angular.copy($scope.selectedOccasionTemplate);
