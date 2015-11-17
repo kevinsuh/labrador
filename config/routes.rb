@@ -51,10 +51,10 @@ Rails.application.routes.draw do
   get 'relationships/get_relationships'
   get 'occasions/get_occasions'
   get 'occasions/get_current_occasions'
-  post 'recipients/create_for_current'
-  post 'recipients/update_for_current'
-  post 'recipients/delete_for_current'
-  post 'recipients/delete_selected_recipients'
+  post 'occasions/create_for_current'
+  post 'occasions/update_for_current'
+  post 'occasions/delete_for_current'
+  post 'occasions/delete_selected_occasions'
 
   # cards
   get 'cards/get_flavors'

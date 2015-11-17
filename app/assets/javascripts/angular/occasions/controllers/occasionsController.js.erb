@@ -9,6 +9,7 @@
 		$scope.currentOccasions            = occasions.currentOccasions;
 		$scope.currentOccasionsByRecipient = occasions.currentOccasionsByRecipient;
 		$scope.selectedOccasionIDs = occasions.selectedOccasionIDs;
+		$scope.selectedOccasions = occasions.selectedOccasions;
 
 
 		// concat first and last name
@@ -103,11 +104,65 @@
 				return;
 			}
 
-			console.log("huh");
-
 			$scope.searchOccasionActive = !$scope.searchOccasionActive;
 			$scope.deleteOccasionActive = false;
 			$scope.addOccasionActive = false;
+		}
+
+		// this is for the trash delete button in the occasions view
+		$scope.deleteSelectedOccasions = function() {
+			selectedOccasionIDs = $scope.selectedOccasionIDs;
+			occasions = $scope.occasions;
+			occasions.deleteOccasions(selectedOccasionIDs)
+			.success(function(data) {
+				
+				// upon success, delete all the currentOccasions that you deleted on the server side
+				deletedOccasions = data.occasions;
+				deletedOccasionIDs = deletedOccasions.map(function(occasion) {
+					return occasion.id;
+				});
+				currentOccasions = $scope.currentOccasions;
+				currentOccasionIDs = currentOccasions.map(function(occasion) {
+					return occasion.id;
+				});
+
+				// this will go through each deletedOccasionID and remove currentOccasions of that occasionID
+				$.each(deletedOccasionIDs, function(i) {
+					occasionID = deletedOccasionIDs[i];
+					if (isInArray(occasionID, currentOccasionIDs)) {
+						
+						var index = currentOccasionIDs.indexOf(occasionID);
+						if (index > -1) {
+							// splice both to keep the currentRecipientIDs array syncd with the scope.currentRecipients array
+							currentOccasionIDs.splice(index, 1);
+							$scope.currentOccasions.splice(index, 1);
+						}
+					}
+				});
+				// remove that delete active button
+				$scope.deleteOccasionActive = false;
+			})
+			.error(function(data) {
+				console.log("error in delete selected occasions of occasions controller");
+				console.log(data);
+			})
+
+		}
+
+		$scope.select = function(occasion) {
+			occasion_ids = $scope.selectedOccasionIDs;
+
+			if (isInArray(occasion.id, occasion_ids)) {
+				$scope.selectedOccasionIDs = arrayWithValueRemoved(occasion.id, $scope.selectedOccasionIDs);
+				$scope.selectedOccasions = arrayWithValueRemoved(occasion, $scope.selectedOccasions);
+			} else {
+				$scope.selectedOccasionIDs.push(occasion.id);
+				$scope.selectedOccasions.push(occasion);
+			}
+		};
+
+		$scope.isInArray = function(value, array) {
+		  return array.indexOf(value) > -1;
 		}
 
 		/**
@@ -115,52 +170,52 @@
 		 */
 		$scope.occasionNames = function() {
 			
-			// recipients = $scope.selectedRecipients;
-			// recipient_names = recipients.map(function(elem) {
-			// 	return elem.first_name + " " + elem.last_name;
-			// });
+			occasions = $scope.selectedOccasions;
+			occasion_names = occasions.map(function(elem) {
+				return elem.occasion.name + " for " + elem.recipient.first_name + " " + elem.recipient.last_name;
+			});
 
-			// text = '';
-			// if (recipient_names.length > 0) {
+			text = '';
+			if (occasion_names.length > 0) {
 				
-			// 	text        = '';
-			// 	conjunction = "and";
-			// 	comma       = '';
-			// 	ctr         = 1;
-			// 	max_names   = 10; // max # of names to show before we default to "others"
+				text        = '';
+				conjunction = "and";
+				comma       = '';
+				ctr         = 1;
+				max_names   = 10; // max # of names to show before we default to "others"
 				
-			// 	keepGoing   = true;
-			// 	angular.forEach(recipient_names, function(value) {
+				keepGoing   = true;
+				angular.forEach(occasion_names, function(value) {
 
-			// 		if (keepGoing) {
+					if (keepGoing) {
 
-			// 			// this is where you will add the final value
-		 //  			if (ctr == max_names) {
-		 //  				keepGoing = false;
+						// this is where you will add the final value
+		  			if (ctr == max_names) {
+		  				keepGoing = false;
 
-			// 				remaining_count = (recipient_names.length+1) - ctr;
-			// 				other           = remaining_count > 1 ? "others" : "other";
-			// 				comma           += conjunction+' ';
-			// 				text            += comma + " " + remaining_count + " " + other;
+							remaining_count = (occasion_names.length+1) - ctr;
+							other           = remaining_count > 1 ? "others" : "other";
+							comma           += conjunction+' ';
+							text            += comma + " " + remaining_count + " " + other;
 
-		 //  			} else {
+		  			} else {
 
-		 //  				text += comma+value;
-			// 				ctr++;
-			// 				if(recipient_names.length > 2){
-			// 					comma = ', ';
-			// 				} else {
-			// 					comma = ' ';
-			// 				}
-			// 				if(ctr == recipient_names.length) {
-			// 					comma += conjunction+' ';
-			// 				}
-		 //  			}
+		  				text += comma+value;
+							ctr++;
+							if(occasion_names.length > 2){
+								comma = ', ';
+							} else {
+								comma = ' ';
+							}
+							if(ctr == occasion_names.length) {
+								comma += conjunction+' ';
+							}
+		  			}
 
-			// 		}
-			// 	})
-			// }
-			// return text;
+					}
+				})
+			}
+			return text;
 		}
 
 	});

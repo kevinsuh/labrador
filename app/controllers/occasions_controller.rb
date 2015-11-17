@@ -36,7 +36,14 @@ class OccasionsController < ApplicationController
   end
 
   def delete_selected_occasions
-
+  	occasion_ids = params[:occasion_ids]
+    occasions = RecipientOccasion.where("id IN (:occasion_ids)", occasion_ids: occasion_ids)
+    occasions.each do |occasion|
+      occasion.deleted!
+    end
+    respond_to do |format|
+      format.json { render json: occasions }
+    end
   end
 
 end

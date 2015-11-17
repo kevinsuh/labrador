@@ -788,6 +788,10 @@
 						width: 100%;
 						.occasion_row { // each individual row
 							display: table-row;
+							&.selected {
+								background-color: green;
+								border: 1pt solid purple;
+							}
 							.occasion_detail {
 								display: table-cell;
 								border-bottom: 1pt solid $form_input_black;

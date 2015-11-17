@@ -20,7 +20,7 @@ class RecipientSerializer < ActiveModel::Serializer
 
     occasions = Array.new
 
-    recipient_occasions = recipient.recipient_occasions
+    recipient_occasions = recipient.recipient_occasions.live
     recipient_occasions.each do |recipient_occasion|
 
       occasion_data                      = Hash.new
