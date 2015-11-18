@@ -92,8 +92,10 @@
 
 		 // the button to actually queue your cards
 		 $scope.queueCard = function() {
-		 	console.log("aww yeah sending card!");
-		 	console.log($scope.selectedRecipientIDs);
+		 	if ($scope.selectedRecipientIDs.length > 0) {
+		 		console.log("aww yeah sending card!");
+		 		console.log($scope.selectedRecipientIDs);
+		 	}
 		 }
 
 			// get rid of selectPersonToSendState upon selecting a recipient

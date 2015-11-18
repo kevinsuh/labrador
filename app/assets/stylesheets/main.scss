@@ -443,7 +443,7 @@ a.disabled {
       vertical-align: middle;
       font-size: 16px;
       line-height: 16px;
-      font-weight: 300;
+      font-weight: 400;
       cursor: pointer;
       width: 100%;
     }
@@ -461,6 +461,12 @@ a.disabled {
       .new_recipient_form_button {
         background-color: $no_button_grey;
       }
+    }
+
+    .disabled_button {
+      background-color: transparent !important;
+      color: $no_button_grey !important;
+      border: 1px solid $no_button_grey;
     }
   }
 
