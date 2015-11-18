@@ -700,7 +700,7 @@
 				font-size: 14px;
 			}
 
-			.filter_people_container, .filter_occasions_container {
+			.filter_people_container, .filter_occasions_container, .queue_card_state_container {
 
 		    text-align: center;
 		    
@@ -720,6 +720,16 @@
 			      }
 			    }
 		    }
+		  }
+
+		  .queue_card_state_container {
+		  	background-color: $mobile_purple;
+		  	.form_input {
+		  		font-size: 16px;
+		  		color: white;
+		  		font-weight: 400;
+		  		margin-top: 14px;
+		  	}
 		  }
 
 		  .page_container {

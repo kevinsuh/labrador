@@ -25,9 +25,9 @@
 		/**
 		 * 		QUEUED CARDS FOOTER
 		 */
-		$scope.queueCard = function() {
+		$scope.startQueueCardState = function() {
 			// automatically just go to my people if in this view
-			$state.go("main.app.my_people.home", {queueCardState: true});
+			$state.go("main.app.my_people.home", {queueCardState: true, selectPersonToSendState: true});
 		 }
 
 		// test whether you are currently at this state or not

@@ -104,7 +104,7 @@
       .state('main.app.my_people.home', {
         controller: "ManageRecipientsController",
         url: '/',
-        params: {queueCardState: false},
+        params: {queueCardState: false, selectPersonToSendState: false},
         views: {
           'card_view': {
             templateUrl: "angular/manage_recipients/card_view.html"
@@ -120,16 +120,20 @@
           },
           'recipient_form_footer': {
             templateUrl: "angular/manage_recipients/recipient_form_footer.html"
+          },
+          'queue_card_footer': {
+            templateUrl: "angular/manage_recipients/queue_card_footer.html"
           }
-        },
-        resolve: {
-          queueCardStatePromise: ['$stateParams', function($stateParams) {
-            console.log("in resolve state of state params");
-            console.log($stateParams);
-            queueCardState = $stateParams.queueCardState;
-            return queueCardState;
-          }]
         }
+        // resolve: {
+        //   queueCardStatePromise: ['$stateParams', function($stateParams) {
+        //     console.log("in resolve state of state params");
+        //     console.log($stateParams);
+        //     queueCardState = $stateParams.queueCardState;
+        //     selectPersonToSendState = $stateParams.selectPersonToSendState;
+        //     return selectPersonToSendState;
+        //   }]
+        // }
       })
       .state('main.app.occasions', {
         views: {

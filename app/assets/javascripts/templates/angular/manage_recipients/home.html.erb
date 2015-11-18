@@ -1,4 +1,4 @@
-<div class="my_people_container" ng-controller="ManageRecipientsController" ng-class="{'headerActive': addPersonActive || deletePersonActive || searchPersonActive }">
+<div class="my_people_container" ng-controller="ManageRecipientsController" ng-class="{'headerActive': addPersonActive || deletePersonActive || searchPersonActive || selectPersonToSendState }">
 	
 	<header class="navbar header_bar" id="mobile_header">
 	 <div class="main_header" ui-view="header"></div>
@@ -18,6 +18,10 @@
 
 	<div class="footer_bar" id="mobile_footer" ng-show="addPersonActive">
 		<div class="main_footer" ui-view="recipient_form_footer"></div>
+	</div>
+
+	<div class="footer_bar" id="mobile_footer" ng-show="queueCardState">
+		<div class="main_footer" ui-view="queue_card_footer"></div>
 	</div>
 
 </div>

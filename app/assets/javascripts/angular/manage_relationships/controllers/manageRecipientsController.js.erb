@@ -20,8 +20,10 @@
 
 		$scope.stateParams = $stateParams;
 		$scope.queueCardState = $stateParams.queueCardState;
-		// unselect everyone if you are in "queueCardState"
-		if ($scope.queueCardState) {
+		$scope.selectPersonToSendState = $stateParams.selectPersonToSendState;
+
+		// unselect everyone if you are in "selectPersonToSendState"
+		if ($scope.selectPersonToSendState == false) {
 			$scope.selectedRecipientIDs = [];
 		}
 
@@ -73,21 +75,28 @@
 		/**
 		 * 		MY PEOPLE FOOTER
 		 */
-		 $scope.queueCard = function() {
+		 $scope.startQueueCardState = function() {
 		 		console.log("queueing card in my people!");
+		 		$scope.queueCardState = true;
 		 		if ($scope.selectedRecipientIDs.length < 1) {
-		 			$scope.queueCardState = true;
+		 			$scope.selectPersonToSendState = true;
 		 			console.log("you must select a person first!")
 		 		} else {
-		 			$scope.queueCardState = false;
+		 			$scope.selectPersonToSendState = false;
 		 			console.log("OK now you're good to go")
 		 		}
 		 }
 
-			// get rid of queueCardState upon selecting a recipient
+		 // cancel your decision to queue a card
+		 $scope.cancelQueueCardState = function() {
+		 	$scope.queueCardState = false;
+			$scope.selectPersonToSendState = false;
+		 }
+
+			// get rid of selectPersonToSendState upon selecting a recipient
 			$scope.$watch('selectedRecipientIDs.length', function(newValue, oldValue){
 			  if (newValue > 0) {
-			  	$scope.queueCardState = false;
+			  	$scope.selectPersonToSendState = false;
 			  }
 			});
 

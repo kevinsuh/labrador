@@ -20,9 +20,6 @@
 </div>
 <% end %>
 
-<div style="margin-top:200px;" ng-if="queueCardState">
-		SELECT A PERSON
-</div>
 <div class="row my_people_cards">	
 	<div class="col-xs-6 col-md-4 col-lg-3 single_card_div" ng-repeat="recipient in currentRecipients" ng-if="recipient.is_visible == 1">
 		<div class="recipient_card" ng-class="{'selected': isInArray(recipient.id, selectedRecipientIDs)}" ng-click="select(recipient)">
