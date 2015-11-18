@@ -10,7 +10,7 @@
         day: "",
         month: "",
         notes: "",
-        occasion_id: 7,
+        occasion_id: "",
         recipient_id: "",
         occasion: {},
         recipient: {}
@@ -19,7 +19,7 @@
         day: "",
         month: "",
         notes: "",
-        occasion_id: 7,
+        occasion_id: "",
         recipient_id: "",
         occasion: {},
         recipient: {}

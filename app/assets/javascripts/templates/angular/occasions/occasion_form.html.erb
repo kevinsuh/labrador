@@ -32,13 +32,16 @@
 			<div class="person_container full_width_container">
 				<div class="occasion_name form_input_container float_container field">
 					<div class="occasion_input form_input">
-						<select class="recipient_form_input occasion_name_input select_input" ng-model="selectedOccasion.recipient_id" ng-options="value as key for (key, value) in recipientCategories"></select>
+						<select class="recipient_form_input occasion_name_input select_input" ng-model="selectedOccasion.recipient_id" ng-options="value as key for (key, value) in recipientCategories">
+							<option value="">Person</option>
+						</select>
 						<i class="glyphicon glyphicon-menu-down state_menu_down"></i>
 					</div>
 				</div>
 			</div>
 
 			<!-- name of occasion -->
+			<% if false %>
 			<div class="title_container float_container">
 				<h3 class="recipient_form_title occasions_title">Occasion Name</h3>
 			</div>
@@ -48,6 +51,7 @@
 		      <input class="recipient_form_input" ng-model="selectedOccasion.name" type="text" placeholder="Name"/>
 		    </div>
 			</div>
+			<% end %>
 
 			<!-- category of occasion -->
 			<div class="title_container float_container">
@@ -57,7 +61,9 @@
 			<div class="category_container full_width_container">
 				<div class="occasion_name form_input_container float_container field">
 					<div class="occasion_input form_input">
-						<select class="recipient_form_input occasion_name_input select_input" ng-model="selectedOccasion.occasion_id" ng-options="value as key for (key, value) in occasionCategories"></select>
+						<select class="recipient_form_input occasion_name_input select_input" ng-model="selectedOccasion.occasion_id" ng-options="value as key for (key, value) in occasionCategories">
+							<option value="">Category</option>
+						</select>
 						<i class="glyphicon glyphicon-menu-down state_menu_down"></i>
 					</div>
 				</div>

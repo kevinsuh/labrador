@@ -3,7 +3,7 @@
 	/**
 	 * this controller is specific for user viewing his queued / purchased cards
 	 */
-	var app = angular.module('card-queue').controller("OccasionsController", function($rootScope, $location, $window, $scope, $state, $timeout, occasions, cards) {
+	var app = angular.module('card-queue').controller("OccasionsController", function($rootScope, $location, $window, $scope, $state, $timeout, occasions, cards, recipients) {
 
 		$scope.occasions                   = occasions; // factory object
 		$scope.currentOccasions            = occasions.currentOccasions;
@@ -21,9 +21,8 @@
 
 		// get list of available recipients here into hash for "Person" select option
 		$scope.recipientCategories = [];
-		for (var index in occasions.currentOccasions) {
-			occasion = occasions.currentOccasions[index];
-			recipient = occasion.recipient;
+		for (var index in recipients.currentRecipients) {
+			recipient = recipients.currentRecipients[index]
 			recipientFullName = recipient.first_name + " " + recipient.last_name;
 			$scope.recipientCategories[recipientFullName] = recipient.id;
     }
@@ -89,6 +88,10 @@
 			currentOccasions = $scope.currentOccasions;
 			occasionIndex = arrayObjectIndexOf(currentOccasions, occasion.id, "id");
 			isNewOccasion = $scope.isNewOccasion;
+
+			if (!occasion.recipient_id || !occasion.occasion_id) {
+				return;
+			}
 
 			if (isNewOccasion) { // create
 

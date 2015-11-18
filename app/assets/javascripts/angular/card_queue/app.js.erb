@@ -148,6 +148,9 @@
           occasionPromise: ['cards', function(cards) {
             return cards.getOccasions();
           }],
+          currentRecipientsPromise: ['recipients', function(recipients) {
+            return recipients.getCurrentRecipients();
+          }]
         }
       })
       .state('main.app.occasions.home', {
