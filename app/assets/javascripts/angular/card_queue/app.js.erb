@@ -98,6 +98,9 @@
           }],
           relationshipPromise: ['recipients', function(recipients) {
             return recipients.getRelationships();
+          }],
+          recipientOccasionsPromise: ['occasions', function(occasions) {
+            return occasions.getCurrentOccasions();
           }]
         }
       })

@@ -3,18 +3,20 @@
 	/**
 	 * this controller is specific to the managing relationship within the "Greeting Central" module
 	 */
-	var app = angular.module('card-queue').controller("QueueCardController", function($rootScope, $location, $window, $stateParams, $scope, $state, $timeout, $modal, recipients, cards, usSpinnerService) {
+	var app = angular.module('card-queue').controller("QueueCardController", function($rootScope, $location, $window, $stateParams, $scope, $state, $timeout, $modal, recipients, cards, occasions, usSpinnerService) {
 
 		// infinite scroll once this angular controller is loaded
 		ScaleContentToDevice();
 
 		// get all the selected recipients and their occasions
-		$scope.recipientOccasions = ["Birthday", "Friendaversary", "Holiday", "Another Occasion"];
+		$scope.recipientOccasions = occasions.currentOccasions; // this is just all of your occasions which is obviously incorrect
 		
 		// select the occasion
 		$scope.selectOccasion = function(occasion) {
+			console.log($scope.selectedRecipientIDs);
 			console.log("yay occasion selected!");
 		}
+
 		
 	});
 

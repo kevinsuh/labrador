@@ -2,8 +2,8 @@
 
 	<div class="occasion_section">
 		<div class="row title_row">
-			<div class="inner_container back_container">
-				<i class="glyphicon glyphicon-menu-left" />
+			<div class="inner_container back_container" ng-click="resetMyPeopleState()">
+				<i class="glyphicon glyphicon-menu-left"/>
 			</div>
 			<div class="inner_container title_container">
 				<h3 class="title">What's the Occasion?</h3>
@@ -14,7 +14,7 @@
 			<div class="col-xs-6 occasion_container" ng-repeat="occasion in recipientOccasions">
 				<div class="occasion_card" ng-click="selectOccasion(occasion)">
 					<div class="title_container">
-						{{occasion}}
+						{{occasion.occasion.name}}
 					</div>
 				</div>
 			</div>

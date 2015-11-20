@@ -490,6 +490,17 @@
 			$scope.myPeopleState = "Card View";
 		}
 
+		// default my people state
+		$scope.resetMyPeopleState = function() {
+
+			$scope.addPersonActive    = false;
+			$scope.deletePersonActive = false;
+			$scope.searchPersonActive = false;
+			$scope.queueCardState     = false;
+			
+			$scope.myPeopleState      = "Card View";	
+		}
+
 		$scope.$watch('myPeopleState', function(newValue, oldValue){
         if (newValue == 'Queue Wizard') {
         	headerTitle = angular.element(document.querySelector("#currentTitle"));

@@ -5,7 +5,8 @@
 
     var o = {
       currentOccasions: [], // one array of all occasions associated with the user
-      currentOccasionsByRecipient: [], // segmented by the recipient. an array of array of recipient_occasion objects
+      currentOccasionsByRecipient: [], // segmented by the recipient. an array of array of recipient_occasion objects,
+      occasionsForSelectedRecipients: [],
       newOccasion: {
         day: "",
         month: "",
@@ -45,6 +46,11 @@
         o.currentOccasions = occasions;
 
       })
+    }
+
+    // return occasion for passed in recipient ID's
+    o.occasionsForRecipientIDs = function(recipientIDs) {
+
     }
 
     o.createOccasion = function(occasion) {
