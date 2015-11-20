@@ -156,7 +156,7 @@
 
 			// this will also lead to new recipient form
 			$scope.isNewRecipient = true;
-			$scope.selectedRecipient = angular.copy($scope.newRecipientTemplate);
+			$scope.selectedRecipient = angular.copy($scope.newRecipientTemplate);			
 
 			// create backups in case user cancels
 			$scope.selectedRecipientTemplate = angular.copy($scope.selectedRecipient);
@@ -451,6 +451,7 @@
 					$scope.searchPersonActive = false;
 
 					$scope.myPeopleState = "Card View";
+					$scope.image.myCroppedImage = " ";
 	      })
 	      .error(function(data) {
           console.log("error in create recipient submit modal");
@@ -474,6 +475,7 @@
 					$scope.searchPersonActive = false;
 
 					$scope.myPeopleState = "Card View";
+					$scope.image.myCroppedImage = " ";
 				})
 				.error(function(data) {
 					console.log("error in update recipient modal");
