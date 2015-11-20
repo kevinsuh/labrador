@@ -27,6 +27,11 @@
 			$scope.selectedRecipientIDs = [];
 		}
 
+		// FOR QUEUE CARD WIZARD
+		$scope.queueCardPage = {
+			name: 'Occasion'
+		};
+
 		/**
 		 * 			FILTER RECIPIENTS FUNCTIONALITY
 		 */
@@ -94,6 +99,7 @@
 		 $scope.queueCard = function() {
 		 	if ($scope.selectedRecipientIDs.length > 0) {
 		 		$scope.myPeopleState = "Queue Wizard";
+		 		$scope.queueCardPage.name = "Occasion";
 		 		console.log("aww yeah sending card!");
 		 		console.log($scope.selectedRecipientIDs);
 		 	}
