@@ -281,6 +281,12 @@
 		// MY PEOPLE
 		.my_people_container, .occasions_container {
 
+			
+	  	// queue wizard specific part of my people
+			.queue_wizard_container {
+				border: 2px solid $login_red;
+			}
+
 			// full-page recipient form to be used on mobile!
 		  .recipient_form_container {
 		  	position: absolute;

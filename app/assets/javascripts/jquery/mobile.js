@@ -48,6 +48,11 @@ function ScaleContentToDevice() {
    var contentheight = viewportHeight - headerHeight - footerHeight - contentMargins;
 
    content.height(contentheight);
+
+   // queue wizard container doesn't include footer
+   var content = $(".queue_wizard_container:visible");
+   var height = content.height() - 84;
+   content.height(height);
 }
 
 

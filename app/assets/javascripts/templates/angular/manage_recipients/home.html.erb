@@ -4,12 +4,16 @@
 	 <div class="main_header" ui-view="header"></div>
 	</header>
 
-	<div class="col-md-12 col-xs-12 my_people page_container" ng-hide="addPersonActive">
+	<div class="col-md-12 col-xs-12 my_people page_container" ng-show="myPeopleState == 'Card View'">
 		<div class="my_people_view page_view" ui-view="card_view"></div>
 	</div>
 
-	<div class="col-xs-12 recipient_form_container page_container" ng-show="addPersonActive">
+	<div class="col-xs-12 recipient_form_container page_container" ng-show="myPeopleState == 'Recipient Form'">
 		<div class="recipient_form_view page_view" ui-view="recipient_form"></div>
+	</div>
+
+	<div class="col-xs-12 recipient_form_container queue_wizard_container page_container" ng-show="myPeopleState == 'Queue Wizard'" ng-controller="QueueCardController" ng-class="{'active': myPeopleState == 'Queue Wizard'}">
+		<div class="recipient_form_view page_view" ui-view="queue_card_wizard"></div>
 	</div>
 
 	<div class="footer_bar" id="mobile_footer">
@@ -20,7 +24,7 @@
 		<div class="main_footer" ui-view="recipient_form_footer"></div>
 	</div>
 
-	<div class="footer_bar" id="mobile_footer" ng-show="queueCardState">
+	<div class="footer_bar" id="mobile_footer" ng-show="queueCardState && myPeopleState == 'Card View'">
 		<div class="main_footer" ui-view="queue_card_footer"></div>
 	</div>
 

@@ -1,0 +1,18 @@
+(function() {
+	
+	/**
+	 * this controller is specific to the managing relationship within the "Greeting Central" module
+	 */
+	var app = angular.module('card-queue').controller("QueueCardController", function($rootScope, $location, $window, $stateParams, $scope, $state, $timeout, $modal, recipients, cards, usSpinnerService) {
+
+		// infinite scroll once this angular controller is loaded
+		ScaleContentToDevice();
+
+		headerTitle = angular.element(document.querySelector("#currentTitle"));
+		headerTitle.text("Card Queue");
+
+		$scope.currentTitle = "Card Queue";
+		
+	});
+
+})();

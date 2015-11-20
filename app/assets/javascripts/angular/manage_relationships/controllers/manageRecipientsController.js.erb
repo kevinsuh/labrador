@@ -93,6 +93,7 @@
 		 // the button to actually queue your cards
 		 $scope.queueCard = function() {
 		 	if ($scope.selectedRecipientIDs.length > 0) {
+		 		$scope.myPeopleState = "Queue Wizard";
 		 		console.log("aww yeah sending card!");
 		 		console.log($scope.selectedRecipientIDs);
 		 	}
@@ -112,7 +113,11 @@
 		$scope.deletePersonActive = false;
 		$scope.searchPersonActive = false;
 
+		$scope.myPeopleState = "Card View"; // options are "Card View", "Recipient Form", "Queue Wizard"
+
 		$scope.editPersonToggle = function(recipient) {
+
+			$scope.myPeopleState = "Recipient Form";
 
 			$scope.isNewRecipient = false;
 			$scope.selectedRecipient = recipient;
@@ -135,6 +140,8 @@
 		}			
 
 		$scope.addPersonToggle = function() {
+
+			$scope.myPeopleState = "Recipient Form";
 
 			// disabled if currently on recipient_form
 			if ($scope.addPersonActive) {
@@ -437,6 +444,8 @@
 					$scope.addPersonActive = false;
 					$scope.deletePersonActive = false;
 					$scope.searchPersonActive = false;
+
+					$scope.myPeopleState = "Card View";
 	      })
 	      .error(function(data) {
           console.log("error in create recipient submit modal");
@@ -458,6 +467,8 @@
 					$scope.addPersonActive = false;
 					$scope.deletePersonActive = false;
 					$scope.searchPersonActive = false;
+
+					$scope.myPeopleState = "Card View";
 				})
 				.error(function(data) {
 					console.log("error in update recipient modal");
@@ -475,6 +486,8 @@
 			$scope.addPersonActive = false;
 			$scope.deletePersonActive = false;
 			$scope.searchPersonActive = false;
+
+			$scope.myPeopleState = "Card View";
 		}
 
 		/**
