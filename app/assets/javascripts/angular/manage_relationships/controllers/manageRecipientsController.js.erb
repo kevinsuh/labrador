@@ -450,8 +450,11 @@
 					$scope.deletePersonActive = false;
 					$scope.searchPersonActive = false;
 
+					// we only keep the selected recipient so that we know which photo to attach to the recipient after!
 					$scope.myPeopleState = "Card View";
 					$scope.image.myCroppedImage = " ";
+					$scope.selectedRecipient.occasions = [];
+					$scope.selectedRecipient.addresses = [];
 	      })
 	      .error(function(data) {
           console.log("error in create recipient submit modal");
@@ -474,8 +477,11 @@
 					$scope.deletePersonActive = false;
 					$scope.searchPersonActive = false;
 
+					// reset this "template"
 					$scope.myPeopleState = "Card View";
 					$scope.image.myCroppedImage = " ";
+					$scope.selectedRecipient.occasions = [];
+					$scope.selectedRecipient.addresses = [];
 				})
 				.error(function(data) {
 					console.log("error in update recipient modal");
