@@ -12,6 +12,7 @@
 
 			.queue_wizard_container {
 				z-index:99999;
+				padding: 0;
 				/**
 				 * 	general settings
 				 */
@@ -35,7 +36,7 @@
 					text-align: center;
 					.title {
 						margin: 0;
-						font-size: 24px;
+						font-size: 18px;
 						line-height: 28px;
 						font-weight: 400 !important;
 					}
@@ -43,38 +44,49 @@
 				.back_container {
 					position: absolute;
 					left: 20px;
-					width: 40px;
+					width: 32px;
 					height: 32px;
 					border: 1px solid $no_button_grey;
 					border-radius: 4px;
 					color: $no_button_grey;
 					padding: 5px;
-					padding-left: 12px;
+					padding-left: 9px;
 				}
 
 				/**
-				 * 	the cards of occasions section
+				 * 	the cards in queue wizard section
 				 */
-				.occasions_container {
+				.occasions_container, .colors_container {
 					margin-top: 20px;
-					padding-left: 30px;
-					padding-right: 30px;
-					.occasion_container {
+					padding-left: 25px;
+					padding-right: 25px;
+					.occasion_container, .color_container {
 						display: table;
-						margin-bottom: 20px;
+						padding: 8px;
 						.title_container {
 							color: $no_button_grey;
-							font-size: 20px;
+							font-size: 14px;
 							line-height: 23px;
 							font-weight: 400;
 						}	
 
 						.occasion_card {
-							height: 140px;
+							height: 100px;
 							border: 2px solid $no_button_grey;
-							border-radius: 16px;
+							border-radius: 12px;
 							display: table-cell;
 							vertical-align: middle;
+						}
+					}
+				}
+
+				.colors_container {
+					.color_container {
+						.color_card {
+							height: 100px;
+							display: table-cell;
+							border-radius: 12px;
+							background-color: red;
 						}
 					}
 				}

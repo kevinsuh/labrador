@@ -10,11 +10,21 @@
 
 		// get all the selected recipients and their occasions
 		$scope.recipientOccasions = occasions.currentOccasions; // this is just all of your occasions which is obviously incorrect
+		$scope.cardColors = ['Red', 'Beige', 'Light Purple'];
+
+		// start with occasion state
+		$scope.queueCardPage = {
+			name: 'Occasion'
+		};
 		
 		// select the occasion
 		$scope.selectOccasion = function(occasion) {
 			console.log($scope.selectedRecipientIDs);
 			console.log("yay occasion selected!");
+			console.log(occasion.occasion.name);
+
+			// next page
+			$scope.queueCardPage.name = "Color";
 		}
 
 		
