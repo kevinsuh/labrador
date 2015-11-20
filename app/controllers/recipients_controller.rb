@@ -99,11 +99,11 @@ class RecipientsController < ApplicationController
     puts params.inspect
 
     # 3) update recipient addresses
+    
+    # delete all addresses then insert
+    recipient.addresses.delete_all
     addresses = params[:addresses]
     if addresses
-
-      # delete all addresses then insert
-      recipient.addresses.delete_all
 
       primary_set = false
       addresses.each do |address|
@@ -127,11 +127,10 @@ class RecipientsController < ApplicationController
 
     # 4) save recipient occasions
     # our update will be to delete all occasions then create new ones
+    
+    recipient.occasions.delete_all # delete all then re-insert
     occasions = params[:occasions]
-
     if occasions
-
-      recipient.occasions.delete_all
       occasions.each do |occasion|
 
         occasion_id = occasion[:recipient_occasion][:occasion_id]

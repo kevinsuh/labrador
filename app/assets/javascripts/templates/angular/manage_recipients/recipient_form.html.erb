@@ -119,9 +119,6 @@ end
 					<h3 class="recipient_form_title address_title">Address</h3>
 				</div>
 
-				<!-- <div class="row address_title">
-					<h6 ng-if="recipient.id" class="last_updated">Last Updated: {{recipient.primary_address.updated_at | date:'MM/dd/yy'}}</h6>
-				</div> -->
 				<div class="addresses_body">
 
 					<div class="row existing_addresses_container" ng-repeat="address in selectedRecipient.addresses">
@@ -175,26 +172,26 @@ end
 
 						<div class="street_container form_input_container">
 							<div class="street form_input">
-					      <input class="street_input recipient_form_input" ng-model="newRecipientAddress.street" type="text" placeholder="Address Line 1"/>
+					      <input class="street_input recipient_form_input" ng-model="newRecipientAddress.recipient_address.street" type="text" placeholder="Address Line 1"/>
 					    </div>
 						</div>
 
 						<div class="street_container form_input_container">
 							<div class="street form_input">
-					      <input class="street_input recipient_form_input" ng-model="newRecipientAddress.suite" type="text" placeholder="Address Line 2"/>
+					      <input class="street_input recipient_form_input" ng-model="newRecipientAddress.recipient_address.suite" type="text" placeholder="Address Line 2"/>
 					    </div>
 						</div>
 
 						<div class="address_other form_input_container form_field">
 							<div class="city field">
 								<div class="form_input">
-						      <input class="recipient_form_input city_input" ng-model="newRecipientAddress.city" type="text" placeholder="City"/>
+						      <input class="recipient_form_input city_input" ng-model="newRecipientAddress.recipient_address.city" type="text" placeholder="City"/>
 						    </div>
 							</div>
 
 							<div class="state field">
 								<div class="form_input">
-									<select class="recipient_form_input select_input state_input" ng-model="newRecipientAddress.state">
+									<select class="recipient_form_input select_input state_input" ng-model="newRecipientAddress.recipient_address.state">
 							  		<option value="">ST</option>
 							  		<% us_states.each { |state, abrv| %>
 							  			<option value="<%= state %>"><%= abrv %></option>
@@ -206,7 +203,7 @@ end
 
 							<div class="zipcode field">
 								<div class="form_input">
-						      <input class="zipcode_input recipient_form_input" ng-model="newRecipientAddress.zipcode" type="text" placeholder="Zip"/>
+						      <input class="zipcode_input recipient_form_input" ng-model="newRecipientAddress.recipient_address.zipcode" type="text" placeholder="Zip"/>
 						    </div>
 							</div>
 						</div>

@@ -60,18 +60,20 @@
 		// new occasion defaulted to birthday
 		// contains id, day, month, notes
 		$scope.newRecipientOccasion = {
-			newOccasion: true,
 			recipient_occasion: {
+				newOccasion: true,
 				occasion_id: 7
 			}
 		};
-		$scope.newRecipientOccasionTemplate = angular.copy($scope.newRecipientOccasion);
+		$scope.newRecipientOccasionTemplate = angular.copy($scope.newRecipientOccasion.recipient_occasion);
 
 		// new address
 		$scope.newRecipientAddress = {
-			newAddress: true
+			recipient_address: {
+				newAddress: true
+			}
 		};
-		$scope.newRecipientAddressTemplate = angular.copy($scope.newRecipientAddress);
+		$scope.newRecipientAddressTemplate = angular.copy($scope.newRecipientAddress.recipient_address);
 
 		// by default set to new recipient
 		$scope.isNewRecipient = true;
@@ -132,9 +134,9 @@
 				myCroppedImage: " "
 			};
 
-			// reset the "new" form inputs just in case
-			$scope.newRecipientAddress = angular.copy($scope.newRecipientAddressTemplate);
-			$scope.newRecipientOccasion = angular.copy($scope.newRecipientOccasionTemplate);
+			// reset the final add forms when editing recipient
+			$scope.newRecipientOccasion.recipient_occasion = angular.copy($scope.newRecipientOccasionTemplate);
+			$scope.newRecipientAddress.recipient_address = angular.copy($scope.newRecipientAddressTemplate);
 
 			// create backups in case user cancels
 			$scope.selectedRecipientTemplate = angular.copy($scope.selectedRecipient);
@@ -156,7 +158,14 @@
 
 			// this will also lead to new recipient form
 			$scope.isNewRecipient = true;
-			$scope.selectedRecipient = angular.copy($scope.newRecipientTemplate);			
+			$scope.selectedRecipient = angular.copy($scope.newRecipientTemplate);	
+
+			// reset the new recipient form with templates when adding new
+			$scope.image.myCroppedImage = " ";
+			$scope.selectedRecipient.occasions = [];
+			$scope.selectedRecipient.addresses = [];
+			$scope.newRecipientOccasion.recipient_occasion = angular.copy($scope.newRecipientOccasionTemplate);
+			$scope.newRecipientAddress.recipient_address = angular.copy($scope.newRecipientAddressTemplate);
 
 			// create backups in case user cancels
 			$scope.selectedRecipientTemplate = angular.copy($scope.selectedRecipient);
@@ -423,14 +432,15 @@
 			isNewRecipient = $scope.isNewRecipient;
 			fileUploader = $scope.uploader;
 
-			// // get most recent occasion/ address if it is filled out
-			// occasions = angular.copy($scope.recipientOccasions);
-			// addresses = angular.copy($scope.recipientAddresses);
-			if ($scope.newRecipientOccasion.recipient_occasion.month && $scope.newRecipientOccasion.recipient_occasion.day) {
+			// this is for if the last "form" is filled out when user hits save button before hitting the "add address" or "add occasion" button
+			newOccasion = $scope.newRecipientOccasion.recipient_occasion;
+			newAddress = $scope.newRecipientAddress.recipient_address;
+
+			if (newOccasion.month && newOccasion.day) {
 				recipient.occasions.push($scope.newRecipientOccasion);
 			}
-			if ($scope.newRecipientAddress.street && $scope.newRecipientAddress.city && $scope.newRecipientAddress.state && $scope.newRecipientAddress.zipcode) {
-				recipient.addresses.push($scope.newRecipientAddress);
+			if (newAddress.street && newAddress.city && newAddress.state && newAddress.zipcode) {
+				recipient.addresses.push(newAddress);
 			}
 
 			if (isNewRecipient) { // create
@@ -450,11 +460,8 @@
 					$scope.deletePersonActive = false;
 					$scope.searchPersonActive = false;
 
-					// we only keep the selected recipient so that we know which photo to attach to the recipient after!
 					$scope.myPeopleState = "Card View";
-					$scope.image.myCroppedImage = " ";
-					$scope.selectedRecipient.occasions = [];
-					$scope.selectedRecipient.addresses = [];
+					
 	      })
 	      .error(function(data) {
           console.log("error in create recipient submit modal");
@@ -477,11 +484,7 @@
 					$scope.deletePersonActive = false;
 					$scope.searchPersonActive = false;
 
-					// reset this "template"
 					$scope.myPeopleState = "Card View";
-					$scope.image.myCroppedImage = " ";
-					$scope.selectedRecipient.occasions = [];
-					$scope.selectedRecipient.addresses = [];
 				})
 				.error(function(data) {
 					console.log("error in update recipient modal");
