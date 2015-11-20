@@ -52,6 +52,18 @@
 		    makeStateActive($scope.currentState);
 		  });
 
+		// custom function to return days from today -- of next calendar year
+		$scope.daysFromToday = function(month, day) {
+			
+			today = new Date();
+			daysFromToday = daydiff(today, parseDateForNextOccasion(month, day));
+			if (daysFromToday > 1) {
+				return daysFromToday + " days";
+			} else {
+				return daysFromToday + " day";
+			}
+		}
+
 		/**
 		 * 		OCCASIONS FOOTER
 		 */

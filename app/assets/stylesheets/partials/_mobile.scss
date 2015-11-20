@@ -795,10 +795,14 @@
 
 		// OCCASIONS
 		.occasions_container {
-
 			.occasions {
 				padding: 0;
 				.occasions_view {
+
+					position: relative;
+					overflow-x: hidden;
+					overflow-y: scroll;
+					padding-bottom: $footer_height;
 
 					.occasions_list_container { // the actual container holding the table / rows of occasions
 						display: table;
@@ -816,11 +820,24 @@
 									width: 75%;
 									text-align: left;
 									padding: 25px 15px;
+									.occasion_title {
+										font-weight: 500;
+										font-size: 24px;
+										line-height: 28px;
+									}
+									.recipient_name {
+										font-weight: 300;
+										font-size: 20px;
+										line-height: 23px;
+									}
 								}
 								&.date_container {
 									width: 25%;
 									text-align: right;
 									padding-right: 20px;
+									font-size: 16px;
+									line-height: 19px;
+									font-weight: 400;
 								}
 							}
 						}

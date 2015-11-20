@@ -1,10 +1,15 @@
 <div class="occasions_list_container">
 	<div class="occasion_row" ng-repeat="occasion in currentOccasions" ng-class="{'selected': isInArray(occasion.id, selectedOccasionIDs)}" ng-click="select(occasion)" ng-if="occasion.is_visible == 1">
 		<div class="description_container occasion_detail">
-			{{occasion.occasion.name}} for {{recipientFullName(occasion.recipient)}} 
+			<div class="occasion_title">
+				{{occasion.recipient.first_name}}'s {{occasion.occasion.name}}
+			</div>
+			<div class="recipient_name">
+				{{recipientFullName(occasion.recipient)}} 
+			</div>
 		</div>
 		<div class="date_container occasion_detail">
-			{{occasion.month}} / {{occasion.day}}
+			in {{daysFromToday(occasion.month, occasion.day)}}
 		</div>
 	</div>
 </div>
