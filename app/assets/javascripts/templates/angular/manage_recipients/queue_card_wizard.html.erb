@@ -1,7 +1,8 @@
 <div class="wizard_body">
 
-	<div class="occasion_section" ng-show="queueCardPage.name == 'Occasion'">
-		<div class="row title_row">
+	<div class="row title_row">
+		<!-- occasion title -->
+		<div ng-show="queueCardPage.name == 'Occasion'">
 			<div class="inner_container back_container" ng-click="resetMyPeopleState()">
 				<i class="glyphicon glyphicon-menu-left"/>
 			</div>
@@ -9,8 +10,20 @@
 				<h3 class="title">What's the Occasion?</h3>
 			</div>
 		</div>
+		<!-- color title -->
+		<div ng-show="queueCardPage.name == 'Color'">
+			<div class="inner_container back_container" ng-click="queueCardPage.name = 'Occasion'">
+				<i class="glyphicon glyphicon-menu-left"/>
+			</div>
+			<div class="inner_container title_container">
+				<h3 class="title">Choose a color!</h3>
+			</div>
+		</div>
+	</div>
 
-		<div class="occasions_container">
+	<div class="section">
+
+		<div class="occasions_container body" ng-show="queueCardPage.name == 'Occasion'">
 			<div class="col-xs-6 occasion_container" ng-repeat="occasion in recipientOccasions">
 				<div class="occasion_card" ng-click="selectOccasion(occasion)">
 					<div class="title_container">
@@ -19,25 +32,16 @@
 				</div>
 			</div>
 		</div>
-	</div>
 
-	<div class="color_section" ng-show="queueCardPage.name == 'Color'">
-		<div class="row title_row">
-			<div class="inner_container back_container" ng-click="queueCardPage.name = 'Occasion'">
-				<i class="glyphicon glyphicon-menu-left"/>
-			</div>
-			<div class="inner_container title_container">
-				<h3 class="title">Choose a color!</h3>
-			</div>
-		</div>
-
-		<div class="colors_container">
+		<div class="colors_container body" ng-show="queueCardPage.name == 'Color'">
 			<div class="col-xs-6 color_container" ng-repeat="color in cardColors">
 				<div class="color_card" ng-click="selectColor(color)">
 				</div>
 			</div>
 		</div>
+			
+		</div>
+
 	</div>
-	
 
 </div>

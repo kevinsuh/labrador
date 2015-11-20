@@ -16,6 +16,15 @@
 		$scope.queueCardPage = {
 			name: 'Occasion'
 		};
+
+		$scope.testHide = function() {
+			if ($scope.queueCardPage.name == "Occasion") {
+				$scope.queueCardPage.name = 'Color';	
+			} else {
+				$scope.queueCardPage.name = 'Occasion';
+			}
+			
+		}
 		
 		// select the occasion
 		$scope.selectOccasion = function(occasion) {
