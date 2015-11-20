@@ -8,8 +8,13 @@
 		// infinite scroll once this angular controller is loaded
 		ScaleContentToDevice();
 
-
+		// get all the selected recipients and their occasions
+		$scope.recipientOccasions = ["Birthday", "Friendaversary", "Holiday", "Another Occasion"];
 		
+		// select the occasion
+		$scope.selectOccasion = function(occasion) {
+			console.log("yay occasion selected!");
+		}
 		
 	});
 

@@ -12,7 +12,7 @@
 		<div class="recipient_form_view page_view" ui-view="recipient_form"></div>
 	</div>
 
-	<div class="col-xs-12 recipient_form_container queue_wizard_container page_container" ng-show="myPeopleState == 'Queue Wizard'" ng-controller="QueueCardController" ng-class="{'active': myPeopleState == 'Queue Wizard'}">
+	<div class="col-xs-12 queue_wizard_container page_container" ng-show="myPeopleState == 'Queue Wizard'" ng-controller="QueueCardController" ng-class="{'active': myPeopleState == 'Queue Wizard'}">
 		<div class="recipient_form_view page_view" ui-view="queue_card_wizard"></div>
 	</div>
 

@@ -1,0 +1,86 @@
+@import "base";
+
+// for iphone portrait views!
+@media only screen and (max-device-width: 2600px) {
+
+	
+	// angular app POST-LOGIN
+	.container.main_page .cardagain {
+
+		// MY PEOPLE
+		.my_people_container, .occasions_container {
+
+			.queue_wizard_container {
+
+				/**
+				 * 	general settings
+				 */
+				.row {
+					margin: 0;
+				}
+
+				.inner_container {
+					display: inline-block;
+				}
+
+				.title_row {
+					margin-top: 20px;
+				}
+
+				/**
+				 * 	specific containers
+				 */
+				.title_container {
+					width: 100%;
+					text-align: center;
+					.title {
+						margin: 0;
+						font-size: 24px;
+						line-height: 28px;
+						font-weight: 400 !important;
+					}
+				}
+				.back_container {
+					position: absolute;
+					left: 20px;
+					width: 40px;
+					height: 32px;
+					border: 1px solid $no_button_grey;
+					border-radius: 4px;
+					color: $no_button_grey;
+					padding: 5px;
+					padding-left: 12px;
+				}
+
+				/**
+				 * 	the cards of occasions section
+				 */
+				.occasions_container {
+					margin-top: 20px;
+					padding-left: 30px;
+					padding-right: 30px;
+					.occasion_container {
+						display: table;
+						margin-bottom: 20px;
+						.title_container {
+							color: $no_button_grey;
+							font-size: 20px;
+							line-height: 23px;
+							font-weight: 400;
+						}	
+
+						.occasion_card {
+							height: 140px;
+							border: 2px solid $no_button_grey;
+							border-radius: 16px;
+							display: table-cell;
+							vertical-align: middle;
+						}
+					}
+				}
+			}
+
+		}
+	}
+
+}
