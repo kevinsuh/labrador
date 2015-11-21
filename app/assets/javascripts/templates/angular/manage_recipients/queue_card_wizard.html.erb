@@ -24,10 +24,19 @@
 	<div class="section">
 
 		<div class="occasions_container body" ng-show="queueCardPage.name == 'Occasion'">
-			<div class="col-xs-6 occasion_container" ng-repeat="occasion in recipientOccasions">
+
+			<div class="col-xs-6 occasion_container just_because">
+				<div class="occasion_card" ng-click="selectOccasion('just_because')">
+					<div class="title_container">
+						Just Because
+					</div>
+				</div>
+			</div>
+
+			<div class="col-xs-6 occasion_container" ng-repeat="occasion in occasionsForSelectedRecipients">
 				<div class="occasion_card" ng-click="selectOccasion(occasion)">
 					<div class="title_container">
-						{{occasion.occasion.name}}
+						{{occasion.occasion.name}} ({{daysFromToday(occasion.month, occasion.day)}} away)
 					</div>
 				</div>
 			</div>
@@ -39,7 +48,7 @@
 				</div>
 			</div>
 		</div>
-			
+
 		</div>
 
 	</div>

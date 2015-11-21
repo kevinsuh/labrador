@@ -9,17 +9,7 @@
 		ScaleContentToDevice();
 
 		// get all the selected recipients and their occasions
-		$scope.recipientOccasions = occasions.currentOccasions; // this is just all of your occasions which is obviously incorrect
 		$scope.cardColors = ['Red', 'Beige', 'Light Purple'];
-
-		$scope.testHide = function() {
-			if ($scope.queueCardPage.name == "Occasion") {
-				$scope.queueCardPage.name = 'Color';	
-			} else {
-				$scope.queueCardPage.name = 'Occasion';
-			}
-			
-		}
 		
 		// select the occasion
 		$scope.selectOccasion = function(occasion) {
@@ -27,8 +17,22 @@
 			console.log("yay occasion selected!");
 			console.log(occasion.occasion.name);
 
+			console.log($scope.occasionsForSelectedRecipients);
+
 			// next page
 			$scope.queueCardPage.name = "Color";
+		}
+
+		// custom function to return days from today -- of next calendar year
+		$scope.daysFromToday = function(month, day) {
+			
+			today = new Date();
+			daysFromToday = daydiff(today, parseDateForNextOccasion(month, day));
+			if (daysFromToday > 1) {
+				return daysFromToday + " days";
+			} else {
+				return daysFromToday + " day";
+			}
 		}
 
 		

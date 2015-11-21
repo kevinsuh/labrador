@@ -6,7 +6,7 @@
     var o = {
       currentOccasions: [], // one array of all occasions associated with the user
       currentOccasionsByRecipient: [], // segmented by the recipient. an array of array of recipient_occasion objects,
-      occasionsForSelectedRecipients: [],
+      occasionsForSelectedRecipients: [], // this is for the queue wizard flow -- get all the occasions related to the recipients you selected
       newOccasion: {
         day: "",
         month: "",
@@ -50,7 +50,7 @@
 
     // return occasion for passed in recipient ID's
     o.occasionsForRecipientIDs = function(recipientIDs) {
-
+      return $http.post("occasions/occasions_for_recipients.json", {recipient_ids: recipientIDs})
     }
 
     o.createOccasion = function(occasion) {

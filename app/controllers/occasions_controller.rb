@@ -23,6 +23,14 @@ class OccasionsController < ApplicationController
     end
   end
 
+  def occasions_for_recipients
+    recipient_ids = params[:recipient_ids]
+    recipient_occasions = RecipientOccasion.where("recipient_id IN (:recipient_ids)", recipient_ids: recipient_ids)
+    respond_to do |format|
+      format.json { render json: recipient_occasions }
+    end
+  end
+
   def create_for_current
   	
   	# get necessary params

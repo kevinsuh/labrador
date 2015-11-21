@@ -3,7 +3,7 @@
 	/**
 	 * this controller is specific to the managing relationship within the "Greeting Central" module
 	 */
-	var app = angular.module('card-queue').controller("ManageRecipientsController", function($rootScope, $location, $window, $stateParams, $scope, $state, $timeout, $modal, recipients, cards, usSpinnerService, FileUploader) {
+	var app = angular.module('card-queue').controller("ManageRecipientsController", function($rootScope, $location, $window, $stateParams, $scope, $state, $timeout, $modal, recipients, cards, occasions, usSpinnerService, FileUploader) {
 
 		// infinite scroll once this angular controller is loaded
 		ScaleContentToDevice();
@@ -102,8 +102,12 @@
 		 	if ($scope.selectedRecipientIDs.length > 0) {
 		 		$scope.myPeopleState = "Queue Wizard";
 		 		$scope.queueCardPage.name = "Occasion";
-		 		console.log("aww yeah sending card!");
-		 		console.log($scope.selectedRecipientIDs);
+
+		 		// get the occasions for selected recipients
+		 		occasions.occasionsForRecipientIDs($scope.selectedRecipientIDs).success(function(data) {
+	        occasions.occasionsForSelectedRecipients = data.occasions;
+	        $scope.occasionsForSelectedRecipients = data.occasions;
+	      });
 		 	}
 		 }
 

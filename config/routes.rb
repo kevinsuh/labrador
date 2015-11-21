@@ -51,6 +51,7 @@ Rails.application.routes.draw do
   get 'relationships/get_relationships'
   get 'occasions/get_occasions'
   get 'occasions/get_current_occasions'
+  post 'occasions/occasions_for_recipients'
   post 'occasions/create_for_current'
   post 'occasions/update_for_current'
   post 'occasions/delete_for_current'
