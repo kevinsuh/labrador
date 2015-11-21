@@ -311,8 +311,9 @@
 						}
 					}
 				});
-				// remove that delete active button
+				// remove that delete active button and reset "selected" recipients
 				$scope.deletePersonActive = false;
+				$scope.selectedRecipientIDs = [];
 			})
 			.error(function(data) {
 				console.log("error in delete selected recipients of manage recipients controller");

@@ -68,12 +68,13 @@
 							padding-left: 25px;
 							padding-right: 25px;
 
-							&.ng-hide-remove {
-								@include animation(slideInRight 0.5s both ease);
-							}
-							&.ng-hide-add {
-								@include animation(slideOutLeft 0.5s both ease);
-							}	
+							// animation not working on obile right now
+							// &.ng-hide-remove {
+							// 	@include animation(slideInRight 0.5s both ease);
+							// }
+							// &.ng-hide-add {
+							// 	@include animation(slideOutLeft 0.5s both ease);
+							// }
 
 							.occasion_container, .color_container {
 								display: table;
