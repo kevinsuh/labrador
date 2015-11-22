@@ -80,14 +80,24 @@ end
 
 					<!-- image cropper controller start -->
 					<div class="profile_picture_container">
+
+						<!-- this is the final profile picture on recipient form page -->
 						<div class="profile_picture" id="recipientPicture" ng-hide="activeRecipientImage">
 							<i class="camera_icon"></i> <!-- the camera overlay icon -->
 							<img class="image" ng-src="{{selectedRecipient.profile_picture}}" ng-hide="recipientImage && !selectedRecipient.profile_picture">
 							<img class="image" ng-src="{{image.myCroppedImage}}" />
 						</div>
 
+						<!-- this is the separate page to show the cropped image -->
 						<div class="crop_picture_container" ng-show="activeRecipientImage">
 							<input class="picture_upload" nv-file-select type="file" uploader="uploader" id="fileInput" style="display: none;"/>
+
+							<!-- spinner that will go away upon image load -->
+							<div class="spinner_container" style="position: relative; margin-top: 80px;" ng-hide="recipientImage">
+								<span class="card-spinner" us-spinner spinner-key="recipient-image-load-spinner"></span>
+							</div>
+
+							<!-- div shows upon image load -->
 							<div class="potential_crop_area" ng-show="recipientImage">
 								<div class="cropArea">
 							    <img-crop image="recipientImage" result-image="image.myCroppedImage" area-min-size="60"></img-crop>

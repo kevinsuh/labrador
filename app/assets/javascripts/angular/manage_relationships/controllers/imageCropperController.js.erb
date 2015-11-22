@@ -1,6 +1,6 @@
 (function() {
 
-    angular.module('card-queue').controller("ImageCropperCtrl", function($scope)
+    angular.module('card-queue').controller("ImageCropperCtrl", function($scope, usSpinnerService)
     {
     	// scope.recipients, scope.recipient, scope.uploader passed in from outer controller of recipient modal form
       
@@ -48,10 +48,12 @@
         fileInput.val("");
 
       	var reader = new FileReader();
+        $scope.activeRecipientImage = true; // this is what goes to the page
+        usSpinnerService.spin('recipient-image-load-spinner');
       	reader.onload = function(event) {
       		$scope.$apply(function() {
+            usSpinnerService.stop('recipient-image-load-spinner');
       			$scope.recipientImage = event.target.result;
-            $scope.activeRecipientImage = true;
       		});
       	};
       	reader.readAsDataURL(item._file);
