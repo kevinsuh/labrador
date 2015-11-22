@@ -1,57 +1,149 @@
-<div class="row" style="margin-bottom:200px;">
+<div class="personal_info_container">
+	<div class="title_container">
+		<h2 class="settings_font">EDIT PERSONAL INFO</h2>
+		<i class="glyphicon glyphicon-menu-right edit_settings"/>
+	</div>
 
-	<div class="col-xs-7">
-		<div class="title">
-			<h4>Account Settings</h4>
-		</div>
-		<hr>
-		<div class="row name">
-			<div class="col-xs-3">
-				<h6 class="property">Name</h6>
+	<div class="body_container">
+
+		<div class="single_row">
+			<div class="category_container">
+				<h3 class="category_font">
+					Name
+				</h3>
 			</div>
-			<div class="col-xs-9">
-				<h6 class="value">{{currentUser.first_name}} {{currentUser.last_name}}</h6>
-			</div>
-		</div>
-		<div class="row email">
-			<div class="col-xs-3">
-				<h6 class="property">Email</h6>
-			</div>
-			<div class="col-xs-9">
-				<h6 class="value">{{currentUser.email}}</h6>
+			<div class="info_container">
+				<h3 class="info_font">
+					Benjamin Xue
+				</h3>
 			</div>
 		</div>
-		<div class="row password">
-			<div class="col-xs-3">
-				<h6 class="property">Password</h6>
+
+		<div class="single_row">
+			<div class="category_container">
+				<h3 class="category_font">
+					Email
+				</h3>
 			</div>
-			<div class="col-xs-9">
-				<h6 class="value">*********</h6>
-			</div>
-		</div>
-		<div class="row address">
-			<div class="col-xs-3">
-				<h6 class="property">Address</h6>
-			</div>
-			<div class="col-xs-9">
-				<h6 class="value">{{currentUser.primary_address.street}}</h6>
-				<h6 class="value">{{currentUser.primary_address.city}}, {{currentUser.primary_address.state | stateAbbreviation}} {{currentUser.primary_address.zipcode}}</h6>
+			<div class="info_container">
+				<h3 class="info_font">
+					bxue92@gmail.com
+				</h3>
 			</div>
 		</div>
-		<div class="row birthday">
-			<div class="col-xs-3">
-				<h6 class="property">Birthday</h6>
+
+		<div class="single_row">
+			<div class="category_container">
+				<h3 class="category_font">
+					Password
+				</h3>
 			</div>
-			<div class="col-xs-9">
-				<h6 class="value">{{currentUser.birthday}}</h6>
+			<div class="info_container">
+				<h3 class="info_font">
+					********
+				</h3>
 			</div>
 		</div>
-		<div class="row logout">
-			<div class="col-xs-3">
-				<a style="cursor: pointer; margin-bottom:20px; z-index:9999999;" ng-click="logOut()">Log Out</a>
+
+		<div class="single_row">
+			<div class="category_container">
+				<h3 class="category_font">
+					Phone
+				</h3>
+			</div>
+			<div class="info_container">
+				<h3 class="info_font">
+					253-310-8999
+				</h3>
+			</div>
+		</div>
+
+		<div class="single_row">
+			<div class="category_container">
+				<h3 class="category_font">
+					Address
+				</h3>
+			</div>
+			<div class="info_container">
+				<h3 class="info_font">
+					STREET STUFF...
+				</h3>
+			</div>
+		</div>	
+
+		<div class="single_row">
+			<div class="category_container">
+				<h3 class="category_font">
+					Birthday
+				</h3>
+			</div>
+			<div class="info_container">
+				<h3 class="info_font">
+					February 12, 1992
+				</h3>
 			</div>
 		</div>
 
 	</div>
+</div>
 
+<div class="payment_info_container">
+	<div class="title_container">
+		<h2 class="settings_font">EDIT PAYMENT INFO</h2>
+		<i class="glyphicon glyphicon-menu-right edit_settings"/>
+	</div>
+
+	<div class="body_container">
+
+		<div class="single_row">
+			<div class="category_container">
+				<h3 class="category_font">
+					Payment
+				</h3>
+			</div>
+			<div class="info_container">
+				<h3 class="info_font">
+					VISA KEVIN SUH **** 2281 checkmark
+				</h3>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+<div class="notification_preferences_container">
+	<div class="title_container">
+		<h2 class="settings_font">EDIT NOTIFICATION PREFERENCES</h2>
+		<i class="glyphicon glyphicon-menu-right edit_settings"/>
+	</div>
+
+	<div class="body_container">
+
+		<div class="single_row">
+			<div class="category_container">
+				<h3 class="category_font">
+					Notifications
+				</h3>
+			</div>
+			<div class="info_container">
+				<h3 class="info_font">
+					Email
+				</h3>
+			</div>
+		</div>
+
+		<div class="single_row">
+			<div class="category_container">
+				<h3 class="category_font">
+					Timing
+				</h3>
+			</div>
+			<div class="info_container">
+				<h3 class="info_font">
+					9 days before occasion, 15 days before birthdays
+				</h3>
+			</div>
+		</div>
+
+	</div>
 </div>

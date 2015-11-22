@@ -103,6 +103,11 @@ $form_black: #313131;
 $form_placeholder_grey: #979797;
 $form_input_black: #5F6164;
 
+$settings_baby_blue: #07A9D4;
+$settings_container_white_grey: #F2F2F2;
+$settings_category_grey: #C9C8CA;
+$settings_info_dark_grey: #5B5B63;
+
 @mixin base_font {
 	font-family: $base-font-family;
 	font-weight: $base-font-weight;
