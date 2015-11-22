@@ -75,7 +75,10 @@ end
 						<div ng-show="!isNewRecipient">
 							<h3 class="recipient_form_title" ng-hide="activeRecipientImage">Edit Person Info</h3>
 						</div>
-						<h3 class="recipient_form_title" ng-show="activeRecipientImage">Crop picture</h3>
+						<h3 class="recipient_form_title" ng-show="activeRecipientImage">
+							Crop picture
+							<span class="card-spinner" us-spinner="{radius:25, width: 7, lines: 15, length: 28, speed: 1.5, scale: 0.15}" spinner-key="recipient-image-load-spinner" style="position: absolute; left: 123px; top: 11px;"></span>
+						</h3>
 					</div>
 
 					<!-- image cropper controller start -->
@@ -92,13 +95,13 @@ end
 						<div class="crop_picture_container" ng-show="activeRecipientImage">
 							<input class="picture_upload" nv-file-select type="file" uploader="uploader" id="fileInput" style="display: none;"/>
 
-							<!-- div shows upon image load -->
+							<!-- div that shows croppable image -->
 							<div class="potential_crop_area">
 								<div class="cropArea">
-									<span class="card-spinner" us-spinner spinner-key="recipient-image-load-spinner" style="position: absolute; margin-top:80px;"></span>
 							    <img-crop image="recipientImage" result-image="image.myCroppedImage" area-min-size="60"></img-crop>
 							  </div>
 							</div>
+
 						</div>
 					</div>
 

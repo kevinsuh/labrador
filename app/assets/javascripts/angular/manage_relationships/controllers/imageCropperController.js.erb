@@ -1,6 +1,6 @@
 (function() {
 
-    angular.module('card-queue').controller("ImageCropperCtrl", function($scope, usSpinnerService)
+    angular.module('card-queue').controller("ImageCropperCtrl", function($scope, $timeout, usSpinnerService)
     {
     	// scope.recipients, scope.recipient, scope.uploader passed in from outer controller of recipient modal form
       
@@ -51,8 +51,12 @@
         $scope.activeRecipientImage = true; // this is what goes to the page
         usSpinnerService.spin('recipient-image-load-spinner');
       	reader.onload = function(event) {
+
+          // add half a second to spinner
       		$scope.$apply(function() {
-            usSpinnerService.stop('recipient-image-load-spinner');
+            $timeout(function() {
+              usSpinnerService.stop('recipient-image-load-spinner');
+            }, 500);
       			$scope.recipientImage = event.target.result;
       		});
       	};
