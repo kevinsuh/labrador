@@ -68,6 +68,62 @@ class UsersController < ApplicationController
     end
   end
 
+  # update users from angular post
+  def update_json
+
+    user_id      = params[:id]
+    first_name   = params[:first_name]
+    last_name    = params[:last_name]
+    email        = params[:email]
+    birth_month  = params[:birth_month]
+    birth_day    = params[:birth_day]
+    birth_year   = params[:birth_year]
+    phone_number = params[:phone_number]
+
+    # update basic attributes first
+    user = User.find(user_id)
+    user.update_attributes(
+      first_name: first_name,
+      last_name: last_name,
+      email: email,
+      birth_month: birth_month,
+      birth_day: birth_day,
+      birth_year: birth_year,
+      phone_number: phone_number
+    )
+
+    # delete all addresses then insert
+    user.addresses.destroy_all
+    addresses = params[:addresses]
+
+    primary_set = false
+    addresses.each do |address|
+
+      street = address[:street]
+      suite = address[:suite]
+      city = address[:city]
+      state = address[:state]
+      zipcode = address[:zipcode]
+      is_primary = address[:is_primary]
+
+      address = user.addresses.create(
+        first_name: first_name,
+        last_name: last_name,
+        street: street,
+        suite: suite,
+        city: city,
+        state: state,
+        zipcode: zipcode,
+        is_primary: is_primary
+        )
+    end
+    
+
+    respond_to do |format|
+      format.json { render json: user }
+    end
+  end
+
   def destroy
     user = User.find(params[:id])
     user.destroy
@@ -225,3 +281,63 @@ class UsersController < ApplicationController
     end
 
 end
+
+
+# # POTENTIAL WAY TO INSERT / UPDATE ADDRESSES WITHOUT HAVING TO DELETE THEM ALL
+
+# user_addresses = user.addresses
+
+# # iterate through each of the passed in addresses
+# # if user address is not in there, then delete it!
+# user_addresses.each do |user_address|
+
+#   address_id = user_address.id
+#   address_exists = false
+#   addresses.each do |address|
+#     if address[:id] == address_id
+#       address_exists = true
+#     end
+#   end
+
+#   unless address_exists
+#     user_address.destroy
+#   end
+# end
+# # create or update with the remaining addresses
+
+# addresses.each do |address|
+
+#   street = address[:street]
+#   suite = address[:suite]
+#   city = address[:city]
+#   state = address[:state]
+#   zipcode = address[:zipcode]
+#   is_primary = address[:is_primary]
+  
+#   # update
+#   if address_id = address[:id]
+#     address = Address.find(address_id)
+#     address.update_attributes(
+#       first_name: first_name,
+#       last_name: last_name,
+#       street: street,
+#       suite: suite,
+#       city: city,
+#       state: state,
+#       zipcode: zipcode,
+#       is_primary: is_primary
+#     )
+#   else
+#   # create
+#     address.create(
+#       first_name: first_name,
+#       last_name: last_name,
+#       street: street,
+#       suite: suite,
+#       city: city,
+#       state: state,
+#       zipcode: zipcode,
+#       is_primary: is_primary
+#     )
+#   end
+# end

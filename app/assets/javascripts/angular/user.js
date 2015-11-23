@@ -46,6 +46,11 @@
       return $http.post('/checkout/payment_cards/create_json.json', payment);
     }
 
+    // most recent iteration to update user
+    o.updateUser = function(user) {
+      return $http.post('/users/update_json.json', user);
+    }
+
     return o;    
 
   }]);

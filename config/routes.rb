@@ -111,6 +111,7 @@ Rails.application.routes.draw do
       post :validate_address
       post :create_signup
       get :get_current_user
+      post :update_json
     end
 
     member do

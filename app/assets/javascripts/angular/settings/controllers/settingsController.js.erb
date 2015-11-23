@@ -54,6 +54,24 @@
 		$scope.savePersonalInfo = function() {
 			console.log("yay saving personal info!");
 			console.log($scope.currentUser);
+
+			currentUser = $scope.currentUser;
+			newAddress  = $scope.newUserAddress.address;
+
+			if (newAddress.street && newAddress.city && newAddress.state && newAddress.zipcode) {
+				currentUser.addresses.push(newAddress);
+			}
+
+			user.updateUser(currentUser)
+			.success(function(data) {
+				currentUser = data.user;
+				$scope.currentUser = currentUser;
+				$scope.settings.displayState = "Home";
+			})
+			.error(function(data) {
+				console.log("error in update user settings");
+				console.log(data);
+			})
 		}
 
 		$scope.cancelPersonalInfo = function() {

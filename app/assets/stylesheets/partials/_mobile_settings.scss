@@ -46,6 +46,19 @@
 		}
 		.settings {
 
+			.personal_info-container {
+				float: left;
+				width: 100%;
+			}
+			.payment_info_container {
+				float: left;
+				width: 100%;
+			}
+			.notification_preferences_container {
+				float: left;
+				width: 100%;
+			}
+
 			overflow-x: hidden;
 			padding: 0 0 $footer_height 0;
 
@@ -69,6 +82,11 @@
 				float: left;
 				width: 100%;
 				margin-top: 20px;
+
+				.single_row {
+					float: left;
+					width: 100%;
+				}
 
 				// name, email, password, etc.
 				.category_container {
