@@ -56,6 +56,23 @@ def us_states
   ]
 end
 
+def months
+  [
+    [1, 'January'],
+    [2, 'February'],
+    [3, 'March'],
+    [4, 'April'],
+    [5, 'May'],
+    [6, 'June'],
+    [7, 'July'],
+    [8, 'August'],
+    [9, 'September'],
+    [10, 'October'],
+    [11, 'November'],
+    [12, 'December']
+  ]
+end
+
 %>
 
 <!-- unique modal form each time you open -->
@@ -134,7 +151,13 @@ end
 				<div class="birthday_input_container">
 					<div class="month_container form_input_container">
 						<div class="form_input">
-				      <input class="recipient_form_input" ng-model="currentUser.birth_month" type="text" placeholder="Month"/>
+							<select class="recipient_form_input select_input state_input" ng-model="currentUser.birth_month">
+					  		<option value="">Month</option>
+					  		<% months.each { |num, name| %>
+					  			<option value="<%= num %>"><%= name %></option>
+								<% } %>
+					  	</select>
+					  	<i class="glyphicon glyphicon-menu-down month_menu_down"></i>
 				    </div>
 					</div>
 					<div class="day_container form_input_container">
@@ -163,7 +186,7 @@ end
 		</div>
 	</div>
 
-	<div class="modal-body settings_modal_body modal_body">
+	<div class="modal-body settings_modal_body addresses_modal_body modal_body">
 		<div class="body">
 			<div class="addresses_body">
 

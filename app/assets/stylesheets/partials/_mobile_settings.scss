@@ -106,7 +106,6 @@
 					height: 70px;	
 				}
 				.recipient_info {
-					z-index: 999999;
 					.title_container {
 						margin-top: 23px;
 						.back_button {
@@ -125,7 +124,10 @@
 			}
 			.modal-body {
 				&.settings_modal_body {
-					padding-bottom: 20px;	
+					padding-bottom: 20px;
+					&.addresses_modal_body {
+						padding-bottom: $footer_height;
+					}	
 				}
 				
 				.body {
@@ -161,16 +163,23 @@
 							width: 100%;
 							.month_container {
 								float: left;
-								width: 43%;
+								width: 51%;
+								.month_menu_down {
+									position: absolute;
+									left: 86%;
+									top: 12px;
+									color: $form_placeholder_grey;
+									z-index: -1;
+								}
 							}
 							.day_container {
 								float: left;
-								width: 22%;
-								margin-left: 4%;
+								width: 18%;
+								margin-left: 3%;
 							}
 							.year_container {
 								float: right;
-								width: 27%;
+								width: 26%;
 							}
 						}
 				}
