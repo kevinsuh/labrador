@@ -1,13 +1,13 @@
-<div ng-controller="SettingsController">
+<div class="settings_container" ng-controller="SettingsController">
 	<header class="navbar header_bar" id="mobile_header">
 	 <div class="main_header" ui-view="header"></div>
 	</header>
 
-	<div class="col-xs-12 settings_container page_container" ng-show="settings.displayState == 'Home'">
+	<div class="col-xs-12 settings page_container" ng-show="settings.displayState == 'Home'">
 	 	<div ui-view="primary_settings_view" class="primary_settings_view"></div>
 	</div>
 
-	<div class="col-xs-12 settings_container page_container" ng-show="settings.displayState == 'Personal Info Form'">
+	<div class="col-xs-12 recipient_form_container page_container" ng-show="settings.displayState == 'Personal Info Form'">
 	 	<div ui-view="personal_info_form" class="recipient_form_view page_view"></div>
 	</div>
 
