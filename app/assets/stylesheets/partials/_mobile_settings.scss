@@ -99,5 +99,59 @@
 				}
 			}
 		}
+
+		.recipient_form_view {
+			.modal-header {
+				height: 70px;
+				.recipient_info {
+					z-index: 999999;
+					.title_container {
+						margin-top: 23px;
+						.back_button {
+							position: absolute;
+							left: 20px;
+							color: white;
+							top: 20px;
+							border: 1pt solid white;
+							height: 28px;
+							width: 32px;
+							padding-top:5px;
+							border-radius: 5px;
+						}
+					}
+				}
+			}
+			.modal-body {
+				.body {
+
+					// title of each input
+					.title_container {
+						.form_input_title {
+							text-align: center;
+							margin: 0;
+							font-size: 18px;
+							line-height: 20px;
+							color: $settings_category_grey;
+						}
+					}
+					// the actual input
+					.form_input_container {
+						float: left;
+						width: 100%;
+						.name_container {
+							.form_input {
+								width: 48%;
+							}
+							.first_name {
+								float: left;
+							}
+							.last_name {
+								float: right;
+							}
+						}
+					}
+				}
+			}
+		}
 	}
 }

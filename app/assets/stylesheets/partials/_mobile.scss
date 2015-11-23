@@ -38,7 +38,7 @@
 		// header
 		.header_bar {
 			z-index: 99999;
-			height: $mobile_header_size * 2; // will contain both "top" header and "bottom" header
+			//height: $mobile_header_size * 2; // will contain both "top" header and "bottom" header
 			position: fixed;
 			top: 0;
 			left: -1px;
