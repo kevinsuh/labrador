@@ -15,6 +15,9 @@
 
 		$scope.currentUser = user.currentUser;
 
+		// create backups in case user cancels
+		$scope.currentUserTemplate = angular.copy($scope.currentUser);
+
 		// test whether you are currently at this state or not
 		$scope.$on('$stateChangeSuccess',
 		  function(event, toState) {
@@ -43,6 +46,21 @@
 
 		$scope.showHomeTab = function() {
 			$scope.settings.displayState = "Home";	
+		}
+
+		/**
+		 * 		SAVE / CANCEL FUNCTIONALITY ON PERSONAL INFO FORM
+		 */
+		$scope.savePersonalInfo = function() {
+			console.log("yay saving personal info!");
+			console.log($scope.currentUser);
+		}
+
+		$scope.cancelPersonalInfo = function() {
+
+			// reset back to template
+			$scope.currentUser = angular.copy($scope.currentUserTemplate);
+			$scope.settings.displayState = "Home";
 		}
 
 		/**

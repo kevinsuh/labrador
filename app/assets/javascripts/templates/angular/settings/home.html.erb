@@ -14,4 +14,9 @@
 	<div class="footer_bar" id="mobile_footer">
 		<div class="main_footer" ui-view="footer"></div>
 	</div>
+
+	<div class="footer_bar" id="mobile_footer" ng-show="settings.displayState == 'Personal Info Form'">
+		<div class="main_footer" ui-view="personal_info_form_footer"></div>
+	</div>
+
 </div>
