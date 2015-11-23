@@ -484,7 +484,9 @@
 						.form_input_container {
 							margin: 20px 0;
 							position: relative;
-
+							&.primary_street_container {
+								margin-bottom: 0;
+							}
 
 							&.address_other {
 								margin: 0;

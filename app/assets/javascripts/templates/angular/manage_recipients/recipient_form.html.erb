@@ -132,7 +132,7 @@ end
 
 					<div class="row existing_addresses_container" ng-repeat="address in selectedRecipient.addresses">
 
-						<div class="street_container form_input_container">
+						<div class="street_container primary_street_container form_input_container">
 							<div class="street form_input">
 					      <input class="street_input recipient_form_input" ng-model="address.street" type="text" placeholder="Address Line 1"/>
 					    </div>
@@ -185,7 +185,7 @@ end
 
 					<div class="row new_addresses_container" ng-show="newAddressForm.show">
 
-						<div class="street_container form_input_container">
+						<div class="street_container primary_street_container form_input_container">
 							<div class="street form_input">
 					      <input class="street_input recipient_form_input" ng-model="newRecipientAddress.recipient_address.street" type="text" placeholder="Address Line 1"/>
 					    </div>

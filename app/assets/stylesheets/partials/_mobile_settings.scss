@@ -102,7 +102,9 @@
 
 		.recipient_form_view {
 			.modal-header {
-				height: 70px;
+				&.settings_modal_header {
+					height: 70px;	
+				}
 				.recipient_info {
 					z-index: 999999;
 					.title_container {
@@ -122,6 +124,10 @@
 				}
 			}
 			.modal-body {
+				&.settings_modal_body {
+					padding-bottom: 20px;	
+				}
+				
 				.body {
 
 					// title of each input
@@ -150,6 +156,23 @@
 							}
 						}
 					}
+					.birthday_container {
+							float: left;
+							width: 100%;
+							.month_container {
+								float: left;
+								width: 43%;
+							}
+							.day_container {
+								float: left;
+								width: 22%;
+								margin-left: 4%;
+							}
+							.year_container {
+								float: right;
+								width: 27%;
+							}
+						}
 				}
 			}
 		}

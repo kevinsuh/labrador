@@ -62,7 +62,7 @@ end
 <form ng-submit="submit()" ng-controller="PersonalInfoFormController" style="height: 100%;">
 
 	<!-- PERSONAL INFO -->
-	<div class="modal-header basic_info personal_info_title">
+	<div class="modal-header settings_modal_header basic_info personal_info_title">
 		<div class="row recipient_info">
 			<div>
 				<div class="title_container">
@@ -75,7 +75,7 @@ end
 		</div>
 	</div>
 
-	<div class="modal-body modal_body">
+	<div class="modal-body settings_modal_body modal_body">
 		<div class="body">
 			
 			<div class="name_container form_row">
@@ -94,9 +94,9 @@ end
 				</div>
 			</div>
 
-			<div class="name_container form_row">
+			<div class="form_row">
 				<div class="title_container">
-					<h3 class="recipient_form_title address_title">Email</h3>
+					<h3 class="form_input_title address_title">Email</h3>
 				</div>
 				<div class="form_input_container">
 					<div class="form_input">
@@ -105,9 +105,9 @@ end
 				</div>
 			</div>
 
-			<div class="name_container form_row">
+			<div class="form_row">
 				<div class="title_container">
-					<h3 class="recipient_form_title address_title">Password</h3>
+					<h3 class="form_input_title address_title">Password</h3>
 				</div>
 				<div class="form_input_container">
 					<div class="form_input">
@@ -116,33 +116,33 @@ end
 				</div>
 			</div>
 
-			<div class="name_container form_row">
+			<div class="form_row">
 				<div class="title_container">
-					<h3 class="recipient_form_title address_title">Phone Number</h3>
+					<h3 class="form_input_title address_title">Phone Number</h3>
 				</div>
 				<div class="form_input_container">
 					<div class="form_input">
-			      <input class="recipient_form_input" ng-model="currentUser.phone_number" type="text" placeholder="Phone Number"/>
+			      <input class="recipient_form_input" ng-model="currentUser.phone_number" phone-input type="text" placeholder="Phone Number"/>
 			    </div>
 				</div>
 			</div>
 
 			<div class="birthday_container form_row">
 				<div class="title_container">
-					<h3 class="recipient_form_title address_title">Birthday</h3>
+					<h3 class="form_input_title address_title">Birthday</h3>
 				</div>
 				<div class="birthday_input_container">
-					<div class="form_input_container">
+					<div class="month_container form_input_container">
 						<div class="form_input">
 				      <input class="recipient_form_input" ng-model="currentUser.birth_month" type="text" placeholder="Month"/>
 				    </div>
 					</div>
-					<div class="form_input_container">
+					<div class="day_container form_input_container">
 						<div class="form_input">
 				      <input class="recipient_form_input" ng-model="currentUser.birth_day" type="number" placeholder="Day"/>
 				    </div>
 					</div>
-					<div class="form_input_container">
+					<div class="year_container form_input_container">
 						<div class="form_input">
 				      <input class="recipient_form_input" ng-model="currentUser.birth_year" type="number" placeholder="Year"/>
 				    </div>
@@ -153,7 +153,7 @@ end
 	</div>
 
 	<!-- MAILING ADDRESSES -->
-	<div class="modal-header basic_info personal_info_title">
+	<div class="modal-header settings_modal_header basic_info personal_info_title">
 		<div class="row recipient_info">
 			<div class="title_container">
 				<div>
@@ -163,13 +163,13 @@ end
 		</div>
 	</div>
 
-	<div class="modal-body modal_body">
+	<div class="modal-body settings_modal_body modal_body">
 		<div class="body">
 			<div class="addresses_body">
 
 					<div class="row existing_addresses_container" ng-repeat="address in currentUser.addresses">
 
-						<div class="street_container form_input_container">
+						<div class="street_container primary_street_container form_input_container">
 							<div class="street form_input">
 					      <input class="street_input recipient_form_input" ng-model="address.street" type="text" placeholder="Address Line 1"/>
 					    </div>
@@ -222,7 +222,7 @@ end
 
 					<div class="row new_addresses_container" ng-show="newAddressForm.show">
 
-						<div class="street_container form_input_container">
+						<div class="street_container primary_street_container form_input_container">
 							<div class="street form_input">
 					      <input class="street_input recipient_form_input" ng-model="newUserAddress.address.street" type="text" placeholder="Address Line 1"/>
 					    </div>
