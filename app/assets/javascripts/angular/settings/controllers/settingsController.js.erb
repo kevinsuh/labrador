@@ -23,6 +23,21 @@
 		  });
 
 		/**
+		 * 		HANDLE NAVIGATION OF TABS
+		 */
+		$scope.settings = {
+			displayState: "Home"
+		}
+
+		$scope.showPersonalInfoTab = function() {
+			$scope.settings.displayState = "Personal Info Form";
+		}
+
+		$scope.showHomeTab = function() {
+			$scope.settings.displayState = "Home";	
+		}
+
+		/**
 		 * 		SETTINGS FOOTER
 		 */
 		$scope.startQueueCardState = function() {

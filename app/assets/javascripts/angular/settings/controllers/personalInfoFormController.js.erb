@@ -1,0 +1,63 @@
+(function() {
+
+	angular.module('card-queue').controller("PersonalInfoFormController", function($rootScope, $scope, user)
+    {
+
+		// one time each time you add recipient form, to then not show the new recipient address form
+		$scope.showNewAddressForm = function() {
+			$scope.newAddressForm.show = true;
+		}
+
+		$scope.showNewOccasionForm = function() {
+			$scope.newOccasionForm.show = true;
+		}
+
+		$scope.$watch('currentUser.addresses.length', function (newValue, oldValue) {
+			if (newValue == 0) {
+				$scope.newAddressForm.show = true;
+			}
+		})
+
+		$scope.$watch('currentUser.occasions.length', function (newValue, oldValue) {
+			if (newValue == 0) {
+				$scope.newOccasionForm.show = true;
+			}
+		})
+
+		// create address with the given inputs
+		$scope.createAddress = function(addressHash) {
+
+			address = addressHash.recipient_address;
+			// 1. add to the "existing" addresses
+			// 2. reset template of most recent address
+			if (address.street && address.city && address.state && address.zipcode) { // must have these data
+				address.newAddress = false;
+				addressCopy = angular.copy(address); // this is because we will be resetting the "address" template for future adds
+				$scope.selectedRecipient.addresses.push(addressCopy);
+				$scope.newRecipientAddress.recipient_address = angular.copy($scope.newRecipientAddressTemplate);
+			}
+		}
+
+		// delete this given address
+		$scope.deleteAddress = function(address) {
+			addresses = $scope.selectedRecipient.addresses;
+
+			// current HACK to deal with new address form having to be nested object of address.recipient_address vs. pulled addresses from DB just being address
+			if (address.recipient_address) {
+				address = address.recipient_address
+			}
+			if (address.newAddress) { // this is the tail-end "new" address
+				$scope.newRecipientAddress.recipient_address = angular.copy($scope.newRecipientAddressTemplate);
+			if ($scope.selectedRecipient.addresses.length > 0) {
+					$scope.newAddressForm.show = false;
+				}
+			} else { // existing addresses
+				$scope.selectedRecipient.addresses = arrayWithValueRemoved(address, addresses);
+			}
+		}
+
+	});
+
+})();
+
+

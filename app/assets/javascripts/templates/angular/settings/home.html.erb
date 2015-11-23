@@ -3,8 +3,12 @@
 	 <div class="main_header" ui-view="header"></div>
 	</header>
 
-	<div class="col-xs-12 settings_container page_container">
+	<div class="col-xs-12 settings_container page_container" ng-show="settings.displayState == 'Home'">
 	 	<div ui-view="primary_settings_view" class="primary_settings_view"></div>
+	</div>
+
+	<div class="col-xs-12 settings_container page_container" ng-show="settings.displayState == 'Personal Info Form'">
+	 	<div ui-view="personal_info_form" class="recipient_form_view page_view"></div>
 	</div>
 
 	<div class="footer_bar" id="mobile_footer">
