@@ -1,5 +1,5 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :first_name, :last_name, :email, :is_admin, :is_activated
+  attributes :id, :first_name, :last_name, :email, :is_admin, :is_activated, :birth_month, :birth_day, :birth_year, :phone_number
   include UsersHelper
 
   # attribute method is hash of JSON attributes

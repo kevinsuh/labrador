@@ -1,87 +1,99 @@
 @import "base";
 
-.right_header_container {
-	float: right;
-	margin-top: 16px;
-	margin-right: 20px;
-}
-
-$title_font_height: 16px;
-$title_container_height: 50px;
-
-$settings_font_size: 15px;
-
-.settings_font {
-	font-size: 14px;
-	line-height: $title_font_height;
-	color: $settings_baby_blue;
-	float: left;
-	margin: 0;
-	letter-spacing: 0.05px;
-	&.link {
-		cursor: default;
-		&:hover {
-			color: $settings_baby_blue;
-			text-decoration: none;
-		}
-	}
-}
-
-.edit_settings {
-	float: right;
-	font-size: 14px;
-	color: $settings_baby_blue;
-}
-
-.settings_container {
-	overflow-x: hidden;
-	padding-bottom: 0 0 $footer_height 0;
-	// the title barfor each section
-	.title_container {
-		height: $title_container_height;
-		margin-top: 20px;
-		padding-top: ($title_container_height - $title_font_height) / 2;
-		padding-left: 35px;
-		padding-right: 35px;
-		background-color: $settings_container_white_grey;
-		border-top: 1px solid $no_button_grey;
-		border-bottom: 1px solid $no_button_grey;
-		float: left;
-		width: 100%;
+// for iphone portrait views!
+@media only screen and (max-device-width: 2600px) {
+	.right_header_container {
+		float: right;
+		margin-top: 16px;
+		margin-right: 20px;
 	}
 
-	// the body for each section
-	.body_container {
-		padding-left: 35px;
-		float: left;
-		width: 100%;
-		margin-top: 20px;
+	$title_font_height: 16px;
+	$title_container_height: 50px;
 
-		// name, email, password, etc.
-		.category_container {
-			padding: 0;
-			width: 20%;
-			float: left;
-			.category_font {
-				margin:0;
-				color: $settings_category_grey;
-				font-size: $settings_font_size;
-				line-height: 40px;
+	$settings_font_size: 15px;
+	$info_font_line_height: 40px;
+
+	.settings_font {
+		font-size: 14px;
+		line-height: $title_font_height;
+		color: $settings_baby_blue;
+		float: left;
+		margin: 0;
+		letter-spacing: 0.05px;
+		&.link {
+			cursor: default;
+			&:hover {
+				color: $settings_baby_blue;
+				text-decoration: none;
 			}
 		}
+	}
 
-		// actual name, email, etc.
-		.info_container {
-			padding: 0;
-			float: left;
-			margin-left: 10%;
-			width: 70%;
-			overflow-x: scroll;
-			.info_font {
-				margin:0;
-				color: $settings_info_dark_grey;
-				font-size: $settings_font_size;
-				line-height: 40px;
+	.edit_settings {
+		float: right;
+		font-size: 14px;
+		color: $settings_baby_blue;
+	}
+
+	.container.main_page .cardagain {
+
+		.settings_container {
+
+			overflow-x: hidden;
+			padding: 0 0 $footer_height 0;
+
+			// the title barfor each section
+			.title_container {
+				height: $title_container_height;
+				margin-top: 20px;
+				padding-top: ($title_container_height - $title_font_height) / 2;
+				padding-left: 35px;
+				padding-right: 35px;
+				background-color: $settings_container_white_grey;
+				border-top: 1px solid $no_button_grey;
+				border-bottom: 1px solid $no_button_grey;
+				float: left;
+				width: 100%;
+			}
+
+			// the body for each section
+			.body_container {
+				padding-left: 35px;
+				float: left;
+				width: 100%;
+				margin-top: 20px;
+
+				// name, email, password, etc.
+				.category_container {
+					padding: 0;
+					width: 20%;
+					float: left;
+					.category_font {
+						margin:0;
+						color: $settings_category_grey;
+						font-size: $settings_font_size;
+						line-height: $info_font_line_height;
+					}
+				}
+
+				// actual name, email, etc.
+				.info_container {
+					padding: 0;
+					float: left;
+					margin-left: 10%;
+					width: 70%;
+					overflow-x: scroll;
+					.info_font {
+						margin:0;
+						color: $settings_info_dark_grey;
+						font-size: $settings_font_size;
+						line-height: $info_font_line_height;
+					}
+					.address_detail {
+						line-height: $info_font_line_height / 2;
+					}
+				}
 			}
 		}
 	}
