@@ -170,14 +170,20 @@ end
 							</div>
 						</div>
 						<div class="form_input_container address_options_container form_field">
+							<div class="new_address field" ng-show="!newAddressForm.show && ($index+1) == selectedRecipient.addresses.length">
+								<div class="form_input">
+									<span class="form_button add_address" ng-click="showNewAddressForm()"><i class="glyphicon glyphicon-plus add-occasion-glyph"></i> NEW ADDRESS</span>
+								</div>
+							</div>
 							<div class="delete_address field">
 								<div class="form_input">
-									<span class="form_button delete_address" ng-click="deleteAddress(address)"><i class="glyphicon glyphicon-minus add-occasion-glyph"></i> DELETE ADDRESS</span>
+									<span class="form_button delete_address" ng-click="deleteAddress(address)">DELETE ADDRESS</span>
 								</div>
 							</div>
 						</div>
 					</div>
-					<div class="row new_addresses_container">
+
+					<div class="row new_addresses_container" ng-show="newAddressForm.show">
 
 						<div class="street_container form_input_container">
 							<div class="street form_input">
@@ -219,12 +225,12 @@ end
 						<div class="form_input_container address_options_container form_field">
 							<div class="new_address field">
 								<div class="form_input">
-									<span class="form_button add_address" ng-click="createAddress(newRecipientAddress)"><i class="glyphicon glyphicon-plus add-occasion-glyph"></i> ADD NEW ADDRESS</span>
+									<span class="form_button add_address" ng-click="createAddress(newRecipientAddress)"><i class="glyphicon glyphicon-plus add-occasion-glyph"></i> NEW ADDRESS</span>
 								</div>
 							</div>
 							<div class="delete_address field">
 								<div class="form_input">
-									<span class="form_button delete_address" ng-click="deleteAddress(newRecipientAddress)"><i class="glyphicon glyphicon-minus add-occasion-glyph"></i> DELETE ADDRESS</span>
+									<span class="form_button delete_address" ng-click="deleteAddress(newRecipientAddress)">DELETE ADDRESS</span>
 								</div>
 							</div>
 						</div>
@@ -289,17 +295,22 @@ end
 						</div>
 
 						<!-- option to delete at the end of existing occasion -->
-						<div class="form_input_container address_options_container form_field">
+						<div class="form_input_container address_options_container form_field occasion_options_container">
+							<div class="new_address field" ng-show="!newOccasionForm.show && ($index+1) == selectedRecipient.occasions.length">
+								<div class="form_input">
+									<span class="form_button add_address" ng-click="showNewOccasionForm()"><i class="glyphicon glyphicon-plus add-occasion-glyph"></i> NEW EVENT</span>
+								</div>
+							</div>
 							<div class="delete_address field">
 								<div class="form_input">
-									<span class="form_button delete_address" ng-click="deleteOccasion(occasionHash)"><i class="glyphicon glyphicon-minus add-occasion-glyph"></i> DELETE EVENT</span>
+									<span class="form_button delete_address" ng-click="deleteOccasion(occasionHash)">DELETE EVENT</span>
 								</div>
 							</div>
 						</div>
 					</div>
 
 					<!-- new occasion always at the bottom -->
-					<div class="new_occasions_container form_field">
+					<div class="new_occasions_container form_field" ng-show="newOccasionForm.show">
 
 						<!-- name of each occasion -->
 						<div class="occasion_name_container">
@@ -348,15 +359,15 @@ end
 						</div>
 
 						<!-- option at the end of new occasion -->
-						<div class="form_input_container address_options_container form_field">
+						<div class="form_input_container address_options_container occasion_options_container form_field">
 							<div class="new_address field">
 								<div class="form_input">
-									<span class="form_button add_address" ng-click="createOccasion(newRecipientOccasion)"><i class="glyphicon glyphicon-plus add-occasion-glyph"></i> ADD NEW EVENT</span>
+									<span class="form_button add_address" ng-click="createOccasion(newRecipientOccasion)"><i class="glyphicon glyphicon-plus add-occasion-glyph"></i> NEW EVENT</span>
 								</div>
 							</div>
 							<div class="delete_address field">
 								<div class="form_input">
-									<span class="form_button delete_address" ng-click="deleteOccasion(newRecipientOccasion)"><i class="glyphicon glyphicon-minus add-occasion-glyph"></i> DELETE EVENT</span>
+									<span class="form_button delete_address" ng-click="deleteOccasion(newRecipientOccasion)">DELETE EVENT</span>
 								</div>
 							</div>
 						</div>

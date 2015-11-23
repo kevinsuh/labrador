@@ -79,6 +79,14 @@
 		$scope.isNewRecipient = true;
 		$scope.selectedRecipient = angular.copy($scope.newRecipientTemplate);
 
+		// whether the empty form fields should display when adding or editing a recipient
+		$scope.newAddressForm = {
+    	show: true
+    };
+    $scope.newOccasionForm = {
+    	show: true
+    };
+
 		/**
 		 * 		MY PEOPLE FOOTER
 		 */
@@ -138,6 +146,14 @@
 				myCroppedImage: " "
 			};
 
+			// hide "new address form" if recipient has at least 1 saved address
+			if (recipient.addresses.length > 0) {
+				$scope.newAddressForm.show = false;
+			}
+			if (recipient.occasions.length > 0) {
+				$scope.newOccasionForm.show = false;
+			}
+
 			// reset the final add forms when editing recipient
 			$scope.newRecipientOccasion.recipient_occasion = angular.copy($scope.newRecipientOccasionTemplate);
 			$scope.newRecipientAddress.recipient_address = angular.copy($scope.newRecipientAddressTemplate);
@@ -170,6 +186,10 @@
 			$scope.selectedRecipient.addresses = [];
 			$scope.newRecipientOccasion.recipient_occasion = angular.copy($scope.newRecipientOccasionTemplate);
 			$scope.newRecipientAddress.recipient_address = angular.copy($scope.newRecipientAddressTemplate);
+
+			// always show new address/occasion form when adding recipient
+			$scope.newAddressForm.show  = true;
+			$scope.newOccasionForm.show = true;
 
 			// create backups in case user cancels
 			$scope.selectedRecipientTemplate = angular.copy($scope.selectedRecipient);

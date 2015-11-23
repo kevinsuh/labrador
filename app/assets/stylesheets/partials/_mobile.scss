@@ -487,7 +487,7 @@
 
 
 							&.address_other {
-								margin-bottom: 0;
+								margin: 0;
 							}
 
 							.field {
@@ -592,7 +592,10 @@
 						 *	OCCASIONS CONTAINER OF FORM BODY
 						 */
 						.address_options_container {
-							margin: 10px 0 0 0;
+							margin-top: 10px;
+							&.occasion_options_container {
+								margin-top: 0;
+							}
 							.field {
 								&.new_address {
 									float: left;
@@ -601,7 +604,7 @@
 									float: right;
 								}
 								.form_button {
-									color: $login_red;
+									color: $settings_baby_blue;
 									font-size: 12px;
 									line-height: 14px;
 									font-weight: 300;

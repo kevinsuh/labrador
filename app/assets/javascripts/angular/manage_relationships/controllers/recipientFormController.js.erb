@@ -29,6 +29,9 @@
 			
 			if (occasionHash.recipient_occasion.newOccasion) { // this is the tail-end "new" occasion
 				$scope.newRecipientOccasion.recipient_occasion = angular.copy($scope.newRecipientOccasionTemplate);
+				if ($scope.selectedRecipient.occasions.length > 0) {
+					$scope.newOccasionForm.show = false;
+				}
 			} else { // existing occasion
 				
 				occasionHashes = $scope.selectedRecipient.occasions;
@@ -45,6 +48,26 @@
 			}
 		}
 
+		// one time each time you add recipient form, to then not show the new recipient address form
+		$scope.showNewAddressForm = function() {
+			$scope.newAddressForm.show = true;
+		}
+
+		$scope.showNewOccasionForm = function() {
+			$scope.newOccasionForm.show = true;
+		}
+
+		$scope.$watch('selectedRecipient.addresses.length', function (newValue, oldValue) {
+			if (newValue == 0) {
+				$scope.newAddressForm.show = true;
+			}
+		})
+
+		$scope.$watch('selectedRecipient.occasions.length', function (newValue, oldValue) {
+			if (newValue == 0) {
+				$scope.newOccasionForm.show = true;
+			}
+		})
 
 		// create address with the given inputs
 		$scope.createAddress = function(addressHash) {
@@ -70,6 +93,9 @@
 			}
 			if (address.newAddress) { // this is the tail-end "new" address
 				$scope.newRecipientAddress.recipient_address = angular.copy($scope.newRecipientAddressTemplate);
+			if ($scope.selectedRecipient.addresses.length > 0) {
+					$scope.newAddressForm.show = false;
+				}
 			} else { // existing addresses
 				$scope.selectedRecipient.addresses = arrayWithValueRemoved(address, addresses);
 			}
