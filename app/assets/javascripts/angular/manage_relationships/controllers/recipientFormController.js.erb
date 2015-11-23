@@ -93,7 +93,7 @@
 			}
 			if (address.newAddress) { // this is the tail-end "new" address
 				$scope.newRecipientAddress.recipient_address = angular.copy($scope.newRecipientAddressTemplate);
-			if ($scope.selectedRecipient.addresses.length > 0) {
+				if ($scope.selectedRecipient.addresses.length > 0) {
 					$scope.newAddressForm.show = false;
 				}
 			} else { // existing addresses

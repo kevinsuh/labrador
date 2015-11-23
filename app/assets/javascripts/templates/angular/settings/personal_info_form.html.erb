@@ -192,6 +192,17 @@ end
 
 					<div class="row existing_addresses_container" ng-repeat="address in currentUser.addresses">
 
+						<div class="title_container address_title_container">
+							<h3 class="form_input_title">Address {{$index + 1}}</h3>
+						</div>
+
+						<div class="is_primary_container form_input_container">
+							<div class="is_primary form_input">
+					      <input class="recipient_form_input checkbox_input" id="addressInput{{$index}}" ng-model="address.is_primary" type="checkbox"></input>
+					      <label class="form_input_label" for="addressInput{{$index}}">SET AS MAIN ADDRESS</label>
+					    </div>
+						</div>
+
 						<div class="street_container primary_street_container form_input_container">
 							<div class="street form_input">
 					      <input class="street_input recipient_form_input" ng-model="address.street" type="text" placeholder="Address Line 1"/>
@@ -244,6 +255,13 @@ end
 					</div>
 
 					<div class="row new_addresses_container" ng-show="newAddressForm.show">
+
+						<div class="is_primary_container form_input_container">
+							<div class="is_primary form_input">
+					      <input class="recipient_form_input checkbox_input" id="newUserAddressInput" ng-model="newUserAddress.address.is_primary" type="checkbox"></input>
+					      <label class="form_input_label" for="newUserAddressInput">SET AS MAIN ADDRESS</label>
+					    </div>
+						</div>
 
 						<div class="street_container primary_street_container form_input_container">
 							<div class="street form_input">

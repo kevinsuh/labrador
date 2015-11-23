@@ -29,6 +29,14 @@
 			displayState: "Home"
 		}
 
+		// new address
+		$scope.newUserAddress = {
+			address: {
+				newAddress: true
+			}
+		};
+		$scope.newUserAddressTemplate = angular.copy($scope.newUserAddress.address);
+
 		$scope.showPersonalInfoTab = function() {
 			$scope.settings.displayState = "Personal Info Form";
 		}
