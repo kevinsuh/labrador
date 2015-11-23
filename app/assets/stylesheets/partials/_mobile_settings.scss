@@ -34,7 +34,8 @@ $settings_font_size: 15px;
 }
 
 .settings_container {
-
+	overflow-x: hidden;
+	padding-bottom: 0 0 $footer_height 0;
 	// the title barfor each section
 	.title_container {
 		height: $title_container_height;
