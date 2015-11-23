@@ -94,30 +94,31 @@ class UsersController < ApplicationController
 
     # delete all addresses then insert
     user.addresses.destroy_all
-    addresses = params[:addresses]
+    if addresses = params[:addresses]
+      addresses.each do |address|
 
-    primary_set = false
-    addresses.each do |address|
+        street = address[:street]
+        suite = address[:suite]
+        city = address[:city]
+        state = address[:state]
+        zipcode = address[:zipcode]
+        is_primary = address[:is_primary]
 
-      street = address[:street]
-      suite = address[:suite]
-      city = address[:city]
-      state = address[:state]
-      zipcode = address[:zipcode]
-      is_primary = address[:is_primary]
-
-      address = user.addresses.create(
-        first_name: first_name,
-        last_name: last_name,
-        street: street,
-        suite: suite,
-        city: city,
-        state: state,
-        zipcode: zipcode,
-        is_primary: is_primary
-        )
-    end
-    
+        address = user.addresses.create(
+          first_name: first_name,
+          last_name: last_name,
+          street: street,
+          suite: suite,
+          city: city,
+          state: state,
+          zipcode: zipcode,
+          is_primary: is_primary
+          )
+        if is_primary
+          address.set_primary
+        end
+      end
+    end 
 
     respond_to do |format|
       format.json { render json: user }

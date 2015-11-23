@@ -42,7 +42,12 @@ class UserSerializer < ActiveModel::Serializer
     data[:addresses] = addresses;
 
     # get the primary address
-    primary_address = addresses.where(is_primary: true).limit(1).first || addresses.first
+    primary_address = addresses.where(is_primary: true).last
+    unless primary_address
+      addresses.first.set_primary
+      primary_address = addresses.where(is_primary: true).last
+    end
+
     data[:primary_address] = primary_address
 
     # get stripe account

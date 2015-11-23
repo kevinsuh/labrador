@@ -35,12 +35,14 @@
 		// new address
 		$scope.newUserAddress = {
 			address: {
-				newAddress: true
+				newAddress: true,
+				is_primary: true
 			}
 		};
 		$scope.newUserAddressTemplate = angular.copy($scope.newUserAddress.address);
 
 		$scope.showPersonalInfoTab = function() {
+			$scope.newUserAddress.address = angular.copy($scope.newUserAddressTemplate);
 			$scope.settings.displayState = "Personal Info Form";
 		}
 
@@ -52,18 +54,19 @@
 		 * 		SAVE / CANCEL FUNCTIONALITY ON PERSONAL INFO FORM
 		 */
 		$scope.savePersonalInfo = function() {
-			console.log("yay saving personal info!");
-			console.log($scope.currentUser);
 
 			currentUser = $scope.currentUser;
 			newAddress  = $scope.newUserAddress.address;
 
-			if (newAddress.street && newAddress.city && newAddress.state && newAddress.zipcode) {
+			// add if it is a "new address" and has the right criteria
+			if (newAddress.newAddress && newAddress.street && newAddress.city && newAddress.state && newAddress.zipcode) {
 				currentUser.addresses.push(newAddress);
 			}
 
 			user.updateUser(currentUser)
 			.success(function(data) {
+				console.log("success in updating user");
+				console.log(data);
 				currentUser = data.user;
 				$scope.currentUser = currentUser;
 				$scope.settings.displayState = "Home";

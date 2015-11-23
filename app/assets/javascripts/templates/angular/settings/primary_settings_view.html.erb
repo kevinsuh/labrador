@@ -51,7 +51,7 @@
 					Address
 				</h3>
 			</div>
-			<div class="info_container">
+			<div class="info_container" ng-show="currentUser.primary_address">
 				<h3 class="info_font">
 					<div class="street address_detail">
 						{{currentUser.primary_address.street}}
@@ -72,7 +72,7 @@
 					Birthday
 				</h3>
 			</div>
-			<div class="info_container">
+			<div class="info_container" ng-show="currentUser.birth_month && currentUser.birth_day && currentUser.birth_year">
 				<h3 class="info_font">
 					{{currentUser.birth_month | integerToFullMonth}} {{currentUser.birth_day}}, {{currentUser.birth_year}}
 				</h3>
