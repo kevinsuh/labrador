@@ -1,9 +1,18 @@
 <!-- STANDARD FORM FOOTER -->
-<div class="new_recipient_footer">
+<div class="new_recipient_footer" ng-show="settings.displayState == 'Personal Info Form'">
 	<div class="button_container recipient_form_button_container cancel">
 		<div id="userFormFooterCancel" class="submit_button new_recipient_form_button" ng-click="cancelPersonalInfo()">CANCEL</div>
 	</div>
 	<div class="button_container recipient_form_button_container save">
 		<div id="userFormFooterSave" class="submit_button new_recipient_form_button" ng-click="savePersonalInfo()">SAVE</div>
+	</div>
+</div>
+
+<div class="new_recipient_footer" ng-show="settings.displayState == 'Payment Form'">
+	<div class="button_container recipient_form_button_container cancel">
+		<div id="userFormFooterCancel" class="submit_button new_recipient_form_button" ng-click="cancelPersonalInfo()">CANCEL PAYMENT</div>
+	</div>
+	<div class="button_container recipient_form_button_container save">
+		<div id="userFormFooterSave" class="submit_button new_recipient_form_button" ng-click="savePersonalInfo()">SAVE PAYMENT</div>
 	</div>
 </div>

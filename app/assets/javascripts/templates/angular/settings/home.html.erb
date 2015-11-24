@@ -11,12 +11,16 @@
 	 	<div ui-view="personal_info_form" class="recipient_form_view page_view"></div>
 	</div>
 
+	<div class="col-xs-12 recipient_form_container page_container" ng-show="settings.displayState == 'Payment Form'">
+	 	<div ui-view="payment_form" class="recipient_form_view page_view"></div>
+	</div>
+
 	<div class="footer_bar" id="mobile_footer">
 		<div class="main_footer" ui-view="footer"></div>
 	</div>
 
-	<div class="footer_bar" id="mobile_footer" ng-show="settings.displayState == 'Personal Info Form'">
-		<div class="main_footer" ui-view="personal_info_form_footer"></div>
+	<div class="footer_bar" id="mobile_footer" ng-show="settings.displayState == 'Personal Info Form' || settings.displayState == 'Payment Form'">
+		<div class="main_footer" ui-view="form_footer"></div>
 	</div>
 
 </div>
