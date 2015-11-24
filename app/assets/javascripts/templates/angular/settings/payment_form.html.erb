@@ -76,7 +76,7 @@ end
 %>
 
 <!-- unique modal form each time you open -->
-<form ng-submit="submit()" ng-controller="PersonalInfoFormController" style="height: 100%;">
+<form ng-submit="submit()" ng-controller="PaymentFormController" style="height: 100%;">
 
 	<!-- PERSONAL INFO -->
 	<div class="modal-header settings_modal_header basic_info personal_info_title">
@@ -92,100 +92,6 @@ end
 		</div>
 	</div>
 
-	<div class="modal-body settings_modal_body modal_body">
-		<div class="body">
-			
-			<div class="name_container form_row">
-				<div class="title_container">
-					<h3 class="form_input_title address_title">Your Name</h3>
-				</div>
-				<div class="form_input_container">
-					<div class="name_container">
-						<div class="first_name form_input">
-							<input ng-model="currentUser.first_name" type="text" placeholder="First Name" class="name_input recipient_form_input"/>
-						</div>
-						<div class="last_name form_input">
-							<input ng-model="currentUser.last_name" type="text" placeholder="Last Name" class="name_input recipient_form_input"/>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="form_row">
-				<div class="title_container">
-					<h3 class="form_input_title address_title">Email</h3>
-				</div>
-				<div class="form_input_container">
-					<div class="form_input">
-			      <input class="recipient_form_input" ng-model="currentUser.email" type="email" placeholder="Email"/>
-			    </div>
-				</div>
-			</div>
-
-			<div class="form_row" style="display: none;">
-				<div class="title_container">
-					<h3 class="form_input_title address_title">Password</h3>
-				</div>
-				<div class="form_input_container">
-					<div class="form_input">
-			      <input class="recipient_form_input" ng-model="currentUser.password" type="password" placeholder="Password"/>
-			    </div>
-				</div>
-			</div>
-
-			<div class="form_row">
-				<div class="title_container">
-					<h3 class="form_input_title address_title">Phone Number</h3>
-				</div>
-				<div class="form_input_container">
-					<div class="form_input">
-			      <input class="recipient_form_input" ng-model="currentUser.phone_number" phone-input type="tel" placeholder="Phone Number"/>
-			    </div>
-				</div>
-			</div>
-
-			<div class="birthday_container form_row">
-				<div class="title_container">
-					<h3 class="form_input_title address_title">Birthday</h3>
-				</div>
-				<div class="birthday_input_container">
-					<div class="month_container form_input_container">
-						<div class="form_input">
-							<select class="recipient_form_input select_input state_input" ng-model="currentUser.birth_month">
-					  		<option value="">Month</option>
-					  		<% months.each { |num, name| %>
-					  			<option value="<%= num %>"><%= name %></option>
-								<% } %>
-					  	</select>
-					  	<i class="glyphicon glyphicon-menu-down month_menu_down"></i>
-				    </div>
-					</div>
-					<div class="day_container form_input_container">
-						<div class="form_input">
-				      <input class="recipient_form_input" ng-model="currentUser.birth_day" type="number" placeholder="Day"/>
-				    </div>
-					</div>
-					<div class="year_container form_input_container">
-						<div class="form_input">
-				      <input class="recipient_form_input" ng-model="currentUser.birth_year" type="number" placeholder="Year"/>
-				    </div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<!-- MAILING ADDRESSES -->
-	<div class="modal-header settings_modal_header basic_info personal_info_title">
-		<div class="row recipient_info">
-			<div class="title_container">
-				<div>
-					<h3 class="recipient_form_title">Mailing Addresses</h3>
-				</div>
-			</div>
-		</div>
-	</div>
-
 	<div class="modal-body settings_modal_body addresses_modal_body modal_body">
 		<div class="body">
 			<div class="addresses_body">
@@ -193,7 +99,7 @@ end
 					<div class="row existing_addresses_container" ng-repeat="address in currentUser.addresses">
 
 						<div class="title_container address_title_container">
-							<h3 class="form_input_title">Address {{$index + 1}}</h3>
+							<h3 class="form_input_title">Payment Method {{$index + 1}}</h3>
 						</div>
 
 						<div class="is_primary_container form_input_container">

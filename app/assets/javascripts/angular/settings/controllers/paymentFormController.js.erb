@@ -1,0 +1,38 @@
+(function() {
+
+	angular.module('card-queue').controller("PaymentFormController", function($rootScope, $scope, user)
+    {
+
+  	// whether the empty form fields should display when adding or editing a recipient
+		$scope.newPaymentForm = {
+    	show: true
+    };
+
+		// one time each time you add recipient form, to then not show the new recipient address form
+		$scope.showNewPaymentForm = function() {
+			$scope.newPaymentForm.show = true;
+		}
+
+		$scope.$watch('currentUser.payments.length', function (newValue, oldValue) {
+			if (newValue == 0) {
+				$scope.newPaymentForm.show = true;
+			} else {
+				$scope.newPaymentForm.show = false;
+			}
+		})
+
+		// create payment with the given inputs
+		$scope.createPayment = function(payment) {
+
+		}
+
+		// delete this given payment
+		$scope.deletePayment = function(payment) {
+
+		}
+
+	});
+
+})();
+
+
