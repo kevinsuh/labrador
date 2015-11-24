@@ -209,6 +209,9 @@ function parseDateForNextOccasion(month, day) {
   var thisYear = today.getFullYear();
   var nextYear = today.getFullYear() + 1;
 
+  // month should be -1 (since month starts at 0)
+  month -= 1;
+
   var thisYearsOccasion = new Date(thisYear, month, day);
   var nextYearsOccasion = new Date(nextYear, month, day);
 
