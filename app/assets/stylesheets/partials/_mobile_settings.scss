@@ -182,6 +182,8 @@
 							margin-bottom: 15px !important;
 						}
 
+						$card_icon_width: 30px;
+
 						.form_input {
 							.checkbox_input {
 								float: left;
@@ -189,6 +191,9 @@
 								height: $checkbox_height;
 								margin-right: 5px;
 								margin-top: 0;
+							}
+							.cc_number_input {
+								padding-right: $card_icon_width + 5px;
 							}
 						}
 						.name_container {
@@ -210,7 +215,7 @@
 								.form_input {
 									position: relative;
 									.card_icon {
-										width: 30px;
+										width: $card_icon_width;
 										position: absolute;
 										top: 9px;
 										left: calc(100% - 30px);
@@ -229,11 +234,11 @@
 
 							&.card_name {
 								float: left;
-								width: 50%;
+								width: 49%;
 							}
 							&.card_month {
 								float: left;
-								width: 19%;
+								width: 20%;
 								margin-left: 3%;
 								.form_input {
 									position: relative;
