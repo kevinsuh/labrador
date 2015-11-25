@@ -58,18 +58,18 @@ end
 
 def months
   [
-    [1, 'January'],
-    [2, 'February'],
-    [3, 'March'],
-    [4, 'April'],
-    [5, 'May'],
-    [6, 'June'],
-    [7, 'July'],
-    [8, 'August'],
-    [9, 'September'],
-    [10, 'October'],
-    [11, 'November'],
-    [12, 'December']
+    [1, '01'],
+    [2, '02'],
+    [3, '03'],
+    [4, '04'],
+    [5, '05'],
+    [6, '06'],
+    [7, '07'],
+    [8, '08'],
+    [9, '09'],
+    [10, '10'],
+    [11, '11'],
+    [12, '12']
   ]
 end
 
@@ -96,7 +96,7 @@ end
 		<div class="body">
 			<div class="addresses_body">
 
-					<div class="row existing_addresses_container" ng-repeat="address in currentUser.addresses">
+					<!-- <div class="row existing_addresses_container" ng-repeat="payment in currentUser.payments">
 
 						<div class="title_container address_title_container">
 							<h3 class="form_input_title">Payment Method {{$index + 1}}</h3>
@@ -158,68 +158,77 @@ end
 								</div>
 							</div>
 						</div>
-					</div>
+					</div> -->
 
-					<div class="row new_addresses_container" ng-show="newAddressForm.show">
+					<div class="row new_addresses_container" ng-show="newPaymentForm.show">
 
-						<div class="is_primary_container form_input_container">
-							<div class="is_primary form_input">
-					      <input class="recipient_form_input checkbox_input" id="newUserAddressInput" ng-model="newUserAddress.address.is_primary" type="checkbox"></input>
-					      <label class="form_input_label" for="newUserAddressInput">SET AS MAIN ADDRESS</label>
-					    </div>
-						</div>
-
-						<div class="street_container primary_street_container form_input_container">
-							<div class="street form_input">
-					      <input class="street_input recipient_form_input" ng-model="newUserAddress.address.street" type="text" placeholder="Address Line 1"/>
-					    </div>
-						</div>
-
-						<div class="street_container form_input_container">
-							<div class="street form_input">
-					      <input class="street_input recipient_form_input" ng-model="newUserAddress.address.suite" type="text" placeholder="Address Line 2"/>
-					    </div>
-						</div>
-
-						<div class="address_other form_input_container form_field">
-							<div class="city field">
-								<div class="form_input">
-						      <input class="recipient_form_input city_input" ng-model="newUserAddress.address.city" type="text" placeholder="City"/>
+						<div class="card_info_container">
+							<div class="is_primary_container form_input_container">
+								<div class="is_primary form_input">
+						      <input class="recipient_form_input checkbox_input" id="newUserPaymentInput" ng-model="newUserPayment.payment.is_primary" type="checkbox"></input>
+						      <label class="form_input_label" for="newUserPaymentInput">SET AS MAIN PAYMENT</label>
 						    </div>
 							</div>
 
-							<div class="state field">
-								<div class="form_input">
-									<select class="recipient_form_input select_input state_input" ng-model="newUserAddress.address.state">
-							  		<option value="">ST</option>
-							  		<% us_states.each { |state, abrv| %>
-							  			<option value="<%= state %>"><%= abrv %></option>
-										<% } %>
-							  	</select>
-							  	<i class="glyphicon glyphicon-menu-down state_menu_down"></i>
+							<div class="form_input_container">
+								<div class="card_number field">
+									<div class="form_input">
+										<input type="text" class="recipient_form_input" name="ccNumber" cc-number cc-format ng-model="newUserPayment.payment.number" placeholder="Cardholder Number" novalidate/>
+									</div>
+								</div>
+								
+								<div class="csv field">
+									<div class="form_input">
+										<input cc-cvc class="recipient_form_input" ng-model="newUserPayment.payment.cvc" novalidate placeholder="CVC"/>
+										<span class="cvc-tooltip glyphicon glyphicon-question-sign" tooltip-class="cvcTooltip" tooltip-placement="left" tooltip="Your CVC is the 3-digit security code on the back of your credit card."></span>
+									</div>
 								</div>
 							</div>
 
-							<div class="zipcode field">
-								<div class="form_input">
-						      <input class="zipcode_input recipient_form_input" ng-model="newUserAddress.address.zipcode" type="text" placeholder="Zip"/>
-						    </div>
+							<div class="form_input_container">
+								<div class="card_name field">
+									<div class="form_input">
+										<input class="recipient_form_input" ng-model="newUserPayment.payment.name" placeholder="Cardholder Name"/>
+									</div>
+								</div>
+								
+								<div class="card_month field">
+									<div class="form_input">
+										<select ng-model="newUserPayment.payment.exp_month" class="recipient_form_input select_input card_month_input">
+											<option value="">Month</option>
+								  		<% months.each do |key, value| %>
+								  			<option value="<%= key+1 %>"><%= "#{value}" %></option>
+								  		<% end %> 
+								  	</select>
+								  	<i class="glyphicon glyphicon-menu-down state_menu_down"></i>
+									</div>
+								</div>
+
+								<div class="card_year field">
+									<div class="form_input">
+										<select ng-model="newUserPayment.payment.exp_year" class="recipient_form_input select_input card_year_input">
+								  		<option value="">Year</option>
+								  		<% (Date.today.year..(Date.today.year+15)).each do |date| %>
+								  			<option value="<%= date %>"><%= date %></option>
+								  		<% end %>
+								  	</select>
+								  	<i class="glyphicon glyphicon-menu-down state_menu_down"></i>
+									</div>
+								</div>
+
 							</div>
 						</div>
-						<div class="form_input_container address_options_container form_field">
-							<div class="new_address field">
-								<div class="form_input">
-									<span class="form_button add_address" ng-click="createAddress(newUserAddress)"><i class="glyphicon glyphicon-plus add-occasion-glyph"></i> NEW ADDRESS</span>
-								</div>
-							</div>
-							<div class="delete_address field">
-								<div class="form_input">
-									<span class="form_button delete_address" ng-click="deleteAddress(newUserAddress)">DELETE ADDRESS</span>
-								</div>
-							</div>
+						
+
+						<!-- store the billing address attached to the card -->
+						<div class="billing_address_container">
+
 						</div>
+
+
 					</div>
 				</div>
+			</div>
 		</div>
 	</div>
 

@@ -197,6 +197,50 @@
 								float: right;
 							}
 						}
+
+						.field {
+							&.card_number {
+								width: 70%;
+								float: left;
+							}
+							&.csv {
+								float: right;
+								width: 26%;
+							}
+							.cvc-tooltip {
+								position: absolute;
+								top: 11px;
+								left: 96%;
+							}
+
+							&.card_name {
+								float: left;
+								width: 52%;
+							}
+							&.card_month {
+								float: left; width: 15%;
+								margin-left: 3%;
+								.form_input {
+									position: relative;
+									.state_menu_down {
+										position: absolute;
+										top: 12px;
+										left: 87%;
+									}
+								}
+							}
+							&.card_year {
+								float: right;
+								width: 27%;
+								.form_input {
+									.state_menu_down {
+										position: absolute;
+										top: 12px;
+										left: 96%;
+									}
+								}
+							}
+						}
 					}
 					.birthday_container {
 							float: left;
@@ -221,7 +265,7 @@
 								float: right;
 								width: 26%;
 							}
-						}
+					}
 				}
 			}
 			.form_input_label {

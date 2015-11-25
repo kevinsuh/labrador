@@ -41,6 +41,14 @@
 		};
 		$scope.newUserAddressTemplate = angular.copy($scope.newUserAddress.address);
 
+		// new payment option
+		$scope.newUserPayment = {
+			payment: {
+				newPayment: true,
+				is_primary: true
+			}
+		};
+
 		$scope.showPersonalInfoTab = function() {
 			$scope.newUserAddress.address = angular.copy($scope.newUserAddressTemplate);
 			$scope.settings.displayState = "Personal Info Form";
@@ -86,6 +94,22 @@
 			// reset back to template
 			$scope.currentUser = angular.copy($scope.currentUserTemplate);
 			$scope.settings.displayState = "Home";
+		}
+
+		/**
+		 * 		SAVE / CANCEL FUNCTIONALITY ON PAYMENT FORM
+		 */
+		$scope.savePayment = function() {
+			console.log("in save payment function!");
+			console.log($scope.newUserPayment);
+		}
+
+		$scope.cancelPayment = function() {
+
+			// reset back to template
+			$scope.currentUser = angular.copy($scope.currentUserTemplate);
+			$scope.settings.displayState = "Home";
+
 		}
 
 		/**

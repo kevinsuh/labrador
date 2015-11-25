@@ -14,16 +14,16 @@
 		}
 
 		$scope.$watch('currentUser.payments.length', function (newValue, oldValue) {
-			if (newValue == 0) {
-				$scope.newPaymentForm.show = true;
-			} else {
-				$scope.newPaymentForm.show = false;
-			}
+			// if (newValue == 0) {
+			// 	$scope.newPaymentForm.show = true;
+			// } else {
+			// 	$scope.newPaymentForm.show = false;
+			// }
 		})
 
 		// create payment with the given inputs
 		$scope.createPayment = function(payment) {
-
+			console.log(payment);
 		}
 
 		// delete this given payment
