@@ -202,6 +202,15 @@
 							&.card_number {
 								width: 70%;
 								float: left;
+								.form_input {
+									position: relative;
+									.card_icon {
+										width: 30px;
+										position: absolute;
+										top: 9px;
+										left: calc(100% - 30px);
+									}
+								}
 							}
 							&.csv {
 								float: right;

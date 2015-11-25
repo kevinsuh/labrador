@@ -76,7 +76,7 @@ end
 %>
 
 <!-- unique modal form each time you open -->
-<form ng-submit="submit()" ng-controller="PaymentFormController" style="height: 100%;">
+<div ng-controller="PaymentFormController" style="height: 100%;">
 
 	<!-- PERSONAL INFO -->
 	<div class="modal-header settings_modal_header basic_info personal_info_title">
@@ -160,7 +160,8 @@ end
 						</div>
 					</div> -->
 
-					<div class="row new_addresses_container" ng-show="newPaymentForm.show">
+					<form name="ccForm" class="payment_form new_payment row new_addresses_container" ng-show="newPaymentForm.show" novalidate>
+					
 
 						<div class="card_info_container">
 							<div class="is_primary_container form_input_container">
@@ -173,10 +174,10 @@ end
 							<div class="form_input_container">
 								<div class="card_number field">
 									<div class="form_input">
-										<input type="text" class="recipient_form_input" name="ccNumber" cc-number cc-format ng-model="newUserPayment.payment.number" placeholder="Cardholder Number" novalidate/>
+										<input type="text" class="recipient_form_input" name="ccNumber" cc-number cc-format cc-eager-type ng-model="newUserPayment.payment.number" placeholder="Cardholder Number" novalidate/>
+										<img ng-if="ccForm.ccNumber.$ccEagerType" ng-src="assets/icons/{{ccForm.ccNumber.$ccEagerType | snakeCase}}.png" class="card_icon"/>
 									</div>
 								</div>
-								
 								<div class="csv field">
 									<div class="form_input">
 										<input cc-cvc class="recipient_form_input" ng-model="newUserPayment.payment.cvc" novalidate placeholder="CVC"/>
@@ -225,12 +226,11 @@ end
 
 						</div>
 
-
-					</div>
+					</form>
 				</div>
 			</div>
 		</div>
 	</div>
 
 
-</form>
+</div>
