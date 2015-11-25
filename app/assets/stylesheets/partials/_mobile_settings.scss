@@ -177,6 +177,11 @@
 						&.primary_street_container {
 							margin-top: 10px;
 						}
+						&.street_container {
+							width: 100%;
+							margin-bottom: 15px !important;
+						}
+
 						.form_input {
 							.checkbox_input {
 								float: left;
@@ -249,6 +254,9 @@
 										left: 96%;
 									}
 								}
+							}
+							&.street {
+								width: 100%;
 							}
 						}
 					}

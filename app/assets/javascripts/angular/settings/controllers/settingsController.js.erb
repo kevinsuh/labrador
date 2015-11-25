@@ -62,9 +62,11 @@
 		$scope.newUserPayment = {
 			payment: {
 				newPayment: true,
-				is_primary: true
+				is_primary: true,
+				country: "US"
 			}
 		};
+		$scope.newUserPaymentTemplate = angular.copy($scope.newUserPayment.payment);
 
 		/**
 		 * 		FOR HANDLING ALERTS AT TOP OF HEADER
