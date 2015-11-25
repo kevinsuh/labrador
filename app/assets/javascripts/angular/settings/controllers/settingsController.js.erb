@@ -129,47 +129,55 @@
 			city           = newUserPayment.address_city;
 			zip            = newUserPayment.address_zip;
 
-			if (street && state && city && zip) {	
-					// now in here you can create a payment with all of the necessary parameters (card + billing address details)
-					return stripe.card.createToken({
-						number: newUserPayment.number,
-						cvc: newUserPayment.cvc,
-						exp_month: newUserPayment.exp_month,
-						exp_year: newUserPayment.exp_year,
-						name: newUserPayment.name,
-						address_line1: newUserPayment.address_line1,
-						address_line2: newUserPayment.address_line2,
-						address_city: newUserPayment.address_city,
-						address_state: newUserPayment.address_state,
-						address_zip: newUserPayment.address_zip,
-						address_country: newUserPayment.country
-					})
-					.then(function(data) {
+			if (street && state && city && zip) {
+
+				// temp fix against not putting in a CVC
+				if (!newUserPayment.cvc) {
+					err = { message: "Please enter a CVC." };
+					$scope.paymentAlerts.push({type: "danger", msg: err.message});
+					return;
+				}
+
+				// now in here you can create a payment with all of the necessary parameters (card + billing address details)
+				return stripe.card.createToken({
+					number: newUserPayment.number,
+					cvc: newUserPayment.cvc,
+					exp_month: newUserPayment.exp_month,
+					exp_year: newUserPayment.exp_year,
+					name: newUserPayment.name,
+					address_line1: newUserPayment.address_line1,
+					address_line2: newUserPayment.address_line2,
+					address_city: newUserPayment.address_city,
+					address_state: newUserPayment.address_state,
+					address_zip: newUserPayment.address_zip,
+					address_country: newUserPayment.country
+				})
+				.then(function(data) {
+					
+					cardToken = data.id;
+					card      = data.card;
+
+					// save this to our database now
+					user.createPayment(cardToken)
+					.success(function(data) {
+
+
+						// this is where you can now bring them back to card list
+	    		 	$scope.currentUser.stripe_customer.sources.data.push(card);
+	      		$scope.settings.displayState = "Home";
 						
-						cardToken = data.id;
-						card      = data.card;
-
-						// save this to our database now
-						user.createPayment(cardToken)
-						.success(function(data) {
-
-
-							// this is where you can now bring them back to card list
-		    		 	$scope.currentUser.stripe_customer.sources.data.push(card);
-		      		$scope.settings.displayState = "Home";
-							
-						})
-						.error(function(data) {
-							console.log("error in user createPayment function");
-							console.log(data);
-						});
 					})
-					.catch(function(err) {
-						if (err.type && /^Stripe/.test(err.type)) {
-		          console.log('Stripe error: ', err.message);
-		        }
-		        $scope.paymentAlerts.push({type: "danger", msg: err.message});
+					.error(function(data) {
+						console.log("error in user createPayment function");
+						console.log(data);
 					});
+				})
+				.catch(function(err) {
+					if (err.type && /^Stripe/.test(err.type)) {
+	          console.log('Stripe error: ', err.message);
+	        }
+	        $scope.paymentAlerts.push({type: "danger", msg: err.message});
+				});
 			} else {
 				err = { message: "Please fully fill your billing address." };
 				$scope.paymentAlerts.push({type: "danger", msg: err.message});
