@@ -175,7 +175,7 @@ end
 								<div class="card_number field">
 									<div class="form_input">
 										<input type="text" class="recipient_form_input" name="ccNumber" cc-number cc-format cc-eager-type ng-model="newUserPayment.payment.number" placeholder="Cardholder Number" novalidate/>
-										<img ng-if="ccForm.ccNumber.$ccEagerType" ng-src="assets/icons/{{ccForm.ccNumber.$ccEagerType | snakeCase}}.png" class="card_icon"/>
+										<img ng-if="ccForm.ccNumber.$ccEagerType && ccForm.ccNumber.$viewValue.length > 0" ng-src="assets/icons/{{ccForm.ccNumber.$ccEagerType | snakeCase}}.png" class="card_icon"/>
 									</div>
 								</div>
 								<div class="csv field">
