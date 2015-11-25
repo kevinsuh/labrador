@@ -96,9 +96,9 @@
 					Payment
 				</h3>
 			</div>
-			<div class="info_container">
+			<div class="info_container" ng-if="currentUser.primary_card">
 				<h3 class="info_font">
-					VISA KEVIN SUH **** 2281 checkmark
+					<img ng-src="assets/icons/{{currentUser.primary_card.brand | snakeCase}}.png" class="card_icon"/> {{currentUser.primary_card.name}} **** {{currentUser.primary_card.last4}}
 				</h3>
 			</div>
 		</div>
