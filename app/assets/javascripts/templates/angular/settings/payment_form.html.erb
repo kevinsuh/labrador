@@ -188,14 +188,14 @@ end
 							<div class="form_input_container">
 								<div class="card_name field">
 									<div class="form_input">
-										<input class="recipient_form_input" ng-model="newUserPayment.payment.name" placeholder="Cardholder Name"/>
+										<input class="recipient_form_input" ng-model="newUserPayment.payment.name" placeholder="Full Name"/>
 									</div>
 								</div>
 								
 								<div class="card_month field">
 									<div class="form_input">
 										<select ng-model="newUserPayment.payment.exp_month" class="recipient_form_input select_input card_month_input">
-											<option value="">Month</option>
+											<option value="">Mo.</option>
 								  		<% months.each do |key, value| %>
 								  			<option value="<%= key+1 %>"><%= "#{value}" %></option>
 								  		<% end %> 

@@ -32,23 +32,6 @@
 			displayState: "Home"
 		}
 
-		// new address
-		$scope.newUserAddress = {
-			address: {
-				newAddress: true,
-				is_primary: true
-			}
-		};
-		$scope.newUserAddressTemplate = angular.copy($scope.newUserAddress.address);
-
-		// new payment option
-		$scope.newUserPayment = {
-			payment: {
-				newPayment: true,
-				is_primary: true
-			}
-		};
-
 		$scope.showPersonalInfoTab = function() {
 			$scope.newUserAddress.address = angular.copy($scope.newUserAddressTemplate);
 			$scope.settings.displayState = "Personal Info Form";
@@ -61,6 +44,41 @@
 		$scope.showPaymentTab = function() {
 			$scope.settings.displayState = "Payment Form";	
 		}
+
+		/**
+		 * 		FOR HANDLING NEW FORMS
+		 */
+		
+		// new address
+		$scope.newUserAddress = {
+			address: {
+				newAddress: true,
+				is_primary: true
+			}
+		};
+		$scope.newUserAddressTemplate = angular.copy($scope.newUserAddress.address);
+
+		// new payment
+		$scope.newUserPayment = {
+			payment: {
+				newPayment: true,
+				is_primary: true
+			}
+		};
+
+		/**
+		 * 		FOR HANDLING ALERTS AT TOP OF HEADER
+		 */
+		$scope.personalInfoAlerts = [];
+		$scope.paymentAlerts      = [];
+
+		$scope.closePersonalInfoAlert = function(index) {
+	    $scope.personalInfoAlerts.splice(index, 1);
+	  };
+
+	  $scope.closePaymentAlert = function(index) {
+	    $scope.paymentAlerts.splice(index, 1);
+	  };
 
 		/**
 		 * 		SAVE / CANCEL FUNCTIONALITY ON PERSONAL INFO FORM
@@ -102,6 +120,10 @@
 		$scope.savePayment = function() {
 			console.log("in save payment function!");
 			console.log($scope.newUserPayment);
+
+			err = {message: "hello world in payment!"};
+			// test error message
+			$scope.paymentAlerts.push({type: "danger", msg: err.message});
 		}
 
 		$scope.cancelPayment = function() {

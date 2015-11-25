@@ -12,5 +12,14 @@
 		<div class="right_header_container">
 			<a class="settings_font link" ng-click="logOut()">LOG OUT</a>
 		</div>
+	</div>
+
+	<!-- the part of the header that comes for each click on the main header -->
+	<div class="bottom_header_container" ng-if="paymentAlerts.length > 0 || personalInfoAlerts.length > 0">
+
+		<div class="payment_alerts_container filter_people_container header_dropdown_tool" ng-if="paymentAlerts.length > 0">
+			<alert class="header_alert" ng-repeat="alert in paymentAlerts" close="closePaymentAlert($index)">{{alert.msg}}</alert>
+		</div>
+	</div>
 
 </nav>

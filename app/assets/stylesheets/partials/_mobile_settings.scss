@@ -215,23 +215,24 @@
 
 							&.card_name {
 								float: left;
-								width: 52%;
+								width: 50%;
 							}
 							&.card_month {
-								float: left; width: 15%;
+								float: left;
+								width: 19%;
 								margin-left: 3%;
 								.form_input {
 									position: relative;
 									.state_menu_down {
 										position: absolute;
 										top: 12px;
-										left: 87%;
+										left: 74%;
 									}
 								}
 							}
 							&.card_year {
 								float: right;
-								width: 27%;
+								width: 25%;
 								.form_input {
 									.state_menu_down {
 										position: absolute;
