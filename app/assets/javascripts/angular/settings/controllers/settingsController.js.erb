@@ -156,16 +156,21 @@
 					
 					cardToken = data.id;
 					card      = data.card;
+					isPrimary = newUserPayment.is_primary;
 
 					// save this to our database now
-					user.createPayment(cardToken)
+					user.createPayment(cardToken, isPrimary)
 					.success(function(data) {
 
-
+						// update current user's primary card if successful
+						if (isPrimary) {
+							$scope.currentUser.primary_card = card;
+						}
+						
 						// this is where you can now bring them back to card list
 	    		 	$scope.currentUser.stripe_customer.sources.data.push(card);
 	      		$scope.settings.displayState = "Home";
-						
+
 					})
 					.error(function(data) {
 						console.log("error in user createPayment function");

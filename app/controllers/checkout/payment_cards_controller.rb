@@ -134,7 +134,8 @@ module Checkout
 			puts params.inspect
 
 			stripe_token = params[:stripe_token]
-			email = current_user.email
+			is_primary   = params[:is_primary]
+			email        = current_user.email
 
 			# create a stripe_account if user does not have one yet
 			create_stripe_account email
@@ -142,7 +143,14 @@ module Checkout
 			customer       = Stripe::Customer.retrieve(customer_id)
 
 			# create card with options
-			if customer.sources.create(source: stripe_token)
+			if card = customer.sources.create(source: stripe_token)
+
+				card_id = card.id
+				if is_primary
+					customer.default_source = card_id
+					customer.save
+				end
+
 				respond_to do |format|
           format.json { render json: { payment: true } }
         end

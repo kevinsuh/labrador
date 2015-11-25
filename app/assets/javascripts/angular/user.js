@@ -39,8 +39,12 @@
       return $http.post('/checkout/payment_cards/update_json.json', payment);
     };
 
-    o.createPayment = function(stripe_token) {
-      payment = { stripe_token: stripe_token }
+    o.createPayment = function(stripe_token, isPrimary) {
+
+      // default isPrimary value to false
+      isPrimary = typeof isPrimary !== 'undefined' ? isPrimary : false;
+
+      payment = { stripe_token: stripe_token, is_primary: isPrimary }
       
       // this is after we retrieve a stripe token from successfully passing our credentials to stripe
       return $http.post('/checkout/payment_cards/create_json.json', payment);
