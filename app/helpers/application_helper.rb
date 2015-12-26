@@ -2,7 +2,7 @@ module ApplicationHelper
 
 	# for title on HTML pages
 	def full_title(custom_title='')
-		base_title = 'Cardagain'
+		base_title = 'Labrador'
 		if custom_title.empty?
 			base_title
 		else
