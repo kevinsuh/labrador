@@ -148,12 +148,11 @@ class UsersController < ApplicationController
   def start_early_access
     @early_access_email = Waitlist.new(early_access_params) # this helps you determine valid email signups
     if @early_access_email.save
-      flash[:success] = "Yay! You have been added to the waitlist."
+      render 'new'
     else
       flash[:warning] = "Are you sure you put a valid email address?"
-      session[:early_access_email] = @early_access_email.email
+      redirect_to root_url
     end
-    redirect_to root_url
   end
 
   def get_current_user

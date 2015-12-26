@@ -6,6 +6,10 @@
 		$scope.address          = signUp.address;
 		$scope.window           = $window;
 
+		// get the early access email
+		earlyAccessEmailElement = angular.element(document.querySelector("#early_access_email"));
+		$scope.user.email = earlyAccessEmailElement.val();
+
 		$scope.$on('$stateChangeSuccess',
 		  function(event, toState) {
 		    $scope.currentState = toState.name;

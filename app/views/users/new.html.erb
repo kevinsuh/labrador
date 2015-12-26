@@ -2,8 +2,8 @@
 
 <!-- this is inside a container right now -->
 <div class="row signup_body" ng-app="sign-up">
+	<input type="hidden" value="<%= @early_access_email.email %>" id="early_access_email" />
   <div class="col-xs-7 form-container signup_form" ng-controller="SignUpController as signUpCtrl">
-
   	<div ui-view></div>
 	</div>
 	<div class="col-xs-5 signup_helper">
