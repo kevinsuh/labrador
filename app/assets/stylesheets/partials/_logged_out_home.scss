@@ -9,16 +9,41 @@
 	height: 100%;
 	width: 100%;
 	background-color: #3D3D3D;
+	padding-top: 10%;
 
+	// the container of the middle of the splash page
 	.container {
 		max-width: 1000px;
 
+		// the div containing the logo and texts
 		.hero {
-			margin-top: 10%;
 			position: relative;
-			min-height: 840px;
 			z-index: 0;
 			text-align: center;
+		}
+		.early_access_container {
+			font-size: 34px;
+			margin-top: 40px;
+
+			.email_input {
+				padding: 8px;
+				padding-left: 14px;
+				width: 69%;
+				float: left;
+				&:focus {
+					outline: 0;
+				}
+			}
+			.submit {
+				padding: 10px;
+				width: 29%;
+				float: right;
+				color: white;
+				background-color: $yes_button_red;
+				outline: 0;
+				border: 0;
+			
+			}
 		}
 	}
 

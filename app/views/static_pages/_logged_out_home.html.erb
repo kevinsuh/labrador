@@ -9,10 +9,10 @@
 				<div class="logo"><%= image_tag('test_labrador_logo.png', alt: 'Labrador', class: "main_logo") %></div>
 				<h1 class="tagline">Writing letters isn't outdated &ndash; the technology is.</h1>
 				<h2 class="splash subline">Focus on the message. We'll take care of the rest.</h2>
-				<div>
+				<div class="early_access_container">
 					<%= form_for(:early_access, url: early_access_signup_path) do |f| %>
-						<%= f.text_field :email, { class: "early-access-input", value: @early_access_email } %>
-						<%= f.submit "Get Early Access", { id: "submit_email", class: "early-access-submit" } %>
+						<%= f.text_field :email, { class: "email_input", value: @early_access_email } %>
+						<%= f.submit "Get Early Access", { id: "submit_email", class: "submit" } %>
 					<% end %>
 				</div>
 			</div>
