@@ -1,9 +1,29 @@
-<div class="center" id="splash_page">
+<div class="center splash_page">
 
+	<div class="container">
+		<div class="hero row">
+			<div class="col-md-12">
+				<% flash.each do |message_type, message| %>
+					<div class="alert alert-<%= message_type %>"><%= message %></div>
+				<% end %>
+				<div class="logo"><%= image_tag('test_labrador_logo.png', alt: 'Labrador', class: "main_logo") %></div>
+				<h1 class="tagline">Writing letters isn't outdated &ndash; the technology is.</h1>
+				<h2 class="splash subline">Focus on the message. We'll take care of the rest.</h2>
+				<div>
+					<%= form_for(:early_access, url: early_access_signup_path) do |f| %>
+						<%= f.text_field :email, { class: "early-access-input", value: @early_access_email } %>
+						<%= f.submit "Get Early Access", { id: "submit_email", class: "early-access-submit" } %>
+					<% end %>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<% if false %>
 	<div style="margin-left: 54px; margin-top: 250px;">
 		<div>
-			<h1 class="tagline">Be your</h1>
-			<h1 class="tagline">most thoughtful self</h1>
+			
 		</div>
 		<div style="margin-top: 13px;">
 			<p class="tagline_description">Deliver on the moments you think of someone.</p>
@@ -14,6 +34,7 @@
 			<div class="button_container signup_button_container"><%= link_to "SIGN UP", signup_path, class: "submit_button main_signup_button" %></div>
 		</div>
 	</div>
+	<% end %>
 
 	<% if false %>
 	<div class="row row-waitlist">

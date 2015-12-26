@@ -16,7 +16,7 @@
 				<!-- angular app only if logged in -->
 				<ui-view ng-app="card-queue" ng-controller="MainController" class="cardagain"></ui-view>
 			<% else %>
-				<%= render 'layouts/header' %>
+				<!-- non logged out home goes here -->
 				<%= yield %>
 				<% if false %> <%= render 'layouts/footer' %> <% end %>
 			<% end %>

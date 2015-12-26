@@ -270,7 +270,7 @@ h1, h2, h3, h4, h5, h6 {
 
 h1 {
 	@include adjust-font-size-to(3em);
- 	letter-spacing: -2px;
+ 	letter-spacing: -1px;
  	margin-bottom: 30px;
  	text-align: center;
 }

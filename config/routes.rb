@@ -84,12 +84,13 @@ Rails.application.routes.draw do
 
   get 'sessions/new'
 
-  get 'signup'          => 'users#new'
-  post 'waitlist'       => 'users#add_to_waitlist'
-  get 'login'           => 'sessions#new'
-  post 'login'          => 'sessions#create'
-  delete 'logout'       => 'sessions#destroy'
-  get 'logout_angular'  => 'sessions#logout_angular'
+  get 'signup'               => 'users#new'
+  post 'waitlist'            => 'users#add_to_waitlist'
+  post 'early_access_signup' => 'users#start_early_access'
+  get 'login'                => 'sessions#new'
+  post 'login'               => 'sessions#create'
+  delete 'logout'            => 'sessions#destroy'
+  get 'logout_angular'       => 'sessions#logout_angular'
   
   get 'help'            => 'static_pages#help'
   get 'about'           => 'static_pages#about'

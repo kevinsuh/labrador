@@ -1,0 +1,19 @@
+@import "base";
+
+// for iphone portrait views!
+@media only screen and (max-device-width: 800px) {
+
+	.splash_page {
+		.tagline {
+			letter-spacing: 0;
+			font-size: 28px;
+			line-height: 32px;
+		}
+		.splash.subline {
+			letter-spacing: 0;
+			font-size: 22px;
+			line-height: 26px;
+		}
+	}
+	
+}
