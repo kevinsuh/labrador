@@ -4,26 +4,33 @@
 @media only screen and (max-device-width: 800px) {
 
 	.splash_page {
+		background: url(../splash_background.png) no-repeat 0 0;
 		.tagline {
-			letter-spacing: 0;
-			font-size: 24px;
-			line-height: 28px;
-		}
-		.splash.subline {
 			letter-spacing: 0;
 			font-size: 18px;
 			line-height: 22px;
 		}
+		.splash.subline {
+			letter-spacing: 0;
+			font-size: 14px;
+			line-height: 18px;
+			margin-top: 0;
+		}
 		.container {
+			margin-left: 20px;
 			.early_access_container {
 				font-size: 13px;
 				margin-top: 30px;
 				.email_input {
-					padding: 6px;
-					padding-left: 10px;
+					font-size: 8px;
+					padding: 4px;
+					padding-left: 8px;
+					width: 58%;
 				}
 				.submit {
-					padding: 8px;
+					font-size: 8px;
+					padding: 4px;
+					width: 40%;
 					float: right;
 				}
 			}

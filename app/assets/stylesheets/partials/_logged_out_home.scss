@@ -8,25 +8,29 @@
 	position: absolute;
 	height: 100%;
 	width: 100%;
-	background-color: #3D3D3D;
+	background: url(../splash_background.png) no-repeat 0 0;
+	background-size: cover;
 	padding-top: 10%;
 
 	// the container of the middle of the splash page
 	.container {
 		max-width: 1000px;
+		margin-left: 50px;
 
 		// the div containing the logo and texts
 		.hero {
 			position: relative;
 			z-index: 0;
-			text-align: center;
+			text-align: left;
 		}
 		.early_access_container {
 			font-size: 34px;
 			margin-top: 40px;
 
 			.email_input {
-				padding: 8px;
+				padding: 11px;
+				font-size: 30px;
+				font-weight: 400 !important;
 				padding-left: 14px;
 				width: 69%;
 				float: left;
@@ -35,7 +39,9 @@
 				}
 			}
 			.submit {
-				padding: 10px;
+				padding: 12px;
+				font-weight: 400 !important;
+				font-size: 30px;
 				width: 29%;
 				float: right;
 				color: white;
@@ -46,24 +52,30 @@
 		}
 	}
 
-	.tagline {
-		color: white;
-		text-align: center;
-		font-family: $base-font-family;
-		font-weight: lighter;
-		font-size: 50px;
-		line-height: 56px;
+	.tagline_container {
+		margin: 10px 0;
 	}
-	.splash.subline {
-		color: #9769CE; // purple
-		text-align: center;
+	.tagline {
+		margin: 5px 0;
+		color: black;
+		text-align: left;
 		font-family: $base-font-family;
-		font-weight: lighter;
-		font-size: 42px;
-		line-height: 48px;
+		font-weight: 400 !important;
+		font-size: 52px;
+		line-height: 56px;
+	}	
+
+	
+	.splash.subline {
+		color: black;
+		text-align: left;
+		font-family: $base-font-family;
+		font-weight: 400 !important;
+		font-size: 26px;
+		line-height: 30px;
 	}
 	.tagline_description {
-		color: white;
+		color: black;
 		font-size: 24px;
 		line-height: 36px;
 		margin: 0;
