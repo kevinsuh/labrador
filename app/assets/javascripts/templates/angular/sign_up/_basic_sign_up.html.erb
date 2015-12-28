@@ -39,6 +39,12 @@
 
 </div>
 
+<div class="form_field street validation_field" ng-class="{'has-error': hasError('phone_number')}">
+  <div class="form_input">
+      <input class="recipient_form_input" name="phone_number" ng-model="user.phone_number" phone-input type="tel" validate-phone-number placeholder="Phone Number"/>
+    </div>
+</div>
+
 <div class="form_field street validation_field" ng-class="{'has-error': hasError('street')}">
   <!-- <label for="street" class="form_label">
     <span class="helper" ng-class="{'completed': isValid('street')}">
@@ -109,7 +115,7 @@
 
 <div class="form_field submit" style="margin-top: 0;">
   <div class="form_input">
-    <a ng-click="fieldsAreValid(['user_first_name', 'user_last_name', 'email', 'street', 'suite', 'city', 'state', 'zipcode']) && validateAddressFields()" class="btn submit-btn next-btn full-width" ng-class="{'disabled': !fieldsAreValid(['user_first_name', 'user_last_name', 'email', 'street', 'suite', 'city', 'state', 'zipcode'])}">NEXT</a>
+    <a ng-click="fieldsAreValid(['user_first_name', 'user_last_name', 'phone_number', 'email', 'street', 'suite', 'city', 'state', 'zipcode']) && validateAddressFields()" class="btn submit-btn next-btn full-width" ng-class="{'disabled': !fieldsAreValid(['user_first_name', 'user_last_name', 'phone_number', 'email', 'street', 'suite', 'city', 'state', 'zipcode'])}">NEXT</a>
 
     <!-- <a ng-click="fieldsAreValid(['user_first_name', 'user_last_name', 'email', 'password', 'password_confirmation']) && validateBasicFields()" class="btn submit-btn next-btn" ng-class="{'disabled': !fieldsAreValid(['user_first_name', 'user_last_name', 'email', 'password', 'password_confirmation'])}">Sign Up</a> -->
     <!-- ui-sref="form.address" -->

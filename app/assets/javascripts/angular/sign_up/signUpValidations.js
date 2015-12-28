@@ -73,4 +73,32 @@
 		}
 	});
 
+	// currently just for taken emails, but can expand from there
+	app.directive('validatePhoneNumber', function() {
+		return {
+			require: "ngModel",
+			link: function(scope, element, attributes, ngModel) {
+				
+				// minimum length of phone number
+				ngModel.$validators.tenNumbers = function (value) {
+					return (typeof value != 'undefined') && value.length == 10;
+				}
+			}
+		}
+	});
+
+	// currently just for taken emails, but can expand from there
+	app.directive('validateUsername', function() {
+		return {
+			require: "ngModel",
+			link: function(scope, element, attributes, ngModel) {
+				
+				// minimum length of phone number
+				ngModel.$validators.atLeastThreeCharacters = function (value) {
+					return (typeof value != 'undefined') && value.length >= 3;
+				}
+			}
+		}
+	});
+
 })();

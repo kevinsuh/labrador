@@ -1,3 +1,10 @@
+<!-- first name -->
+<div class="form_field username validation_field" ng-class="{'has-error': hasError('username')}">
+  <div class="form_input">
+    <input id="username" placeholder="Username" name="username" ng-model="user.username" validate-username type="text" required />
+  </div>
+</div>
+
 <div class="form_field password validation_field" ng-class="{'has-error': hasError('password')}">
   <!-- <label for="password" class="form_label">
     <span class="helper" ng-class="{'completed': basicInfoForm.password.$valid }">
@@ -50,7 +57,7 @@
 <div class="form_field submit">
   <div class="form_input">
     <a class="btn submit-btn back-button" ui-sref-active="active" ui-sref="form.profile">BACK</a>
-    <a class="btn submit-btn next-btn" ng-click="submitSignupForm()">CREATE MY ACCOUNT</a>
+    <a ng-click="submitSignupForm()" class="btn submit-btn next-btn" ng-class="{'disabled': !fieldsAreValid(['username', 'password', 'password_confirmation'])}">CREATE MY ACCOUNT</a>
   </div>
 </div>
 
