@@ -57,12 +57,12 @@
 		 * validate that the user can be created
 		 * email + password + password_confirmation
 		 */
-		$scope.validateBasicFields = function() {
+		$scope.submitSignupForm = function() {
 
 			user = signUp.user;
 
 			// pass in the user object
-			signUp.validateBasic(user) // currently this CREATES USER
+			signUp.validateAndSubmit(user) // currently this CREATES USER
 			.success(function(data) {
 				console.log(data);
 
@@ -125,38 +125,6 @@
 			});
 
 		}
-
-		/**
-		 * submit the form!
-		 * first, we do a validation one last time to check the fields are valid, and if they are not, we will inform the user which ones are not valid
-		 * it will highlight the bullet that contains inaccurate section, and also the field that is inaccurate with appropriate error message
-		 */
-		// redirect using angular, or using rails? think about this one.
-    // probably angular, because we will need to validate the form submit and then submit the user
-		$scope.submitSignupForm = function() {
-
-			signUp.submit()
-			.success(function(data) {
-
-				var user = data.user;
-        var isValid = user.is_valid;
-
-        if (isValid) {
-        	// user is logged in and now at home page
-          $scope.window.location.href= "/";
-        } else {
-        	// must handle not valid eventually
-        	alert("Something went wrong. Is your form completely filled out?");
-        }
-
-			})
-			.error(function(data) {
-				console.log("error in submitSignupForm");
-				console.log(data);
-			});
-
-		}
-		
 
 	});
 

@@ -29,8 +29,8 @@
     // each time user presses "next", it must go into DB and CONFIRM that it is valid, before going on.
     // so just have a confirm_basic, confirm_address, etc...
 
-    o.validateBasic = function(user) {
-      return $http.post('/users/validate_basic.json', user);
+    o.validateAndSubmit = function(user) {
+      return $http.post('/users/signup_user.json', user);
     };
 
     o.validateAddress = function(address) {

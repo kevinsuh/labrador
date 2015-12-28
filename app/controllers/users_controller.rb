@@ -172,7 +172,14 @@ class UsersController < ApplicationController
   # cardagain sign up
   
   # validate email + pass from backend
-  def validate_basic
+  # this needs to be refactored into a method that creates user with:
+  # 1. first / last name
+  # 2. phone number
+  # 3. mailing address
+  # 4. username
+  # 5. password
+  # CURRENTLY ONLY DOES NAME / EMAIL / PASSWORD...
+  def signup_user 
 
     first_name            = params[:user_first_name]
     last_name             = params[:user_last_name]
@@ -228,7 +235,7 @@ class UsersController < ApplicationController
     end
   end
 
-  # new signup process
+  # OLDish new signup process
   def create_signup
     
     user_params = params[:user]

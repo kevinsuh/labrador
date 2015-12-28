@@ -57,7 +57,7 @@
 <div class="form_field submit">
   <div class="form_input">
     <a class="btn submit-btn back-button" ui-sref-active="active" ui-sref="form.profile">BACK</a>
-    <a ng-click="submitSignupForm()" class="btn submit-btn next-btn" ng-class="{'disabled': !fieldsAreValid(['username', 'password', 'password_confirmation'])}">CREATE MY ACCOUNT</a>
+    <a ng-click="fieldsAreValid(['username', 'password', 'password_confirmation']) && submitSignupForm()" class="btn submit-btn next-btn" ng-class="{'disabled': !fieldsAreValid(['username', 'password', 'password_confirmation'])}">CREATE MY ACCOUNT</a>
   </div>
 </div>
 
