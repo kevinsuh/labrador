@@ -1,10 +1,12 @@
 <div id="form-container">
+	<% if false %>
 	<a href="/"><%= image_tag('cardagain_logo_md.png', alt: 'Cardagain', class: "logo") %></a>
-	<div class="page-header">
-		<h1 ng-if="currentState == 'form.profile'">Let's start</h1>
-		<h1 ng-if="currentState == 'form.address'">Let us ship things to you</h1>
-		<h1 ng-if="currentState == 'form.interests'">We also curate cards :)</h1>
-		
+	<% end %>
+	<div class="header">
+		<h2 class="logo" style="margin-top:20px; margin-right: 10px; text-align: right; color: red; font-style: italic; font-size: 40px; font-weight: 400 !important;">Labrador</h2>
+	</div>
+	<% if false %>
+	<div class="page-header">	
 		<!-- these links help us move through relative paths -->
 		<div id="status-buttons" class="text-center">
 			<p class="progress_bullets">
@@ -14,10 +16,21 @@
 			</p>
 		</div>
 	</div>
+	<% end %>
 
 	<div class="form">
-    <form id="signup-form" name="basicInfoForm" ng-submit="signup()" novalidate>
-
+    <form id="signup-form" ng-class="{'basic': currentState == 'form.profile', 'username': currentState == 'form.interests'}" name="basicInfoForm" ng-submit="signup()" novalidate>
+    	<div ng-if="currentState == 'form.profile'">
+				<div class="main_response">
+					<span style="color: red;">Thanks!</span> <span>You'll hear from us when we launch.</span>
+				</div>
+				<div class="second_response">
+					<span>We are now also accepting early signups for beta-testing. If you'd like to try it out, create an account now.</span>
+				</div>
+			</div>
+			<div ng-if="currentState == 'form.interests'">
+				<h2 class="form_title">Choose a Username and Password</h2>
+			</div>
     	<!-- nested state views here -->
 			<div id="form-views" ui-view></div>
 		</form>

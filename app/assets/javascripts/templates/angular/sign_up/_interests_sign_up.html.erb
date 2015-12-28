@@ -1,20 +1,56 @@
-<!-- interests -->
-interests...? me?? aw
-<!-- <div class="form_field suite">
-  <label for="suite" class="form_label">
-    <span class="helper" ng-class="{'completed': isValid('suite')}">
-      Suite / Floor Number
+<div class="form_field password validation_field" ng-class="{'has-error': hasError('password')}">
+  <!-- <label for="password" class="form_label">
+    <span class="helper" ng-class="{'completed': basicInfoForm.password.$valid }">
+      Password
     </span>
-  </label>
+  </label> -->
 
   <div class="form_input">
-    <input id="suite" type="text" name="suite" ng-model="address.suite" placeholder="Suite 206"/>
+    <input id="password" type="password" name="password" ng-model="user.password" placeholder="Password" validate-password required/>
   </div>
-</div> -->
+  <div class="password-requirements">
+    <ul class="float-left">
+      <li class="helper" ng-class="{'completed':!basicInfoForm.password.$error.sixCharacters, 'has-error': passwordError(basicInfoForm.password.$error)}">At least 6 characters</li>
+      <li>|</li>
+      <li class="helper" ng-class="{'completed':!basicInfoForm.password.$error.number, 'has-error': passwordError(basicInfoForm.password.$error)}">One number</li>
+    </ul>
+  </div>
+</div>
+
+<div class="form_field password validation_field" ng-class="{'has-error': hasError('password_confirmation')}">
+  <!-- <label for="password_confirmation" class="form_label">
+    <span class="helper" ng-class="{'completed': basicInfoForm.password_confirmation.$valid }">
+      Confirm Password
+    </span>
+  </label> -->
+  <div class="form_input">
+    <input type="password" id="password_confirmation" name="password_confirmation" ng-model="user.password_confirmation" placeholder="Repeat Password" required compare-to="user.password"/>
+  </div>
+
+  <div class="invalid-message-holder">
+     <div class="invalid-message" ng-messages="basicInfoForm.password_confirmation.$error" ng-show="showMessages('password_confirmation')">
+      <div class="message-animation" ng-message="required">
+        <strong> 
+          Password confirmation is required.
+        </strong>
+      </div>
+
+      <div class="message-animation" ng-message="compareTo">
+        <strong>
+          Your passwords don't match!
+        </strong>
+      </div>
+    </div>
+  </div>
+ 
+
+</div>
+
 
 <div class="form_field submit">
   <div class="form_input">
-    <a class="btn submit-btn next-btn" ng-click="submitSignupForm()">Submit</a>
+    <a class="btn submit-btn back-button" ui-sref-active="active" ui-sref="form.profile">BACK</a>
+    <a class="btn submit-btn next-btn" ng-click="submitSignupForm()">CREATE MY ACCOUNT</a>
   </div>
 </div>
 

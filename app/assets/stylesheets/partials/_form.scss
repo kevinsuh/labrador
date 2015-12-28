@@ -17,6 +17,10 @@
 	.form_field {
 		margin: 0 0;
 
+		.form_input {
+			margin: 10px 0;
+		}
+
 		// div that surrounds form <submit>
 		&.submit {
 			margin-top: 1.5em;

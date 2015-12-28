@@ -33,6 +33,10 @@
 		}
 	}
 
+	.page-header {
+		border-bottom: none;
+	}
+
 	// have the ng-hide still preserve space
 	.ng-hide {
 		visibility: hidden;
@@ -52,8 +56,12 @@
 	padding: 30px;
 	padding-top: 0px;
 	overflow: hidden;
-	width: 80%;
-	margin-left: 10%;
+	width: 70%;
+	&.basic {
+	}
+	&.username {
+		margin-left: 15%;
+	}
 	
 	.form_field {
 		&.name {
@@ -128,9 +136,25 @@
 
 	// // next button
 	.next-btn {
-		background-color: green;
+		margin-top: 0;
+		background-color: $login_red;
+		border-radius: 0;
+		width: 100%;
 		&.disabled {
-			background-color: gray;
+			background-color: white !important;
+			color: grey;
+			border: 1pt solid grey;
+		}
+	}
+	.submit-btn {
+		&.full-width {
+			width: 100%;
+		}
+		width: 80%;
+		float: right;
+		&.back-button {
+			width: 19%;
+			float: left;
 		}
 	}
 }
@@ -162,17 +186,17 @@
 	
 	width: auto;
 
-	&.ng-enter, &.ng-leave {
-		position: absolute;
-		left: 30px;
-		right: 30px;
-	}
+	// &.ng-enter, &.ng-leave {
+	// 	position: absolute;
+	// 	left: 30px;
+	// 	right: 30px;
+	// }
 
-	&.ng-enter {
-		@include animation(slideInRight 0.5s both ease);
-	}
+	// &.ng-enter {
+	// 	@include animation(slideInRight 0.5s both ease);
+	// }
 
-	&.ng-leave {
-		@include animation(slideOutLeft 0.5s both ease);
-	}
+	// &.ng-leave {
+	// 	@include animation(slideOutLeft 0.5s both ease);
+	// }
 }
