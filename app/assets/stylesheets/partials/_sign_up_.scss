@@ -6,8 +6,12 @@
 
 // the two MAJOR divs (split into 2 for now form | helper)
 .signup_body {
+	position: absolute;
+	margin: 0 !important;
 	display: table-row;
 	width: 100%;
+	background: url(../signup_background.png) no-repeat 0 0;
+	background-size: cover;
 	.signup_form {
 		width: 100%;
 		// this contains the form body!
