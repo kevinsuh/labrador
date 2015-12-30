@@ -253,6 +253,9 @@ class UsersController < ApplicationController
       log_in user
       remember user
 
+      # send reminder email
+      user.send_early_access_signup_email
+
     end
 
     respond_to do |format|

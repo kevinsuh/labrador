@@ -65,6 +65,10 @@ class User < ActiveRecord::Base
 		UserMailer.password_reset(self).deliver_now
 	end
 
+	def send_early_access_signup_email
+		UserMailer.early_access_signup(self).deliver_now
+	end
+
 	def reset_in_time?
 		self.password_reset_sent_at > 2.hours.ago
 	end

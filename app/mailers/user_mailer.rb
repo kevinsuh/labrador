@@ -1,5 +1,5 @@
 class UserMailer < ApplicationMailer
-  default from: "hello@cardagain.com"
+  default from: "hello@sendlabrador.com"
 
   # this is sent from the users controller upon user creation
   # so the user in this case will have the activation_token virtual attribute
@@ -17,4 +17,10 @@ class UserMailer < ApplicationMailer
     @user = user
     mail to: @user.email, subject: "Reset Password"
   end
+
+  def early_access_signup(user)
+    @user = user
+    mail to: "chip@sendlabrador.com", cc: "kevin@sendlabrador.com,ben@sendlabrador.com", subject: "New Signup (#{user.email})"
+  end
+
 end
