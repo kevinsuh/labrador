@@ -20,7 +20,7 @@ class UserMailer < ApplicationMailer
 
   def early_access_signup(user)
     @user = user
-    mail to: "chip@sendlabrador.com", cc: "kevin@sendlabrador.com,ben@sendlabrador.com", subject: "New Signup (#{user.email})"
+    mail to: "chip@sendlabrador.com", cc: "kevin@sendlabrador.com,ben@sendlabrador.com", subject: "I Sense a Disturbance in the Force (#{user.email})"
   end
 
 end
