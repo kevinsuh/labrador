@@ -3,8 +3,48 @@
 // for iphone portrait views!
 @media only screen and (max-device-width: 800px) {
 
+	.signup_body {
+		.signup_form {
+			.form {
+				min-width: 0;
+			}
+		}
+	}
+
+	#signup-form {
+		width: 100%;
+		padding-top: 15px;
+
+		&.username {
+			margin-left: 0;
+		}
+
+		span {
+			font-size: 18px;
+			line-height: 20px;
+		}
+
+		.form_title {
+			font-size: 22px;
+		}
+		.form_input_title {
+			font-size: 20px;
+		}
+		.form_input {
+			input {
+				font-size: 14px;
+			}			
+		}
+		.recipient_form_input {
+			font-size: 14px;
+		}
+	}
+
 	.splash_page {
 		background: url(../splash_background.png) no-repeat 0 0;
+		.container {
+			min-width: inherit;
+		}
 		.tagline {
 			letter-spacing: 0;
 			font-size: 18px;

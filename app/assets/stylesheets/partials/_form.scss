@@ -20,6 +20,9 @@
 
 		.form_input {
 			margin: 10px 0;
+			&.password_input {
+				margin: 0;
+			}
 		}
 
 		// div that surrounds form <submit>

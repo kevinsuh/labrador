@@ -18,6 +18,12 @@
 		// this contains the form body!
 		.form {
 			width: 100%;
+			min-width: 700px;
+
+			.second_response {
+				margin: 20px 0;
+			}
+			
 			.form_field.name {
 				.first_name {
 					width: 51.7%;
@@ -82,6 +88,7 @@
 	padding-top: 0px;
 	overflow: hidden;
 	width: 70%;
+
 	&.basic {
 	}
 	&.username {
