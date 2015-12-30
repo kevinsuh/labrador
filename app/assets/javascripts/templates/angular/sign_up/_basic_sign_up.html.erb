@@ -53,7 +53,7 @@
   </label> -->
 
   <div class="form_input">
-    <input id="street" type="text" name="street" ng-model="address.street" placeholder="Address Line 1" required/>
+    <input id="street" type="text" name="street" ng-model="user.address.street" placeholder="Address Line 1" required/>
   </div>
 
 </div>
@@ -66,7 +66,7 @@
   </label> -->
 
   <div class="form_input">
-    <input id="suite" type="text" name="suite" ng-model="address.suite" placeholder="Address Line 2" style="width: 100%;"/>
+    <input id="suite" type="text" name="suite" ng-model="user.address.suite" placeholder="Address Line 2" style="width: 100%;"/>
   </div>
 </div>
 
@@ -78,7 +78,7 @@
   </label> -->
 
   <div class="form_input">
-    <input id="city" type="text" name="city" ng-model="address.city" placeholder="City" required/>
+    <input id="city" type="text" name="city" ng-model="user.address.city" placeholder="City" required/>
   </div>
 
 </div>
@@ -91,7 +91,7 @@
   </label> -->
 
   <div class="form_input">
-    <select id="state" name="state" ng-model="address.state" required>
+    <select id="state" name="state" ng-model="user.address.state" required>
       <option value="">State</option>
       <% us_states.each { |state, abrv| %>
         <option value="<%= state %>"><%= abrv %></option>
@@ -108,7 +108,7 @@
   </label> -->
 
   <div class="form_input">
-    <input id="zipcode" type="text" name="zipcode" ng-model="address.zipcode" placeholder="Zip Code" required/>
+    <input id="zipcode" type="text" name="zipcode" ng-model="user.address.zipcode" placeholder="Zip Code" required/>
   </div>
 
 </div>

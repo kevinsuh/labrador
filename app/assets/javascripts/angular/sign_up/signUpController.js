@@ -2,9 +2,10 @@
 	
 	var app = angular.module('sign-up').controller("SignUpController", function($rootScope, $scope, $state, $window, signUp) {
 
-		$scope.user             = signUp.user;
-		$scope.address          = signUp.address;
-		$scope.window           = $window;
+		// attach address to user
+		$scope.user         = signUp.user;
+		$scope.user.address = {};
+		$scope.window       = $window;
 
 		// get the early access email
 		earlyAccessEmailElement = angular.element(document.querySelector("#early_access_email"));
@@ -59,11 +60,13 @@
 		 */
 		$scope.submitSignupForm = function() {
 
-			user = signUp.user;
+			// combine the user and address
+			user         = signUp.user;
 
 			// pass in the user object
 			signUp.validateAndSubmit(user) // currently this CREATES USER
 			.success(function(data) {
+				
 				console.log(data);
 
 				var user = data.user;
@@ -98,7 +101,7 @@
 		 */
 		$scope.validateAddressFields = function() {
 
-			address = signUp.address;
+			address = $scope.user.address;
 
 			signUp.validateAddress(address)
 			.success(function(data) {

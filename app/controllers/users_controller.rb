@@ -181,39 +181,61 @@ class UsersController < ApplicationController
   # CURRENTLY ONLY DOES NAME / EMAIL / PASSWORD...
   def signup_user 
 
-    first_name            = params[:user_first_name]
-    last_name             = params[:user_last_name]
+    first_name            = params[:first_name]
+    last_name             = params[:last_name]
     email                 = params[:email]
+    username              = params[:username]
+    phone_number          = params[:phone_number]
     password              = params[:password]
     password_confirmation = params[:password_confirmation]
+    
+    address               = params[:address]
+    street                = address[:street]
+    suite                 = address[:suite]
+    city                  = address[:city]
+    state                 = address[:state]
+    zipcode               = address[:zipcode]
 
     # only validations currently are unique email and password validations
     user = User.new(
       first_name:             first_name,
       last_name:              last_name,
       email:                  email,
+      username:               username,
+      phone_number:           phone_number,
       password:               password, 
       password_confirmation:  password_confirmation
       )
-    create_with_basic_info user
-    
-    respond_to do |format|
-      format.json {render json: user }
-    end
-    
-  end
 
-  # temp means to create user with just basic fields
-  def create_with_basic_info(user)
+    if user.save 
 
-    if user.save
       user.activate
       log_in user
       remember user
-      true
+
+      address = user.addresses.build(
+        first_name: first_name,
+        last_name:  last_name,
+        street:     street,
+        suite:      suite,
+        city:       city,
+        state:      state,
+        zipcode:    zipcode
+       )
+      address.save
+
+      respond_to do |format|
+        format.json {render json: user }
+      end
+
     else
-      false
+      respond_to do |format|
+        format.json {render json: {success: false} }
+      end
     end
+    
+    
+    
   end
 
   # validate address from backend
@@ -232,44 +254,6 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       format.json {render json: address}
-    end
-  end
-
-  # OLDish new signup process
-  def create_signup
-    
-    user_params = params[:user]
-
-    user = User.new(
-      first_name:             user_params[:user_last_name],
-      last_name:              user_params[:user_last_name],
-      email:                  user_params[:email],
-      password:               user_params[:password],
-      password_confirmation:  user_params[:password_confirmation]
-      )
-
-    if user.save 
-
-      user.activate
-      log_in user
-      remember user
-
-      address_params = params[:address]
-
-      address = user.addresses.build(
-        first_name: address_params[:first_name],
-        last_name:  address_params[:last_name],
-        street:     address_params[:street],
-        suite:      address_params[:suite],
-        city:       address_params[:city],
-        state:      address_params[:state],
-        zipcode:    address_params[:zipcode]
-       )
-      address.save
-    end
-
-    respond_to do |format|
-      format.json {render json: user }
     end
   end
 
