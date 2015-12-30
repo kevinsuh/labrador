@@ -92,6 +92,20 @@
 		return {
 			require: "ngModel",
 			link: function(scope, element, attributes, ngModel) {
+
+				// basically what this does is, make the validation true the second user types new email, and the error will instead be handled from the DB for this instance on user clicking submit
+				ngModel.$validators.emailTaken = function (value) {
+					return true;
+				}
+
+				// email uniqueness validation goes away for new attempts
+				element.bind('keydown', function() {
+					for (var prop in ngModel.$error) {
+						if (prop == "email-taken") {
+							ngModel.$setValidity(prop, true);
+						}
+					}
+				})
 				
 				// minimum length of phone number
 				ngModel.$validators.atLeastThreeCharacters = function (value) {

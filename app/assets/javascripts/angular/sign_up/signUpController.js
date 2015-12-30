@@ -54,17 +54,19 @@
 			return valid; 
 		}
 
+		// currently we aren't taking address or interests, but this may become used later on.
+
 		/**
-		 * validate that the user can be created
-		 * email + password + password_confirmation
+		 * validate that the user's address can be created!
+		 * first_name, last_name, street, suite, city, state, zipcode
 		 */
-		$scope.submitSignupForm = function() {
+		$scope.createBasicInfo = function() {
 
 			// combine the user and address
 			user         = signUp.user;
 
 			// pass in the user object
-			signUp.validateAndSubmit(user) // currently this CREATES USER
+			signUp.validateBasicInfoAndSubmit(user) // currently this CREATES USER
 			.success(function(data) {
 				
 				console.log(data);
@@ -74,9 +76,7 @@
 
         if (isValid) {
         	// continue to next page
-        	// currently, just go straight to root url
-        	$scope.window.location.href= "/";
-          //$state.go('form.address');
+        	$state.go('form.interests');
         } else {
         	// tell the error and prevent continuing on
         	// for now we will only do the first one, should be more dynamic in the future though
@@ -88,31 +88,27 @@
 
 			})
 			.error(function(data) {
-				console.log("error in validateBasicFields");
+				console.log("error in createBasicInfo");
 				console.log(data);
 			});
 		}
 
-		// currently we aren't taking address or interests, but this may become used later on.
+		$scope.createAdvancedInfo = function() {
+			// combine the user and address
+			user         = signUp.user;
 
-		/**
-		 * validate that the user's address can be created!
-		 * first_name, last_name, street, suite, city, state, zipcode
-		 */
-		$scope.validateAddressFields = function() {
-
-			address = $scope.user.address;
-
-			signUp.validateAddress(address)
+			// pass in the user object
+			signUp.validateAdvancedInfoAndSubmit(user) // currently this CREATES USER
 			.success(function(data) {
+				
+				console.log(data);
 
-				var address = data.address;
-        var isValid = address.is_valid;
-
+				var user = data.user;
+        var isValid = user.is_valid;
 
         if (isValid) {
         	// continue to next page
-          $state.go('form.interests');
+        	$scope.window.location.href= "/";
         } else {
         	// tell the error and prevent continuing on
         	// for now we will only do the first one, should be more dynamic in the future though
@@ -121,12 +117,12 @@
         	var errorReason = user.error_reason;
         	$scope.basicInfoForm[errorField].$setValidity(errorReason, false);
         }
+
 			})
 			.error(function(data) {
-				console.log("error in validateAddressFields");
+				console.log("error in createAdvancedInfo");
 				console.log(data);
 			});
-
 		}
 
 	});

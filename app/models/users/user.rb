@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
 										format: { with: VALID_EMAIL_REGEX },
 										uniqueness: { case_sensitive: false }
 	validates :username,
-										length: { maximum: 255 }, 
+										length: { maximum: 255 },
 										uniqueness: { case_sensitive: false }
 	validates :password, length: { minimum: 6 }, allow_blank: true, format: { with: VALID_PASSWORD_REGEX }
 	attr_accessor :remember_token, :activation_token, :password_reset_token

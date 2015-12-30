@@ -28,8 +28,11 @@
 					<span>We are now also accepting early signups for beta-testing. If you'd like to try it out, create an account now.</span>
 				</div>
 			</div>
-			<div ng-if="currentState == 'form.interests'">
+			<div ng-if="currentState == 'form.profile'">
 				<h2 class="form_title">Choose a Username and Password</h2>
+			</div>
+			<div ng-if="currentState == 'form.interests'">
+				<h2 class="form_title">Just a little more information</h2>
 			</div>
     	<!-- nested state views here -->
 			<div id="form-views" ui-view></div>

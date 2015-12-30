@@ -1,66 +1,139 @@
-<!-- first name -->
-<div class="form_field username validation_field" ng-class="{'has-error': hasError('username')}">
-  <div class="form_input">
-    <input id="username" placeholder="Username" name="username" ng-model="user.username" validate-username type="text" required />
-  </div>
-</div>
 
-<div class="form_field password validation_field" ng-class="{'has-error': hasError('password')}">
-  <!-- <label for="password" class="form_label">
-    <span class="helper" ng-class="{'completed': basicInfoForm.password.$valid }">
-      Password
-    </span>
-  </label> -->
 
-  <div class="form_input">
-    <input id="password" type="password" name="password" ng-model="user.password" placeholder="Password" validate-password required/>
-  </div>
-  <div class="password-requirements">
-    <ul class="float-left">
-      <li class="helper" ng-class="{'completed':!basicInfoForm.password.$error.sixCharacters, 'has-error': passwordError(basicInfoForm.password.$error)}">At least 6 characters</li>
-      <li>|</li>
-      <li class="helper" ng-class="{'completed':!basicInfoForm.password.$error.number, 'has-error': passwordError(basicInfoForm.password.$error)}">One number</li>
-    </ul>
-  </div>
-</div>
+<%
+def months
+  [
+    [1, 'January'],
+    [2, 'February'],
+    [3, 'March'],
+    [4, 'April'],
+    [5, 'May'],
+    [6, 'June'],
+    [7, 'July'],
+    [8, 'August'],
+    [9, 'September'],
+    [10, 'October'],
+    [11, 'November'],
+    [12, 'December']
+  ]
+end
+%>
 
-<div class="form_field password validation_field" ng-class="{'has-error': hasError('password_confirmation')}">
-  <!-- <label for="password_confirmation" class="form_label">
-    <span class="helper" ng-class="{'completed': basicInfoForm.password_confirmation.$valid }">
-      Confirm Password
-    </span>
-  </label> -->
-  <div class="form_input">
-    <input type="password" id="password_confirmation" name="password_confirmation" ng-model="user.password_confirmation" placeholder="Repeat Password" required compare-to="user.password"/>
+<div class="birthday_container form_row">
+  <div class="title_container">
+    <h3 class="form_input_title address_title">Birthday</h3>
   </div>
-
-  <div class="invalid-message-holder">
-     <div class="invalid-message" ng-messages="basicInfoForm.password_confirmation.$error" ng-show="showMessages('password_confirmation')">
-      <div class="message-animation" ng-message="required">
-        <strong> 
-          Password confirmation is required.
-        </strong>
+  <div class="birthday_input_container">
+    <div class="month_container form_input_container">
+      <div class="form_input">
+        <select name="birth_month" class="recipient_form_input select_input state_input" ng-model="user.birth_month">
+          <option value="">Month</option>
+          <% months.each { |num, name| %>
+            <option value="<%= num %>"><%= name %></option>
+          <% } %>
+        </select>
+        <i class="glyphicon glyphicon-menu-down month_menu_down"></i>
       </div>
-
-      <div class="message-animation" ng-message="compareTo">
-        <strong>
-          Your passwords don't match!
-        </strong>
+    </div>
+    <div class="day_container form_input_container">
+      <div class="form_input">
+        <input name="birth_day" class="recipient_form_input" ng-model="user.birth_day" type="number" min="1" max="31" placeholder="Day" required/>
+      </div>
+    </div>
+    <div class="year_container form_input_container">
+      <div class="form_input">
+        <input name="birth_year" class="recipient_form_input" ng-model="user.birth_year" type="number" min="1900" max="2015" placeholder="Year" required/>
       </div>
     </div>
   </div>
- 
+</div>
+
+<div class="form_field street validation_field" ng-class="{'has-error': hasError('phone_number')}">
+  <div class="title_container">
+    <h3 class="form_input_title address_title">Phone Number</h3>
+  </div>
+  <div class="form_input">
+      <input class="recipient_form_input" name="phone_number" ng-model="user.phone_number" phone-input type="tel" validate-phone-number placeholder="Phone Number"/>
+    </div>
+</div>
+
+<div class="form_field street validation_field" ng-class="{'has-error': hasError('street')}">
+  <div class="title_container">
+    <h3 class="form_input_title address_title">Address</h3>
+  </div>
+  <!-- <label for="street" class="form_label">
+    <span class="helper" ng-class="{'completed': isValid('street')}">
+      Street
+    </span>
+  </label> -->
+
+  <div class="form_input">
+    <input id="street" type="text" name="street" ng-model="user.address.street" placeholder="Address Line 1" required/>
+  </div>
 
 </div>
 
+<div class="form_field suite">
+  <!-- <label for="suite" class="form_label">
+    <span class="helper" ng-class="{'completed': isValid('suite')}">
+      Suite / Floor Number
+    </span>
+  </label> -->
 
-<div class="form_field submit">
   <div class="form_input">
-    <a class="btn submit-btn back-button" ui-sref-active="active" ui-sref="form.profile">BACK</a>
-    <a ng-click="fieldsAreValid(['username', 'password', 'password_confirmation']) && submitSignupForm()" class="btn submit-btn next-btn" ng-class="{'disabled': !fieldsAreValid(['username', 'password', 'password_confirmation'])}">CREATE MY ACCOUNT</a>
+    <input id="suite" type="text" name="suite" ng-model="user.address.suite" placeholder="Address Line 2" style="width: 100%;"/>
   </div>
 </div>
 
-<div ng-show="">
-	{{}}
+<div class="form_field city validation_field" ng-class="{'has-error': hasError('city')}">
+  <!-- <label for="city" class="form_label">
+    <span class="helper" ng-class="{'completed': isValid('city')}">
+      City
+    </span>
+  </label> -->
+
+  <div class="form_input">
+    <input id="city" type="text" name="city" ng-model="user.address.city" placeholder="City" required/>
+  </div>
+
+</div>
+
+<div class="form_field state validation_field" ng-class="{'has-error': hasError('state')}">
+  <!-- <label for="state" class="form_label">
+    <span class="helper" ng-class="{'completed': isValid('state')}">
+      State
+    </span>
+  </label> -->
+
+  <div class="form_input">
+    <select id="state" name="state" ng-model="user.address.state" required>
+      <option value="">State</option>
+      <% us_states.each { |state, abrv| %>
+        <option value="<%= state %>"><%= abrv %></option>
+      <% } %>
+    </select>
+  </div>
+</div>
+
+<div class="form_field zipcode validation_field" ng-class="{'has-error': hasError('zipcode')}">
+  <!-- <label for="zipcode" class="form_label">
+    <span class="helper" ng-class="{'completed': isValid('zipcode')}">
+      Zip Code
+    </span>
+  </label> -->
+
+  <div class="form_input">
+    <input id="zipcode" type="text" name="zipcode" ng-model="user.address.zipcode" placeholder="Zip Code" required/>
+  </div>
+
+</div>
+
+<div class="form_field submit" style="margin-top: 0;">
+  <div class="form_input">
+    <a ng-click="fieldsAreValid(['phone_number', 'birth_month', 'birth_day', 'birth_year', 'street', 'suite', 'city', 'state', 'zipcode']) && createAdvancedInfo()" class="btn submit-btn next-btn full-width" ng-class="{'disabled': !fieldsAreValid(['phone_number', 'birth_month', 'birth_day', 'birth_year', 'street', 'suite', 'city', 'state', 'zipcode'])}">SUBMIT</a>
+
+    <!-- <a ng-click="fieldsAreValid(['user_first_name', 'user_last_name', 'email', 'password', 'password_confirmation']) && validateBasicFields()" class="btn submit-btn next-btn" ng-class="{'disabled': !fieldsAreValid(['user_first_name', 'user_last_name', 'email', 'password', 'password_confirmation'])}">Sign Up</a> -->
+    <!-- ui-sref="form.address" -->
+    <!-- <i class="glyphicon glyphicon-arrow-right"></i> -->
+  </div>
 </div>

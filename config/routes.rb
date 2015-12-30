@@ -108,7 +108,8 @@ Rails.application.routes.draw do
   # users
   resources :users do
     collection do
-      post :signup_user
+      post :basic_signup
+      post :advanced_signup
       post :validate_address
       post :create_signup
       get :get_current_user

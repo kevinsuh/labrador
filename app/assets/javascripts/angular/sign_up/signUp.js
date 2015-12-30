@@ -24,13 +24,18 @@
       }
     };
 
-    // how does user sign-up work? it should submit all at once for sure.
-    // but how do we confirm the information as we go?
-    // each time user presses "next", it must go into DB and CONFIRM that it is valid, before going on.
-    // so just have a confirm_basic, confirm_address, etc...
+    /**
+     * now we are doing 2-step process of submitting your basic info (username, email, password)
+     * second step is your address and stuff -- which we will call advanced info
+     * @param  {[type]} user [description]
+     * @return {[type]}      [description]
+     */
+    o.validateBasicInfoAndSubmit = function(user) { 
+      return $http.post('/users/basic_signup.json', user);
+    };
 
-    o.validateAndSubmit = function(user) {
-      return $http.post('/users/signup_user.json', user);
+    o.validateAdvancedInfoAndSubmit = function(user) { 
+      return $http.post('/users/advanced_signup.json', user);
     };
 
     o.validateAddress = function(address) {

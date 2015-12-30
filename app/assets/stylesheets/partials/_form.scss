@@ -15,6 +15,7 @@
 
 	// div around each form input that contains label as well
 	.form_field {
+		position: relative;
 		margin: 0 0;
 
 		.form_input {
@@ -52,22 +53,26 @@
 	// handle errors in a form-field div
 	.has-error {
 		input, select {
-			border-color: $error-color;
+			// border-color: $error-color;
 		}
 	}
 	li.has-error {
-		color: $error-color;
+		// color: $error-color;
 	}
 
 	// this will be the transition
 	.invalid-message-holder {
 		height: 15px;
+		margin-top: -10px;
 		width: 100%;
 		clear: both;
 	}
 	.invalid-message {
-  	color: red;
+  	color: $error_red;
   	font-size: 12px;
   	margin-top: 4px;
+  	strong {
+  		font-weight: 400 !important;
+  	}
 	}
 }

@@ -169,7 +169,7 @@ class UsersController < ApplicationController
     end
   end
 
-  # cardagain sign up
+  # labrador sign up
   
   # validate email + pass from backend
   # this needs to be refactored into a method that creates user with:
@@ -179,15 +179,45 @@ class UsersController < ApplicationController
   # 4. username
   # 5. password
   # CURRENTLY ONLY DOES NAME / EMAIL / PASSWORD...
-  def signup_user 
+  
+  def basic_signup
 
     first_name            = params[:first_name]
     last_name             = params[:last_name]
     email                 = params[:email]
     username              = params[:username]
-    phone_number          = params[:phone_number]
     password              = params[:password]
     password_confirmation = params[:password_confirmation]
+
+     # only validations currently are unique email and password validations
+    user = User.new(
+      first_name:             first_name,
+      last_name:              last_name,
+      email:                  email,
+      username:               username,
+      password:               password, 
+      password_confirmation:  password_confirmation
+      )
+
+    if user.valid?
+      user.save
+    end
+
+    respond_to do |format|
+      format.json {render json: user }
+    end
+
+  end
+
+  def advanced_signup 
+
+    # get the user by email then create update
+    email                 = params[:email]
+    phone_number          = params[:phone_number]
+    
+    birth_day             = params[:birth_day]
+    birth_month           = params[:birth_month]
+    birth_year            = params[:birth_year]
     
     address               = params[:address]
     street                = address[:street]
@@ -196,22 +226,17 @@ class UsersController < ApplicationController
     state                 = address[:state]
     zipcode               = address[:zipcode]
 
-    # only validations currently are unique email and password validations
-    user = User.new(
-      first_name:             first_name,
-      last_name:              last_name,
-      email:                  email,
-      username:               username,
-      phone_number:           phone_number,
-      password:               password, 
-      password_confirmation:  password_confirmation
+    if user = User.find_by(email: email)
+
+      first_name = user.first_name
+      last_name  = user.last_name
+
+      user.update_columns(
+        phone_number:           phone_number,
+        birth_day:              birth_day,
+        birth_month:            birth_month,
+        birth_year:             birth_year 
       )
-
-    if user.save 
-
-      user.activate
-      log_in user
-      remember user
 
       address = user.addresses.build(
         first_name: first_name,
@@ -222,39 +247,18 @@ class UsersController < ApplicationController
         state:      state,
         zipcode:    zipcode
        )
-      address.save
+      address.save      
 
-      respond_to do |format|
-        format.json {render json: user }
-      end
+      user.activate
+      log_in user
+      remember user
 
-    else
-      respond_to do |format|
-        format.json {render json: {success: false} }
-      end
     end
-    
-    
-    
-  end
-
-  # validate address from backend
-  def validate_address
-    
-    puts params.inspect
-    address = Address.new(
-      first_name: params[:first_name],
-      last_name:  params[:last_name],
-      street:     params[:street],
-      suite:      params[:suite],
-      city:       params[:city],
-      state:      params[:state],
-      zipcode:    params[:zipcode]
-      )
 
     respond_to do |format|
-      format.json {render json: address}
+      format.json {render json: user }
     end
+    
   end
 
   private
