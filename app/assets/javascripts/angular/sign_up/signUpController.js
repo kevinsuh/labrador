@@ -108,7 +108,7 @@
 
         if (isValid) {
         	// continue to next page
-        	$scope.window.location.href= "/";
+        	$scope.window.location.href= "/beta_thank_you";
         } else {
         	// tell the error and prevent continuing on
         	// for now we will only do the first one, should be more dynamic in the future though

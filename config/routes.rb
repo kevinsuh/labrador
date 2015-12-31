@@ -92,11 +92,12 @@ Rails.application.routes.draw do
   delete 'logout'            => 'sessions#destroy'
   get 'logout_angular'       => 'sessions#logout_angular'
   
-  get 'help'            => 'static_pages#help'
-  get 'about'           => 'static_pages#about'
-  get 'contact_us'      => 'static_pages#contact_us'
-  get 'team'            => 'static_pages#team'
-  get 'why'             => 'static_pages#why'
+  get 'help'           => 'static_pages#help'
+  get 'about'          => 'static_pages#about'
+  get 'beta_thank_you' => 'static_pages#beta_thank_you'
+  get 'contact_us'     => 'static_pages#contact_us'
+  get 'team'           => 'static_pages#team'
+  get 'why'            => 'static_pages#why'
   
   get 'test_angular'    => 'static_pages#test_angular'
   

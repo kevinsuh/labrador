@@ -250,14 +250,18 @@ class UsersController < ApplicationController
       address.save      
 
       user.activate
-      log_in user
-      remember user
+
+      # holding off on logging in user for now
+      if false
+        log_in user
+        remember user        
+      end
 
       # send reminder email
       user.send_early_access_signup_email
 
     end
-
+    
     respond_to do |format|
       format.json {render json: user }
     end

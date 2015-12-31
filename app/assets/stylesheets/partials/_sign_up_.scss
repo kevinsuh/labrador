@@ -87,7 +87,8 @@
 	padding: 30px;
 	padding-top: 0px;
 	overflow: hidden;
-	width: 70%;
+	width: 60%;
+	margin-left: 3%;
 
 	&.basic {
 	}
@@ -173,6 +174,8 @@
 		background-color: $login_red;
 		border-radius: 0;
 		width: 100%;
+		font-size: 16px;
+		padding: 10px;
 		&.disabled {
 			background-color: grey !important;
 			color: white;

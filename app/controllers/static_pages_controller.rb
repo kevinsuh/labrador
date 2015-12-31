@@ -16,6 +16,9 @@ class StaticPagesController < ApplicationController
   def about
   end
 
+  def beta_thank_you
+  end
+
   def contact_us
   end
 
