@@ -87,16 +87,36 @@
 	<div style="margin-top: 20px; margin-left: 20px;">
 		<div ng-repeat="address in recipients.allAddresses">
 			<div>
-				{{address.first_name}} {{address.last_name}}
+				<div>
+					<span style="font-weight: bold !important;">Email:</span> {{address.person.email}}
+				</div>
+				<div>
+					<span style="font-weight: bold !important;">Phone #:</span> {{address.person.phone_number}}
+				</div>
+				<div>
+					<span style="font-weight: bold !important;">Username:</span> {{address.person.username}}
+				</div>
+				<div>
+					<span style="font-weight: bold !important;">Birthday:</span> {{address.person.birth_month}}/{{address.person.birth_day}}/{{address.person.birth_year}}
+				</div>
+				<div>
+					<span style="font-weight: bold !important;">Created At:</span> {{address.created_at | date:"M/d/yyyy "}}
+				</div>
 			</div>
 			<div>
-				{{address.street}}
-			</div>
-			<div>
-				{{address.suite}}
-			</div>
-			<div>
-				{{address.city}}, {{address.state}} {{address.zipcode}}
+				<h5 style="font-weight: bold !important; font-size:18px; margin-bottom: 0; margin-top: 15px; text-decoration: underline;">Address:</h5>
+				<div>
+					{{address.first_name}} {{address.last_name}}
+				</div>
+				<div>
+					{{address.street}}
+				</div>
+				<div>
+					{{address.suite}}
+				</div>
+				<div>
+					{{address.city}}, {{address.state | stateAbbreviation}} {{address.zipcode}}
+				</div>
 			</div>
 			<hr>
 		</div>
