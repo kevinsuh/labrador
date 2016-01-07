@@ -9,10 +9,10 @@ class UserSerializer < ActiveModel::Serializer
     # check if user is valid, and if so return appropriate info
     user = object # user is more intuitive
     data[:is_valid] = user.valid?
+    data[:status] = { logged_in: true }
     if user.valid?
 
       data[:gravatar_url] = gravatar_for user
-      data[:status] = { logged_in: true }
 
       # get addresses for user
       addresses = user.addresses

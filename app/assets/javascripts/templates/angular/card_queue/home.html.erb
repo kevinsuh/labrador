@@ -1,15 +1,16 @@
-<div style="margin-top: 30%;">
-	<h1>Thank you for being a beta tester!</h1>
-	<h3 style="margin-top:45px; text-align: center;">We will be in touch shortly.</h3>
-</div>
-
 <!-- main layout if logged in -->
-<!-- THIS IS THE REAL, FUNCTIONAL APP -->
-<% if false %>
-<header class="navbar header_bar" id="website_header">
- <div class="main_header" ui-view="main_header"></div>
-</header>
-<aside ui-view="main_left_bar" class="left_bar"></aside>
-<div class="logged_in_home" ui-view="container"></div>
-<br class="clear" />
-<% end %>
+<!-- temporarily ONLY SHOW IF USER IS ADMIN -->
+<div ng-if="user.currentUser.is_admin">
+	<header class="navbar header_bar" id="website_header">
+	 <div class="main_header" ui-view="main_header"></div>
+	</header>
+	<aside ui-view="main_left_bar" class="left_bar"></aside>
+	<div class="logged_in_home" ui-view="container"></div>
+	<br class="clear" />
+</div>
+<div ng-if="!user.currentUser.is_admin">
+	<div style="margin-top: 30%;">
+		<h1>Thank you for being a beta tester!</h1>
+		<h3 style="margin-top:45px; text-align: center;">We will be in touch shortly.</h3>
+	</div>
+</div>
