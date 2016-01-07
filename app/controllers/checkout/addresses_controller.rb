@@ -9,7 +9,7 @@ module Checkout
 
     # temp function to get all of the addresses
     def get_all_addresses
-      @addresses = Address.all
+      @addresses = Address.all.order("created_at DESC")
       respond_to do |format|
         format.json {render json: @addresses }
       end
