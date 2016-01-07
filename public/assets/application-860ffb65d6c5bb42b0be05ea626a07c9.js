@@ -70376,6 +70376,9 @@ function verifyQ (assertQConstructor) {
           }],
           recipientOccasionsPromise: ['occasions', function(occasions) {
             return occasions.getCurrentOccasions();
+          }],
+          allAddressesPromise: ['recipients', function(recipients) {
+            return recipients.getAllAddresses();
           }]
         }
       })
@@ -72483,7 +72486,6 @@ angular.module('vr.directives.nlForm.text',[])
 			$scope.user = user;
 			$scope.cards = cards;
 
-
 			console.log("what.");
 			cards.getOrderedCards('queued');
 			console.log(cards)
@@ -72905,6 +72907,8 @@ calendarDemoApp.controller('CalendarCtrl',
 		$scope.relationships            = recipients.relationships;
 		$scope.occasions                = cards.occasions;
 		$scope.selectedRecipientIDs     = recipients.selectedRecipientIDs;
+
+		console.log(recipients);
 
 		$scope.stateParams = $stateParams;
 		$scope.queueCardState = $stateParams.queueCardState;
@@ -74157,7 +74161,8 @@ function getRandomInt(min, max) {
       },
       relationships: {}, // list of relationship types
       selectedRecipients: [], // actual objects for who we're queueing for
-      selectedRecipientIDs:[] // IDs for the URL
+      selectedRecipientIDs:[], // IDs for the URL
+      allAddresses:[] // Array of all addresses in our DB
     }
 
     // get relationship types
@@ -74171,6 +74176,14 @@ function getRandomInt(min, max) {
           o.relationships[relationship.name] = relationship.id;
         }
       });
+    }
+
+    // temporary function to get all of the addresses in our DB
+    o.getAllAddresses = function() {
+      return $http.get('/checkout/addresses/get_all_addresses.json').success(function(data) {
+        var addresses = data.addresses;
+        o.allAddresses = addresses;
+      })
     }
 
     // get your list of current relationships
@@ -76734,7 +76747,7 @@ angular.module("templates").run(["$templateCache", function($templateCache) {
 // source: app/assets/javascripts/templates/angular/card_queue/home.html.erb
 
 angular.module("templates").run(["$templateCache", function($templateCache) {
-  $templateCache.put("angular/card_queue/home.html", '<div style="margin-top: 30%;">\n	<h1>Thank you for being a beta tester!</h1>\n	<h3 style="margin-top:45px; text-align: center;">We will be in touch shortly.</h3>\n</div>\n\n<!-- main layout if logged in -->\n<!-- THIS IS THE REAL, FUNCTIONAL APP -->')
+  $templateCache.put("angular/card_queue/home.html", '<!-- main layout if logged in -->\n<!-- temporarily ONLY SHOW IF USER IS ADMIN -->\n<div ng-if="user.currentUser.is_admin">\n	<header class="navbar header_bar" id="website_header">\n	 <div class="main_header" ui-view="main_header"></div>\n	</header>\n	<aside ui-view="main_left_bar" class="left_bar"></aside>\n	<div class="logged_in_home" ui-view="container"></div>\n	<br class="clear" />\n</div>\n<div ng-if="!user.currentUser.is_admin">\n	<div style="margin-top: 30%;">\n		<h1>Thank you for being a beta tester!</h1>\n		<h3 style="margin-top:45px; text-align: center;">We will be in touch shortly.</h3>\n	</div>\n</div>')
 }]);
 
 // Angular Rails Template
@@ -76804,7 +76817,7 @@ angular.module("templates").run(["$templateCache", function($templateCache) {
 // source: app/assets/javascripts/templates/angular/manage_recipients/card_view.html.erb
 
 angular.module("templates").run(["$templateCache", function($templateCache) {
-  $templateCache.put("angular/manage_recipients/card_view.html", '\n<div class="row my_people_cards">	\n	<div class="col-xs-6 col-md-4 col-lg-3 single_card_div" ng-repeat="recipient in currentRecipients" ng-if="recipient.is_visible == 1">\n		<div class="recipient_card" ng-class="{\'selected\': isInArray(recipient.id, selectedRecipientIDs)}" ng-click="select(recipient)">\n			<div class="recipient_info">\n\n				<div class="profile_picture_container">\n					<div class="profile_picture">\n						<img class="image" ng-src="{{recipient.profile_picture}}" />\n					</div>\n				</div>\n\n				<div class="recipient_info_container">\n					<div class="name">\n						{{recipient.first_name}} {{recipient.last_name}}\n					</div>\n\n					<div class="events">\n						<div class="event" ng-repeat="occasion in recipient.occasions">\n							<span ng-if="occasion.occasion.name">{{occasion.occasion.name}} in {{daysFromToday(occasion.recipient_occasion.month, occasion.recipient_occasion.day)}} - {{occasion.recipient_occasion.month | integerToMonth}} {{occasion.recipient_occasion.day}}</span>\n						</div>\n					</div>\n				</div>\n\n				<div class="edit_container">\n					<button class="btn edit-recipient" ng-click="editPersonToggle(recipient)"></button>\n				</div>\n\n				<!-- hidden overlay to go over card -->\n				<div class="overlay_view" ng-class="{display:viewOverlay}">\n				</div>\n				<div class="recipient_options overlay" ng-class="{display:viewOverlay}" >\n					<div class="option_buttons">\n						<button class="btn select-recipient" ng-click="select(recipient); $event.stopPropagation();"><i class="glyphicon glyphicon-check"></i></button>\n						<br>\n						<span class="text">Select</span>\n					</div>\n					<div class="option_buttons">\n						<button class="btn send-recipient" ng-click="single_queue(recipient)"><i class="glyphicon glyphicon-envelope"></i></button>\n						<br>\n						<span class="text">Send</span>\n					</div>\n					<div class="option_buttons">\n						<button class="btn edit-recipient" ng-click="open_modal_form(recipient)"><i class="glyphicon glyphicon-pencil"></i></button>\n						<br>\n						<span class="text">Edit</span>\n					</div>\n				</div>\n\n			</div>\n		</div>\n	</div>\n\n	<div class="col-xs-6 col-md-4 col-lg-3 single_card_div add_recipient">\n		<div class="recipient_card" ng-click="addPersonToggle()">\n			<div class="recipient_info" ng-class="{\'selected\': isInArray(recipient.id, selectedRecipientIDs)}">\n				<span class="add_title"><i class="glyphicon glyphicon-plus"></i>ADD PERSON</span>\n			</div>\n		</div>\n	</div>\n	<div class="footer_space">&nbsp;</div>\n\n</div>\n\n<script type="text/javascript">\n<!--\n    function toggle_overlay_visibility(index) {\n\n    	id_one = "overlay_view_"+index;\n    	id_two = "overlay_view_options"+index;\n\n    	var e = document.getElementById(id_one);\n    	if(e.style.display == \'block\')\n    		e.style.display = \'none\';\n    	else\n    		e.style.display = \'block\';\n\n    	var e_two = document.getElementById(id_two);\n    	if(e_two.style.display == \'block\')\n    		e_two.style.display = \'none\';\n    	else\n    		e_two.style.display = \'block\';\n\n    }\n//-->\n</script>')
+  $templateCache.put("angular/manage_recipients/card_view.html", '\n<div class="row my_people_cards">	\n\n\n	<div style="margin-top: 20px; margin-left: 20px;">\n		<div ng-repeat="address in recipients.allAddresses">\n			<div>\n				{{address.first_name}} {{address.last_name}}\n			</div>\n			<div>\n				{{address.street}}\n			</div>\n			<div>\n				{{address.suite}}\n			</div>\n			<div>\n				{{address.city}}, {{address.state}} {{address.zipcode}}\n			</div>\n			<hr>\n		</div>\n	</div>\n\n	<div class="footer_space">&nbsp;</div>\n\n</div>\n\n<script type="text/javascript">\n<!--\n    function toggle_overlay_visibility(index) {\n\n    	id_one = "overlay_view_"+index;\n    	id_two = "overlay_view_options"+index;\n\n    	var e = document.getElementById(id_one);\n    	if(e.style.display == \'block\')\n    		e.style.display = \'none\';\n    	else\n    		e.style.display = \'block\';\n\n    	var e_two = document.getElementById(id_two);\n    	if(e_two.style.display == \'block\')\n    		e_two.style.display = \'none\';\n    	else\n    		e_two.style.display = \'block\';\n\n    }\n//-->\n</script>')
 }]);
 
 // Angular Rails Template

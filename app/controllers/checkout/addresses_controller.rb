@@ -7,6 +7,14 @@ module Checkout
       @addresses = current_user.addresses
     end
 
+    # temp function to get all of the addresses
+    def get_all_addresses
+      @addresses = Address.all
+      respond_to do |format|
+        format.json {render json: @addresses }
+      end
+    end
+
     def new
     end
 

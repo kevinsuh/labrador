@@ -21,64 +21,87 @@
 <% end %>
 
 <div class="row my_people_cards">	
-	<div class="col-xs-6 col-md-4 col-lg-3 single_card_div" ng-repeat="recipient in currentRecipients" ng-if="recipient.is_visible == 1">
-		<div class="recipient_card" ng-class="{'selected': isInArray(recipient.id, selectedRecipientIDs)}" ng-click="select(recipient)">
-			<div class="recipient_info">
 
-				<div class="profile_picture_container">
-					<div class="profile_picture">
-						<img class="image" ng-src="{{recipient.profile_picture}}" />
-					</div>
-				</div>
 
-				<div class="recipient_info_container">
-					<div class="name">
-						{{recipient.first_name}} {{recipient.last_name}}
-					</div>
+	<% if false %>
+	<!-- TEMPORARY TAKING OUT THE RECIPIENT VIEW AND JUST ADDING IN ALL ADDRESSES -->
+		<div class="col-xs-6 col-md-4 col-lg-3 single_card_div" ng-repeat="recipient in currentRecipients" ng-if="recipient.is_visible == 1">
+			<div class="recipient_card" ng-class="{'selected': isInArray(recipient.id, selectedRecipientIDs)}" ng-click="select(recipient)">
+				<div class="recipient_info">
 
-					<div class="events">
-						<div class="event" ng-repeat="occasion in recipient.occasions">
-							<span ng-if="occasion.occasion.name">{{occasion.occasion.name}} in {{daysFromToday(occasion.recipient_occasion.month, occasion.recipient_occasion.day)}} - {{occasion.recipient_occasion.month | integerToMonth}} {{occasion.recipient_occasion.day}}</span>
+					<div class="profile_picture_container">
+						<div class="profile_picture">
+							<img class="image" ng-src="{{recipient.profile_picture}}" />
 						</div>
 					</div>
-				</div>
 
-				<div class="edit_container">
-					<button class="btn edit-recipient" ng-click="editPersonToggle(recipient)"></button>
-				</div>
+					<div class="recipient_info_container">
+						<div class="name">
+							{{recipient.first_name}} {{recipient.last_name}}
+						</div>
 
-				<!-- hidden overlay to go over card -->
-				<div class="overlay_view" ng-class="{display:viewOverlay}">
-				</div>
-				<div class="recipient_options overlay" ng-class="{display:viewOverlay}" >
-					<div class="option_buttons">
-						<button class="btn select-recipient" ng-click="select(recipient); $event.stopPropagation();"><i class="glyphicon glyphicon-check"></i></button>
-						<br>
-						<span class="text">Select</span>
+						<div class="events">
+							<div class="event" ng-repeat="occasion in recipient.occasions">
+								<span ng-if="occasion.occasion.name">{{occasion.occasion.name}} in {{daysFromToday(occasion.recipient_occasion.month, occasion.recipient_occasion.day)}} - {{occasion.recipient_occasion.month | integerToMonth}} {{occasion.recipient_occasion.day}}</span>
+							</div>
+						</div>
 					</div>
-					<div class="option_buttons">
-						<button class="btn send-recipient" ng-click="single_queue(recipient)"><i class="glyphicon glyphicon-envelope"></i></button>
-						<br>
-						<span class="text">Send</span>
-					</div>
-					<div class="option_buttons">
-						<button class="btn edit-recipient" ng-click="open_modal_form(recipient)"><i class="glyphicon glyphicon-pencil"></i></button>
-						<br>
-						<span class="text">Edit</span>
-					</div>
-				</div>
 
+					<div class="edit_container">
+						<button class="btn edit-recipient" ng-click="editPersonToggle(recipient)"></button>
+					</div>
+
+					<!-- hidden overlay to go over card -->
+					<div class="overlay_view" ng-class="{display:viewOverlay}">
+					</div>
+					<div class="recipient_options overlay" ng-class="{display:viewOverlay}" >
+						<div class="option_buttons">
+							<button class="btn select-recipient" ng-click="select(recipient); $event.stopPropagation();"><i class="glyphicon glyphicon-check"></i></button>
+							<br>
+							<span class="text">Select</span>
+						</div>
+						<div class="option_buttons">
+							<button class="btn send-recipient" ng-click="single_queue(recipient)"><i class="glyphicon glyphicon-envelope"></i></button>
+							<br>
+							<span class="text">Send</span>
+						</div>
+						<div class="option_buttons">
+							<button class="btn edit-recipient" ng-click="open_modal_form(recipient)"><i class="glyphicon glyphicon-pencil"></i></button>
+							<br>
+							<span class="text">Edit</span>
+						</div>
+					</div>
+
+				</div>
 			</div>
+		</div>
+
+		<div class="col-xs-6 col-md-4 col-lg-3 single_card_div add_recipient">
+			<div class="recipient_card" ng-click="addPersonToggle()">
+				<div class="recipient_info" ng-class="{'selected': isInArray(recipient.id, selectedRecipientIDs)}">
+					<span class="add_title"><i class="glyphicon glyphicon-plus"></i>ADD PERSON</span>
+				</div>
+			</div>
+		</div>
+	<% end %>
+	<div style="margin-top: 20px; margin-left: 20px;">
+		<div ng-repeat="address in recipients.allAddresses">
+			<div>
+				{{address.first_name}} {{address.last_name}}
+			</div>
+			<div>
+				{{address.street}}
+			</div>
+			<div>
+				{{address.suite}}
+			</div>
+			<div>
+				{{address.city}}, {{address.state}} {{address.zipcode}}
+			</div>
+			<hr>
 		</div>
 	</div>
 
-	<div class="col-xs-6 col-md-4 col-lg-3 single_card_div add_recipient">
-		<div class="recipient_card" ng-click="addPersonToggle()">
-			<div class="recipient_info" ng-class="{'selected': isInArray(recipient.id, selectedRecipientIDs)}">
-				<span class="add_title"><i class="glyphicon glyphicon-plus"></i>ADD PERSON</span>
-			</div>
-		</div>
-	</div>
 	<div class="footer_space">&nbsp;</div>
 
 </div>

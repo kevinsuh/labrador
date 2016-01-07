@@ -101,6 +101,9 @@
           }],
           recipientOccasionsPromise: ['occasions', function(occasions) {
             return occasions.getCurrentOccasions();
+          }],
+          allAddressesPromise: ['recipients', function(recipients) {
+            return recipients.getAllAddresses();
           }]
         }
       })

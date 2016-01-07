@@ -51,7 +51,8 @@
       },
       relationships: {}, // list of relationship types
       selectedRecipients: [], // actual objects for who we're queueing for
-      selectedRecipientIDs:[] // IDs for the URL
+      selectedRecipientIDs:[], // IDs for the URL
+      allAddresses:[] // Array of all addresses in our DB
     }
 
     // get relationship types
@@ -65,6 +66,14 @@
           o.relationships[relationship.name] = relationship.id;
         }
       });
+    }
+
+    // temporary function to get all of the addresses in our DB
+    o.getAllAddresses = function() {
+      return $http.get('/checkout/addresses/get_all_addresses.json').success(function(data) {
+        var addresses = data.addresses;
+        o.allAddresses = addresses;
+      })
     }
 
     // get your list of current relationships

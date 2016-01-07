@@ -13,6 +13,7 @@ Rails.application.routes.draw do
         post 'create_json'
         post 'set_for_order'
         post 'delete'
+        get 'get_all_addresses'
       end
     end
     # edit / select cards
