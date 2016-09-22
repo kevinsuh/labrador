@@ -14,18 +14,21 @@ Labrador is a Rails application using the popular [Angular](https://angularjs.or
 <a name="main-features"/>
 # Main Features
 ### Manage relationships with upcoming occasions
-<img src="/app/assets/images/add_friend_example.png" width="50%" alt="Manage relationship">
+<img src="/app/assets/images/add_friend_example.png" width="250px" alt="Manage relationship">
+	
 	* Store all your relationships in one place, with mailing addresses and upcoming occasions
 	* Receive reminders for upcoming occasions you have not purchased a card for
 
 ### Purchase and queue multiple card offerings
-<img src="/app/assets/images/my_people_example.png" width="50%" alt="Purchase and Queue Cards">
+<img src="/app/assets/images/my_people_example.png" width="250px" alt="Purchase and Queue Cards">
+	
 	* Buy all your cards for the year at once, and receive them at the right times
 	* We send you a pre-addressed, pre-stamped card so you can handwrite the message and deliver it
 	* Uses [Stripe](https://stripe.com/) to store and handle online transactions
 
 ### View queued and purchased cards
-<img src="/app/assets/images/queued_cards_example.png" width="50%" alt="View Your Queued Cards">
+<img src="/app/assets/images/queued_cards_example.png" width="250px" alt="View Your Queued Cards">
+	
 	* See which cards you have bought for which people
 	* See cards that you are intending to purchase and have in your queue
 
