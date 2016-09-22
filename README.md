@@ -40,7 +40,7 @@ Labrador was a side-project to explore creating a mobile-first web application u
 Labrador uses [bootstrap](https://github.com/twbs/bootstrap), [angular](https://github.com/angular) and [rails-sass](https://github.com/rails/sass-rails). This combination allows for quick development with powerful and modular functionality. It uses the stripe ruby gem to handle payment transactions.
 
 <a name="other"/>
-## Other
+# Other
 Labrador uses Heroku for deployment. Since it uses rails, one must remember to maintain precompiled assets each time it is updated. Since so much of the project is Angular and thus javascript, this happens very frequently.
 
 Each time you deploy to production, remember to clean out precompiled assets (`/public/assets`) and run `rake assets:precompile`. We use heroku CLI to maintain our DB (`heroku run rake db:migrate`). We use the standard `Active Record` that comes with Rails to handle our model logic.
