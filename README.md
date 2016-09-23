@@ -1,8 +1,8 @@
-# [Labrador](https://send-labrador.herokuapp.com): Queued greeting card delivery service
+# [Labrador](https://send-labrador.herokuapp.com): queued greeting card delivery service
 
-**Labrador makes sending a handwritten birthday card as easy as sending a text-message the day of.** We make it easy for you to be thoughtful towards the people you care about. Our mobile-first web app stores your contacts in one place, with their mailing addresses and important occasions.
+**Labrador makes it easy to send handwritten birthday cards instead of text messages.** Our goal is to make it simple for you to be thoughtful to the people you care about. Our mobile-first web app stores your contacts in one place, with their mailing addresses and important occasions.
 
-We remind you of upcoming occasions and allow you to handle all your greeting card purchases at one time, and queue them so that you receive a pre-addressed, pre-stamped greeting card a couple weeks before your recipient's occasion (birthday, holiday, etc.).
+We allow you to handle all your greeting card purchases in one go, and queue them so that you receive a pre-addressed, pre-stamped greeting card a couple weeks before your recipient's occasion (birthday, holiday, etc.).
 
 Labrador is a Rails application using the popular [Angular](https://angularjs.org/) framework to build a mobile-first SPA.
 
